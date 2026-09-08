@@ -1,0 +1,3041 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="نافذة المترجم — a guide to Arabic–English translation by functional equivalence: the seven procedures, nine text types, and seven trials.">
+<meta name="author" content="Shaikha Alkhaldi">
+<meta property="og:title" content="The Translators' Guild">
+<meta property="og:description" content="نافذة المترجم — meaning first, words second.">
+<style>
+  :root { color-scheme: dark; }
+  html, body { margin: 0; padding: 0; }
+  body { background: #110620; min-height: 100vh; }
+  img { max-width: 100%; }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<title>The Translators' Guild</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Readex+Pro:wght@300;400;500;600&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════
+   THE TRANSLATORS' GUILD · بَيْت الحِكْمَة
+   Brand from the Guild mark: violet→magenta gradient, white
+   serif wordmark, tracked lilac caps, three dots, squircle.
+   ═══════════════════════════════════════════════════════════ */
+
+:root {
+  --void: #110620; --void-2: #1a0a2f; --void-3: #251040;
+  --violet: #650fd0; --magenta: #a726d0; --lilac: #d6bfea; --lilac-dim: #9a86b4; --white: #fff;
+  --mint: #2ed9a0; --coral: #ff5c7a; --amber: #ffc46b;
+
+  --grad: linear-gradient(180deg, #a726d0 0%, #8218c7 48%, #650fd0 100%);
+  --grad-soft: linear-gradient(180deg, rgba(167,38,208,.16), rgba(101,15,208,.16));
+
+  --f-serif: "Playfair Display", Georgia, "Times New Roman", serif;
+  --f-sans: "Outfit", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-ar: "Readex Pro", "Noto Sans Arabic", "Geeza Pro", sans-serif;
+  --f-ar-text: "Amiri", "Noto Naskh Arabic", "Geeza Pro", serif;
+
+  --r-xl: 34px; --r-lg: 24px; --r-md: 16px; --r-sm: 10px; --r-pill: 999px;
+  --shadow: 0 24px 60px -20px rgba(0,0,0,.7);
+  --glow: 0 0 40px -8px rgba(167,38,208,.55);
+  --hair: 1px solid rgba(214,191,234,.14);
+  --hair-lit: 1px solid rgba(214,191,234,.28);
+  --grad-h: linear-gradient(90deg, #a726d0 0%, #8218c7 55%, #650fd0 100%);
+  --logo: url("data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wAARCAFAAUADASIAAhEBAxEB/8QAHQAAAgICAwEAAAAAAAAAAAAAAAECCAcJBAUGA//EAE0QAAEDAwIDBQMGCgYJBAMAAAEAAgMEBREGEgchMQgJQVFhEyJxFDJCgZGxFRYjM1JicnWhwRc3c3Sy0SQlJicoQ4KSwjZVk6I1OPD/xAAcAQEAAQUBAQAAAAAAAAAAAAAAAQIDBQYHBAj/xAA7EQABBAECBAMEBwcEAwAAAAABAAIDEQQFIQYSMVETIkEUYXGxJDI0gZHB8BUjMzVCctElUuHxFmKh/9oADAMBAAIRAxEAPwD4uk2u3A4x4lex0VZKaogferg3FFTc2M6e2P8AkvN2Wxy6gukNHEDtJ3TO8GN81yOLutobLb47TbnCKnjb7Nob4ef8Vt+jae7LlDnDZUcOaMdQn8SQeVq8vxZ4nS188tPT42k4Hk0eH2LEUhL3O3ZcX83epTmnfUTOklcXEnllRyeoXYYIRjtDWjou+Y8QhYGs2SPLAA5I8eXRCF61fDaFkoQhCKLQhCES0IQhEtCEIRLQhCES0IQhEtCEIRLQhCES0IQhEtCEIRLQhCES0IQhEtCEIRLQhCES0JgpIUjupFHcpgkHkudR1RZIDnJHT0XA8CmCWgY6q2W84JPQq04GUEO6FZH05djUsdDK4Fw558130BYajaCduOeVi+23B1O9kjT7zOePNZCtNYyrp2ztGQR73xXJeItL9lk8aIbOXD+K9G9im9ohHlcso2uoZpHRU9wlwyprgS1x67PJVt1VepL1dp5XO3DJwMrMfHjU8UDBQ0ztsTRtaweCwGH5cTjnjmVv2j4QggbtuunaFhNxMVrarZNvQZ5lGeeQfqURnHNC2MrZAaUtyN2VFCpq1FC7U8oyoISlKnlGVBCUikSluSQlIpZTyoISkU8oyoISkU8qO5JCUikCnlQQlIp5RlQQlIp5SJUUJSJ7kwVFCUinlGVBCUinlGVBCUikSluSQlIp5RlQQlIp5RlQQlIpZwluSQlWpJtfWGQxyBw+xey0pcjDViInMbx80rxIOF2VrqTE9jgffaVjtQxhkwOaRusTqmIMzEfHXou74n3Y3HULhuLgACSvH5OSfErnX2pNTdp3nmCVwV74W8rAAvdGP3YIT3eaNyimr9K50T3I3JISlFp7kEpIUUloyU9ySFNJae5G5JCUlp7kbkkKKS0ZKYckhKS09yNySFNJae5G5JCiktMlLJQhKS09yNySFNJae5G5JCUlp7kslCFFJaYKNySFNJae5G5JCUlp7kFySFFJaMlPckhKS09yNySFNJae4fWvvRv2y5zzXG8QpxuLZPRUkUjrI2UJZDNLI/8ASOVFHoOY808FXKoBR0ASQngowVUeqWkhPBRgqmkSQngowUpEkJ4KMFKRJCeCjBU0iSE8FGCopEkJ4KMFKRJCeCjBU0iSE8FGCopEkJ4KMFKRJCeCjBU0iSE8FGCopEkJ4KMFKRJCeCjBSkSQngowVNIkhPBRgqKRJCeCjBSkSQngowVNIkPFSBxhRIITJ5DCkAEhSCLUMo3KOcI3eiAHlVoXQtS3I3KO5G70UgWpG/RS3I3KO5G70SqUqW5G5R3I3KTtuh2UtyNyju9EblFX0UelqW5G5R3I3KCKNKRupbkblHcjcqqUKW5G5R3I3JSWpbkblHcjco5UtS3I3KO5G5TXoiluRuUdyN3oiHZS3I3KO5G5C2hZUgX0UtyNyjuRu9FFUqbHRS3I3KO5G70UjdVKW5G5R3I3JShS3I3KO5G5RSWpbkblHd6I3KaS1Lcjco7vRG70SkUtyNyjuRu9FFb0pG6luTDsqG5G70U1W6gAHdLOc/FCjkoyVWBsqLUkKOSQTnAHp1RkgcxyPQjxVTje1UrflPQqSFBzw0Yc4Md5OOAvrTxS1nKnifUHp+RbuwVac9sf10JHfZQTXYxaavcvvNsV1dGPFlI45XHqLTcKQbqq31lGwHBdUQlgH2q0zIhea5gqBNEDTSuMhQZIybBjkbt55wcnKk7OXBozjGAeSvgk9Ar12fKmkkTgkdfX+SMlVj3dVJo7KSEshGVFd1F1smhRyUA+aUlqSEshLKUlqSFHJKA4OO3cQ4enVTZaNkDrNKSF6Xh7w31HxSvrbRpy3OrKrGXP6RsH6zvBZ6d3e/EYW4ztkpTUgZ9h7QYPplYfL1XEwiI5ZQD8V4Jc3GgdyyOCrAkvQa70Df8Ahtf5bLqKhdb66Hmc82SD9R3ivO7w0ZLuWeZdy2+iyEUkcsYc08zV6GvY/wAzCpoRTtdWTeypmOqpeoZAN7iPAYC99ovgJr7X8gbaNOVYycE1sZha34E9VanzIsb+I/l+KiXJijFyOC8ChZw112P9dcOtCVmqL02nhp6Ru6WBsgJAWDA4kA+YymNmRZzC+J4NKIMiOZvNGQVNCiD5p5C9nVei+6aFElG7zKUp5lJCg6QNY5xcA3Huk+JX0poJa2dsVJHJWv6bKZu9zj8AqDI0DmcKVPPYuq+KSSyRofs6cReIZItGmqiPnzdXNMOB9a7ji52XtYcGNI0uoNQiGOnlmbC6OJ4cWuPRYwaphPlEXiDmPQXuvKMzG5uQvFrECEjkPc08gPH/ACS3bepB+PJZOi9vMV6w7mBJUkKJdyOB8EwSSAeSr6qQdrUR0QlnHPwHM4Ty0B2HNbkZy48m+qq+r1VF1do3bBkk7QOTR4rLvBrswa24zVMD6CkNrtLuZulY0iIjxa3xyss9kLsh/wBIjabWer6WSPT7Hh1Fb5AWuqXA/Pd5DPTzWxK3Wums9BHTUlNHTwRtDWxRN2tAHoFzbXeKfZ3ux8Tcj17LUc/WhBcUAs91WbQ3YL4e6LgZVXd015qY2bpRWOBiBxzI9F4Dih2heD3B6oltWitIWy73iIYNTTxAwMf5O9Uu3h2kqi2SHh5p6pMUksYkuNXE/BDT0YCOhVD93vE4w483O8XHzKs6NpWTqbRl6hISD0F0qMDDmy2+NkuO/orFVvbm13M4GC02ejb+hBH7uPVSou2heq6RsWptH6fvlE44ex8OXkeOFXTf6pF/RzTtIOD6rcxoeGWFvL/n8VsRwoTHyrYdofhLwV7VOj3XSxWh2nKiMiOqpaXDJqeTyPoeqrn2juyJeOBNBLfYa2O6aXMwiY//AJ8Bd0Dz6rzvZX4uTcI+LlrqXvMdruLhS1cW73Wtcfzh8yFdzt7GO5dmmvkhcHwyVtLJG9p+c3OQVorpM7R9TixhITG8jrv7lrLnZGDlsiDra5axSNvu+ASTcWlzi05buIyfFJdV8vM3ut1Jb+CEI3+CRerpG+ygFp9U0JbkA5Sq2Ki00IQo2GxVXwQDg/Uk4kR/OA2tOPMlDsYQcvcQPc3Dm5WjyuBBVDroj1W0jsQcPbdpbgpabjSQtFwu7DU1MrgM5zjGfJWLbGGOOAA3GMHzVQ+wdx6s980PTaIr52W+92hpZBHM7AqYs/OaT1dnwVuHzt2bj7zepPkvnDV2TNzpBL1v/pcoz2ye0u51VXvDNC0N24QR34wR/hS21TGQy45hjvnBUA4fXmw2DVFPW6ktsl3tbAfa00I9548AFdDvCeNVrqNKU+hLXVRVVdUTNqKqSB4cIAz6Jx5qheSHN5AZOWkeS6pwvBO7TSya6N13pbro7HtwyJPXotqfZysvCLXekqXUWkNLUVM4O9m90sY9vE8eDlnuKIMYGNaAwDAbtAAVK+7VlJ01qVoJx7QHb4deuFd0/NK5ZrLHwZr4S4kDub6rSs9pindGSSq/dt14j7P+ogBu3RgEn49Fqnb8xn7I+5bTe3hJ7LgJcvDc8BasWu9xvwH3Lp3BgvDJHdbjoNezfepISBTyuhiiTa2lCP4oyhTRHoo6L2fC3UektN6hfV6xs9TebaGYZTUuCQ71Wyvs62rhLrPSlNqHRWmqGlwdku6Me3gk/Qf+stULCC/API+K2Dd2ZI7+j/VcZ5tF2J/+oXOeL8cjH9pa8gg9Adlq+uRkReK1xFe9XMEO0DBHTkMABVG7yCYDg/bqfl79wjdn4K4BGRyVL+8mqSOHtlib875W1/2Lmugk/tCIuHQ/ktQ0zzZTPVUMs1k/Csz5JMshjPMn+S9HHYqBjNph3k+Luq+loYIbbDG3pzcD556rl9V1PLz5C+mHZZvLz5XPJaaC8zedNNhgdPS5IZzc09AF57JcQ4jAWRyN7XM/SBCx1VM9lUTNb9Bx2+qzul5Bnbyu9FmtKynzMpx6L4FwbzJIHosu9mLgzLxn4p0FrmhD7RRuFXXPcMtewH5nxKxDuIORzI6BbM+774eQ6Y4QG+GINrL7N8oke4c8NOMD0Xl4k1E4Onkt+s7YK9qeWYMYuHU7KztroILVQwUdPG2Gmp4xHFG0YDWgYC67W+ootJaUut5le1ooqWSoBd0c5rcgfWu7AG7l49FXHt6amfYOAF1hhlMU9VNEwOH6OeYXCMOF2XlMj/3Hf81zmBnjTtZ3K1m6x1VPrfVd1v8AVbnSXOpfUuY852bj80egXT9M580j7pwOg5JZX05jwthjbH2C67GzlaAOgUshGeeRjcByJ6KKF6Pqm1Vak0kt2BxAznd9LKuHVcWn8WexLd7ZXy+0vdhqYIql2eTmfQx9WMqnS5tHeK+ioqqjp6p0UFTgywtOGy48/gsNqGnNz3Rv9WEH8F4srGbOGvP9JXFLsnJx5gDySBHgV9rXRS3S4UtFTljamolbEz2pw3JOBk+AVndG93txA1Btlutdb7fRyYc2WinEv1hXc3UsTT2ATPAJ7qqfJhxqdI6lVzcByyEcufvDl1wVsB033a9kpJGOu+p6muH02ex2h31r03EnsbcLNB8KNSXGksOLhS0bpGVZlcS13njK1j/y7AD2xRguJICxL9ax3SBrB1K1sEgdUsjz6JENAftyGbi1pPVdpprTdw1jfKe0WwRy19QQ2JsjtrfrK3XnY1hcdvVbC5wrm9F1von9n1q0eje7y4h3hwde6qktFM/GJKeUSOI+CzNpXu4NNW90Ul7vtTdQ350Zj2g/WFq2TxTp0DeUP5j7t1hpNWxY7Bda16nocEcuvNLIaHDPuk4weqvP2uuzPw+4V8GTdNPWb5BcqeYBtR7QuL88jkFUdpaKprJBFSU81VO7lsgZvd8cLKabqsOp4/tDRQBpenEzmZLDI3alO33Cqt1bFV0NVNSVUR3Q1ETsPjPmF7t/aB4ivo3U345XMRYw53tsEhd9w17JvEriftmorN8go87ZJbjmFwHm0HqrRaD7uCyW98FRqm9T3fAy6jDNrc+WQsJqeraTE+5SHu/FeTLz8NpqQglUDnq5q+qkqKiaSpqZTukkeSS/1JXyjO3lyIz4K9vba4JaM4W8CaZ+nLNHa54a6GOKZrsuDXH3gT45VEOXtPdZtAcfrWa0jUGapB4sDeVo2XrwspuXHztFBX+7tD3tO6n/AG2q7+eSpB3Z5xp3VH9o371d8rhvEZLtTlPw+QXPNVN5b1Wvt8/1DVnrKFq2aRtb8B9y2k9vnnwGqv7YLVo35rfgF0vgofQj8Sts0I/RvvKmOZwOaW4cufU4+tLljJ6BWO7PPY01Fxhpor3dppNP6defyT3x/lpR+yfA+a3DO1DHwIi+d1LO5GUzGbzPOyrmSGh2cnBwdo3H+CRdyP5Obl1/Iu/yW2fQnY94ZcPooZoLCysr2N9+qmcXF589p5LxXHLj9wn4MTm0SWWhu17Dcmjhp2FrB5OdjkfRaSzis5UgixIi5YFustmdywxkrWcHtJaObCOu4bT/ABWwbuynD8QtV88g3UkH/pCxBVca+AfEar/2v0C6ze0dtbXUDi4sPgdoVtuyPwv03w90xd59L6h/GCz3eq+VwnAHsAR8w48V4OJM902EY5oix1jr0/EWvPquX4mOWuYR8Vn/ADlUn7yth/E/T+DgGbmrrgKk3eW5OjdP88YmWjcPA/tKIe/8lrWmbZTSFS/TFybVUYpi4CWEnAPVwK7nByfRY2EroKjfHIY3jByF3UWoLy6LexksoH0xH0XY8vSnSO5o9ls+Zp/mDmmgV6a5VrKCjfM94a7BDAerisfPm3u3Hmc5+K+lbXVVwqC+eT2kn6J5Y+pfDO3mOUnksxp2D7O23dVmNPxhjxlx6lLDstDBueXsAHxcB/NbrOE2mINIcOtP2unGIoKONwx5uaCf4rTLpenFZqS1wH5r6hgP/cFu8sLAyy25vgKWIf8A1C51xxIQYWfH8lr2vuI5G+m652MAEqmfeTXB0HD+yUYPuVNQ4uH7Kua7kMDyVG+8ze78C6MZn3XSTE/YFpnDovU4h7/yKwWl75TVQh3NxUcqJQDg5X0gGrp/QABSyMkeIOPrQDn4Lk0tnr62mM1NbqmalHumWJhc3PkT5r6fgG6nraaz6oirL54hY5hshka0b7LhFDcNOMHaOY8wVzhYLoT/APiqz/4ikbBdf/aaz/4iobkRcxHOKruoD2debZcRrtmCDtIOQ4dQrq93XxHv1dq/UGn6+5VNfQGmjfTxzv3CE+O1U0ksdziifLJbKtkLB78hiOG+WVaPu4Pe4sXt+0nbSMGfJarxE2GfTpDsaFrF6kWS4rtrpbLAw568ljPtL1Bo+BGuJW9W25xA+tZOZ80c88uqxJ2sJfZdnfXrvK2n/EuE4W+VF/cPmFzfH3mZfcfNafS7cQ4jrzx6rkUNfU2ysjqaOd9LUxuBEsRw4fBcOI/koiepa0/wU/pZX1E1vkorro+rutk/d88Sr5rfQd4t97rZbm+1zt9lVVLt0jmvzyJ8h4K2wjB5jxHTwVIO7Ob/ALNavPnND/NXiGAML5t1xjYtQlYwULXLNRaG5LqVVO8Nm2cEGxEE+0qcDHoVr34b8S7xwsv/AOGbLT0dRXBobsrWbmAfDzV/O8bk2cHaAc/erCOS1quyDy91zehPiup8IxNm0p7HjYkrcNEAdiEHutvvZg4zt45cN4LzNAyCupn/ACeqjYMMEn6o8lmMtwPDKp93anPhRqQ7cZu3/iFcN3Rcl1aFmNnSwximg7LTM5gjyXtb0BVQu8im28GKZmM7rhD961vvOZSeuHYx5fBbGO8md/ukt7POtjP8Vrkz+UPq5dh4PH+nAdyfmt10b7Mr/d2fz09qf0kb96vCegVHu7N/9O6o/tG/erwLlnEX8zl/XoFqWqG8txP62VbO3zy4DVZPhMFq0B/J7vogDn9S2ldvo/7hq3+2C1Ze0bGAcEAbeXmDgfzXS+DHtjwXOd3K2nQyBjm+lqyPYx7PDOMutjdruwu03Z3tfJHjlPN1a0+bfMLaJR2yG3wRQ08bIYo2hjI2jAa0eCxL2U+GQ4YcHbFbZGt+XSxfKamQD84X+83PwBWZnnDSfILm2v6nJqOa435RsFrGp5Tsic0dh0WHe1JxcPB3hPdbvTYNykb8npWg89zuW4fs9VqNuFyrLtX1NfcJ31dfUSF008hyZCT1Pqrld5ZrP5ZqLTGmYZCDQh9TUMB+cHj3cqlRJw4nwPJdM4P09sWGZ3DzO+S2rRMdscHiVuVLcQHYJAPIj0Wyvu5Tt4NXIgBo/CR5DoOS1pEgBy2Wd3Mc8Gbl+8j9wUcaNAwAfeE17eD71bQdFSbvLgDo7T3n7ZXZAyFSPvMHZ0ZYgPnibI+GVzDh3bUoj+ui1DTR9KaVUDhzoqG5RyXSvZugBxHH4uP+SyXHSU8TNjKeNjB9FreR+K67SjWt01QMjIMTWZBHmeq7VdqmldIbvovDqWdLNOfMRS8lrTQlFeLfLU00LKWthBfmMYDvRYayWSNJHvAe8SrJHk1xPzQ07vhhV2vWxt1rWMxsbIS3CyuFMZNndFtnDuVJMx0bzddEWWtbbb1b6pxIEM7HH/uC3g6cmEtitruodSQn7WBaL3e83b0GWnPwIP8AJbmuz5q4a44RaXvIcCZqVrDj9T3f5LnXHUJ/dS+m4/X4KdebbWO+KyTnI5jCo93mULnWHSEg6NlmyfsV4DnnlU87ya0uqOF1sr2jnSVGD/1FaNw67l1SI+/8itf0zbJYtcZ6lMDLgAM58fJRc73ikSHAjOD4YX0m0kgELqQJ2IWQ+GHHTUvCaKaGzQW2uppZPaS09wh9ownzAV2+y32i9M8cLvJp+9aXoKC/xwmYSsgAinAOMNGOS1xFziB0bjx81nzsOSEdoK2Ak84j0HTn9y0/iTS4JMaTIDaeBdhYTUYGPgdIdnBbQ/xB05y/1HQY6fmR/kvnUaI03TxPkfZKBrWAuc72IwB9i9Ew7T05ZPPxyut1EQ2x3Fp5j5PIQ76ua4E2aRzg3mP4rnjXvLgC4rV52ke0lV6zv160zY7Vb7RpylqHU+Y4ds8rmnBcXeR8F7Hu3ATxU1H6UcZP2qrmr3/7XX73i7FfNzPluVqe7Tb7Tifq1+fm0MJ/iu3apAzE0NzI20K+a3zKjbFhHl7LZEwYasP9rgf8Oev/AN2n/EFmBiw/2uOXZy1/+7T/AIguLYP2uP8AuHzC0bH/AIzPiPmtPsf5iL0Y37gpZycL5xn8hH+y37gpNcd4x5hfUzR5AusA+VbB+7RjLdH6pefpTx/zV3AOWVSvu1W/7A6hd51Df5q6g+avmziD+ZTfH8guY6l9pf8AFVF7x044RWz++Fa2C0eJ3eWVsm7x/wDqhtn98K1sE811fgsf6YfiVt2ifZT8Vse7tIY4T6j/AHt/4hXEd0VO+7SP+6fUn72/8QriO6Lkmu/zOb4/4Wn6h9qf8VTjvJjnhTbf74z71rn5b/rWxjvJv6qLb/fGfetchP5T/qXXeD/5e34n5rctH+zLYD3Z3/p3U/8AaD71eAKj3dm89Oao/tB96vCDzC5VxH/M5fj+QWo6n9qcq1dvzlwGrP7ULWpw6tDb/rzTVtkYJI6mrjicw+I5FbLO39/ULWf2oWungMQ7jRoQuOAblGD9i3/hghukSO7Wti0s/QXEe9bnbJTCjtdHAAA2KCNgHkAMLlyZLHDzChByZjyHJTd80/BcccbcVpLutrVZ2/K19V2krkCQWxW+BrR9SrpyyPTwWfO3Uf8AiQvWTk/JIVgHdz9V9L6A0DTYg30aF1LAAbBG0dk/ouWy3u5OfBm5fvI/cFrR+g5bL+7k5cGrl+8j9wWuca/YB/cFi9c/gferaNKpJ3lxxo/T+CM+2yc/crtjqqR95blukNPEgOaZ8EeS5bw5vqcQ961LT/tLVUXhprGnggbZq6YQgOJgkd5n6JWTCxzebg3aBnk4HKrhQ26qu9ayjooJqurlcQyGnZuc71CzDaezbxZq7WKimozBGW/MneRJjyx5rueWIYSA94astqmlxPeHhwaSvvrTWVLpuhfE2VslylaQyEc9gPiVg/cS4b8lzskkrudWaRvuj7iae+0FTRVJJax1Swj2h/VJ6rpHE7QM5cspisYIw5psLYNNw2YsNtNkqJH/APFbD+7o4pR3bR1y0XV1DRX2uTdSxE/OhPNzh8Ctd2Mhy9pwe4l1vCPiDadT0ZdtpnhlTGzrLCT7zcLF8QaadSwnRD6w3CuZ+P7VCW9luuLiGNI59AsC9tfSFRrDgFf4KSL2tVTuZUN9GtOXH7Fljh/rq08Q9J26+2epjqaKtjD2OjdnB+k34g8l2d+tMN/stdbalodBWQPp5P2XDBXzxjvfh5LXuFFp+S57ETjzAn0K0Wtc1+CB7rvez5/BALeoOSfBew4t6Cn4Y8Rb7p18ToY6Sof8l3jGYM+6frXkCd23mcEch5BfUeJKyeFsse9hdShka5gLeiCQeoys/dhs/wDEHaz5xHP2qv8A0OPHyVgOw0M9oK1Hw9kef1rFa/zfs+Yu7FeTO5fZ3n3LbG0guPL6S63UwH4CuPl8mk5fUuzbj3vius1If9R3HHT5NJ9y+Z4/4gXMmbuC0i6twdXX7+/zf4lbDuzgP6RtZHxbQQH7Sqnauc06tv7fE182P+5Wr7tOrjg4latgc4e0moYQ0eJwfBd+1/mfoZrsF0HM3wt+y2SM5j61iHtcf/rhr/8Adp/xBZeDcLD/AGuOfZx18Bz/ANWn/EFwjBv2yKv9zfmFoWNXjM+IWnpn5mP9hv3BTHX6wvmz8yz9lv3BfRvz/JfVoA5BvuurCSwdlsV7tZm7h3fXdM1DVc4DCpz3bDdnCu6O8XVP81cbOV8za/vqU3xXMtRJOS5VF7x/nwhtn98ctao5hbKe8hI/ogtn98ctag5hviuucE3+y3fErb9EoY2/dbIu7P8A6pdR/vb/AMQrinBVOu7OIdwl1Fg5H4W6/wDSFcXdnkuQa9tqcw9/+FqGpfa5K7qnPeVjbwnt3rWMWuFx9/61sd7yznwotg8fljOX1rXC44kweWTyyuvcHBx00ff8ytw0nbEBK2B92UM6c1R+21XhI9VR7uy+WndUeB3tV4C4YJz6Fcq4l31SW/d8gtU1T7W6vd8lWzt98+Add6Shaz+G12ZYNfaXuUjtkdPWxyud+iOQWzHt78+AFz9JAtVYZ7SANdloLWlxHXAweX2LonCcRm0p8bfUlbFo7bxnNPqt7Nnq21tto529JoGSA+hGVzJBhp+BWIOypxKZxO4LWC6uez5WyAU88YPNhZ7rc/UFl4vBy3xI+xceyYXQTvid6Glp00ZjkLOxWq7vAKB1H2kbjLsxDLboDn1wq34OBn52M5Hkrzd5doWSKs0xqynicWOL6eskA5AAe5lUYIwSOfsx1Hj8F9DcLTtn02OvQUfuXQ9MkbJjtPYJ590rZj3cQzwYuX7yP3Bazc+45bMO7jJ/oZuWP/cj9wWH42AOniu4Xj1s3j/era42qkneZEN0bp4nk0z4LvIZV2wSAqRd5u1z9FWAM6mXH1ZGVyvh4E6nFXf8lqWnEjKbXVdd2NeDVFpfRTNXXKkbLfbm4iASDPyaMdCP2grKmV4Od7ifMrH3AS70184Qaaq6OUSQ+wEIc3mNzBhwXv8APMDqFmNTmllynl5s2QsXqE8r8hzn914bjPwytPFrRFxtlyp2yVrYXSU1WAPaRuaM8j4ZWrato5bbcKmkmbtmhcY3t8Rgrb9UzMp6epe87Wxwve4eYAytTHEC4RXjXGoK2mI9jUVj3hw6bckclu3Ccj3iSInYUtr4bke5r43dF57OB9aA4g58fNLPLCOoXTq5uq3YEHYrO3Zh7UF04B3h1HKH12lap4dU0WecH68fkPEjxW0Lh7xK07xNsFNeLBcoq+kqGAgNd77fQt68lpG2/N9F6bQ/EjU3Da6C4aavNRa6gkbjGchw8tvRc917hSPUCcjG8r/mteztLZlEvZsVsP7a/ZffxWtP416cgB1TQR/lKfp8qiHRo9R1WtKtpZ7dUSQVUMlHOw7ZIp27Xbs88Z8Fdzhr3k81LTw0uuLC0tYA35ZQndJJ+s4eq7PXvFvs48eGOmvNDPbLpI3DbgIgyRn2cisNpE2q6N9HyYHOYOhG9f8ACsYcmThjwpWFwHqqFtJDwB+U5eXNWB7CsDpe0Fb9uXiKAvIH0RnxC7Oq4H8CHSZi4o3cRA5OWt3AeSyZwe4p9n/s1zVVdaKm53+8SNMZuUsQMmz9AemVndW1F+ZhvihgeXOHal7cvIfLAWMYbIWwEgNIwc8z4rzHEHU1r01pm51Fzr4aGnbTv3OlcAengPFUk4kd5VVVsUtNozT0YY8FvyquJa9nqB5qpWu+K2ruJde6q1Lfqq7OJ91kjtrWDyAHVaFpfB+bkSB+R5G//Vr2LpMsjg6TZdPqaqjrtT3iogc2WCeslkjkAxuYTyKyN2WuJMXC3jXYLtUyFtvkkNPOwHGQ4bWknyBWJT7riR72eWD5JBrQ1zMZYftwu1T4bZsQ4jhsRS3OSNsjPBd0pb36WrbW00U0TxLG8BzXsOWuBGcg+K6PiBoql1/o28acuGTR3OAwS7TzwemPrwtcfZ27c164TW2Cw6mgfebBAA2CYHdPCzwY0eIHqrTWvvB+F1wp2yvlr6cnq2SIDH8V8/5XDup4MxLIy4A7ELQ5dPyYZP3bbCohxP7L/ELhlfqqjqbJLX0DJSKevphubLH4ch0IGAo6F7LXEfXNXCYLG+htpcGy3GrcGMhHi4g9cK7OqO8P4aW6nf8AI6WvuFR9FpgBaftVSOOHbF1lxbMlBSSt03YDlrqOhOPlAPi89Qujafl69lMbGYQz/wBj/hbJjZObIBGWV71d3sbWDSmiNJ3bTGn9QR6juFsmDblVwtxH7Q590fDzVjA73efXxWq7sedpKwcAGamjv8FXLFcnROiFM3ectBySrFVfeX6GiZins90e79eLqFoeq8P6kcx5awvs9e6wGXp+TJKXhtrvO8TsdVX8EGVtPE58VBUe0mLRnDScdFrE9owM3e0Y1jR13DCvnqjvHNOahts9vfpM3GhqAWSwVTfde3xBVYqbiLw+pOItTfDoCjqbA+LbBYpHH2bJM535W/cNQZ2m4skM8BvqOm/u/WyzunNnx4DG9iu73cdmrbRwbudVVwmCO4XD5RTgjG5mMZVtNwPMdFrwtHeOt0/bKehtuiaKko4G7YoIyQ1jfILnnvN6wNx+KVMR4kPPL4rQ87QNVzcmTJEB8xWCycDJmlMnJ1KyJ3kdunrODVLWwxPkgp62NsjmN3FhJ5Z9FrWL2MdklpBdgO3DGfirp3nvGGaitlVbrloiiuFFOwtmp5CS1zT1VdJNdaHbxSF+Zoelbph0QH4vucfZF/i7PVdA4bZnadiuxsiE7WRVb+5bBpomxonRvb0Vy+7UsVXQ6AvVzqYnRU1XUGOJzxgvLepHorn7wBzI5dVrtsXeJQaYt0NttGhaCgoacbY6eNxDWNHRdke82rdozpGlPjjeefwWh6noWq5+U/I8Eiz3CwWXhZORMZeSrVgO3Faai79nu/PponSOpG+2kDBuIbnrgdVqaiIka0A7XgBu0uzyx/BXfq+8pmraeSCfR1HNTvBY9jnEh3oQqvcWtb6X1zc6aq05pSm0q4tPyqCmcSx7yc7ua3nhTGzsBrsXJhIad72Wa0uOXHaY5G7LLHYr7Rw4OawdY7vJu01eZGtfITyppujXfs+a2jW+tp66jiqKeVtTBI0PbNGctePMFaJC0uHzebhzaPD1WfeA/bG1jwXDbfM4ah0+MNbSVTj/AKMPEsPUrycScLuy3nKwx5vUd/8AlWdS04zu8aLqfRbKON3Cu38aOHdz01XEtZUt3RSDrHIObXfDK1GcS+Eup+E+o6qzX221DJonkQ1TIy6Odufn5HTPktgum+8W4cXOCMVsNyoZ+QcPZDblPVvbT4KXmjcy5U810ZzAjMAcStd0V+s6LcRgc5h67Lw4T8rDcWGMkLWhT0NZWPbHT0dVUSOO1jYoHEl31LaV2EdAX7h/wimgv1AbdUVlX8qip3uy5sZA6jw+CrtrDtu6R09EWcNdDUsFSQWCrr4g0x+rfMr4dmvtvP0O7UZ4h11feZK6oNTFNGwEtP6IHgFntbZqmsYh5YOUAg16n8F784ZOZFyhle5bI9x55xlUv7y211U/DazXBjCaamq2xyPaM4LumfILm1PeX6AhYRFarpI7GQXRcl4nWneGaQ1haam1V2jnXW3TjElNVs5PatP0vRtUxMtk/gHyn3LDYuHkwSiTwzssJ9mTtLDhBPPZb2HVelKmQO2xHnSuzzcPTz81dW38btAXegbW0uqaaalc3cHY2Fv1FaxNbXa0X3U9bWWK1Ms1pkwIaFnNsQ9MrpcBzuZeBjbhriBj4LqeVw5DnOGQLYT1G3VZvK0aDLeJHbK6PaO7X1rnstXpvQdQa+aob7Oou4y1rR4sA88eKpgXN3jOXOzkAfSyoBrcYHuAcsDxCYJBaRgEHIPks7pulw6bFyRbk9b6rKYmFHhR8sajnCNyiTzRlZyl7j1UtyN3oooUIpBzuvh5JbS/JLRy/SOUcj1yUcvHmPJRyA9VHVRMLAcmJuSpNDGnDSGY8MJggHzCW4jlnl5KOQNPlagDQpEk/SzhLcoggHkhVmz1U7eiluSc/axzsfNBKSjL+Zk/Yd9yikWZ7TwU0tHpOw3bUXEqDTldeWtfS0j6Mybd3IAkeZ5LH2ttAV+jdX1enqofK6mJ42SxfNlBGQW+eQsx6oboePhjw4n1XLdmVUdMx8MdvjDmPDTkB3lleQtGtDxF7QWnro6nbTUprGspqQcxHG1vIc+vTPNapjTZZc97nEtF9QPTsscySSnEhY2rLLcbXTRVFVR1FFTyZ2umYWlx8gCuRbtKXm6291bR2ypqKRoLvbNjJDwOu3zx6L2faH1vetU8Rb7FW1e+npqhjKakY0BkOCByx6LLWu366h19o+Ph1FLJoj2FMLW63xtdA6Qs/wBI3E+G7Ocr1yahJE2IPYAXA+uwofr7rV8zFrWmuqrdYLBV6i1BQWikDxWVkzYQMElpJxzHhjxXveNWhbLw5qLbaLfQVsd0pwRXXCeQ+yqH46MHhhcy/wBxisnaRo5dPTCmc64wMndFggTl35YfWV8eOOo6+88X6mjvdwdVWmluQ9yQANjiLh7TmPRWxkSy5DX15QLpU8zzT14Km0nfK21m4xWyqfRgZMrY3e96tHiPVdfRUlTcqiOGlhkqKuX3WMiaXE/Yrk6pD6PXll/AL9TS2hlub8ggttMx1E6m28+Z68s9VhbhRdZqPjPfp9MWllXE5r/ZUbADOyPB3exB6v6qIdTfLG9/L0F9fn+u6pbOS0lYou9gudhkibcKOakLvfaXsIY4ejun1L60elL1XW19fBbamWmBy6RjSdw9B4rK3Fm3XSbhRSXT5fdJ9Osu/wAmZS36NsdUyY5OYwOsY816/Rf4avFm0HboRd7RX+xkittXb4WuoZ2knLpXHwCrOpOEHiADrR3936tVGY8rfesHcPbHZdQXqvpb/cZbZTQ0MszJIoi9xmaPdaQOYHmvPUNDU3GqbTUcMtZM/kxsbS4keeB0CzH2eKeWDi7rSCo9nLUx2K6slfgEOeDguGfDK63gP+EPxX1o/TTTLrFkUTbeI2h0xh/52wHwwpOc5rpTX1eWt+/63UmRwDqWNb1YLlp2UU9ypJqQkAtMjSBJ8HePwC+to05eL44ut9uqKsN6vYw7B6Z6fUsy3w32Xs53OTiBG+GtiqW/iy6taG1Bk3flsY6jHmuobri9aS7PFgprPVm3ie/yPfJE0F02G5DSeuAVDNRmdHzMZZ5q6/r/ALtSZi1oKxFUU09BPLTzxyQzMdh8UrS1wd8D0XYjSt5/Bf4Rda6ptCB+ddE7I9SPL1WSe0U0XHUGhbnO1jbreLPDU1tQAAJpTIGh5ws7ab0tXRa9qLHX1mpa80tAI6kup2fg2WF0e7aHfo+vVWpdW5IWuLaJv17GipknLa2VXuFOh6fXtz1DSVczoG26yVFza5p5uczoF4mNxdHG7BBc0ODR1PJZk7PUTI9ecR4o2tw3TdzY0A9AHcgPTCwzSPDY6d2ff2gBw6D0WRgme/Lez+kBp/EKsO53UVkLhvwrOtrfcb5eb3HpbSlt2iqu87PaAud0Y1vVxPTl0Xaax4P2ej0xUal0Nqum1haqBwbXtEfsJKRp5NdtPN2T5LvLDaqriN2aaSw6eZJXX/TFwmqq61wfnKuOY+6Wj6QZ1PkvLUfCPUVq0Xe9RXpkumaGFrWQQ1R2PuD882Rt+kW9SsSMh7shzny8tOrlob77e/cb/wDRXn8R7nE30K6Kj0nHV8O63URqC2aCpMIiPPC86+kqGUgqnRyCFxDBOWkMJ8s+a99Z27uBV324z+EHDJPIlemZY7lrLsyUEVioZbvUUeomx1EFO0GRg2fOP6qyMma6A27pdK54haSHLDFdHU0kbHyMdDvAcwvBw9uQCR9qyRxR4P3HSesau1Wikqq+gp6OmqxUNY47vaRhzgPPC+vaD0/W6Vt2irZc4hTV8FtJni5bmkvBGceizRxsqeKg4v6bbpuCrfZvkNB8hNLG10bvyQ3h5+K8E2oyHIjLa5XNd60NiK3VkyvDgqkODw7LgWkEgBwwWnxBHmluXteNDKGLidd2UWwghpnbH0FR/wA3+K8TyWyQO8RgcAvc02EbkbkcvVHL1V8e9VD1UCcoSByAfNNXBuFQDe6M4RkoQhCi0ZQhCiktGUJYTSktCMlCE3S0ZKCcgjwKEKaS1yaq61dVBTQ1FRLLDANsTHOJaxvkB4L5UlVNR1MVTBK6GoiOWSMOHD1B8F8xyzjx6pHmMK14TaoBAaFL7VFVNXVL6iZ7pJn83TPOS4+vqu9s3ETUlitj7Zb7xV0lv2nZFHKWiLPXZ+jledPvdeaD72c889VQ6Bj2gOF0qSA4U5fRlTK2pbUMle2cPEoqCfeLxz3Z8/VSrKua41L56uR1TLIS53tDkvPiSV8ScjBQeePRXfDYKoIvSUfEfU9tsv4Mgv1dT28ja1rJnB0TT9Bp8B6Lp7deK+zXGKsoa2eirY+bKineWvz57h5rhg4PJA5DHrlWRjRNvlb1VIYwdF3OpNY3nVhjddq+apEQw2JzyYx6hvn6rkWziFqSzWh9uo7vVQUGDGyP2h/Ig9Qz9HK88ORBHUIPMgnqOij2aOuXl2VRa2qXKoLpWWqofUUlRNT1MrHRSOa8h7mu+cCfEHxUrPea+x10dbbaua31sWQJad5YQPLI8D5Lh/S3ePmljlhVmFh/p6qabRC7jUWrrzq6qimu9wmrxGMRxyvJjYfNo8PVde+uqZaQUbpn/J43l7Yy7LGv8S0eC4+BgDwCByA9OikQsaKDVFBcqtutXdPk7qmqkqRTxCGL2hJ2NznDfILvXcTNWGhiofxiuAhjb7jWzuDi39Fx8R6LzOenogcmkDoVR7NC4U9oUEX1XJpLtV26aolp6qSmlnjdFM+E7XPa7q0nyK43zWiNjcj6LRywkBgYTzyVxrOTdvVVGiufYtQXPTdeyttNdPbqluQZKaQsJ9CR1C5eo9aX3WE0RvF2qa6SP81FLITFGfEtb0BPmukwMEeB6pu94EHmCqDjRE85HmUU3m5qX2bXVEVG+nEzxRvdufED7pf54/muz07rO96Qkm/BN0qKBk42yRRPIa4+ZA8fVdN459MIyVL4WPbTmqSGuO65lzvNxvM/yivrp7hO7l7SreZHD0yfBd5Q8T9WUNPNBBf68xSNDDundlgxgbD9HC8v5+vVB59VQ7GicAC0UFSWg0E3yPkJfI9znvcXGR5y5x8ST4k+aWUZyR6ckL0ta1gpqqGyMoyhJTSqulFpwAnu9FEHqnlTVbKgGtkZRlGR5oypQlGUZRlGUS0ZT3JZRlEtPcllGUZRLRlGUZRlEtGUZRlGUS09yCcpZRlEtGUZRlGUS0ZRlGUZRLTBRuSyjKJaMoyjKMoloyjKMoyiWjKe5LKMolpkpZRlGUS0ZRlGUZRLRlMFLKMolp7kEpZRlEtGUZRlGUS0wUgSjxCR5F/qoQlRzknzyhDvdf8AEJbldrYH1VDjsCE0KJKMpVoSpIUcoBSgotSQluRuSglpoS3JZSglqSFHKMpQS1JCW5G5KCWmhLcglKCWmhRyjKUEtSQogp7koJaaEtyNyUEtNCjlGUoJakhRymClBLTQluRuSglpoSJSylBLUkKOUZSglqSEtyNyUEtNCW5IlKCWpIUcoylBLUvApkjPoo8yCpRjdI1vXmqXUAhOyJgRI7yz1UF96xpbNn6JGQuPkK40XRVANDlTQol3NG5TSk7KSFHcgOSlFqSEshGQlJaaEshLclJakhR3I3JSWpISyEZCUlpoSyEi5KS1JCjuRuSktSQo7k8hKS00JZCMhKS00KO5G5KS1JCjuTBSktNCWQjISktNCRKW5KS1JCjuRuSktSQlkIyEpLTQlkJFyUlqSFHcjclJalk5wFy7RAam4MZjGSuEDzz5L0+gbc6vu7DjOCrE1Njc/socRyk9l1l4o300xikYRJHyd6ei6rxIIWUuKWnvkdxFYxuI6kZdy6OWMJ49khXg0jNbl4TJWmz6rF4OUMvHZKOvqoBCiHZCe5ZrqsqTumhLckSlKlSQo5TBSlCaEtyNyUpCaEtyNyUptNCjlGUpUqSEtyNyUpCaEtyNyUptNCRKWUpQVJCiCnuSlCaEtyNyUqrTQluSJSlFqSFHKe5KUJoS3I3JSkJoS3I3JSm00KOUApSpUkJbkbkq06pozz6Jbki7PRQAnN2UsHdy6LMXB7TnzKh7cZ5knwWL9O2t11uMUf8AywcuVkLHbm2GxRYGHzDB9AtV1/ObhYrrNWsVqOSIMdx6FcC922PUNHLRvOMjLHeTlgW/Wl9BVSQSxmOSN20g+CsFA0/J3Fvz/VeU19pgXymbWwNzWNbiRjepb/muXcI657HL4Ep8pXP9C1P2d/guOxWDHciQRjCXILsLhRuikc0gh45YXXObt5Hqu/Ne2VvOw2CuoNcHAEG1LKMqOMJKrYqs+9TyjKgmlKOqllGVFCUp6KWUZUUJSWpZRlRQlKFLKMqKEpFLKMqKEpTallGVFCUoUsoyooSkUsoyooSlNqWUZUUJSKWUZUUJsoUsoyooTZSpZRlRQmybqWUZUExzSlCllGVAkA4PVM8k2UqWVOCF00wZGM7uRXzYx0jg1oyScDCybw40DJWzslnYSCc8145sluPGXOKtmRsTC4r0fCzRLYIxPMPcADiSFkC41RkmIOPZt5MC5b44LdRikgaGgD3nDxXTMeTNud72OjV878Uasc/IMTHeULlWuaiciTw2HYIbG+cnacNC+e1rXkMGfA5X2o58ksxyHNceeVzHuPINJ6LR7cx3M1am08m4Xita6H+WRy1lEzdOeckQ8fgsUVVudE93ulkjeRDvBWXo9kTN3UnxXk9XaLptQyGWna2nq/PHuuP+a65w5xZ4AGNkHbot60jXQyopugWBHAx8iEl6W8adqLdUOhqYfZvb1OV0UtG9uTywu0Y+RHOwOjIIXRYpmTDmYbC46SbmOb1by80L0jzK6C1xpiEIwg5ATf1Cbd0IRjz5IwPNEQhH1pIiaEIREIRjKOXmiIQjkehRgoiEIxhAGURCEbSntPkppEkJ7T5I2nyToiSEEHyS55xhRY7ImhGDnoggjwSx2RCEfHkj605h2UG0IwD1R9WFOKF0zw1jdx8lQXtad1HMCVEE9OS+lPTy1UgZG0ukJ5EdF6CyaIrbrKDs9zPTKy9o/hdDRRtkqWNY0DOTzKx2XqMGMwveaVqbIjhbzPNBeP0Hw0lqqhk8zMPOCS4csLNNJQwWWnjihYOQxuCcclPTU/s4QGRtGOQ5lcaGcku3H3T0yuGa/wAUOy3GKDoub6prZnuOHop1jgG+p8V1tK3dUYK5c7nzvDWjIHivgyMxzDzXNCeY2VphPMbX/9k=");
+  --ease: cubic-bezier(.16,.84,.28,1);
+  --measure: 64ch;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0; background: var(--void); color: var(--lilac);
+  font-family: var(--f-sans); font-size: 1rem; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; overflow-x: hidden;
+}
+
+/* ---------- ambient ---------- */
+.aura { position: fixed; inset: -20vmax; z-index: 0; pointer-events: none; overflow: hidden; }
+.aura i { position: absolute; display: block; border-radius: 50%; filter: blur(90px); opacity: .55; }
+.aura .b1 { width: 60vmax; height: 60vmax; top: -6vmax; right: 2vmax;
+  background: radial-gradient(circle, #a726d0 0%, rgba(167,38,208,0) 68%);
+  animation: drift1 26s ease-in-out infinite alternate; }
+.aura .b2 { width: 55vmax; height: 55vmax; bottom: -8vmax; left: -4vmax;
+  background: radial-gradient(circle, #650fd0 0%, rgba(101,15,208,0) 68%);
+  animation: drift2 32s ease-in-out infinite alternate; }
+.aura .b3 { width: 34vmax; height: 34vmax; top: 44%; left: 42%; opacity: .35;
+  background: radial-gradient(circle, #8218c7 0%, rgba(138,30,182,0) 70%);
+  animation: drift3 22s ease-in-out infinite alternate; }
+@keyframes drift1 { to { transform: translate3d(-9vmax,7vmax,0) scale(1.12); } }
+@keyframes drift2 { to { transform: translate3d(8vmax,-6vmax,0) scale(1.08); } }
+@keyframes drift3 { to { transform: translate3d(-6vmax,-8vmax,0) scale(.9); } }
+
+.dotfield {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none; opacity: .5;
+  background-image: radial-gradient(rgba(214,191,234,.16) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(120% 90% at 50% 20%, #000 20%, transparent 78%);
+  -webkit-mask-image: radial-gradient(120% 90% at 50% 20%, #000 20%, transparent 78%);
+}
+
+#app { position: relative; z-index: 1; padding: clamp(1.25rem,4vw,3rem) clamp(1rem,4vw,2.25rem) 5rem; }
+
+/* ---------- type ---------- */
+.tracked { font-size: .72rem; font-weight: 500; letter-spacing: .26em; text-transform: uppercase; color: var(--lilac); margin: 0; }
+.tracked.quiet { color: var(--lilac-dim); letter-spacing: .2em; }
+.tracked.mag { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.ar { direction: rtl; unicode-bidi: isolate; font-family: var(--f-ar); }
+.art { direction: rtl; unicode-bidi: isolate; font-family: var(--f-ar-text); line-height: 1.95; }
+.soft { color: rgba(214,191,234,.72); }
+.note { font-size: .82rem; color: var(--lilac-dim); line-height: 1.65; margin: 0; }
+.note b, .note strong { color: var(--lilac); font-weight: 500; }
+
+/* ---------- three dots ---------- */
+.dots { display: flex; gap: .45rem; align-items: center; }
+.dots i { width: 8px; height: 8px; border-radius: 50%; background: rgba(214,191,234,.26);
+  transition: background 380ms var(--ease), transform 380ms var(--ease), box-shadow 380ms var(--ease); }
+.dots i.on { background: var(--white); transform: scale(1.25); box-shadow: 0 0 12px rgba(255,255,255,.7); }
+.dots i.now { background: var(--magenta); transform: scale(1.4); box-shadow: 0 0 14px rgba(167,38,208,.9); }
+.dots.lg i { width: 11px; height: 11px; }
+
+.panel {
+  background: linear-gradient(180deg, rgba(255,255,255,.055), rgba(255,255,255,.018));
+  border: var(--hair); border-radius: var(--r-xl); box-shadow: var(--shadow);
+  backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+}
+
+/* ---------- buttons ---------- */
+button {
+  font-family: var(--f-sans); font-size: .9rem; font-weight: 600; letter-spacing: .04em;
+  cursor: pointer; border: none; border-radius: var(--r-pill); padding: .85rem 1.6rem;
+  color: var(--white); background: var(--grad); background-size: 160% 160%;
+  box-shadow: 0 10px 30px -12px rgba(167,38,208,.85);
+  transition: transform 240ms var(--ease), box-shadow 240ms var(--ease), background-position 500ms var(--ease);
+}
+button:hover { transform: translateY(-2px); box-shadow: 0 16px 40px -12px rgba(167,38,208,1); background-position: 100% 0; }
+button:active { transform: translateY(0) scale(.985); }
+button:focus-visible { outline: 2px solid var(--white); outline-offset: 3px; }
+button.ghost { background: rgba(214,191,234,.07); border: var(--hair-lit); color: var(--lilac); box-shadow: none; }
+button.ghost:hover { background: rgba(214,191,234,.14); color: var(--white); box-shadow: none; }
+button.link { background: none; box-shadow: none; padding: .4rem 0; color: var(--lilac-dim);
+  font-weight: 400; font-size: .82rem; letter-spacing: .02em; text-decoration: underline;
+  text-underline-offset: 4px; border-radius: 0; }
+button.link:hover { color: var(--white); transform: none; box-shadow: none; }
+
+/* ---------- fields ---------- */
+.field { display: grid; gap: .45rem; }
+.field label { font-size: .7rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--lilac-dim); }
+.field input, .typing textarea, .typing input {
+  font-family: var(--f-sans); font-size: 1.05rem; color: var(--white);
+  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md);
+  padding: .95rem 1.15rem; width: 100%;
+  transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease), background 240ms var(--ease);
+}
+.field input::placeholder, .typing textarea::placeholder, .typing input::placeholder { color: rgba(154,134,180,.75); }
+.field input:focus, .typing textarea:focus, .typing input:focus {
+  outline: none; border-color: rgba(167,38,208,.75);
+  box-shadow: 0 0 0 4px rgba(167,38,208,.16); background: rgba(37,16,64,.6);
+}
+.msg { font-size: .85rem; border-radius: var(--r-md); padding: .7rem 1rem; margin: 0;
+  border: 1px solid rgba(255,92,122,.35); background: rgba(255,92,122,.1); color: #ffb3c1;
+  animation: pop 340ms var(--ease) both; }
+.msg.good { border-color: rgba(46,217,160,.4); background: rgba(46,217,160,.1); color: #8fe8c9; }
+@keyframes pop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
+
+/* ═══════════ THE CAMERA ═══════════
+   Views are places, not pages. Going deeper pushes the room you are
+   leaving away from you and brings the next one toward you through
+   real perspective; going back reverses the move. ═══════════ */
+#app { position: relative; perspective: 1500px; perspective-origin: 50% 36%;
+  padding-top: clamp(3.6rem, 6vw, 4.6rem) !important; }
+.view { transform-style: preserve-3d; backface-visibility: hidden; }
+
+/* the view being left is lifted out of flow so the arriving one takes the space */
+.view.out-push, .view.out-pull {
+  position: absolute; top: 0; left: 0; width: 100%; pointer-events: none; z-index: 2;
+}
+.view.in-push  { animation: camForward 820ms var(--ease) both; }
+.view.in-pull  { animation: camBackward 760ms var(--ease) both; }
+.view.out-push { animation: camLeaveDeeper 460ms ease-in both; }
+.view.out-pull { animation: camLeaveNearer 440ms ease-in both; }
+
+@keyframes camForward {
+  0%   { opacity: 0; transform: translate3d(0,-2.5%,480px) rotateX(-5deg); filter: blur(16px); }
+  100% { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes camBackward {
+  0%   { opacity: 0; transform: translate3d(0,3.5%,-430px) rotateX(8deg); filter: blur(13px); }
+  100% { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes camLeaveDeeper {
+  0%   { opacity: 1; transform: none; filter: blur(0); }
+  100% { opacity: 0; transform: translate3d(0,3%,-430px) rotateX(7deg); filter: blur(13px); }
+}
+@keyframes camLeaveNearer {
+  0%   { opacity: 1; transform: none; filter: blur(0); }
+  100% { opacity: 0; transform: translate3d(0,-2.5%,470px) rotateX(-5deg); filter: blur(16px); }
+}
+@keyframes viewIn {
+  from { opacity: 0; transform: translateY(26px) scale(.986); filter: blur(6px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+
+/* ═══════════ THE ACT SPINE ═══════════ */
+#spine {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 40;
+  display: flex; justify-content: center; gap: clamp(.4rem,2vw,2rem);
+  padding: .7rem clamp(.75rem,3vw,1.5rem);
+  background: linear-gradient(180deg, rgba(17,6,32,.92), rgba(17,6,32,.55) 70%, transparent);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  transition: opacity 500ms var(--ease), transform 500ms var(--ease);
+}
+#spine.away { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+.act {
+  display: flex; align-items: center; gap: .5rem;
+  font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: rgba(205,179,230,.4); white-space: nowrap;
+  transition: color 420ms var(--ease);
+}
+.act .a-n { font-family: var(--f-serif); font-size: .82rem; letter-spacing: .06em; text-transform: none; }
+.act .a-bar { width: clamp(14px,4vw,44px); height: 2px; border-radius: 2px; background: rgba(205,179,230,.16); overflow: hidden; }
+.act .a-bar > i { display: block; height: 100%; width: 0; background: var(--grad-h); transition: width 700ms var(--ease); }
+.act.done { color: rgba(205,179,230,.62); }
+.act.done .a-bar > i { width: 100%; }
+.act.now { color: var(--white); }
+.act.now .a-bar > i { width: 60%; box-shadow: 0 0 12px rgba(167,38,208,.9); }
+.act .a-ar { font-family: var(--f-ar); direction: rtl; letter-spacing: 0; font-size: .78rem; font-weight: 400; }
+@media (max-width: 700px) { .act .a-ar, .act .a-lab { display: none; } }
+
+/* ═══════════ THE OVERTURE — the cold open ═══════════ */
+#overture { max-width: 58rem; margin: 0 auto; min-height: 64vh; display: grid; place-items: center; }
+.ov-stage { display: grid; gap: clamp(1.1rem,3.5vw,1.9rem); justify-items: center; text-align: center; width: 100%; }
+.ov-ar {
+  font-family: var(--f-ar-text); direction: rtl; margin: 0;
+  font-size: clamp(1.9rem, 7.5vw, 3.9rem); line-height: 1.75; color: var(--white);
+  animation: ovAr 1100ms var(--ease) both;
+}
+@keyframes ovAr { 0% { opacity: 0; transform: translateY(16px) scale(.97); filter: blur(8px); } 100% { opacity: 1; transform: none; filter: blur(0); } }
+
+.ov-band { position: relative; width: 100%; display: grid; gap: .7rem; justify-items: center; }
+.ov-line {
+  position: relative; display: flex; flex-wrap: wrap; justify-content: center;
+  gap: .34em; row-gap: .2em; max-width: 30ch;
+}
+.ov-w {
+  opacity: 0; transform: translateY(12px) rotateX(40deg);
+  transition: opacity 300ms var(--ease), transform 300ms var(--ease), color 400ms;
+  font-family: var(--f-sans); font-weight: 300; color: rgba(205,179,230,.92);
+  font-size: clamp(1.05rem, 3.8vw, 1.85rem);
+}
+.ov-w.on { opacity: 1; transform: none; }
+.ov-w.dead { opacity: .34; color: rgba(255,179,193,.8);
+  text-decoration: line-through; text-decoration-color: rgba(255,92,122,.7); }
+.ov-line.shook { animation: ovShake 440ms ease; }
+@keyframes ovShake {
+  0%,100% { transform: translateX(0); }
+  18% { transform: translateX(-6px); }
+  38% { transform: translateX(5px); }
+  58% { transform: translateX(-3px); }
+  78% { transform: translateX(2px); }
+}
+.ov-nat .ov-w { font-family: var(--f-serif); font-weight: 500; color: var(--white); font-size: clamp(1.25rem, 4.4vw, 2.2rem); }
+
+.ov-strike {
+  position: absolute; left: 0; top: 52%; height: 2px; width: 0;
+  background: var(--coral); box-shadow: 0 0 14px var(--coral); border-radius: 2px;
+  transition: width 640ms var(--ease);
+}
+.ov-strike.on { width: 100%; }
+
+.ov-cap {
+  margin: 0; opacity: 0; transition: opacity 520ms var(--ease);
+  font-size: .74rem; font-weight: 700; letter-spacing: .26em; text-transform: uppercase;
+}
+.ov-cap.on { opacity: 1; }
+.ov-cap.bad { color: var(--coral); }
+.ov-cap.good { color: var(--mint); }
+
+.ov-close {
+  margin: 0; max-width: 32ch; opacity: 0; transform: translateY(14px);
+  transition: opacity 800ms var(--ease), transform 800ms var(--ease);
+  font-family: var(--f-serif); font-size: clamp(1.15rem, 3.8vw, 1.8rem); color: var(--white); line-height: 1.4;
+}
+.ov-close.on { opacity: 1; transform: none; }
+.ov-go { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; justify-content: center;
+  opacity: 0; transition: opacity 700ms var(--ease); }
+.ov-go.on { opacity: 1; }
+.ov-corner { position: absolute; top: .35rem; right: clamp(.75rem,3vw,1.5rem); z-index: 5; }
+
+/* ═══════════ THE FINALE ═══════════ */
+#finale {
+  position: fixed; inset: 0; z-index: 60; overflow-y: auto;
+  background: radial-gradient(120% 90% at 50% 12%, rgba(167,38,208,.28), rgba(17,6,32,.97) 62%), rgba(17,6,32,.98);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  display: grid; place-items: center; padding: clamp(1.5rem,5vw,3rem);
+  animation: camForward 900ms var(--ease) both;
+}
+.fin-stage { display: grid; gap: 1.5rem; justify-items: center; text-align: center; max-width: 44rem; width: 100%; }
+.fin-kick { font-size: .74rem; font-weight: 700; letter-spacing: .28em; text-transform: uppercase; color: var(--lilac); margin: 0; }
+.fin-ar { font-family: var(--f-ar-text); direction: rtl; font-size: clamp(1.7rem,6.5vw,3rem);
+  color: var(--white); line-height: 1.75; margin: 0; }
+.fin-machine { font-family: var(--f-sans); font-weight: 300; font-size: clamp(1rem,3.4vw,1.35rem);
+  color: rgba(205,179,230,.5); text-decoration: line-through; text-decoration-color: rgba(255,92,122,.8); margin: 0; }
+.fin-ask { font-family: var(--f-serif); font-size: clamp(1.3rem,4.4vw,2.1rem); color: var(--white); margin: 0; }
+.fin-form { width: 100%; max-width: 30rem; display: grid; gap: .8rem; }
+.fin-verdict { display: grid; gap: 1.1rem; justify-items: center; animation: camForward 700ms var(--ease) both; }
+.fin-logo { width: 104px; height: 104px; border-radius: 22.5%; background-image: var(--logo); background-size: cover;
+  box-shadow: 0 0 90px -6px rgba(167,38,208,.95); animation: logoPulse 1.9s ease-in-out infinite; }
+.fin-rank { font-family: var(--f-serif); font-size: clamp(2rem,8vw,3.4rem); font-weight: 700; margin: 0;
+  background: linear-gradient(180deg,#ffffff,#cdb3e6 58%,#a726d0);
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+.fin-said { font-size: clamp(1rem,3.4vw,1.25rem); font-weight: 300; line-height: 1.7;
+  color: rgba(205,179,230,.92); margin: 0; max-width: 44ch; }
+.fin-said b { color: var(--white); font-weight: 500; }
+.swap-out { animation: swapOut 300ms ease forwards; }
+@keyframes swapOut { to { opacity: 0; transform: translateX(-26px) scale(.985); filter: blur(4px); } }
+.swap-in { animation: swapIn 480ms var(--ease) both; }
+@keyframes swapIn {
+  from { opacity: 0; transform: translateX(30px) scale(.985); filter: blur(4px); }
+  to { opacity: 1; transform: none; filter: blur(0); }
+}
+@keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+
+#unlock {
+  position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
+  background: rgba(17,6,32,.86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  animation: viewIn 320ms ease both;
+}
+#unlock .u-inner { display: grid; gap: 1.35rem; justify-items: center; }
+#unlock .u-word { font-family: var(--f-serif); font-size: clamp(1.5rem,5vw,2.4rem); color: var(--white); margin: 0; }
+#unlock .u-ar { font-family: var(--f-ar); direction: rtl; color: var(--lilac); font-size: 1rem; margin: 0; }
+#unlock .dots i { animation: beat 1s ease-in-out infinite; }
+#unlock .dots i:nth-child(2) { animation-delay: .16s; }
+#unlock .dots i:nth-child(3) { animation-delay: .32s; }
+@keyframes beat {
+  0%,100% { transform: scale(.85); background: rgba(214,191,234,.3); box-shadow: none; }
+  50% { transform: scale(1.5); background: var(--white); box-shadow: 0 0 16px rgba(255,255,255,.85); }
+}
+
+/* ═══════════ THE LOGO, IN 3D ═══════════ */
+.wm-stage { display: grid; justify-items: center; gap: .45rem; }
+.logo3d { perspective: 950px; transform-style: preserve-3d;
+  transition: transform 320ms ease-out; will-change: transform; }
+.logo-face {
+  display: block; width: clamp(116px, 25vw, 174px); aspect-ratio: 1;
+  background-image: var(--logo); background-size: cover; background-position: center;
+  border-radius: 22.5%; transform-style: preserve-3d;
+  box-shadow: 0 34px 64px -20px rgba(101,15,208,.85),
+              0 0 0 1px rgba(255,255,255,.12),
+              0 0 90px -22px rgba(167,38,208,.6);
+  animation: logoIn 1050ms var(--ease) both, logoFloat 7.5s ease-in-out infinite;
+  animation-delay: 60ms, 1150ms;
+}
+@keyframes logoIn {
+  0%   { opacity: 0; transform: rotateY(-72deg) rotateX(20deg) translate3d(-34px,34px,-160px) scale(.78); }
+  100% { opacity: 1; transform: rotateY(0) rotateX(0) translate3d(0,0,0) scale(1); }
+}
+@keyframes logoFloat {
+  0%,100% { transform: rotateY(-9deg) rotateX(3deg) translateY(0); }
+  50%     { transform: rotateY(9deg) rotateX(-3deg) translateY(-10px); }
+}
+.wm-sub { font-size: .78rem; font-weight: 400; letter-spacing: .42em; text-transform: uppercase;
+  color: var(--lilac); margin: .5rem 0 0; padding-left: .42em; text-align: center; }
+.wm-sub-ar { font-family: var(--f-ar); direction: rtl; color: rgba(214,191,234,.8);
+  font-size: 1.05rem; margin: .3rem 0 0; text-align: center; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aura i, .logo-face, #unlock .u-logo { animation: none; }
+  .view, .swap-in, .swap-out, .opt, .deriv, .msg, .commission,
+  .view.in-push, .view.in-pull, .view.out-push, .view.out-pull,
+  .ov-ar, #finale, .fin-verdict, .colophon::after, .sig-en .s-l, .sig-ar { animation: none !important; }
+  .ov-w { opacity: 1 !important; transform: none !important; }
+  .ov-line.shook { animation: none !important; }
+  * { transition-duration: 1ms !important; }
+}
+
+/* ═══════════ THE GATE ═══════════ */
+#gate { max-width: 60rem; margin: 0 auto; display: grid; gap: clamp(1.5rem,4vw,2.5rem); }
+.brandmark { display: grid; justify-items: center; gap: 1.5rem; }
+
+.thesis { max-width: var(--measure); margin: 0 auto; text-align: center;
+  font-size: clamp(1rem,2.4vw,1.1rem); font-weight: 300; line-height: 1.75; color: rgba(214,191,234,.86); }
+.thesis .pop { font-family: var(--f-serif); font-style: italic; font-weight: 500; font-size: 1.12em; color: var(--white); }
+.thesis .ai { font-family: var(--f-ar-text); font-size: 1.15em; }
+.thesis .strike { color: rgba(154,134,180,.85); text-decoration: line-through; }
+
+.door { padding: clamp(1.5rem,5vw,3rem); position: relative; overflow: hidden; }
+.door::before { content: ""; position: absolute; inset: 0; background: var(--grad-soft); pointer-events: none; }
+.door > * { position: relative; }
+
+.step { display: grid; gap: 1.15rem; max-width: 33rem; margin: 0 auto; }
+.step-head { display: flex; align-items: center; gap: .8rem; padding-bottom: .9rem; border-bottom: var(--hair); flex-wrap: wrap; }
+.step-chip { width: 26px; height: 26px; border-radius: 9px; background: var(--grad);
+  display: grid; place-items: center; font-size: .68rem; font-weight: 700; color: var(--white); flex: none; }
+.step-head .sh-en { font-family: var(--f-serif); font-size: 1.15rem; font-weight: 600; color: var(--white); }
+.step-head .sh-ar { font-family: var(--f-ar); direction: rtl; font-size: .88rem; color: var(--lilac-dim); margin-inline-start: auto; }
+.row { display: flex; gap: .85rem; align-items: center; flex-wrap: wrap; }
+
+.challenge { border-radius: var(--r-lg); border: var(--hair-lit); background: rgba(17,6,32,.55);
+  padding: clamp(1.25rem,4vw,2rem); display: grid; gap: .9rem; justify-items: center;
+  text-align: center; position: relative; overflow: hidden; }
+.challenge::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(100% 120% at 50% -20%, rgba(167,38,208,.22), transparent 70%); }
+.challenge > * { position: relative; }
+.challenge .phrase { font-family: var(--f-ar-text); direction: rtl; font-size: clamp(2rem,8vw,3.25rem);
+  color: var(--white); line-height: 1.7; margin: 0; animation: swapIn 520ms var(--ease) both; }
+.challenge .gloss { font-size: .84rem; color: var(--lilac-dim); margin: 0; }
+.challenge .gloss span { color: rgba(255,92,122,.9); }
+
+/* ═══════════ THE HALL ═══════════ */
+#hall { max-width: 64rem; margin: 0 auto; display: grid; gap: 2.25rem; }
+
+.hall-head { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1rem,3vw,2rem);
+  align-items: center; padding: clamp(1.1rem,3vw,1.6rem); }
+.hall-id { display: grid; gap: .1rem; min-width: 0; }
+.hall-id .h-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .95rem; color: var(--lilac); }
+.hall-id h1 { font-family: var(--f-serif); font-size: clamp(1.5rem,4vw,2rem); font-weight: 600; color: var(--white); margin: 0; line-height: 1.1; }
+.hall-id .who { font-size: .8rem; color: var(--lilac-dim); margin: .35rem 0 0; word-break: break-all; }
+.rank-box { display: grid; gap: .35rem; justify-items: end; text-align: right; }
+.rank-box .r-en { font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; margin: 0;
+  background: linear-gradient(200deg,#fff,#d6bfea 60%,#a726d0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.rank-box .r-ar { font-family: var(--f-ar); direction: rtl; font-size: .92rem; color: var(--lilac); margin: 0; }
+.rank-box .r-n { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--lilac-dim); font-variant-numeric: tabular-nums; }
+@media (max-width: 800px) {
+  .hall-head { grid-template-columns: auto 1fr; }
+  .rank-box { grid-column: 1 / -1; justify-items: start; text-align: left; }
+}
+
+.sec-head { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.sec-head h2 { font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; color: var(--white); margin: 0; }
+.sec-head .s-ar { font-family: var(--f-ar); direction: rtl; font-size: 1rem; color: var(--lilac); }
+.ledger { display: grid; gap: .8rem; }
+
+.commission {
+  display: grid; grid-template-columns: 3rem 1fr auto; gap: clamp(.85rem,2.5vw,1.5rem);
+  align-items: center; text-align: left; width: 100%; padding: 1.15rem 1.35rem;
+  border-radius: var(--r-lg); border: var(--hair);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
+  color: inherit; font-family: inherit; font-size: inherit; font-weight: 400; letter-spacing: normal;
+  box-shadow: none; animation: rise 560ms var(--ease) both;
+  transition: transform 300ms var(--ease), border-color 300ms var(--ease), background 300ms var(--ease), box-shadow 300ms var(--ease);
+}
+.commission:hover { transform: translateY(-3px); border-color: rgba(167,38,208,.55);
+  background: linear-gradient(180deg, rgba(167,38,208,.14), rgba(101,15,208,.07));
+  box-shadow: 0 18px 44px -22px rgba(167,38,208,.9); }
+.commission:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+.commission .cnum { font-family: var(--f-serif); font-size: 1.6rem; font-weight: 500;
+  color: rgba(214,191,234,.4); line-height: 1; font-variant-numeric: tabular-nums; transition: color 300ms var(--ease); }
+.commission:hover .cnum { color: var(--white); }
+.commission .ctitles { display: grid; gap: .15rem; min-width: 0; }
+.commission .c-ar { font-family: var(--f-ar); direction: rtl; font-size: .92rem; color: var(--lilac); }
+.commission .c-en { font-family: var(--f-serif); font-size: 1.28rem; font-weight: 600; color: var(--white); line-height: 1.2; }
+.commission .c-blurb { font-size: .88rem; font-weight: 300; color: rgba(214,191,234,.72); max-width: 56ch; }
+.commission .cstate { display: grid; gap: .45rem; justify-items: end; }
+.commission .kind { font-size: .64rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  padding: .22rem .6rem; border-radius: var(--r-pill); border: 1px solid rgba(214,191,234,.28);
+  color: var(--lilac-dim); white-space: nowrap; }
+.commission .kind.exhibit { border-color: rgba(46,217,160,.4); color: var(--mint); }
+.commission .kind.guide { border-color: rgba(255,196,107,.45); color: var(--amber); }
+.commission .seal-pip { width: 22px; height: 22px; border-radius: 8px; background: rgba(214,191,234,.14);
+  border: 1px solid rgba(214,191,234,.24); display: grid; place-items: center; font-size: .7rem; color: transparent; }
+.commission .seal-pip.earned { background: var(--grad); border-color: transparent; color: var(--white);
+  box-shadow: 0 0 16px -2px rgba(167,38,208,.9); }
+@media (max-width: 660px) {
+  .commission { grid-template-columns: 2.2rem 1fr; }
+  .commission .cstate { grid-column: 2; justify-items: start; }
+  .commission .c-blurb { max-width: none; }
+}
+
+.hall-foot { display: flex; gap: 1.15rem; align-items: center; flex-wrap: wrap; }
+
+/* ═══════════ TRIAL / GUIDE SHELL ═══════════ */
+#trial { max-width: 54rem; margin: 0 auto; display: grid; gap: 1.75rem; }
+.trial-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem;
+  flex-wrap: wrap; padding-bottom: 1.1rem; border-bottom: var(--hair); }
+.trial-head .t-ar { font-family: var(--f-ar); direction: rtl; font-size: .95rem; color: var(--lilac); display: block; }
+.trial-head h2 { font-family: var(--f-serif); font-size: clamp(1.4rem,4vw,1.9rem); font-weight: 600; color: var(--white); margin: 0; line-height: 1.15; }
+.trial-head .t-right { display: grid; gap: .5rem; justify-items: end; }
+.trial-head .t-count { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac-dim); }
+.stage { display: grid; gap: 1.35rem; }
+
+.prompt { border-radius: var(--r-xl); border: var(--hair-lit);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  padding: clamp(1.35rem,4vw,2.4rem); display: grid; gap: .9rem; justify-items: center;
+  text-align: center; position: relative; overflow: hidden; animation: swapIn 480ms var(--ease) both; }
+.prompt::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(110% 130% at 50% -25%, rgba(167,38,208,.2), transparent 68%); }
+.prompt > * { position: relative; }
+.prompt .ask { font-size: .74rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--lilac); margin: 0; }
+.prompt .src { font-family: var(--f-ar-text); direction: rtl; font-size: clamp(1.5rem,5vw,2.35rem);
+  color: var(--white); line-height: 1.8; margin: 0; max-width: 30ch; }
+.prompt .src-en { font-family: var(--f-serif); font-style: italic; font-size: clamp(1.3rem,4.5vw,2rem);
+  color: var(--white); line-height: 1.4; margin: 0; max-width: 34ch; }
+.prompt .lit { font-size: .85rem; color: var(--lilac-dim); margin: 0; }
+.prompt .lit b { color: rgba(255,92,122,.9); font-weight: 500; }
+
+.options { display: grid; gap: .7rem; }
+.opt { display: grid; grid-template-columns: 2rem 1fr; gap: .9rem; align-items: baseline;
+  text-align: left; width: 100%; padding: 1.05rem 1.25rem; border-radius: var(--r-lg);
+  border: var(--hair); background: rgba(255,255,255,.035); color: var(--white);
+  font-family: var(--f-sans); font-size: 1.05rem; font-weight: 300; letter-spacing: normal;
+  box-shadow: none; animation: rise 480ms var(--ease) both;
+  transition: transform 260ms var(--ease), border-color 260ms var(--ease), background 260ms var(--ease), box-shadow 260ms var(--ease); }
+.opt:hover:not(:disabled) { transform: translateX(5px); border-color: rgba(167,38,208,.6);
+  background: rgba(167,38,208,.11); box-shadow: 0 14px 34px -20px rgba(167,38,208,.9); }
+.opt:disabled { cursor: default; }
+.opt:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
+.opt .key { font-family: var(--f-serif); font-size: 1.05rem; font-weight: 600; color: rgba(214,191,234,.5); }
+.opt .txt { min-width: 0; }
+.opt .txt.is-ar { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.2em; }
+.opt .tag { display: block; margin-top: .45rem; font-size: .66rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--lilac-dim); animation: pop 320ms var(--ease) both; }
+.opt.right { border-color: rgba(46,217,160,.7); background: rgba(46,217,160,.12); }
+.opt.right .key, .opt.right .tag { color: var(--mint); }
+.opt.miss { border-color: rgba(255,92,122,.7); background: rgba(255,92,122,.1); }
+.opt.miss .key, .opt.miss .tag { color: var(--coral); }
+
+.verdict { border-radius: var(--r-lg); border: var(--hair); background: var(--grad-soft);
+  padding: 1.15rem 1.35rem; display: grid; gap: .55rem; animation: rise 520ms var(--ease) both; }
+.verdict .vh { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--lilac); }
+.verdict .vh.win { color: var(--mint); }
+.verdict .vh.lose { color: var(--coral); }
+.verdict p.vb { font-size: .98rem; font-weight: 300; line-height: 1.7; color: rgba(214,191,234,.9); margin: 0; max-width: var(--measure); }
+.verdict p.vb b { color: var(--white); font-weight: 500; }
+.verdict p.vb i { color: var(--white); }
+.foot { display: flex; gap: .85rem; align-items: center; flex-wrap: wrap; }
+
+/* ═══════════ THE GUIDES ═══════════ */
+.lede { font-size: clamp(1.05rem,2.6vw,1.22rem); font-weight: 300; line-height: 1.72;
+  color: rgba(214,191,234,.92); margin: 0; max-width: var(--measure); }
+.lede b { color: var(--white); font-weight: 500; }
+.lede .art { font-size: 1.1em; }
+
+.chips { display: flex; gap: .6rem; flex-wrap: wrap; }
+.chip { font-family: var(--f-sans); font-size: .85rem; font-weight: 500; letter-spacing: .02em;
+  padding: .55rem 1.1rem; border-radius: var(--r-pill); background: rgba(255,255,255,.05);
+  border: var(--hair-lit); color: var(--lilac); box-shadow: none; }
+.chip:hover { background: rgba(214,191,234,.13); color: var(--white); box-shadow: none; transform: none; }
+.chip.on { background: var(--grad); border-color: transparent; color: var(--white); box-shadow: var(--glow); }
+.chip.ar-chip { font-family: var(--f-ar); direction: rtl; font-size: 1.05rem; letter-spacing: .12em; }
+.chip .c-sub { display: block; font-size: .66rem; font-weight: 400; letter-spacing: .12em;
+  text-transform: uppercase; opacity: .75; margin-top: .1rem; }
+
+.card { border-radius: var(--r-xl); border: var(--hair-lit);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  padding: clamp(1.35rem,4vw,2.4rem); display: grid; gap: 1.35rem;
+  animation: swapIn 460ms var(--ease) both; }
+
+.card-top { display: grid; gap: .5rem; }
+.card-top .ct-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: 1.15rem; color: var(--lilac); }
+.card-top h3 { font-family: var(--f-serif); font-size: clamp(1.4rem,4vw,1.95rem); font-weight: 600;
+  color: var(--white); margin: 0; line-height: 1.15; }
+.card-top .num-badge { font-family: var(--f-serif); font-size: .8rem; font-weight: 700;
+  letter-spacing: .1em; color: var(--magenta); text-transform: uppercase; }
+
+.blocks { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem,1fr)); }
+.block { border-radius: var(--r-md); border: var(--hair); background: rgba(255,255,255,.035); padding: 1rem 1.15rem; display: grid; gap: .5rem; }
+.block .b-lab { font-size: .66rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--lilac-dim); }
+.block.demand .b-lab { color: var(--mint); }
+.block.trap .b-lab { color: var(--coral); }
+.block ul { margin: 0; padding-inline-start: 1.1rem; display: grid; gap: .35rem; }
+.block li { font-size: .92rem; font-weight: 300; color: rgba(214,191,234,.9); }
+.block li b { color: var(--white); font-weight: 500; }
+.block p { margin: 0; font-size: .92rem; font-weight: 300; color: rgba(214,191,234,.9); }
+.block p b { color: var(--white); font-weight: 500; }
+
+/* the transfer component: source → literal → natural */
+.xfer { display: grid; gap: 0; border-radius: var(--r-md); overflow: hidden; border: var(--hair); }
+.x-row { display: grid; grid-template-columns: 5.5rem 1fr; gap: 1rem; align-items: baseline;
+  padding: .85rem 1.1rem; background: rgba(255,255,255,.03); }
+.x-row + .x-row { border-top: var(--hair); }
+.x-row .x-lab { font-size: .62rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac-dim); }
+.x-row p { margin: 0; font-size: 1.02rem; font-weight: 300; color: var(--white); line-height: 1.55; }
+.x-row p.is-ar { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.3rem; line-height: 1.9; }
+.x-row.bad { background: rgba(255,92,122,.07); }
+.x-row.bad .x-lab { color: var(--coral); }
+.x-row.bad p { color: rgba(255,179,193,.92); }
+.x-row.good { background: rgba(46,217,160,.08); }
+.x-row.good .x-lab { color: var(--mint); }
+.x-row.why { background: rgba(167,38,208,.07); }
+.x-row.why .x-lab { color: var(--lilac); }
+.x-row.why p { font-size: .9rem; color: rgba(214,191,234,.88); }
+@media (max-width: 620px) {
+  .x-row { grid-template-columns: 1fr; gap: .3rem; }
+}
+
+.xfers { display: grid; gap: .9rem; }
+.pager { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+
+/* the Arabic introduction block */
+.ar-note { border-radius: var(--r-lg); border: var(--hair);
+  background: rgba(101,15,208,.16); padding: 1.15rem 1.4rem; direction: rtl; }
+.ar-note .an-lab { display: block; font-family: var(--f-ar); font-size: .82rem; font-weight: 600;
+  color: var(--magenta); margin-bottom: .55rem; }
+.ar-note p { margin: 0; font-family: var(--f-ar-text); font-size: 1.18rem; line-height: 2.15;
+  color: rgba(214,191,234,.96); }
+
+/* how to translate it */
+.how { border-radius: var(--r-lg); border: 1px solid rgba(167,38,208,.38);
+  background: rgba(167,38,208,.09); padding: 1.3rem 1.5rem; display: grid; gap: .9rem; }
+.how .how-head { display: flex; align-items: baseline; gap: .8rem; flex-wrap: wrap; }
+.how h4 { margin: 0; font-family: var(--f-serif); font-size: 1.15rem; font-weight: 600; color: var(--white); }
+.how .h-ar2 { font-family: var(--f-ar); direction: rtl; font-size: .88rem; color: var(--lilac); }
+.how ol { margin: 0; padding: 0; list-style: none; display: grid; gap: .7rem; counter-reset: step; }
+.how li { counter-increment: step; display: grid; grid-template-columns: 1.7rem 1fr; gap: .85rem;
+  align-items: baseline; font-size: .96rem; font-weight: 300; color: rgba(214,191,234,.92); line-height: 1.6; }
+.how li::before { content: counter(step); font-family: var(--f-serif); font-weight: 700;
+  font-size: 1rem; color: var(--magenta); }
+.how li > span { min-width: 0; }
+.how li b { color: var(--white); font-weight: 500; }
+.how li i { color: var(--white); font-style: italic; }
+
+/* typing trials */
+.typing { display: grid; gap: .7rem; }
+.typing textarea { resize: none; line-height: 1.5; }
+.gauge { display: flex; justify-content: space-between; gap: 1rem; font-size: .74rem;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--lilac-dim); }
+.gauge .over { color: var(--coral); }
+.gauge .ok { color: var(--mint); }
+.bar { height: 4px; border-radius: var(--r-pill); background: rgba(214,191,234,.16); overflow: hidden; }
+.bar > i { display: block; height: 100%; border-radius: var(--r-pill); background: var(--grad); width: 0; transition: width 260ms var(--ease); }
+.bar > i.hot { background: linear-gradient(90deg,#ff5c7a,#a726d0); }
+
+/* the dial */
+.dial { display: grid; gap: 1.25rem; }
+.dial-panel { border-radius: var(--r-xl); border: var(--hair-lit);
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  padding: clamp(1.35rem,4vw,2.4rem); display: grid; gap: 1.35rem; }
+.dial-panel .reg-name { font-size: .72rem; font-weight: 600; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--lilac); text-align: center; margin: 0; }
+.pair { display: grid; grid-template-columns: 1fr 1px 1fr; gap: clamp(1rem,3vw,2.25rem); align-items: center; }
+.pair .hairline { align-self: stretch; background: linear-gradient(to bottom, transparent, rgba(214,191,234,.4), transparent); }
+.pair .p-en { font-family: var(--f-serif); font-style: italic; font-weight: 500;
+  font-size: clamp(1.15rem,3.5vw,1.7rem); color: var(--white); margin: 0; line-height: 1.4;
+  animation: swapIn 420ms var(--ease) both; }
+.pair .p-ar { font-family: var(--f-ar-text); direction: rtl; text-align: right;
+  font-size: clamp(1.35rem,4vw,2rem); color: var(--white); margin: 0; line-height: 1.85;
+  animation: swapIn 420ms var(--ease) both; }
+@media (max-width: 720px) {
+  .pair { grid-template-columns: 1fr; }
+  .pair .hairline { height: 1px; background: linear-gradient(to right, transparent, rgba(214,191,234,.4), transparent); }
+}
+.dial-panel .reg-note { font-size: .86rem; color: rgba(214,191,234,.75); text-align: center; margin: 0; }
+input[type="range"] { width: 100%; accent-color: var(--magenta); background: transparent; }
+input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-offset: 5px; }
+.stops { display: grid; grid-template-columns: repeat(4,1fr); font-size: .66rem; font-weight: 600;
+  letter-spacing: .14em; text-transform: uppercase; color: var(--lilac-dim); }
+.stops span { text-align: center; transition: color 260ms var(--ease); }
+.stops span:first-child { text-align: left; }
+.stops span:last-child { text-align: right; }
+.stops span.on { color: var(--white); }
+
+/* roots */
+.stamp { font-family: var(--f-ar); direction: rtl; font-size: clamp(2rem,8vw,3.5rem); font-weight: 600;
+  letter-spacing: .3em; text-align: center; margin: 0;
+  background: linear-gradient(200deg,#fff,#d6bfea 55%,#a726d0); -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: swapIn 500ms var(--ease) both; }
+.sense { font-size: .74rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--lilac-dim); text-align: center; margin: 0; }
+.derivs { display: grid; gap: .55rem; }
+.deriv { display: grid; grid-template-columns: minmax(6.5rem,auto) 1fr; gap: 1.1rem; align-items: baseline;
+  padding: .75rem 1rem; border-radius: var(--r-md); background: rgba(255,255,255,.035);
+  border: var(--hair); animation: rise 520ms var(--ease) both; }
+.deriv .w { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.6rem; color: var(--white); }
+.deriv .g { display: grid; gap: .1rem; }
+.deriv .g .en { font-size: .98rem; color: var(--lilac); font-weight: 300; }
+.deriv .g .tr { font-size: .74rem; letter-spacing: .1em; color: var(--lilac-dim); font-style: italic; }
+
+/* scorecard */
+.score { border-radius: var(--r-xl); border: var(--hair-lit);
+  background: linear-gradient(180deg, rgba(167,38,208,.16), rgba(255,255,255,.02));
+  padding: clamp(1.6rem,5vw,3rem); display: grid; gap: 1.35rem; justify-items: center;
+  text-align: center; box-shadow: var(--shadow); animation: viewIn 560ms var(--ease) both; }
+.score .tally { font-family: var(--f-serif); font-weight: 700; font-size: clamp(3rem,13vw,5rem);
+  line-height: 1; margin: 0; font-variant-numeric: tabular-nums;
+  background: linear-gradient(200deg,#fff,#d6bfea 55%,#a726d0); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.score .tally small { font-size: .3em; letter-spacing: .1em; }
+.score .say { font-family: var(--f-serif); font-size: clamp(1.15rem,3.5vw,1.6rem); font-weight: 500;
+  color: var(--white); margin: 0; max-width: 32ch; }
+.score .say-ar { font-family: var(--f-ar); direction: rtl; font-size: 1rem; color: var(--lilac); margin: 0; }
+.score .earned { font-size: .74rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--mint); margin: 0; padding: .4rem 1rem; border-radius: var(--r-pill);
+  border: 1px solid rgba(46,217,160,.4); background: rgba(46,217,160,.1); }
+
+.review { display: grid; gap: .5rem; width: 100%; text-align: left; }
+.rev-row { display: grid; grid-template-columns: 1.6rem 1fr; gap: .8rem; align-items: baseline;
+  padding: .7rem .9rem; border-radius: var(--r-md); border: var(--hair); background: rgba(255,255,255,.03); }
+.rev-row .g { font-family: var(--f-serif); font-size: 1rem; font-weight: 700; }
+.rev-row.hit .g { color: var(--mint); }
+.rev-row.miss .g { color: var(--coral); }
+.rev-row .q { display: grid; gap: .2rem; min-width: 0; }
+.rev-row .q-src { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.15rem; color: rgba(214,191,234,.9); }
+.rev-row .q-src.is-en { font-family: var(--f-serif); font-style: italic; direction: ltr; text-align: left; font-size: 1rem; }
+.rev-row .q-ans { font-size: .8rem; color: var(--lilac-dim); }
+.rev-row .q-ans b { color: var(--white); font-weight: 500; }
+
+.center { display: flex; justify-content: center; }
+
+/* ═══════════════ THE COLOPHON — the scribe's signature ═══════════════ */
+.colophon {
+  position: relative; overflow: hidden;
+  margin-top: 1.5rem;
+  padding: clamp(2rem, 6vw, 4.25rem) clamp(1.25rem, 4vw, 3rem) clamp(1.75rem, 4vw, 2.75rem);
+  border-radius: var(--r-xl); border: var(--hair);
+  background:
+    radial-gradient(120% 150% at 50% 0%, rgba(167,38,208,.20), transparent 62%),
+    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+  box-shadow: var(--shadow);
+  display: grid; gap: 1.35rem; justify-items: center; text-align: center;
+}
+/* a slow sheen across the plaque */
+.colophon::after {
+  content: ""; position: absolute; inset: -20%; pointer-events: none;
+  background: linear-gradient(104deg, transparent 40%, rgba(255,255,255,.055) 48%, transparent 56%);
+  animation: sheen 9s ease-in-out infinite;
+}
+@keyframes sheen {
+  0%, 48% { transform: translateX(-46%); }
+  100%    { transform: translateX(46%); }
+}
+.colophon > * { position: relative; }
+
+.col-head { display: grid; justify-items: center; gap: .1rem; }
+.col-head .col-ar { font-family: var(--f-ar); direction: rtl; font-size: 1rem; color: var(--magenta); }
+.col-head h2 { font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; color: var(--white); margin: 0; }
+
+.col-lede {
+  max-width: 58ch; margin: 0; font-size: 1rem; font-weight: 300; line-height: 1.75;
+  color: rgba(205,179,230,.86);
+}
+.col-lede b { color: var(--white); font-weight: 500; }
+.col-lede i { color: var(--white); }
+.col-lede .art { font-size: 1.2em; color: var(--white); }
+
+/* the 3D signet */
+.signet {
+  perspective: 1000px; width: 100%;
+  display: grid; place-items: center;
+  padding: clamp(1.25rem, 4vw, 2.5rem) 0 clamp(.75rem, 2vw, 1.25rem);
+}
+.signet-scene {
+  transform-style: preserve-3d;
+  transition: transform 340ms ease-out; will-change: transform;
+  display: grid; justify-items: center; gap: .55rem;
+}
+/* the two scripts sit on different planes, so the tilt pulls them apart */
+.sig-stack { display: grid; justify-items: center; gap: .35rem; transform-style: preserve-3d; }
+
+.sig-ar {
+  font-family: var(--f-ar); direction: rtl; font-weight: 600; white-space: nowrap;
+  font-size: clamp(1.6rem, 6.5vw, 3.1rem); line-height: 1.45;
+  color: rgba(205,179,230,.5);
+  transform: translateZ(-70px);
+  text-shadow: 0 0 44px rgba(167,38,208,.55);
+  animation: sigArIn 1000ms var(--ease) both;
+}
+@keyframes sigArIn {
+  0%   { opacity: 0; transform: translateZ(-70px) translateY(-18px); }
+  100% { opacity: 1; transform: translateZ(-70px) translateY(0); }
+}
+.sig-en { display: flex; align-items: baseline; transform-style: preserve-3d; }
+.sig-en .s-l {
+  font-family: var(--f-serif); font-weight: 700; color: var(--white);
+  font-size: clamp(1.75rem, 7vw, 3.9rem); line-height: 1;
+  transform-style: preserve-3d;
+  text-shadow:
+    1px 1px 0 #b444da, 2px 2px 0 #a93bd2, 3px 3px 0 #9e32ca,
+    4px 4px 0 #9329c2, 5px 5px 0 #8820ba, 6px 6px 0 #7d18b2,
+    7px 7px 0 #7211aa, 8px 8px 0 #680ba4, 9px 9px 0 #650fd0,
+    14px 18px 30px rgba(0,0,0,.62);
+  animation: sigIn 920ms var(--ease) both;
+  animation-delay: calc(var(--i) * 45ms);
+}
+.sig-en .sp { width: .34em; flex: none; }
+@keyframes sigIn {
+  0%   { opacity: 0; transform: translate3d(0, 30px, -90px) rotateX(52deg); }
+  100% { opacity: 1; transform: translate3d(0,0,0) rotateX(0); }
+}
+
+.sig-rule { width: 4.5rem; height: 1px; background: var(--grad-h); transform: translateZ(30px); opacity: .9; }
+.sig-role {
+  font-size: .78rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase;
+  color: var(--lilac); transform: translateZ(48px);
+}
+.sig-role em { color: var(--magenta); font-style: normal; margin: 0 .3em; }
+.sig-role-ar {
+  font-family: var(--f-ar); direction: rtl; font-size: .95rem;
+  color: rgba(205,179,230,.82); transform: translateZ(48px);
+}
+
+.col-seal { margin: 0; font-size: 1.08rem; color: rgba(205,179,230,.9); }
+.col-seal-en { margin: 0; font-size: .82rem; color: var(--lilac-dim); font-style: italic; }
+
+@media (max-width: 560px) {
+  .sig-role { letter-spacing: .2em; font-size: .7rem; }
+}
+
+/* ═══════════ THE HALL MARK — logo ringed by your marks ═══════════ */
+.hall-mark { position: relative; width: 104px; height: 104px; flex: none; }
+.hall-mark .ring { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hall-mark .face { position: absolute; inset: 22px; border-radius: 22.5%;
+  background-image: var(--logo); background-size: cover; background-position: center;
+  box-shadow: 0 12px 26px -12px rgba(101,15,208,.85), 0 0 0 1px rgba(255,255,255,.12); }
+
+/* ═══════════ THE CLIMB ═══════════ */
+.climb { padding: clamp(1.35rem,3.5vw,2.1rem); display: grid; gap: 1.6rem; }
+.climb-top { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; flex-wrap: wrap; }
+.climb-top .ct-l { display: grid; gap: .1rem; }
+.climb-top h2 { font-family: var(--f-serif); font-size: 1.3rem; font-weight: 600; color: var(--white); margin: 0; }
+.climb-top .ct-ar2 { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .95rem; color: var(--lilac); }
+.climb-top .ct-next { font-size: .92rem; color: rgba(214,191,234,.82); text-align: right; max-width: 30ch; }
+.climb-top .ct-next b { color: var(--white); font-weight: 600; }
+.climb-top .ct-next .done { color: var(--mint); font-weight: 600; }
+
+.track { position: relative; padding-top: 2px; }
+.rail { position: absolute; top: 11px; left: 10%; right: 10%; height: 6px;
+  border-radius: var(--r-pill); background: rgba(214,191,234,.15); overflow: hidden; }
+.rail > i { display: block; height: 100%; width: 0; border-radius: var(--r-pill);
+  background: var(--grad-h); box-shadow: 0 0 18px rgba(167,38,208,.95);
+  transition: width 1200ms var(--ease); }
+.stations { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); }
+.station { display: grid; justify-items: center; gap: .35rem; text-align: center; padding: 0 .2rem; }
+.station .dot { width: 28px; height: 28px; border-radius: 50%; background: var(--void-2);
+  border: 2px solid rgba(214,191,234,.28); display: grid; place-items: center;
+  font-size: .7rem; color: transparent; transition: all 420ms var(--ease); }
+.station.reached .dot { background: var(--grad); border-color: transparent; color: var(--white);
+  box-shadow: 0 0 18px -2px rgba(167,38,208,.95); }
+.station.current .dot { transform: scale(1.28); border-color: var(--white); }
+.station .s-en { font-family: var(--f-serif); font-size: .95rem; font-weight: 600; color: rgba(214,191,234,.6); margin-top: .25rem; }
+.station.reached .s-en { color: var(--white); }
+.station .s-ar { font-family: var(--f-ar); direction: rtl; font-size: .8rem; color: var(--lilac-dim); }
+.station.reached .s-ar { color: var(--lilac); }
+.station .s-n { font-size: .66rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--lilac-dim); }
+@media (max-width: 620px) {
+  .station .s-ar { display: none; }
+  .station .s-en { font-size: .78rem; }
+}
+
+.climb-foot { display: flex; gap: 1rem; align-items: center; justify-content: space-between; flex-wrap: wrap;
+  border-top: var(--hair); padding-top: 1.1rem; }
+.beacon { display: inline-flex; align-items: center; gap: .5rem; font-size: .78rem; font-weight: 500;
+  letter-spacing: .06em; padding: .35rem .8rem; border-radius: var(--r-pill);
+  border: 1px solid rgba(214,191,234,.24); color: var(--lilac-dim); }
+.beacon i { width: 7px; height: 7px; border-radius: 50%; background: var(--lilac-dim); }
+.beacon.live { border-color: rgba(46,217,160,.45); color: var(--mint); }
+.beacon.live i { background: var(--mint); box-shadow: 0 0 10px var(--mint); animation: blip 2.2s ease-in-out infinite; }
+@keyframes blip { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+
+/* ═══════════ LEVEL UP ═══════════ */
+#unlock .u-logo { width: 100px; height: 100px; border-radius: 22.5%;
+  background-image: var(--logo); background-size: cover;
+  box-shadow: 0 0 80px -8px rgba(167,38,208,.95);
+  animation: logoPulse 1.7s ease-in-out infinite; }
+@keyframes logoPulse { 0%,100% { transform: scale(1) rotate(0); } 50% { transform: scale(1.07) rotate(-1.5deg); } }
+#unlock .u-rank { font-family: var(--f-serif); font-size: clamp(2rem,8vw,3.4rem); font-weight: 700; margin: 0;
+  background: linear-gradient(180deg,#ffffff,#cdb3e6 58%,#a726d0);
+  -webkit-background-clip: text; background-clip: text; color: transparent; }
+#unlock .u-kicker { font-size: .74rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase;
+  color: var(--lilac); margin: 0; }
+</style>
+
+<div class="aura" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
+<div class="dotfield" aria-hidden="true"></div>
+
+<nav id="spine" class="away" aria-label="Where you are">
+  <span class="act" data-act="1"><span class="a-n">I</span><span class="a-bar"><i></i></span><span class="a-lab">The Threshold</span><span class="a-ar">العَتَبة</span></span>
+  <span class="act" data-act="2"><span class="a-n">II</span><span class="a-bar"><i></i></span><span class="a-lab">The Method</span><span class="a-ar">الطَّريقة</span></span>
+  <span class="act" data-act="3"><span class="a-n">III</span><span class="a-bar"><i></i></span><span class="a-lab">The Trials</span><span class="a-ar">التَّجارِب</span></span>
+  <span class="act" data-act="4"><span class="a-n">IV</span><span class="a-bar"><i></i></span><span class="a-lab">The Colophon</span><span class="a-ar">الخاتِمة</span></span>
+</nav>
+
+<main id="app">
+
+  <!-- ══════════════ THE OVERTURE ══════════════ -->
+  <section id="overture" class="view">
+    <div class="ov-corner"><button class="link" id="ov-skip">Skip the opening →</button></div>
+    <div class="ov-stage">
+      <p class="tracked mag" id="ov-eyebrow">Someone in Kuwait has just finished a job for you</p>
+      <p class="ov-ar" id="ov-ar"></p>
+
+      <div class="ov-band">
+        <div class="ov-line" id="ov-lit"><span class="ov-strike" id="ov-strike"></span></div>
+        <p class="ov-cap bad" id="ov-cap-bad">↑ this is what the words say</p>
+      </div>
+
+      <div class="ov-band">
+        <div class="ov-line ov-nat" id="ov-nat"></div>
+        <p class="ov-cap good" id="ov-cap-good">↑ this is what she said</p>
+      </div>
+
+      <p class="ov-close" id="ov-close"></p>
+      <div class="ov-go" id="ov-go">
+        <button id="ov-enter">Open the window</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ THE GATE ══════════════ -->
+  <section id="gate" class="view">
+    <div class="brandmark">
+      <div class="wm-stage">
+        <div class="logo3d" id="logo3d">
+          <span class="logo-face" role="img" aria-label="Guild · Professional Club"></span>
+        </div>
+        <p class="wm-sub">The Translators' Guild</p>
+        <p class="wm-sub-ar">نافِذة المُتَرجِم</p>
+      </div>
+    </div>
+
+    <p class="thesis">
+      "Guild" does not become <span class="ai strike">نِقابة</span> — a syndicate is not a guild, and this is not a syndicate.
+      In Arabic it is <span class="ai" style="color:var(--white)">نافِذة المُتَرجِم</span>: the window a translator works at,
+      one language on this side of the glass and another on that side.
+      The two names are not translations of each other, and that is the point.
+      <span class="pop">Meaning first, words second.</span>
+    </p>
+
+    <div class="panel door">
+      <div class="step" id="step-seal">
+        <div class="step-head">
+          <span class="step-chip">1</span>
+          <span class="sh-en">The Member's Seal</span>
+          <span class="sh-ar">خاتَم العُضْوِيّة</span>
+        </div>
+        <div class="field">
+          <label for="email">Guild address</label>
+          <input id="email" type="email" autocomplete="username" spellcheck="false" placeholder="ashaikha602@gmail.com">
+        </div>
+        <div class="field">
+          <label for="pass">Passphrase</label>
+          <input id="pass" type="password" autocomplete="current-password" placeholder="••••••">
+        </div>
+        <p class="msg" id="seal-msg" hidden></p>
+        <div class="row">
+          <button id="seal-btn">Press the seal</button>
+          <button class="link" id="hint-btn">Forgotten the passphrase?</button>
+        </div>
+        <p class="note" id="hint-text" hidden>
+          <b>Riddle:</b> the Arabic word for <i>wisdom</i>, written in Latin letters —
+          <span class="art" style="font-size:1.1rem"><b style="color:var(--white)">الحِكمة</b></span>
+        </p>
+      </div>
+
+      <div class="step" id="step-tongue" hidden>
+        <div class="step-head">
+          <span class="step-chip">2</span>
+          <span class="sh-en">The Tongue-Gate</span>
+          <span class="sh-ar">بابُ اللِّسان</span>
+        </div>
+        <div class="challenge">
+          <p class="tracked mag">Render this into natural English to enter</p>
+          <p class="phrase" id="gate-phrase">على عيني</p>
+          <p class="gloss">word for word: <span id="gate-literal">"upon my eye"</span> — and that is the one answer the door refuses</p>
+        </div>
+        <div class="field">
+          <label for="tongue">Your rendering</label>
+          <input id="tongue" type="text" autocomplete="off" spellcheck="false" placeholder="what would an English speaker actually say?">
+        </div>
+        <p class="msg" id="tongue-msg" hidden></p>
+        <div class="row">
+          <button id="tongue-btn">Enter the hall</button>
+          <button class="ghost" id="tongue-swap">Another phrase</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════ THE HALL ══════════════ -->
+  <section id="hall" class="view" hidden>
+    <div class="panel hall-head">
+      <div class="hall-mark">
+        <svg class="ring" id="hall-ring" viewBox="0 0 100 100" aria-hidden="true"></svg>
+        <span class="face" role="img" aria-label="Guild"></span>
+      </div>
+      <div class="hall-id">
+        <span class="h-ar">نافِذة المُتَرجِم</span>
+        <h1>The Guild Hall</h1>
+        <p class="who" id="hall-who"></p>
+      </div>
+      <div class="rank-box">
+        <span class="r-n">Rank</span>
+        <p class="r-en" id="rank-en">Apprentice</p>
+        <p class="r-ar" id="rank-ar">مُبتَدِئ</p>
+        <span class="r-n" id="rank-n">0 of 9 marks</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-head">
+        <h2>The Method</h2>
+        <span class="s-ar">الطَّريقة</span>
+        <span class="note" style="margin-inline-start:auto">Read these first — the trials assume them</span>
+      </div>
+      <div class="ledger" id="sec-method"></div>
+    </div>
+
+    <div>
+      <div class="sec-head">
+        <h2>The Trials</h2>
+        <span class="s-ar">التَّجارِب</span>
+        <span class="note" style="margin-inline-start:auto">Scored · each one earns a guild mark</span>
+      </div>
+      <div class="ledger" id="sec-trials"></div>
+    </div>
+
+    <div>
+      <div class="sec-head">
+        <h2>The Chambers</h2>
+        <span class="s-ar">الحُجُرات</span>
+        <span class="note" style="margin-inline-start:auto">Free to wander · no score</span>
+      </div>
+      <div class="ledger" id="sec-chambers"></div>
+    </div>
+
+    <div class="panel climb" id="climb"></div>
+
+    <div class="hall-foot">
+      <button class="ghost" id="colo-btn">Read the colophon ↓</button>
+      <button class="link" id="replay-btn">Replay the opening</button>
+      <button class="link" id="reset-btn">Melt the marks</button>
+      <p class="note" id="store-note" style="flex:1 1 20rem"></p>
+    </div>
+
+    <!-- ══════════ THE COLOPHON ══════════ -->
+    <footer class="colophon">
+      <div class="col-head">
+        <span class="col-ar">الخاتِمة</span>
+        <h2>The Colophon</h2>
+      </div>
+      <p class="col-lede">
+        At the end of an Arabic manuscript the scribe signs the last page — <span class="art">نَسَخَه</span>,
+        <i>copied by</i>. And a name is the one thing translation never touches:
+        proper nouns change <b>alphabet</b>, never meaning.
+        So this one appears twice, and says the same thing both times.
+      </p>
+
+      <div class="signet" id="signet">
+        <div class="signet-scene" id="signet-scene">
+          <div class="sig-stack">
+            <span class="sig-ar">شيخة الخالدي</span>
+            <span class="sig-en" id="sig-en"></span>
+          </div>
+          <span class="sig-rule"></span>
+          <span class="sig-role">Creator <em>|</em> Developer</span>
+          <span class="sig-role-ar">التَّصميم والبَرمَجة</span>
+        </div>
+      </div>
+
+      <p class="col-seal art">
+        نُسِخَت هذه النَّافِذة بيَدِها في الكُوَيت، سنة ١٤٤٨ﻫ / ٢٠٢٦م
+      </p>
+      <p class="col-seal-en">
+        This window was copied by her own hand, in Kuwait, in the year 1448 <span class="soft">/</span> 2026
+      </p>
+    </footer>
+  </section>
+
+  <!-- ══════════════ A TRIAL OR GUIDE ══════════════ -->
+  <section id="trial" class="view" hidden>
+    <div class="trial-head">
+      <div>
+        <span class="t-ar" id="trial-ar"></span>
+        <h2 id="trial-en"></h2>
+      </div>
+      <div class="t-right">
+        <span class="t-count" id="trial-count"></span>
+        <div class="dots" id="trial-dots"></div>
+      </div>
+    </div>
+    <div class="stage" id="stage"></div>
+    <div class="center"><button class="link" id="back-btn">← Back to the hall</button></div>
+  </section>
+
+</main>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   CONFIG — the two lines that make the gate yours.
+   The passphrase is for THIS SITE ONLY. Never a real email
+   password: anything here is readable in the page source.
+   ═══════════════════════════════════════════════════════════ */
+const GUILD = { member: "ashaikha602@gmail.com", passphrase: "hikma" };
+
+const TOTAL_MARKS = 9;
+
+/* ═══════════ THE MARK RING — nine dots around the logo ═══════════ */
+function paintRing(svg, earned) {
+  const n = TOTAL_MARKS, out = [];
+  for (let i = 0; i < n; i++) {
+    const a = (2 * Math.PI / n) * i - Math.PI / 2;
+    const cx = (50 + Math.cos(a) * 46).toFixed(2);
+    const cy = (50 + Math.sin(a) * 46).toFixed(2);
+    const on = i < earned;
+    out.push('<circle cx="' + cx + '" cy="' + cy + '" r="' + (on ? 3.4 : 2.1) + '" fill="' +
+      (on ? '#ffffff' : 'rgba(214,191,234,0.30)') + '"/>');
+  }
+  svg.innerHTML = out.join("");
+}
+
+/* ═══════════ RANKS ═══════════ */
+const RANKS = [
+  { at: 0, en: "Apprentice",  ar: "مُبتَدِئ" },
+  { at: 3, en: "Scribe",      ar: "ناسِخ" },
+  { at: 5, en: "Dragoman",    ar: "تُرجُمان" },
+  { at: 7, en: "Master",      ar: "مُعَلِّم" },
+  { at: 9, en: "Guildmaster", ar: "شيخ الصِّناعة" }
+];
+
+/* ═══════════ THE TONGUE-GATE ═══════════ */
+const GATE_PHRASES = [
+  { ar: "على عيني", lit: '"upon my eye"',
+    literalTries: ["on my eye","upon my eye","on my eyes","my eye","upon my eyes","on the eye"],
+    ok: ["gladly","of course","consider it done","with pleasure","my pleasure","sure","done","happily",
+         "absolutely","anything for you","no problem","you got it","right away","will do","certainly",
+         "say no more","at your service"] },
+  { ar: "ولا يهمّك", lit: '"and it does not concern you"',
+    literalTries: ["it does not concern you","does not concern you","it doesnt concern you","not your concern"],
+    ok: ["dont worry","don't worry","no worries","no problem","its fine","it's fine","forget about it",
+         "forget it","i got it","leave it to me","all good","dont mention it","don't mention it",
+         "never mind","not a problem","im on it","i'm on it"] },
+  { ar: "أبشِر", lit: '"receive good tidings"',
+    literalTries: ["receive good tidings","good tidings","rejoice","be glad"],
+    ok: ["you got it","consider it done","done","sure","of course","right away","will do","no problem",
+         "on it","absolutely","say no more","gladly","coming right up"] },
+  { ar: "اللّه يعطيك العافية", lit: '"may God give you health"',
+    literalTries: ["may god give you health","god give you health","may god grant you health","god grant you health"],
+    ok: ["thanks for your hard work","thank you for your hard work","well done","keep it up","nice work",
+         "good work","great work","thanks for everything","appreciate it","you work hard",
+         "thank you for everything","keep up the good work","thanks for all your work","much appreciated"] }
+];
+
+/* ═══════════════════════════════════════════════════════════
+   GUIDE 1 · THE SEVEN PROCEDURES
+   Vinay & Darbelnet's seven, worked in Arabic↔English.
+   ═══════════════════════════════════════════════════════════ */
+const PROCEDURES = [
+  { n: "I", en: "Borrowing", ar: "الاِقتِراض",
+    what: "Take the foreign word into the target language unchanged, and let it naturalise.",
+    when: ["No term exists yet in the target language", "The foreignness is part of the meaning", "A brand, a proper name, a dish"],
+    trap: "Borrowing when the target language already has a perfectly good word. Arabic has <b>حاسوب</b>; reaching for كمبيوتر out of habit is laziness, not a procedure.",
+    xfers: [
+      { s: "computer", b: null, g: "كمبيوتر", w: "Borrowed and now fully naturalised — it takes Arabic plurals and adjectives." },
+      { s: "تُرجُمان", b: null, g: "dragoman", w: "Borrowing runs both ways. English took the Ottoman court interpreter's title straight from Arabic." },
+      { s: "الجَبْر", b: null, g: "algebra", w: "So did <i>algorithm</i>, <i>alcohol</i>, <i>cipher</i>. Half of English mathematics is borrowed Arabic." }
+    ] },
+
+  { n: "II", en: "Calque", ar: "النَّسْخ",
+    what: "Translate the source expression piece by piece to build a new expression in the target language.",
+    when: ["Coining a term the language needs", "The image survives the crossing", "Technical and institutional vocabulary"],
+    trap: "Most calques fail. A successful one enters the dictionary; a failed one reads as a mistranslation. You cannot tell in advance — you have to check whether it is already in use.",
+    xfers: [
+      { s: "skyscraper", b: null, g: "ناطِحة سَحاب", w: "A calque that won. It is now the only Arabic word for it, and no reader hears the English underneath." },
+      { s: "cold war", b: null, g: "الحَرب البارِدة", w: "Another success — the metaphor crossed intact and became standard." },
+      { s: "the elephant in the room", b: "الفيل في الغُرفة", g: "الأمر الذي يتجنّبه الجميع", w: "A calque that fails. No Arabic reader decodes it, so describe the thing instead." }
+    ] },
+
+  { n: "III", en: "Literal translation", ar: "التَّرجَمة الحَرفيّة",
+    what: "Word for word, structure for structure — when the two languages happen to agree.",
+    when: ["Concrete, unmarked, everyday statements", "The syntax lines up without strain", "Legal text where nothing may shift"],
+    trap: "Treating this as the <b>default</b> and the other six as decoration. Literal translation is one tool among seven, and between Arabic and English it is the one that fits least often.",
+    xfers: [
+      { s: "I left my book on the table.", b: null, g: "تَرَكتُ كِتابي على الطاولة.", w: "Nothing is gained by intervening. When literal works, use it and move on." },
+      { s: "The meeting begins at nine.", b: null, g: "يبدأ الاِجتِماع في التاسِعة.", w: "Same. Resist the urge to embellish neutral text." },
+      { s: "It's raining cats and dogs.", b: "تُمطِر قِططاً وكِلاباً", g: "تُمطِر كأفواه القِرَب", w: "And here it collapses. The test is not grammar — it is whether the reader receives what the source reader received." }
+    ] },
+
+  { n: "IV", en: "Transposition", ar: "الإبدال",
+    what: "Change the part of speech without changing the meaning.",
+    when: ["The target language prefers a different grammatical shape", "Arabic prefers verbs where English prefers nouns", "Unpacking an English noun-stack"],
+    trap: "Carrying English nominalisation into Arabic. English says <b>after his return</b>; Arabic says <b>بعد أن عاد</b> — a verb. Keeping the noun produces stiff, translated-sounding Arabic.",
+    xfers: [
+      { s: "He is a fast runner.", b: "هو عَدّاء سَريع.", g: "إنّه يجري بسُرعة.", w: "Adjective + noun becomes verb + adverb. Arabic would rather do than be." },
+      { s: "after his return from Cairo", b: "بعد عَودَته من القاهِرة", g: "بعد أن عاد من القاهِرة", w: "The literal is grammatical and still reads as a translation. The verb reads as Arabic." },
+      { s: "زادَ الطَّلَبُ زِيادةً كبيرة.", b: "The demand increased a large increase.", g: "Demand rose sharply.", w: "Arabic's absolute object (المفعول المطلق) has no English form — it becomes an adverb." }
+    ] },
+
+  { n: "V", en: "Modulation", ar: "التَّطويع",
+    what: "Change the point of view — say the same thing from the other side.",
+    when: ["The literal is correct but reads oddly", "Negation in one language is affirmation in the other", "Cause and effect swap places"],
+    trap: "Modulating when nothing required it. This procedure is for when the direct route produces awkward target text, not a licence to rewrite.",
+    xfers: [
+      { s: "It is not difficult.", b: "ليس صعباً.", g: "إنّه سَهل.", w: "Litotes in English, plain statement in Arabic. Both are available — pick the one the context wants." },
+      { s: "Don't forget to call.", b: "لا تَنسَ أن تتّصِل.", g: "تَذَكَّر أن تتّصِل.", w: "Negative to positive. Arabic often prefers the affirmative instruction." },
+      { s: "ما تقصّر.", b: "You do not fall short.", g: "You're the best, really.", w: "The same flip in the other direction — Arabic denies a fault, English states a virtue." }
+    ] },
+
+  { n: "VI", en: "Equivalence", ar: "التَّكافُؤ",
+    what: "Replace a whole fixed expression with the target language's own fixed expression for that situation.",
+    when: ["Proverbs, idioms, set phrases", "Formulaic politeness", "Anything the source reader recognised as a unit"],
+    trap: "Translating the words inside the unit. A proverb is one item of vocabulary, not a sentence to be parsed.",
+    xfers: [
+      { s: "Once upon a time…", b: "مرّة واحدة على وقت…", g: "كان يا ما كان…", w: "Both open a story. Neither is a translation of the other, and that is the point." },
+      { s: "يد واحدة لا تصفّق.", b: "One hand does not clap.", g: "It takes two to tango.", w: "Same claim, different image, equal recognisability. That is equivalence." },
+      { s: "تسلم إيدك.", b: "May your hand be safe.", g: "You did an amazing job — thank you.", w: "The unit's function is praise plus thanks, so the rendering delivers praise plus thanks." }
+    ] },
+
+  { n: "VII", en: "Adaptation", ar: "التَّكييف",
+    what: "Change the cultural reference itself, because the original refers to something the target reader does not have.",
+    when: ["Culture-bound objects, foods, holidays, institutions", "Marketing and localisation", "Children's literature"],
+    trap: "Over-adapting. If the source culture is what the reader came for — a novel set in Kansas — erasing it is a betrayal, not a service. Adapt the reference only when the reference is a vehicle, not the cargo.",
+    xfers: [
+      { s: "as American as apple pie", b: "أمريكي كفطيرة التفّاح", g: "أصيل كالقهوة العربية", w: "Keep the shape of the comparison, swap the object for one the reader actually loves." },
+      { s: "Break a leg!", b: "اِكسِر ساقك!", g: "بالتوفيق!", w: "The English is superstition dressed as an insult. Arabic has no theatre superstition, so only the function crosses." },
+      { s: "a Thanksgiving dinner", b: "عَشاء عيد الشُّكر", g: "عَشاء عيد الشُّكر — مع حاشية تشرحه", w: "Sometimes the right adaptation is none: keep the foreign reference and footnote it, rather than turning it into عيد الفطر and losing the setting." }
+    ] }
+];
+
+const PROC_CLOSE = {
+  head: "Two words for the whole argument",
+  ar: "التَّكافُؤ الشَّكليّ والتَّكافُؤ الدِّينامي",
+  body: "Eugene Nida split translation in two. <b>Formal equivalence</b> (التكافؤ الشكلي) keeps the source's form and lets the reader work; <b>dynamic equivalence</b> (التكافؤ الديناميّ) keeps the source's <i>effect</i> and rebuilds the form to get it. " +
+        "A contract wants the first. A slogan wants the second. Almost everything real sits somewhere between them, and choosing where — for this text, this reader, this brief — is the entire job. " +
+        "Procedures I to III lean formal. V to VII lean dynamic. Nobody hands you the right answer; you argue for it."
+};
+
+/* ═══════════════════════════════════════════════════════════
+   GUIDE 2 · THE TEXT TYPES
+   ═══════════════════════════════════════════════════════════ */
+const TEXT_TYPES = [
+  { key: "journalistic", en: "Journalistic", ar: "صَحافيّ",
+    intro: "News is the highest-volume translation work in the Arab world and the fastest. An agency desk may rebuild a wire story in eight minutes. What you are handling is not prose but a <b>structure</b>: an inverted pyramid with the whole story in sentence one, a headline that obeys its own grammar in each language, and a set of house formulas that repeat across every story a newsroom publishes.",
+    introAr: "الترجمة الصحفيّة أكثر أنواع الترجمة انتشاراً وأسرعها إيقاعاً. والنصّ الخبريّ ليس نصّاً أدبيّاً بل بنية ثابتة: الخبر كلّه في الجملة الأولى، والعنوان له قواعده الخاصّة في كلّ لغة، والصياغات مكرّرة معروفة في كلّ غرفة أخبار. فمهمّتك أن تنقل البنية لا الكلمات.",
+    how: ["Read the whole story before translating a word — the lead often needs reordering.",
+          "Translate the body first and the headline <b>last</b>. Your headline summarises your Arabic, not the English headline.",
+          "Turn the headline into a nominal sentence — a verbal noun (ارتفاع، اجتياح), no finite verb.",
+          "Flatten the reporting verbs: أكّد، أشار، أوضح all become <b>said</b> unless the source truly means more.",
+          "Use the target newsroom's own stock formulas, not translations of the source's.",
+          "Verify every name, number, date and place against a second source. Mistakes here are corrections, not style notes."],
+    lede: "News prose is built to be scanned. The first sentence carries the whole story, verbs stay neutral, and the headline plays by its own grammar in each language.",
+    demands: ["Front-load the information — who, what, where, in sentence one",
+              "Keep reporting verbs flat: <b>said</b>, not <b>confirmed</b> or <b>revealed</b>",
+              "Match the target language's headline grammar, not the source's"],
+    trap: "English headlines are verbal and drop articles; Arabic headlines are <b>nominal</b> (جملة اسمية). Translating an English headline word-for-word produces something no Arabic newsdesk would print.",
+    xfers: [
+      { s: "Aid convoy turned back at border as talks stall",
+        b: "قافلة المساعدات أُعيدت من الحدود بينما تتعثّر المحادثات",
+        g: "إعادة قافِلة مساعدات من الحدود وتَعَثُّر المُحادَثات",
+        w: "Every verb became a verbal noun and the conjunction shrank to a bare و. The literal is grammatical Arabic — it is simply not <b>headline</b> Arabic, and no desk in the region would run it." },
+      { s: "أكّد المتحدّث أنّ القوّات لم تدخل المدينة.",
+        b: "The spokesman confirmed that the forces had not entered the city.",
+        g: "The spokesman said the forces had not entered the city.",
+        w: "One word, and the story changes. <i>Confirmed</i> tells the reader the claim is established; أكّد is simply the ordinary Arabic verb for <i>said</i>. This one habit has put corrections on the wires more often than any other error in the genre." },
+      { s: "The minister, who had returned from Cairo only hours earlier and was speaking to reporters outside the ministry, said the agreement would be signed within weeks.",
+        b: "قال الوزير، الذي كان قد عاد من القاهرة قبل ساعات فقط وكان يتحدّث إلى الصحفيين خارج الوزارة، إنّ الاتّفاق سيُوقَّع في غضون أسابيع.",
+        g: "قال الوزير إنّ الاتّفاق سيُوقَّع في غضون أسابيع. وكان الوزير قد عاد من القاهرة قبل ساعات، وتحدّث إلى الصحفيين خارج الوزارة.",
+        w: "English buries the news in the middle of a thirty-word sentence. Arabic news style puts it first and pushes the circumstances into a second sentence. Same facts, <b>opposite architecture</b> — and no amount of care at word level gets you there." }
+    ] },
+
+  { key: "political", en: "Political", ar: "سِياسيّ",
+    intro: "In political translation the vocabulary <b>is</b> the argument. Two renderings can both be accurate and carry opposite claims, so the choice of a word is the choice of a position — and you are making it whether you notice or not. Professionals handle this by not deciding alone: they work to a style guide, flag contested terms upward, and keep the source's attributions and hedges exactly where they were.",
+    introAr: "في النصّ السياسيّ يكون اختيار المفردة هو الموقف نفسه. فقد تكون ترجمتان صحيحتين لغويّاً وتحملان معنيين متعارضين. ولهذا لا يقرّر المترجم وحده: يلتزم بدليل التحرير، ويشير إلى المصطلحات الخلافيّة ليقرّرها المحرّر، ويحافظ على النسبة والتحوّط كما وردا في الأصل دون تقوية أو تخفيف.",
+    how: ["Establish who is publishing this and for whom before you settle a single term.",
+          "Get the outlet's style guide or glossary. If none exists, ask for one in writing.",
+          "Mark every contested term and query it — never resolve it silently.",
+          "Preserve attributions and hedges word for word: <b>alleged</b>, <b>reportedly</b>, <b>according to</b>, وُصِف بأنّه.",
+          "Use the official rendering for institutions, treaties and titles; coining a new one implies a different document.",
+          "Reread your Arabic asking one question: does it assert anything the English only reported?"],
+    lede: "In political text the word choice <i>is</i> the content. Two accurate renderings can carry opposite framings, and the translator does not get to be neutral by accident — only on purpose.",
+    demands: ["Know that a lexical choice is a framing choice, and make it consciously",
+              "Follow the client's or outlet's style guide; do not improvise terminology",
+              "Preserve hedges and attributions exactly — <b>alleged</b>, <b>reportedly</b>, <b>according to</b>"],
+    trap: "Silently picking one side's vocabulary because it came first to mind. When a term is contested, flag it for the editor rather than deciding alone.",
+    xfers: [
+      { s: "austerity measures",
+        b: "إجراءات التقشُّف",
+        g: "إجراءات التقشُّف — or بَرنامَج الإصلاح الاقتِصاديّ, depending on who is publishing",
+        w: "Both name the identical policy. The first is what its critics call it; the second is what its authors call it. There is no neutral option here — only a chosen one, and the choice belongs to the editor, not to you." },
+      { s: "undocumented migrants",
+        b: "مهاجرون غير شَرعيّين",
+        g: "مهاجرون غير مُوَثَّقين / مهاجرون بلا أوراق",
+        w: "The English deliberately avoids <i>illegal</i>. Rendering it غير شرعيّين reverses that decision and takes a position the source refused to take. Here the literal is not the neutral choice — it is an <b>edit</b>." },
+      { s: "Witnesses said the vehicle appeared to have been struck from the air.",
+        b: "المركبة أُصيبت من الجوّ.",
+        g: "قال شهود إنّ المركبة يبدو أنّها أُصيبت من الجوّ.",
+        w: "The English carries two layers of distance — <i>witnesses said</i> and <i>appeared to</i>. The literal deletes both and turns an unverified account into the newspaper's own finding. This is the most consequential mistake available in political translation." }
+    ] },
+
+  { key: "legal", en: "Legal", ar: "قانونيّ",
+    intro: "Legal text is read by someone looking for a loophole. Its virtues are the opposite of good writing: repetition instead of variation, rigidity instead of flow, length instead of economy. You are not producing a readable document — you are producing one that cannot be argued into a second meaning. Everything you would normally improve, here you must leave alone.",
+    introAr: "النصّ القانونيّ يقرؤه من يبحث عن ثغرة، وفضائله عكس فضائل الكتابة الجيّدة: التكرار لا التنويع، والجمود لا السلاسة، والإطناب لا الاختصار. أنت لا تنتج نصّاً سهل القراءة بل نصّاً لا يمكن تحويله إلى معنى ثانٍ. وكلّ ما تودّ تحسينه في نصّ آخر يجب أن تتركه هنا كما هو.",
+    how: ["Read the definitions clause first and build your glossary out of it.",
+          "Render each defined term one way everywhere — including inside quotations and headings.",
+          "Keep the numbering, the clause boundaries and every cross-reference untouched.",
+          "Translate modal <b>force</b>, not tense: <i>shall</i> = يجب/يلتزم, <i>may</i> = يجوز, <i>must</i> = يتعيّن. Never سوف.",
+          "Keep doublets (باطل ولاغٍ) and keep the passive wherever the source uses it to avoid naming an actor.",
+          "Never fix the source. If a clause is ambiguous in English it stays ambiguous in Arabic — flag it to counsel."],
+    lede: "Legal translation is the one place where elegance is a defect. Nothing may be added, nothing lost, nothing smoothed. The reader is a court.",
+    demands: ["One defined term, one rendering, throughout the entire instrument",
+              "Keep doublets and archaisms — legal Arabic has its own",
+              "Preserve sentence boundaries and numbering; do not tidy the syntax"],
+    trap: "<b>Shall</b> is not سوف. In legal English <i>shall</i> imposes an obligation — <b>يجب / يلتزم / يتعيّن</b>. Reading it as a future tense changes a duty into a prediction.",
+    xfers: [
+      { s: "The Contractor shall indemnify the Client against all claims.",
+        b: "المُتعَهِّد سوف يُعوِّض العميل عن جميع المطالبات.",
+        g: "يلتزم المُتعَهِّد بتعويض العميل عن جميع المُطالَبات.",
+        w: "<i>Shall</i> is not the future here — it is a <b>duty</b>. سوف converts a binding obligation into a prediction about what the contractor will probably do, which no court can enforce. The single most expensive word in legal translation." },
+      { s: "Time is of the essence.",
+        b: "الوقت من الجوهر.",
+        g: "يُعَدّ الالتزام بالمواعيد المنصوص عليها شَرطاً جوهريّاً في هذا العقد.",
+        w: "Four English words become fourteen Arabic ones — because the phrase is not a description, it is a term of art that makes lateness a material breach. The literal is elegant and says nothing a court can act on." },
+      { s: "including, but not limited to, the following:",
+        b: "متضمّناً، لكن ليس محدوداً بـ، ما يلي:",
+        g: "ومن ذلك على سَبيل المِثال لا الحَصر ما يلي:",
+        w: "Legal Arabic already owns this formula, and it is the only version a court reads as non-exhaustive. The literal reads as a translator's improvisation and invites exactly the argument the clause exists to prevent." }
+    ] },
+
+  { key: "technical", en: "Technical", ar: "تِقنيّ",
+    intro: "Technical text is followed, not read. Someone has a machine or a screen in front of them and your sentence tells them what to press next. Consistency is not a stylistic preference here — it is the entire product. Two words for one thing means the reader concludes there are two things, and then the procedure fails.",
+    introAr: "النصّ التقنيّ يُتَّبع ولا يُقرأ. فأمام القارئ جهاز أو شاشة، وجملتك تخبره بما يضغط تالياً. والاتّساق هنا ليس ذوقاً بل هو المنتج نفسه: كلمتان لشيء واحد تعنيان أنّ القارئ سيظنّ أنّهما شيئان، فيفشل الإجراء. اختر المصطلح مرّة والتزم به إلى آخر الملفّ.",
+    how: ["Build the glossary <b>before</b> translating, from the client's terminology and the shipped interface.",
+          "Work in a CAT tool with a termbase so drift is caught mechanically instead of by memory.",
+          "Match UI strings to the actual localised interface, character for character — including the buttons.",
+          "Keep instructions imperative and short: one action per sentence.",
+          "Gloss a borrowed term once in parentheses — الذّاكِرة المُؤقَّتة (cache) — then commit to one form.",
+          "Finish with a terminology-only pass, searching the file for every glossary entry."],
+    lede: "Technical translation rewards consistency over beauty. The same term must appear the same way on page 1 and page 400, because the reader is following a procedure and a synonym reads as a different thing.",
+    demands: ["Build a glossary before you translate a single line, and obey it",
+              "Never vary a term for style — variation is an error here",
+              "Match the product's own UI strings; do not translate a button freshly"],
+    trap: "Elegant variation. In literary work, repeating a word is a weakness; in technical work, <b>not</b> repeating it is a bug.",
+    xfers: [
+      { s: "user account password reset request form",
+        b: "مستخدم حساب كلمة مرور إعادة تعيين طلب نموذج",
+        g: "نَموذَج طَلَب إعادة تعيين كلمة مرور حساب المُستَخدِم",
+        w: "English stacks five nouns left to right; Arabic chains them right to left as an إضافة, so the <b>entire order reverses</b>. Translate this one word at a time and you produce a string no reader can parse — the classic signature of machine output." },
+      { s: "Restore default settings — the same command, three times in one manual",
+        b: "استعادة الإعدادات التلقائيّة … استعادة الإعدادات الافتراضيّة … استرجاع الضبط المبدئيّ",
+        g: "استعادة الإعدادات الافتراضيّة — identical on every page, without exception",
+        w: "All three renderings are defensible Arabic. Together they tell the reader there are <b>three different features</b>. In technical work the error is not the word choice; it is the variation." },
+      { s: "Click Save.",
+        b: "اِضغط «حِفظ». — while the shipped button actually reads «تخزين»",
+        g: "اِضغط «تخزين».",
+        w: "The manual must name the button that exists, not the button you would have named. A flawless translation of the wrong label is a support ticket with your name on it." }
+    ] },
+
+  { key: "medical", en: "Medical", ar: "طِبّيّ",
+    intro: "Medical text splits by <b>reader</b> before it splits by language. One drug generates a regulatory dossier, a clinician's summary and a patient leaflet, and all three use different words for the same condition. Getting the level wrong is not awkward writing; it is a leaflet the patient cannot act on. Accuracy here includes being understood.",
+    introAr: "الترجمة الطبّيّة تتفرّع بحسب القارئ قبل أن تتفرّع بحسب اللغة. فالدواء الواحد له ملفّ تنظيميّ وملخّص للطبيب ونشرة للمريض، وثلاثتها تستخدم ألفاظاً مختلفة للحالة نفسها. والخطأ في المستوى اللغويّ ليس عيباً في الأسلوب بل نشرة لا يستطيع المريض العمل بها. فالدقّة هنا تشمل أن تُفهَم.",
+    how: ["Establish the audience from the brief first: regulator, clinician, or patient.",
+          "Use the established Arabic term — the Unified Medical Dictionary or the client's glossary. Never coin one.",
+          "Keep numbers, units, frequencies and time windows absolutely literal. <b>Daily</b> and <b>24 hours</b> are different windows.",
+          "Preserve every negation and every warning. Never compress a contraindication to save space.",
+          "For patient material, read it aloud to a non-specialist. If they stumble, rewrite it.",
+          "Have a clinician review anything touching dosage, diagnosis or interactions before delivery."],
+    lede: "Medical text splits by audience before it splits by language. The same condition has one name for a clinician and another for the patient holding the leaflet, and mixing them is a safety problem, not a style one.",
+    demands: ["Identify the reader first — clinician, patient, or regulator",
+              "Use the established term, never a fresh coinage",
+              "Keep dosage, units and negations absolutely literal"],
+    trap: "Levelling the register. A patient information leaflet written in clinician Arabic is not a translation — it is a document nobody can act on.",
+    xfers: [
+      { s: "Your test result is negative.",
+        b: "نتيجة تحليلك سَلبيّة.",
+        g: "نتيجة التحليل سَليمة — لا يوجد ما يدلّ على الإصابة.",
+        w: "In everyday Arabic سلبيّة means <i>bad</i>. Patients have read a clean result as a diagnosis and acted on it. A clinician's summary keeps سلبيّة; a patient leaflet must say <b>what it means</b>. Same word, two documents, one of them dangerous." },
+      { s: "Do not take more than 4 tablets in 24 hours.",
+        b: "لا تأخذ أكثر من ٤ حبّات يوميّاً.",
+        g: "لا تتجاوز ٤ أقراص خلال ٢٤ ساعة.",
+        w: "<i>Daily</i> resets at midnight; <i>24 hours</i> is a rolling window. A patient who takes four at eleven at night and four at one in the morning has obeyed the literal translation exactly — and taken a double dose." },
+      { s: "side effects · adverse events",
+        b: "الأعراض الجانبيّة for both",
+        g: "الأعراض الجانبيّة · الأحداث الضّائِرة",
+        w: "Not synonyms in regulatory writing. An <i>adverse event</i> is anything that happened during treatment; a <i>side effect</i> is one attributed to the drug. Collapsing them changes what the document reports to a regulator." }
+    ] },
+
+  { key: "literary", en: "Literary", ar: "أدبيّ",
+    intro: "Literary translation is the only kind where the shape of the sentence is part of what it says. You are handed an effect built out of one language's materials and asked to rebuild it out of another's. So the question is never <i>what does this mean</i> — it is <b>what does this do, and how do I make Arabic do it</b>.",
+    introAr: "الترجمة الأدبيّة هي النوع الوحيد الذي يكون شكل الجملة فيه جزءاً من معناها. يُسلَّم إليك أثرٌ بُني بموادّ لغة، ويُطلب منك أن تعيد بناءه من موادّ لغة أخرى. ولذلك ليس السؤال «ما معنى هذا؟» بل «ما الذي يفعله هذا، وكيف أجعل العربيّة تفعله؟». وما تخسره، اخسره بقرار لا بغفلة.",
+    how: ["Read the whole work before you translate a line. Voice is a pattern; one page cannot reveal it.",
+          "Fix each character's register early and hold it to the last page.",
+          "When something must be lost, choose <b>which</b> deliberately — and write the choice down.",
+          "Leave every ambiguity ambiguous. Resist the urge to help the reader.",
+          "Read your Arabic aloud. Rhythm and sentence length carry pace, and the ear catches what the eye misses.",
+          "Add a translator's note for what you sacrificed. That is scholarship, not apology."],
+    lede: "Literary translation is the only kind where the form is part of the message. You are not moving information; you are rebuilding an effect out of different materials.",
+    demands: ["Preserve voice — a character's register is characterisation",
+              "Keep what the author left ambiguous ambiguous",
+              "Match rhythm and sentence length; they carry pace"],
+    trap: "Explaining. When a translator resolves an ambiguity, fills a silence, or unpacks a metaphor, the reader loses the experience the author built. Trust the reader as much as the author did.",
+    xfers: [
+      { s: "يا ليلُ طُلْ، ويا نَومُ زُلْ.",
+        b: "O night, lengthen; O sleep, depart.",
+        g: "Stretch on, O night — and sleep, be gone.",
+        w: "The Arabic rhymes طُلْ with زُلْ, and that rhyme is the line's entire music. The literal keeps the meaning and throws the poem away; the rendering rebuilds a music of its own out of English stress. <b>Form is content here.</b>" },
+      { s: "ولم يقل شيئاً حين رآها.",
+        b: "And he said nothing when he saw her — because he still loved her.",
+        g: "And he said nothing when he saw her.",
+        w: "The Arabic refuses to say why. The 'helpful' version answers a question the author spent a chapter not answering. <b>Explaining is the cardinal sin of the genre</b>, and it is almost always committed with good intentions." },
+      { s: "شنو تسوّي هني؟ — spoken by a street character in a Kuwaiti novel",
+        b: "What are you doing here?",
+        g: "What're you doin' here?",
+        w: "The Arabic is dialect, and dialect in fiction is characterisation. A rendering in clean standard English silently promotes the character two social classes and erases the author's reason for writing him that way." }
+    ] },
+
+  { key: "marketing", en: "Marketing & Localisation", ar: "تَسويقيّ",
+    intro: "Advertising is the genre where you are often paid <b>not</b> to translate. What the client owns is an effect — a feeling, a decision to buy — and the English sentence that produced it is disposable scaffolding. The deliverable is a new Arabic line that does the same job. That is a different service with its own name: transcreation, التَّرجَمة الإبداعيّة, and it is billed differently for good reason.",
+    introAr: "الإعلان هو النوع الذي قد يُدفع لك فيه كي لا تترجم. فما يملكه العميل هو الأثر — شعور، أو قرار شراء — والجملة الإنجليزيّة التي أنتجته مجرّد سقالة تُهدَم بعد البناء. والمطلوب سطر عربيّ جديد يؤدّي الوظيفة نفسها، وهذه خدمة أخرى لها اسمها: الترجمة الإبداعيّة.",
+    how: ["Ask for the creative brief and the campaign's single message. Translate <b>that</b>, not the copy.",
+          "Write three or four Arabic options, never one. The client is choosing, not receiving.",
+          "Say every option out loud in the target dialect and listen for accidental meanings.",
+          "Check the line and the product name against existing brands and slang in that market.",
+          "Localise the whole package: units, currency, dates, faces, colours, and the occasion itself.",
+          "Return the options with one line of rationale each, so the client can judge the effect, not the wording."],
+    lede: "Advertising is the one genre where you are often asked not to translate at all. The deliverable is the emotion the campaign produces, and the sentence is disposable.",
+    demands: ["Work from the creative brief, not the source sentence",
+              "Check the new line for unintended readings out loud, in dialect",
+              "Localise units, names, faces, colours and holidays alongside the words"],
+    trap: "Translating a slogan. A slogan is a piece of engineering tuned to one language's sounds and puns; carried across word-for-word it arrives dead. What you owe the client is a new slogan with the same job.",
+    xfers: [
+      { s: "Just do it.",
+        b: "اِفعَلها فقط.",
+        g: "— a newly written Arabic line carrying the same push",
+        w: "The English works because of three flat stresses and a refusal to explain itself. The literal Arabic has neither, and reads like an instruction from a manual. This is transcreation, التَّرجَمة الإبداعيّة, and it is a different service billed at a different rate." },
+      { s: "Sleep on it. — a mattress campaign",
+        b: "نَم عليه.",
+        g: "— a new Arabic line built on a different Arabic pun",
+        w: "The English fires on two meanings at once: lie on this mattress, and take your time deciding. No Arabic word does both jobs, so the pun <b>cannot be translated at all</b> — it has to be replaced by an Arabic pun that lands just as hard. Anything less loses half the ad." },
+      { s: "a campaign built around the Christmas dinner table",
+        b: "حملة عن عشاء عيد الميلاد",
+        g: "the same campaign rebuilt around an إفطار table in رمضان",
+        w: "Nothing in the brief was about Christmas. It was about a loaded table and a crowded family, and in this market that table is set at sunset in Ramadan. <b>Adapt the vehicle, deliver the cargo.</b>" }
+    ] },
+
+  { key: "audiovisual", en: "Audiovisual", ar: "سَمعيّ بَصَريّ",
+    intro: "Subtitling is translation with a ruler and a stopwatch. You have roughly 37 to 42 characters per line, two lines at most, and a viewer who reads about 17 characters a second <b>while also watching the picture</b>. Most of the work is deciding what to leave out, because the image and the actor's voice have already delivered half the meaning before your words arrive.",
+    introAr: "الترجمة السمعيّة البصريّة ترجمة بمسطرة وساعة. لديك نحو ٣٧ إلى ٤٢ حرفاً في السطر، وسطران على الأكثر، ومشاهدٌ يقرأ نحو ١٧ حرفاً في الثانية وهو يتابع الصورة. وأكثر عملك أن تقرّر ما تحذفه، لأنّ الصورة ونبرة الممثّل أدّتا نصف المعنى قبل أن تصل كلماتك.",
+    how: ["Watch the scene before writing. The picture decides what you are allowed to cut.",
+          "Spot the timings first, then write into the space you actually have — not the other way round.",
+          "Cut vocatives, greetings, hesitations, repetitions, and names the viewer can already see.",
+          "Break lines at grammatical joints, and never carry one subtitle across a shot change.",
+          "One idea per subtitle. Split a long sentence rather than shrinking the text.",
+          "Read every subtitle at playback speed. If you cannot finish it, neither can the viewer."],
+    lede: "Subtitling is translation under a stopwatch and a ruler. You have a character limit, a reading-speed limit, and a picture that already told the audience half of it.",
+    demands: ["Respect the character limit and the reading speed — roughly 17 characters per second",
+              "Cut what the image, the tone or the context already carries",
+              "Never split a subtitle across a shot change"],
+    trap: "Translating everything. Names, greetings, repetitions and hesitations usually go. A subtitle the viewer cannot finish reading has failed even if every word is right.",
+    xfers: [
+      { s: "واللّه ما كنت أدري إنّك جاي اليوم، لو دريت لجهّزت لك شي. — 98 characters",
+        b: "By God, I did not know that you were coming today; had I known, I would have prepared something for you. — 104 characters",
+        g: "I had no idea you were coming! — 30 characters",
+        w: "A seventy-per-cent cut, and nothing the viewer needed is gone: the apology is already on the actor's face. In this genre <b>compression is accuracy</b>, because a subtitle nobody can finish reading has translated nothing." },
+      { s: "تسلم إيدك يا غالي، واللّه ما تقصّر أبداً، اللّه يعطيك العافية.",
+        b: "May your hands be safe, dear one; by God, you never fall short; may God give you health.",
+        g: "You're a lifesaver.",
+        w: "Three layered Gulf courtesies — seventy-nine characters — become nineteen. The warmth is carried by the voice and the face; the subtitle's only job is not to contradict them." },
+      { s: "a three-second shot carrying a fourteen-word English line",
+        b: "all fourteen words — 78 characters on screen for three seconds",
+        g: "seven words — 41 characters, one line",
+        w: "At roughly seventeen characters a second, a three-second subtitle holds about fifty-one. Anything longer is not a subtitle the viewer <i>read</i> — it is one they <i>saw</i>. The ruler decides, not your judgement." }
+    ] },
+
+  { key: "academic", en: "Academic", ar: "أكاديميّ",
+    intro: "Scholarly prose is cautious on purpose. Its hedges, qualifiers and citations are claims about <b>how certain the author is</b>, and that certainty is part of the finding. A translator who tightens <i>suggests</i> into <i>proves</i> has not improved the paper — they have published a result the authors did not obtain.",
+    introAr: "النصّ الأكاديميّ حذر بقصد. فتحوّطاته وقيوده وإحالاته دعاوى عن درجة يقين الباحث، ودرجة اليقين جزء من النتيجة. والمترجم الذي يحوّل «تشير» إلى «تُثبت» لم يحسّن البحث بل نشر نتيجة لم يتوصّل إليها أصحابه. فالأمانة هنا أن تنقل الشكّ كما نقلت الخبر.",
+    how: ["Identify the field and adopt its established Arabic terminology, not a rendering of your own.",
+          "Keep every hedge, and <b>count</b> them: two hedges in the English need two in the Arabic.",
+          "Do not merge or split the author's sentences. Argument structure is content.",
+          "Follow the target journal's conventions for quotations, titles and references.",
+          "Check every technical term that is also an everyday word — <i>significant</i>, <i>control</i>, <i>subject</i>, <i>population</i>.",
+          "Flag anything you suspect is an error in the source. Never silently correct a published claim."],
+    lede: "Scholarly prose is careful on purpose. Its hedges, qualifications and citations are claims about certainty, and strengthening them is falsification.",
+    demands: ["Preserve every hedge exactly — <b>suggests</b>, <b>may indicate</b>, <b>appears to</b>",
+              "Keep terminology aligned with the field's established Arabic, not your own",
+              "Reproduce citation and reference conventions of the target journal"],
+    trap: "Upgrading certainty. <i>The data suggest</i> is not <i>the data prove</i>, and a translator who tightens it has changed the paper's finding.",
+    xfers: [
+      { s: "These preliminary findings may indicate a possible association.",
+        b: "تُثبِت هذه النتائج وجود عَلاقة.",
+        g: "قد تُشير هذه النتائج الأوّليّة إلى عَلاقة مُحتَمَلة.",
+        w: "The English hedges <b>four times</b> — <i>preliminary</i>, <i>may</i>, <i>indicate</i>, <i>possible</i>. The literal deletes all four and publishes a finding the authors did not make. Count the hedges in the source, then count them again in your Arabic." },
+      { s: "The difference was significant (p &lt; .05).",
+        b: "كان الفرق مُهِمّاً.",
+        g: "كان الفرق دالّاً إحصائيّاً (p &lt; .05).",
+        w: "A false friend with a technical meaning. In a results section <i>significant</i> means <i>statistically significant</i> — a defined threshold — not <i>important</i>. مُهِمّ makes a claim about consequence that the statistic does not support." },
+      { s: "The sample comprised 41 participants (see Table 2). — where Table 2 lists 43",
+        b: "silently corrected to ٤٣ so the text matches the table",
+        g: "شمَلَت العيّنة ٤١ مشاركاً (انظر الجدول ٢). — translated as written, with a query to the author",
+        w: "You found a real error, and it is <b>not yours to fix</b>. Translating the discrepancy faithfully and flagging it is the professional act; correcting it quietly makes you the author of a claim you cannot defend." }
+    ] }
+];
+
+/* ═══════════════════════════════════════════════════════════
+   TRIAL CONTENT
+   ═══════════════════════════════════════════════════════════ */
+
+const HUMAN = [
+  { src: "تسلم إيدك على هذا الشغل.",
+    opts: [
+      { t: "May your hand be safe upon this work.", tag: "machine · literal" },
+      { t: "You did an amazing job — thank you.", tag: "natural", ok: true },
+      { t: "I hereby express appreciation for the labour you have performed.", tag: "over-formal" }
+    ],
+    why: "The literal hands the reader an image English never uses. <b>تسلم إيدك</b> is praise and thanks in one breath, so the natural rendering delivers praise and thanks." },
+  { src: "الحمد للّه على السلامة.",
+    opts: [
+      { t: "I am gratified by your safe arrival.", tag: "over-formal" },
+      { t: "Praise be to God for the safety.", tag: "machine · literal" },
+      { t: "Welcome back — glad you made it.", tag: "natural", ok: true }
+    ],
+    why: "This is a greeting, not a prayer. Its <b>function</b> is to welcome someone home, so the equivalent is the English greeting that does the same job." },
+  { src: "ما تقصّر.",
+    opts: [
+      { t: "You're the best, really.", tag: "natural", ok: true },
+      { t: "You do not fall short.", tag: "machine · literal" },
+      { t: "Your contribution has been entirely sufficient.", tag: "over-formal" }
+    ],
+    why: "Litotes — praise by denying a fault. English praises directly, so flipping it to a positive keeps the warmth the literal drains out." },
+  { src: "خلّها على اللّه.",
+    opts: [
+      { t: "Leave it upon God.", tag: "machine · literal" },
+      { t: "One must entrust the matter to divine providence.", tag: "over-formal" },
+      { t: "Let it go — it'll sort itself out.", tag: "natural", ok: true }
+    ],
+    why: "Said to calm someone, not to preach. The religious surface is idiom, not content — carry the reassurance and leave the theology behind." },
+  { src: "عيني عينك.",
+    opts: [
+      { t: "Right in front of everyone, shamelessly.", tag: "natural", ok: true },
+      { t: "My eye, your eye.", tag: "machine · literal" },
+      { t: "In a wholly overt and unconcealed manner.", tag: "over-formal" }
+    ],
+    why: "Two words in Arabic, a whole clause in English. Equivalence is measured in effect, never in word count." },
+  { src: "يا ريت.",
+    opts: [
+      { t: "It would be desirable were that the case.", tag: "over-formal" },
+      { t: "I wish.", tag: "natural", ok: true },
+      { t: "O would that.", tag: "machine · literal" }
+    ],
+    why: "Sometimes the natural equivalent is <b>shorter</b> than the literal one. Two syllables of resigned longing, matched exactly." }
+];
+
+const PROVERBS = [
+  { src: "يد واحدة لا تصفّق.",
+    opts: [
+      { t: "One hand does not clap.", tag: "literal — not an English proverb" },
+      { t: "It takes two to tango.", tag: "the working equivalent", ok: true },
+      { t: "Many hands make light work.", tag: "real proverb, wrong meaning" }
+    ],
+    why: "Both proverbs say: this needs two people. <b>Many hands make light work</b> is about efficiency, a different claim entirely." },
+  { src: "تحت السواهي دواهي.",
+    opts: [
+      { t: "Still waters run deep.", tag: "the working equivalent", ok: true },
+      { t: "Beneath the inattentive lie calamities.", tag: "literal — meaningless in English" },
+      { t: "Let sleeping dogs lie.", tag: "real proverb, wrong meaning" }
+    ],
+    why: "The Arabic warns that a quiet person is hiding something. English already has that proverb made — use it rather than building a new one." },
+  { src: "اللي فات مات.",
+    opts: [
+      { t: "That which has passed has died.", tag: "literal" },
+      { t: "Time heals all wounds.", tag: "real proverb, wrong meaning" },
+      { t: "Let bygones be bygones.", tag: "the working equivalent", ok: true }
+    ],
+    why: "The Arabic is an instruction: stop bringing it up. <b>Time heals all wounds</b> is a consolation, not an instruction." },
+  { src: "على قدّ لحافك مِدّ رجولك.",
+    opts: [
+      { t: "Cut your coat according to your cloth.", tag: "the working equivalent", ok: true },
+      { t: "Extend your legs as far as your blanket.", tag: "literal" },
+      { t: "Don't bite off more than you can chew.", tag: "close — but about ambition, not means" }
+    ],
+    why: "Both are about living inside your means, and both reach for cloth to say it — a rare gift. Take it when the target language offers one." },
+  { src: "ضربة مُعَلِّم.",
+    opts: [
+      { t: "A teacher's hit.", tag: "literal — nonsense" },
+      { t: "A masterstroke.", tag: "the working equivalent", ok: true },
+      { t: "Beginner's luck.", tag: "the opposite meaning" }
+    ],
+    why: "مُعَلِّم here is a master craftsman, not a schoolteacher. Get that one word wrong and the whole proverb inverts." },
+  { src: "القرد في عين أمّه غزال.",
+    opts: [
+      { t: "The monkey is a gazelle in his mother's eye.", tag: "literal" },
+      { t: "A face only a mother could love.", tag: "the working equivalent", ok: true },
+      { t: "Like mother, like son.", tag: "real proverb, wrong meaning" }
+    ],
+    why: "English keeps the mother and drops the animals. The shared idea — a mother sees no ugliness — survives the swap intact." }
+];
+
+const COURTESY = [
+  { src: "بالعافية", lit: '"with health"',
+    opts: [
+      { t: "With strength.", tag: "literal" },
+      { t: "Enjoy your meal.", tag: "natural", ok: true },
+      { t: "Get well soon.", tag: "wrong situation entirely" }
+    ],
+    why: "Said to someone eating. English reaches for the French, or simply for <b>enjoy</b> — either way food, not health." },
+  { src: "اللّه يعطيك العافية", lit: '"may God give you health"',
+    opts: [
+      { t: "Thanks for your hard work.", tag: "natural", ok: true },
+      { t: "God grant you health.", tag: "literal" },
+      { t: "Bless you.", tag: "wrong situation entirely" }
+    ],
+    why: "Said to someone <b>working</b>. The same words at a sickbed mean something else — situation and register choose the equivalent, not the dictionary." },
+  { src: "سلامتك", lit: '"your safety"',
+    opts: [
+      { t: "Peace upon you.", tag: "literal-ish" },
+      { t: "Safe travels.", tag: "wrong situation entirely" },
+      { t: "Get well soon.", tag: "natural", ok: true }
+    ],
+    why: "This one is said to someone ill. It looks like a farewell and functions as a get-well card." },
+  { src: "عن إذنك", lit: '"by your permission"',
+    opts: [
+      { t: "Excuse me.", tag: "natural", ok: true },
+      { t: "With your permission.", tag: "literal — far too formal" },
+      { t: "Please allow me to pass.", tag: "over-formal" }
+    ],
+    why: "Everyday politeness has to land as everyday politeness. A literal rendering makes a casual speaker sound like a courtier." },
+  { src: "نَعيماً", lit: '"blissfully"',
+    opts: [
+      { t: "Blessings upon you.", tag: "literal" },
+      { t: "Nothing — English has no equivalent here.", tag: "natural", ok: true },
+      { t: "You smell nice.", tag: "true, and unsayable" }
+    ],
+    why: "Said to someone freshly showered or barbered. English has no slot for it at all, and the honest answer is sometimes <b>omission</b>. Knowing when to say nothing is part of the craft." },
+  { src: "كلّ عام وأنتم بخير", lit: '"every year and you are well"',
+    opts: [
+      { t: "Every year and you are well.", tag: "literal" },
+      { t: "Happy holidays.", tag: "natural", ok: true },
+      { t: "Happy new year.", tag: "too narrow — this greets any feast" }
+    ],
+    why: "A general festive greeting needs a general festive greeting. <b>Happy new year</b> pins it to one occasion the Arabic never named." }
+];
+
+const CULTURAL = [
+  { src: "It's raining cats and dogs.", srcEn: true,
+    opts: [
+      { t: "تُمطِر قِططاً وكِلاباً", tag: "literal — comic in Arabic" },
+      { t: "تُمطِر كأفواه القِرَب", tag: "natural — a real Arabic image", ok: true },
+      { t: "الجوّ سيّئ جدّاً", tag: "safe, but the colour is gone" }
+    ],
+    why: "Arabic already has a downpour idiom — the mouths of waterskins. Reach for the target language's own image before inventing one or flattening it." },
+  { src: "Break a leg!", srcEn: true,
+    opts: [
+      { t: "اِكسِر ساقك!", tag: "literal — reads as a curse" },
+      { t: "بالتوفيق!", tag: "natural", ok: true },
+      { t: "حظّاً سعيداً في المسرح!", tag: "explains the joke away" }
+    ],
+    why: "The English is superstition dressed as an insult. Arabic has no such theatre superstition, so the function — wishing luck — is what crosses over." },
+  { src: "To kill two birds with one stone.", srcEn: true,
+    opts: [
+      { t: "ضرب عصفورين بحجر واحد", tag: "identical image — keep it", ok: true },
+      { t: "أنجز مهمّتين في وقت واحد", tag: "correct but needlessly drab" },
+      { t: "قتل طائرين بصخرة", tag: "re-inventing an idiom that already exists" }
+    ],
+    why: "Sometimes the two languages already agree. Recognising when <b>not</b> to intervene is as much a skill as substitution." },
+  { src: "The elephant in the room.", srcEn: true,
+    opts: [
+      { t: "الفيل في الغرفة", tag: "literal — no such idiom in Arabic" },
+      { t: "الأمر الذي يتجنّبه الجميع", tag: "natural — explain, don't transplant", ok: true },
+      { t: "الجَمَل في الخيمة", tag: "invented 'local' idiom — a false friend" }
+    ],
+    why: "When the target language has no idiom, plain description beats fabrication. An invented proverb reads as a mistranslation to any native ear." },
+  { src: "as American as apple pie", srcEn: true,
+    opts: [
+      { t: "أمريكي كفطيرة التفّاح", tag: "literal — means nothing to the reader" },
+      { t: "أصيل كالقهوة العربية", tag: "natural — swaps the culture-bound item", ok: true },
+      { t: "شيء أمريكي جدّاً", tag: "accurate, flavourless" }
+    ],
+    why: "Cultural substitution: keep the <b>structure</b> of the comparison and replace the object with one the reader actually loves." }
+];
+
+/* NEW TRIAL · name the procedure — the practice half of Guide 1 */
+const NAME_PROC = [
+  { src: "skyscraper → ناطِحة سَحاب", srcEn: true,
+    opts: [
+      { t: "Calque · النَّسْخ", tag: "the structure was translated piece by piece to coin a new term", ok: true },
+      { t: "Borrowing · الاِقتِراض", tag: "that would have given سكاي سكريبر" },
+      { t: "Adaptation · التَّكييف", tag: "no cultural reference was replaced" }
+    ],
+    why: "Sky + scraper became سحاب + ناطحة. The pieces were translated and reassembled — a calque, and one of the successful ones." },
+  { src: "after his return → بعد أن عاد", srcEn: true,
+    opts: [
+      { t: "Modulation · التَّطويع", tag: "the point of view did not change" },
+      { t: "Transposition · الإبدال", tag: "a noun became a verb", ok: true },
+      { t: "Literal translation · الحَرفيّة", tag: "that would have given بعد عودته" }
+    ],
+    why: "The English noun <i>return</i> becomes an Arabic verb عاد. Same viewpoint, different part of speech — transposition, and the commonest of all AR↔EN moves." },
+  { src: "It is not difficult. → إنّه سَهل.", srcEn: true,
+    opts: [
+      { t: "Modulation · التَّطويع", tag: "negative became affirmative — the viewpoint flipped", ok: true },
+      { t: "Equivalence · التَّكافُؤ", tag: "no fixed expression was swapped" },
+      { t: "Borrowing · الاِقتِراض", tag: "nothing was borrowed" }
+    ],
+    why: "Saying the same thing from the other side: <i>not difficult</i> becomes <i>easy</i>. That flip in point of view is modulation." },
+  { src: "Once upon a time → كان يا ما كان", srcEn: true,
+    opts: [
+      { t: "Literal translation · الحَرفيّة", tag: "not one word corresponds" },
+      { t: "Equivalence · التَّكافُؤ", tag: "one whole fixed formula replaced by the other's", ok: true },
+      { t: "Transposition · الإبدال", tag: "this is not about parts of speech" }
+    ],
+    why: "Both are set story-openers. Neither translates the other's words, and both do exactly the same job — that is equivalence." },
+  { src: "as American as apple pie → أصيل كالقهوة العربية", srcEn: true,
+    opts: [
+      { t: "Adaptation · التَّكييف", tag: "the culture-bound object itself was replaced", ok: true },
+      { t: "Equivalence · التَّكافُؤ", tag: "close — but no ready-made Arabic formula was waiting" },
+      { t: "Calque · النَّسْخ", tag: "that would have given كفطيرة التفّاح" }
+    ],
+    why: "The comparison's shape survives; the object inside it is swapped for one the target reader loves. Changing the cultural reference is adaptation." },
+  { src: "الجَبْر → algebra", srcEn: false,
+    opts: [
+      { t: "Calque · النَّسْخ", tag: "nothing was translated piece by piece" },
+      { t: "Borrowing · الاِقتِراض", tag: "the word crossed over intact", ok: true },
+      { t: "Modulation · التَّطويع", tag: "no viewpoint changed" }
+    ],
+    why: "English took the Arabic word whole and let it naturalise. Borrowing runs in both directions, and English is full of Arabic loans." }
+];
+
+const SUBTITLE = [
+  { src: "واللّه ما كنت أدري إنّك جاي اليوم، لو دريت لجهّزت لك شي.",
+    limit: 42, model: "I had no idea you were coming today!",
+    keys: ["no idea","didn't know","did not know","didnt know","no clue","unaware","not know"],
+    why: "The apology in the second half is implied by the surprise in the first. Subtitles cut whatever the picture and the tone already carry." },
+  { src: "يا أخي، أنا قلت لك من أوّل الشهر ولا سمعتني.",
+    limit: 38, model: "I told you weeks ago. You didn't listen.",
+    keys: ["told you","i said","listen","warned you"],
+    why: "<b>يا أخي</b> is exasperation, not family. Punctuation and word order carry the tone the vocative carried in Arabic." },
+  { src: "خلاص، ما عليك منه، هذا طبعه من صغره.",
+    limit: 36, model: "Forget it. He's always been like this.",
+    keys: ["always","forget","never chang","like this","thats him","that's him","since he was"],
+    why: "Three Arabic clauses, two short English ones. A subtitle is read in under two seconds — density is a constraint, not a style choice." },
+  { src: "تراني تعبت، أبغى أنام.",
+    limit: 30, model: "I'm exhausted. I need sleep.",
+    keys: ["tired","exhaust","sleep","bed","done in","beat"],
+    why: "Two clauses, two short sentences. When the Arabic is already tight, resist the urge to expand it." }
+];
+
+const BOOTH = [
+  { ar: "صباح الخير", ok: ["good morning","morning"] },
+  { ar: "تفضّل", ok: ["here you go","go ahead","after you","please","help yourself","here"] },
+  { ar: "ما شاء اللّه", ok: ["wow","amazing","beautiful","incredible","god bless","bless"] },
+  { ar: "إن شاء اللّه", ok: ["hopefully","god willing","fingers crossed","well see","we'll see","if all goes well"] },
+  { ar: "يعطيك العافية", ok: ["thanks","thank you","well done","nice work","good work","appreciate"] },
+  { ar: "اللّه أعلم", ok: ["who knows","no idea","god knows","your guess","hard to say"] },
+  { ar: "على راسي", ok: ["gladly","of course","absolutely","you got it","sure","done","consider it done"] },
+  { ar: "ولا يهمّك", ok: ["dont worry","don't worry","no worries","no problem","its fine","it's fine","all good"] },
+  { ar: "من عيوني", ok: ["with pleasure","gladly","anything for you","of course","my pleasure"] },
+  { ar: "الحمد للّه", ok: ["thank god","all good","cant complain","can't complain","fine","good","not bad"] },
+  { ar: "بسيطة", ok: ["no big deal","its fine","it's fine","easy","no problem","dont worry","don't worry"] },
+  { ar: "خلاص", ok: ["enough","thats it","that's it","done","stop","forget it","finished","ok"] },
+  { ar: "أبشِر", ok: ["you got it","consider it done","done","right away","will do","on it","sure"] },
+  { ar: "عيب", ok: ["shame on you","thats rude","that's rude","not okay","not ok","shameful","behave"] },
+  { ar: "الحقّ عليك", ok: ["thats your fault","that's your fault","your fault","own fault","you asked for it"] },
+  { ar: "حياتي", ok: ["sweetheart","darling","my dear","honey","love","dear"] }
+];
+
+const REGISTER = [
+  { meaning: "I don't want to go.",
+    stops: [
+      { name: "Kuwaiti", ar: "ما أبي أروح.", en: "Nah, I'm not going.", note: "Blunt, spoken, among friends." },
+      { name: "Everyday MSA", ar: "لا أُريد أن أذهب.", en: "I don't want to go.", note: "Neutral. Broadcast Arabic, subtitles, plain prose." },
+      { name: "Formal", ar: "لا أرغب في الذهاب.", en: "I would prefer not to attend.", note: "Polite refusal. A letter, a meeting, a superior." },
+      { name: "Classical", ar: "ما لي في المسير من رَغبة.", en: "I have no desire to make the journey.", note: "Literary. Poetry, scripture, deliberate archaism." }
+    ] },
+  { meaning: "Thank you.",
+    stops: [
+      { name: "Kuwaiti", ar: "مشكور، ما تقصّر.", en: "Cheers, you're a legend.", note: "Warm, casual, a little hyperbolic — as the Arabic is." },
+      { name: "Everyday MSA", ar: "شُكراً لك.", en: "Thank you.", note: "The default. Fits almost anywhere." },
+      { name: "Formal", ar: "أشكرك جزيل الشُّكر.", en: "I'm most grateful to you.", note: "Correspondence, ceremony, public thanks." },
+      { name: "Classical", ar: "جزاك اللّه خيراً على ما أسديت.", en: "May you be rewarded for the kindness you have shown.", note: "Religious and literary register at once." }
+    ] }
+];
+
+const ROOTS = [
+  { root: "ت ر ج م", sense: "to translate, to interpret",
+    words: [
+      { w: "تَرجَمة", tr: "tarjama", en: "translation" },
+      { w: "مُتَرجِم", tr: "mutarjim", en: "translator" },
+      { w: "تُرجُمان", tr: "turjumān", en: "dragoman — the court interpreter; English borrowed the word" },
+      { w: "تَرجَمَ", tr: "tarjama", en: "he translated" },
+      { w: "مُتَرجَم", tr: "mutarjam", en: "translated — of a text" }
+    ] },
+  { root: "ك ت ب", sense: "to write",
+    words: [
+      { w: "كِتاب", tr: "kitāb", en: "book" },
+      { w: "كاتِب", tr: "kātib", en: "writer, clerk" },
+      { w: "مَكتَب", tr: "maktab", en: "desk, office" },
+      { w: "مَكتَبة", tr: "maktaba", en: "library, bookshop" },
+      { w: "مَكتوب", tr: "maktūb", en: "written — and so, fate" },
+      { w: "كِتابة", tr: "kitāba", en: "writing, the act of" },
+      { w: "اِكتِتاب", tr: "iktitāb", en: "subscription" }
+    ] },
+  { root: "ع ل م", sense: "to know",
+    words: [
+      { w: "عِلم", tr: "ʿilm", en: "knowledge, science" },
+      { w: "عالِم", tr: "ʿālim", en: "scholar" },
+      { w: "مُعَلِّم", tr: "muʿallim", en: "teacher — and master craftsman" },
+      { w: "تَعليم", tr: "taʿlīm", en: "education" },
+      { w: "مَعلومة", tr: "maʿlūma", en: "a piece of information" },
+      { w: "عالَم", tr: "ʿālam", en: "world — that which is known" },
+      { w: "إعلام", tr: "iʿlām", en: "media, informing" }
+    ] },
+  { root: "س ل م", sense: "to be whole, safe",
+    words: [
+      { w: "سَلام", tr: "salām", en: "peace" },
+      { w: "سَلامة", tr: "salāma", en: "safety, soundness" },
+      { w: "مُسلِم", tr: "muslim", en: "one who submits" },
+      { w: "تَسليم", tr: "taslīm", en: "delivery, handover" },
+      { w: "اِستِسلام", tr: "istislām", en: "surrender" },
+      { w: "سُلَّم", tr: "sullam", en: "ladder — its rungs are whole" }
+    ] }
+];
+
+/* ═══════════ REGISTRY ═══════════ */
+const ITEMS = [
+  { id: "procedures", ar: "الإجراءات السَّبعة", en: "The Seven Procedures", kind: "guide", section: "method",
+    blurb: "The seven things a translator can actually do to a sentence — borrowing, calque, literal, transposition, modulation, equivalence, adaptation — each worked in Arabic and English.",
+    run: runProcedures },
+  { id: "texttypes", ar: "أنواع النُّصوص", en: "The Text Types", kind: "guide", section: "method",
+    blurb: "Nine genres, and what each one demands: journalistic, political, legal, technical, medical, literary, marketing, audiovisual, academic.",
+    run: runTextTypes },
+
+  { id: "nameproc", ar: "ما هذا الإجراء؟", en: "Name the Procedure", kind: "trial", section: "trials",
+    blurb: "A source and its rendering. Which of the seven procedures was used to get there?",
+    run: () => runChoice(NAME_PROC, "Which procedure produced this?") },
+  { id: "human", ar: "أيّ من الخيارات تُطابِق المعنى؟", en: "The Best Equivalent", kind: "trial", section: "trials",
+    blurb: "One Arabic line, three English renderings. Only one carries the meaning the way an English speaker actually would.",
+    run: () => runChoice(HUMAN, "Which option matches the meaning?") },
+  { id: "proverb", ar: "مَثَلٌ بِمَثَل", en: "Proverb for Proverb", kind: "trial", section: "trials",
+    blurb: "Match the Arabic proverb to the English proverb that means the same thing — not the one that says the same words.",
+    run: () => runChoice(PROVERBS, "Which English proverb does the same work?") },
+  { id: "courtesy", ar: "خِزانة المُجامَلات", en: "The Courtesy Cabinet", kind: "trial", section: "trials",
+    blurb: "Gulf politeness formulas with no English words but exact English functions. One of them has no equivalent at all.",
+    run: () => runChoice(COURTESY, "What would an English speaker actually say?") },
+  { id: "cultural", ar: "الاِستِبدال الثَّقافيّ", en: "Cultural Swap", kind: "trial", section: "trials",
+    blurb: "English idioms bound to their culture. Swap the object, keep the meaning — or notice when Arabic already agrees.",
+    run: () => runChoice(CULTURAL, "How does this cross into Arabic?") },
+  { id: "subtitle", ar: "قَيد الشّاشة", en: "Subtitle Squeeze", kind: "trial", section: "trials",
+    blurb: "A real subtitler's constraint: a hard character limit and a line that will not fit. Cut the words, keep the meaning.",
+    run: runSubtitle },
+  { id: "booth", ar: "المَقصورة", en: "The Booth", kind: "trial", section: "trials",
+    blurb: "Sixty seconds. Phrases arrive faster than you can think. Type the equivalent and move.",
+    run: runBooth },
+
+  { id: "register", ar: "مؤشِّر المُستوى اللُّغَويّ", en: "The Register Dial", kind: "exhibit", section: "chambers",
+    blurb: "One meaning, four levels — from Kuwaiti street to classical Arabic — and what each one does to the English.",
+    run: runRegister },
+  { id: "roots", ar: "حُجرة الجَذر", en: "The Root Chamber", kind: "exhibit", section: "chambers",
+    blurb: "Three consonants hold a whole family of words. Open a root and watch it bloom — starting with ت ر ج م itself.",
+    run: runRoots }
+];
+
+/* ═══════════ STATE ═══════════ */
+const STORE_KEY = "nafithat-al-mutarjim-v1";
+let state = { marks: {}, member: "" };
+
+function load() {
+  try { const raw = localStorage.getItem(STORE_KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); }
+  catch (e) {}
+}
+function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
+function markCount() { return Object.keys(state.marks).filter(k => state.marks[k]).length; }
+function currentRank() { let r = RANKS[0]; const n = markCount(); for (const c of RANKS) if (n >= c.at) r = c; return r; }
+function grant(id) {
+  if (!state.marks[id]) { state.marks[id] = true; save(); pushBackend(); return true; }
+  return false;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THE BACKEND
+   A real server-side store, not browser storage: one document
+   per member at members/<slug>, read and written through the
+   artifact's db capability. Progress follows the account across
+   devices and survives a cleared browser. If db is unavailable
+   for this view, everything falls back to localStorage and the
+   page says so rather than pretending.
+   ═══════════════════════════════════════════════════════════ */
+let dbDoc = null, dbUnsub = null, dbState = "local";
+
+function slug(email) {
+  return String(email || "").toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 180) || "member";
+}
+
+async function connectBackend(email) {
+  if (!window.claude || typeof window.claude.use !== "function") { paintStore(); return; }
+  let db = null;
+  try { db = await window.claude.use("db"); } catch (e) { db = null; }
+  if (!db) { paintStore(); return; }
+
+  try {
+    dbDoc = db.doc("members/" + slug(email));
+    const snap = await dbDoc.get();
+    if (snap.exists) {
+      const d = snap.data() || {};
+      if (d.marks && typeof d.marks === "object") {
+        // union: nothing earned on any device is ever lost
+        Object.keys(d.marks).forEach(k => { if (d.marks[k]) state.marks[k] = true; });
+      }
+      if (typeof d.seenRank === "string" && !state.seenRank) state.seenRank = d.seenRank;
+      save();
+    }
+    dbState = "live";
+    await pushBackend();
+
+    dbUnsub = dbDoc.onSnapshot(s => {
+      if (!s.exists) return;
+      const d = s.data() || {};
+      if (!d.marks) return;
+      const before = markCount();
+      Object.keys(d.marks).forEach(k => { if (d.marks[k]) state.marks[k] = true; });
+      if (markCount() !== before) { save(); renderHall(); }
+    }, () => { dbState = "local"; paintStore(); });
+  } catch (e) {
+    dbState = "local"; dbDoc = null;
+  }
+  paintStore();
+  if (!views.hall.hidden) renderHall();
+}
+
+async function pushBackend() {
+  if (!dbDoc) return;
+  try {
+    await dbDoc.set({
+      member: state.member || "",
+      marks: state.marks,
+      rank: currentRank().en,
+      rankAr: currentRank().ar,
+      seenRank: state.seenRank || "",
+      marksEarned: markCount(),
+      updatedAt: new Date().toISOString()
+    });
+  } catch (e) { /* keep going on local state */ }
+}
+
+function paintStore() {
+  const n = document.getElementById("store-note");
+  if (!n) return;
+  n.innerHTML = dbState === "live"
+    ? "<b>Backend connected.</b> Your marks are stored on the server against your guild address, so the climb follows you to any device."
+    : "<b>Local only.</b> The server store isn't available in this view, so progress is kept in this browser.";
+}
+
+/* ═══════════ MATCHING ═══════════ */
+function norm(s) {
+  return (s || "").toLowerCase().replace(/[’‘]/g, "'")
+    .replace(/[^a-z0-9' ]/g, " ").replace(/\s+/g, " ").trim();
+}
+function loose(input, accepted) {
+  const a = norm(input);
+  if (a.length < 2) return false;
+  return accepted.some(x => { const b = norm(x); return a === b || a.includes(b) || (b.length > 4 && b.includes(a)); });
+}
+const AR_RE = /[؀-ۿ]/;
+
+/* ═══════════ HELPERS ═══════════ */
+function el(tag, cls, html) {
+  const e = document.createElement(tag);
+  if (cls) e.className = cls;
+  if (html !== undefined) e.innerHTML = html;
+  return e;
+}
+function dotsRow(total, done, now) {
+  let h = "";
+  for (let i = 0; i < total; i++) h += '<i class="' + (i < done ? "on" : (i === now ? "now" : "")) + '"></i>';
+  return h;
+}
+/* the transfer block: source → literal → natural → why */
+function xferBlock(x) {
+  const dirC = t => AR_RE.test(t) ? ' class="is-ar"' : "";
+  let h = '<div class="x-row"><span class="x-lab">Source</span><p' + dirC(x.s) + '>' + x.s + '</p></div>';
+  if (x.b) h += '<div class="x-row bad"><span class="x-lab">Literal</span><p' + dirC(x.b) + '>' + x.b + '</p></div>';
+  h += '<div class="x-row good"><span class="x-lab">' + (x.b ? "Natural" : "Rendering") + '</span><p' + dirC(x.g) + '>' + x.g + '</p></div>';
+  if (x.w) h += '<div class="x-row why"><span class="x-lab">Why</span><p>' + x.w + '</p></div>';
+  return el("div", "xfer", h);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THE OVERTURE — the argument, made before it is explained
+   ═══════════════════════════════════════════════════════════ */
+const OVERTURE = {
+  ar: "تسلم إيدك على هذا الشغل.",
+  literal: ["May", "your", "hand", "be", "safe", "upon", "this", "work."],
+  natural: ["You", "did", "an", "amazing", "job", "—", "thank", "you."],
+  close: "Every door in this house is that difference.",
+  accept: ["amazing job", "great job", "good job", "well done", "you did", "thank you",
+           "lifesaver", "brilliant", "incredible", "wonderful job", "nice job", "appreciate"]
+};
+
+/* ═══════════ THE CAMERA / ROUTER ═══════════ */
+const views = {
+  overture: document.getElementById("overture"),
+  gate:     document.getElementById("gate"),
+  hall:     document.getElementById("hall"),
+  trial:    document.getElementById("trial")
+};
+const DEPTH = { overture: 0, gate: 1, hall: 2, trial: 3 };
+let curView = null;
+
+function show(name) {
+  const from = curView;
+  const back = !!from && DEPTH[name] < DEPTH[from];
+
+  if (from && from !== name) {
+    const fv = views[from];
+    fv.classList.remove("in-push", "in-pull", "out-push", "out-pull");
+    void fv.offsetWidth;
+    fv.classList.add(back ? "out-pull" : "out-push");
+    setTimeout(() => {
+      fv.hidden = true;
+      fv.classList.remove("out-push", "out-pull");
+    }, 470);
+  }
+  Object.entries(views).forEach(([k, e]) => {
+    if (k !== name && k !== from) e.hidden = true;
+  });
+
+  const tv = views[name];
+  tv.hidden = false;
+  tv.classList.remove("in-push", "in-pull");
+  void tv.offsetWidth;
+  tv.classList.add(back ? "in-pull" : "in-push");
+
+  curView = name;
+  window.scrollTo({ top: 0 });
+  document.getElementById("spine").classList.toggle("away", name === "overture");
+}
+
+/* ═══════════ THE ACT SPINE ═══════════ */
+function setAct(n) {
+  document.querySelectorAll("#spine .act").forEach(a => {
+    const k = +a.dataset.act;
+    a.classList.toggle("now", k === n);
+    a.classList.toggle("done", k < n);
+  });
+}
+
+/* ═══════════ 3D WORDMARK PARALLAX ═══════════ */
+(function tilt() {
+  const wm = document.getElementById("logo3d");
+  if (!wm || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  function move(e) {
+    const r = wm.getBoundingClientRect();
+    const x = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+    const y = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+    wm.style.transform = "rotateX(" + (-y * 11).toFixed(2) + "deg) rotateY(" + (x * 15).toFixed(2) + "deg)";
+  }
+  window.addEventListener("mousemove", move);
+  window.addEventListener("mouseleave", () => { wm.style.transform = ""; });
+})();
+
+/* ═══════════ RUNNING THE OVERTURE ═══════════ */
+let ovTimers = [];
+function ovClear() { ovTimers.forEach(clearTimeout); ovTimers = []; }
+function at(ms, fn) { ovTimers.push(setTimeout(fn, ms)); }
+
+function words(host, list, cls) {
+  list.forEach(w => {
+    const s = el("span", "ov-w" + (cls ? " " + cls : ""), w);
+    host.appendChild(s);
+  });
+  return Array.from(host.querySelectorAll(".ov-w"));
+}
+
+function runOverture() {
+  const arEl = document.getElementById("ov-ar");
+  const litEl = document.getElementById("ov-lit");
+  const natEl = document.getElementById("ov-nat");
+  arEl.textContent = OVERTURE.ar;
+  litEl.querySelectorAll(".ov-w").forEach(n => n.remove());
+  natEl.innerHTML = "";
+  const lit = words(litEl, OVERTURE.literal);
+  const nat = words(natEl, OVERTURE.natural);
+  document.getElementById("ov-close").textContent = OVERTURE.close;
+
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) {
+    lit.concat(nat).forEach(w => w.classList.add("on"));
+    ["ov-cap-bad", "ov-cap-good", "ov-close", "ov-go"].forEach(id =>
+      document.getElementById(id).classList.add("on"));
+    return;
+  }
+
+  // the machine speaks, word by word
+  lit.forEach((w, i) => at(650 + i * 175, () => w.classList.add("on")));
+  at(650 + lit.length * 175 + 350, () => document.getElementById("ov-cap-bad").classList.add("on"));
+  // and it is wrong
+  at(650 + lit.length * 175 + 1100, () => document.getElementById("ov-strike").classList.add("on"));
+  // the sentence buckles, and stays on screen as the thing to compare against
+  at(650 + lit.length * 175 + 1750, () => {
+    litEl.classList.add("shook");
+    lit.forEach(w => w.classList.add("dead"));
+    const bar = document.getElementById("ov-strike");
+    bar.style.transition = "opacity 600ms ease";
+    bar.style.opacity = "0";
+  });
+  // and a person answers
+  const t0 = 650 + lit.length * 175 + 2650;
+  nat.forEach((w, i) => at(t0 + i * 95, () => w.classList.add("on")));
+  at(t0 + nat.length * 95 + 320, () => document.getElementById("ov-cap-good").classList.add("on"));
+  at(t0 + nat.length * 95 + 1150, () => document.getElementById("ov-close").classList.add("on"));
+  at(t0 + nat.length * 95 + 1700, () => document.getElementById("ov-go").classList.add("on"));
+}
+
+function leaveOverture() {
+  ovClear();
+  setAct(1);
+  show("gate");
+  document.getElementById("email").focus();
+}
+document.getElementById("ov-skip").addEventListener("click", leaveOverture);
+document.getElementById("ov-enter").addEventListener("click", leaveOverture);
+
+/* ═══════════ THE SIGNET — the maker's name, in three dimensions ═══════════ */
+(function signet() {
+  const NAME = "Shaikha Alkhaldi";
+  const target = document.getElementById("sig-en");
+  if (target) {
+    target.innerHTML = NAME.split("").map((ch, i) =>
+      ch === " " ? '<span class="sp"></span>'
+                 : '<span class="s-l" style="--i:' + i + '">' + ch + '</span>'
+    ).join("");
+  }
+  const scene = document.getElementById("signet-scene");
+  const frame = document.getElementById("signet");
+  if (!scene || !frame || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  function move(e) {
+    const r = frame.getBoundingClientRect();
+    const x = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
+    const y = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+    scene.style.transform =
+      "rotateX(" + (-y * 12).toFixed(2) + "deg) rotateY(" + (x * 16).toFixed(2) + "deg)";
+  }
+  frame.addEventListener("mousemove", move);
+  frame.addEventListener("mouseleave", () => { scene.style.transform = ""; });
+  // it turns gently on its own until you touch it
+  let t = 0, idle = true;
+  frame.addEventListener("mouseenter", () => { idle = false; });
+  frame.addEventListener("mouseleave", () => { idle = true; });
+  (function drift() {
+    if (idle) {
+      t += 0.006;
+      scene.style.transform =
+        "rotateX(" + (Math.sin(t * 0.7) * 3.5).toFixed(2) + "deg) rotateY(" + (Math.sin(t) * 9).toFixed(2) + "deg)";
+    }
+    requestAnimationFrame(drift);
+  })();
+})();
+
+/* ═══════════ THE GATE ═══════════ */
+let gateIdx = 0, gateMisses = 0;
+
+function paintGatePhrase() {
+  const p = GATE_PHRASES[gateIdx % GATE_PHRASES.length];
+  const ph = document.getElementById("gate-phrase");
+  ph.textContent = p.ar;
+  ph.classList.remove("phrase"); void ph.offsetWidth; ph.classList.add("phrase");
+  document.getElementById("gate-literal").textContent = p.lit;
+  document.getElementById("tongue").value = "";
+  document.getElementById("tongue-msg").hidden = true;
+  gateMisses = 0;
+}
+
+document.getElementById("hint-btn").addEventListener("click", () => {
+  const h = document.getElementById("hint-text"); h.hidden = !h.hidden;
+});
+document.getElementById("seal-btn").addEventListener("click", pressSeal);
+document.getElementById("pass").addEventListener("keydown", e => { if (e.key === "Enter") pressSeal(); });
+document.getElementById("email").addEventListener("keydown", e => { if (e.key === "Enter") document.getElementById("pass").focus(); });
+
+function pressSeal() {
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const pass = document.getElementById("pass").value;
+  const msg = document.getElementById("seal-msg");
+  msg.classList.remove("good");
+
+  if (email !== GUILD.member.toLowerCase()) { msg.hidden = false; msg.textContent = "That address is not on the guild roll."; return; }
+  if (pass !== GUILD.passphrase) { msg.hidden = false; msg.textContent = "The seal does not match. The riddle below will get you in."; return; }
+
+  msg.hidden = true;
+  state.member = email; save();
+
+  const a = document.getElementById("step-seal"), b = document.getElementById("step-tongue");
+  a.classList.add("swap-out");
+  setTimeout(() => {
+    a.hidden = true; a.classList.remove("swap-out");
+    b.hidden = false; b.classList.remove("swap-in"); void b.offsetWidth; b.classList.add("swap-in");
+    paintGatePhrase();
+    document.getElementById("tongue").focus();
+  }, 290);
+}
+
+document.getElementById("tongue-swap").addEventListener("click", () => {
+  gateIdx++; paintGatePhrase(); document.getElementById("tongue").focus();
+});
+document.getElementById("tongue-btn").addEventListener("click", tryTongue);
+document.getElementById("tongue").addEventListener("keydown", e => { if (e.key === "Enter") tryTongue(); });
+
+function tryTongue() {
+  const p = GATE_PHRASES[gateIdx % GATE_PHRASES.length];
+  const val = document.getElementById("tongue").value;
+  const msg = document.getElementById("tongue-msg");
+  msg.classList.remove("msg"); void msg.offsetWidth; msg.classList.add("msg");
+
+  if (loose(val, p.ok)) {
+    msg.hidden = false; msg.classList.add("good");
+    msg.textContent = "Accepted. Meaning first, words second.";
+    setTimeout(unlock, 480);
+    return;
+  }
+  msg.classList.remove("good"); msg.hidden = false; gateMisses++;
+
+  if (loose(val, p.literalTries)) {
+    msg.innerHTML = "That is the <b>word-for-word</b> — it is printed above the field. The door wants what an English speaker would say instead.";
+  } else if (gateMisses >= 2) {
+    msg.innerHTML = "Still not it. One rendering that opens the door: <b>" + p.ok[0] + "</b>";
+  } else {
+    msg.textContent = "Not yet. Don't translate the words — say what the phrase does.";
+  }
+}
+
+function unlock() {
+  const ov = el("div", null,
+    '<div class="u-inner"><div class="dots lg"><i></i><i></i><i></i></div>' +
+    '<p class="u-word">The window opens.</p><p class="u-ar">اِفتَحِ النّافِذة</p></div>');
+  ov.id = "unlock";
+  document.body.appendChild(ov);
+  connectBackend(state.member || GUILD.member);
+  setTimeout(() => {
+    document.getElementById("hall-who").textContent = state.member || GUILD.member;
+    renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
+    ov.style.transition = "opacity 420ms ease"; ov.style.opacity = "0";
+    setTimeout(() => ov.remove(), 440);
+  }, 1250);
+}
+
+/* ═══════════ THE HALL ═══════════ */
+/* ═══════════ THE CLIMB ═══════════ */
+function renderClimb() {
+  const n = markCount(), rank = currentRank(), last = RANKS.length - 1;
+
+  let k = 0;
+  for (let i = 0; i < RANKS.length; i++) if (n >= RANKS[i].at) k = i;
+  let pos = 1;
+  if (k < last) {
+    const span = RANKS[k + 1].at - RANKS[k].at;
+    pos = (k + (n - RANKS[k].at) / span) / last;
+  }
+
+  const next = RANKS[k + 1];
+  const gap = next ? next.at - n : 0;
+  const nextTxt = next
+    ? 'Next rung: <b>' + next.en + '</b> — ' + gap + ' more mark' + (gap === 1 ? '' : 's') + ' to go.'
+    : '<span class="done">Every mark earned. You hold the highest rank in the house.</span>';
+
+  let stations = "";
+  RANKS.forEach(r => {
+    const reached = n >= r.at;
+    stations +=
+      '<div class="station' + (reached ? " reached" : "") + (r.en === rank.en ? " current" : "") + '">' +
+        '<span class="dot">✦</span>' +
+        '<span class="s-en">' + r.en + '</span>' +
+        '<span class="s-ar">' + r.ar + '</span>' +
+        '<span class="s-n">' + r.at + ' marks</span>' +
+      '</div>';
+  });
+
+  document.getElementById("climb").innerHTML =
+    '<div class="climb-top">' +
+      '<div class="ct-l"><span class="ct-ar2">السُّلَّم</span><h2>The Climb</h2></div>' +
+      '<p class="ct-next">' + nextTxt + '</p>' +
+    '</div>' +
+    '<div class="track"><div class="rail"><i></i></div>' +
+      '<div class="stations">' + stations + '</div></div>' +
+    '<div class="climb-foot">' +
+      '<span class="beacon' + (dbState === "live" ? " live" : "") + '"><i></i>' +
+        (dbState === "live" ? "Backend live · synced to your address" : "Local only · this browser") +
+      '</span>' +
+      '<p class="note">' + n + ' of ' + TOTAL_MARKS + ' marks · ' +
+        Math.round(n / TOTAL_MARKS * 100) + '% of the way to Guildmaster</p>' +
+    '</div>';
+
+  requestAnimationFrame(() => {
+    const fill = document.querySelector("#climb .rail > i");
+    if (fill) fill.style.width = (pos * 100).toFixed(1) + "%";
+  });
+}
+
+function levelUp(rank) {
+  const ov = el("div", null,
+    '<div class="u-inner">' +
+      '<span class="u-logo" aria-hidden="true"></span>' +
+      '<p class="u-kicker">New rank</p>' +
+      '<p class="u-rank">' + rank.en + '</p>' +
+      '<p class="u-ar">' + rank.ar + '</p>' +
+      '<div class="dots lg"><i></i><i></i><i></i></div>' +
+    '</div>');
+  ov.id = "unlock";
+  function close() {
+    ov.style.transition = "opacity 400ms ease";
+    ov.style.opacity = "0";
+    setTimeout(() => ov.remove(), 420);
+  }
+  ov.addEventListener("click", close);
+  document.body.appendChild(ov);
+  setTimeout(close, 3400);
+}
+
+function checkLevelUp() {
+  const r = currentRank();
+  const full = markCount() >= TOTAL_MARKS;
+  if (!state.seenRank) { state.seenRank = r.en; save(); pushBackend(); return; }
+  if (state.seenRank !== r.en) {
+    state.seenRank = r.en; save(); pushBackend();
+    if (full && !state.finale) {
+      state.finale = true; save(); pushBackend();
+      setTimeout(runFinale, 520);
+    } else {
+      levelUp(r);
+    }
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THE FINALE — the opening, handed back to you
+   ═══════════════════════════════════════════════════════════ */
+function esc(s) {
+  return String(s).replace(/[&<>"']/g, c =>
+    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function toColophon() {
+  renderHall(); show("hall"); setAct(4);
+  setTimeout(() => {
+    const c = document.querySelector(".colophon");
+    if (c) c.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 760);
+}
+
+function runFinale() {
+  setAct(4);
+  let tries = 0;
+  const ov = el("div");
+  ov.id = "finale";
+  ov.innerHTML =
+    '<div class="fin-stage">' +
+      '<p class="fin-kick">Nine marks · and back to where you began</p>' +
+      '<p class="fin-ar">' + OVERTURE.ar + '</p>' +
+      '<p class="fin-machine">' + OVERTURE.literal.join(" ") + '</p>' +
+      '<p class="fin-ask">A machine said that on your first screen. Now you say it.</p>' +
+      '<div class="fin-form">' +
+        '<div class="field"><label for="fin-in">Your rendering</label>' +
+        '<input id="fin-in" type="text" autocomplete="off" spellcheck="false" placeholder="say what she meant"></div>' +
+        '<p class="msg" id="fin-msg" hidden></p>' +
+        '<div class="foot" style="justify-content:center"><button id="fin-go">Close the gap</button></div>' +
+      '</div>' +
+    '</div>';
+  document.body.appendChild(ov);
+
+  const input = ov.querySelector("#fin-in");
+  const msg = ov.querySelector("#fin-msg");
+  setTimeout(() => input.focus(), 400);
+
+  function close() {
+    ov.style.transition = "opacity 420ms ease";
+    ov.style.opacity = "0";
+    setTimeout(() => ov.remove(), 440);
+  }
+
+  function verdict(v) {
+    const r = RANKS[RANKS.length - 1];
+    ov.querySelector(".fin-stage").innerHTML =
+      '<div class="fin-verdict">' +
+        '<span class="fin-logo" aria-hidden="true"></span>' +
+        '<p class="fin-kick">The house is yours</p>' +
+        '<p class="fin-rank">' + r.en + '</p>' +
+        '<p class="fin-said" style="font-family:var(--f-ar);direction:rtl;font-size:1.15rem;color:var(--lilac)">' + r.ar + '</p>' +
+        '<p class="fin-said">You wrote <b>&ldquo;' + esc(v) + '&rdquo;</b> — and not one word of it appears in the Arabic. ' +
+          'That gap is the whole craft, and you closed it <b>nine times</b> to stand here.</p>' +
+        '<div class="foot" style="justify-content:center">' +
+          '<button id="fin-sign">Sign the colophon ↓</button>' +
+          '<button class="ghost" id="fin-stay">Back to the hall</button>' +
+        '</div>' +
+      '</div>';
+    ov.querySelector("#fin-sign").addEventListener("click", () => { close(); toColophon(); });
+    ov.querySelector("#fin-stay").addEventListener("click", close);
+  }
+
+  function submit() {
+    const v = input.value.trim();
+    tries++;
+    if (!v) {
+      msg.hidden = false; msg.classList.remove("good");
+      msg.textContent = "Say something — anything a person would actually say.";
+      return;
+    }
+    if (loose(v, OVERTURE.accept) || tries >= 2) { verdict(v); return; }
+    msg.hidden = false; msg.classList.remove("good");
+    msg.innerHTML = "Closer. Not the words — the <b>thing she was doing</b>: praising you and thanking you in one breath.";
+  }
+  ov.querySelector("#fin-go").addEventListener("click", submit);
+  input.addEventListener("keydown", e => { if (e.key === "Enter") submit(); });
+}
+
+function renderHall() {
+  const n = markCount(), rank = currentRank();
+  paintRing(document.getElementById("hall-ring"), n);
+  document.getElementById("rank-en").textContent = rank.en;
+  document.getElementById("rank-ar").textContent = rank.ar;
+  document.getElementById("rank-n").textContent = n + " of " + TOTAL_MARKS + " marks";
+
+  ["method", "trials", "chambers"].forEach(sec => {
+    const box = document.getElementById("sec-" + sec);
+    box.innerHTML = "";
+    ITEMS.filter(t => t.section === sec).forEach((t, i) => {
+      const b = el("button", "commission");
+      b.style.animationDelay = (i * 55) + "ms";
+      const pip = t.kind === "guide" ? "" :
+        '<span class="seal-pip' + (state.marks[t.id] ? " earned" : "") + '">✦</span>';
+      b.innerHTML =
+        '<span class="cnum">' + String(ITEMS.indexOf(t) + 1).padStart(2, "0") + '</span>' +
+        '<span class="ctitles"><span class="c-ar">' + t.ar + '</span>' +
+        '<span class="c-en">' + t.en + '</span><span class="c-blurb">' + t.blurb + '</span></span>' +
+        '<span class="cstate"><span class="kind ' + t.kind + '">' + t.kind + '</span>' + pip + '</span>';
+      b.addEventListener("click", () => openItem(t));
+      box.appendChild(b);
+    });
+  });
+
+  renderClimb();
+  paintStore();
+  checkLevelUp();
+}
+
+document.getElementById("reset-btn").addEventListener("click", () => {
+  state.marks = {};
+  state.seenRank = RANKS[0].en;
+  save(); pushBackend(); renderHall();
+});
+document.getElementById("back-btn").addEventListener("click", () => {
+  stopBooth(); renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
+});
+document.getElementById("colo-btn").addEventListener("click", () => {
+  setAct(4);
+  const c = document.querySelector(".colophon");
+  if (c) c.scrollIntoView({ behavior: "smooth", block: "start" });
+});
+document.getElementById("replay-btn").addEventListener("click", () => {
+  ovClear();
+  ["ov-cap-bad", "ov-cap-good", "ov-close", "ov-go"].forEach(id =>
+    document.getElementById(id).classList.remove("on"));
+  document.getElementById("ov-strike").classList.remove("on");
+  document.getElementById("ov-lit").classList.remove("shook");
+  const bar = document.getElementById("ov-strike");
+  bar.style.transition = ""; bar.style.opacity = "";
+  show("overture");
+  runOverture();
+});
+
+/* ═══════════ SHELL ═══════════ */
+const stage = document.getElementById("stage");
+let active = null;
+
+function openItem(t) {
+  active = t;
+  setAct(t.section === "method" ? 2 : 3);
+  document.getElementById("trial-ar").textContent = t.ar;
+  document.getElementById("trial-en").textContent = t.en;
+  document.getElementById("trial-count").textContent = "";
+  document.getElementById("trial-dots").innerHTML = "";
+  stage.innerHTML = "";
+  show("trial");
+  t.run();
+}
+function setCount(txt) { document.getElementById("trial-count").textContent = txt; }
+function setDots(total, done, now) { document.getElementById("trial-dots").innerHTML = total ? dotsRow(total, done, now) : ""; }
+function backFoot() {
+  const foot = el("div", "foot");
+  const b = el("button", null, "Back to the hall");
+  b.addEventListener("click", () => { renderHall(); show("hall"); });
+  foot.appendChild(b);
+  return foot;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GUIDE 1 · THE SEVEN PROCEDURES
+   ═══════════════════════════════════════════════════════════ */
+function runProcedures() {
+  let cur = 0;
+  setCount("A guide · " + PROCEDURES.length + " procedures");
+
+  function render() {
+    stage.innerHTML = "";
+    setDots(PROCEDURES.length, cur, cur);
+
+    if (cur === 0) {
+      stage.appendChild(el("p", "lede",
+        "Every translation decision you will ever make is one of seven moves. Vinay and Darbelnet named them in 1958 " +
+        "and nobody has needed an eighth since. Knowing which one you are using is what separates a translator from " +
+        "someone with a dictionary — because it lets you <b>defend the choice</b> instead of hoping it sounds right."));
+    }
+
+    const chips = el("div", "chips");
+    PROCEDURES.forEach((p, k) => {
+      const b = el("button", "chip" + (k === cur ? " on" : ""),
+        p.en + '<span class="c-sub">' + p.n + '</span>');
+      b.addEventListener("click", () => { cur = k; render(); });
+      chips.appendChild(b);
+    });
+    stage.appendChild(chips);
+
+    const p = PROCEDURES[cur];
+    const card = el("div", "card");
+    card.appendChild(el("div", "card-top",
+      '<span class="num-badge">Procedure ' + p.n + '</span>' +
+      '<span class="ct-ar">' + p.ar + '</span>' +
+      '<h3>' + p.en + '</h3>'));
+    card.appendChild(el("p", "lede", p.what));
+
+    const blocks = el("div", "blocks");
+    blocks.appendChild(el("div", "block demand",
+      '<span class="b-lab">Reach for it when</span><ul>' + p.when.map(x => "<li>" + x + "</li>").join("") + '</ul>'));
+    blocks.appendChild(el("div", "block trap",
+      '<span class="b-lab">The trap</span><p>' + p.trap + '</p>'));
+    card.appendChild(blocks);
+
+    const xf = el("div", "xfers");
+    p.xfers.forEach(x => xf.appendChild(xferBlock(x)));
+    card.appendChild(xf);
+    stage.appendChild(card);
+
+    if (cur === PROCEDURES.length - 1) {
+      const close = el("div", "verdict");
+      close.appendChild(el("span", "vh", PROC_CLOSE.head));
+      close.appendChild(el("p", "vb", '<span class="ar" style="font-size:1.1rem;color:var(--white)">' + PROC_CLOSE.ar + '</span>'));
+      close.appendChild(el("p", "vb", PROC_CLOSE.body));
+      stage.appendChild(close);
+    }
+
+    const pager = el("div", "pager");
+    const left = el("div", "foot");
+    if (cur > 0) {
+      const prev = el("button", "ghost", "← " + PROCEDURES[cur - 1].en);
+      prev.addEventListener("click", () => { cur--; render(); });
+      left.appendChild(prev);
+    }
+    if (cur < PROCEDURES.length - 1) {
+      const next = el("button", null, PROCEDURES[cur + 1].en + " →");
+      next.addEventListener("click", () => { cur++; render(); });
+      left.appendChild(next);
+    } else {
+      const t = ITEMS.find(x => x.id === "nameproc");
+      const go = el("button", null, "Now try naming them →");
+      go.addEventListener("click", () => openItem(t));
+      left.appendChild(go);
+    }
+    pager.appendChild(left);
+    pager.appendChild(el("p", "note", "Procedure " + (cur + 1) + " of " + PROCEDURES.length));
+    stage.appendChild(pager);
+    stage.appendChild(backFoot());
+  }
+  render();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   GUIDE 2 · THE TEXT TYPES
+   ═══════════════════════════════════════════════════════════ */
+function runTextTypes() {
+  let cur = 0;
+  setCount("A guide · " + TEXT_TYPES.length + " genres");
+
+  function render() {
+    stage.innerHTML = "";
+    setDots(TEXT_TYPES.length, cur, cur);
+
+    stage.appendChild(el("p", "lede",
+      "There is no such thing as translating well in general. Every genre has its own idea of what a good translation is, " +
+      "and they contradict each other — the care that makes a contract correct makes an advertisement useless. " +
+      "<b>Identify the text type first.</b> It decides everything after."));
+
+    const chips = el("div", "chips");
+    TEXT_TYPES.forEach((t, k) => {
+      const b = el("button", "chip" + (k === cur ? " on" : ""),
+        t.en + '<span class="c-sub ar" style="letter-spacing:0">' + t.ar + '</span>');
+      b.addEventListener("click", () => { cur = k; render(); });
+      chips.appendChild(b);
+    });
+    stage.appendChild(chips);
+
+    const t = TEXT_TYPES[cur];
+    const card = el("div", "card");
+    card.appendChild(el("div", "card-top",
+      '<span class="ct-ar">' + t.ar + '</span><h3>' + t.en + '</h3>'));
+    card.appendChild(el("p", "lede", t.lede));
+    card.appendChild(el("p", "lede", t.intro));
+    card.appendChild(el("div", "ar-note",
+      '<span class="an-lab">مُقَدِّمة</span><p>' + t.introAr + '</p>'));
+
+    card.appendChild(el("div", "how",
+      '<div class="how-head"><h4>How to translate it</h4>' +
+      '<span class="h-ar2">كيف نُترجِمه</span></div>' +
+      '<ol>' + t.how.map(x => "<li><span>" + x + "</span></li>").join("") + '</ol>'));
+
+    const blocks = el("div", "blocks");
+    blocks.appendChild(el("div", "block demand",
+      '<span class="b-lab">What it demands</span><ul>' + t.demands.map(x => "<li>" + x + "</li>").join("") + '</ul>'));
+    blocks.appendChild(el("div", "block trap",
+      '<span class="b-lab">The trap</span><p>' + t.trap + '</p>'));
+    card.appendChild(blocks);
+
+    const xf = el("div", "xfers");
+    t.xfers.forEach(x => xf.appendChild(xferBlock(x)));
+    card.appendChild(xf);
+    stage.appendChild(card);
+
+    const pager = el("div", "pager");
+    const left = el("div", "foot");
+    if (cur > 0) {
+      const prev = el("button", "ghost", "← " + TEXT_TYPES[cur - 1].en);
+      prev.addEventListener("click", () => { cur--; render(); });
+      left.appendChild(prev);
+    }
+    if (cur < TEXT_TYPES.length - 1) {
+      const next = el("button", null, TEXT_TYPES[cur + 1].en + " →");
+      next.addEventListener("click", () => { cur++; render(); });
+      left.appendChild(next);
+    } else {
+      const go = el("button", null, "To the trials →");
+      go.addEventListener("click", () => { renderHall(); show("hall"); });
+      left.appendChild(go);
+    }
+    pager.appendChild(left);
+    pager.appendChild(el("p", "note", "Genre " + (cur + 1) + " of " + TEXT_TYPES.length));
+    stage.appendChild(pager);
+    stage.appendChild(backFoot());
+  }
+  render();
+}
+
+/* ═══════════ MULTIPLE-CHOICE ENGINE ═══════════ */
+function runChoice(items, ask) {
+  let i = 0;
+  const log = [];
+
+  function question() {
+    stage.innerHTML = "";
+    setCount("Question " + (i + 1) + " of " + items.length);
+    setDots(items.length, i, i);
+    const q = items[i];
+
+    const card = el("div", "prompt");
+    card.appendChild(el("p", "ask", ask));
+    const isArSrc = !q.srcEn && AR_RE.test(q.src);
+    card.appendChild(el("p", isArSrc ? "src" : "src-en", isArSrc ? q.src : "“" + q.src + "”"));
+    if (q.lit) card.appendChild(el("p", "lit", 'word for word: <b>' + q.lit + '</b>'));
+    stage.appendChild(card);
+
+    const wrap = el("div", "options");
+    const keys = ["A", "B", "C", "D"];
+    q.opts.forEach((o, k) => {
+      const b = el("button", "opt");
+      b.style.animationDelay = (120 + k * 80) + "ms";
+      const isAr = AR_RE.test(o.t) && !/[a-z]/i.test(o.t);
+      b.innerHTML = '<span class="key">' + keys[k] + '</span>' +
+                    '<span class="txt' + (isAr ? " is-ar" : "") + '">' + o.t + '</span>';
+      b.addEventListener("click", () => answer(k, wrap, q));
+      wrap.appendChild(b);
+    });
+    stage.appendChild(wrap);
+  }
+
+  function answer(k, wrap, q) {
+    const hit = !!q.opts[k].ok;
+    log.push({ src: q.src, srcEn: !AR_RE.test(q.src), hit: hit, best: q.opts.find(o => o.ok).t });
+    setDots(items.length, i + 1, -1);
+
+    Array.from(wrap.children).forEach((b, idx) => {
+      b.disabled = true;
+      const o = q.opts[idx];
+      if (o.ok) b.classList.add("right");
+      else if (idx === k) b.classList.add("miss");
+      b.querySelector(".txt").insertAdjacentHTML("beforeend", '<span class="tag">' + o.tag + '</span>');
+    });
+
+    const v = el("div", "verdict");
+    v.appendChild(el("span", "vh " + (hit ? "win" : "lose"), hit ? "✦ Well rendered" : "✧ Not the natural one"));
+    v.appendChild(el("p", "vb", q.why));
+    stage.appendChild(v);
+
+    const foot = el("div", "foot");
+    const next = el("button", null, i < items.length - 1 ? "Next" : "See the tally");
+    next.addEventListener("click", () => { i++; if (i < items.length) question(); else finish(log, items.length); });
+    foot.appendChild(next);
+    stage.appendChild(foot);
+    next.focus();
+  }
+  question();
+}
+
+/* ═══════════ SCORECARD ═══════════ */
+function finish(log, total) {
+  const hits = log.filter(r => r.hit).length;
+  const need = Math.ceil(total * 0.6);
+  const pass = hits >= need;
+  const fresh = pass ? grant(active.id) : false;
+
+  stage.innerHTML = "";
+  setCount("Complete");
+  setDots(total, total, -1);
+
+  const card = el("div", "score");
+  card.appendChild(el("p", "tracked mag", "The tally"));
+  card.appendChild(el("p", "tally", hits + '<small> / ' + total + '</small>'));
+
+  let say, sayAr;
+  if (hits === total) { say = "Not one literal answer. That is the whole craft."; sayAr = "ولا ترجمة حرفيّة واحدة. هذه هي الصِّناعة."; }
+  else if (pass) { say = "The meaning got through. Polish the rest."; sayAr = "وَصَل المعنى. هَذِّب الباقي."; }
+  else { say = "The words got through; the meaning did not."; sayAr = "وَصَلَت الكلمات ولم يَصِل المعنى."; }
+  card.appendChild(el("p", "say", say));
+  card.appendChild(el("p", "say-ar", sayAr));
+
+  if (pass) card.appendChild(el("p", "earned", fresh ? "✦ Guild mark earned" : "✦ Mark already held"));
+  else card.appendChild(el("p", "note", need + " of " + total + " earns the mark. Run it again."));
+
+  const rev = el("div", "review");
+  log.forEach(r => rev.appendChild(el("div", "rev-row " + (r.hit ? "hit" : "miss"),
+    '<span class="g">' + (r.hit ? "✦" : "✧") + '</span><span class="q">' +
+    '<span class="q-src' + (r.srcEn ? " is-en" : "") + '">' + r.src + '</span>' +
+    '<span class="q-ans">natural: <b>' + r.best + '</b></span></span>')));
+  card.appendChild(rev);
+
+  const foot = el("div", "foot");
+  const again = el("button", "ghost", "Run it again");
+  again.addEventListener("click", () => openItem(active));
+  const back = el("button", null, "Back to the hall");
+  back.addEventListener("click", () => { renderHall(); show("hall"); });
+  foot.appendChild(again); foot.appendChild(back);
+  card.appendChild(foot);
+  stage.appendChild(card);
+}
+
+/* ═══════════ SUBTITLE SQUEEZE ═══════════ */
+function runSubtitle() {
+  let i = 0;
+  const log = [];
+
+  function question() {
+    stage.innerHTML = "";
+    setCount("Line " + (i + 1) + " of " + SUBTITLE.length);
+    setDots(SUBTITLE.length, i, i);
+    const q = SUBTITLE[i];
+
+    const card = el("div", "prompt");
+    card.appendChild(el("p", "ask", "Fit this into " + q.limit + " characters"));
+    card.appendChild(el("p", "src", q.src));
+    stage.appendChild(card);
+
+    const typing = el("div", "typing");
+    const ta = document.createElement("textarea");
+    ta.rows = 2; ta.placeholder = "the subtitle, as it would appear on screen";
+    ta.setAttribute("aria-label", "Your subtitle");
+    typing.appendChild(ta);
+
+    const gauge = el("div", "gauge");
+    const left = el("span", "ok", "");
+    gauge.appendChild(left);
+    gauge.appendChild(el("span", null, "Space is the constraint, not the vocabulary"));
+    typing.appendChild(gauge);
+
+    const bar = el("div", "bar", "<i></i>");
+    typing.appendChild(bar);
+    stage.appendChild(typing);
+
+    function tick() {
+      const n = ta.value.length, over = n > q.limit;
+      left.textContent = n + " / " + q.limit + " characters";
+      left.className = over ? "over" : "ok";
+      const b = bar.querySelector("i");
+      b.style.width = Math.min(100, (n / q.limit) * 100) + "%";
+      b.className = over ? "hot" : "";
+    }
+    ta.addEventListener("input", tick); tick();
+
+    const foot = el("div", "foot");
+    const go = el("button", null, "Lock the line");
+    go.addEventListener("click", () => grade(q, ta.value));
+    foot.appendChild(go);
+    stage.appendChild(foot);
+    ta.focus();
+  }
+
+  function grade(q, val) {
+    const fits = val.length > 0 && val.length <= q.limit;
+    const carries = q.keys.some(k => norm(val).includes(norm(k)));
+    const hit = fits && carries;
+    log.push({ src: q.src, srcEn: false, hit: hit, best: q.model });
+    setDots(SUBTITLE.length, i + 1, -1);
+
+    stage.innerHTML = "";
+    const card = el("div", "prompt");
+    card.appendChild(el("p", "ask", hit ? "✦ It fits and it carries" : "✧ Not there yet"));
+    card.appendChild(el("p", "src", q.src));
+    stage.appendChild(card);
+
+    const v = el("div", "verdict");
+    v.appendChild(el("span", "vh", "Yours · " + val.length + " characters"));
+    v.appendChild(el("p", "vb", val ? "“" + val + "”" : "<i>nothing entered</i>"));
+    v.appendChild(el("span", "vh win", "One professional answer · " + q.model.length + " characters"));
+    v.appendChild(el("p", "vb", "<b>“" + q.model + "”</b>"));
+    v.appendChild(el("p", "vb", q.why));
+    if (!fits && val.length) v.appendChild(el("p", "vb",
+      "<b>It ran " + (val.length - q.limit) + " characters over.</b> On screen the tail is simply cut."));
+    stage.appendChild(v);
+
+    const foot = el("div", "foot");
+    const next = el("button", null, i < SUBTITLE.length - 1 ? "Next line" : "See the tally");
+    next.addEventListener("click", () => { i++; if (i < SUBTITLE.length) question(); else finish(log, SUBTITLE.length); });
+    foot.appendChild(next);
+    stage.appendChild(foot);
+    next.focus();
+  }
+  question();
+}
+
+/* ═══════════ THE BOOTH ═══════════ */
+let boothTimer = null;
+function stopBooth() { if (boothTimer) { clearInterval(boothTimer); boothTimer = null; } }
+
+function runBooth() {
+  stopBooth();
+  const DUR = 60, NEED = 6;
+  let left = DUR, idx = 0, hits = 0, started = false;
+  const queue = BOOTH.slice().sort(() => Math.random() - 0.5);
+  const log = [];
+
+  stage.innerHTML = "";
+  setCount("60 seconds");
+
+  const card = el("div", "prompt");
+  card.appendChild(el("p", "ask", "Type the natural English · Enter to send · Tab to pass"));
+  const phrase = el("p", "src", queue[0].ar);
+  card.appendChild(phrase);
+  stage.appendChild(card);
+
+  const typing = el("div", "typing");
+  const inp = document.createElement("input");
+  inp.type = "text"; inp.autocomplete = "off"; inp.spellcheck = false; inp.placeholder = "…";
+  inp.setAttribute("aria-label", "Your rendering");
+  typing.appendChild(inp);
+
+  const gauge = el("div", "gauge");
+  const clock = el("span", "ok", "60s");
+  const tally = el("span", null, "0 through");
+  gauge.appendChild(clock); gauge.appendChild(tally);
+  typing.appendChild(gauge);
+
+  const bar = el("div", "bar", "<i style='width:100%'></i>");
+  typing.appendChild(bar);
+  stage.appendChild(typing);
+
+  const feed = el("p", "note", "The clock starts the moment you type.");
+  stage.appendChild(feed);
+
+  function paint() {
+    const q = queue[idx % queue.length];
+    phrase.textContent = q.ar;
+    phrase.classList.remove("src"); void phrase.offsetWidth; phrase.classList.add("src");
+    inp.value = "";
+  }
+  function begin() {
+    if (started) return;
+    started = true;
+    boothTimer = setInterval(() => {
+      left--;
+      clock.textContent = left + "s";
+      clock.className = left <= 10 ? "over" : "ok";
+      const b = bar.querySelector("i");
+      b.style.width = (left / DUR * 100) + "%";
+      b.className = left <= 10 ? "hot" : "";
+      if (left <= 0) end();
+    }, 1000);
+  }
+  function send() {
+    const q = queue[idx % queue.length];
+    const hit = loose(inp.value, q.ok);
+    if (hit) { hits++; feed.innerHTML = '<b style="color:var(--mint)">✦ ' + q.ar + '</b> — through.'; }
+    else { feed.innerHTML = '<b style="color:var(--coral)">✧ ' + q.ar + '</b> — one good rendering: <b style="color:var(--white)">' + q.ok[0] + '</b>'; }
+    log.push({ src: q.ar, srcEn: false, hit: hit, best: q.ok[0] });
+    tally.textContent = hits + " through";
+    idx++; paint();
+  }
+
+  inp.addEventListener("input", begin);
+  inp.addEventListener("keydown", e => {
+    if (e.key === "Enter") { e.preventDefault(); begin(); send(); }
+    if (e.key === "Tab") { e.preventDefault(); begin(); idx++; paint(); }
+  });
+
+  function end() {
+    stopBooth();
+    const pass = hits >= NEED;
+    const fresh = pass ? grant("booth") : false;
+
+    stage.innerHTML = "";
+    setCount("Time");
+    const sc = el("div", "score");
+    sc.appendChild(el("p", "tracked mag", "Sixty seconds in the booth"));
+    sc.appendChild(el("p", "tally", hits + '<small> through</small>'));
+    sc.appendChild(el("p", "say", pass
+      ? "You kept up. That is the whole job of the booth."
+      : "The booth waits for nobody. Six through earns the mark."));
+    sc.appendChild(el("p", "say-ar", pass ? "لَحِقتَ بالكلام." : "لا تنتظر المَقصورة أحداً."));
+    if (pass) sc.appendChild(el("p", "earned", fresh ? "✦ Guild mark earned" : "✦ Mark already held"));
+    else sc.appendChild(el("p", "note", hits + " through · " + NEED + " needed."));
+
+    if (log.length) {
+      const rev = el("div", "review");
+      log.forEach(r => rev.appendChild(el("div", "rev-row " + (r.hit ? "hit" : "miss"),
+        '<span class="g">' + (r.hit ? "✦" : "✧") + '</span><span class="q">' +
+        '<span class="q-src">' + r.src + '</span>' +
+        '<span class="q-ans">natural: <b>' + r.best + '</b></span></span>')));
+      sc.appendChild(rev);
+    }
+
+    const foot = el("div", "foot");
+    const again = el("button", "ghost", "Back in the booth");
+    again.addEventListener("click", () => openItem(active));
+    const back = el("button", null, "Back to the hall");
+    back.addEventListener("click", () => { renderHall(); show("hall"); });
+    foot.appendChild(again); foot.appendChild(back);
+    sc.appendChild(foot);
+    stage.appendChild(sc);
+  }
+  paint(); inp.focus();
+}
+
+/* ═══════════ THE REGISTER DIAL ═══════════ */
+function runRegister() {
+  let setIdx = 0, stop = 1;
+  setCount("A chamber · no score");
+
+  function render() {
+    stage.innerHTML = "";
+    const set = REGISTER[setIdx];
+
+    const chips = el("div", "chips");
+    REGISTER.forEach((s, k) => {
+      const b = el("button", "chip" + (k === setIdx ? " on" : ""), "“" + s.meaning + "”");
+      b.addEventListener("click", () => { setIdx = k; render(); });
+      chips.appendChild(b);
+    });
+    stage.appendChild(chips);
+
+    const dial = el("div", "dial");
+    const panel = el("div", "dial-panel");
+    const s = set.stops[stop];
+    panel.appendChild(el("p", "reg-name", s.name));
+
+    const pair = el("div", "pair");
+    const en = el("div"); en.appendChild(el("p", "p-en", "“" + s.en + "”"));
+    const ar = el("div"); ar.appendChild(el("p", "p-ar", s.ar));
+    pair.appendChild(en); pair.appendChild(el("div", "hairline")); pair.appendChild(ar);
+    panel.appendChild(pair);
+    panel.appendChild(el("p", "reg-note", s.note));
+    dial.appendChild(panel);
+
+    const track = el("div");
+    const range = document.createElement("input");
+    range.type = "range"; range.min = "0"; range.max = "3"; range.step = "1";
+    range.value = String(stop);
+    range.setAttribute("aria-label", "Level of language");
+    range.addEventListener("input", () => { stop = +range.value; render(); });
+    track.appendChild(range);
+    const stops = el("div", "stops");
+    set.stops.forEach((st, k) => stops.appendChild(el("span", k === stop ? "on" : "", st.name)));
+    track.appendChild(stops);
+    dial.appendChild(track);
+    stage.appendChild(dial);
+
+    const v = el("div", "verdict");
+    v.appendChild(el("span", "vh", "Why this chamber has no score"));
+    v.appendChild(el("p", "vb",
+      "All four Arabic lines mean the same thing, and none is more correct than the others. " +
+      "What changes is <b>who is speaking, to whom, and where</b> — and the English has to move with it. " +
+      "Pick the wrong level and the translation is accurate and still wrong."));
+    stage.appendChild(v);
+
+    const foot = el("div", "foot");
+    if (!state.marks.register) {
+      const b = el("button", null, "I've walked all four levels");
+      b.addEventListener("click", () => { grant("register"); renderHall(); openItem(active); });
+      foot.appendChild(b);
+    } else foot.appendChild(el("p", "earned", "✦ Mark held for this chamber"));
+    const back = el("button", "ghost", "Back to the hall");
+    back.addEventListener("click", () => { renderHall(); show("hall"); });
+    foot.appendChild(back);
+    stage.appendChild(foot);
+  }
+  render();
+}
+
+/* ═══════════ THE ROOT CHAMBER ═══════════ */
+function runRoots() {
+  let cur = 0;
+  setCount("A chamber · no score");
+
+  function render() {
+    stage.innerHTML = "";
+    const chips = el("div", "chips");
+    ROOTS.forEach((r, k) => {
+      const b = el("button", "chip ar-chip" + (k === cur ? " on" : ""), r.root);
+      b.addEventListener("click", () => { cur = k; render(); });
+      chips.appendChild(b);
+    });
+    stage.appendChild(chips);
+
+    const r = ROOTS[cur];
+    const card = el("div", "card");
+    card.appendChild(el("p", "stamp", r.root));
+    card.appendChild(el("p", "sense", r.sense));
+    const list = el("div", "derivs");
+    r.words.forEach((w, k) => {
+      const row = el("div", "deriv",
+        '<span class="w">' + w.w + '</span><span class="g">' +
+        '<span class="en">' + w.en + '</span><span class="tr">' + w.tr + '</span></span>');
+      row.style.animationDelay = (80 + k * 65) + "ms";
+      list.appendChild(row);
+    });
+    card.appendChild(list);
+    stage.appendChild(card);
+
+    const v = el("div", "verdict");
+    v.appendChild(el("span", "vh", "Why a translator cares"));
+    v.appendChild(el("p", "vb",
+      "English builds words by borrowing; Arabic builds them by bending three consonants. " +
+      "So an Arabic word arrives carrying its whole family with it — <b>مَكتوب</b> means both <i>written</i> " +
+      "and <i>fated</i>, and no single English word carries both. That gap is where translation actually happens."));
+    stage.appendChild(v);
+
+    const foot = el("div", "foot");
+    if (!state.marks.roots) {
+      const b = el("button", null, "I've opened every root");
+      b.addEventListener("click", () => { grant("roots"); renderHall(); openItem(active); });
+      foot.appendChild(b);
+    } else foot.appendChild(el("p", "earned", "✦ Mark held for this chamber"));
+    const back = el("button", "ghost", "Back to the hall");
+    back.addEventListener("click", () => { renderHall(); show("hall"); });
+    foot.appendChild(back);
+    stage.appendChild(foot);
+  }
+  render();
+}
+
+/* ═══════════ BOOT ═══════════ */
+load();
+paintGatePhrase();
+setAct(1);
+
+let overtureSeen = false;
+try { overtureSeen = sessionStorage.getItem("nafitha-overture") === "1"; } catch (e) {}
+if (overtureSeen) {
+  show("gate");
+} else {
+  try { sessionStorage.setItem("nafitha-overture", "1"); } catch (e) {}
+  show("overture");
+  runOverture();
+}
+</script>
+
+</body>
+</html>
