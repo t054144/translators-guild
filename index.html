@@ -238,9 +238,6 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .fin-said { font-size: clamp(1rem,3.4vw,1.25rem); font-weight: 300; line-height: 1.7;
   color: rgba(205,179,230,.92); margin: 0; max-width: 44ch; }
 .fin-said b { color: var(--white); font-weight: 500; }
-.swap-out { animation: swapOut 300ms ease forwards; }
-@keyframes swapOut { to { opacity: 0; transform: translateX(-26px) scale(.985); filter: blur(4px); } }
-.swap-in { animation: swapIn 480ms var(--ease) both; }
 @keyframes swapIn {
   from { opacity: 0; transform: translateX(30px) scale(.985); filter: blur(4px); }
   to { opacity: 1; transform: none; filter: blur(0); }
@@ -292,7 +289,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .aura i, .logo-face, #unlock .u-logo { animation: none; }
-  .view, .swap-in, .swap-out, .opt, .deriv, .msg, .commission,
+  .view, .opt, .deriv, .msg, .commission,
   .view.in-push, .view.in-pull, .view.out-push, .view.out-pull,
   #finale, .fin-verdict { animation: none !important; }
   * { transition-duration: 1ms !important; }
@@ -308,22 +305,8 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 
 .step { display: grid; gap: 1.15rem; max-width: 33rem; margin: 0 auto; }
 .step-head { display: flex; align-items: center; gap: .8rem; padding-bottom: .9rem; border-bottom: var(--hair); flex-wrap: wrap; }
-.step-chip { width: 26px; height: 26px; border-radius: 9px; background: var(--grad);
-  display: grid; place-items: center; font-size: .68rem; font-weight: 700; color: var(--white); flex: none; }
 .step-head .sh-en { font-family: var(--f-serif); font-size: 1.15rem; font-weight: 600; color: var(--white); }
-.step-head .sh-ar { font-family: var(--f-ar); direction: rtl; font-size: .88rem; color: var(--lilac-dim); margin-inline-start: auto; }
 .row { display: flex; gap: .85rem; align-items: center; flex-wrap: wrap; }
-
-.challenge { border-radius: var(--r-lg); border: var(--hair-lit); background: rgba(17,6,32,.55);
-  padding: clamp(1.25rem,4vw,2rem); display: grid; gap: .9rem; justify-items: center;
-  text-align: center; position: relative; overflow: hidden; }
-.challenge::after { content: ""; position: absolute; inset: 0; pointer-events: none;
-  background: radial-gradient(100% 120% at 50% -20%, rgba(167,38,208,.22), transparent 70%); }
-.challenge > * { position: relative; }
-.challenge .phrase { font-family: var(--f-ar-text); direction: rtl; font-size: clamp(2rem,8vw,3.25rem);
-  color: var(--white); line-height: 1.7; margin: 0; animation: swapIn 520ms var(--ease) both; }
-.challenge .gloss { font-size: .84rem; color: var(--lilac-dim); margin: 0; }
-.challenge .gloss span { color: rgba(255,92,122,.9); }
 
 /* ═══════════ THE HALL ═══════════ */
 #hall { max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
@@ -650,6 +633,49 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 .medal.lg { width: 96px; height: 96px; }
 .medal.lg span { font-size: 2rem; }
 
+/* The portrait sits on top of the medallion, which stays underneath as the
+   fallback: if no image resolves, the monogram is what you see. */
+.pf { position: relative; display: block; flex: none; width: 62px; height: 62px; }
+.pf .medal { width: 100%; height: 100%; }
+.pf img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 22%; border-radius: 50%;
+  opacity: 0; transition: opacity 620ms var(--ease);
+  box-shadow: 0 8px 22px -10px rgba(101,15,208,.9), inset 0 0 0 1px rgba(255,255,255,.22); }
+.pf img.on { opacity: 1; }
+.pf::after { content: ""; position: absolute; inset: 0; border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.3); pointer-events: none; }
+.pf-lg { width: 96px; height: 96px; }
+@media (min-width: 40rem) { .pf-lg { width: 132px; height: 132px; } }
+
+.d-portrait { display: grid; gap: .5rem; justify-items: center; }
+.d-portrait .p-credit { font-size: .6rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--lilac-dim); text-align: center; max-width: 9rem; line-height: 1.4; }
+
+/* ═══════════ ONE WORKED EXAMPLE PER TRANSLATOR ═══════════ */
+.ex { border-radius: var(--r-lg); border: var(--hair-lit); background: rgba(17,6,32,.5);
+  padding: clamp(1.1rem,3.2vw,1.6rem); display: grid; gap: .95rem; }
+.ex .ex-lab { font-size: .66rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+  color: var(--magenta); }
+.ex .ex-lab b { color: var(--white); font-weight: 700; }
+.ex-row { display: grid; gap: .22rem; }
+.ex-row .ex-k { font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--lilac-dim); }
+.ex-row p { margin: 0; font-size: .97rem; font-weight: 300; line-height: 1.6; color: rgba(214,191,234,.92); }
+.ex-row p b { color: var(--white); font-weight: 600; }
+.ex-row p[dir="rtl"] { font-family: var(--f-ar-text); direction: rtl; text-align: right;
+  font-size: 1.3rem; line-height: 1.95; }
+.ex-row.src p { color: var(--white); font-weight: 400; font-size: 1.04rem; }
+.ex-row.lit, .ex-row.out { padding-inline-start: .85rem; border-inline-start: 2px solid; }
+.ex-row.lit { border-color: rgba(255,92,122,.55); }
+.ex-row.lit .ex-k { color: var(--coral); }
+.ex-row.lit p { color: rgba(255,179,193,.86); }
+.ex-row.out { border-color: var(--mint); }
+.ex-row.out .ex-k { color: var(--mint); }
+.ex-row.out p { color: var(--white); font-weight: 400; }
+.ex-note { margin: 0; padding-top: .8rem; border-top: var(--hair);
+  font-size: .9rem; font-weight: 300; line-height: 1.65; color: rgba(205,179,230,.84); }
+.ex-note b { color: var(--white); font-weight: 600; }
+
 .figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .85rem; }
 .figure { display: grid; grid-template-columns: auto 1fr; gap: .95rem; align-items: center;
   text-align: left; padding: 1.05rem 1.15rem; border-radius: var(--r-lg); border: var(--hair);
@@ -768,45 +794,15 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div class="panel door">
       <div class="step" id="step-seal">
         <div class="step-head">
-          <span class="step-chip">1</span>
           <span class="sh-en">The Member's Seal</span>
         </div>
         <div class="field">
           <label for="email">Guild address</label>
           <input id="email" type="email" autocomplete="username" spellcheck="false" placeholder="ashaikha602@gmail.com">
         </div>
-        <div class="field">
-          <label for="pass">Passphrase</label>
-          <input id="pass" type="password" autocomplete="current-password" placeholder="••••••">
-        </div>
         <p class="msg" id="seal-msg" hidden></p>
         <div class="row">
-          <button id="seal-btn">Press the seal</button>
-          <button class="link" id="hint-btn">Forgotten the passphrase?</button>
-        </div>
-        <p class="note" id="hint-text" hidden>
-          <b>Riddle:</b> it is the Arabic word for <i>wisdom</i>, written in Latin letters.
-        </p>
-      </div>
-
-      <div class="step" id="step-tongue" hidden>
-        <div class="step-head">
-          <span class="step-chip">2</span>
-          <span class="sh-en">The Tongue-Gate</span>
-        </div>
-        <div class="challenge">
-          <p class="tracked mag">Render this into natural English to enter</p>
-          <p class="phrase" id="gate-phrase">على عيني</p>
-          <p class="gloss">word for word: <span id="gate-literal">"upon my eye"</span> — and that is the one answer the door refuses</p>
-        </div>
-        <div class="field">
-          <label for="tongue">Your rendering</label>
-          <input id="tongue" type="text" autocomplete="off" spellcheck="false" placeholder="what would an English speaker actually say?">
-        </div>
-        <p class="msg" id="tongue-msg" hidden></p>
-        <div class="row">
-          <button id="tongue-btn">Enter the hall</button>
-          <button class="ghost" id="tongue-swap">Another phrase</button>
+          <button id="seal-btn">Enter the hall</button>
         </div>
       </div>
     </div>
@@ -891,11 +887,12 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 
 <script>
 /* ═══════════════════════════════════════════════════════════
-   CONFIG — the two lines that make the gate yours.
-   The passphrase is for THIS SITE ONLY. Never a real email
-   password: anything here is readable in the page source.
+   CONFIG — the one line that makes the gate yours. The gate
+   only checks the address against the roll: it is a name
+   plate, not a lock, and everything here is readable in the
+   page source.
    ═══════════════════════════════════════════════════════════ */
-const GUILD = { member: "ashaikha602@gmail.com", passphrase: "hikma" };
+const GUILD = { member: "ashaikha602@gmail.com" };
 
 const TOTAL_MARKS = 9;
 
@@ -922,28 +919,66 @@ const RANKS = [
   { at: 9, en: "Guildmaster", ar: "شيخ الصِّناعة" }
 ];
 
-/* ═══════════ THE TONGUE-GATE ═══════════ */
-const GATE_PHRASES = [
-  { ar: "على عيني", lit: '"upon my eye"',
-    literalTries: ["on my eye","upon my eye","on my eyes","my eye","upon my eyes","on the eye"],
-    ok: ["gladly","of course","consider it done","with pleasure","my pleasure","sure","done","happily",
-         "absolutely","anything for you","no problem","you got it","right away","will do","certainly",
-         "say no more","at your service"] },
-  { ar: "ولا يهمّك", lit: '"and it does not concern you"',
-    literalTries: ["it does not concern you","does not concern you","it doesnt concern you","not your concern"],
-    ok: ["dont worry","don't worry","no worries","no problem","its fine","it's fine","forget about it",
-         "forget it","i got it","leave it to me","all good","dont mention it","don't mention it",
-         "never mind","not a problem","im on it","i'm on it"] },
-  { ar: "أبشِر", lit: '"receive good tidings"',
-    literalTries: ["receive good tidings","good tidings","rejoice","be glad"],
-    ok: ["you got it","consider it done","done","sure","of course","right away","will do","no problem",
-         "on it","absolutely","say no more","gladly","coming right up"] },
-  { ar: "اللّه يعطيك العافية", lit: '"may God give you health"',
-    literalTries: ["may god give you health","god give you health","may god grant you health","god grant you health"],
-    ok: ["thanks for your hard work","thank you for your hard work","well done","keep it up","nice work",
-         "good work","great work","thanks for everything","appreciate it","you work hard",
-         "thank you for everything","keep up the good work","thanks for all your work","much appreciated"] }
-];
+/* ═══════════ PORTRAITS ═══════════ */
+/* id -> { src, credit }. Empty until a portrait resolves; every frame
+   renders the medallion first, so the page never waits on this. */
+const PORTRAITS = {};
+
+function portraitFrame(f, big) {
+  return '<span class="pf' + (big ? " pf-lg" : "") + '" data-fig="' + f.id + '">' +
+           '<span class="medal' + (big ? " lg" : "") + '"><span>' + f.mono + '</span></span>' +
+         '</span>';
+}
+
+/* Drop the image into any frame on the page that is still bare. */
+function paintPortraits(root) {
+  (root || document).querySelectorAll(".pf[data-fig]").forEach(fr => {
+    const pic = PORTRAITS[fr.dataset.fig];
+    if (!pic || fr.querySelector("img")) return;
+    const im = document.createElement("img");
+    im.alt = pic.alt || "";
+    im.loading = "lazy";
+    im.decoding = "async";
+    im.addEventListener("load", () => im.classList.add("on"));
+    im.addEventListener("error", () => im.remove());
+    im.src = pic.src;
+    fr.appendChild(im);
+  });
+}
+
+async function loadPortraits() {
+  await Promise.all(LINEAGE.map(async f => {
+    const alt = "Portrait of " + f.name;
+    if (f.img) { PORTRAITS[f.id] = { src: f.img, credit: f.credit || "", alt: alt }; return; }
+    if (!f.wiki) return;
+    try {
+      const r = await fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" +
+                            encodeURIComponent(f.wiki), { headers: { Accept: "application/json" } });
+      if (!r.ok) return;
+      const j = await r.json();
+      const src = j.thumbnail && j.thumbnail.source;
+      if (src) PORTRAITS[f.id] = { src: src, credit: "via Wikipedia", alt: alt };
+    } catch (e) { /* the medallion stands */ }
+  }));
+  paintPortraits();
+}
+
+/* Source, the literal reading, what they actually wrote, and why it matters.
+   `srcDir`/`outDir` are "rtl" where the text is Arabic or Hebrew. */
+function exampleBlock(x) {
+  function row(cls, k, txt, dir) {
+    return '<div class="ex-row ' + cls + '">' +
+             '<span class="ex-k">' + k + '</span>' +
+             '<p' + (dir === "rtl" ? ' dir="rtl"' : '') + '>' + txt + '</p>' +
+           '</div>';
+  }
+  return el("div", "ex",
+    '<span class="ex-lab">The work, in one example &mdash; <b>' + x.lab + '</b></span>' +
+    row("src", x.srcLab, x.src, x.srcDir) +
+    row("lit", x.litLab, x.lit, x.litDir) +
+    row("out", x.outLab, x.out, x.outDir) +
+    '<p class="ex-note">' + x.note + '</p>');
+}
 
 /* ═══════════════════════════════════════════════════════════
    THE LINEAGE
@@ -967,8 +1002,11 @@ function runLineage(startAt) {
       const f = LINEAGE[cur];
       const card = el("div", "card");
       const top = el("div", "dossier-top");
+      const pic = PORTRAITS[f.id];
       top.innerHTML =
-        '<span class="medal lg"><span>' + f.mono + '</span></span>' +
+        '<span class="d-portrait">' + portraitFrame(f, true) +
+          (pic && pic.credit ? '<span class="p-credit">' + pic.credit + '</span>' : '') +
+        '</span>' +
         '<span class="d-txt"><h3>' + f.name + '</h3>' +
           '<span class="d-meta">' + f.life + ' \u00b7 ' + f.place + '</span>' +
           '<span class="d-pair">' + f.pair + '</span></span>';
@@ -978,7 +1016,9 @@ function runLineage(startAt) {
       blocks.appendChild(el("div", "block demand", '<span class="b-lab">What they did</span><p>' + f.what + '</p>'));
       blocks.appendChild(el("div", "block", '<span class="b-lab">Why it mattered</span><p>' + f.why + '</p>'));
       card.appendChild(blocks);
+      if (f.ex) card.appendChild(exampleBlock(f.ex));
       stage.appendChild(card);
+      paintPortraits(card);
 
       const nav = el("div", "pager");
       const foot = el("div", "foot");
@@ -1002,7 +1042,7 @@ function runLineage(startAt) {
       const b = el("button", "figure" + (k === cur ? " on" : ""));
       b.style.animationDelay = (k * 45) + "ms";
       b.innerHTML =
-        '<span class="medal"><span>' + f.mono + '</span></span>' +
+        portraitFrame(f, false) +
         '<span class="f-txt">' +
           '<span class="f-name">' + f.name + '</span>' +
           '<span class="f-meta">' + f.life + '</span>' +
@@ -1015,13 +1055,16 @@ function runLineage(startAt) {
       grid.appendChild(b);
     });
     stage.appendChild(grid);
+    paintPortraits(grid);
 
     const note = el("div", "verdict");
-    note.appendChild(el("span", "vh", "On the medallions"));
+    note.appendChild(el("span", "vh", "On the portraits"));
     note.appendChild(el("p", "vb",
-      "These are monograms, not portraits. No photograph or painting of these people is mine to " +
-      "reproduce, and inventing a face and presenting it as a likeness would be a small lie inside a " +
-      "project about honesty between languages. The initials, the dates and the language pairs are true."));
+      "The pictures are pulled from each translator's Wikipedia article, so nothing here is a face I " +
+      "invented. For the pre-modern figures they are <b>later depictions rather than likenesses</b> \u2014 " +
+      "nobody drew Hunayn or al-Jahiz from life, and a manuscript painting made centuries afterwards is " +
+      "a picture of how they were remembered. Where no image loads, the lettered medallion stands in its " +
+      "place. The initials, the dates and the language pairs are true throughout."));
     stage.appendChild(note);
 
     stage.appendChild(backFoot());
@@ -1699,57 +1742,120 @@ const ROOTS = [
 
 /* ═══════════════════════════════════════════════════════════
    THE LINEAGE — translators who changed the world.
-   Medallions, not portraits: no likeness of these people is
-   mine to reproduce, and I will not invent one.
+
+   Each one carries a portrait and one worked example of the
+   actual translating. The portrait is fetched from Wikipedia
+   at run time by the `wiki` title, so nothing here is an
+   invented likeness; set `img` to a local file to override
+   it. If neither resolves, the lettered medallion stands, so
+   a missing or renamed article costs nothing but the picture.
+   For the pre-modern figures these are later depictions
+   rather than likenesses, and the caption says so.
    ═══════════════════════════════════════════════════════════ */
 const LINEAGE = [
   { id: "hunayn", mono: "H", name: "Hunayn ibn Ishaq", life: "809 - 873", place: "Baghdad",
+    wiki: "Hunayn ibn Ishaq", img: "",
     pair: "Greek & Syriac to Arabic",
     line: "Sense before words - eleven centuries before anyone gave it that name.",
     what: "He ran the translation bureau of the House of Wisdom and turned the whole Greek medical corpus - Galen, Hippocrates, Dioscorides - into Arabic.",
-    why: "He refused to work word for word. He hunted down every manuscript of a text he could find, collated them into one reliable original, and only then carried the <b>sense</b> across. That is still the method. His Galen kept medicine alive for seven hundred years, and when Europe wanted Greek medicine back it had to translate his Arabic to get it." },
+    why: "He refused to work word for word. He hunted down every manuscript of a text he could find, collated them into one reliable original, and only then carried the <b>sense</b> across. That is still the method. His Galen kept medicine alive for seven hundred years, and when Europe wanted Greek medicine back it had to translate his Arabic to get it.",
+    ex: {
+      lab: "Building the vocabulary as he went",
+      srcLab: "Greek", src: "χυμός <i>(chymos)</i> &mdash; \"juice, sap\"", srcDir: "ltr",
+      litLab: "Word for word", lit: "\"juice\" &mdash; or the Greek sound carried straight over, which told an Arabic physician nothing",
+      outLab: "What he wrote", out: "خِلْط <i>(khilṭ)</i> &mdash; \"a mixture\"", outDir: "rtl",
+      note: "Arabic had no word for a bodily humour. Instead of importing the Greek sound he took an ordinary Arabic word for a <i>mixture</i> and made it the technical term &mdash; <b>أخلاط</b> is still the Arabic for the four humours. Translating Galen meant building the language that could hold Galen, and a great deal of Arabic medical vocabulary is his." } },
 
   { id: "muqaffa", mono: "IM", name: "Ibn al-Muqaffa", life: "c. 724 - 759", place: "Basra",
+    wiki: "Ibn al-Muqaffa'", img: "",
     pair: "Middle Persian to Arabic",
     line: "One translation seeded a thousand years of European storytelling.",
     what: "He rendered the Pahlavi Kalila wa-Dimna - the Indian animal fables - into Arabic prose so good that it became the original everyone worked from.",
-    why: "From his Arabic the book passed into Hebrew, Latin, Castilian and eventually every European language; La Fontaine's fables descend from it. He did not preserve a text, he <b>relaunched</b> one - the most travelled book in the world moves through his sentences." },
+    why: "From his Arabic the book passed into Hebrew, Latin, Castilian and eventually every European language; La Fontaine's fables descend from it. He did not preserve a text, he <b>relaunched</b> one - the most travelled book in the world moves through his sentences.",
+    ex: {
+      lab: "A title that could travel",
+      srcLab: "Sanskrit, through Middle Persian", src: "Karataka &amp; Damanaka <i>(the two jackals)</i>", srcDir: "ltr",
+      litLab: "Word for word", lit: "the names transliterated &mdash; sounds an Arabic reader could not hold on to",
+      outLab: "What he wrote", out: "كليلة ودمنة <i>(Kalīla wa-Dimna)</i>", outDir: "rtl",
+      note: "He reshaped the names to Arabic until the book could be <i>named</i> in Arabic &mdash; and it is that title, not the Sanskrit one, that went on into Hebrew, Latin, Castilian and French. He also opened it with a chapter of his own, widely credited to him rather than the Pahlavi: the translator added material, and the addition stayed for a thousand years." } },
 
   { id: "jahiz", mono: "AJ", name: "Al-Jahiz", life: "c. 776 - 869", place: "Basra & Baghdad",
+    wiki: "Al-Jahiz", img: "",
     pair: "wrote the first theory",
     line: "The first person to say out loud that poetry does not translate.",
     what: "In the Book of Animals he set down the earliest serious argument about what translation cannot do.",
-    why: "He held that a translator must command both languages equally or he will damage both - and that poetry <b>cannot</b> cross at all, because its metre, its sound and its rhetorical shape <i>are</i> its meaning, so all that survives is information. Every argument about untranslatability since is a footnote to him." },
+    why: "He held that a translator must command both languages equally or he will damage both - and that poetry <b>cannot</b> cross at all, because its metre, its sound and its rhetorical shape <i>are</i> its meaning, so all that survives is information. Every argument about untranslatability since is a footnote to him.",
+    ex: {
+      lab: "His claim, demonstrated",
+      srcLab: "Arabic (Imru' al-Qays, before Islam)", src: "وَلَيْلٍ كَمَوْجِ البَحْرِ أَرْخَى سُدُولَهُ", srcDir: "rtl",
+      litLab: "What crosses", lit: "\"And a night like the sea's waves let down its curtains over me\"",
+      outLab: "What does not", out: "the ṭawīl metre, the rhyme, the archaic diction &mdash; every part of it that was doing the work", outDir: "ltr",
+      note: "Al-Jahiz translated nothing; this is his argument worked out, not his rendering. In the <i>Book of Animals</i> he held that poetry <b>cannot</b> cross, because metre, sound-shape and rhetorical figure are not decoration on the meaning &mdash; they are part of it, so all that arrives is the report. He also insisted a translator must be equally strong in both tongues, or he will damage both." } },
 
   { id: "jayyusi", mono: "SJ", name: "Salma Khadra Jayyusi", life: "1926 - 2023", place: "Palestine & the US",
+    wiki: "Salma Khadra Jayyusi", img: "",
     pair: "Arabic to English",
     line: "She built the shelf that modern Arabic literature stands on in English.",
     what: "A poet and scholar who founded PROTA, the project that translated modern Arabic literature into English at scale - more than thirty volumes of it.",
-    why: "Before her an English reader could barely find modern Arabic poetry or fiction; after her there was a library. She also proved something about the job: she commissioned, edited and argued the work into existence, because <b>translation at that scale is institution-building</b>, not only writing." },
+    why: "Before her an English reader could barely find modern Arabic poetry or fiction; after her there was a library. She also proved something about the job: she commissioned, edited and argued the work into existence, because <b>translation at that scale is institution-building</b>, not only writing.",
+    ex: {
+      lab: "Two hands on every poem",
+      srcLab: "Stage one", src: "a close, literal draft by a translator who has the Arabic", srcDir: "ltr",
+      litLab: "Left there", lit: "accurate, and not a poem in English &mdash; information about a poem",
+      outLab: "Stage two", out: "an English-language poet works that draft until it is poetry in English, with her editing between them", outDir: "ltr",
+      note: "This was PROTA's house method, and she treated the second stage as non-optional &mdash; which is why she kept co-translating with poets rather than publishing the literal drafts. Her other lesson is the unglamorous one: she commissioned, edited, funded and argued more than thirty volumes into print, because <b>at that scale translation is institution-building</b>." } },
 
   { id: "jerome", mono: "J", name: "Jerome", life: "c. 347 - 420", place: "Bethlehem",
+    wiki: "Jerome", img: "",
     pair: "Hebrew & Greek to Latin",
     line: "Not word for word, but sense for sense.",
     what: "He produced the Vulgate, the Latin Bible that Western Europe read for more than a thousand years.",
-    why: "In his letter to Pammachius he wrote that he translates <i>not word for word but sense for sense</i> - the sentence the whole profession still quotes at itself. He also insisted on going back to the Hebrew rather than working from the Greek. He is the patron saint of translators, and his feast day is International Translation Day." },
+    why: "In his letter to Pammachius he wrote that he translates <i>not word for word but sense for sense</i> - the sentence the whole profession still quotes at itself. He also insisted on going back to the Hebrew rather than working from the Greek. He is the patron saint of translators, and his feast day is International Translation Day.",
+    ex: {
+      lab: "One root, chosen wrong, for a thousand years",
+      srcLab: "Hebrew (Exodus 34:29)", src: "קָרַן <i>(q-r-n)</i>", srcDir: "rtl",
+      litLab: "The other reading", lit: "the same three consonants also spell <i>qeren</i>, \"horn\" &mdash; and that is the one he took",
+      outLab: "What he wrote", out: "<i>cornuta esset facies sua</i> &mdash; \"his face was horned\", where the sense is that it sent out rays of light", outDir: "ltr",
+      note: "The consonants carry both <i>shone</i> and <i>horn</i>, and the vowels that would separate them are not written. His choice put horns on Moses in European art for a thousand years, Michelangelo's included. The man who wrote <i>not word for word but sense for sense</i> is also the standing proof of how far one root-choice travels." } },
 
   { id: "tyndale", mono: "T", name: "William Tyndale", life: "c. 1494 - 1536", place: "Antwerp",
+    wiki: "William Tyndale", img: "",
     pair: "Greek & Hebrew to English",
     line: "He was executed for it, and then everyone quoted him.",
     what: "He translated the New Testament into English from the Greek, printed it abroad, and was strangled and burned for doing it.",
-    why: "Roughly four fifths of the King James Version is his wording, untouched. <i>The salt of the earth</i>, <i>the powers that be</i>, <i>a law unto themselves</i> - his phrases. He did not only translate into English; he <b>shaped the English</b> the rest of us inherited." },
+    why: "Roughly four fifths of the King James Version is his wording, untouched. <i>The salt of the earth</i>, <i>the powers that be</i>, <i>a law unto themselves</i> - his phrases. He did not only translate into English; he <b>shaped the English</b> the rest of us inherited.",
+    ex: {
+      lab: "Three words he refused to use",
+      srcLab: "Greek", src: "ἐκκλησία &middot; πρεσβύτερος &middot; ἀγάπη", srcDir: "ltr",
+      litLab: "What was expected", lit: "\"church\" &middot; \"priest\" &middot; \"charity\" &mdash; the Latin-descended words already in place",
+      outLab: "What he wrote", out: "\"congregation\" &middot; \"elder\" &middot; \"love\"", outDir: "ltr",
+      note: "Not a matter of taste. Each choice removed a word that held up an institution and put a plain English one where it stood, which is a large part of why the books were burned and then so was he. Where English had nothing he made it: <b>Passover</b>, <b>scapegoat</b>, <b>atonement</b>, <b>mercy seat</b> are his coinages, and roughly four fifths of the King James New Testament is his wording untouched." } },
 
   { id: "gerard", mono: "G", name: "Gerard of Cremona", life: "1114 - 1187", place: "Toledo",
+    wiki: "Gerard of Cremona", img: "",
     pair: "Arabic to Latin",
     line: "Europe got its science back in translation, out of Arabic.",
     what: "He translated some eighty works from Arabic into Latin, among them Ptolemy's Almagest and Avicenna's Canon of Medicine.",
-    why: "Greek science returned to Europe <b>through Arabic</b>, and largely through him. The Canon remained the standard European medical textbook for five hundred years. He is the return half of Hunayn's journey - Greek to Arabic to Latin, three centuries and two thousand kilometres apart." },
+    why: "Greek science returned to Europe <b>through Arabic</b>, and largely through him. The Canon remained the standard European medical textbook for five hundred years. He is the return half of Hunayn's journey - Greek to Arabic to Latin, three centuries and two thousand kilometres apart.",
+    ex: {
+      lab: "A book with its route fossilised in its name",
+      srcLab: "Greek", src: "ἡ μεγίστη <i>(hē megistē)</i> &mdash; \"the greatest\"", srcDir: "ltr",
+      litLab: "Through Arabic", lit: "المجسطي <i>(al-Majisṭī)</i> &mdash; the Greek word with the Arabic definite article fixed to the front",
+      outLab: "Into Latin", out: "<i>Almagesti</i> &mdash; <b>the Almagest</b>, which is what Europe has called Ptolemy ever since", outDir: "ltr",
+      note: "Europe knows the greatest book of ancient astronomy by an Arabic-shaped name, because that is the road it came down: Greek to Arabic to Latin. The same fused article is sitting inside <b>algebra</b>, <b>alcohol</b> and <b>alkali</b>. The word <i>sine</i> is commonly traced to this same Toledo work &mdash; Arabic <i>jayb</i>, \"fold, pocket, bay\", rendered into Latin as <i>sinus</i>, itself a misreading of a transliterated Sanskrit term. Mathematicians still use a translator's slip." } },
 
   { id: "rabassa", mono: "R", name: "Gregory Rabassa", life: "1922 - 2016", place: "New York",
+    wiki: "Gregory Rabassa", img: "",
     pair: "Spanish & Portuguese to English",
     line: "The author said the translation beat the original.",
     what: "He translated One Hundred Years of Solitude, Hopscotch, and much of the Latin American boom into English.",
-    why: "Garcia Marquez waited three years for him, then said the English was <b>better than the Spanish</b>. Rabassa's account of how was disarmingly plain: he did not study the book first, he read it as he translated, because he wanted the English to move at the speed of a reader meeting it. Functional equivalence, practised at the top of the craft." }
+    why: "Garcia Marquez waited three years for him, then said the English was <b>better than the Spanish</b>. Rabassa's account of how was disarmingly plain: he did not study the book first, he read it as he translated, because he wanted the English to move at the speed of a reader meeting it. Functional equivalence, practised at the top of the craft.",
+    ex: {
+      lab: "One verb, and the whole first sentence turns on it",
+      srcLab: "Spanish", src: "&hellip; aquella tarde remota en que su padre lo llevó a <b>conocer</b> el hielo.", srcDir: "ltr",
+      litLab: "Word for word", lit: "&hellip; that distant afternoon when his father took him to <b>know</b> ice.",
+      outLab: "What he wrote", out: "&hellip; that distant afternoon when his father took him to <b>discover</b> ice.", outDir: "ltr",
+      note: "<i>Conocer</i> is to know, to meet, to be acquainted with. \"Know\" is dead on the page in English and \"see\" throws the wonder away; <b>discover</b> is a child meeting the thing for the first time, which is what the Spanish actually does. García Márquez waited three years for him and then said the English was better than the Spanish." } }
 ];
 
 /* ═══════════ REGISTRY ═══════════ */
@@ -2053,75 +2159,23 @@ function setAct(n) {
 })();
 
 /* ═══════════ THE GATE ═══════════ */
-let gateIdx = 0, gateMisses = 0;
-
-function paintGatePhrase() {
-  const p = GATE_PHRASES[gateIdx % GATE_PHRASES.length];
-  const ph = document.getElementById("gate-phrase");
-  ph.textContent = p.ar;
-  ph.classList.remove("phrase"); void ph.offsetWidth; ph.classList.add("phrase");
-  document.getElementById("gate-literal").textContent = p.lit;
-  document.getElementById("tongue").value = "";
-  document.getElementById("tongue-msg").hidden = true;
-  gateMisses = 0;
-}
-
-document.getElementById("hint-btn").addEventListener("click", () => {
-  const h = document.getElementById("hint-text"); h.hidden = !h.hidden;
-});
 document.getElementById("seal-btn").addEventListener("click", pressSeal);
-document.getElementById("pass").addEventListener("keydown", e => { if (e.key === "Enter") pressSeal(); });
-document.getElementById("email").addEventListener("keydown", e => { if (e.key === "Enter") document.getElementById("pass").focus(); });
+document.getElementById("email").addEventListener("keydown", e => { if (e.key === "Enter") pressSeal(); });
 
 function pressSeal() {
   const email = document.getElementById("email").value.trim().toLowerCase();
-  const pass = document.getElementById("pass").value;
   const msg = document.getElementById("seal-msg");
   msg.classList.remove("good");
 
-  if (email !== GUILD.member.toLowerCase()) { msg.hidden = false; msg.textContent = "That address is not on the guild roll."; return; }
-  if (pass !== GUILD.passphrase) { msg.hidden = false; msg.textContent = "The seal does not match. The riddle below will get you in."; return; }
+  if (email !== GUILD.member.toLowerCase()) {
+    msg.hidden = false;
+    msg.textContent = "That address is not on the guild roll.";
+    return;
+  }
 
   msg.hidden = true;
   state.member = email; save();
-
-  const a = document.getElementById("step-seal"), b = document.getElementById("step-tongue");
-  a.classList.add("swap-out");
-  setTimeout(() => {
-    a.hidden = true; a.classList.remove("swap-out");
-    b.hidden = false; b.classList.remove("swap-in"); void b.offsetWidth; b.classList.add("swap-in");
-    paintGatePhrase();
-    document.getElementById("tongue").focus();
-  }, 290);
-}
-
-document.getElementById("tongue-swap").addEventListener("click", () => {
-  gateIdx++; paintGatePhrase(); document.getElementById("tongue").focus();
-});
-document.getElementById("tongue-btn").addEventListener("click", tryTongue);
-document.getElementById("tongue").addEventListener("keydown", e => { if (e.key === "Enter") tryTongue(); });
-
-function tryTongue() {
-  const p = GATE_PHRASES[gateIdx % GATE_PHRASES.length];
-  const val = document.getElementById("tongue").value;
-  const msg = document.getElementById("tongue-msg");
-  msg.classList.remove("msg"); void msg.offsetWidth; msg.classList.add("msg");
-
-  if (loose(val, p.ok)) {
-    msg.hidden = false; msg.classList.add("good");
-    msg.textContent = "Accepted. Meaning first, words second.";
-    setTimeout(unlock, 480);
-    return;
-  }
-  msg.classList.remove("good"); msg.hidden = false; gateMisses++;
-
-  if (loose(val, p.literalTries)) {
-    msg.innerHTML = "That is the <b>word-for-word</b> — it is printed above the field. The door wants what an English speaker would say instead.";
-  } else if (gateMisses >= 2) {
-    msg.innerHTML = "Still not it. One rendering that opens the door: <b>" + p.ok[0] + "</b>";
-  } else {
-    msg.textContent = "Not yet. Don't translate the words — say what the phrase does.";
-  }
+  unlock();
 }
 
 function unlock() {
@@ -2255,12 +2309,13 @@ function renderHall() {
   LINEAGE.forEach((f, i) => {
     const b = el("button", "strip-card");
     b.innerHTML =
-      '<span class="medal"><span>' + f.mono + '</span></span>' +
+      portraitFrame(f, false) +
       '<span class="s-name">' + f.name + '</span>' +
       '<span class="s-life">' + f.life + '</span>';
     b.addEventListener("click", () => openItem(ITEMS[0], i));
     strip.appendChild(b);
   });
+  paintPortraits(strip);
 
   renderClimb();
   paintStore();
@@ -2893,8 +2948,8 @@ function runRoots() {
 
 /* ═══════════ BOOT ═══════════ */
 load();
-paintGatePhrase();
 setAct(1);
+loadPortraits();
 
 show("gate");
 </script>
