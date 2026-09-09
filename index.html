@@ -238,6 +238,9 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .fin-said { font-size: clamp(1rem,3.4vw,1.25rem); font-weight: 300; line-height: 1.7;
   color: rgba(205,179,230,.92); margin: 0; max-width: 44ch; }
 .fin-said b { color: var(--white); font-weight: 500; }
+.swap-out { animation: swapOut 300ms ease forwards; }
+@keyframes swapOut { to { opacity: 0; transform: translateX(-26px) scale(.985); filter: blur(4px); } }
+.swap-in { animation: swapIn 480ms var(--ease) both; }
 @keyframes swapIn {
   from { opacity: 0; transform: translateX(30px) scale(.985); filter: blur(4px); }
   to { opacity: 1; transform: none; filter: blur(0); }
@@ -289,7 +292,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 
 @media (prefers-reduced-motion: reduce) {
   .aura i, .logo-face, #unlock .u-logo { animation: none; }
-  .view, .opt, .deriv, .msg, .commission,
+  .view, .swap-in, .swap-out, .opt, .deriv, .msg, .commission,
   .view.in-push, .view.in-pull, .view.out-push, .view.out-pull,
   #finale, .fin-verdict { animation: none !important; }
   * { transition-duration: 1ms !important; }
@@ -305,8 +308,21 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 
 .step { display: grid; gap: 1.15rem; max-width: 33rem; margin: 0 auto; }
 .step-head { display: flex; align-items: center; gap: .8rem; padding-bottom: .9rem; border-bottom: var(--hair); flex-wrap: wrap; }
+.step-chip { width: 26px; height: 26px; border-radius: 9px; background: var(--grad);
+  display: grid; place-items: center; font-size: .68rem; font-weight: 700; color: var(--white); flex: none; }
 .step-head .sh-en { font-family: var(--f-serif); font-size: 1.15rem; font-weight: 600; color: var(--white); }
 .row { display: flex; gap: .85rem; align-items: center; flex-wrap: wrap; }
+
+.challenge { border-radius: var(--r-lg); border: var(--hair-lit); background: rgba(17,6,32,.55);
+  padding: clamp(1.25rem,4vw,2rem); display: grid; gap: .9rem; justify-items: center;
+  text-align: center; position: relative; overflow: hidden; }
+.challenge::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(100% 120% at 50% -20%, rgba(167,38,208,.22), transparent 70%); }
+.challenge > * { position: relative; }
+.challenge .phrase { font-family: var(--f-ar-text); direction: rtl; font-size: clamp(2rem,8vw,3.25rem);
+  color: var(--white); line-height: 1.7; margin: 0; animation: swapIn 520ms var(--ease) both; }
+.challenge .gloss { font-size: .84rem; color: var(--lilac-dim); margin: 0; }
+.challenge .gloss span { color: rgba(255,92,122,.9); }
 
 .auth-tabs { display: flex; gap: .3rem; padding: .3rem; border-radius: var(--r-pill);
   border: var(--hair); background: rgba(17,6,32,.5); }
@@ -804,6 +820,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div class="panel door">
       <div class="step" id="step-seal">
         <div class="step-head">
+          <span class="step-chip">1</span>
           <span class="sh-en">The Member's Seal</span>
         </div>
         <div class="auth-tabs" role="tablist" aria-label="Sign in or join">
@@ -827,6 +844,28 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <div class="row">
           <button id="seal-btn">Enter the hall</button>
           <button class="link" id="forgot-btn">Forgotten it?</button>
+        </div>
+      </div>
+
+      <div class="step" id="step-tongue" hidden>
+        <div class="step-head">
+          <span class="step-chip">2</span>
+          <span class="sh-en">The Tongue-Gate</span>
+        </div>
+        <div class="challenge">
+          <p class="tracked mag">Render this into natural English to enter</p>
+          <p class="phrase" id="gate-phrase">على عيني</p>
+          <p class="gloss">word for word: <span id="gate-literal">"upon my eye"</span> &mdash; and that is the one answer the door refuses</p>
+        </div>
+        <div class="field">
+          <label for="tongue">Your rendering</label>
+          <input id="tongue" type="text" autocomplete="off" spellcheck="false" placeholder="what would an English speaker actually say?">
+        </div>
+        <p class="msg" id="tongue-msg" hidden></p>
+        <div class="row">
+          <button id="tongue-btn">Enter the hall</button>
+          <button class="ghost" id="tongue-swap">Another phrase</button>
+          <button class="link" id="tongue-skip">Skip for now</button>
         </div>
       </div>
     </div>
@@ -1758,6 +1797,54 @@ const ROOTS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════
+   THE TONGUE-GATE — the threshold, after the seal.
+
+   `ok` is deliberately generous: the point is to refuse the
+   word-for-word reading, not to hunt for one blessed phrasing.
+   `literalTries` are the readings that earn the specific
+   "that is the literal" answer rather than a flat no. Anyone
+   can walk past with Skip, so the gate teaches without
+   locking a member out of their own hall.
+   ═══════════════════════════════════════════════════════════ */
+const GATE_PHRASES = [
+  { ar: "على عيني", lit: '"upon my eye"',
+    literalTries: ["on my eye","upon my eye","on my eyes","my eye","upon my eyes","on the eye","over my eye"],
+    ok: ["gladly","of course","consider it done","with pleasure","my pleasure","sure","done","happily",
+         "absolutely","anything for you","no problem","you got it","right away","will do","certainly",
+         "say no more","at your service","happy to","glad to","be happy to","be glad to","sure thing",
+         "no trouble","count on me","count on it","leave it to me","leave it with me","as you wish",
+         "definitely","on it","of course i will","ill do it","i will","yes of course","without question",
+         "anything you need","whatever you need","right this minute","straight away"] },
+  { ar: "ولا يهمّك", lit: '"and it does not concern you"',
+    literalTries: ["it does not concern you","does not concern you","it doesnt concern you","not your concern",
+                   "and it does not concern you","none of your concern"],
+    ok: ["dont worry","don't worry","no worries","no problem","its fine","it's fine","forget about it",
+         "forget it","i got it","leave it to me","all good","dont mention it","don't mention it",
+         "never mind","not a problem","im on it","i'm on it","not to worry","think nothing of it",
+         "no bother","its no bother","its nothing","it's nothing","no trouble","dont worry about it",
+         "nothing to worry about","ill handle it","i'll handle it","ill take care of it","taken care of",
+         "consider it handled","its handled","relax","no need to worry","dont give it a thought",
+         "put it out of your mind","its under control","it's under control"] },
+  { ar: "أبشِر", lit: '"receive good tidings"',
+    literalTries: ["receive good tidings","good tidings","rejoice","be glad","take good news","glad tidings"],
+    ok: ["you got it","consider it done","done","sure","of course","right away","will do","no problem",
+         "on it","absolutely","say no more","gladly","coming right up","good news","with pleasure",
+         "certainly","sure thing","happy to","glad to","ill get right on it","i'll get right on it",
+         "coming up","at once","straight away","its as good as done","it's as good as done",
+         "count on it","leave it to me","ill see to it","i'll see to it"] },
+  { ar: "اللّه يعطيك العافية", lit: '"may God give you health"',
+    literalTries: ["may god give you health","god give you health","may god grant you health",
+                   "god grant you health","may god give you strength","god bless your health"],
+    ok: ["thanks for your hard work","thank you for your hard work","well done","keep it up","nice work",
+         "good work","great work","thanks for everything","appreciate it","you work hard",
+         "thank you for everything","keep up the good work","thanks for all your work","much appreciated",
+         "thanks for your effort","thank you for your effort","good job","nice job","well played",
+         "hats off","hats off to you","more power to you","youve earned a rest","you've earned a rest",
+         "take a rest","nice going","kudos","respect","thanks for the effort","that was good work",
+         "youve worked hard","you've worked hard","thank you for the hard work"] }
+];
+
+/* ═══════════════════════════════════════════════════════════
    THE LINEAGE — translators who changed the world.
 
    Each one carries a portrait and one worked example of the
@@ -2291,6 +2378,16 @@ function gateSay(text, good) {
 }
 function gateQuiet() { gateEl.msg.hidden = true; gateEl.msg.classList.remove("good"); }
 
+/* Back to step 1, so a signed-out member does not return to a half-crossed
+   threshold. */
+function resetGateSteps() {
+  const a = document.getElementById("step-seal"), b = document.getElementById("step-tongue");
+  b.hidden = true; b.classList.remove("swap-in");
+  a.hidden = false; a.classList.remove("swap-out", "swap-in");
+  document.getElementById("tongue").value = "";
+  document.getElementById("tongue-msg").hidden = true;
+}
+
 function setAuthMode(mode) {
   authMode = mode;
   const up = mode === "up";
@@ -2304,7 +2401,7 @@ function setAuthMode(mode) {
   gateEl.pass.setAttribute("autocomplete", up ? "new-password" : "current-password");
   gateEl.lede.textContent = up
     ? "Choose a passphrase of at least eight characters. It belongs to your account, not to the site."
-    : "Your marks are kept against your address, so the climb follows you to any device.";
+    : "You stay signed in on this browser, and your marks follow you to any device you sign in from.";
   gateQuiet();
 }
 
@@ -2369,18 +2466,94 @@ async function pressSeal() {
     enterHall(sess.user.email || email);
   } catch (e) {
     gateBusy(false);
-    gateSay(e.status === 400
-      ? "That address and passphrase do not match. If you have not joined yet, take a seal."
-      : "The door did not answer: " + e.message);
+    if (/not confirmed/i.test(e.message)) {
+      /* the account exists but the address was never confirmed — quite a
+         different problem from a wrong passphrase, so say so */
+      gateSay("That address is on the roll but has never been confirmed. Open the link in your inbox, then sign in.");
+    } else if (e.status === 400) {
+      /* Supabase answers the same way for an unknown address and a wrong
+         passphrase, so name both possibilities and offer the way forward */
+      gateSay('That address and passphrase do not match &mdash; and if you have never joined, ' +
+              'there is no account yet to match. ' +
+              '<button type="button" class="link" id="to-join">Take a seal instead</button>');
+      const j = document.getElementById("to-join");
+      if (j) j.addEventListener("click", () => {
+        const keep = gateEl.email.value;
+        setAuthMode("up");
+        gateEl.email.value = keep;
+        gateEl.pass.focus();
+      });
+    } else {
+      gateSay("The door did not answer: " + e.message);
+    }
   }
 }
 
+/* The seal proves who you are; the Tongue-Gate is the threshold itself.
+   Signing in or joining lands here, and Skip is always open. */
 function enterHall(email) {
   gateBusy(false);
   gateQuiet();
   gateEl.pass.value = ""; gateEl.pass2.value = "";
   state.member = email; save();
-  unlock();
+
+  const a = document.getElementById("step-seal"), b = document.getElementById("step-tongue");
+  a.classList.add("swap-out");
+  setTimeout(() => {
+    a.hidden = true; a.classList.remove("swap-out");
+    b.hidden = false; b.classList.remove("swap-in"); void b.offsetWidth; b.classList.add("swap-in");
+    paintGatePhrase();
+    document.getElementById("tongue").focus();
+  }, 290);
+}
+
+/* ═══════════ THE TONGUE-GATE ═══════════ */
+let gateIdx = 0, gateMisses = 0;
+
+function paintGatePhrase() {
+  const p = GATE_PHRASES[gateIdx % GATE_PHRASES.length];
+  const ph = document.getElementById("gate-phrase");
+  ph.textContent = p.ar;
+  ph.classList.remove("phrase"); void ph.offsetWidth; ph.classList.add("phrase");
+  document.getElementById("gate-literal").textContent = p.lit;
+  document.getElementById("tongue").value = "";
+  document.getElementById("tongue-msg").hidden = true;
+  gateMisses = 0;
+}
+
+document.getElementById("tongue-swap").addEventListener("click", () => {
+  gateIdx++; paintGatePhrase(); document.getElementById("tongue").focus();
+});
+document.getElementById("tongue-skip").addEventListener("click", unlock);
+document.getElementById("tongue-btn").addEventListener("click", tryTongue);
+document.getElementById("tongue").addEventListener("keydown", e => { if (e.key === "Enter") tryTongue(); });
+
+function tryTongue() {
+  const p = GATE_PHRASES[gateIdx % GATE_PHRASES.length];
+  const val = document.getElementById("tongue").value;
+  const msg = document.getElementById("tongue-msg");
+  msg.classList.remove("msg"); void msg.offsetWidth; msg.classList.add("msg");
+
+  if (loose(val, p.ok)) {
+    msg.hidden = false; msg.classList.add("good");
+    msg.textContent = "Accepted. Meaning first, words second.";
+    setTimeout(unlock, 480);
+    return;
+  }
+  msg.classList.remove("good"); msg.hidden = false;
+
+  if (loose(val, p.literalTries)) {
+    msg.innerHTML = "That is the <b>word-for-word</b> — it is printed above the field. The door wants what an English speaker would say instead.";
+    return;
+  }
+  gateMisses++;
+
+  if (gateMisses >= 2) {
+    msg.innerHTML = "Still not it. One rendering that opens the door: <b>" + p.ok[0] +
+                    "</b> — or try another phrase, or skip past.";
+  } else {
+    msg.textContent = "Not yet. Don't translate the words — say what the phrase does.";
+  }
 }
 
 function unlock() {
@@ -2541,6 +2714,7 @@ document.getElementById("signout-btn").addEventListener("click", async () => {
   b.disabled = false;
   setAuthMode("in");
   gateEl.email.value = ""; gateEl.pass.value = ""; gateEl.pass2.value = "";
+  resetGateSteps();
   setAct(1);
   show("gate");
 });
