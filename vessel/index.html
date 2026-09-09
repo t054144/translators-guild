@@ -291,8 +291,61 @@ body.filming{overflow:hidden}
 .card{transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.2,.8,.3,1)}
 .card{transform:translate(-50%,-46%)}
 .card.show{transform:translate(-50%,-50%)}
-#skip{position:fixed;z-index:51}
-#progress{position:fixed;z-index:51}
+#skip{position:fixed;z-index:54}
+#snd{position:fixed;z-index:54;left:clamp(16px,4vw,34px);bottom:clamp(16px,4vw,30px);
+  font-family:var(--f-m);font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);background:transparent;
+  border:1px solid var(--line-lit);border-radius:2px;padding:9px 14px;cursor:pointer;
+  transition:color .2s,border-color .2s}
+#snd:hover{color:var(--paper);border-color:var(--steel)}
+#snd[aria-pressed="true"]{color:var(--amber);border-color:rgba(242,160,61,.5)}
+#snd:focus-visible,#skip:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+#progress{position:fixed;z-index:54}
+
+/* 2.39:1 letterbox — the fastest way to say "this is a film" */
+.bars i{position:fixed;left:0;width:100%;height:0;background:#000;z-index:52;
+  pointer-events:none;transition:height .9s cubic-bezier(.4,0,.2,1)}
+.bars i.t{top:0;box-shadow:inset 0 -1px 0 rgba(214,232,255,.07)}
+.bars i.b{bottom:0;box-shadow:inset 0 1px 0 rgba(214,232,255,.07)}
+body.filming .bars i{height:8.6vh}
+
+/* the flash frame on every hard cut */
+#flash{position:fixed;inset:0;z-index:53;background:#dce6f5;opacity:0;pointer-events:none}
+
+/* lower-third benefit beats — where a real spot puts its claims */
+.beat{position:fixed;left:clamp(20px,6vw,92px);bottom:clamp(96px,17vh,176px);
+  z-index:50;opacity:0;pointer-events:none;text-align:left;
+  transition:opacity .34s cubic-bezier(.4,0,.2,1)}
+.beat.show{opacity:1}
+.beat .num{font-family:var(--f-d);font-variation-settings:"wdth" 125;font-weight:900;
+  font-size:clamp(3.4rem,13vw,8.6rem);line-height:.82;letter-spacing:-.045em;color:#f4f7fc;
+  transform:scale(1.07);transition:transform .5s cubic-bezier(.16,.84,.28,1)}
+.beat.show .num{transform:scale(1)}
+.beat .num em{font-style:normal;font-size:.30em;font-weight:800;letter-spacing:.02em;
+  margin-left:.18em;vertical-align:.62em;color:var(--amber)}
+.beat .sub{font-family:var(--f-m);font-size:clamp(10px,1.7vw,12.5px);letter-spacing:.26em;
+  text-transform:uppercase;color:var(--steel);margin:16px 0 0;max-width:34ch;line-height:1.7}
+.beat.small .num{font-size:clamp(1.5rem,4vw,2.9rem);letter-spacing:-.01em;line-height:1}
+.beat.small .sub{margin-top:12px}
+
+/* the close: type left, product right, so neither fights the other */
+.card.title{left:clamp(20px,6vw,92px);transform:translate(0,-46%);text-align:left;
+  max-width:min(52vw,660px);width:auto}
+.card.title.show{transform:translate(0,-50%)}
+.card.title .line{font-size:clamp(2.3rem,7.2vw,5.6rem);letter-spacing:-.03em}
+.card.title .rule{margin:22px 0 0;width:min(46vw,340px)}
+.card.title .sub{text-align:left}
+.card.title .cta{margin-top:26px;display:flex;gap:12px;justify-content:flex-start;flex-wrap:wrap;
+  pointer-events:auto}
+@media(max-width:900px){
+  .card.title{left:50%;transform:translate(-50%,-46%);text-align:center;max-width:88vw}
+  .card.title.show{transform:translate(-50%,-50%)}
+  .card.title .rule{margin:22px auto 0}
+  .card.title .sub{text-align:center}
+  .card.title .cta{justify-content:center}
+}
+.card .cta .btn{font-size:11.5px;padding:14px 22px}
+.cards{pointer-events:none}
 </style>
 
 <canvas id="stage" aria-hidden="true"></canvas>
@@ -303,12 +356,47 @@ body.filming{overflow:hidden}
 </div>
 
 <div id="filmdim"></div>
+<div class="bars" aria-hidden="true"><i class="t"></i><i class="b"></i></div>
+<div id="flash" aria-hidden="true"></div>
+
 <div class="cards" id="cards">
-  <div class="card" id="c1"><p class="kicker">CODED · Kuwait · 23:41</p><p class="line">Every long night<br>needs a witness.</p></div>
-  <div class="card" id="c2"><p class="line">It doesn't write the code.<br>It just <em>refuses to leave.</em></p></div>
-  <div class="card title" id="c3"><p class="line">VESSEL 001</p><div class="rule"></div><p class="sub">Cohort issue · sixty made · engraved to order</p></div>
+  <div class="card" id="c1">
+    <p class="kicker">CODED · Kuwait · 23:41</p>
+    <p class="line">Every long night<br>needs a witness.</p>
+  </div>
+  <div class="card title" id="c3">
+    <p class="line">VESSEL 001</p>
+    <div class="rule"></div>
+    <p class="sub">Sixty made · engraved to order · never sold</p>
+    <div class="cta">
+      <a class="btn" href="#engrave" id="filmCta">Engrave yours</a>
+      <button class="btn ghost" type="button" id="filmSee">See the vessel</button>
+    </div>
+  </div>
+
+  <div class="beat small" id="b1">
+    <div class="num">18/8 stainless</div>
+    <p class="sub">Bare polished bore · no plastic · no ghost of yesterday's coffee</p>
+  </div>
+  <div class="beat" id="b2">
+    <div class="num">6<em>hrs</em></div>
+    <p class="sub">Still too hot to gulp</p>
+  </div>
+  <div class="beat" id="b3">
+    <div class="num">12<em>hrs</em></div>
+    <p class="sub">Ice still rattling at midnight</p>
+  </div>
+  <div class="beat small" id="b4">
+    <div class="num">Your name. Free.</div>
+    <p class="sub">Engraved once · hashed into the pattern · never repeated</p>
+  </div>
+  <div class="beat small" id="b5">
+    <div class="num">Five finishes</div>
+    <p class="sub">Sixty vessels · one of each name · then never again</p>
+  </div>
 </div>
 <button id="skip" type="button">Skip film</button>
+<button id="snd" type="button" aria-pressed="false">Sound on</button>
 <div id="progress"></div>
 
 <div class="content" id="content">
@@ -352,7 +440,7 @@ body.filming{overflow:hidden}
 
         <div class="stats">
           <div class="stat"><div class="v">473<small>ml</small></div><div class="k">capacity</div></div>
-          <div class="stat"><div class="v">325</div><div class="k">dots on the side</div></div>
+          <div class="stat"><div class="v">440</div><div class="k">dots on the side</div></div>
           <div class="stat"><div class="v">60</div><div class="k">ever made</div></div>
           <div class="stat"><div class="v">1</div><div class="k">name on yours</div></div>
         </div>
@@ -364,7 +452,7 @@ body.filming{overflow:hidden}
       <div class="col">
         <p class="eyebrow">The engraving <span>/ free, forever</span></p>
         <h2>Your name, woven into the dots.</h2>
-        <p class="lede">Those 325 dots aren't a pattern someone drew. Type a name and it's
+        <p class="lede">Those 440 dots aren't a pattern someone drew. Type a name and it's
         <strong>hashed into the grid</strong> — mirrored down the centre column so it reads
         woven instead of random. Same name, same weave, every time. Drag the vessel to
         spin it; the artwork wraps with it.</p>
@@ -410,7 +498,7 @@ body.filming{overflow:hidden}
           <div><dt>Wall</dt><dd>Double, vacuum</dd></div>
           <div><dt>Bore</dt><dd>Bare 18/8</dd></div>
           <div><dt>Finish</dt><dd>Matte powder coat</dd></div>
-          <div><dt>Dot field</dt><dd>13 × 25</dd></div>
+          <div><dt>Dot field</dt><dd>11 × 40</dd></div>
         </dl>
         <p class="lede" style="font-family:var(--f-m);font-size:.88rem;color:var(--muted);max-width:40ch;margin-top:24px">
           Figures below are placeholders. Put a ruler and a kitchen scale on the real
@@ -538,7 +626,7 @@ var F={
 " ":["00000","00000","00000","00000","00000","00000","00000"]};
 
 /* ─────────── dot field engine ─────────── */
-var COLS=13, ROWS=25, XOFF=4;
+var COLS=11, ROWS=40, XOFF=3;
 var grid=new Uint8Array(COLS*ROWS);
 var name="MOUDHI", buffer=null, sigil=null, sigilHex="—";
 var mode="sigil", offset=0, tickTimer=null;
@@ -596,7 +684,7 @@ function lifeStep(){
 
 /* ─────────── colourways ─────────── */
 var WAYS=[
-  {id:"midnight",label:"Midnight",note:"· the issue finish",body:"#2c3444",hi:"#4a5570",ink:"#f2f5fa"},
+  {id:"midnight",label:"Midnight",note:"· the issue finish",body:"#333c4d",hi:"#4e586d",ink:"#f2f5fa"},
   {id:"sand",     label:"Sand",    note:"· dark ink",        body:"#b9a98d",hi:"#d8cbb2",ink:"#2a2620"},
   {id:"oxide",    label:"Oxide",   note:"",                  body:"#8a4536",hi:"#b3604c",ink:"#fdf1ec"},
   {id:"moss",     label:"Moss",    note:"",                  body:"#3f4c3c",hi:"#5e7059",ink:"#f0f5ee"},
@@ -606,16 +694,16 @@ var way=WAYS[0];
 
 /* ─────────── the unrolled label ─────────── */
 var ART=document.createElement("canvas");
-ART.width=1200; ART.height=640;
+ART.width=1200; ART.height=1000;
 var actx=ART.getContext("2d");
-var FX0=(1200-13*15)/2, FY0=196, CELL=15;   // dot field origin on the label
+var FX0=(1200-11*15)/2, FY0=190, CELLX=15, CELLY=18;   // dot field origin on the label
 var dirty=true, revealT=1, engraveT=1;
 
 var revealOrder=(function(){
   var a=[];
   for(var i=0;i<COLS*ROWS;i++){
     var c=i%COLS, r=(i/COLS)|0;
-    a.push({i:i,d:Math.hypot((c-6)/6,(r-12)/12)});
+    a.push({i:i,d:Math.hypot((c-(COLS-1)/2)/((COLS-1)/2),(r-(ROWS-1)/2)/((ROWS-1)/2))});
   }
   a.sort(function(p,q){return p.d-q.d;});
   return a;
@@ -637,18 +725,17 @@ function drawArt(){
   var cx=W/2;
 
   /* CODED badge */
-  if(revealT>=1){
-    actx.strokeStyle=way.ink; actx.lineWidth=3.2;
-    actx.strokeRect(cx-76,84,152,46);
+  if(revealT>0.985){
+    actx.strokeStyle=way.ink; actx.lineWidth=2.4;
+    actx.strokeRect(cx-66,108,132,40);
     actx.fillStyle=way.ink;
-    actx.font="800 30px Archivo, Arial, sans-serif";
+    actx.font="800 25px Archivo, Arial, sans-serif";
     actx.textAlign="center"; actx.textBaseline="middle";
-    actx.setTransform(1,0,0,1,0,0);
-    actx.save(); actx.translate(cx,108); actx.scale(1.06,1);
+    actx.save(); actx.translate(cx,129); actx.scale(1.04,1);
     actx.fillText("CODED",0,1); actx.restore();
   }
 
-  /* the 325 dots */
+  /* the dot field */
   var shown=Math.round(revealT*revealOrder.length);
   var visible=new Uint8Array(COLS*ROWS);
   for(var k=0;k<shown;k++)visible[revealOrder[k].i]=1;
@@ -656,11 +743,11 @@ function drawArt(){
     var idx=r*COLS+c;
     if(!visible[idx])continue;
     var v=grid[idx];
-    var x=FX0+c*CELL+CELL/2, y=FY0+r*CELL+CELL/2;
+    var x=FX0+c*CELLX+CELLX/2, y=FY0+r*CELLY+CELLY/2;
     actx.beginPath();
-    if(v===2){ actx.fillStyle="#f2a03d"; actx.arc(x,y,4.9,0,TAU); }
-    else if(v===1){ actx.fillStyle=way.ink; actx.arc(x,y,4.6,0,TAU); }
-    else { actx.fillStyle=way.ink; actx.globalAlpha=.13; actx.arc(x,y,2.9,0,TAU); }
+    if(v===2){ actx.fillStyle="#f2a03d"; actx.arc(x,y,4.8,0,TAU); }
+    else if(v===1){ actx.fillStyle=way.ink; actx.arc(x,y,4.5,0,TAU); }
+    else { actx.fillStyle=way.ink; actx.globalAlpha=.15; actx.arc(x,y,3.0,0,TAU); }
     actx.fill(); actx.globalAlpha=1;
   }
 
@@ -678,7 +765,7 @@ function drawArt(){
     }else{
       actx.shadowBlur=0; actx.fillStyle=way.ink;
     }
-    actx.fillText(shownName,cx,606);
+    actx.fillText(shownName,cx,955);
     actx.shadowBlur=0; actx.letterSpacing="0px";
   }
 }
@@ -689,9 +776,20 @@ var ctx=cv.getContext("2d");
 var W=0,H=0,dpr=1;
 
 /* world: radius 1, body height 4.6 (matches the straight-walled vessel) */
-var BODY_H=4.6, LID_H=0.88, LID_R=1.035, STRAW_R=0.118, STRAW_L=1.02, STRAW_ORB=0.52;
+var BODY_H=5.0, LID_H=0.72, LID_R=1.00, STRAW_R=0.165, STRAW_L=1.05, STRAW_ORB=0.50;
 
-var S={rot:0,tilt:.20,scale:64,cx:0,cy:0,explode:0,wrap:1,light:0.42,shade:1,spin:0.012};
+var S={rot:0,tilt:.20,scale:64,cx:0,cy:0,explode:0,wrap:1,light:0.42,shade:1,spin:0.012,
+       focus:null,glow:{c:"242,160,61",a:0},laser:0,cxF:.50};
+var sparks=[], vapour=[];
+function emitSparks(x,y,n){
+  for(var i=0;i<n;i++)sparks.push({x:x,y:y,
+    vx:(Math.random()-.5)*2.2,vy:-Math.random()*2.1-.2,l:1});
+}
+function seedVapour(){
+  vapour.length=0;
+  for(var i=0;i<44;i++)vapour.push({x:Math.random(),y:Math.random(),
+    v:.12+Math.random()*.22,w:.5+Math.random()*1.6,s:Math.random()*TAU});
+}
 var dragRot=0, spinVel=0, dragging=false, lastX=0;
 
 function resize(){
@@ -736,7 +834,9 @@ function cylPath(cx,r,k,yTop,yBot){
 function drawVessel(){
   ctx.clearRect(0,0,W,H);
   var sc=S.scale, r=sc, k=S.tilt, bh=BODY_H*sc;
-  var cx=S.cx, yTop=S.cy-(bh-(LID_H+STRAW_L)*sc)/2, yBot=yTop+bh;
+  var cx=S.cx;
+  var yTop=(S.focus==null)?S.cy-(bh-(LID_H+STRAW_L)*sc)/2:S.cy-S.focus*bh;
+  var yBot=yTop+bh;
   var lift=S.explode;
 
   /* contact shadow */
@@ -761,6 +861,18 @@ function drawVessel(){
   /* the floor of the cup, far down */
   ctx.fillStyle="rgba(140,156,178,.20)";
   ctx.beginPath(); ctx.ellipse(cx,yTop+k*r*0.95,ir*0.62,k*ir*0.62,0,0,TAU); ctx.fill();
+
+  /* contents glowing in the bore — amber when hot, ice when cold */
+  if(S.glow.a>0.01){
+    ctx.save(); ctx.globalCompositeOperation="lighter";
+    var bgl=ctx.createRadialGradient(cx,yTop+k*r*.5,1,cx,yTop+k*r*.5,ir);
+    bgl.addColorStop(0,"rgba("+S.glow.c+","+(0.95*S.glow.a).toFixed(3)+")");
+    bgl.addColorStop(.5,"rgba("+S.glow.c+","+(0.42*S.glow.a).toFixed(3)+")");
+    bgl.addColorStop(1,"rgba("+S.glow.c+",0)");
+    ctx.fillStyle=bgl;
+    ctx.beginPath(); ctx.ellipse(cx,yTop+k*r*.5,ir,k*ir,0,0,TAU); ctx.fill();
+    ctx.restore();
+  }
 
   /* ── the body: strips ── */
   var stepPx=Math.max(0.6,(2*r)/620);
@@ -843,6 +955,15 @@ function drawVessel(){
   ctx.beginPath(); ctx.ellipse(cx,lidTop,lr,k*lr,0,0,TAU); ctx.fill();
   ctx.strokeStyle="rgba(200,218,246,.26)"; ctx.lineWidth=1;
   ctx.beginPath(); ctx.ellipse(cx,lidTop,lr,k*lr,0,0,TAU); ctx.stroke();
+  /* the shoulder: a shallow dome inset from the rim */
+  var dg=ctx.createLinearGradient(cx-lr*.88,0,cx+lr*.88,0);
+  dg.addColorStop(0,"rgba(0,0,0,.17)");
+  dg.addColorStop(.40,"rgba(226,238,255,.08)");
+  dg.addColorStop(1,"rgba(0,0,0,.15)");
+  ctx.fillStyle=way.body;
+  ctx.beginPath(); ctx.ellipse(cx,lidTop-k*lr*0.18,lr*.93,k*lr*.93,0,0,TAU); ctx.fill();
+  ctx.fillStyle=dg;
+  ctx.beginPath(); ctx.ellipse(cx,lidTop-k*lr*0.18,lr*.93,k*lr*.93,0,0,TAU); ctx.fill();
 
   /* straw port + straw, orbiting with the rotation */
   var ph=S.rot*TAU+0.55;
@@ -863,6 +984,69 @@ function drawVessel(){
   ctx.beginPath(); ctx.ellipse(sx,stTop,sr,k*sr,0,0,TAU); ctx.fill();
   ctx.strokeStyle="rgba(6,9,16,.5)"; ctx.lineWidth=1;
   ctx.beginPath(); ctx.ellipse(sx,stTop,sr,k*sr,0,0,TAU); ctx.stroke();
+
+  /* bloom above the mouth — light in the air, so it sits over everything */
+  if(S.glow.a>0.01){
+    ctx.save(); ctx.globalCompositeOperation="lighter";
+    var bl=ctx.createRadialGradient(cx,yTop,1,cx,yTop,r*2.4);
+    bl.addColorStop(0,"rgba("+S.glow.c+","+(0.26*S.glow.a).toFixed(3)+")");
+    bl.addColorStop(.30,"rgba("+S.glow.c+","+(0.11*S.glow.a).toFixed(3)+")");
+    bl.addColorStop(.60,"rgba("+S.glow.c+","+(0.032*S.glow.a).toFixed(3)+")");
+    bl.addColorStop(.82,"rgba("+S.glow.c+","+(0.008*S.glow.a).toFixed(3)+")");
+    bl.addColorStop(1,"rgba("+S.glow.c+",0)");
+    ctx.fillStyle=bl;
+    ctx.beginPath(); ctx.ellipse(cx,yTop,r*2.4,r*1.7,0,0,TAU); ctx.fill();
+    ctx.restore();
+  }
+
+  /* the engraving head burning across the name band */
+  if(S.laser>0){
+    var ly=yTop+0.955*bh, lx0=cx-r*0.40, lx1=cx+r*0.40;
+    var lx=lerp(lx0,lx1,clamp(S.laser,0,1));
+    ctx.save(); ctx.globalCompositeOperation="lighter";
+    var lgr=ctx.createLinearGradient(lx0,0,lx,0);
+    lgr.addColorStop(0,"rgba(242,160,61,0)");
+    lgr.addColorStop(1,"rgba(255,214,150,.85)");
+    ctx.strokeStyle=lgr; ctx.lineWidth=1.6;
+    ctx.beginPath(); ctx.moveTo(lx0,ly); ctx.lineTo(lx,ly); ctx.stroke();
+    var hb=ctx.createRadialGradient(lx,ly,0,lx,ly,r*0.30);
+    hb.addColorStop(0,"rgba(255,236,200,.95)");
+    hb.addColorStop(.35,"rgba(242,160,61,.45)");
+    hb.addColorStop(1,"rgba(242,160,61,0)");
+    ctx.fillStyle=hb;
+    ctx.beginPath(); ctx.arc(lx,ly,r*0.30,0,TAU); ctx.fill();
+    ctx.restore();
+    if(Math.random()<.7)emitSparks(lx,ly,2);
+  }
+
+  /* sparks */
+  if(sparks.length){
+    ctx.save(); ctx.globalCompositeOperation="lighter";
+    for(var si=sparks.length-1;si>=0;si--){
+      var sp=sparks[si];
+      sp.x+=sp.vx; sp.y+=sp.vy; sp.vy+=0.055; sp.l-=0.021;
+      if(sp.l<=0){sparks.splice(si,1);continue;}
+      ctx.fillStyle="rgba(255,206,140,"+(sp.l*sp.l).toFixed(3)+")";
+      ctx.beginPath(); ctx.arc(sp.x,sp.y,1.5*sp.l+0.4,0,TAU); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  /* vapour, for the cold open */
+  if(vapour.length){
+    ctx.save(); ctx.globalCompositeOperation="lighter";
+    for(var vi=0;vi<vapour.length;vi++){
+      var vp=vapour[vi];
+      vp.y-=vp.v/H*6; if(vp.y<-0.05){vp.y=1.05;vp.x=Math.random();}
+      vp.s+=0.012;
+      var vx=(vp.x*0.5+0.25)*W+Math.sin(vp.s)*26;
+      var vy=vp.y*H;
+      var va=0.05*Math.sin(Math.PI*clamp(vp.y,0,1));
+      ctx.fillStyle="rgba(214,232,255,"+va.toFixed(4)+")";
+      ctx.beginPath(); ctx.arc(vx,vy,vp.w*18,0,TAU); ctx.fill();
+    }
+    ctx.restore();
+  }
 
   window.__geo={cx:cx,r:r,k:k,yTop:yTop,bh:bh};
   positionCallouts(cx,r,yTop,bh,lidTop,lidBot);
@@ -914,18 +1098,93 @@ function sampleTrack(y){
   return track[track.length-1].st;
 }
 
+/* ─────────── sound design, synthesised, silent until asked for ─────────── */
+var AC=null, sound=false;
+function ac(){
+  if(!AC){var A=window.AudioContext||window.webkitAudioContext; if(!A)return null; AC=new A();}
+  return AC;
+}
+function env(g,peak,atk,dec,t0){
+  g.gain.setValueAtTime(0.0001,t0);
+  g.gain.exponentialRampToValueAtTime(peak,t0+atk);
+  g.gain.exponentialRampToValueAtTime(0.0001,t0+atk+dec);
+}
+function thump(){                        /* the hit on every cut */
+  var a=ac(); if(!a)return; var t=a.currentTime;
+  var o=a.createOscillator(), g=a.createGain();
+  o.type="sine"; o.frequency.setValueAtTime(78,t);
+  o.frequency.exponentialRampToValueAtTime(38,t+0.28);
+  env(g,0.42,0.006,0.32,t);
+  o.connect(g).connect(a.destination); o.start(t); o.stop(t+0.4);
+}
+function tick(){                         /* colourway strobe */
+  var a=ac(); if(!a)return; var t=a.currentTime;
+  var o=a.createOscillator(), g=a.createGain();
+  o.type="square"; o.frequency.setValueAtTime(1750,t);
+  env(g,0.045,0.002,0.05,t);
+  o.connect(g).connect(a.destination); o.start(t); o.stop(t+0.08);
+}
+function noiseBuf(a,dur){
+  var n=a.sampleRate*dur, b=a.createBuffer(1,n,a.sampleRate), d=b.getChannelData(0);
+  for(var i=0;i<n;i++)d[i]=(Math.random()*2-1)*(1-i/n);
+  return b;
+}
+function whoosh(){                       /* the grid curling onto the vessel */
+  var a=ac(); if(!a)return; var t=a.currentTime;
+  var src=a.createBufferSource(); src.buffer=noiseBuf(a,1.6);
+  var f=a.createBiquadFilter(); f.type="bandpass"; f.Q.value=1.1;
+  f.frequency.setValueAtTime(260,t);
+  f.frequency.exponentialRampToValueAtTime(2600,t+1.2);
+  var g=a.createGain(); env(g,0.16,0.35,1.1,t);
+  src.connect(f).connect(g).connect(a.destination); src.start(t);
+}
+function clink(){                        /* stainless steel, on the title card */
+  var a=ac(); if(!a)return; var t=a.currentTime;
+  [2180,3260,4790,6100].forEach(function(fr,i){
+    var o=a.createOscillator(), g=a.createGain();
+    o.type="sine"; o.frequency.setValueAtTime(fr*(1+(Math.random()-.5)*.01),t);
+    env(g,0.10/(i+1),0.002,0.55+i*0.12,t);
+    o.connect(g).connect(a.destination); o.start(t); o.stop(t+1.0);
+  });
+}
+
 /* ─────────── the film ─────────── */
-var film={on:false,t0:0,dur:9200};
+var film={on:false,t0:0,dur:15.4};
 var dimEl=document.getElementById("filmdim");
 var progEl=document.getElementById("progress");
-var C=[document.getElementById("c1"),document.getElementById("c2"),document.getElementById("c3")];
+var flashEl=document.getElementById("flash");
+var CUTS=[4.70,6.00,7.50,9.00,10.70,12.20], cutIdx=0;
+
+function shown(id,on){var e=document.getElementById(id); if(e)e.classList.toggle("show",!!on);}
+function flash(){
+  flashEl.style.transition="none"; flashEl.style.opacity="0.5";
+  requestAnimationFrame(function(){
+    flashEl.style.transition="opacity .17s ease-out"; flashEl.style.opacity="0";
+  });
+}
+
+/* every cut is instantaneous — a new camera, not a move */
+function doCut(i){
+  flash(); if(sound)thump();
+  if(i===0){S.cxF=.50; S.focus=.129; S.rot=-.16; S.tilt=.09;}   /* macro: the badge   */
+  if(i===1){S.cxF=.66; S.focus=.030; S.rot= .20; S.tilt=.34;}   /* into the hot bore  */
+  if(i===2){S.cxF=.66; S.focus=.030; S.rot=-.18; S.tilt=.34;}   /* into the cold bore */
+  if(i===3){S.cxF=.52; S.focus=.955; S.rot=-.02; S.tilt=.16;}   /* macro: the name    */
+  if(i===4){S.cxF=.50; S.focus=null; S.tilt=.22;}               /* colourway strobe   */
+  if(i===5){S.cxF=.74; S.focus=null; S.tilt=.20; S.rot=0;       /* hero + title       */
+            way=WAYS[0]; dirty=true; if(sound)clink();}
+}
 
 function startFilm(){
-  film.on=true; film.t0=performance.now();
+  film.on=true; film.t0=performance.now(); cutIdx=0;
   document.body.classList.add("filming");
   dimEl.classList.remove("out");
   document.getElementById("skip").style.display="";
+  document.getElementById("snd").style.display="";
   revealT=0; engraveT=0; dirty=true;
+  S.cxF=.50; S.focus=null; S.laser=0; S.glow.a=0; S.explode=0;
+  S.wrap=0; S.shade=0; S.rot=-.22; S.tilt=.06;
+  way=WAYS[0]; sparks.length=0; seedVapour();
   window.scrollTo(0,0);
 }
 function endFilm(){
@@ -933,46 +1192,90 @@ function endFilm(){
   film.on=false;
   document.body.classList.remove("filming");
   dimEl.classList.add("out");
-  C.forEach(function(c){c.classList.remove("show");});
+  ["c1","c3","b1","b2","b3","b4","b5"].forEach(function(id){shown(id,false);});
   progEl.style.width="0";
   document.getElementById("skip").style.display="none";
-  revealT=1; engraveT=1; dirty=true;
+  document.getElementById("snd").style.display="none";
+  revealT=1; engraveT=1; S.laser=0; S.glow.a=0; S.focus=null;
+  vapour.length=0; sparks.length=0;
+  way=WAYS[0]; dirty=true;
   cv.classList.add("live");
 }
+
 function filmStep(now){
   var t=(now-film.t0)/1000;
-  progEl.style.width=clamp(t/(film.dur/1000),0,1)*100+"%";
+  progEl.style.width=(clamp(t/film.dur,0,1)*100)+"%";
+  while(cutIdx<CUTS.length&&t>=CUTS[cutIdx]){doCut(cutIdx);cutIdx++;}
 
-  /* dots ignite out of the centre */
-  var ig=clamp((t-0.25)/1.25,0,1);
-  var nr=easeOut(ig);
-  if(Math.abs(nr-revealT)>0.004){revealT=nr;dirty=true;}
+  S.cx=W*S.cxF; S.cy=H*0.50;
+  if(t>4.70&&vapour.length)vapour.length=0;
 
-  /* type cards */
-  C[0].classList.toggle("show",t>1.35&&t<2.75);
-  C[1].classList.toggle("show",t>2.95&&t<4.25);
-  C[2].classList.toggle("show",t>7.00&&t<8.75);
+  /* cold open, then the dots ignite out of the centre */
+  if(t<3.20){
+    S.wrap=0; S.shade=0; S.explode=0; S.glow.a=0; S.focus=null;
+    S.scale=S.baseScale*0.46; S.rot=-0.22; S.tilt=0.06;
+    var nr=easeOut(clamp((t-1.05)/1.05,0,1));
+    if(nr>=1){ if(revealT<1){revealT=1;dirty=true;} }
+    else if(Math.abs(nr-revealT)>0.004){revealT=nr;dirty=true;}
+  }
 
-  /* the flat grid curls onto the vessel */
-  var wp=clamp((t-4.30)/1.50,0,1);
-  S.wrap=ease(wp);
-  S.shade=ease(clamp((t-4.45)/1.30,0,1));
-  S.scale=S.baseScale*lerp(0.46,1.0,ease(clamp((t-4.30)/1.70,0,1)));
-  S.rot=lerp(-0.22,0,ease(clamp((t-4.30)/2.20,0,1)));
-  S.tilt=lerp(0.06,0.20,ease(wp));
-  S.explode=0;
-  S.cx=S.homeX; S.cy=S.homeY;
+  shown("c1",t>2.10&&t<3.30);
+  shown("b1",t>4.92&&t<5.92);
+  shown("b2",t>6.22&&t<7.42);
+  shown("b3",t>7.72&&t<8.92);
+  shown("b4",t>9.24&&t<10.62);
+  shown("b5",t>10.92&&t<12.12);
+  shown("c3",t>12.42&&t<film.dur);
 
-  /* a light rakes across the coat */
-  var rk=clamp((t-4.90)/1.45,0,1);
-  S.light=lerp(-1.35,0.42,ease(rk));
+  if(t>=3.20&&t<4.70){                          /* the grid curls into an object */
+    var wp=clamp((t-3.20)/1.45,0,1);
+    if(!film.wooshed&&sound){film.wooshed=true;whoosh();}
+    S.wrap=ease(wp); S.shade=ease(clamp((t-3.30)/1.25,0,1));
+    S.scale=S.baseScale*lerp(0.46,1.0,ease(wp));
+    S.rot=lerp(-0.22,0,ease(wp));
+    S.tilt=lerp(0.06,0.20,ease(wp));
+    S.light=lerp(-1.35,0.42,ease(clamp((t-3.55)/1.15,0,1)));
+    S.focus=null; S.explode=0; S.glow.a=0;
+  }
+  else if(t>=4.70&&t<6.00){                     /* macro: 18/8 stainless */
+    S.wrap=1; S.shade=1; S.glow.a=0; S.explode=0;
+    S.scale=S.baseScale*lerp(2.60,2.32,(t-4.70)/1.30);
+    S.rot=-0.16+(t-4.70)*0.013; S.light=0.28;
+  }
+  else if(t>=6.00&&t<7.50){                     /* 6 hours hot */
+    S.scale=S.baseScale*lerp(1.22,1.13,(t-6.00)/1.50);
+    S.rot=0.20+(t-6.00)*0.011; S.explode=0.62;
+    S.glow.c="242,160,61";
+    S.glow.a=easeOut(clamp((t-6.04)/0.55,0,1));
+    S.light=0.42;
+  }
+  else if(t>=7.50&&t<9.00){                     /* 12 hours cold */
+    S.scale=S.baseScale*lerp(1.18,1.10,(t-7.50)/1.50);
+    S.rot=-0.18+(t-7.50)*0.011; S.explode=0.62;
+    S.glow.c="127,212,230";
+    S.glow.a=easeOut(clamp((t-7.54)/0.50,0,1));
+  }
+  else if(t>=9.00&&t<10.70){                    /* the name burns in */
+    S.scale=S.baseScale*1.30; S.explode=0; S.glow.a=0;
+    S.rot=lerp(-0.02,0.02,(t-9.00)/1.70);
+    var lp=clamp((t-9.18)/0.95,0,1);
+    S.laser=lp<1?Math.max(lp,0.001):0;
+    var ne=easeOut(lp);
+    if(Math.abs(ne-engraveT)>0.008||(lp>=1&&engraveT<1)){engraveT=lp>=1?1:ne;dirty=true;}
+  }
+  else if(t>=10.70&&t<12.20){                   /* five finishes, strobed */
+    S.laser=0; S.explode=0; S.focus=null;
+    S.scale=S.baseScale*1.00; S.rot+=0.0026;
+    var wi=Math.floor((t-10.70)/0.24)%WAYS.length;
+    if(way!==WAYS[wi]){way=WAYS[wi];dirty=true;if(sound)tick();}
+  }
+  else if(t>=12.20){                            /* hero, then the ask */
+    S.scale=S.baseScale*lerp(1.02,0.95,clamp((t-12.20)/2.10,0,1));
+    S.rot=lerp(0,0.055,clamp((t-12.20)/3.20,0,1));
+    S.explode=0; S.focus=null; S.light=0.42;
+  }
 
-  /* the name burns in, then cools */
-  var en=clamp((t-5.85)/1.15,0,1);
-  var ne=easeOut(en);
-  if(Math.abs(ne-engraveT)>0.01||(en>=1&&engraveT<1)){engraveT=en>=1?1:ne;dirty=true;}
-
-  if(t>film.dur/1000)endFilm();
+  if(t>film.dur)endFilm();
 }
 
 /* ─────────── main loop ─────────── */
@@ -989,6 +1292,7 @@ function frame(now){
     S.wrap=lerp(S.wrap,1,0.14);
     S.shade=lerp(S.shade,1,0.14);
     S.light=lerp(S.light,0.42,0.05);
+    S.focus=null; S.laser=0; S.glow.a=0;
     S.cx=lerp(S.cx||S.homeX,S.homeX,0.10);
     S.cy=lerp(S.cy||S.homeY,S.homeY+st.dy*S.baseScale,0.10);
     if(!dragging){
@@ -1029,12 +1333,12 @@ function pick(e){
   var s=clamp(dx/g.r,-1,1), th=Math.asin(s);
   var u=frac(0.5+th/TAU+S.rot);
   var ax=u*ART.width;
-  var col=Math.floor((ax-FX0)/CELL);
+  var col=Math.floor((ax-FX0)/CELLX);
   if(col<0||col>=COLS)return null;
   var yoff=g.k*g.r*Math.cos(th);
   var v=(y-(g.yTop+yoff))/g.bh;
   var ay=v*ART.height;
-  var row=Math.floor((ay-FY0)/CELL);
+  var row=Math.floor((ay-FY0)/CELLY);
   if(row<0||row>=ROWS)return null;
   return row*COLS+col;
 }
@@ -1047,7 +1351,7 @@ function paintAt(e){
 var HINTS={
   sigil:"Hashed from the letters, mirrored down the centre.",
   name:"Punchcard ticker — the name feeds around the vessel.",
-  life:"Conway's Game of Life on a 13 × 25 torus, seeded by the weave.",
+  life:"Conway's Game of Life on an 11 × 40 torus, seeded by the weave.",
   draw:"Drag across the dots to paint. Press Draw again to clear."
 };
 function setMode(m){
@@ -1107,8 +1411,18 @@ WAYS.forEach(function(w,i){
 
 document.getElementById("skip").addEventListener("click",endFilm);
 document.getElementById("replay").addEventListener("click",function(){
-  if(reduce){return;}
-  startFilm();
+  if(reduce)return;
+  film.wooshed=false; startFilm();
+});
+document.getElementById("filmSee").addEventListener("click",endFilm);
+document.getElementById("filmCta").addEventListener("click",function(){endFilm();});
+document.getElementById("snd").addEventListener("click",function(){
+  var a=ac(); if(!a){this.textContent="No audio";return;}
+  sound=!sound;
+  this.setAttribute("aria-pressed",String(sound));
+  this.textContent=sound?"Sound off":"Sound on";
+  if(a.state==="suspended")a.resume();
+  if(sound){film.wooshed=false;startFilm();}
 });
 addEventListener("keydown",function(e){
   if(e.key==="Escape"&&film.on)endFilm();
@@ -1126,6 +1440,7 @@ S.cx=S.homeX; S.cy=S.homeY; S.scale=S.baseScale;
 if(reduce){
   document.getElementById("filmdim").classList.add("out");
   document.getElementById("skip").style.display="none";
+  document.getElementById("snd").style.display="none";
   progEl.style.display="none";
   cv.classList.add("live");
   revealT=1; engraveT=1; S.wrap=1; S.shade=1;

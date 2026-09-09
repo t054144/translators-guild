@@ -13,7 +13,13 @@ Two cuts of the same product, built to be compared and then merged.
 - **Matte navy powder coat outside, bare polished 18/8 mirror bore inside.** No plastic liner.
   This contrast is the single best thing about the object and the exploded view exists to show it.
 - Press-fit lid in the same matte coat, offset straw port, navy matte straw.
-- Silkscreen, top to bottom: `CODED` in a stroked box → a 13 × 25 dot field (325 dots) → `[ NAME ]`.
+- Silkscreen, top to bottom: `CODED` in a stroked box → a fine dot field → `[ NAME ]`.
+- **Dot field, measured off the video:** vertical dot pitch is ~4.9% of the body diameter and
+  the band runs ~78% of the body height, which puts it at **about 40 rows**. The column count
+  could not be read reliably — the only usable frame is oblique, so the horizontal pitch is
+  foreshortened. The renderer is set to **11 × 40** and both numbers are constants on one line
+  (`var COLS=11, ROWS=40, XOFF=3;`). Count the real columns and change them there; the ticker,
+  the weave and Life all derive from those two values.
 
 ## How the 3D works
 
@@ -61,7 +67,9 @@ The buy bar deliberately subverts the pattern: the price is struck through and r
 - [ ] **Replace the placeholder figures.** Capacity, height, diameter and mass are
       plausible guesses. Measure the real vessel — an engineer will check, and one wrong
       number costs the whole page.
-- [ ] Swap in the real `CODED` logo artwork.
+- [ ] Swap in the real `CODED` logo artwork. The wordmark is currently drawn in
+      `drawArt()` as a stroked box plus text.
+- [ ] Confirm the dot field's column count (see above).
 - [ ] Replace the sample testimonial with a real quote from the cohort.
 - [ ] The night-shift section: the actual 23:41 photo, bokeh rebuilt in CSS.
 - [ ] Shared state via Supabase — a global sip counter and a persistent dot-graffiti wall.
