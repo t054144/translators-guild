@@ -308,6 +308,16 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .step-head .sh-en { font-family: var(--f-serif); font-size: 1.15rem; font-weight: 600; color: var(--white); }
 .row { display: flex; gap: .85rem; align-items: center; flex-wrap: wrap; }
 
+.auth-tabs { display: flex; gap: .3rem; padding: .3rem; border-radius: var(--r-pill);
+  border: var(--hair); background: rgba(17,6,32,.5); }
+.auth-tab { flex: 1 1 0; padding: .6rem .9rem; border: 0; border-radius: var(--r-pill);
+  background: transparent; color: var(--lilac-dim); cursor: pointer; box-shadow: none;
+  font-family: var(--f-sans); font-size: .82rem; font-weight: 600; letter-spacing: .06em;
+  transition: background 260ms var(--ease), color 260ms var(--ease); }
+.auth-tab:hover { color: var(--lilac); background: rgba(255,255,255,.05); }
+.auth-tab.on { background: var(--grad); color: var(--white); box-shadow: 0 6px 18px -8px rgba(101,15,208,.9); }
+#auth-lede { margin: 0; }
+
 /* ═══════════ THE HALL ═══════════ */
 #hall { max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
 
@@ -796,13 +806,27 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <div class="step-head">
           <span class="sh-en">The Member's Seal</span>
         </div>
+        <div class="auth-tabs" role="tablist" aria-label="Sign in or join">
+          <button class="auth-tab on" id="tab-in" role="tab" aria-selected="true">Sign in</button>
+          <button class="auth-tab" id="tab-up" role="tab" aria-selected="false">Join the guild</button>
+        </div>
+        <p class="note" id="auth-lede">Your marks are kept against your address, so the climb follows you to any device.</p>
         <div class="field">
           <label for="email">Guild address</label>
-          <input id="email" type="email" autocomplete="username" spellcheck="false" placeholder="ashaikha602@gmail.com">
+          <input id="email" type="email" autocomplete="username" spellcheck="false" placeholder="you@example.com">
+        </div>
+        <div class="field">
+          <label for="pass">Passphrase</label>
+          <input id="pass" type="password" autocomplete="current-password" placeholder="••••••••">
+        </div>
+        <div class="field" id="field-confirm" hidden>
+          <label for="pass2">Passphrase again</label>
+          <input id="pass2" type="password" autocomplete="new-password" placeholder="••••••••">
         </div>
         <p class="msg" id="seal-msg" hidden></p>
         <div class="row">
           <button id="seal-btn">Enter the hall</button>
+          <button class="link" id="forgot-btn">Forgotten it?</button>
         </div>
       </div>
     </div>
@@ -861,6 +885,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 
     <div class="hall-foot">
       <button class="ghost" id="reset-btn">Melt the marks</button>
+      <button class="ghost" id="signout-btn">Sign out</button>
       <p class="note" id="store-note" style="flex:1 1 20rem"></p>
     </div>
 
@@ -886,14 +911,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 </main>
 
 <script>
-/* ═══════════════════════════════════════════════════════════
-   CONFIG — the one line that makes the gate yours. The gate
-   only checks the address against the roll: it is a name
-   plate, not a lock, and everything here is readable in the
-   page source.
-   ═══════════════════════════════════════════════════════════ */
-const GUILD = { member: "ashaikha602@gmail.com" };
-
 const TOTAL_MARKS = 9;
 
 /* ═══════════ THE MARK RING — nine dots around the logo ═══════════ */
@@ -1929,6 +1946,9 @@ function grant(id) {
    Whichever tier is live, the page says so plainly rather than
    implying progress is saved when it is not.
    ═══════════════════════════════════════════════════════════ */
+/* The project's public endpoint and its publishable key. Both are meant to
+   be readable here; the key grants nothing on its own, because every table
+   is behind row-level security that checks the signed-in member's id. */
 const SUPABASE = {
   url: "https://bldqausimrsusdzfbubk.supabase.co",
   key: "sb_publishable_kyHEHTc00jWi5wN2nyiD0w_NtLbVHy_"
@@ -1936,27 +1956,115 @@ const SUPABASE = {
 
 let backend = "local", dbDoc = null, dbUnsub = null;
 
+/* ═══════════════════════════════════════════════════════════
+   AUTH — Supabase email + passphrase.
+   A member signs up once and signs in after that; the access
+   token is what the database checks, so a row can only ever be
+   read or written by the account that owns it.
+   ═══════════════════════════════════════════════════════════ */
+const SESSION_KEY = "guild.session.v1";
+let session = null;
+
+function storeSession(sess) {
+  session = sess;
+  try {
+    if (sess) localStorage.setItem(SESSION_KEY, JSON.stringify(sess));
+    else localStorage.removeItem(SESSION_KEY);
+  } catch (e) { /* private browsing — the session lives for this tab only */ }
+}
+
+function readStoredSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    session = raw ? JSON.parse(raw) : null;
+  } catch (e) { session = null; }
+  return session;
+}
+
+/* Supabase returns expires_in; keep an absolute stamp so a reload can tell
+   whether the token is still good without asking. */
+function asSession(j) {
+  if (!j || !j.access_token) return null;
+  return {
+    access_token: j.access_token,
+    refresh_token: j.refresh_token || "",
+    expires_at: Date.now() + ((j.expires_in || 3600) * 1000),
+    user: { id: (j.user && j.user.id) || "", email: ((j.user && j.user.email) || "").toLowerCase() }
+  };
+}
+
+async function authPost(path, body, token) {
+  const h = { "apikey": SUPABASE.key, "Content-Type": "application/json", "Accept": "application/json" };
+  if (token) h["Authorization"] = "Bearer " + token;
+  const r = await fetch(SUPABASE.url + "/auth/v1" + path, {
+    method: "POST", headers: h, body: JSON.stringify(body || {})
+  });
+  let j = null;
+  try { j = await r.json(); } catch (e) { /* logout answers with no body */ }
+  if (!r.ok) {
+    const e = new Error((j && (j.error_description || j.msg || j.message || j.error)) ||
+                        ("the door did not answer (" + r.status + ")"));
+    e.status = r.status;
+    throw e;
+  }
+  return j;
+}
+
+/* Refresh a minute before expiry so a long sitting never writes with a
+   token that died mid-trial. */
+async function freshToken() {
+  if (!session || !session.access_token) return null;
+  if (Date.now() < session.expires_at - 60000) return session.access_token;
+  if (!session.refresh_token) { storeSession(null); return null; }
+  try {
+    const next = asSession(await authPost("/token?grant_type=refresh_token",
+                                          { refresh_token: session.refresh_token }));
+    if (!next) { storeSession(null); return null; }
+    storeSession(next);
+    return next.access_token;
+  } catch (e) { storeSession(null); return null; }
+}
+
+async function signUp(email, pass) {
+  return asSession(await authPost("/signup", { email: email, password: pass }));
+}
+
+async function signIn(email, pass) {
+  return asSession(await authPost("/token?grant_type=password", { email: email, password: pass }));
+}
+
+async function sendReset(email) {
+  await authPost("/recover", { email: email });
+}
+
+async function signOut() {
+  const t = session && session.access_token;
+  if (t) { try { await authPost("/logout", {}, t); } catch (e) { /* local sign-out still stands */ } }
+  storeSession(null);
+}
+
 function slug(email) {
   return String(email || "").toLowerCase()
     .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 180) || "member";
 }
 
-/* the guild address travels as a header; the row-level security policy on
-   the table compares it to the row key, so a request only ever reaches
-   its own row */
-function sbHeaders(member) {
+/* The member's own access token travels on every request. The policies on
+   the table compare its user id to the row's owner, so a request can only
+   ever reach that member's row — nothing the client sends can widen it. */
+async function sbHeaders() {
+  const t = await freshToken();
+  if (!t) throw new Error("not signed in");
   return {
     "apikey": SUPABASE.key,
-    "Authorization": "Bearer " + SUPABASE.key,
+    "Authorization": "Bearer " + t,
     "Content-Type": "application/json",
-    "Accept": "application/json",
-    "x-guild-member": member
+    "Accept": "application/json"
   };
 }
 
-async function sbRead(member) {
-  const q = "?select=marks,marks_earned,rank,seen_rank,finale_seen&member=eq." + encodeURIComponent(member);
-  const r = await fetch(SUPABASE.url + "/rest/v1/members" + q, { headers: sbHeaders(member) });
+async function sbRead() {
+  const r = await fetch(SUPABASE.url + "/rest/v1/members?select=marks,marks_earned,rank,seen_rank,finale_seen",
+                        { headers: await sbHeaders() });
   if (!r.ok) throw new Error("read " + r.status);
   const rows = await r.json();
   return (rows && rows[0]) || null;
@@ -1965,9 +2073,10 @@ async function sbRead(member) {
 async function sbWrite(member) {
   const r = await fetch(SUPABASE.url + "/rest/v1/members", {
     method: "POST",
-    headers: Object.assign(sbHeaders(member), { "Prefer": "resolution=merge-duplicates,return=minimal" }),
+    headers: Object.assign(await sbHeaders(), { "Prefer": "resolution=merge-duplicates,return=minimal" }),
     body: JSON.stringify({
       member: member,
+      user_id: session && session.user.id,
       marks: state.marks,
       marks_earned: markCount(),
       rank: currentRank().en,
@@ -2002,7 +2111,7 @@ async function connectBackend(email) {
 
   // tier 1 — Supabase
   try {
-    const row = await sbRead(member);
+    const row = await sbRead();
     backend = "supabase";
     absorb(row);
     await sbWrite(member);
@@ -2028,7 +2137,7 @@ async function connectBackend(email) {
 }
 
 async function pushBackend() {
-  const member = state.member || GUILD.member;
+  const member = state.member;
   if (backend === "supabase") {
     try { await sbWrite(member); } catch (e) { /* keep the local copy */ }
     return;
@@ -2047,12 +2156,12 @@ async function pushBackend() {
 /* coming back to the tab re-reads the row, so a second device shows up */
 document.addEventListener("visibilitychange", async () => {
   if (document.visibilityState !== "visible" || backend !== "supabase" || !state.member) return;
-  try { if (absorb(await sbRead(state.member))) renderHall(); } catch (e) {}
+  try { if (absorb(await sbRead())) renderHall(); } catch (e) {}
 });
 
 const BACKENDS = {
   supabase: { label: "Supabase · live", live: true,
-    note: "<b>Backend live — Supabase.</b> Each mark is written to a Postgres row keyed to your guild address, so the climb follows you to any device and survives a cleared browser." },
+    note: "<b>Backend live — Supabase.</b> Each mark is written to a Postgres row owned by your account, and the database checks that ownership on every read and write, so the climb follows you to any device you sign in from." },
   guild: { label: "Artifact store · live", live: true,
     note: "<b>Backend live — artifact store.</b> An artifact sandbox blocks outbound requests, so this copy uses the built-in store rather than Supabase. Still server-side, still cross-device." },
   local: { label: "Local only · this browser", live: false,
@@ -2159,21 +2268,117 @@ function setAct(n) {
 })();
 
 /* ═══════════ THE GATE ═══════════ */
-document.getElementById("seal-btn").addEventListener("click", pressSeal);
-document.getElementById("email").addEventListener("keydown", e => { if (e.key === "Enter") pressSeal(); });
+let authMode = "in";          // "in" to sign in, "up" to join
+let authBusy = false;
 
-function pressSeal() {
-  const email = document.getElementById("email").value.trim().toLowerCase();
-  const msg = document.getElementById("seal-msg");
-  msg.classList.remove("good");
+const gateEl = {
+  tabIn: document.getElementById("tab-in"),
+  tabUp: document.getElementById("tab-up"),
+  lede: document.getElementById("auth-lede"),
+  email: document.getElementById("email"),
+  pass: document.getElementById("pass"),
+  pass2: document.getElementById("pass2"),
+  confirm: document.getElementById("field-confirm"),
+  btn: document.getElementById("seal-btn"),
+  forgot: document.getElementById("forgot-btn"),
+  msg: document.getElementById("seal-msg")
+};
 
-  if (email !== GUILD.member.toLowerCase()) {
-    msg.hidden = false;
-    msg.textContent = "That address is not on the guild roll.";
+function gateSay(text, good) {
+  gateEl.msg.hidden = false;
+  gateEl.msg.classList.toggle("good", !!good);
+  gateEl.msg.innerHTML = text;
+}
+function gateQuiet() { gateEl.msg.hidden = true; gateEl.msg.classList.remove("good"); }
+
+function setAuthMode(mode) {
+  authMode = mode;
+  const up = mode === "up";
+  gateEl.tabUp.classList.toggle("on", up);
+  gateEl.tabIn.classList.toggle("on", !up);
+  gateEl.tabUp.setAttribute("aria-selected", String(up));
+  gateEl.tabIn.setAttribute("aria-selected", String(!up));
+  gateEl.confirm.hidden = !up;
+  gateEl.btn.textContent = up ? "Take the seal" : "Enter the hall";
+  gateEl.forgot.hidden = up;
+  gateEl.pass.setAttribute("autocomplete", up ? "new-password" : "current-password");
+  gateEl.lede.textContent = up
+    ? "Choose a passphrase of at least eight characters. It belongs to your account, not to the site."
+    : "Your marks are kept against your address, so the climb follows you to any device.";
+  gateQuiet();
+}
+
+function gateBusy(on, label) {
+  authBusy = on;
+  gateEl.btn.disabled = on;
+  gateEl.btn.textContent = on ? label : (authMode === "up" ? "Take the seal" : "Enter the hall");
+}
+
+gateEl.tabIn.addEventListener("click", () => setAuthMode("in"));
+gateEl.tabUp.addEventListener("click", () => setAuthMode("up"));
+gateEl.btn.addEventListener("click", pressSeal);
+[gateEl.email, gateEl.pass, gateEl.pass2].forEach(f =>
+  f.addEventListener("keydown", e => { if (e.key === "Enter") pressSeal(); }));
+
+gateEl.forgot.addEventListener("click", async () => {
+  const email = gateEl.email.value.trim().toLowerCase();
+  if (!email) { gateSay("Type your guild address first, then ask again."); return; }
+  try {
+    await sendReset(email);
+    gateSay("If that address is on the roll, a reset link is on its way to it.", true);
+  } catch (e) {
+    gateSay("The reset could not be sent: " + e.message);
+  }
+});
+
+async function pressSeal() {
+  if (authBusy) return;
+  const email = gateEl.email.value.trim().toLowerCase();
+  const pass = gateEl.pass.value;
+  gateQuiet();
+
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { gateSay("That does not look like an address."); return; }
+  if (!pass) { gateSay("The passphrase is missing."); return; }
+
+  if (authMode === "up") {
+    if (pass.length < 8) { gateSay("Eight characters at least &mdash; this one is shorter."); return; }
+    if (pass !== gateEl.pass2.value) { gateSay("The two passphrases do not match."); return; }
+    gateBusy(true, "Cutting the seal\u2026");
+    try {
+      const sess = await signUp(email, pass);
+      if (sess) { storeSession(sess); enterHall(sess.user.email || email); return; }
+      // the project asks for a confirmed address before it hands out a session
+      gateBusy(false);
+      setAuthMode("in");
+      gateEl.email.value = email;
+      gateSay("Seal cut. Confirm the address from your inbox, then sign in.", true);
+    } catch (e) {
+      gateBusy(false);
+      gateSay(/already/i.test(e.message)
+        ? "That address is already on the roll &mdash; sign in instead."
+        : "The seal was refused: " + e.message);
+    }
     return;
   }
 
-  msg.hidden = true;
+  gateBusy(true, "Pressing the seal\u2026");
+  try {
+    const sess = await signIn(email, pass);
+    if (!sess) throw new Error("no session came back");
+    storeSession(sess);
+    enterHall(sess.user.email || email);
+  } catch (e) {
+    gateBusy(false);
+    gateSay(e.status === 400
+      ? "That address and passphrase do not match. If you have not joined yet, take a seal."
+      : "The door did not answer: " + e.message);
+  }
+}
+
+function enterHall(email) {
+  gateBusy(false);
+  gateQuiet();
+  gateEl.pass.value = ""; gateEl.pass2.value = "";
   state.member = email; save();
   unlock();
 }
@@ -2184,7 +2389,7 @@ function unlock() {
     '<p class="u-word">The window opens.</p></div>');
   ov.id = "unlock";
   document.body.appendChild(ov);
-  connectBackend(state.member || GUILD.member);
+  connectBackend(state.member);
   setTimeout(() => {
     renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
     ov.style.transition = "opacity 420ms ease"; ov.style.opacity = "0";
@@ -2321,6 +2526,24 @@ function renderHall() {
   paintStore();
   checkLevelUp();
 }
+
+document.getElementById("signout-btn").addEventListener("click", async () => {
+  const b = document.getElementById("signout-btn");
+  b.disabled = true;
+  if (dbUnsub) { try { dbUnsub(); } catch (e) {} dbUnsub = null; }
+  dbDoc = null;
+  await signOut();
+  /* the marks stay on the server against the account; this browser forgets
+     them so the next person to sign in does not inherit them */
+  state.marks = {}; state.seenRank = ""; state.finale = false; state.member = "";
+  save();
+  backend = "local";
+  b.disabled = false;
+  setAuthMode("in");
+  gateEl.email.value = ""; gateEl.pass.value = ""; gateEl.pass2.value = "";
+  setAct(1);
+  show("gate");
+});
 
 document.getElementById("reset-btn").addEventListener("click", () => {
   state.marks = {};
@@ -2948,10 +3171,22 @@ function runRoots() {
 
 /* ═══════════ BOOT ═══════════ */
 load();
+setAuthMode("in");
 setAct(1);
 loadPortraits();
 
-show("gate");
+/* A session that survived the last visit skips the gate. If the token has
+   died and cannot be refreshed, the gate is where we land. */
+(async function resume() {
+  const kept = readStoredSession();
+  if (kept) views.gate.hidden = true;
+  if (!kept || !(await freshToken())) { storeSession(null); show("gate"); return; }
+  state.member = session.user.email || state.member; save();
+  connectBackend(state.member);
+  renderHall();
+  setAct(markCount() ? 3 : 2);
+  show("hall");
+})();
 </script>
 
 </body>
