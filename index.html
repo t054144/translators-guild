@@ -3,10 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="نافذة المترجم — a guide to Arabic–English translation by functional equivalence: the seven procedures, nine text types, and seven trials.">
+<title>The Translators' Guild</title>
+<meta name="description" content="A guide to Arabic-English translation by functional equivalence: eight translators who changed the world, the seven procedures, nine text types, and seven trials.">
 <meta name="author" content="Shaikha Alkhaldi">
 <meta property="og:title" content="The Translators' Guild">
-<meta property="og:description" content="نافذة المترجم — meaning first, words second.">
+<meta property="og:description" content="Meaning first, words second.">
 <style>
   :root { color-scheme: dark; }
   html, body { margin: 0; padding: 0; }
@@ -16,12 +17,11 @@
 </style>
 </head>
 <body>
-<title>The Translators' Guild</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Readex+Pro:wght@300;400;500;600&display=swap">
 
 <style>
 /* ═══════════════════════════════════════════════════════════
-   THE TRANSLATORS' GUILD · بَيْت الحِكْمَة
+   THE TRANSLATORS' GUILD
    Brand from the Guild mark: violet→magenta gradient, white
    serif wordmark, tracked lilac caps, three dots, squircle.
    ═══════════════════════════════════════════════════════════ */
@@ -151,7 +151,10 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
    leaving away from you and brings the next one toward you through
    real perspective; going back reverses the move. ═══════════ */
 #app { position: relative; perspective: 1500px; perspective-origin: 50% 36%;
-  padding-top: clamp(3.6rem, 6vw, 4.6rem) !important; }
+  padding-top: clamp(3.6rem, 6vw, 4.6rem) !important;
+  /* the camera pushes views toward the viewer on +Z; clip that sideways so a
+     transition never produces a horizontal scrollbar on a phone */
+  overflow-x: clip; }
 .view { transform-style: preserve-3d; backface-visibility: hidden; }
 
 /* the view being left is lifted out of flow so the arriving one takes the space */
@@ -208,67 +211,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .act.now { color: var(--white); }
 .act.now .a-bar > i { width: 60%; box-shadow: 0 0 12px rgba(167,38,208,.9); }
 .act .a-ar { font-family: var(--f-ar); direction: rtl; letter-spacing: 0; font-size: .78rem; font-weight: 400; }
-@media (max-width: 700px) { .act .a-ar, .act .a-lab { display: none; } }
-
-/* ═══════════ THE OVERTURE — the cold open ═══════════ */
-#overture { max-width: 58rem; margin: 0 auto; min-height: 64vh; display: grid; place-items: center; }
-.ov-stage { display: grid; gap: clamp(1.1rem,3.5vw,1.9rem); justify-items: center; text-align: center; width: 100%; }
-.ov-ar {
-  font-family: var(--f-ar-text); direction: rtl; margin: 0;
-  font-size: clamp(1.9rem, 7.5vw, 3.9rem); line-height: 1.75; color: var(--white);
-  animation: ovAr 1100ms var(--ease) both;
-}
-@keyframes ovAr { 0% { opacity: 0; transform: translateY(16px) scale(.97); filter: blur(8px); } 100% { opacity: 1; transform: none; filter: blur(0); } }
-
-.ov-band { position: relative; width: 100%; display: grid; gap: .7rem; justify-items: center; }
-.ov-line {
-  position: relative; display: flex; flex-wrap: wrap; justify-content: center;
-  gap: .34em; row-gap: .2em; max-width: 30ch;
-}
-.ov-w {
-  opacity: 0; transform: translateY(12px) rotateX(40deg);
-  transition: opacity 300ms var(--ease), transform 300ms var(--ease), color 400ms;
-  font-family: var(--f-sans); font-weight: 300; color: rgba(205,179,230,.92);
-  font-size: clamp(1.05rem, 3.8vw, 1.85rem);
-}
-.ov-w.on { opacity: 1; transform: none; }
-.ov-w.dead { opacity: .34; color: rgba(255,179,193,.8);
-  text-decoration: line-through; text-decoration-color: rgba(255,92,122,.7); }
-.ov-line.shook { animation: ovShake 440ms ease; }
-@keyframes ovShake {
-  0%,100% { transform: translateX(0); }
-  18% { transform: translateX(-6px); }
-  38% { transform: translateX(5px); }
-  58% { transform: translateX(-3px); }
-  78% { transform: translateX(2px); }
-}
-.ov-nat .ov-w { font-family: var(--f-serif); font-weight: 500; color: var(--white); font-size: clamp(1.25rem, 4.4vw, 2.2rem); }
-
-.ov-strike {
-  position: absolute; left: 0; top: 52%; height: 2px; width: 0;
-  background: var(--coral); box-shadow: 0 0 14px var(--coral); border-radius: 2px;
-  transition: width 640ms var(--ease);
-}
-.ov-strike.on { width: 100%; }
-
-.ov-cap {
-  margin: 0; opacity: 0; transition: opacity 520ms var(--ease);
-  font-size: .74rem; font-weight: 700; letter-spacing: .26em; text-transform: uppercase;
-}
-.ov-cap.on { opacity: 1; }
-.ov-cap.bad { color: var(--coral); }
-.ov-cap.good { color: var(--mint); }
-
-.ov-close {
-  margin: 0; max-width: 32ch; opacity: 0; transform: translateY(14px);
-  transition: opacity 800ms var(--ease), transform 800ms var(--ease);
-  font-family: var(--f-serif); font-size: clamp(1.15rem, 3.8vw, 1.8rem); color: var(--white); line-height: 1.4;
-}
-.ov-close.on { opacity: 1; transform: none; }
-.ov-go { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; justify-content: center;
-  opacity: 0; transition: opacity 700ms var(--ease); }
-.ov-go.on { opacity: 1; }
-.ov-corner { position: absolute; top: .35rem; right: clamp(.75rem,3vw,1.5rem); z-index: 5; }
+@media (max-width: 640px) { .act .a-lab { display: none; } }
 
 /* ═══════════ THE FINALE ═══════════ */
 #finale {
@@ -351,21 +294,13 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   .aura i, .logo-face, #unlock .u-logo { animation: none; }
   .view, .swap-in, .swap-out, .opt, .deriv, .msg, .commission,
   .view.in-push, .view.in-pull, .view.out-push, .view.out-pull,
-  .ov-ar, #finale, .fin-verdict, .colophon::after, .sig-en .s-l, .sig-ar { animation: none !important; }
-  .ov-w { opacity: 1 !important; transform: none !important; }
-  .ov-line.shook { animation: none !important; }
+  #finale, .fin-verdict { animation: none !important; }
   * { transition-duration: 1ms !important; }
 }
 
 /* ═══════════ THE GATE ═══════════ */
 #gate { max-width: 60rem; margin: 0 auto; display: grid; gap: clamp(1.5rem,4vw,2.5rem); }
 .brandmark { display: grid; justify-items: center; gap: 1.5rem; }
-
-.thesis { max-width: var(--measure); margin: 0 auto; text-align: center;
-  font-size: clamp(1rem,2.4vw,1.1rem); font-weight: 300; line-height: 1.75; color: rgba(214,191,234,.86); }
-.thesis .pop { font-family: var(--f-serif); font-style: italic; font-weight: 500; font-size: 1.12em; color: var(--white); }
-.thesis .ai { font-family: var(--f-ar-text); font-size: 1.15em; }
-.thesis .strike { color: rgba(154,134,180,.85); text-decoration: line-through; }
 
 .door { padding: clamp(1.5rem,5vw,3rem); position: relative; overflow: hidden; }
 .door::before { content: ""; position: absolute; inset: 0; background: var(--grad-soft); pointer-events: none; }
@@ -391,14 +326,13 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .challenge .gloss span { color: rgba(255,92,122,.9); }
 
 /* ═══════════ THE HALL ═══════════ */
-#hall { max-width: 64rem; margin: 0 auto; display: grid; gap: 2.25rem; }
+#hall { max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
 
 .hall-head { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1rem,3vw,2rem);
   align-items: center; padding: clamp(1.1rem,3vw,1.6rem); }
 .hall-id { display: grid; gap: .1rem; min-width: 0; }
 .hall-id .h-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .95rem; color: var(--lilac); }
 .hall-id h1 { font-family: var(--f-serif); font-size: clamp(1.5rem,4vw,2rem); font-weight: 600; color: var(--white); margin: 0; line-height: 1.1; }
-.hall-id .who { font-size: .8rem; color: var(--lilac-dim); margin: .35rem 0 0; word-break: break-all; }
 .rank-box { display: grid; gap: .35rem; justify-items: end; text-align: right; }
 .rank-box .r-en { font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; margin: 0;
   background: linear-gradient(200deg,#fff,#d6bfea 60%,#a726d0); -webkit-background-clip: text; background-clip: text; color: transparent; }
@@ -412,55 +346,66 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .sec-head { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
 .sec-head h2 { font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; color: var(--white); margin: 0; }
 .sec-head .s-ar { font-family: var(--f-ar); direction: rtl; font-size: 1rem; color: var(--lilac); }
-.ledger { display: grid; gap: .8rem; }
+.ledger { display: grid; grid-template-columns: repeat(auto-fit, minmax(18.5rem, 1fr)); gap: .85rem; }
 
 .commission {
-  display: grid; grid-template-columns: 3rem 1fr auto; gap: clamp(.85rem,2.5vw,1.5rem);
-  align-items: center; text-align: left; width: 100%; padding: 1.15rem 1.35rem;
+  display: grid; gap: .8rem; align-content: start;
+  text-align: left; width: 100%; padding: 1.25rem 1.35rem;
   border-radius: var(--r-lg); border: var(--hair);
   background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
   color: inherit; font-family: inherit; font-size: inherit; font-weight: 400; letter-spacing: normal;
   box-shadow: none; animation: rise 560ms var(--ease) both;
-  transition: transform 300ms var(--ease), border-color 300ms var(--ease), background 300ms var(--ease), box-shadow 300ms var(--ease);
+  transition: transform 300ms var(--ease), border-color 300ms var(--ease),
+              background 300ms var(--ease), box-shadow 300ms var(--ease);
 }
-.commission:hover { transform: translateY(-3px); border-color: rgba(167,38,208,.55);
-  background: linear-gradient(180deg, rgba(167,38,208,.14), rgba(101,15,208,.07));
-  box-shadow: 0 18px 44px -22px rgba(167,38,208,.9); }
+.commission:hover {
+  transform: translateY(-4px);
+  border-color: rgba(167,38,208,.6);
+  background: linear-gradient(180deg, rgba(167,38,208,.15), rgba(101,15,208,.06));
+  box-shadow: 0 20px 46px -22px rgba(167,38,208,.95);
+}
 .commission:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
-.commission .cnum { font-family: var(--f-serif); font-size: 1.6rem; font-weight: 500;
-  color: rgba(214,191,234,.4); line-height: 1; font-variant-numeric: tabular-nums; transition: color 300ms var(--ease); }
+
+.c-top { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.c-meta { display: flex; align-items: center; gap: .55rem; flex: none; }
+.commission .cnum {
+  font-family: var(--f-serif); font-size: 1.5rem; font-weight: 500; line-height: 1;
+  color: rgba(214,191,234,.42); font-variant-numeric: tabular-nums;
+  transition: color 300ms var(--ease);
+}
 .commission:hover .cnum { color: var(--white); }
-.commission .ctitles { display: grid; gap: .15rem; min-width: 0; }
-.commission .c-ar { font-family: var(--f-ar); direction: rtl; font-size: .92rem; color: var(--lilac); }
-.commission .c-en { font-family: var(--f-serif); font-size: 1.28rem; font-weight: 600; color: var(--white); line-height: 1.2; }
-.commission .c-blurb { font-size: .88rem; font-weight: 300; color: rgba(214,191,234,.72); max-width: 56ch; }
-.commission .cstate { display: grid; gap: .45rem; justify-items: end; }
-.commission .kind { font-size: .64rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-  padding: .22rem .6rem; border-radius: var(--r-pill); border: 1px solid rgba(214,191,234,.28);
-  color: var(--lilac-dim); white-space: nowrap; }
+.commission .ctitles { display: grid; gap: .3rem; min-width: 0; }
+.commission .c-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .92rem; color: var(--lilac); }
+.commission .c-en { font-family: var(--f-serif); font-size: 1.22rem; font-weight: 600; color: var(--white); line-height: 1.2; }
+.commission .c-blurb { font-size: .86rem; font-weight: 300; line-height: 1.6; color: rgba(214,191,234,.7); }
+.commission .kind {
+  font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  padding: .22rem .6rem; border-radius: var(--r-pill);
+  border: 1px solid rgba(214,191,234,.28); color: var(--lilac-dim); white-space: nowrap;
+}
 .commission .kind.exhibit { border-color: rgba(46,217,160,.4); color: var(--mint); }
 .commission .kind.guide { border-color: rgba(255,196,107,.45); color: var(--amber); }
-.commission .seal-pip { width: 22px; height: 22px; border-radius: 8px; background: rgba(214,191,234,.14);
-  border: 1px solid rgba(214,191,234,.24); display: grid; place-items: center; font-size: .7rem; color: transparent; }
-.commission .seal-pip.earned { background: var(--grad); border-color: transparent; color: var(--white);
-  box-shadow: 0 0 16px -2px rgba(167,38,208,.9); }
-@media (max-width: 660px) {
-  .commission { grid-template-columns: 2.2rem 1fr; }
-  .commission .cstate { grid-column: 2; justify-items: start; }
-  .commission .c-blurb { max-width: none; }
+.commission .seal-pip {
+  width: 20px; height: 20px; border-radius: 7px; flex: none;
+  background: rgba(214,191,234,.13); border: 1px solid rgba(214,191,234,.24);
+  display: grid; place-items: center; font-size: .62rem; color: transparent;
+}
+.commission .seal-pip.earned {
+  background: var(--grad); border-color: transparent; color: var(--white);
+  box-shadow: 0 0 16px -2px rgba(167,38,208,.9);
 }
 
 .hall-foot { display: flex; gap: 1.15rem; align-items: center; flex-wrap: wrap; }
 
 /* ═══════════ TRIAL / GUIDE SHELL ═══════════ */
-#trial { max-width: 54rem; margin: 0 auto; display: grid; gap: 1.75rem; }
+#trial { max-width: 54rem; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.75rem; }
 .trial-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem;
   flex-wrap: wrap; padding-bottom: 1.1rem; border-bottom: var(--hair); }
 .trial-head .t-ar { font-family: var(--f-ar); direction: rtl; font-size: .95rem; color: var(--lilac); display: block; }
 .trial-head h2 { font-family: var(--f-serif); font-size: clamp(1.4rem,4vw,1.9rem); font-weight: 600; color: var(--white); margin: 0; line-height: 1.15; }
 .trial-head .t-right { display: grid; gap: .5rem; justify-items: end; }
 .trial-head .t-count { font-size: .72rem; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac-dim); }
-.stage { display: grid; gap: 1.35rem; }
+.stage { display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.35rem; }
 
 .prompt { border-radius: var(--r-xl); border: var(--hair-lit);
   background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
@@ -537,7 +482,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   letter-spacing: .1em; color: var(--magenta); text-transform: uppercase; }
 
 .blocks { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem,1fr)); }
-.block { border-radius: var(--r-md); border: var(--hair); background: rgba(255,255,255,.035); padding: 1rem 1.15rem; display: grid; gap: .5rem; }
+.block { border-radius: var(--r-md); border: var(--hair); background: rgba(255,255,255,.035); padding: 1rem 1.15rem; display: grid; align-content: start; gap: .5rem; }
 .block .b-lab { font-size: .66rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--lilac-dim); }
 .block.demand .b-lab { color: var(--mint); }
 .block.trap .b-lab { color: var(--coral); }
@@ -679,103 +624,62 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 
 .center { display: flex; justify-content: center; }
 
-/* ═══════════════ THE COLOPHON — the scribe's signature ═══════════════ */
-.colophon {
-  position: relative; overflow: hidden;
-  margin-top: 1.5rem;
-  padding: clamp(2rem, 6vw, 4.25rem) clamp(1.25rem, 4vw, 3rem) clamp(1.75rem, 4vw, 2.75rem);
-  border-radius: var(--r-xl); border: var(--hair);
-  background:
-    radial-gradient(120% 150% at 50% 0%, rgba(167,38,208,.20), transparent 62%),
-    linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
-  box-shadow: var(--shadow);
-  display: grid; gap: 1.35rem; justify-items: center; text-align: center;
-}
-/* a slow sheen across the plaque */
-.colophon::after {
-  content: ""; position: absolute; inset: -20%; pointer-events: none;
-  background: linear-gradient(104deg, transparent 40%, rgba(255,255,255,.055) 48%, transparent 56%);
-  animation: sheen 9s ease-in-out infinite;
-}
-@keyframes sheen {
-  0%, 48% { transform: translateX(-46%); }
-  100%    { transform: translateX(46%); }
-}
-.colophon > * { position: relative; }
+/* ═══════════════ THE LINEAGE ═══════════════ */
+.strip-head { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: .9rem; }
+.strip-head h2 { font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; color: var(--white); margin: 0; }
+.strip { display: flex; min-width: 0; gap: .7rem; overflow-x: auto; padding: .25rem .25rem 1rem;
+  scroll-snap-type: x proximity; -webkit-overflow-scrolling: touch; }
+.strip::-webkit-scrollbar { height: 6px; }
+.strip::-webkit-scrollbar-thumb { background: rgba(214,191,234,.22); border-radius: 99px; }
+.strip-card { flex: 0 0 auto; scroll-snap-align: start; width: 8.5rem;
+  display: grid; gap: .5rem; justify-items: center; text-align: center;
+  padding: 1rem .65rem; border-radius: var(--r-lg); border: var(--hair);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.014));
+  color: inherit; font-family: inherit; font-weight: 400; letter-spacing: normal; box-shadow: none;
+  transition: transform 300ms var(--ease), border-color 300ms var(--ease), background 300ms var(--ease); }
+.strip-card:hover { transform: translateY(-4px); border-color: rgba(167,38,208,.6);
+  background: linear-gradient(180deg, rgba(167,38,208,.14), rgba(101,15,208,.05)); box-shadow: none; }
+.strip-card .s-name { font-family: var(--f-serif); font-size: .88rem; font-weight: 600; color: var(--white); line-height: 1.25; }
+.strip-card .s-life { font-size: .66rem; letter-spacing: .1em; color: var(--lilac-dim); font-variant-numeric: tabular-nums; }
 
-.col-head { display: grid; justify-items: center; gap: .1rem; }
-.col-head .col-ar { font-family: var(--f-ar); direction: rtl; font-size: 1rem; color: var(--magenta); }
-.col-head h2 { font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; color: var(--white); margin: 0; }
+.medal { width: 62px; height: 62px; border-radius: 50%; flex: none;
+  display: grid; place-items: center; position: relative; background: var(--grad);
+  box-shadow: 0 8px 22px -10px rgba(101,15,208,.9), inset 0 0 0 1px rgba(255,255,255,.22); }
+.medal::after { content: ""; position: absolute; inset: 4px; border-radius: 50%; border: 1px solid rgba(255,255,255,.28); }
+.medal span { font-family: var(--f-serif); font-size: 1.32rem; font-weight: 700; color: var(--white); }
+.medal.lg { width: 96px; height: 96px; }
+.medal.lg span { font-size: 2rem; }
 
-.col-lede {
-  max-width: 58ch; margin: 0; font-size: 1rem; font-weight: 300; line-height: 1.75;
-  color: rgba(205,179,230,.86);
-}
-.col-lede b { color: var(--white); font-weight: 500; }
-.col-lede i { color: var(--white); }
-.col-lede .art { font-size: 1.2em; color: var(--white); }
+.figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .85rem; }
+.figure { display: grid; grid-template-columns: auto 1fr; gap: .95rem; align-items: center;
+  text-align: left; padding: 1.05rem 1.15rem; border-radius: var(--r-lg); border: var(--hair);
+  background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.014));
+  color: inherit; font-family: inherit; font-weight: 400; letter-spacing: normal; box-shadow: none;
+  animation: rise 520ms var(--ease) both;
+  transition: transform 280ms var(--ease), border-color 280ms var(--ease), background 280ms var(--ease); }
+.figure:hover { transform: translateY(-3px); border-color: rgba(167,38,208,.6);
+  background: linear-gradient(180deg, rgba(167,38,208,.14), rgba(101,15,208,.05)); box-shadow: none; }
+.figure.on { border-color: var(--magenta); background: linear-gradient(180deg, rgba(167,38,208,.2), rgba(101,15,208,.07)); }
+.figure .f-txt { display: grid; gap: .18rem; min-width: 0; }
+.figure .f-name { font-family: var(--f-serif); font-size: 1.08rem; font-weight: 600; color: var(--white); line-height: 1.2; }
+.figure .f-meta { font-size: .72rem; letter-spacing: .08em; color: var(--lilac-dim); font-variant-numeric: tabular-nums; }
+.figure .f-pair { font-size: .78rem; color: var(--lilac); }
 
-/* the 3D signet */
-.signet {
-  perspective: 1000px; width: 100%;
-  display: grid; place-items: center;
-  padding: clamp(1.25rem, 4vw, 2.5rem) 0 clamp(.75rem, 2vw, 1.25rem);
-}
-.signet-scene {
-  transform-style: preserve-3d;
-  transition: transform 340ms ease-out; will-change: transform;
-  display: grid; justify-items: center; gap: .55rem;
-}
-/* the two scripts sit on different planes, so the tilt pulls them apart */
-.sig-stack { display: grid; justify-items: center; gap: .35rem; transform-style: preserve-3d; }
+.dossier-top { display: flex; gap: 1.25rem; align-items: center; flex-wrap: wrap; }
+.dossier-top .d-txt { display: grid; gap: .2rem; min-width: 0; }
+.dossier-top h3 { font-family: var(--f-serif); font-size: clamp(1.5rem,4.5vw,2.15rem); font-weight: 600; color: var(--white); margin: 0; line-height: 1.1; }
+.dossier-top .d-meta { font-size: .8rem; letter-spacing: .08em; color: var(--lilac-dim); }
+.dossier-top .d-pair { font-size: .7rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--lilac); border: 1px solid rgba(214,191,234,.28);
+  padding: .22rem .7rem; border-radius: var(--r-pill); justify-self: start; margin-top: .3rem; }
+.pull { font-family: var(--f-serif); font-style: italic; font-size: clamp(1.15rem,3.6vw,1.6rem);
+  line-height: 1.4; color: var(--white); margin: 0;
+  border-inline-start: 2px solid var(--magenta); padding-inline-start: 1.1rem; }
 
-.sig-ar {
-  font-family: var(--f-ar); direction: rtl; font-weight: 600; white-space: nowrap;
-  font-size: clamp(1.6rem, 6.5vw, 3.1rem); line-height: 1.45;
-  color: rgba(205,179,230,.5);
-  transform: translateZ(-70px);
-  text-shadow: 0 0 44px rgba(167,38,208,.55);
-  animation: sigArIn 1000ms var(--ease) both;
-}
-@keyframes sigArIn {
-  0%   { opacity: 0; transform: translateZ(-70px) translateY(-18px); }
-  100% { opacity: 1; transform: translateZ(-70px) translateY(0); }
-}
-.sig-en { display: flex; align-items: baseline; transform-style: preserve-3d; }
-.sig-en .s-l {
-  font-family: var(--f-serif); font-weight: 700; color: var(--white);
-  font-size: clamp(1.75rem, 7vw, 3.9rem); line-height: 1;
-  transform-style: preserve-3d;
-  text-shadow:
-    1px 1px 0 #b444da, 2px 2px 0 #a93bd2, 3px 3px 0 #9e32ca,
-    4px 4px 0 #9329c2, 5px 5px 0 #8820ba, 6px 6px 0 #7d18b2,
-    7px 7px 0 #7211aa, 8px 8px 0 #680ba4, 9px 9px 0 #650fd0,
-    14px 18px 30px rgba(0,0,0,.62);
-  animation: sigIn 920ms var(--ease) both;
-  animation-delay: calc(var(--i) * 45ms);
-}
-.sig-en .sp { width: .34em; flex: none; }
-@keyframes sigIn {
-  0%   { opacity: 0; transform: translate3d(0, 30px, -90px) rotateX(52deg); }
-  100% { opacity: 1; transform: translate3d(0,0,0) rotateX(0); }
-}
-
-.sig-rule { width: 4.5rem; height: 1px; background: var(--grad-h); transform: translateZ(30px); opacity: .9; }
-.sig-role {
-  font-size: .78rem; font-weight: 600; letter-spacing: .3em; text-transform: uppercase;
-  color: var(--lilac); transform: translateZ(48px);
-}
-.sig-role em { color: var(--magenta); font-style: normal; margin: 0 .3em; }
-.sig-role-ar {
-  font-family: var(--f-ar); direction: rtl; font-size: .95rem;
-  color: rgba(205,179,230,.82); transform: translateZ(48px);
-}
-
-.col-seal { margin: 0; font-size: 1.08rem; color: rgba(205,179,230,.9); }
-.col-seal-en { margin: 0; font-size: .82rem; color: var(--lilac-dim); font-style: italic; }
-
-@media (max-width: 560px) {
-  .sig-role { letter-spacing: .2em; font-size: .7rem; }
+.credit {
+  margin: 2.5rem 0 0; padding-top: 1.5rem; border-top: var(--hair);
+  text-align: center; font-size: .8rem; font-weight: 400; letter-spacing: .1em;
+  color: var(--lilac-dim);
 }
 
 /* ═══════════ THE HALL MARK — logo ringed by your marks ═══════════ */
@@ -811,11 +715,8 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 .station.current .dot { transform: scale(1.28); border-color: var(--white); }
 .station .s-en { font-family: var(--f-serif); font-size: .95rem; font-weight: 600; color: rgba(214,191,234,.6); margin-top: .25rem; }
 .station.reached .s-en { color: var(--white); }
-.station .s-ar { font-family: var(--f-ar); direction: rtl; font-size: .8rem; color: var(--lilac-dim); }
-.station.reached .s-ar { color: var(--lilac); }
 .station .s-n { font-size: .66rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--lilac-dim); }
 @media (max-width: 620px) {
-  .station .s-ar { display: none; }
   .station .s-en { font-size: .78rem; }
 }
 
@@ -845,38 +746,13 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 <div class="aura" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i></div>
 <div class="dotfield" aria-hidden="true"></div>
 
-<nav id="spine" class="away" aria-label="Where you are">
-  <span class="act" data-act="1"><span class="a-n">I</span><span class="a-bar"><i></i></span><span class="a-lab">The Threshold</span><span class="a-ar">العَتَبة</span></span>
-  <span class="act" data-act="2"><span class="a-n">II</span><span class="a-bar"><i></i></span><span class="a-lab">The Method</span><span class="a-ar">الطَّريقة</span></span>
-  <span class="act" data-act="3"><span class="a-n">III</span><span class="a-bar"><i></i></span><span class="a-lab">The Trials</span><span class="a-ar">التَّجارِب</span></span>
-  <span class="act" data-act="4"><span class="a-n">IV</span><span class="a-bar"><i></i></span><span class="a-lab">The Colophon</span><span class="a-ar">الخاتِمة</span></span>
+<nav id="spine" aria-label="Where you are">
+  <span class="act" data-act="1"><span class="a-n">I</span><span class="a-bar"><i></i></span><span class="a-lab">The Threshold</span></span>
+  <span class="act" data-act="2"><span class="a-n">II</span><span class="a-bar"><i></i></span><span class="a-lab">The Method</span></span>
+  <span class="act" data-act="3"><span class="a-n">III</span><span class="a-bar"><i></i></span><span class="a-lab">The Trials</span></span>
 </nav>
 
 <main id="app">
-
-  <!-- ══════════════ THE OVERTURE ══════════════ -->
-  <section id="overture" class="view">
-    <div class="ov-corner"><button class="link" id="ov-skip">Skip the opening →</button></div>
-    <div class="ov-stage">
-      <p class="tracked mag" id="ov-eyebrow">Someone in Kuwait has just finished a job for you</p>
-      <p class="ov-ar" id="ov-ar"></p>
-
-      <div class="ov-band">
-        <div class="ov-line" id="ov-lit"><span class="ov-strike" id="ov-strike"></span></div>
-        <p class="ov-cap bad" id="ov-cap-bad">↑ this is what the words say</p>
-      </div>
-
-      <div class="ov-band">
-        <div class="ov-line ov-nat" id="ov-nat"></div>
-        <p class="ov-cap good" id="ov-cap-good">↑ this is what she said</p>
-      </div>
-
-      <p class="ov-close" id="ov-close"></p>
-      <div class="ov-go" id="ov-go">
-        <button id="ov-enter">Open the window</button>
-      </div>
-    </div>
-  </section>
 
   <!-- ══════════════ THE GATE ══════════════ -->
   <section id="gate" class="view">
@@ -886,24 +762,14 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
           <span class="logo-face" role="img" aria-label="Guild · Professional Club"></span>
         </div>
         <p class="wm-sub">The Translators' Guild</p>
-        <p class="wm-sub-ar">نافِذة المُتَرجِم</p>
       </div>
     </div>
-
-    <p class="thesis">
-      "Guild" does not become <span class="ai strike">نِقابة</span> — a syndicate is not a guild, and this is not a syndicate.
-      In Arabic it is <span class="ai" style="color:var(--white)">نافِذة المُتَرجِم</span>: the window a translator works at,
-      one language on this side of the glass and another on that side.
-      The two names are not translations of each other, and that is the point.
-      <span class="pop">Meaning first, words second.</span>
-    </p>
 
     <div class="panel door">
       <div class="step" id="step-seal">
         <div class="step-head">
           <span class="step-chip">1</span>
           <span class="sh-en">The Member's Seal</span>
-          <span class="sh-ar">خاتَم العُضْوِيّة</span>
         </div>
         <div class="field">
           <label for="email">Guild address</label>
@@ -919,8 +785,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
           <button class="link" id="hint-btn">Forgotten the passphrase?</button>
         </div>
         <p class="note" id="hint-text" hidden>
-          <b>Riddle:</b> the Arabic word for <i>wisdom</i>, written in Latin letters —
-          <span class="art" style="font-size:1.1rem"><b style="color:var(--white)">الحِكمة</b></span>
+          <b>Riddle:</b> it is the Arabic word for <i>wisdom</i>, written in Latin letters.
         </p>
       </div>
 
@@ -928,7 +793,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <div class="step-head">
           <span class="step-chip">2</span>
           <span class="sh-en">The Tongue-Gate</span>
-          <span class="sh-ar">بابُ اللِّسان</span>
         </div>
         <div class="challenge">
           <p class="tracked mag">Render this into natural English to enter</p>
@@ -956,22 +820,26 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <span class="face" role="img" aria-label="Guild"></span>
       </div>
       <div class="hall-id">
-        <span class="h-ar">نافِذة المُتَرجِم</span>
         <h1>The Guild Hall</h1>
-        <p class="who" id="hall-who"></p>
       </div>
       <div class="rank-box">
         <span class="r-n">Rank</span>
         <p class="r-en" id="rank-en">Apprentice</p>
-        <p class="r-ar" id="rank-ar">مُبتَدِئ</p>
         <span class="r-n" id="rank-n">0 of 9 marks</span>
       </div>
     </div>
 
     <div>
+      <div class="strip-head">
+        <h2>The Lineage</h2>
+        <span class="note">Translators who changed what the world could read &mdash; tap any one</span>
+      </div>
+      <div class="strip" id="strip"></div>
+    </div>
+
+    <div>
       <div class="sec-head">
         <h2>The Method</h2>
-        <span class="s-ar">الطَّريقة</span>
         <span class="note" style="margin-inline-start:auto">Read these first — the trials assume them</span>
       </div>
       <div class="ledger" id="sec-method"></div>
@@ -980,7 +848,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div>
       <div class="sec-head">
         <h2>The Trials</h2>
-        <span class="s-ar">التَّجارِب</span>
         <span class="note" style="margin-inline-start:auto">Scored · each one earns a guild mark</span>
       </div>
       <div class="ledger" id="sec-trials"></div>
@@ -989,7 +856,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div>
       <div class="sec-head">
         <h2>The Chambers</h2>
-        <span class="s-ar">الحُجُرات</span>
         <span class="note" style="margin-inline-start:auto">Free to wander · no score</span>
       </div>
       <div class="ledger" id="sec-chambers"></div>
@@ -998,51 +864,18 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div class="panel climb" id="climb"></div>
 
     <div class="hall-foot">
-      <button class="ghost" id="colo-btn">Read the colophon ↓</button>
-      <button class="link" id="replay-btn">Replay the opening</button>
-      <button class="link" id="reset-btn">Melt the marks</button>
+      <button class="ghost" id="reset-btn">Melt the marks</button>
       <p class="note" id="store-note" style="flex:1 1 20rem"></p>
     </div>
 
-    <!-- ══════════ THE COLOPHON ══════════ -->
-    <footer class="colophon">
-      <div class="col-head">
-        <span class="col-ar">الخاتِمة</span>
-        <h2>The Colophon</h2>
-      </div>
-      <p class="col-lede">
-        At the end of an Arabic manuscript the scribe signs the last page — <span class="art">نَسَخَه</span>,
-        <i>copied by</i>. And a name is the one thing translation never touches:
-        proper nouns change <b>alphabet</b>, never meaning.
-        So this one appears twice, and says the same thing both times.
-      </p>
+    <p class="credit">Shaikha Alkhaldi</p>
 
-      <div class="signet" id="signet">
-        <div class="signet-scene" id="signet-scene">
-          <div class="sig-stack">
-            <span class="sig-ar">شيخة الخالدي</span>
-            <span class="sig-en" id="sig-en"></span>
-          </div>
-          <span class="sig-rule"></span>
-          <span class="sig-role">Creator <em>|</em> Developer</span>
-          <span class="sig-role-ar">التَّصميم والبَرمَجة</span>
-        </div>
-      </div>
-
-      <p class="col-seal art">
-        نُسِخَت هذه النَّافِذة بيَدِها في الكُوَيت، سنة ١٤٤٨ﻫ / ٢٠٢٦م
-      </p>
-      <p class="col-seal-en">
-        This window was copied by her own hand, in Kuwait, in the year 1448 <span class="soft">/</span> 2026
-      </p>
-    </footer>
   </section>
 
   <!-- ══════════════ A TRIAL OR GUIDE ══════════════ -->
   <section id="trial" class="view" hidden>
     <div class="trial-head">
       <div>
-        <span class="t-ar" id="trial-ar"></span>
         <h2 id="trial-en"></h2>
       </div>
       <div class="t-right">
@@ -1111,6 +944,90 @@ const GATE_PHRASES = [
          "good work","great work","thanks for everything","appreciate it","you work hard",
          "thank you for everything","keep up the good work","thanks for all your work","much appreciated"] }
 ];
+
+/* ═══════════════════════════════════════════════════════════
+   THE LINEAGE
+   ═══════════════════════════════════════════════════════════ */
+function runLineage(startAt) {
+  let cur = (typeof startAt === "number") ? startAt : null;
+  setCount("A guide \u00b7 " + LINEAGE.length + " translators");
+
+  function render() {
+    stage.innerHTML = "";
+    setDots(LINEAGE.length, cur === null ? 0 : cur + 1, cur === null ? -1 : cur);
+
+    stage.appendChild(el("p", "lede",
+      "Nobody here invented a language. They moved things between two of them, and the world on the " +
+      "other side was different afterwards: medicine survived, scripture was read at home, a continent " +
+      "got its science back, a novel found more readers in translation than in the original. " +
+      "<b>Four from the Arabic tradition, four from the Western one</b> &mdash; and they hand things to " +
+      "each other across the centuries more than any of them knew."));
+
+    if (cur !== null) {
+      const f = LINEAGE[cur];
+      const card = el("div", "card");
+      const top = el("div", "dossier-top");
+      top.innerHTML =
+        '<span class="medal lg"><span>' + f.mono + '</span></span>' +
+        '<span class="d-txt"><h3>' + f.name + '</h3>' +
+          '<span class="d-meta">' + f.life + ' \u00b7 ' + f.place + '</span>' +
+          '<span class="d-pair">' + f.pair + '</span></span>';
+      card.appendChild(top);
+      card.appendChild(el("p", "pull", f.line));
+      const blocks = el("div", "blocks");
+      blocks.appendChild(el("div", "block demand", '<span class="b-lab">What they did</span><p>' + f.what + '</p>'));
+      blocks.appendChild(el("div", "block", '<span class="b-lab">Why it mattered</span><p>' + f.why + '</p>'));
+      card.appendChild(blocks);
+      stage.appendChild(card);
+
+      const nav = el("div", "pager");
+      const foot = el("div", "foot");
+      if (cur > 0) {
+        const prev = el("button", "ghost", "← " + LINEAGE[cur - 1].name);
+        prev.addEventListener("click", () => { cur--; render(); });
+        foot.appendChild(prev);
+      }
+      if (cur < LINEAGE.length - 1) {
+        const next = el("button", null, LINEAGE[cur + 1].name + " →");
+        next.addEventListener("click", () => { cur++; render(); });
+        foot.appendChild(next);
+      }
+      nav.appendChild(foot);
+      nav.appendChild(el("p", "note", (cur + 1) + " of " + LINEAGE.length));
+      stage.appendChild(nav);
+    }
+
+    const grid = el("div", "figures");
+    LINEAGE.forEach((f, k) => {
+      const b = el("button", "figure" + (k === cur ? " on" : ""));
+      b.style.animationDelay = (k * 45) + "ms";
+      b.innerHTML =
+        '<span class="medal"><span>' + f.mono + '</span></span>' +
+        '<span class="f-txt">' +
+          '<span class="f-name">' + f.name + '</span>' +
+          '<span class="f-meta">' + f.life + '</span>' +
+          '<span class="f-pair">' + f.pair + '</span>' +
+        '</span>';
+      b.addEventListener("click", () => {
+        cur = k; render();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+      grid.appendChild(b);
+    });
+    stage.appendChild(grid);
+
+    const note = el("div", "verdict");
+    note.appendChild(el("span", "vh", "On the medallions"));
+    note.appendChild(el("p", "vb",
+      "These are monograms, not portraits. No photograph or painting of these people is mine to " +
+      "reproduce, and inventing a face and presenting it as a likeness would be a small lie inside a " +
+      "project about honesty between languages. The initials, the dates and the language pairs are true."));
+    stage.appendChild(note);
+
+    stage.appendChild(backFoot());
+  }
+  render();
+}
 
 /* ═══════════════════════════════════════════════════════════
    GUIDE 1 · THE SEVEN PROCEDURES
@@ -1780,8 +1697,66 @@ const ROOTS = [
     ] }
 ];
 
+/* ═══════════════════════════════════════════════════════════
+   THE LINEAGE — translators who changed the world.
+   Medallions, not portraits: no likeness of these people is
+   mine to reproduce, and I will not invent one.
+   ═══════════════════════════════════════════════════════════ */
+const LINEAGE = [
+  { id: "hunayn", mono: "H", name: "Hunayn ibn Ishaq", life: "809 - 873", place: "Baghdad",
+    pair: "Greek & Syriac to Arabic",
+    line: "Sense before words - eleven centuries before anyone gave it that name.",
+    what: "He ran the translation bureau of the House of Wisdom and turned the whole Greek medical corpus - Galen, Hippocrates, Dioscorides - into Arabic.",
+    why: "He refused to work word for word. He hunted down every manuscript of a text he could find, collated them into one reliable original, and only then carried the <b>sense</b> across. That is still the method. His Galen kept medicine alive for seven hundred years, and when Europe wanted Greek medicine back it had to translate his Arabic to get it." },
+
+  { id: "muqaffa", mono: "IM", name: "Ibn al-Muqaffa", life: "c. 724 - 759", place: "Basra",
+    pair: "Middle Persian to Arabic",
+    line: "One translation seeded a thousand years of European storytelling.",
+    what: "He rendered the Pahlavi Kalila wa-Dimna - the Indian animal fables - into Arabic prose so good that it became the original everyone worked from.",
+    why: "From his Arabic the book passed into Hebrew, Latin, Castilian and eventually every European language; La Fontaine's fables descend from it. He did not preserve a text, he <b>relaunched</b> one - the most travelled book in the world moves through his sentences." },
+
+  { id: "jahiz", mono: "AJ", name: "Al-Jahiz", life: "c. 776 - 869", place: "Basra & Baghdad",
+    pair: "wrote the first theory",
+    line: "The first person to say out loud that poetry does not translate.",
+    what: "In the Book of Animals he set down the earliest serious argument about what translation cannot do.",
+    why: "He held that a translator must command both languages equally or he will damage both - and that poetry <b>cannot</b> cross at all, because its metre, its sound and its rhetorical shape <i>are</i> its meaning, so all that survives is information. Every argument about untranslatability since is a footnote to him." },
+
+  { id: "jayyusi", mono: "SJ", name: "Salma Khadra Jayyusi", life: "1926 - 2023", place: "Palestine & the US",
+    pair: "Arabic to English",
+    line: "She built the shelf that modern Arabic literature stands on in English.",
+    what: "A poet and scholar who founded PROTA, the project that translated modern Arabic literature into English at scale - more than thirty volumes of it.",
+    why: "Before her an English reader could barely find modern Arabic poetry or fiction; after her there was a library. She also proved something about the job: she commissioned, edited and argued the work into existence, because <b>translation at that scale is institution-building</b>, not only writing." },
+
+  { id: "jerome", mono: "J", name: "Jerome", life: "c. 347 - 420", place: "Bethlehem",
+    pair: "Hebrew & Greek to Latin",
+    line: "Not word for word, but sense for sense.",
+    what: "He produced the Vulgate, the Latin Bible that Western Europe read for more than a thousand years.",
+    why: "In his letter to Pammachius he wrote that he translates <i>not word for word but sense for sense</i> - the sentence the whole profession still quotes at itself. He also insisted on going back to the Hebrew rather than working from the Greek. He is the patron saint of translators, and his feast day is International Translation Day." },
+
+  { id: "tyndale", mono: "T", name: "William Tyndale", life: "c. 1494 - 1536", place: "Antwerp",
+    pair: "Greek & Hebrew to English",
+    line: "He was executed for it, and then everyone quoted him.",
+    what: "He translated the New Testament into English from the Greek, printed it abroad, and was strangled and burned for doing it.",
+    why: "Roughly four fifths of the King James Version is his wording, untouched. <i>The salt of the earth</i>, <i>the powers that be</i>, <i>a law unto themselves</i> - his phrases. He did not only translate into English; he <b>shaped the English</b> the rest of us inherited." },
+
+  { id: "gerard", mono: "G", name: "Gerard of Cremona", life: "1114 - 1187", place: "Toledo",
+    pair: "Arabic to Latin",
+    line: "Europe got its science back in translation, out of Arabic.",
+    what: "He translated some eighty works from Arabic into Latin, among them Ptolemy's Almagest and Avicenna's Canon of Medicine.",
+    why: "Greek science returned to Europe <b>through Arabic</b>, and largely through him. The Canon remained the standard European medical textbook for five hundred years. He is the return half of Hunayn's journey - Greek to Arabic to Latin, three centuries and two thousand kilometres apart." },
+
+  { id: "rabassa", mono: "R", name: "Gregory Rabassa", life: "1922 - 2016", place: "New York",
+    pair: "Spanish & Portuguese to English",
+    line: "The author said the translation beat the original.",
+    what: "He translated One Hundred Years of Solitude, Hopscotch, and much of the Latin American boom into English.",
+    why: "Garcia Marquez waited three years for him, then said the English was <b>better than the Spanish</b>. Rabassa's account of how was disarmingly plain: he did not study the book first, he read it as he translated, because he wanted the English to move at the speed of a reader meeting it. Functional equivalence, practised at the top of the craft." }
+];
+
 /* ═══════════ REGISTRY ═══════════ */
 const ITEMS = [
+  { id: "lineage", ar: "", en: "The Lineage", kind: "guide", section: "method",
+    blurb: "Eight translators across eleven centuries whose work changed what the world could read - four from the Arabic tradition, four from the Western one.",
+    run: runLineage },
   { id: "procedures", ar: "الإجراءات السَّبعة", en: "The Seven Procedures", kind: "guide", section: "method",
     blurb: "The seven things a translator can actually do to a sentence — borrowing, calque, literal, transposition, modulation, equivalence, adaptation — each worked in Arabic and English.",
     run: runProcedures },
@@ -1836,78 +1811,151 @@ function grant(id) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   THE BACKEND
-   A real server-side store, not browser storage: one document
-   per member at members/<slug>, read and written through the
-   artifact's db capability. Progress follows the account across
-   devices and survives a cleared browser. If db is unavailable
-   for this view, everything falls back to localStorage and the
-   page says so rather than pretending.
+   THE BACKEND — three tiers, the best available one wins.
+
+   1. SUPABASE (Postgres).  The real backend. Rows in a table,
+      reachable from any deployed copy of this page.
+   2. THE ARTIFACT STORE.  Used when the page runs inside a
+      claude.ai artifact, where outbound requests are blocked by
+      the sandbox, so Supabase cannot be reached from there.
+   3. localStorage.  Last resort, so the page never breaks.
+
+   Whichever tier is live, the page says so plainly rather than
+   implying progress is saved when it is not.
    ═══════════════════════════════════════════════════════════ */
-let dbDoc = null, dbUnsub = null, dbState = "local";
+const SUPABASE = {
+  url: "https://bldqausimrsusdzfbubk.supabase.co",
+  key: "sb_publishable_kyHEHTc00jWi5wN2nyiD0w_NtLbVHy_"
+};
+
+let backend = "local", dbDoc = null, dbUnsub = null;
 
 function slug(email) {
   return String(email || "").toLowerCase()
     .replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 180) || "member";
 }
 
+/* the guild address travels as a header; the row-level security policy on
+   the table compares it to the row key, so a request only ever reaches
+   its own row */
+function sbHeaders(member) {
+  return {
+    "apikey": SUPABASE.key,
+    "Authorization": "Bearer " + SUPABASE.key,
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+    "x-guild-member": member
+  };
+}
+
+async function sbRead(member) {
+  const q = "?select=marks,marks_earned,rank,seen_rank,finale_seen&member=eq." + encodeURIComponent(member);
+  const r = await fetch(SUPABASE.url + "/rest/v1/members" + q, { headers: sbHeaders(member) });
+  if (!r.ok) throw new Error("read " + r.status);
+  const rows = await r.json();
+  return (rows && rows[0]) || null;
+}
+
+async function sbWrite(member) {
+  const r = await fetch(SUPABASE.url + "/rest/v1/members", {
+    method: "POST",
+    headers: Object.assign(sbHeaders(member), { "Prefer": "resolution=merge-duplicates,return=minimal" }),
+    body: JSON.stringify({
+      member: member,
+      marks: state.marks,
+      marks_earned: markCount(),
+      rank: currentRank().en,
+      seen_rank: state.seenRank || null,
+      finale_seen: !!state.finale
+    })
+  });
+  if (!r.ok) throw new Error("write " + r.status);
+}
+
+/* marks only ever union, so nothing earned on one device is lost on another */
+function absorb(row) {
+  if (!row) return false;
+  const before = markCount();
+  if (row.marks && typeof row.marks === "object") {
+    Object.keys(row.marks).forEach(k => { if (row.marks[k]) state.marks[k] = true; });
+  }
+  if (typeof row.seen_rank === "string" && row.seen_rank && !state.seenRank) state.seenRank = row.seen_rank;
+  if (row.finale_seen) state.finale = true;
+  save();
+  return markCount() !== before;
+}
+
+function fromGuildDoc(d) {
+  d = d || {};
+  return { marks: d.marks, seen_rank: d.seenRank, finale_seen: d.finale };
+}
+
 async function connectBackend(email) {
-  if (!window.claude || typeof window.claude.use !== "function") { paintStore(); return; }
-  let db = null;
-  try { db = await window.claude.use("db"); } catch (e) { db = null; }
-  if (!db) { paintStore(); return; }
+  const member = String(email || "").trim().toLowerCase();
+  state.member = member; save();
 
+  // tier 1 — Supabase
   try {
-    dbDoc = db.doc("members/" + slug(email));
-    const snap = await dbDoc.get();
-    if (snap.exists) {
-      const d = snap.data() || {};
-      if (d.marks && typeof d.marks === "object") {
-        // union: nothing earned on any device is ever lost
-        Object.keys(d.marks).forEach(k => { if (d.marks[k]) state.marks[k] = true; });
-      }
-      if (typeof d.seenRank === "string" && !state.seenRank) state.seenRank = d.seenRank;
-      save();
-    }
-    dbState = "live";
-    await pushBackend();
-
-    dbUnsub = dbDoc.onSnapshot(s => {
-      if (!s.exists) return;
-      const d = s.data() || {};
-      if (!d.marks) return;
-      const before = markCount();
-      Object.keys(d.marks).forEach(k => { if (d.marks[k]) state.marks[k] = true; });
-      if (markCount() !== before) { save(); renderHall(); }
-    }, () => { dbState = "local"; paintStore(); });
+    const row = await sbRead(member);
+    backend = "supabase";
+    absorb(row);
+    await sbWrite(member);
   } catch (e) {
-    dbState = "local"; dbDoc = null;
+    // tier 2 — the artifact store
+    try {
+      const db = (window.claude && typeof window.claude.use === "function")
+        ? await window.claude.use("db") : null;
+      if (db) {
+        dbDoc = db.doc("members/" + slug(member));
+        const snap = await dbDoc.get();
+        if (snap.exists) absorb(fromGuildDoc(snap.data()));
+        backend = "guild";
+        await pushBackend();
+        dbUnsub = dbDoc.onSnapshot(s => {
+          if (s.exists && absorb(fromGuildDoc(s.data()))) renderHall();
+        }, () => { backend = "local"; paintStore(); });
+      }
+    } catch (e2) { /* stay local */ }
   }
   paintStore();
   if (!views.hall.hidden) renderHall();
 }
 
 async function pushBackend() {
-  if (!dbDoc) return;
-  try {
-    await dbDoc.set({
-      member: state.member || "",
-      marks: state.marks,
-      rank: currentRank().en,
-      rankAr: currentRank().ar,
-      seenRank: state.seenRank || "",
-      marksEarned: markCount(),
-      updatedAt: new Date().toISOString()
-    });
-  } catch (e) { /* keep going on local state */ }
+  const member = state.member || GUILD.member;
+  if (backend === "supabase") {
+    try { await sbWrite(member); } catch (e) { /* keep the local copy */ }
+    return;
+  }
+  if (backend === "guild" && dbDoc) {
+    try {
+      await dbDoc.set({
+        member: member, marks: state.marks, marksEarned: markCount(),
+        rank: currentRank().en, seenRank: state.seenRank || "",
+        finale: !!state.finale, updatedAt: new Date().toISOString()
+      });
+    } catch (e) {}
+  }
 }
+
+/* coming back to the tab re-reads the row, so a second device shows up */
+document.addEventListener("visibilitychange", async () => {
+  if (document.visibilityState !== "visible" || backend !== "supabase" || !state.member) return;
+  try { if (absorb(await sbRead(state.member))) renderHall(); } catch (e) {}
+});
+
+const BACKENDS = {
+  supabase: { label: "Supabase · live", live: true,
+    note: "<b>Backend live — Supabase.</b> Each mark is written to a Postgres row keyed to your guild address, so the climb follows you to any device and survives a cleared browser." },
+  guild: { label: "Artifact store · live", live: true,
+    note: "<b>Backend live — artifact store.</b> An artifact sandbox blocks outbound requests, so this copy uses the built-in store rather than Supabase. Still server-side, still cross-device." },
+  local: { label: "Local only · this browser", live: false,
+    note: "<b>Local only.</b> No backend is reachable from this view, so progress is kept in this browser and nowhere else." }
+};
 
 function paintStore() {
   const n = document.getElementById("store-note");
-  if (!n) return;
-  n.innerHTML = dbState === "live"
-    ? "<b>Backend connected.</b> Your marks are stored on the server against your guild address, so the climb follows you to any device."
-    : "<b>Local only.</b> The server store isn't available in this view, so progress is kept in this browser.";
+  if (n) n.innerHTML = BACKENDS[backend].note;
 }
 
 /* ═══════════ MATCHING ═══════════ */
@@ -1944,26 +1992,13 @@ function xferBlock(x) {
   return el("div", "xfer", h);
 }
 
-/* ═══════════════════════════════════════════════════════════
-   THE OVERTURE — the argument, made before it is explained
-   ═══════════════════════════════════════════════════════════ */
-const OVERTURE = {
-  ar: "تسلم إيدك على هذا الشغل.",
-  literal: ["May", "your", "hand", "be", "safe", "upon", "this", "work."],
-  natural: ["You", "did", "an", "amazing", "job", "—", "thank", "you."],
-  close: "Every door in this house is that difference.",
-  accept: ["amazing job", "great job", "good job", "well done", "you did", "thank you",
-           "lifesaver", "brilliant", "incredible", "wonderful job", "nice job", "appreciate"]
-};
-
 /* ═══════════ THE CAMERA / ROUTER ═══════════ */
 const views = {
-  overture: document.getElementById("overture"),
   gate:     document.getElementById("gate"),
   hall:     document.getElementById("hall"),
   trial:    document.getElementById("trial")
 };
-const DEPTH = { overture: 0, gate: 1, hall: 2, trial: 3 };
+const DEPTH = { gate: 0, hall: 1, trial: 2 };
 let curView = null;
 
 function show(name) {
@@ -1992,7 +2027,6 @@ function show(name) {
 
   curView = name;
   window.scrollTo({ top: 0 });
-  document.getElementById("spine").classList.toggle("away", name === "overture");
 }
 
 /* ═══════════ THE ACT SPINE ═══════════ */
@@ -2016,105 +2050,6 @@ function setAct(n) {
   }
   window.addEventListener("mousemove", move);
   window.addEventListener("mouseleave", () => { wm.style.transform = ""; });
-})();
-
-/* ═══════════ RUNNING THE OVERTURE ═══════════ */
-let ovTimers = [];
-function ovClear() { ovTimers.forEach(clearTimeout); ovTimers = []; }
-function at(ms, fn) { ovTimers.push(setTimeout(fn, ms)); }
-
-function words(host, list, cls) {
-  list.forEach(w => {
-    const s = el("span", "ov-w" + (cls ? " " + cls : ""), w);
-    host.appendChild(s);
-  });
-  return Array.from(host.querySelectorAll(".ov-w"));
-}
-
-function runOverture() {
-  const arEl = document.getElementById("ov-ar");
-  const litEl = document.getElementById("ov-lit");
-  const natEl = document.getElementById("ov-nat");
-  arEl.textContent = OVERTURE.ar;
-  litEl.querySelectorAll(".ov-w").forEach(n => n.remove());
-  natEl.innerHTML = "";
-  const lit = words(litEl, OVERTURE.literal);
-  const nat = words(natEl, OVERTURE.natural);
-  document.getElementById("ov-close").textContent = OVERTURE.close;
-
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (reduce) {
-    lit.concat(nat).forEach(w => w.classList.add("on"));
-    ["ov-cap-bad", "ov-cap-good", "ov-close", "ov-go"].forEach(id =>
-      document.getElementById(id).classList.add("on"));
-    return;
-  }
-
-  // the machine speaks, word by word
-  lit.forEach((w, i) => at(650 + i * 175, () => w.classList.add("on")));
-  at(650 + lit.length * 175 + 350, () => document.getElementById("ov-cap-bad").classList.add("on"));
-  // and it is wrong
-  at(650 + lit.length * 175 + 1100, () => document.getElementById("ov-strike").classList.add("on"));
-  // the sentence buckles, and stays on screen as the thing to compare against
-  at(650 + lit.length * 175 + 1750, () => {
-    litEl.classList.add("shook");
-    lit.forEach(w => w.classList.add("dead"));
-    const bar = document.getElementById("ov-strike");
-    bar.style.transition = "opacity 600ms ease";
-    bar.style.opacity = "0";
-  });
-  // and a person answers
-  const t0 = 650 + lit.length * 175 + 2650;
-  nat.forEach((w, i) => at(t0 + i * 95, () => w.classList.add("on")));
-  at(t0 + nat.length * 95 + 320, () => document.getElementById("ov-cap-good").classList.add("on"));
-  at(t0 + nat.length * 95 + 1150, () => document.getElementById("ov-close").classList.add("on"));
-  at(t0 + nat.length * 95 + 1700, () => document.getElementById("ov-go").classList.add("on"));
-}
-
-function leaveOverture() {
-  ovClear();
-  setAct(1);
-  show("gate");
-  document.getElementById("email").focus();
-}
-document.getElementById("ov-skip").addEventListener("click", leaveOverture);
-document.getElementById("ov-enter").addEventListener("click", leaveOverture);
-
-/* ═══════════ THE SIGNET — the maker's name, in three dimensions ═══════════ */
-(function signet() {
-  const NAME = "Shaikha Alkhaldi";
-  const target = document.getElementById("sig-en");
-  if (target) {
-    target.innerHTML = NAME.split("").map((ch, i) =>
-      ch === " " ? '<span class="sp"></span>'
-                 : '<span class="s-l" style="--i:' + i + '">' + ch + '</span>'
-    ).join("");
-  }
-  const scene = document.getElementById("signet-scene");
-  const frame = document.getElementById("signet");
-  if (!scene || !frame || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-  function move(e) {
-    const r = frame.getBoundingClientRect();
-    const x = (e.clientX - (r.left + r.width / 2)) / (r.width / 2);
-    const y = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
-    scene.style.transform =
-      "rotateX(" + (-y * 12).toFixed(2) + "deg) rotateY(" + (x * 16).toFixed(2) + "deg)";
-  }
-  frame.addEventListener("mousemove", move);
-  frame.addEventListener("mouseleave", () => { scene.style.transform = ""; });
-  // it turns gently on its own until you touch it
-  let t = 0, idle = true;
-  frame.addEventListener("mouseenter", () => { idle = false; });
-  frame.addEventListener("mouseleave", () => { idle = true; });
-  (function drift() {
-    if (idle) {
-      t += 0.006;
-      scene.style.transform =
-        "rotateX(" + (Math.sin(t * 0.7) * 3.5).toFixed(2) + "deg) rotateY(" + (Math.sin(t) * 9).toFixed(2) + "deg)";
-    }
-    requestAnimationFrame(drift);
-  })();
 })();
 
 /* ═══════════ THE GATE ═══════════ */
@@ -2192,12 +2127,11 @@ function tryTongue() {
 function unlock() {
   const ov = el("div", null,
     '<div class="u-inner"><div class="dots lg"><i></i><i></i><i></i></div>' +
-    '<p class="u-word">The window opens.</p><p class="u-ar">اِفتَحِ النّافِذة</p></div>');
+    '<p class="u-word">The window opens.</p></div>');
   ov.id = "unlock";
   document.body.appendChild(ov);
   connectBackend(state.member || GUILD.member);
   setTimeout(() => {
-    document.getElementById("hall-who").textContent = state.member || GUILD.member;
     renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
     ov.style.transition = "opacity 420ms ease"; ov.style.opacity = "0";
     setTimeout(() => ov.remove(), 440);
@@ -2230,22 +2164,20 @@ function renderClimb() {
       '<div class="station' + (reached ? " reached" : "") + (r.en === rank.en ? " current" : "") + '">' +
         '<span class="dot">✦</span>' +
         '<span class="s-en">' + r.en + '</span>' +
-        '<span class="s-ar">' + r.ar + '</span>' +
         '<span class="s-n">' + r.at + ' marks</span>' +
       '</div>';
   });
 
   document.getElementById("climb").innerHTML =
     '<div class="climb-top">' +
-      '<div class="ct-l"><span class="ct-ar2">السُّلَّم</span><h2>The Climb</h2></div>' +
+      '<div class="ct-l"><h2>The Climb</h2></div>' +
       '<p class="ct-next">' + nextTxt + '</p>' +
     '</div>' +
     '<div class="track"><div class="rail"><i></i></div>' +
       '<div class="stations">' + stations + '</div></div>' +
     '<div class="climb-foot">' +
-      '<span class="beacon' + (dbState === "live" ? " live" : "") + '"><i></i>' +
-        (dbState === "live" ? "Backend live · synced to your address" : "Local only · this browser") +
-      '</span>' +
+      '<span class="beacon' + (BACKENDS[backend].live ? " live" : "") + '"><i></i>' +
+        BACKENDS[backend].label + '</span>' +
       '<p class="note">' + n + ' of ' + TOTAL_MARKS + ' marks · ' +
         Math.round(n / TOTAL_MARKS * 100) + '% of the way to Guildmaster</p>' +
     '</div>';
@@ -2262,7 +2194,6 @@ function levelUp(rank) {
       '<span class="u-logo" aria-hidden="true"></span>' +
       '<p class="u-kicker">New rank</p>' +
       '<p class="u-rank">' + rank.en + '</p>' +
-      '<p class="u-ar">' + rank.ar + '</p>' +
       '<div class="dots lg"><i></i><i></i><i></i></div>' +
     '</div>');
   ov.id = "unlock";
@@ -2291,92 +2222,10 @@ function checkLevelUp() {
   }
 }
 
-/* ═══════════════════════════════════════════════════════════
-   THE FINALE — the opening, handed back to you
-   ═══════════════════════════════════════════════════════════ */
-function esc(s) {
-  return String(s).replace(/[&<>"']/g, c =>
-    ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-}
-
-function toColophon() {
-  renderHall(); show("hall"); setAct(4);
-  setTimeout(() => {
-    const c = document.querySelector(".colophon");
-    if (c) c.scrollIntoView({ behavior: "smooth", block: "start" });
-  }, 760);
-}
-
-function runFinale() {
-  setAct(4);
-  let tries = 0;
-  const ov = el("div");
-  ov.id = "finale";
-  ov.innerHTML =
-    '<div class="fin-stage">' +
-      '<p class="fin-kick">Nine marks · and back to where you began</p>' +
-      '<p class="fin-ar">' + OVERTURE.ar + '</p>' +
-      '<p class="fin-machine">' + OVERTURE.literal.join(" ") + '</p>' +
-      '<p class="fin-ask">A machine said that on your first screen. Now you say it.</p>' +
-      '<div class="fin-form">' +
-        '<div class="field"><label for="fin-in">Your rendering</label>' +
-        '<input id="fin-in" type="text" autocomplete="off" spellcheck="false" placeholder="say what she meant"></div>' +
-        '<p class="msg" id="fin-msg" hidden></p>' +
-        '<div class="foot" style="justify-content:center"><button id="fin-go">Close the gap</button></div>' +
-      '</div>' +
-    '</div>';
-  document.body.appendChild(ov);
-
-  const input = ov.querySelector("#fin-in");
-  const msg = ov.querySelector("#fin-msg");
-  setTimeout(() => input.focus(), 400);
-
-  function close() {
-    ov.style.transition = "opacity 420ms ease";
-    ov.style.opacity = "0";
-    setTimeout(() => ov.remove(), 440);
-  }
-
-  function verdict(v) {
-    const r = RANKS[RANKS.length - 1];
-    ov.querySelector(".fin-stage").innerHTML =
-      '<div class="fin-verdict">' +
-        '<span class="fin-logo" aria-hidden="true"></span>' +
-        '<p class="fin-kick">The house is yours</p>' +
-        '<p class="fin-rank">' + r.en + '</p>' +
-        '<p class="fin-said" style="font-family:var(--f-ar);direction:rtl;font-size:1.15rem;color:var(--lilac)">' + r.ar + '</p>' +
-        '<p class="fin-said">You wrote <b>&ldquo;' + esc(v) + '&rdquo;</b> — and not one word of it appears in the Arabic. ' +
-          'That gap is the whole craft, and you closed it <b>nine times</b> to stand here.</p>' +
-        '<div class="foot" style="justify-content:center">' +
-          '<button id="fin-sign">Sign the colophon ↓</button>' +
-          '<button class="ghost" id="fin-stay">Back to the hall</button>' +
-        '</div>' +
-      '</div>';
-    ov.querySelector("#fin-sign").addEventListener("click", () => { close(); toColophon(); });
-    ov.querySelector("#fin-stay").addEventListener("click", close);
-  }
-
-  function submit() {
-    const v = input.value.trim();
-    tries++;
-    if (!v) {
-      msg.hidden = false; msg.classList.remove("good");
-      msg.textContent = "Say something — anything a person would actually say.";
-      return;
-    }
-    if (loose(v, OVERTURE.accept) || tries >= 2) { verdict(v); return; }
-    msg.hidden = false; msg.classList.remove("good");
-    msg.innerHTML = "Closer. Not the words — the <b>thing she was doing</b>: praising you and thanking you in one breath.";
-  }
-  ov.querySelector("#fin-go").addEventListener("click", submit);
-  input.addEventListener("keydown", e => { if (e.key === "Enter") submit(); });
-}
-
 function renderHall() {
   const n = markCount(), rank = currentRank();
   paintRing(document.getElementById("hall-ring"), n);
   document.getElementById("rank-en").textContent = rank.en;
-  document.getElementById("rank-ar").textContent = rank.ar;
   document.getElementById("rank-n").textContent = n + " of " + TOTAL_MARKS + " marks";
 
   ["method", "trials", "chambers"].forEach(sec => {
@@ -2388,13 +2237,29 @@ function renderHall() {
       const pip = t.kind === "guide" ? "" :
         '<span class="seal-pip' + (state.marks[t.id] ? " earned" : "") + '">✦</span>';
       b.innerHTML =
-        '<span class="cnum">' + String(ITEMS.indexOf(t) + 1).padStart(2, "0") + '</span>' +
-        '<span class="ctitles"><span class="c-ar">' + t.ar + '</span>' +
-        '<span class="c-en">' + t.en + '</span><span class="c-blurb">' + t.blurb + '</span></span>' +
-        '<span class="cstate"><span class="kind ' + t.kind + '">' + t.kind + '</span>' + pip + '</span>';
+        '<span class="c-top">' +
+          '<span class="cnum">' + String(ITEMS.indexOf(t) + 1).padStart(2, "0") + '</span>' +
+          '<span class="c-meta"><span class="kind ' + t.kind + '">' + t.kind + '</span>' + pip + '</span>' +
+        '</span>' +
+        '<span class="ctitles">' +
+          '<span class="c-en">' + t.en + '</span>' +
+          '<span class="c-blurb">' + t.blurb + '</span>' +
+        '</span>';
       b.addEventListener("click", () => openItem(t));
       box.appendChild(b);
     });
+  });
+
+  const strip = document.getElementById("strip");
+  strip.innerHTML = "";
+  LINEAGE.forEach((f, i) => {
+    const b = el("button", "strip-card");
+    b.innerHTML =
+      '<span class="medal"><span>' + f.mono + '</span></span>' +
+      '<span class="s-name">' + f.name + '</span>' +
+      '<span class="s-life">' + f.life + '</span>';
+    b.addEventListener("click", () => openItem(ITEMS[0], i));
+    strip.appendChild(b);
   });
 
   renderClimb();
@@ -2405,49 +2270,35 @@ function renderHall() {
 document.getElementById("reset-btn").addEventListener("click", () => {
   state.marks = {};
   state.seenRank = RANKS[0].en;
+  state.finale = false;
   save(); pushBackend(); renderHall();
 });
 document.getElementById("back-btn").addEventListener("click", () => {
   stopBooth(); renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
 });
-document.getElementById("colo-btn").addEventListener("click", () => {
-  setAct(4);
-  const c = document.querySelector(".colophon");
-  if (c) c.scrollIntoView({ behavior: "smooth", block: "start" });
-});
-document.getElementById("replay-btn").addEventListener("click", () => {
-  ovClear();
-  ["ov-cap-bad", "ov-cap-good", "ov-close", "ov-go"].forEach(id =>
-    document.getElementById(id).classList.remove("on"));
-  document.getElementById("ov-strike").classList.remove("on");
-  document.getElementById("ov-lit").classList.remove("shook");
-  const bar = document.getElementById("ov-strike");
-  bar.style.transition = ""; bar.style.opacity = "";
-  show("overture");
-  runOverture();
-});
 
-/* ═══════════ SHELL ═══════════ */
+/* ═══════════ SHELL HELPERS ═══════════ */
 const stage = document.getElementById("stage");
 let active = null;
 
-function openItem(t) {
+function openItem(t, arg) {
   active = t;
   setAct(t.section === "method" ? 2 : 3);
-  document.getElementById("trial-ar").textContent = t.ar;
   document.getElementById("trial-en").textContent = t.en;
   document.getElementById("trial-count").textContent = "";
   document.getElementById("trial-dots").innerHTML = "";
   stage.innerHTML = "";
   show("trial");
-  t.run();
+  t.run(arg);
 }
 function setCount(txt) { document.getElementById("trial-count").textContent = txt; }
-function setDots(total, done, now) { document.getElementById("trial-dots").innerHTML = total ? dotsRow(total, done, now) : ""; }
+function setDots(total, done, now) {
+  document.getElementById("trial-dots").innerHTML = total ? dotsRow(total, done, now) : "";
+}
 function backFoot() {
   const foot = el("div", "foot");
   const b = el("button", null, "Back to the hall");
-  b.addEventListener("click", () => { renderHall(); show("hall"); });
+  b.addEventListener("click", () => { renderHall(); show("hall"); setAct(markCount() ? 3 : 2); });
   foot.appendChild(b);
   return foot;
 }
@@ -2483,7 +2334,6 @@ function runProcedures() {
     const card = el("div", "card");
     card.appendChild(el("div", "card-top",
       '<span class="num-badge">Procedure ' + p.n + '</span>' +
-      '<span class="ct-ar">' + p.ar + '</span>' +
       '<h3>' + p.en + '</h3>'));
     card.appendChild(el("p", "lede", p.what));
 
@@ -2502,7 +2352,6 @@ function runProcedures() {
     if (cur === PROCEDURES.length - 1) {
       const close = el("div", "verdict");
       close.appendChild(el("span", "vh", PROC_CLOSE.head));
-      close.appendChild(el("p", "vb", '<span class="ar" style="font-size:1.1rem;color:var(--white)">' + PROC_CLOSE.ar + '</span>'));
       close.appendChild(el("p", "vb", PROC_CLOSE.body));
       stage.appendChild(close);
     }
@@ -2560,15 +2409,13 @@ function runTextTypes() {
     const t = TEXT_TYPES[cur];
     const card = el("div", "card");
     card.appendChild(el("div", "card-top",
-      '<span class="ct-ar">' + t.ar + '</span><h3>' + t.en + '</h3>'));
+      '<h3>' + t.en + '</h3>'));
     card.appendChild(el("p", "lede", t.lede));
     card.appendChild(el("p", "lede", t.intro));
-    card.appendChild(el("div", "ar-note",
-      '<span class="an-lab">مُقَدِّمة</span><p>' + t.introAr + '</p>'));
 
     card.appendChild(el("div", "how",
       '<div class="how-head"><h4>How to translate it</h4>' +
-      '<span class="h-ar2">كيف نُترجِمه</span></div>' +
+      '</div>' +
       '<ol>' + t.how.map(x => "<li><span>" + x + "</span></li>").join("") + '</ol>'));
 
     const blocks = el("div", "blocks");
@@ -2596,7 +2443,7 @@ function runTextTypes() {
       left.appendChild(next);
     } else {
       const go = el("button", null, "To the trials →");
-      go.addEventListener("click", () => { renderHall(); show("hall"); });
+      go.addEventListener("click", () => { renderHall(); show("hall"); setAct(3); });
       left.appendChild(go);
     }
     pager.appendChild(left);
@@ -2682,12 +2529,11 @@ function finish(log, total) {
   card.appendChild(el("p", "tracked mag", "The tally"));
   card.appendChild(el("p", "tally", hits + '<small> / ' + total + '</small>'));
 
-  let say, sayAr;
-  if (hits === total) { say = "Not one literal answer. That is the whole craft."; sayAr = "ولا ترجمة حرفيّة واحدة. هذه هي الصِّناعة."; }
-  else if (pass) { say = "The meaning got through. Polish the rest."; sayAr = "وَصَل المعنى. هَذِّب الباقي."; }
-  else { say = "The words got through; the meaning did not."; sayAr = "وَصَلَت الكلمات ولم يَصِل المعنى."; }
+  let say;
+  if (hits === total) say = "Not one literal answer. That is the whole craft.";
+  else if (pass) say = "The meaning got through. Polish the rest.";
+  else say = "The words got through; the meaning did not.";
   card.appendChild(el("p", "say", say));
-  card.appendChild(el("p", "say-ar", sayAr));
 
   if (pass) card.appendChild(el("p", "earned", fresh ? "✦ Guild mark earned" : "✦ Mark already held"));
   else card.appendChild(el("p", "note", need + " of " + total + " earns the mark. Run it again."));
@@ -2703,10 +2549,35 @@ function finish(log, total) {
   const again = el("button", "ghost", "Run it again");
   again.addEventListener("click", () => openItem(active));
   const back = el("button", null, "Back to the hall");
-  back.addEventListener("click", () => { renderHall(); show("hall"); });
+  back.addEventListener("click", () => { renderHall(); show("hall"); setAct(markCount() ? 3 : 2); });
   foot.appendChild(again); foot.appendChild(back);
   card.appendChild(foot);
   stage.appendChild(card);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THE FINALE — the opening, handed back to you
+   ═══════════════════════════════════════════════════════════ */
+function runFinale() {
+  const r = RANKS[RANKS.length - 1];
+  const ov = el("div");
+  ov.id = "finale";
+  ov.innerHTML =
+    '<div class="fin-stage"><div class="fin-verdict">' +
+      '<span class="fin-logo" aria-hidden="true"></span>' +
+      '<p class="fin-kick">Nine marks · the house is yours</p>' +
+      '<p class="fin-rank">' + r.en + '</p>' +
+      '<p class="fin-said">Every trial passed, every chamber walked. Nine times you took the ' +
+        '<b>natural equivalent</b> over the literal one — which is the only thing the craft ever asks.</p>' +
+      '<div class="foot" style="justify-content:center">' +
+        '<button id="fin-close">Back to the hall</button></div>' +
+    '</div></div>';
+  document.body.appendChild(ov);
+  ov.querySelector("#fin-close").addEventListener("click", () => {
+    ov.style.transition = "opacity 420ms ease";
+    ov.style.opacity = "0";
+    setTimeout(() => ov.remove(), 440);
+  });
 }
 
 /* ═══════════ SUBTITLE SQUEEZE ═══════════ */
@@ -2879,7 +2750,6 @@ function runBooth() {
     sc.appendChild(el("p", "say", pass
       ? "You kept up. That is the whole job of the booth."
       : "The booth waits for nobody. Six through earns the mark."));
-    sc.appendChild(el("p", "say-ar", pass ? "لَحِقتَ بالكلام." : "لا تنتظر المَقصورة أحداً."));
     if (pass) sc.appendChild(el("p", "earned", fresh ? "✦ Guild mark earned" : "✦ Mark already held"));
     else sc.appendChild(el("p", "note", hits + " through · " + NEED + " needed."));
 
@@ -3026,15 +2896,7 @@ load();
 paintGatePhrase();
 setAct(1);
 
-let overtureSeen = false;
-try { overtureSeen = sessionStorage.getItem("nafitha-overture") === "1"; } catch (e) {}
-if (overtureSeen) {
-  show("gate");
-} else {
-  try { sessionStorage.setItem("nafitha-overture", "1"); } catch (e) {}
-  show("overture");
-  runOverture();
-}
+show("gate");
 </script>
 
 </body>
