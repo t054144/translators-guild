@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Vessel 001 datasheet cut - the dot matrix as the only interface, with a live engraving machine and a thermal cooling curve.">
+<meta name="author" content="Shaikha Alkhaldi">
+<style>:root{color-scheme:dark}html,body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Moudhi's Vessel 001</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap">
+
+<!--
+   ___________
+  |  .-----.  |   VESSEL 001
+  |  |     |  |   CODED ISSUE  ·  473 ml
+  |  | ::: |  |   13 x 25 dot field
+  |  | ::: |  |   [ MOUDHI ]
+  |  |_____|  |
+  |___________|   hello, view-source.
+-->
+
+<style>
+/* ══════════════════════════════════════════════════════════════
+   VESSEL 001 — a single committed visual world: the CODED lab
+   at 11pm. Navy matte body, white silkscreen ink, one warm
+   accent reserved strictly for heat and live state.
+   ══════════════════════════════════════════════════════════════ */
+
+:root {
+  --void:    #0b1020;
+  --panel:   #111a2e;
+  --panel-2: #0e1728;
+  --paper:   #e8ecf5;
+  --steel:   #93a6c9;
+  --muted:   #64749a;
+  --amber:   #f2a03d;
+  --ice:     #7fd4e6;
+  --line:    rgba(147,166,201,.15);
+  --line-lit:rgba(147,166,201,.30);
+
+  --mug-a: #0c1322;
+  --mug-b: #1c2a4c;
+  --mug-c: #25355e;
+  --mug-d: #1a2646;
+  --mug-e: #0d1526;
+
+  --f-display: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "IBM Plex Sans", system-ui, -apple-system, sans-serif;
+  --f-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --dot: 6px;
+  --cell: 9px;
+  --gut: clamp(20px, 5vw, 56px);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--void);
+  color: var(--paper);
+  font-family: var(--f-body);
+  font-weight: 300;
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* one faint ambient wash — the lab's overhead strip lights */
+body::before {
+  content: "";
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(70vmax 50vmax at 78% -10%, rgba(60,90,160,.20), transparent 70%),
+    radial-gradient(50vmax 40vmax at 8% 105%, rgba(242,160,61,.06), transparent 70%);
+}
+
+.wrap { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 0 var(--gut); }
+
+/* ---------- utility bar ---------- */
+.bar {
+  display: flex; flex-wrap: wrap; gap: 8px 22px; align-items: baseline;
+  padding: 18px 0 16px;
+  border-bottom: 1px solid var(--line);
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .13em;
+  text-transform: uppercase; color: var(--muted);
+}
+.bar b { color: var(--steel); font-weight: 500; }
+.bar .sp { flex: 1; }
+
+/* ---------- eyebrow / labels ---------- */
+.eyebrow {
+  font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--amber);
+  margin: 0 0 18px;
+}
+.eyebrow .n { color: var(--muted); }
+
+/* ---------- hero ---------- */
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  gap: clamp(28px, 6vw, 84px);
+  align-items: start;
+  padding: clamp(36px, 7vw, 72px) 0 clamp(40px, 7vw, 80px);
+}
+
+h1 {
+  font-family: var(--f-display);
+  font-variation-settings: "wdth" 112;
+  font-weight: 800;
+  font-size: clamp(2.6rem, 8vw, 5.1rem);
+  line-height: .95;
+  letter-spacing: -.02em;
+  margin: 0 0 4px;
+  text-wrap: balance;
+}
+h1 .brk { color: var(--muted); font-weight: 400; font-variation-settings: "wdth" 80; }
+h1 #heroName { color: var(--paper); }
+
+.subtitle {
+  font-family: var(--f-display); font-variation-settings: "wdth" 95;
+  font-weight: 400; font-size: clamp(1.05rem, 2.4vw, 1.4rem);
+  color: var(--steel); margin: 0 0 26px; letter-spacing: .01em;
+}
+
+.lede { max-width: 44ch; color: var(--steel); font-size: 1.02rem; margin: 0 0 32px; }
+.lede strong { color: var(--paper); font-weight: 400; }
+
+/* ---------- the engraving machine ---------- */
+.machine {
+  border: 1px solid var(--line-lit);
+  border-radius: 4px;
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  padding: 20px 20px 18px;
+  max-width: 460px;
+}
+.machine legend, .m-label {
+  display: block;
+  font-family: var(--f-mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
+  margin: 0 0 10px;
+}
+.m-row { display: flex; align-items: stretch; gap: 0; }
+.m-brk {
+  display: grid; place-items: center;
+  width: 34px; flex: none;
+  font-family: var(--f-mono); font-size: 22px; color: var(--muted);
+  background: rgba(147,166,201,.05);
+  border: 1px solid var(--line-lit);
+}
+.m-brk.l { border-radius: 3px 0 0 3px; border-right: 0; }
+.m-brk.r { border-radius: 0 3px 3px 0; border-left: 0; }
+#engraveInput {
+  flex: 1; min-width: 0;
+  background: rgba(11,16,32,.6);
+  border: 1px solid var(--line-lit);
+  color: var(--paper);
+  font-family: var(--f-display); font-variation-settings: "wdth" 110;
+  font-weight: 700; font-size: 1.5rem; letter-spacing: .16em;
+  text-align: center; text-transform: uppercase;
+  padding: 12px 6px; border-radius: 0;
+}
+#engraveInput:focus { outline: 2px solid var(--amber); outline-offset: -1px; }
+#engraveInput::placeholder { color: var(--muted); font-weight: 400; letter-spacing: .1em; }
+
+.m-foot {
+  display: flex; justify-content: space-between; gap: 14px;
+  margin-top: 12px;
+  font-family: var(--f-mono); font-size: 11px; color: var(--muted);
+}
+.m-foot .sigil-id { color: var(--steel); }
+
+/* ---------- the mug ---------- */
+.rig { justify-self: center; }
+.stage {
+  transform: scale(var(--mug-scale, 1));
+  transform-origin: top center;
+  filter: drop-shadow(0 40px 50px rgba(0,0,0,.6));
+}
+.mug { position: relative; width: 196px; padding-top: 56px; }
+
+.straw {
+  position: absolute; top: 0; left: 116px;
+  width: 10px; height: 74px; border-radius: 5px;
+  background: linear-gradient(90deg, #0e1728, #2a3b66 45%, #16203a);
+  transform: rotate(3.5deg); transform-origin: bottom center;
+}
+.lid {
+  position: relative; height: 58px; border-radius: 16px 16px 5px 5px;
+  background: linear-gradient(90deg, #101a2e 0%, #24345c 40%, #1b2748 66%, #0f1728 100%);
+  box-shadow: inset 0 1px 0 rgba(200,220,255,.16);
+}
+.lid::after {
+  content: ""; position: absolute; left: 108px; top: 6px;
+  width: 26px; height: 26px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #0a0f1c, #05080f);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.8);
+}
+.seam { height: 4px; background: rgba(5,8,16,.7); }
+
+.mbody {
+  position: relative;
+  border-radius: 4px 4px 26px 26px;
+  padding: 26px 0 22px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,.045), transparent 22%),
+    linear-gradient(90deg, var(--mug-a) 0%, var(--mug-b) 17%, var(--mug-c) 37%, var(--mug-d) 63%, var(--mug-e) 100%);
+  box-shadow: inset 0 -30px 40px -20px rgba(0,0,0,.55);
+  display: grid; justify-items: center; gap: 18px;
+}
+
+.badge {
+  font-family: var(--f-display); font-variation-settings: "wdth" 118;
+  font-weight: 700; font-size: 15px; letter-spacing: .12em;
+  color: #f6f8fc;
+  border: 1.5px solid #f6f8fc;
+  padding: 3px 9px 2px;
+}
+.badge i { font-style: normal; opacity: .55; }
+
+.engrave {
+  font-family: var(--f-mono); font-weight: 500; font-size: 13px;
+  letter-spacing: .1em; color: #f6f8fc;
+  display: flex; gap: 6px; align-items: baseline;
+  max-width: 172px;
+}
+.engrave .b { opacity: .6; }
+.engrave #engraveName {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+
+/* the live dot field — the site's actual display */
+#panel {
+  display: grid;
+  grid-template-columns: repeat(13, var(--cell));
+  grid-auto-rows: var(--cell);
+  touch-action: none;
+  cursor: crosshair;
+}
+#panel .c { display: grid; place-items: center; }
+#panel .c::after {
+  content: ""; width: var(--dot); height: var(--dot); border-radius: 50%;
+  background: rgba(232,236,245,.09);
+  transition: background .11s linear, box-shadow .11s linear;
+}
+#panel .c.on::after { background: #f4f7fc; box-shadow: 0 0 5px rgba(230,240,255,.5); }
+#panel .c.hot::after { background: var(--amber); box-shadow: 0 0 6px rgba(242,160,61,.6); }
+@media (prefers-reduced-motion: reduce) {
+  #panel .c::after { transition: none; }
+}
+
+/* ---------- panel controls ---------- */
+.controls { margin-top: 22px; display: grid; gap: 10px; justify-items: center; }
+.modes { display: flex; gap: 6px; }
+.modes button {
+  font-family: var(--f-mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .14em; text-transform: uppercase;
+  color: var(--steel); background: transparent;
+  border: 1px solid var(--line-lit); border-radius: 2px;
+  padding: 7px 10px; cursor: pointer;
+  transition: color .15s, border-color .15s, background .15s;
+}
+.modes button:hover { color: var(--paper); border-color: var(--steel); }
+.modes button[aria-pressed="true"] {
+  color: var(--void); background: var(--paper); border-color: var(--paper);
+}
+.modes button:focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.hint {
+  font-family: var(--f-mono); font-size: 10.5px; color: var(--muted);
+  letter-spacing: .05em; min-height: 1.2em; text-align: center;
+}
+
+/* ---------- section scaffolding ---------- */
+section { padding: clamp(44px, 8vw, 92px) 0; border-top: 1px solid var(--line); }
+h2 {
+  font-family: var(--f-display); font-variation-settings: "wdth" 105;
+  font-weight: 700; font-size: clamp(1.5rem, 3.6vw, 2.3rem);
+  line-height: 1.1; letter-spacing: -.01em; margin: 0 0 14px; text-wrap: balance;
+}
+.sec-lede { color: var(--steel); max-width: 62ch; margin: 0 0 34px; }
+
+/* ---------- datasheet ---------- */
+.sheet { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 0 clamp(24px,4vw,48px); }
+.sheet dl { margin: 0; }
+.sheet div.r {
+  display: flex; justify-content: space-between; align-items: baseline; gap: 16px;
+  padding: 11px 0; border-bottom: 1px solid var(--line);
+}
+.sheet dt {
+  font-family: var(--f-mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+}
+.sheet dd {
+  margin: 0; font-family: var(--f-mono); font-size: 13px; color: var(--paper);
+  font-variant-numeric: tabular-nums; text-align: right;
+}
+.caveat {
+  margin-top: 26px; padding-left: 14px; border-left: 2px solid var(--amber);
+  font-size: .92rem; color: var(--muted); max-width: 60ch;
+}
+
+/* ---------- thermal ---------- */
+.thermal { display: grid; grid-template-columns: minmax(0,1fr) 230px; gap: clamp(24px,4vw,44px); align-items: start; }
+.chart-shell {
+  position: relative; border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--panel), var(--panel-2));
+  border-radius: 3px; padding: 8px 8px 4px;
+}
+#curve { display: block; width: 100%; height: 300px; }
+#tip {
+  position: absolute; pointer-events: none; opacity: 0;
+  transform: translate(-50%, -130%);
+  background: #050810; border: 1px solid var(--line-lit);
+  padding: 7px 10px; border-radius: 3px; white-space: nowrap;
+  font-family: var(--f-mono); font-size: 11.5px; color: var(--paper);
+  font-variant-numeric: tabular-nums;
+  transition: opacity .12s;
+}
+#tip b { color: var(--amber); font-weight: 500; }
+
+.dials { display: grid; gap: 22px; }
+.dial label {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-family: var(--f-mono); font-size: 10.5px; font-weight: 500;
+  letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+  margin-bottom: 8px;
+}
+.dial label output { color: var(--paper); font-size: 13px; letter-spacing: 0; font-variant-numeric: tabular-nums; }
+.dial input[type=range] { width: 100%; accent-color: var(--amber); }
+.dial input[type=range]:focus-visible { outline: 2px solid var(--amber); outline-offset: 4px; }
+
+.readouts { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 3px; }
+.readout { background: var(--panel-2); padding: 14px 16px; }
+.readout .k {
+  font-family: var(--f-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: .13em; text-transform: uppercase; color: var(--muted);
+  display: flex; align-items: center; gap: 7px;
+}
+.readout .k::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--amber); }
+.readout.cold .k::before { background: var(--ice); }
+.readout .v {
+  font-family: var(--f-display); font-variation-settings: "wdth" 100;
+  font-weight: 700; font-size: 1.7rem; line-height: 1.15; margin-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+.readout .v small { font-size: .85rem; font-weight: 400; color: var(--steel); letter-spacing: .02em; }
+
+/* ---------- ideas / footer ---------- */
+.stack { display: grid; gap: 26px; max-width: 66ch; }
+.item { display: grid; grid-template-columns: 26px 1fr; gap: 16px; }
+.item .no {
+  font-family: var(--f-mono); font-size: 11px; font-weight: 500;
+  color: var(--muted); padding-top: 5px; letter-spacing: .05em;
+}
+.item h3 {
+  font-family: var(--f-display); font-variation-settings: "wdth" 100;
+  font-weight: 600; font-size: 1.05rem; margin: 0 0 4px; letter-spacing: 0;
+}
+.item p { margin: 0; color: var(--steel); font-size: .97rem; }
+.item.done h3::after {
+  content: "in this demo"; margin-left: 10px;
+  font-family: var(--f-mono); font-size: 9.5px; font-weight: 500;
+  letter-spacing: .13em; text-transform: uppercase;
+  color: var(--amber); border: 1px solid rgba(242,160,61,.4);
+  padding: 2px 6px; border-radius: 2px; vertical-align: 2px; white-space: nowrap;
+}
+
+footer { border-top: 1px solid var(--line); padding: 40px 0 56px; }
+.specs-flex {
+  display: flex; flex-wrap: wrap; gap: 6px 26px;
+  font-family: var(--f-mono); font-size: 11px; letter-spacing: .08em;
+  color: var(--muted); text-transform: uppercase;
+}
+.specs-flex b { color: var(--steel); font-weight: 500; }
+.sig { margin-top: 22px; color: var(--muted); font-size: .9rem; max-width: 60ch; }
+
+/* ---------- responsive ---------- */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: minmax(0,1fr); }
+  .rig { justify-self: start; }
+  .thermal { grid-template-columns: minmax(0,1fr); }
+}
+@media (max-width: 460px) {
+  :root { --mug-scale: .82; }
+  .stage { margin-bottom: -80px; }
+}
+</style>
+
+<div class="wrap">
+
+  <div class="bar">
+    <span><b>CODED</b> issue</span>
+    <span>rev <b>001</b></span>
+    <span>13 × 25 dot field</span>
+    <span class="sp"></span>
+    <span>concept 2 + 6 · dot matrix &amp; engraving</span>
+  </div>
+
+  <!-- ══════════ HERO ══════════ -->
+  <div class="hero">
+    <div>
+      <p class="eyebrow">Vessel 001 <span class="n">/ 473 ml / stainless</span></p>
+      <h1><span class="brk">[</span> <span id="heroName">MOUDHI</span> <span class="brk">]</span></h1>
+      <p class="subtitle">Insulated. Instantiated.</p>
+
+      <p class="lede">The dots on the side of this mug aren't decoration — they're a
+      <strong>13 × 25 display</strong>, and they're the only interface on this page.
+      Type a name below. It gets engraved into the steel, and the dot field
+      re-weaves itself from a hash of the letters: <strong>same name, same pattern, forever.</strong></p>
+
+      <fieldset class="machine">
+        <legend>Engraving machine</legend>
+        <div class="m-row">
+          <span class="m-brk l" aria-hidden="true">[</span>
+          <input id="engraveInput" type="text" value="MOUDHI" maxlength="10"
+                 placeholder="YOUR NAME" spellcheck="false" autocomplete="off"
+                 aria-label="Name to engrave, up to 10 characters">
+          <span class="m-brk r" aria-hidden="true">]</span>
+        </div>
+        <div class="m-foot">
+          <span><span id="charCount">6</span>/10 characters</span>
+          <span class="sigil-id">sigil <span id="sigilId">—</span></span>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="rig">
+      <div class="stage">
+        <div class="mug">
+          <div class="straw"></div>
+          <div class="lid"></div>
+          <div class="seam"></div>
+          <div class="mbody">
+            <div class="badge">COD<i>E</i>D</div>
+            <div id="panel" role="img" aria-label="Dot matrix display on the side of the mug"></div>
+            <div class="engrave"><span class="b">[</span><span id="engraveName">MOUDHI</span><span class="b">]</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <div class="modes" role="group" aria-label="Dot field mode">
+          <button type="button" data-mode="name" aria-pressed="true">Name</button>
+          <button type="button" data-mode="sigil" aria-pressed="false">Sigil</button>
+          <button type="button" data-mode="life" aria-pressed="false">Life</button>
+          <button type="button" data-mode="draw" aria-pressed="false">Draw</button>
+        </div>
+        <p class="hint" id="hint">Punchcard scroll — the name feeds through the field.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ DATASHEET ══════════ -->
+  <section>
+    <p class="eyebrow">Datasheet</p>
+    <h2>What it actually is</h2>
+    <p class="sec-lede">Every showpiece needs one section of unglamorous truth. A spec table is
+    where taste and rigour meet — and it's the fastest way to signal you measured the thing
+    instead of vibing about it.</p>
+
+    <div class="sheet">
+      <dl>
+        <div class="r"><dt>Capacity</dt><dd>473 ml / 16 fl oz</dd></div>
+        <div class="r"><dt>Height, with straw</dt><dd>272 mm</dd></div>
+        <div class="r"><dt>Diameter, base</dt><dd>73 mm</dd></div>
+        <div class="r"><dt>Mass, empty</dt><dd>340 g</dd></div>
+        <div class="r"><dt>Wall</dt><dd>Double, vacuum</dd></div>
+      </dl>
+      <dl>
+        <div class="r"><dt>Body</dt><dd>18/8 stainless</dd></div>
+        <div class="r"><dt>Finish</dt><dd>Matte powder coat</dd></div>
+        <div class="r"><dt>Lid</dt><dd>Press-fit + straw</dd></div>
+        <div class="r"><dt>Dot field</dt><dd>13 × 25 (325)</dd></div>
+        <div class="r"><dt>Owner mark</dt><dd>[ MOUDHI ]</dd></div>
+      </dl>
+    </div>
+
+    <p class="caveat">These are plausible placeholder figures, not measurements. Put a ruler and a
+    kitchen scale on the real vessel and swap them in — a datasheet with one wrong number
+    loses the whole effect, and an engineer will check.</p>
+  </section>
+
+  <!-- ══════════ THERMAL ══════════ -->
+  <section>
+    <p class="eyebrow">Thermal</p>
+    <h2>How long it stays hot</h2>
+    <p class="sec-lede">Newton's law of cooling, run live: <span style="font-family:var(--f-mono);font-size:.92em;color:var(--paper)">T(t) = T<sub>a</sub> + (T<sub>0</sub> − T<sub>a</sub>)·e<sup>−kt</sup></span>.
+    Drag either dial. The point isn't the maths — it's that the maths is real, labelled, and
+    honest about its one assumption.</p>
+
+    <div class="thermal">
+      <div class="chart-shell">
+        <canvas id="curve" aria-label="Line chart: contents temperature falling from the fill temperature toward ambient over twelve hours"></canvas>
+        <div id="tip" role="status"></div>
+      </div>
+
+      <div class="dials">
+        <div class="dial">
+          <label for="t0">Fill temperature <output id="t0out">95 °C</output></label>
+          <input id="t0" type="range" min="60" max="100" step="1" value="95">
+        </div>
+        <div class="dial">
+          <label for="ta">Ambient <output id="taout">22 °C</output></label>
+          <input id="ta" type="range" min="18" max="50" step="1" value="22">
+        </div>
+
+        <div class="readouts">
+          <div class="readout">
+            <div class="k">Still properly hot</div>
+            <div class="v" id="hotFor">—</div>
+          </div>
+          <div class="readout cold">
+            <div class="k">Gone lukewarm</div>
+            <div class="v" id="coldAt">—</div>
+          </div>
+        </div>
+
+        <p style="margin:0;font-family:var(--f-mono);font-size:10.5px;color:var(--muted);letter-spacing:.04em">
+          k = 0.109 h⁻¹, fitted to “holds heat 6 h”. Thresholds: 60 °C hot, 40 °C lukewarm.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════ WHAT ELSE ══════════ -->
+  <section>
+    <p class="eyebrow">Still on the table</p>
+    <h2>Where this goes next</h2>
+    <p class="sec-lede">This page is one direction built far enough to judge. Here's the rest of
+    the shortlist, and what's already load-bearing in what you're looking at.</p>
+
+    <div class="stack">
+      <div class="item done">
+        <span class="no">01</span>
+        <div><h3>The dot field is the interface</h3>
+        <p>Four modes off one 325-dot engine: punchcard scroll, name-derived sigil, Conway's
+        Game of Life, and a paintable surface. Nothing on the page duplicates it.</p></div>
+      </div>
+      <div class="item done">
+        <span class="no">02</span>
+        <div><h3>Deterministic engraving</h3>
+        <p>FNV-1a over the letters seeds an xorshift PRNG, mirrored down the centre column so the
+        result reads woven rather than random. Your name always makes your pattern.</p></div>
+      </div>
+      <div class="item">
+        <span class="no">03</span>
+        <div><h3>The shared wall</h3>
+        <p>Supabase is already in this repo. Every dot anyone paints persists for the next
+        visitor, and a global sip counter ticks up on click. Live shared state is what makes
+        people send the link on.</p></div>
+      </div>
+      <div class="item">
+        <span class="no">04</span>
+        <div><h3>The night shift</h3>
+        <p>Your actual photo — 11pm, blurred laptops, someone still working behind you — with
+        the bokeh rebuilt in CSS. The section an engineer can't write.</p></div>
+      </div>
+      <div class="item">
+        <span class="no">05</span>
+        <div><h3>Spring-physics liquid</h3>
+        <p>Fill level follows scroll on a damped spring, wobbles, settles. Plus a synthesised
+        stainless-steel clink from Web Audio oscillators — no audio file.</p></div>
+      </div>
+      <div class="item">
+        <span class="no">06</span>
+        <div><h3>Per-name share cards</h3>
+        <p>Engrave a name, get a URL. The link preview shows that person's mug with their own
+        sigil on it. This is the mechanism that actually spreads.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="specs-flex">
+      <span>one html file</span>
+      <span><b>zero</b> dependencies</span>
+      <span><b>no</b> build step</span>
+      <span>works offline</span>
+      <span>keyboard navigable</span>
+      <span>honours <b>prefers-reduced-motion</b></span>
+    </div>
+    <p class="sig">Stating your constraints on the page does more competitive damage than five more
+    sections. Engineers read that line and know exactly how much control it took.</p>
+  </footer>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ─────────── 5 × 7 bitmap font ─────────── */
+  var F = {
+    "A":["01110","10001","10001","11111","10001","10001","10001"],
+    "B":["11110","10001","10001","11110","10001","10001","11110"],
+    "C":["01110","10001","10000","10000","10000","10001","01110"],
+    "D":["11110","10001","10001","10001","10001","10001","11110"],
+    "E":["11111","10000","10000","11110","10000","10000","11111"],
+    "F":["11111","10000","10000","11110","10000","10000","10000"],
+    "G":["01110","10001","10000","10111","10001","10001","01110"],
+    "H":["10001","10001","10001","11111","10001","10001","10001"],
+    "I":["11111","00100","00100","00100","00100","00100","11111"],
+    "J":["00111","00010","00010","00010","00010","10010","01100"],
+    "K":["10001","10010","10100","11000","10100","10010","10001"],
+    "L":["10000","10000","10000","10000","10000","10000","11111"],
+    "M":["10001","11011","10101","10101","10001","10001","10001"],
+    "N":["10001","11001","10101","10011","10001","10001","10001"],
+    "O":["01110","10001","10001","10001","10001","10001","01110"],
+    "P":["11110","10001","10001","11110","10000","10000","10000"],
+    "Q":["01110","10001","10001","10001","10101","10011","01111"],
+    "R":["11110","10001","10001","11110","10100","10010","10001"],
+    "S":["01111","10000","10000","01110","00001","00001","11110"],
+    "T":["11111","00100","00100","00100","00100","00100","00100"],
+    "U":["10001","10001","10001","10001","10001","10001","01110"],
+    "V":["10001","10001","10001","10001","10001","01010","00100"],
+    "W":["10001","10001","10001","10101","10101","11011","10001"],
+    "X":["10001","10001","01010","00100","01010","10001","10001"],
+    "Y":["10001","10001","01010","00100","00100","00100","00100"],
+    "Z":["11111","00001","00010","00100","01000","10000","11111"],
+    "0":["01110","10001","10011","10101","11001","10001","01110"],
+    "1":["00100","01100","00100","00100","00100","00100","01110"],
+    "2":["01110","10001","00001","00010","00100","01000","11111"],
+    "3":["11111","00010","00100","00010","00001","10001","01110"],
+    "4":["00010","00110","01010","10010","11111","00010","00010"],
+    "5":["11111","10000","11110","00001","00001","10001","01110"],
+    "6":["00110","01000","10000","11110","10001","10001","01110"],
+    "7":["11111","00001","00010","00100","01000","01000","01000"],
+    "8":["01110","10001","10001","01110","10001","10001","01110"],
+    "9":["01110","10001","10001","01111","00001","00010","01100"],
+    "[":["01110","01000","01000","01000","01000","01000","01110"],
+    "]":["01110","00010","00010","00010","00010","00010","01110"],
+    ".":["00000","00000","00000","00000","00000","01100","01100"],
+    "-":["00000","00000","00000","11111","00000","00000","00000"],
+    " ":["00000","00000","00000","00000","00000","00000","00000"]
+  };
+
+  var COLS = 13, ROWS = 25, PITCH = 8, XOFF = 4;
+
+  var panel   = document.getElementById("panel");
+  var hint    = document.getElementById("hint");
+  var input   = document.getElementById("engraveInput");
+  var heroName = document.getElementById("heroName");
+  var engName = document.getElementById("engraveName");
+  var sigilId = document.getElementById("sigilId");
+  var charCount = document.getElementById("charCount");
+
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var cells = [];
+  var grid  = new Uint8Array(COLS * ROWS);
+  var frag  = document.createDocumentFragment();
+  for (var i = 0; i < COLS * ROWS; i++) {
+    var c = document.createElement("span");
+    c.className = "c";
+    c.dataset.i = i;
+    cells.push(c);
+    frag.appendChild(c);
+  }
+  panel.appendChild(frag);
+
+  function paint() {
+    for (var i = 0; i < grid.length; i++) {
+      var v = grid[i], cl = cells[i].classList;
+      cl.toggle("on", v === 1);
+      cl.toggle("hot", v === 2);
+    }
+  }
+
+  /* ─────────── hash → sigil ─────────── */
+  function fnv1a(s) {
+    var h = 0x811c9dc5;
+    for (var i = 0; i < s.length; i++) {
+      h ^= s.charCodeAt(i);
+      h = (h + ((h << 1) + (h << 4) + (h << 7) + (h << 8) + (h << 24))) >>> 0;
+    }
+    return h >>> 0;
+  }
+  function rng(seed) {
+    var x = seed || 0x9e3779b9;
+    return function () {
+      x ^= x << 13; x >>>= 0;
+      x ^= x >>> 17;
+      x ^= x << 5;  x >>>= 0;
+      return x / 4294967296;
+    };
+  }
+  function buildSigil(name) {
+    var seed = fnv1a(name || " ");
+    var r = rng(seed);
+    var g = new Uint8Array(COLS * ROWS);
+    var mid = (COLS - 1) / 2;             // 6
+    for (var row = 0; row < ROWS; row++) {
+      // density breathes down the column so it reads woven, not noisy
+      var d = 0.30 + 0.22 * Math.sin(row * 0.42 + (seed % 17) * 0.3);
+      for (var col = 0; col <= mid; col++) {
+        var on = r() < d ? 1 : 0;
+        g[row * COLS + col] = on;
+        g[row * COLS + (COLS - 1 - col)] = on;
+      }
+    }
+    return { grid: g, id: ("0000" + (seed % 65536).toString(16).toUpperCase()).slice(-4) };
+  }
+
+  /* ─────────── text buffer (punchcard scroll) ─────────── */
+  function buildBuffer(name) {
+    var str = "[ " + name + " ] ";
+    var rows = [];
+    for (var i = 0; i < str.length; i++) {
+      var g = F[str.charAt(i)] || F[" "];
+      for (var r = 0; r < 7; r++) rows.push(g[r]);
+      rows.push("00000");                  // 1-row gap keeps the field never blank
+    }
+    return rows;
+  }
+
+  /* ─────────── state ─────────── */
+  var name = "MOUDHI";
+  var buffer = buildBuffer(name);
+  var sig = buildSigil(name);
+  var mode = "name";
+  var offset = 0;
+  var timer = null;
+  var painting = false;
+
+  var HINTS = {
+    name:  "Punchcard scroll — the name feeds through the field.",
+    sigil: "Hashed from the letters and mirrored down the centre column.",
+    life:  "Conway's Game of Life on a 13 × 25 torus, seeded by the sigil.",
+    draw:  "Drag across the dots to paint. Press Draw again to clear."
+  };
+
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  function renderScroll() {
+    var n = buffer.length;
+    for (var r = 0; r < ROWS; r++) {
+      var line = buffer[(offset + r) % n];
+      for (var c = 0; c < COLS; c++) {
+        var lc = c - XOFF;
+        grid[r * COLS + c] = (lc >= 0 && lc < 5 && line.charAt(lc) === "1") ? 1 : 0;
+      }
+    }
+    paint();
+  }
+
+  function lifeStep() {
+    var next = new Uint8Array(COLS * ROWS);
+    for (var r = 0; r < ROWS; r++) {
+      for (var c = 0; c < COLS; c++) {
+        var n = 0;
+        for (var dr = -1; dr <= 1; dr++) {
+          for (var dc = -1; dc <= 1; dc++) {
+            if (!dr && !dc) continue;
+            var rr = (r + dr + ROWS) % ROWS, cc = (c + dc + COLS) % COLS;
+            if (grid[rr * COLS + cc]) n++;
+          }
+        }
+        var alive = grid[r * COLS + c] ? 1 : 0;
+        next[r * COLS + c] = (alive && (n === 2 || n === 3)) || (!alive && n === 3) ? 1 : 0;
+      }
+    }
+    grid.set(next);
+    paint();
+  }
+
+  function setMode(m) {
+    if (m === "draw" && mode === "draw") { grid.fill(0); paint(); return; }
+    mode = m;
+    stop();
+    document.querySelectorAll(".modes button").forEach(function (b) {
+      b.setAttribute("aria-pressed", String(b.dataset.mode === m));
+    });
+    hint.textContent = HINTS[m];
+
+    if (m === "name") {
+      offset = 0;
+      renderScroll();
+      if (!reduce) timer = setInterval(function () {
+        offset = (offset + 1) % buffer.length;
+        renderScroll();
+      }, 95);
+    } else if (m === "sigil") {
+      grid.set(sig.grid); paint();
+    } else if (m === "life") {
+      grid.set(sig.grid); paint();
+      if (!reduce) timer = setInterval(lifeStep, 150);
+    } else {
+      grid.fill(0); paint();
+    }
+  }
+
+  document.querySelectorAll(".modes button").forEach(function (b) {
+    b.addEventListener("click", function () { setMode(b.dataset.mode); });
+  });
+
+  /* ─────────── painting ─────────── */
+  function dotAt(e) {
+    var el = document.elementFromPoint(e.clientX, e.clientY);
+    return el && el.classList.contains("c") ? el : null;
+  }
+  panel.addEventListener("pointerdown", function (e) {
+    if (mode !== "draw") setMode("draw");
+    painting = true;
+    panel.setPointerCapture(e.pointerId);
+    var el = dotAt(e);
+    if (el) { grid[+el.dataset.i] = 2; paint(); }
+  });
+  panel.addEventListener("pointermove", function (e) {
+    if (!painting) return;
+    var el = dotAt(e);
+    if (el) { grid[+el.dataset.i] = 2; paint(); }
+  });
+  panel.addEventListener("pointerup", function () { painting = false; });
+  panel.addEventListener("pointercancel", function () { painting = false; });
+
+  /* ─────────── engraving machine ─────────── */
+  function engrave(raw) {
+    var clean = raw.toUpperCase().replace(/[^A-Z0-9 .-]/g, "").slice(0, 10);
+    name = clean.trim() || "ANON";
+    heroName.textContent = name;
+    engName.textContent = name;
+    charCount.textContent = String(clean.length);
+    buffer = buildBuffer(name);
+    sig = buildSigil(name);
+    sigilId.textContent = sig.id;
+    if (mode === "name") { offset = 0; renderScroll(); }
+    else if (mode === "sigil" || mode === "life") { grid.set(sig.grid); paint(); }
+    return clean;
+  }
+  input.addEventListener("input", function () {
+    var c = engrave(input.value);
+    if (c !== input.value) input.value = c;
+  });
+
+  sigilId.textContent = sig.id;
+  setMode("name");
+
+  /* ─────────── thermal curve ─────────── */
+  var K = 0.109, HOURS = 12, HOT = 60, LUKE = 40;
+  var cv = document.getElementById("curve");
+  var ctx = cv.getContext("2d");
+  var tip = document.getElementById("tip");
+  var t0El = document.getElementById("t0"), taEl = document.getElementById("ta");
+  var t0out = document.getElementById("t0out"), taout = document.getElementById("taout");
+  var hotFor = document.getElementById("hotFor"), coldAt = document.getElementById("coldAt");
+  var geo = null, hoverT = null;
+
+  function css(v) { return getComputedStyle(document.documentElement).getPropertyValue(v).trim(); }
+  function temp(t, T0, Ta) { return Ta + (T0 - Ta) * Math.exp(-K * t); }
+  function timeTo(target, T0, Ta) {
+    if (target <= Ta || T0 <= target) return null;
+    return Math.log((T0 - Ta) / (target - Ta)) / K;
+  }
+  function fmtHrs(h) {
+    if (h === null) return "—";
+    var whole = Math.floor(h), mins = Math.round((h - whole) * 60);
+    if (mins === 60) { whole++; mins = 0; }
+    return whole + "<small> h </small>" + (mins < 10 ? "0" + mins : mins) + "<small> min</small>";
+  }
+
+  function drawChart() {
+    var T0 = +t0El.value, Ta = +taEl.value;
+    var dpr = window.devicePixelRatio || 1;
+    var w = cv.clientWidth, h = cv.clientHeight;
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, w, h);
+
+    var padL = 46, padR = 58, padT = 20, padB = 34;
+    var yMin = Math.floor(Math.min(Ta, LUKE - 5) / 10) * 10;
+    var yMax = Math.ceil(T0 / 10) * 10;
+    var X = function (t) { return padL + (t / HOURS) * (w - padL - padR); };
+    var Y = function (v) { return padT + (1 - (v - yMin) / (yMax - yMin)) * (h - padT - padB); };
+    geo = { padL: padL, padR: padR, padT: padT, padB: padB, w: w, h: h, X: X, Y: Y, T0: T0, Ta: Ta };
+
+    var ink = css("--paper"), muted = css("--muted"), steel = css("--steel");
+    var line = "rgba(147,166,201,.13)", amber = css("--amber"), ice = css("--ice");
+
+    ctx.font = "500 10px " + css("--f-mono").split(",")[0].replace(/"/g, "") + ", monospace";
+    ctx.textBaseline = "middle";
+
+    /* recessive grid + y labels — every label names a value the chart reaches */
+    ctx.strokeStyle = line; ctx.lineWidth = 1;
+    for (var v = yMin; v <= yMax; v += 10) {
+      var y = Math.round(Y(v)) + 0.5;
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
+      ctx.fillStyle = muted; ctx.textAlign = "right";
+      ctx.fillText(v + "°", padL - 10, Y(v));
+    }
+    /* x labels */
+    ctx.textAlign = "center"; ctx.textBaseline = "top";
+    for (var t = 0; t <= HOURS; t += 2) {
+      ctx.fillStyle = muted;
+      ctx.fillText(t + (t === HOURS ? " h" : ""), X(t), h - padB + 11);
+    }
+
+    /* thresholds */
+    ctx.textBaseline = "middle";
+    [[HOT, amber, "hot 60°"], [LUKE, ice, "lukewarm 40°"]].forEach(function (th) {
+      if (th[0] < yMin || th[0] > yMax) return;
+      var y = Math.round(Y(th[0])) + 0.5;
+      ctx.save();
+      ctx.setLineDash([2, 4]); ctx.strokeStyle = th[1]; ctx.globalAlpha = .45; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(padL, y); ctx.lineTo(w - padR, y); ctx.stroke();
+      ctx.restore();
+      ctx.fillStyle = th[1]; ctx.globalAlpha = .8; ctx.textAlign = "left";
+      ctx.fillText(th[2], w - padR + 7, Y(th[0]));
+      ctx.globalAlpha = 1;
+    });
+
+    /* area + 2px curve */
+    var pts = [], N = 160;
+    for (var i = 0; i <= N; i++) {
+      var tt = (i / N) * HOURS;
+      pts.push([X(tt), Y(temp(tt, T0, Ta))]);
+    }
+    var gr = ctx.createLinearGradient(0, padT, 0, h - padB);
+    gr.addColorStop(0, "rgba(242,160,61,.20)");
+    gr.addColorStop(1, "rgba(242,160,61,0)");
+    ctx.beginPath();
+    ctx.moveTo(pts[0][0], h - padB);
+    pts.forEach(function (p) { ctx.lineTo(p[0], p[1]); });
+    ctx.lineTo(pts[pts.length - 1][0], h - padB);
+    ctx.closePath(); ctx.fillStyle = gr; ctx.fill();
+
+    ctx.beginPath();
+    pts.forEach(function (p, i) { i ? ctx.lineTo(p[0], p[1]) : ctx.moveTo(p[0], p[1]); });
+    ctx.strokeStyle = amber; ctx.lineWidth = 2; ctx.lineJoin = "round"; ctx.stroke();
+
+    /* emphasised endpoint, direct-labelled */
+    var end = pts[pts.length - 1];
+    ctx.beginPath(); ctx.arc(end[0], end[1], 4, 0, 6.2832);
+    ctx.fillStyle = amber; ctx.fill();
+    ctx.strokeStyle = css("--panel"); ctx.lineWidth = 2; ctx.stroke();
+
+    /* hover crosshair */
+    if (hoverT !== null) {
+      var hx = X(hoverT), hy = Y(temp(hoverT, T0, Ta));
+      ctx.save();
+      ctx.strokeStyle = steel; ctx.globalAlpha = .35; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(hx, padT); ctx.lineTo(hx, h - padB); ctx.stroke();
+      ctx.restore();
+      ctx.beginPath(); ctx.arc(hx, hy, 5, 0, 6.2832);
+      ctx.fillStyle = ink; ctx.fill();
+      ctx.strokeStyle = css("--panel"); ctx.lineWidth = 2; ctx.stroke();
+    }
+
+    /* title inside the plot, so the single series needs no legend box */
+    ctx.textAlign = "left"; ctx.textBaseline = "top";
+    ctx.fillStyle = steel;
+    ctx.fillText("CONTENTS TEMPERATURE", padL + 2, padT - 12);
+
+    t0out.textContent = T0 + " °C";
+    taout.textContent = Ta + " °C";
+    hotFor.innerHTML = fmtHrs(timeTo(HOT, T0, Ta));
+    coldAt.innerHTML = fmtHrs(timeTo(LUKE, T0, Ta));
+  }
+
+  function hover(e) {
+    if (!geo) return;
+    var r = cv.getBoundingClientRect();
+    var x = e.clientX - r.left;
+    var t = ((x - geo.padL) / (geo.w - geo.padL - geo.padR)) * HOURS;
+    if (t < 0 || t > HOURS) { hoverT = null; tip.style.opacity = 0; drawChart(); return; }
+    hoverT = t;
+    var v = temp(t, geo.T0, geo.Ta);
+    tip.innerHTML = t.toFixed(1) + " h &nbsp;·&nbsp; <b>" + v.toFixed(1) + " °C</b>";
+    tip.style.left = (geo.X(t) + 8) + "px";
+    tip.style.top = (geo.Y(v) + 8) + "px";
+    tip.style.opacity = 1;
+    drawChart();
+  }
+  cv.addEventListener("pointermove", hover);
+  cv.addEventListener("pointerleave", function () { hoverT = null; tip.style.opacity = 0; drawChart(); });
+  t0El.addEventListener("input", drawChart);
+  taEl.addEventListener("input", drawChart);
+  if (window.ResizeObserver) new ResizeObserver(drawChart).observe(cv);
+  drawChart();
+
+  console.log(
+    "%c  ___________\n" +
+    " |  .-----.  |   VESSEL 001\n" +
+    " |  | ::: |  |   CODED issue · 473 ml\n" +
+    " |  | ::: |  |   13 × 25 dot field\n" +
+    " |  |_____|  |   [ MOUDHI ]\n" +
+    " |___________|\n",
+    "color:#f2a03d;font-family:monospace;line-height:1.4"
+  );
+})();
+</script>
+
+</body>
+</html>

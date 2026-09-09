@@ -1,0 +1,1149 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Vessel 001 - the CODED cohort tumbler. A cinematic advertisement opening, then a scroll-driven vessel you can spin, engrave, explode and recolour.">
+<meta name="author" content="Shaikha Alkhaldi">
+<style>:root{color-scheme:dark}html,body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<title>Vessel 001 Night Shift</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@200;300;400&display=swap">
+
+<style>
+/* ═══════════════════════════════════════════════════════════════
+   VESSEL 001 — cinematic cut.
+   One committed world: the CODED lab, lights off, one lamp on.
+   Navy matte steel, white silkscreen, amber reserved for heat,
+   engraving and live state. Nothing else gets the accent.
+   ═══════════════════════════════════════════════════════════════ */
+
+:root{
+  --void:#070b16; --void-2:#0b1020; --panel:#111a2e; --panel-2:#0d1526;
+  --paper:#eaeef6; --steel:#93a6c9; --muted:#5f6f95;
+  --amber:#f2a03d; --ice:#7fd4e6;
+  --line:rgba(147,166,201,.14); --line-lit:rgba(147,166,201,.32);
+  --f-d:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-b:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --f-m:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --gut:clamp(20px,5vw,60px);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--void);color:var(--paper);
+  font-family:var(--f-b);font-weight:300;font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(60vmax 45vmax at 82% 8%,rgba(64,96,170,.20),transparent 68%),
+    radial-gradient(46vmax 36vmax at 6% 96%,rgba(242,160,61,.07),transparent 70%);
+}
+/* film grain, very low — sells the "shot at night" world */
+body::after{
+  content:"";position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.035;
+  background-image:radial-gradient(#fff 1px,transparent 1px);
+  background-size:3px 3px;mix-blend-mode:overlay;
+}
+
+/* ─────────── the stage: fixed 3D canvas behind everything ─────────── */
+#stage{position:fixed;top:0;left:0;width:100%;height:100%;z-index:1;pointer-events:none;display:block}
+#stage.live{pointer-events:auto;cursor:grab}
+#stage.live.dragging{cursor:grabbing}
+
+.content{position:relative;z-index:3}
+.wrap{max-width:1220px;margin:0 auto;padding:0 var(--gut)}
+
+/* ─────────── the film (advertisement opening) ─────────── */
+#film{
+  position:fixed;inset:0;z-index:50;background:#04060d;
+  display:grid;place-items:center;overflow:hidden;
+}
+#film.gone{opacity:0;pointer-events:none;transition:opacity .9s ease}
+#filmCanvas{position:absolute;inset:0;width:100%;height:100%}
+.cards{position:relative;z-index:2;text-align:center;padding:0 24px}
+.card{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  opacity:0;width:max-content;max-width:min(92vw,900px);
+}
+.card.show{opacity:1}
+.card .line{
+  font-family:var(--f-d);font-variation-settings:"wdth" 118;font-weight:800;
+  font-size:clamp(1.9rem,7.4vw,4.6rem);line-height:1.02;letter-spacing:-.015em;
+  color:#f4f7fc;text-wrap:balance;margin:0;
+}
+.card .line em{font-style:normal;color:var(--amber)}
+.card .kicker{
+  font-family:var(--f-m);font-size:clamp(9px,1.5vw,11px);font-weight:500;
+  letter-spacing:.42em;text-transform:uppercase;color:var(--muted);
+  margin:0 0 22px;
+}
+.card .rule{height:1px;background:linear-gradient(90deg,transparent,var(--line-lit),transparent);margin:26px auto 0;width:min(70vw,420px)}
+.card.title .line{font-size:clamp(2.6rem,11vw,7rem);font-variation-settings:"wdth" 125;letter-spacing:-.03em}
+.card.title .sub{
+  font-family:var(--f-m);font-size:clamp(10px,1.8vw,13px);letter-spacing:.32em;
+  text-transform:uppercase;color:var(--steel);margin:20px 0 0;
+}
+#skip{
+  position:absolute;z-index:3;right:clamp(16px,4vw,34px);bottom:clamp(16px,4vw,30px);
+  font-family:var(--f-m);font-size:10.5px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);background:transparent;
+  border:1px solid var(--line-lit);border-radius:2px;padding:9px 14px;cursor:pointer;
+  transition:color .2s,border-color .2s;
+}
+#skip:hover{color:var(--paper);border-color:var(--steel)}
+#skip:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+#progress{position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--amber);z-index:3;opacity:.7}
+
+/* ─────────── chrome ─────────── */
+.topbar{
+  position:sticky;top:0;z-index:20;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:linear-gradient(180deg,rgba(7,11,22,.92),rgba(7,11,22,.62));
+  border-bottom:1px solid var(--line);
+}
+.topbar .in{
+  max-width:1220px;margin:0 auto;padding:13px var(--gut);
+  display:flex;align-items:center;gap:18px;
+}
+.mark{
+  font-family:var(--f-d);font-variation-settings:"wdth" 120;font-weight:800;
+  font-size:13px;letter-spacing:.1em;border:1.5px solid var(--paper);
+  padding:2px 7px 1px;color:var(--paper);
+}
+.mark i{font-style:normal;opacity:.5}
+.topbar nav{display:flex;gap:20px;margin-left:6px}
+.topbar nav a{
+  font-family:var(--f-m);font-size:10.5px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .18s;
+}
+.topbar nav a:hover{color:var(--paper)}
+.topbar .sp{flex:1}
+.pill{
+  font-family:var(--f-m);font-size:10px;font-weight:500;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--amber);
+  border:1px solid rgba(242,160,61,.38);border-radius:999px;padding:5px 11px;
+}
+@media(max-width:760px){.topbar nav{display:none}}
+
+/* ─────────── act layout: text column beside the fixed vessel ─────────── */
+.act{position:relative;min-height:104vh;display:grid;align-items:center;padding:12vh 0}
+.act .col{max-width:min(46ch,46vw)}
+.act.right .col{margin-left:auto;text-align:left}
+@media(max-width:900px){
+  .act{min-height:auto;padding:8vh 0}
+  .act .col,.act.right .col{max-width:none;margin:0}
+  .act.pushdown{padding-top:58vh}
+}
+
+.eyebrow{
+  font-family:var(--f-m);font-size:10.5px;font-weight:500;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--amber);margin:0 0 16px;
+}
+.eyebrow span{color:var(--muted)}
+h1{
+  font-family:var(--f-d);font-variation-settings:"wdth" 112;font-weight:800;
+  font-size:clamp(2.4rem,6.6vw,4.5rem);line-height:.96;letter-spacing:-.024em;
+  margin:0 0 20px;text-wrap:balance;
+}
+h2{
+  font-family:var(--f-d);font-variation-settings:"wdth" 106;font-weight:700;
+  font-size:clamp(1.7rem,4.2vw,2.8rem);line-height:1.06;letter-spacing:-.015em;
+  margin:0 0 16px;text-wrap:balance;
+}
+.lede{color:var(--steel);font-size:1.06rem;margin:0 0 26px;max-width:44ch}
+.lede strong{color:var(--paper);font-weight:400}
+
+/* ─────────── buy bar (the DTC furniture, subverted) ─────────── */
+.buy{
+  display:flex;flex-wrap:wrap;align-items:center;gap:14px 18px;
+  border:1px solid var(--line-lit);border-radius:3px;
+  background:linear-gradient(180deg,rgba(17,26,46,.86),rgba(13,21,38,.86));
+  padding:16px 18px;max-width:520px;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.buy .price{
+  font-family:var(--f-d);font-variation-settings:"wdth" 100;font-weight:800;
+  font-size:1.35rem;letter-spacing:-.01em;
+}
+.buy .price s{color:var(--muted);font-weight:400;font-size:.8em;margin-right:8px}
+.buy .meta{font-family:var(--f-m);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+.buy .sp{flex:1}
+.btn{
+  font-family:var(--f-m);font-size:11px;font-weight:600;letter-spacing:.18em;
+  text-transform:uppercase;color:var(--void);background:var(--paper);
+  border:1px solid var(--paper);border-radius:2px;padding:12px 18px;cursor:pointer;
+  transition:transform .16s cubic-bezier(.2,.8,.3,1),background .18s;
+  text-decoration:none;display:inline-block;
+}
+.btn:hover{transform:translateY(-2px);background:#fff}
+.btn:focus-visible{outline:2px solid var(--amber);outline-offset:3px}
+.btn.ghost{background:transparent;color:var(--steel);border-color:var(--line-lit)}
+.btn.ghost:hover{color:var(--paper);border-color:var(--steel);background:transparent}
+
+.trust{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;
+  font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.trust b{color:var(--steel);font-weight:500}
+
+/* ─────────── stat strip ─────────── */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));gap:1px;
+  background:var(--line);border:1px solid var(--line);border-radius:3px;margin-top:26px;max-width:520px}
+.stat{background:rgba(13,21,38,.8);padding:14px 15px}
+.stat .v{font-family:var(--f-d);font-variation-settings:"wdth" 100;font-weight:800;
+  font-size:1.45rem;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat .v small{font-size:.55em;font-weight:500;color:var(--steel);letter-spacing:.06em;margin-left:2px}
+.stat .k{font-family:var(--f-m);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+
+/* ─────────── engraving machine ─────────── */
+.machine{border:1px solid var(--line-lit);border-radius:3px;
+  background:linear-gradient(180deg,rgba(17,26,46,.9),rgba(13,21,38,.9));
+  padding:18px;max-width:460px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.machine legend{font-family:var(--f-m);font-size:10px;font-weight:500;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--muted);padding:0 6px}
+.m-row{display:flex}
+.m-brk{display:grid;place-items:center;width:32px;flex:none;font-family:var(--f-m);
+  font-size:21px;color:var(--muted);background:rgba(147,166,201,.05);border:1px solid var(--line-lit)}
+.m-brk.l{border-radius:3px 0 0 3px;border-right:0}
+.m-brk.r{border-radius:0 3px 3px 0;border-left:0}
+#engraveInput{flex:1;min-width:0;background:rgba(4,6,13,.6);border:1px solid var(--line-lit);
+  color:var(--paper);font-family:var(--f-d);font-variation-settings:"wdth" 110;font-weight:700;
+  font-size:1.45rem;letter-spacing:.17em;text-align:center;text-transform:uppercase;padding:11px 6px}
+#engraveInput:focus{outline:2px solid var(--amber);outline-offset:-1px}
+#engraveInput::placeholder{color:var(--muted);font-weight:400;letter-spacing:.1em}
+.m-foot{display:flex;justify-content:space-between;gap:12px;margin-top:11px;
+  font-family:var(--f-m);font-size:10.5px;color:var(--muted)}
+.m-foot b{color:var(--steel);font-weight:500}
+
+.modes{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.modes button{font-family:var(--f-m);font-size:10px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--steel);background:transparent;border:1px solid var(--line-lit);
+  border-radius:2px;padding:7px 10px;cursor:pointer;transition:color .16s,background .16s,border-color .16s}
+.modes button:hover{color:var(--paper);border-color:var(--steel)}
+.modes button[aria-pressed="true"]{color:var(--void);background:var(--paper);border-color:var(--paper)}
+.modes button:focus-visible{outline:2px solid var(--amber);outline-offset:2px}
+.hint{font-family:var(--f-m);font-size:10.5px;color:var(--muted);margin:10px 0 0;min-height:1.3em}
+
+/* ─────────── exploded-view callouts ─────────── */
+#callouts{position:fixed;inset:0;z-index:2;pointer-events:none}
+.callout{position:absolute;opacity:0;transition:opacity .35s ease;transform:translateY(-50%)}
+.callout.on{opacity:1}
+.callout .l{width:52px;height:1px;background:var(--line-lit);position:absolute;top:50%}
+.callout.lft .l{left:100%}
+.callout.rgt .l{right:100%}
+.callout .t{font-family:var(--f-m);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--steel);white-space:nowrap}
+.callout .t b{display:block;color:var(--paper);font-weight:500;letter-spacing:.1em}
+.callout.lft{text-align:right}
+
+/* ─────────── colorways ─────────── */
+.specrows{display:grid;grid-template-columns:1fr 1fr;gap:0 30px;margin-top:26px;max-width:480px}
+.specrows div{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
+  padding:9px 0;border-bottom:1px solid var(--line)}
+.specrows dt{font-family:var(--f-m);font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+.specrows dd{margin:0;font-family:var(--f-m);font-size:12.5px;color:var(--paper);
+  font-variant-numeric:tabular-nums;text-align:right}
+@media(max-width:600px){.specrows{grid-template-columns:1fr}}
+.ways{display:flex;gap:10px;flex-wrap:wrap;margin:22px 0 0}
+.way{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-lit);cursor:pointer;
+  position:relative;padding:0;transition:transform .18s cubic-bezier(.2,.8,.3,1)}
+.way:hover{transform:translateY(-3px)}
+.way[aria-pressed="true"]{box-shadow:0 0 0 2px var(--void),0 0 0 3px var(--paper)}
+.way:focus-visible{outline:2px solid var(--amber);outline-offset:4px}
+.wayname{font-family:var(--f-m);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-top:14px}
+.wayname b{color:var(--paper);font-weight:500}
+
+/* ─────────── quote / roll ─────────── */
+.quote{border-left:2px solid var(--amber);padding-left:20px;max-width:52ch}
+.quote p{font-family:var(--f-d);font-variation-settings:"wdth" 96;font-weight:400;
+  font-size:clamp(1.15rem,2.6vw,1.6rem);line-height:1.35;margin:0 0 12px;color:var(--paper)}
+.quote cite{font-family:var(--f-m);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);font-style:normal}
+.sample{display:inline-block;margin-top:14px;font-family:var(--f-m);font-size:9.5px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--amber);
+  border:1px solid rgba(242,160,61,.4);border-radius:2px;padding:3px 8px}
+
+/* ─────────── footer ─────────── */
+footer{border-top:1px solid var(--line);padding:46px 0 60px;position:relative;z-index:3;background:var(--void)}
+.fl{display:flex;flex-wrap:wrap;gap:8px 26px;font-family:var(--f-m);font-size:10.5px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.fl b{color:var(--steel);font-weight:500}
+.fnote{margin-top:22px;color:var(--muted);font-size:.92rem;max-width:64ch}
+.fnote a{color:var(--steel)}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{transition-duration:.01ms !important;animation-duration:.01ms !important}
+}
+</style>
+<style>
+/* film layering: the wash sits UNDER the canvas so the vessel is
+   visible the moment it forms, and OVER the page until handoff */
+#filmdim{position:fixed;inset:0;z-index:40;background:#04060d;opacity:1;
+  transition:opacity 1.1s cubic-bezier(.4,0,.2,1);pointer-events:none}
+#filmdim.out{opacity:0}
+body.filming #stage{z-index:45}
+body.filming{overflow:hidden}
+.cards{position:fixed;inset:0;z-index:50;pointer-events:none;display:block}
+.card{transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.2,.8,.3,1)}
+.card{transform:translate(-50%,-46%)}
+.card.show{transform:translate(-50%,-50%)}
+#skip{position:fixed;z-index:51}
+#progress{position:fixed;z-index:51}
+</style>
+
+<canvas id="stage" aria-hidden="true"></canvas>
+<div id="callouts" aria-hidden="true">
+  <div class="callout rgt" id="co1"><span class="l"></span><span class="t"><b>Press-fit lid</b>straw port · splash baffle</span></div>
+  <div class="callout lft" id="co2"><span class="l"></span><span class="t"><b>Mirror bore</b>bare 18/8 · no liner, no taste</span></div>
+  <div class="callout rgt" id="co3"><span class="l"></span><span class="t"><b>Double wall</b>vacuum gap · 6 h hot</span></div>
+</div>
+
+<div id="filmdim"></div>
+<div class="cards" id="cards">
+  <div class="card" id="c1"><p class="kicker">CODED · Kuwait · 23:41</p><p class="line">Every long night<br>needs a witness.</p></div>
+  <div class="card" id="c2"><p class="line">It doesn't write the code.<br>It just <em>refuses to leave.</em></p></div>
+  <div class="card title" id="c3"><p class="line">VESSEL 001</p><div class="rule"></div><p class="sub">Cohort issue · sixty made · engraved to order</p></div>
+</div>
+<button id="skip" type="button">Skip film</button>
+<div id="progress"></div>
+
+<div class="content" id="content">
+
+  <header class="topbar">
+    <div class="in">
+      <span class="mark">COD<i>E</i>D</span>
+      <nav>
+        <a href="#engrave">Engrave</a>
+        <a href="#build">Build</a>
+        <a href="#colors">Colourways</a>
+      </nav>
+      <span class="sp"></span>
+      <span class="pill">60 made</span>
+    </div>
+  </header>
+
+  <div class="wrap">
+
+    <!-- ══════════ ACT 0 · THE SELL ══════════ -->
+    <section class="act" id="act0">
+      <div class="col">
+        <p class="eyebrow">Vessel 001 <span>/ cohort issue / not for sale</span></p>
+        <h1>Every long night needs a witness.</h1>
+        <p class="lede">473 ml of vacuum-sealed 18/8 stainless. Matte navy outside,
+        <strong>mirror steel inside</strong>. Sixty were made for the cohort, each one
+        engraved with a single name in square brackets — because that's how you index
+        the thing that belongs to you.</p>
+
+        <div class="buy">
+          <span class="price"><s>KD 14</s>Issued</span>
+          <span class="meta">Free engraving<br>Ships never · already yours</span>
+          <span class="sp"></span>
+          <a class="btn" href="#engrave">Engrave yours</a>
+        </div>
+
+        <div class="trust">
+          <span><b>6 h</b> hot</span><span><b>12 h</b> cold</span>
+          <span>dishwasher safe</span><span><b>18/8</b> stainless</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat"><div class="v">473<small>ml</small></div><div class="k">capacity</div></div>
+          <div class="stat"><div class="v">325</div><div class="k">dots on the side</div></div>
+          <div class="stat"><div class="v">60</div><div class="k">ever made</div></div>
+          <div class="stat"><div class="v">1</div><div class="k">name on yours</div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ ACT 1 · THE ENGRAVING ══════════ -->
+    <section class="act right pushdown" id="act1">
+      <div class="col">
+        <p class="eyebrow">The engraving <span>/ free, forever</span></p>
+        <h2>Your name, woven into the dots.</h2>
+        <p class="lede">Those 325 dots aren't a pattern someone drew. Type a name and it's
+        <strong>hashed into the grid</strong> — mirrored down the centre column so it reads
+        woven instead of random. Same name, same weave, every time. Drag the vessel to
+        spin it; the artwork wraps with it.</p>
+
+        <fieldset class="machine" id="engrave">
+          <legend>Engraving machine</legend>
+          <div class="m-row">
+            <span class="m-brk l" aria-hidden="true">[</span>
+            <input id="engraveInput" type="text" value="MOUDHI" maxlength="10"
+                   placeholder="YOUR NAME" spellcheck="false" autocomplete="off"
+                   aria-label="Name to engrave, up to 10 characters">
+            <span class="m-brk r" aria-hidden="true">]</span>
+          </div>
+          <div class="m-foot">
+            <span><b id="charCount">6</b>/10 characters</span>
+            <span>weave <b id="sigilId">—</b></span>
+          </div>
+          <div class="modes" role="group" aria-label="Dot field mode">
+            <button type="button" data-mode="sigil" aria-pressed="true">Weave</button>
+            <button type="button" data-mode="name" aria-pressed="false">Ticker</button>
+            <button type="button" data-mode="life" aria-pressed="false">Life</button>
+            <button type="button" data-mode="draw" aria-pressed="false">Draw</button>
+          </div>
+          <p class="hint" id="hint">Hashed from the letters, mirrored down the centre.</p>
+        </fieldset>
+      </div>
+    </section>
+
+    <!-- ══════════ ACT 2 · THE BUILD ══════════ -->
+    <section class="act" id="build">
+      <div class="col">
+        <p class="eyebrow">The build <span>/ keep scrolling, it comes apart</span></p>
+        <h2>Matte navy outside.<br>Mirror steel inside.</h2>
+        <p class="lede">Most tumblers line the bore with plastic and hope you don't notice.
+        This one is <strong>bare polished 18/8</strong> all the way down — which is why
+        yesterday's coffee doesn't haunt today's water. The lid presses on, the straw
+        drops through, and the vacuum gap between the walls does the actual work.</p>
+        <dl class="specrows">
+          <div><dt>Capacity</dt><dd>473 ml</dd></div>
+          <div><dt>Height</dt><dd>195 mm</dd></div>
+          <div><dt>Diameter</dt><dd>73 mm</dd></div>
+          <div><dt>Mass, empty</dt><dd>340 g</dd></div>
+          <div><dt>Wall</dt><dd>Double, vacuum</dd></div>
+          <div><dt>Bore</dt><dd>Bare 18/8</dd></div>
+          <div><dt>Finish</dt><dd>Matte powder coat</dd></div>
+          <div><dt>Dot field</dt><dd>13 × 25</dd></div>
+        </dl>
+        <p class="lede" style="font-family:var(--f-m);font-size:.88rem;color:var(--muted);max-width:40ch;margin-top:24px">
+          Figures below are placeholders. Put a ruler and a kitchen scale on the real
+          vessel before this goes live — an engineer will check, and one wrong number
+          costs you the whole page.
+        </p>
+      </div>
+    </section>
+
+    <!-- ══════════ ACT 3 · COLOURWAYS ══════════ -->
+    <section class="act right pushdown" id="colors">
+      <div class="col">
+        <p class="eyebrow">Colourways <span>/ five, then never again</span></p>
+        <h2>Sixty vessels. Five finishes. One of each name.</h2>
+        <p class="lede">The colour drop is how the good drinkware brands make a steel cup
+        feel like a limited record. Same vessel, same weave, different powder coat —
+        and the silkscreen flips to dark ink on the pale ones.</p>
+        <div class="ways" id="ways" role="group" aria-label="Colourway"></div>
+        <p class="wayname">Selected · <b id="wayName">Midnight</b> <span id="wayNote"></span></p>
+      </div>
+    </section>
+
+    <!-- ══════════ ACT 4 · CLOSE ══════════ -->
+    <section class="act" id="act4">
+      <div class="col">
+        <p class="eyebrow">The close</p>
+        <div class="quote">
+          <p>“I didn't think a cup could mean anything. Then I graduated and it was the
+          only thing on my desk that had been there the whole time.”</p>
+          <cite>— cohort 12</cite>
+        </div>
+        <span class="sample">Sample copy — swap in a real quote from your cohort</span>
+
+        <div class="buy" style="margin-top:30px">
+          <span class="price">Issued</span>
+          <span class="meta">Engraving is free<br>The night shift is not</span>
+          <span class="sp"></span>
+          <a class="btn" href="#engrave">Engrave yours</a>
+        </div>
+        <p style="margin-top:18px">
+          <button class="btn ghost" id="replay" type="button">Replay the film</button>
+        </p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="wrap">
+      <div class="fl">
+        <span>one html file</span><span><b>zero</b> dependencies</span>
+        <span><b>no</b> webgl, no three.js</span><span>hand-written cylindrical renderer</span>
+        <span>honours <b>prefers-reduced-motion</b></span>
+      </div>
+      <p class="fnote">The vessel above is not a photograph and not a 3D library. Every frame
+      maps screen columns to angles around a cylinder and samples the unrolled label at
+      the matching angle — which is why the dots compress correctly toward the edges as it
+      turns. Stating that on the page is worth more than another section.</p>
+    </div>
+  </footer>
+</div>
+<script>
+(function(){
+"use strict";
+
+/* ══════════════════════════════════════════════════════════════════
+   A hand-written cylindrical renderer.
+
+   For every screen column across the vessel we solve the angle around
+   the cylinder, sample the unrolled label at that angle, and shade by
+   the surface normal. That is the whole trick — and it's why the dots
+   compress toward the silhouette instead of just sliding sideways.
+   ══════════════════════════════════════════════════════════════════ */
+
+var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+var TAU = Math.PI*2;
+function clamp(v,a,b){return v<a?a:v>b?b:v;}
+function lerp(a,b,t){return a+(b-a)*t;}
+function ease(t){return t<.5?4*t*t*t:1-Math.pow(-2*t+2,3)/2;}
+function easeOut(t){return 1-Math.pow(1-t,3);}
+function frac(v){return v-Math.floor(v);}
+
+/* ─────────── 5 × 7 bitmap font ─────────── */
+var F={
+"A":["01110","10001","10001","11111","10001","10001","10001"],
+"B":["11110","10001","10001","11110","10001","10001","11110"],
+"C":["01110","10001","10000","10000","10000","10001","01110"],
+"D":["11110","10001","10001","10001","10001","10001","11110"],
+"E":["11111","10000","10000","11110","10000","10000","11111"],
+"F":["11111","10000","10000","11110","10000","10000","10000"],
+"G":["01110","10001","10000","10111","10001","10001","01110"],
+"H":["10001","10001","10001","11111","10001","10001","10001"],
+"I":["11111","00100","00100","00100","00100","00100","11111"],
+"J":["00111","00010","00010","00010","00010","10010","01100"],
+"K":["10001","10010","10100","11000","10100","10010","10001"],
+"L":["10000","10000","10000","10000","10000","10000","11111"],
+"M":["10001","11011","10101","10101","10001","10001","10001"],
+"N":["10001","11001","10101","10011","10001","10001","10001"],
+"O":["01110","10001","10001","10001","10001","10001","01110"],
+"P":["11110","10001","10001","11110","10000","10000","10000"],
+"Q":["01110","10001","10001","10001","10101","10011","01111"],
+"R":["11110","10001","10001","11110","10100","10010","10001"],
+"S":["01111","10000","10000","01110","00001","00001","11110"],
+"T":["11111","00100","00100","00100","00100","00100","00100"],
+"U":["10001","10001","10001","10001","10001","10001","01110"],
+"V":["10001","10001","10001","10001","10001","01010","00100"],
+"W":["10001","10001","10001","10101","10101","11011","10001"],
+"X":["10001","10001","01010","00100","01010","10001","10001"],
+"Y":["10001","10001","01010","00100","00100","00100","00100"],
+"Z":["11111","00001","00010","00100","01000","10000","11111"],
+"0":["01110","10001","10011","10101","11001","10001","01110"],
+"1":["00100","01100","00100","00100","00100","00100","01110"],
+"2":["01110","10001","00001","00010","00100","01000","11111"],
+"3":["11111","00010","00100","00010","00001","10001","01110"],
+"4":["00010","00110","01010","10010","11111","00010","00010"],
+"5":["11111","10000","11110","00001","00001","10001","01110"],
+"6":["00110","01000","10000","11110","10001","10001","01110"],
+"7":["11111","00001","00010","00100","01000","01000","01000"],
+"8":["01110","10001","10001","01110","10001","10001","01110"],
+"9":["01110","10001","10001","01111","00001","00010","01100"],
+"[":["01110","01000","01000","01000","01000","01000","01110"],
+"]":["01110","00010","00010","00010","00010","00010","01110"],
+".":["00000","00000","00000","00000","00000","01100","01100"],
+"-":["00000","00000","00000","11111","00000","00000","00000"],
+" ":["00000","00000","00000","00000","00000","00000","00000"]};
+
+/* ─────────── dot field engine ─────────── */
+var COLS=13, ROWS=25, XOFF=4;
+var grid=new Uint8Array(COLS*ROWS);
+var name="MOUDHI", buffer=null, sigil=null, sigilHex="—";
+var mode="sigil", offset=0, tickTimer=null;
+
+function fnv1a(s){var h=0x811c9dc5;for(var i=0;i<s.length;i++){h^=s.charCodeAt(i);
+  h=(h+((h<<1)+(h<<4)+(h<<7)+(h<<8)+(h<<24)))>>>0;}return h>>>0;}
+function rng(seed){var x=seed||0x9e3779b9;return function(){
+  x^=x<<13;x>>>=0;x^=x>>>17;x^=x<<5;x>>>=0;return x/4294967296;};}
+
+function buildSigil(n){
+  var seed=fnv1a(n||" "), r=rng(seed), g=new Uint8Array(COLS*ROWS), mid=(COLS-1)/2;
+  for(var row=0;row<ROWS;row++){
+    var d=0.30+0.22*Math.sin(row*0.42+(seed%17)*0.3);
+    for(var col=0;col<=mid;col++){
+      var on=r()<d?1:0;
+      g[row*COLS+col]=on; g[row*COLS+(COLS-1-col)]=on;
+    }
+  }
+  sigilHex=("0000"+(seed%65536).toString(16).toUpperCase()).slice(-4);
+  return g;
+}
+function buildBuffer(n){
+  var s="[ "+n+" ] ", rows=[];
+  for(var i=0;i<s.length;i++){
+    var g=F[s.charAt(i)]||F[" "];
+    for(var r=0;r<7;r++)rows.push(g[r]);
+    rows.push("00000");
+  }
+  return rows;
+}
+function renderTicker(){
+  var n=buffer.length;
+  for(var r=0;r<ROWS;r++){
+    var line=buffer[(offset+r)%n];
+    for(var c=0;c<COLS;c++){
+      var lc=c-XOFF;
+      grid[r*COLS+c]=(lc>=0&&lc<5&&line.charAt(lc)==="1")?1:0;
+    }
+  }
+  dirty=true;
+}
+function lifeStep(){
+  var nx=new Uint8Array(COLS*ROWS);
+  for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
+    var n=0;
+    for(var dr=-1;dr<=1;dr++)for(var dc=-1;dc<=1;dc++){
+      if(!dr&&!dc)continue;
+      if(grid[((r+dr+ROWS)%ROWS)*COLS+((c+dc+COLS)%COLS)])n++;
+    }
+    var a=grid[r*COLS+c]?1:0;
+    nx[r*COLS+c]=((a&&(n===2||n===3))||(!a&&n===3))?1:0;
+  }
+  grid.set(nx); dirty=true;
+}
+
+/* ─────────── colourways ─────────── */
+var WAYS=[
+  {id:"midnight",label:"Midnight",note:"· the issue finish",body:"#2c3444",hi:"#4a5570",ink:"#f2f5fa"},
+  {id:"sand",     label:"Sand",    note:"· dark ink",        body:"#b9a98d",hi:"#d8cbb2",ink:"#2a2620"},
+  {id:"oxide",    label:"Oxide",   note:"",                  body:"#8a4536",hi:"#b3604c",ink:"#fdf1ec"},
+  {id:"moss",     label:"Moss",    note:"",                  body:"#3f4c3c",hi:"#5e7059",ink:"#f0f5ee"},
+  {id:"graphite", label:"Graphite",note:"· matte black",      body:"#2a2c30",hi:"#474b52",ink:"#eef0f4"}
+];
+var way=WAYS[0];
+
+/* ─────────── the unrolled label ─────────── */
+var ART=document.createElement("canvas");
+ART.width=1200; ART.height=640;
+var actx=ART.getContext("2d");
+var FX0=(1200-13*15)/2, FY0=196, CELL=15;   // dot field origin on the label
+var dirty=true, revealT=1, engraveT=1;
+
+var revealOrder=(function(){
+  var a=[];
+  for(var i=0;i<COLS*ROWS;i++){
+    var c=i%COLS, r=(i/COLS)|0;
+    a.push({i:i,d:Math.hypot((c-6)/6,(r-12)/12)});
+  }
+  a.sort(function(p,q){return p.d-q.d;});
+  return a;
+})();
+
+function drawArt(){
+  var W=ART.width,H=ART.height;
+  actx.clearRect(0,0,W,H);
+  actx.fillStyle=way.body; actx.fillRect(0,0,W,H);
+
+  /* a faint vertical brushing so the coat isn't dead flat */
+  actx.globalAlpha=.05;
+  for(var i=0;i<70;i++){
+    actx.fillStyle=i%2?"#fff":"#000";
+    actx.fillRect(Math.random()*W,0,1,H);
+  }
+  actx.globalAlpha=1;
+
+  var cx=W/2;
+
+  /* CODED badge */
+  if(revealT>=1){
+    actx.strokeStyle=way.ink; actx.lineWidth=3.2;
+    actx.strokeRect(cx-76,84,152,46);
+    actx.fillStyle=way.ink;
+    actx.font="800 30px Archivo, Arial, sans-serif";
+    actx.textAlign="center"; actx.textBaseline="middle";
+    actx.setTransform(1,0,0,1,0,0);
+    actx.save(); actx.translate(cx,108); actx.scale(1.06,1);
+    actx.fillText("CODED",0,1); actx.restore();
+  }
+
+  /* the 325 dots */
+  var shown=Math.round(revealT*revealOrder.length);
+  var visible=new Uint8Array(COLS*ROWS);
+  for(var k=0;k<shown;k++)visible[revealOrder[k].i]=1;
+  for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
+    var idx=r*COLS+c;
+    if(!visible[idx])continue;
+    var v=grid[idx];
+    var x=FX0+c*CELL+CELL/2, y=FY0+r*CELL+CELL/2;
+    actx.beginPath();
+    if(v===2){ actx.fillStyle="#f2a03d"; actx.arc(x,y,4.9,0,TAU); }
+    else if(v===1){ actx.fillStyle=way.ink; actx.arc(x,y,4.6,0,TAU); }
+    else { actx.fillStyle=way.ink; actx.globalAlpha=.13; actx.arc(x,y,2.9,0,TAU); }
+    actx.fill(); actx.globalAlpha=1;
+  }
+
+  /* [ NAME ] — engraved, letter by letter during the film */
+  var full="[ "+name+" ]";
+  var n=Math.max(0,Math.min(full.length,Math.round(engraveT*full.length)));
+  var shownName=full.slice(0,n);
+  if(shownName){
+    actx.font="500 27px 'IBM Plex Mono', monospace";
+    actx.textAlign="center"; actx.textBaseline="middle";
+    actx.letterSpacing="3px";
+    if(engraveT<1){
+      actx.shadowColor="#f2a03d"; actx.shadowBlur=18;
+      actx.fillStyle="#ffd9a0";
+    }else{
+      actx.shadowBlur=0; actx.fillStyle=way.ink;
+    }
+    actx.fillText(shownName,cx,606);
+    actx.shadowBlur=0; actx.letterSpacing="0px";
+  }
+}
+
+/* ─────────── stage ─────────── */
+var cv=document.getElementById("stage");
+var ctx=cv.getContext("2d");
+var W=0,H=0,dpr=1;
+
+/* world: radius 1, body height 4.6 (matches the straight-walled vessel) */
+var BODY_H=4.6, LID_H=0.88, LID_R=1.035, STRAW_R=0.118, STRAW_L=1.02, STRAW_ORB=0.52;
+
+var S={rot:0,tilt:.20,scale:64,cx:0,cy:0,explode:0,wrap:1,light:0.42,shade:1,spin:0.012};
+var dragRot=0, spinVel=0, dragging=false, lastX=0;
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  W=cv.clientWidth||innerWidth; H=cv.clientHeight||innerHeight;
+  cv.width=Math.round(W*dpr); cv.height=Math.round(H*dpr);
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  layout(); buildTrack();
+}
+function layout(){
+  var narrow=W<900;
+  S.baseScale=narrow?Math.min(W*0.20,74):Math.min(H*0.135,86);
+  S.homeX=narrow?W*0.5:W*0.70;
+  S.homeY=narrow?H*0.30:H*0.50;
+}
+
+/* shading built from the surface normal, as gradient stops */
+function shadeGradient(x0,x1,lightA,kind){
+  var g=ctx.createLinearGradient(x0,0,x1,0), N=26;
+  for(var j=0;j<=N;j++){
+    var t=j/N, s=clamp(-1+2*t,-1,1), th=Math.asin(s);
+    var d=Math.max(0,Math.cos(th-lightA));
+    var edge=Math.pow(1-Math.abs(s),0.30);
+    if(kind==="dark"){
+      var lum=0.18+0.82*Math.pow(d,0.85)*edge;
+      g.addColorStop(t,"rgba(2,4,10,"+(1-lum).toFixed(3)+")");
+    }else{
+      var sp=0.20*Math.pow(d,9)*edge;
+      g.addColorStop(t,"rgba(226,238,255,"+sp.toFixed(3)+")");
+    }
+  }
+  return g;
+}
+function cylPath(cx,r,k,yTop,yBot){
+  ctx.beginPath();
+  ctx.ellipse(cx,yTop,r,k*r,0,0,Math.PI);
+  ctx.lineTo(cx-r,yBot);
+  ctx.ellipse(cx,yBot,r,k*r,0,Math.PI,0,true);
+  ctx.closePath();
+}
+
+function drawVessel(){
+  ctx.clearRect(0,0,W,H);
+  var sc=S.scale, r=sc, k=S.tilt, bh=BODY_H*sc;
+  var cx=S.cx, yTop=S.cy-(bh-(LID_H+STRAW_L)*sc)/2, yBot=yTop+bh;
+  var lift=S.explode;
+
+  /* contact shadow */
+  var sg=ctx.createRadialGradient(cx,yBot+k*r+14,2,cx,yBot+k*r+14,r*1.9);
+  sg.addColorStop(0,"rgba(0,0,0,.5)"); sg.addColorStop(1,"rgba(0,0,0,0)");
+  ctx.save(); ctx.translate(cx,yBot+k*r+14); ctx.scale(1,.20); ctx.translate(-cx,-(yBot+k*r+14));
+  ctx.fillStyle=sg; ctx.beginPath(); ctx.arc(cx,yBot+k*r+14,r*1.9,0,TAU); ctx.fill(); ctx.restore();
+
+  /* ── the bore: polished bare steel, only meaningful once the lid lifts ── */
+  var bg=ctx.createLinearGradient(cx-r,0,cx+r,0);
+  bg.addColorStop(0,"#4d5666"); bg.addColorStop(.34,"#aeb9c9");
+  bg.addColorStop(.55,"#7d8797"); bg.addColorStop(1,"#3c4452");
+  ctx.fillStyle=bg;
+  ctx.beginPath(); ctx.ellipse(cx,yTop,r,k*r,0,0,TAU); ctx.fill();
+
+  var ir=r*0.87;
+  var ig=ctx.createLinearGradient(cx-ir,0,cx+ir,0);
+  ig.addColorStop(0,"#151b26"); ig.addColorStop(.42,"#5d6878");
+  ig.addColorStop(.62,"#2c3440"); ig.addColorStop(1,"#0e131c");
+  ctx.fillStyle=ig;
+  ctx.beginPath(); ctx.ellipse(cx,yTop+k*r*0.30,ir,k*ir,0,0,TAU); ctx.fill();
+  /* the floor of the cup, far down */
+  ctx.fillStyle="rgba(140,156,178,.20)";
+  ctx.beginPath(); ctx.ellipse(cx,yTop+k*r*0.95,ir*0.62,k*ir*0.62,0,0,TAU); ctx.fill();
+
+  /* ── the body: strips ── */
+  var stepPx=Math.max(0.6,(2*r)/620);
+  var aW=ART.width, aH=ART.height;
+  var uFlatK=0.16, dFlat=uFlatK*stepPx/r;
+  for(var px=-r;px<=r;px+=stepPx){
+    var s=clamp(px/r,-1,1), th=Math.asin(s);
+    var uCyl=0.5+th/TAU+S.rot;
+    var uFlat=0.5+s*uFlatK+S.rot;
+    var u=frac(lerp(uFlat,uCyl,S.wrap));
+    var dCyl=Math.min(0.22,(1/TAU)*(stepPx/r)/Math.sqrt(Math.max(1e-4,1-s*s)));
+    var du=lerp(dFlat,dCyl,S.wrap);
+    var srcX=u*aW, srcW=Math.max(1,du*aW);
+    if(srcX+srcW>aW)srcW=aW-srcX;
+    var yoff=S.wrap*k*r*Math.cos(th);
+    ctx.drawImage(ART,srcX,0,srcW,aH,cx+px,yTop+yoff,stepPx+0.7,bh);
+  }
+
+  /* ── shading, clipped to the silhouette ── */
+  if(S.shade>0.01){
+    ctx.save();
+    cylPath(cx,r,k,yTop,yBot); ctx.clip();
+    ctx.globalAlpha=S.shade;
+    ctx.globalCompositeOperation="multiply";
+    ctx.fillStyle=shadeGradient(cx-r,cx+r,S.light,"dark");
+    ctx.fillRect(cx-r,yTop-k*r,2*r,bh+2*k*r);
+    /* ambient occlusion toward the base */
+    var vg=ctx.createLinearGradient(0,yTop,0,yBot+k*r);
+    vg.addColorStop(0,"rgba(255,255,255,1)"); vg.addColorStop(.62,"rgba(255,255,255,1)");
+    vg.addColorStop(1,"rgba(120,132,152,1)");
+    ctx.fillStyle=vg; ctx.fillRect(cx-r,yTop-k*r,2*r,bh+2*k*r);
+    ctx.globalCompositeOperation="lighter";
+    ctx.fillStyle=shadeGradient(cx-r,cx+r,S.light,"spec");
+    ctx.fillRect(cx-r,yTop-k*r,2*r,bh+2*k*r);
+    ctx.restore();
+  }
+
+  /* ── the polished lip ── */
+  ctx.lineWidth=Math.max(1.6,r*0.035);
+  var lg=ctx.createLinearGradient(cx-r,0,cx+r,0);
+  lg.addColorStop(0,"rgba(140,156,180,.55)"); lg.addColorStop(.40,"rgba(240,248,255,.95)");
+  lg.addColorStop(.72,"rgba(170,186,208,.7)"); lg.addColorStop(1,"rgba(110,126,150,.5)");
+  ctx.strokeStyle=lg;
+  ctx.beginPath(); ctx.ellipse(cx,yTop,r,k*r,0,0,TAU); ctx.stroke();
+  ctx.lineWidth=1; ctx.strokeStyle="rgba(10,14,22,.5)";
+  ctx.beginPath(); ctx.ellipse(cx,yTop+k*r*0.30,ir,k*ir,0,0,TAU); ctx.stroke();
+
+  /* ── rim light down the lit silhouette ── */
+  var dR=Math.max(0,Math.cos(Math.PI/2-S.light)), dL=Math.max(0,Math.cos(-Math.PI/2-S.light));
+  [[cx+r,dR],[cx-r,dL]].forEach(function(e){
+    if(e[1]<0.04)return;
+    var eg=ctx.createLinearGradient(0,yTop,0,yBot);
+    eg.addColorStop(0,"rgba(214,232,255,"+(0.55*e[1]).toFixed(3)+")");
+    eg.addColorStop(.7,"rgba(214,232,255,"+(0.22*e[1]).toFixed(3)+")");
+    eg.addColorStop(1,"rgba(214,232,255,0)");
+    ctx.strokeStyle=eg; ctx.lineWidth=1.4;
+    ctx.beginPath(); ctx.moveTo(e[0],yTop+k*r*0.2); ctx.lineTo(e[0],yBot); ctx.stroke();
+  });
+
+  /* ── lid ── */
+  var lr=LID_R*sc, lh=LID_H*sc;
+  var lidBot=yTop-lift*1.30*sc, lidTop=lidBot-lh;
+  ctx.save();
+  cylPath(cx,lr,k,lidTop,lidBot); ctx.clip();
+  ctx.fillStyle=way.body; ctx.fillRect(cx-lr,lidTop-k*lr,2*lr,lh+2*k*lr);
+  ctx.globalCompositeOperation="multiply";
+  ctx.fillStyle=shadeGradient(cx-lr,cx+lr,S.light,"dark");
+  ctx.fillRect(cx-lr,lidTop-k*lr,2*lr,lh+2*k*lr);
+  ctx.globalCompositeOperation="lighter";
+  ctx.fillStyle=shadeGradient(cx-lr,cx+lr,S.light,"spec");
+  ctx.fillRect(cx-lr,lidTop-k*lr,2*lr,lh+2*k*lr);
+  ctx.restore();
+  /* lid cap */
+  var cg=ctx.createLinearGradient(cx-lr,0,cx+lr,0);
+  cg.addColorStop(0,"rgba(0,0,0,.42)"); cg.addColorStop(.40,"rgba(255,255,255,.10)");
+  cg.addColorStop(1,"rgba(0,0,0,.38)");
+  ctx.fillStyle=way.body;
+  ctx.beginPath(); ctx.ellipse(cx,lidTop,lr,k*lr,0,0,TAU); ctx.fill();
+  ctx.fillStyle=cg;
+  ctx.beginPath(); ctx.ellipse(cx,lidTop,lr,k*lr,0,0,TAU); ctx.fill();
+  ctx.strokeStyle="rgba(200,218,246,.26)"; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.ellipse(cx,lidTop,lr,k*lr,0,0,TAU); ctx.stroke();
+
+  /* straw port + straw, orbiting with the rotation */
+  var ph=S.rot*TAU+0.55;
+  var sx=cx+STRAW_ORB*sc*Math.sin(ph), sy=lidTop+k*STRAW_ORB*sc*Math.cos(ph);
+  var sr=STRAW_R*sc;
+  ctx.fillStyle="rgba(6,9,16,.85)";
+  ctx.beginPath(); ctx.ellipse(sx,sy,sr*1.35,k*sr*1.35,0,0,TAU); ctx.fill();
+
+  var stTop=sy-STRAW_L*sc-lift*0.85*sc;
+  var stg=ctx.createLinearGradient(sx-sr,0,sx+sr,0);
+  stg.addColorStop(0,"#0c1220"); stg.addColorStop(.38,way.body); stg.addColorStop(.62,way.body); stg.addColorStop(1,"#080d17");
+  ctx.fillStyle=stg;
+  ctx.beginPath();
+  if(ctx.roundRect){ctx.roundRect(sx-sr,stTop,sr*2,(sy-stTop)+sr,sr);}
+  else{ctx.rect(sx-sr,stTop,sr*2,(sy-stTop)+sr);}
+  ctx.fill();
+  ctx.fillStyle="rgba(190,206,232,.30)";
+  ctx.beginPath(); ctx.ellipse(sx,stTop,sr,k*sr,0,0,TAU); ctx.fill();
+  ctx.strokeStyle="rgba(6,9,16,.5)"; ctx.lineWidth=1;
+  ctx.beginPath(); ctx.ellipse(sx,stTop,sr,k*sr,0,0,TAU); ctx.stroke();
+
+  window.__geo={cx:cx,r:r,k:k,yTop:yTop,bh:bh};
+  positionCallouts(cx,r,yTop,bh,lidTop,lidBot);
+}
+
+function positionCallouts(cx,r,yTop,bh,lidTop,lidBot){
+  var on=S.explode>0.35;
+  var set=[["co1",cx+r+30,(lidTop+lidBot)/2,1],
+           ["co2",cx-r-30,yTop+4,-1],
+           ["co3",cx+r+30,yTop+bh*0.62,1]];
+  set.forEach(function(c){
+    var el=document.getElementById(c[0]);
+    if(!el)return;
+    el.classList.toggle("on",on);
+    if(c[3]>0){el.style.left=c[1]+"px";el.style.right="auto";}
+    else{el.style.left="auto";el.style.right=(W-c[1])+"px";}
+    el.style.top=c[2]+"px";
+  });
+}
+
+/* ─────────── scroll track ─────────── */
+var ACT_IDS=["act0","act1","build","colors","act4"];
+var STATES=[
+  {sm:1.00,ex:0,tilt:.20,spin:.010,dy:0},
+  {sm:1.42,ex:0,tilt:.14,spin:.006,dy:.10},
+  {sm:0.86,ex:1,tilt:.26,spin:.004,dy:.30},
+  {sm:1.02,ex:0,tilt:.20,spin:.030,dy:0},
+  {sm:0.80,ex:0,tilt:.18,spin:.008,dy:-.05}
+];
+var track=[];
+function buildTrack(){
+  track=ACT_IDS.map(function(id,i){
+    var el=document.getElementById(id);
+    var y=el?el.offsetTop+el.offsetHeight/2-innerHeight/2:i*innerHeight;
+    return {y:Math.max(0,y),st:STATES[i]};
+  });
+}
+function sampleTrack(y){
+  if(!track.length)return STATES[0];
+  if(y<=track[0].y)return track[0].st;
+  for(var i=0;i<track.length-1;i++){
+    if(y<=track[i+1].y){
+      var t=ease(clamp((y-track[i].y)/Math.max(1,track[i+1].y-track[i].y),0,1));
+      var a=track[i].st,b=track[i+1].st;
+      return {sm:lerp(a.sm,b.sm,t),ex:lerp(a.ex,b.ex,t),tilt:lerp(a.tilt,b.tilt,t),
+              spin:lerp(a.spin,b.spin,t),dy:lerp(a.dy,b.dy,t)};
+    }
+  }
+  return track[track.length-1].st;
+}
+
+/* ─────────── the film ─────────── */
+var film={on:false,t0:0,dur:9200};
+var dimEl=document.getElementById("filmdim");
+var progEl=document.getElementById("progress");
+var C=[document.getElementById("c1"),document.getElementById("c2"),document.getElementById("c3")];
+
+function startFilm(){
+  film.on=true; film.t0=performance.now();
+  document.body.classList.add("filming");
+  dimEl.classList.remove("out");
+  document.getElementById("skip").style.display="";
+  revealT=0; engraveT=0; dirty=true;
+  window.scrollTo(0,0);
+}
+function endFilm(){
+  if(!film.on)return;
+  film.on=false;
+  document.body.classList.remove("filming");
+  dimEl.classList.add("out");
+  C.forEach(function(c){c.classList.remove("show");});
+  progEl.style.width="0";
+  document.getElementById("skip").style.display="none";
+  revealT=1; engraveT=1; dirty=true;
+  cv.classList.add("live");
+}
+function filmStep(now){
+  var t=(now-film.t0)/1000;
+  progEl.style.width=clamp(t/(film.dur/1000),0,1)*100+"%";
+
+  /* dots ignite out of the centre */
+  var ig=clamp((t-0.25)/1.25,0,1);
+  var nr=easeOut(ig);
+  if(Math.abs(nr-revealT)>0.004){revealT=nr;dirty=true;}
+
+  /* type cards */
+  C[0].classList.toggle("show",t>1.35&&t<2.75);
+  C[1].classList.toggle("show",t>2.95&&t<4.25);
+  C[2].classList.toggle("show",t>7.00&&t<8.75);
+
+  /* the flat grid curls onto the vessel */
+  var wp=clamp((t-4.30)/1.50,0,1);
+  S.wrap=ease(wp);
+  S.shade=ease(clamp((t-4.45)/1.30,0,1));
+  S.scale=S.baseScale*lerp(0.46,1.0,ease(clamp((t-4.30)/1.70,0,1)));
+  S.rot=lerp(-0.22,0,ease(clamp((t-4.30)/2.20,0,1)));
+  S.tilt=lerp(0.06,0.20,ease(wp));
+  S.explode=0;
+  S.cx=S.homeX; S.cy=S.homeY;
+
+  /* a light rakes across the coat */
+  var rk=clamp((t-4.90)/1.45,0,1);
+  S.light=lerp(-1.35,0.42,ease(rk));
+
+  /* the name burns in, then cools */
+  var en=clamp((t-5.85)/1.15,0,1);
+  var ne=easeOut(en);
+  if(Math.abs(ne-engraveT)>0.01||(en>=1&&engraveT<1)){engraveT=en>=1?1:ne;dirty=true;}
+
+  if(t>film.dur/1000)endFilm();
+}
+
+/* ─────────── main loop ─────────── */
+var last=performance.now();
+function frame(now){
+  var dt=Math.min(50,now-last); last=now;
+
+  if(film.on){ filmStep(now); }
+  else{
+    var st=sampleTrack(window.scrollY||window.pageYOffset||0);
+    S.scale=lerp(S.scale,S.baseScale*st.sm,0.09);
+    S.explode=lerp(S.explode,st.ex,0.08);
+    S.tilt=lerp(S.tilt,st.tilt,0.08);
+    S.wrap=lerp(S.wrap,1,0.14);
+    S.shade=lerp(S.shade,1,0.14);
+    S.light=lerp(S.light,0.42,0.05);
+    S.cx=lerp(S.cx||S.homeX,S.homeX,0.10);
+    S.cy=lerp(S.cy||S.homeY,S.homeY+st.dy*S.baseScale,0.10);
+    if(!dragging){
+      if(!reduce)S.rot+=st.spin*(dt/16.7)*0.01+spinVel;
+      spinVel*=0.94;
+    }
+  }
+
+  if(dirty){drawArt();dirty=false;}
+  drawVessel();
+  requestAnimationFrame(frame);
+}
+
+/* ─────────── interaction ─────────── */
+cv.addEventListener("pointerdown",function(e){
+  if(film.on)return;
+  if(mode==="draw"){paintAt(e);return;}
+  dragging=true; lastX=e.clientX; spinVel=0;
+  cv.classList.add("dragging");
+  cv.setPointerCapture(e.pointerId);
+});
+cv.addEventListener("pointermove",function(e){
+  if(film.on)return;
+  if(mode==="draw"&&e.buttons){paintAt(e);return;}
+  if(!dragging)return;
+  var dx=e.clientX-lastX; lastX=e.clientX;
+  S.rot+=dx/460; spinVel=dx/460*0.35;
+});
+["pointerup","pointercancel","pointerleave"].forEach(function(ev){
+  cv.addEventListener(ev,function(){dragging=false;cv.classList.remove("dragging");});
+});
+
+function pick(e){
+  var g=window.__geo; if(!g)return null;
+  var rect=cv.getBoundingClientRect();
+  var x=e.clientX-rect.left, y=e.clientY-rect.top;
+  var dx=x-g.cx; if(Math.abs(dx)>g.r)return null;
+  var s=clamp(dx/g.r,-1,1), th=Math.asin(s);
+  var u=frac(0.5+th/TAU+S.rot);
+  var ax=u*ART.width;
+  var col=Math.floor((ax-FX0)/CELL);
+  if(col<0||col>=COLS)return null;
+  var yoff=g.k*g.r*Math.cos(th);
+  var v=(y-(g.yTop+yoff))/g.bh;
+  var ay=v*ART.height;
+  var row=Math.floor((ay-FY0)/CELL);
+  if(row<0||row>=ROWS)return null;
+  return row*COLS+col;
+}
+function paintAt(e){
+  var i=pick(e);
+  if(i!=null&&grid[i]!==2){grid[i]=2;dirty=true;}
+}
+
+/* ─────────── controls ─────────── */
+var HINTS={
+  sigil:"Hashed from the letters, mirrored down the centre.",
+  name:"Punchcard ticker — the name feeds around the vessel.",
+  life:"Conway's Game of Life on a 13 × 25 torus, seeded by the weave.",
+  draw:"Drag across the dots to paint. Press Draw again to clear."
+};
+function setMode(m){
+  if(m==="draw"&&mode==="draw"){grid.fill(0);dirty=true;return;}
+  mode=m;
+  if(tickTimer){clearInterval(tickTimer);tickTimer=null;}
+  document.querySelectorAll(".modes button").forEach(function(b){
+    b.setAttribute("aria-pressed",String(b.dataset.mode===m));
+  });
+  document.getElementById("hint").textContent=HINTS[m];
+  if(m==="sigil"){grid.set(sigil);dirty=true;}
+  else if(m==="name"){offset=0;renderTicker();
+    if(!reduce)tickTimer=setInterval(function(){offset=(offset+1)%buffer.length;renderTicker();},110);}
+  else if(m==="life"){grid.set(sigil);dirty=true;
+    if(!reduce)tickTimer=setInterval(lifeStep,170);}
+  else{grid.fill(0);dirty=true;}
+}
+document.querySelectorAll(".modes button").forEach(function(b){
+  b.addEventListener("click",function(){setMode(b.dataset.mode);});
+});
+
+var input=document.getElementById("engraveInput");
+function engrave(raw){
+  var clean=raw.toUpperCase().replace(/[^A-Z0-9 .-]/g,"").slice(0,10);
+  name=clean.trim()||"ANON";
+  buffer=buildBuffer(name); sigil=buildSigil(name);
+  document.getElementById("charCount").textContent=String(clean.length);
+  document.getElementById("sigilId").textContent=sigilHex;
+  if(mode==="sigil"||mode==="life")grid.set(sigil);
+  else if(mode==="name")renderTicker();
+  dirty=true;
+  return clean;
+}
+input.addEventListener("input",function(){
+  var c=engrave(input.value);
+  if(c!==input.value)input.value=c;
+});
+
+/* colourway swatches */
+var waysEl=document.getElementById("ways");
+WAYS.forEach(function(w,i){
+  var b=document.createElement("button");
+  b.type="button"; b.className="way"; b.title=w.label;
+  b.setAttribute("aria-label",w.label);
+  b.setAttribute("aria-pressed",String(i===0));
+  b.style.background="linear-gradient(145deg,"+w.hi+","+w.body+")";
+  b.addEventListener("click",function(){
+    way=w; dirty=true;
+    document.getElementById("wayName").textContent=w.label;
+    document.getElementById("wayNote").textContent=w.note;
+    waysEl.querySelectorAll(".way").forEach(function(x,j){
+      x.setAttribute("aria-pressed",String(j===i));
+    });
+  });
+  waysEl.appendChild(b);
+});
+
+document.getElementById("skip").addEventListener("click",endFilm);
+document.getElementById("replay").addEventListener("click",function(){
+  if(reduce){return;}
+  startFilm();
+});
+addEventListener("keydown",function(e){
+  if(e.key==="Escape"&&film.on)endFilm();
+});
+addEventListener("resize",resize);
+addEventListener("load",buildTrack);
+
+/* ─────────── boot ─────────── */
+buffer=buildBuffer(name); sigil=buildSigil(name); grid.set(sigil);
+document.getElementById("sigilId").textContent=sigilHex;
+document.getElementById("wayNote").textContent=WAYS[0].note;
+resize();
+S.cx=S.homeX; S.cy=S.homeY; S.scale=S.baseScale;
+
+if(reduce){
+  document.getElementById("filmdim").classList.add("out");
+  document.getElementById("skip").style.display="none";
+  progEl.style.display="none";
+  cv.classList.add("live");
+  revealT=1; engraveT=1; S.wrap=1; S.shade=1;
+}else{
+  startFilm();
+}
+requestAnimationFrame(frame);
+
+console.log(
+"%c  ___________\n"+
+" |  .-----.  |   VESSEL 001 — cinematic cut\n"+
+" |  | ::: |  |   no webgl · no three.js · no images\n"+
+" |  | ::: |  |   every column solves asin(x/r)\n"+
+" |  |_____|  |   [ MOUDHI ]\n"+
+" |___________|\n",
+"color:#f2a03d;font-family:monospace;line-height:1.4");
+})();
+</script>
+
+</body>
+</html>
