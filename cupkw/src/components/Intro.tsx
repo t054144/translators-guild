@@ -9,8 +9,6 @@ import { useI18n } from "@/lib/i18n";
 import { setIntroPlaying } from "@/lib/intro-gate";
 
 /**
- * UNFINISHED — not mounted anywhere. See the note at the end of this block.
- *
  * The opening title sequence.
  *
  * Five beats: the mark, the arrival, the pieces coming apart, the three
@@ -20,14 +18,10 @@ import { setIntroPlaying } from "@/lib/intro-gate";
  * The overlay is rendered on the server too, so the very first paint is the
  * black title card rather than a flash of the page underneath.
  *
- * KNOWN BUG, why this is not mounted on the home page yet: the sequence
- * tears itself down after roughly eight seconds without advancing past the
- * first beat. Observed in a production build: the stage wrapper stays at
- * opacity 0, the CUP.KW card stays up, and then the whole overlay
- * disappears — so `playing` is going false long before `ms` could reach
- * END. Suspect the clock effect and the arming effect are racing over
- * `t0`/`armed`. Reproduce with `npm run dev`, watch `armed` and `ms`, and
- * fix before adding <Intro /> back to src/app/page.tsx.
+ * The clock accumulates a clamped per-tick delta rather than reading
+ * wall-clock elapsed time directly — see the comment on that effect. Without
+ * it, a stall (a slow device compiling shaders, a backgrounded tab regaining
+ * focus) can make the very next tick jump straight past every beat.
  */
 
 /* Server has no layout phase; using the layout effect on the client only
@@ -62,7 +56,6 @@ export default function Intro() {
   const [armed, setArmed] = useState(false);
   const [ms, setMs] = useState(0);
   const raf = useRef(0);
-  const t0 = useRef(0);
 
   /* The clock does not start until the vessel has drawn, so the arrival
      beat can never play against an empty stage on a slow device. A cap
@@ -97,14 +90,25 @@ export default function Intro() {
     }
   }, []);
 
-  /* the clock */
+  /* the clock
+
+     Accumulates a CLAMPED delta each tick rather than reading wall-clock
+     elapsed time directly. A raw `now - t0` reads fine until the tab stalls
+     — a slow device compiling WebGL shaders, a background tab regaining
+     focus, this sandbox's software renderer — at which point the very next
+     tick can already exceed END, snapping straight past every beat instead
+     of playing them. Clamping the per-tick delta means a stall pauses the
+     sequence and it resumes where it left off, which is what the vessel's
+     own render loop already does (`dt = Math.min(50, now - last)`). */
   useEffect(() => {
     if (!playing || !armed) return;
-    t0.current = performance.now();
+    let last = performance.now();
+    let acc = 0;
     const tick = (now: number) => {
-      const el = now - t0.current;
-      setMs(el);
-      if (el >= END) {
+      acc += Math.min(now - last, 100);
+      last = now;
+      setMs(acc);
+      if (acc >= END) {
         finish();
         return;
       }

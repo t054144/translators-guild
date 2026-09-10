@@ -1,3 +1,4 @@
+import Intro from "@/components/Intro";
 import Hero from "@/components/sections/Hero";
 import Marquee from "@/components/sections/Marquee";
 import Anatomy from "@/components/sections/Anatomy";
@@ -11,6 +12,7 @@ import Community from "@/components/sections/Community";
 export default function Home() {
   return (
     <>
+      <Intro />
       <Hero />
       <Marquee />
       <Anatomy />
