@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Vessel 001 - the CODED cohort tumbler. An 18-second advertisement opening, then a vessel you can tap to zoom, drag to spin, engrave and recolour.">
+<meta name="description" content="Vessel 001 - the CODED cohort tumbler. An 18-second advertisement opening, then a scrollable page with a permanent Sizes section, tap-to-zoom, drag-to-spin, engraving and 14 colourways.">
 <meta name="author" content="Shaikha Alkhaldi">
 <style>:root{color-scheme:dark}html,body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -246,6 +246,19 @@ h2{
 .callout.lft{text-align:right}
 
 /* ─────────── colorways ─────────── */
+.sizecards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:28px;max-width:560px}
+.sizecard{border:1px solid var(--line-lit);border-radius:3px;
+  background:linear-gradient(180deg,rgba(17,26,46,.72),rgba(13,21,38,.72));
+  padding:16px 14px;text-align:center}
+.sizecard.on{border-color:var(--amber);box-shadow:0 0 0 1px rgba(242,160,61,.25) inset}
+.sizecard .nm{font-family:var(--f-m);font-size:10.5px;font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--muted)}
+.sizecard .ml{font-family:var(--f-d);font-variation-settings:"wdth" 105;font-weight:800;
+  font-size:1.55rem;letter-spacing:-.01em;color:var(--paper);margin-top:6px;line-height:1.05}
+.sizecard .ml small{font-size:.55em;font-weight:500;color:var(--steel);margin-left:2px}
+.sizecard .kd{font-family:var(--f-m);font-size:11px;color:var(--amber);margin-top:6px}
+.sizecard .mm{font-family:var(--f-m);font-size:10px;color:var(--muted);margin-top:2px}
+@media(max-width:600px){.sizecards{grid-template-columns:1fr;max-width:280px}}
 .specrows{display:grid;grid-template-columns:1fr 1fr;gap:0 30px;margin-top:26px;max-width:480px}
 .specrows div{display:flex;justify-content:space-between;align-items:baseline;gap:14px;
   padding:9px 0;border-bottom:1px solid var(--line)}
@@ -423,6 +436,7 @@ body.filming .bars i{height:8.6vh}
       <nav>
         <a href="#engrave">Engrave</a>
         <a href="#build">Build</a>
+        <a href="#sizes">Sizes</a>
         <a href="#colors">Colourways</a>
       </nav>
       <span class="sp"></span>
@@ -522,6 +536,38 @@ body.filming .bars i{height:8.6vh}
           vessel before this goes live — an engineer will check, and one wrong number
           costs you the whole page.
         </p>
+      </div>
+    </section>
+
+    <!-- ══════════ ACT 2.5 · SIZES ══════════ -->
+    <section class="act pushdown" id="sizes">
+      <div class="col">
+        <p class="eyebrow">Three sizes <span>/ same vessel, to scale</span></p>
+        <h2>450 ml to a full litre.</h2>
+        <p class="lede">Same wall, same bore, same engraving — just three heights.
+        The 750 is the issue size shown throughout this page; scroll here and the
+        other two step in beside it, drawn to true relative scale.</p>
+
+        <div class="sizecards" id="sizecards" role="list" aria-label="Available sizes">
+          <div class="sizecard" role="listitem">
+            <div class="nm">450 ml</div>
+            <div class="ml">450<small>ml</small></div>
+            <div class="kd">6 KD</div>
+            <div class="mm">200 mm tall</div>
+          </div>
+          <div class="sizecard on" role="listitem">
+            <div class="nm">750 ml · issue size</div>
+            <div class="ml">750<small>ml</small></div>
+            <div class="kd">9 KD</div>
+            <div class="mm">255 mm tall</div>
+          </div>
+          <div class="sizecard" role="listitem">
+            <div class="nm">1 Litre</div>
+            <div class="ml">1<small>litre</small></div>
+            <div class="kd">11 KD</div>
+            <div class="mm">300 mm tall</div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1118,14 +1164,22 @@ function drawVessel(){
     ctx.lineTo(S.trio[2].cx+S.trio[2].sc*2.1, base+0.5);
     ctx.stroke();
     ctx.textAlign="center"; ctx.textBaseline="top";
+    var narrowCaption=W<900;
     for(var j=0;j<S.trio.length;j++){
       var L=LADDER[j], T=S.trio[j];
       ctx.font="600 13px 'IBM Plex Mono', monospace";
       ctx.fillStyle="#eaeef6";
       ctx.fillText(L.lab, T.cx, base+16);
-      ctx.font="500 10.5px 'IBM Plex Mono', monospace";
+      ctx.font="500 10px 'IBM Plex Mono', monospace";
       ctx.fillStyle="#7f8ead";
-      ctx.fillText(L.mm+" mm · "+L.kd+" KD", T.cx, base+36);
+      /* the combined "mm · KD" string is wider than the gap between the
+         two smaller vessels at narrow widths, so it splits onto two lines */
+      if(narrowCaption){
+        ctx.fillText(L.mm+" mm", T.cx, base+35);
+        ctx.fillText(L.kd+" KD", T.cx, base+48);
+      }else{
+        ctx.fillText(L.mm+" mm · "+L.kd+" KD", T.cx, base+36);
+      }
     }
     ctx.restore();
   }else{
@@ -1150,20 +1204,45 @@ function positionCallouts(cx,r,yTop,bh,lidTop,lidBot){
 }
 
 /* ─────────── scroll track ─────────── */
-var ACT_IDS=["act0","act1","build","colors","act4"];
+var ACT_IDS=["act0","act1","build","sizes","colors","act4"];
 var STATES=[
   {sm:1.00,ex:0,tilt:.20,spin:.010,dy:0},
   {sm:1.42,ex:0,tilt:.14,spin:.006,dy:.10},
   {sm:0.86,ex:1,tilt:.26,spin:.004,dy:.30},
+  {sm:0.62,ex:0,tilt:.17,spin:.002,dy:.10},
   {sm:1.02,ex:0,tilt:.20,spin:.030,dy:0},
   {sm:0.80,ex:0,tilt:.18,spin:.008,dy:-.05}
 ];
+var SIZES_IDX=ACT_IDS.indexOf("sizes");
 var track=[];
 function buildTrack(){
   track=ACT_IDS.map(function(id,i){
     var el=document.getElementById(id);
     var y=el?el.offsetTop+el.offsetHeight/2-innerHeight/2:i*innerHeight;
     return {y:Math.max(0,y),st:STATES[i]};
+  });
+}
+function sizesReveal(y){
+  if(SIZES_IDX<0||!track.length||!track[SIZES_IDX])return 0;
+  var band=Math.max(240,innerHeight*0.62);
+  return clamp(1-Math.abs(y-track[SIZES_IDX].y)/band,0,1);
+}
+/** the three vessels, laid out to the right of the text column so they
+    never sit under it, spread apart as `reveal` goes from 0 to 1 */
+function sizesTrio(reveal){
+  var narrow=W<900;
+  var cx0=narrow?W*0.5:W*0.74;
+  var cy0=narrow?H*0.28:H*0.50;   /* matches homeY's narrow band, well clear
+                                      of the 58vh point where the cards start */
+  var unit=S.baseScale*(narrow?0.30:0.42);
+  /* wide enough that the tallest pair's silhouettes clear each other AND
+     the captions underneath (each is ~120px of "255 mm · 9 KD") never touch */
+  var gap=unit*(narrow?4.4:3.7)*ease(reveal);
+  var base=cy0+unit*2.85;
+  return LADDER.map(function(L,i){
+    var sc=unit*(L.mm/255);
+    var span=(BODY_H+LID_H+STRAW_L)*sc;
+    return {cx:cx0+(i-1)*gap,cy:base-span/2,sc:sc,base:base};
   });
 }
 function sampleTrack(y){
@@ -1408,7 +1487,12 @@ function frame(now){
     S.wrap=lerp(S.wrap,1,0.14);
     S.shade=lerp(S.shade,1,0.14);
     S.light=lerp(S.light,0.42,0.05);
-    S.focus=null; S.laser=0; S.glow.a=0; S.trio=null;
+    S.focus=null; S.laser=0; S.glow.a=0;
+    var sReveal=sizesReveal(window.scrollY||window.pageYOffset||0);
+    S.trio=sReveal>0.02?sizesTrio(sReveal):null;
+    document.querySelectorAll("#sizecards .sizecard").forEach(function(c,i){
+      c.classList.toggle("on",sReveal>0.5&&i===1);
+    });
     S.cx=lerp(S.cx||S.homeX,S.homeX,0.10);
     S.cy=lerp(S.cy||S.homeY,S.homeY+st.dy*S.baseScale,0.10);
     if(!dragging){
