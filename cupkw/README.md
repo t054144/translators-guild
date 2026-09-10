@@ -32,7 +32,7 @@ connected Arabic script legibly. The rest of the interface is fully bilingual.
 
 ## Everything else
 
-- **Thermochromic shell** — 20 colours, each with a cold and a hot shift target.
+- **Thermochromic shell** — 36 colours, each with a cold and a hot shift target.
   The change runs full at the base and fades at the lip, because that is where
   the liquid touches the wall. Cold adds condensation; hot adds a warm bloom.
 - **Pedazl** — crystals traced stone by stone over text, initials or an uploaded

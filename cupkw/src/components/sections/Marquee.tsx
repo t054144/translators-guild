@@ -11,7 +11,7 @@ export default function Marquee() {
     { en: `${THERMAL_SPECS.coldHours} hours cold`, ar: `${num(THERMAL_SPECS.coldHours)} ساعة باردة` },
     { en: "Fully recyclable", ar: "قابل لإعادة التدوير بالكامل" },
     { en: `${THERMAL_SPECS.hotHours} hours hot`, ar: `${num(THERMAL_SPECS.hotHours)} ساعة حارة` },
-    { en: "20 shell colours", ar: "٢٠ لون قشرة" },
+    { en: "36 shell colours", ar: "٣٦ لون قشرة" },
     { en: "Thermochromic shell", ar: "قشرة متغيّرة اللون" },
     { en: "Pedazl on anything", ar: "بيدازل على أي شيء" },
     { en: "3 sizes", ar: "٣ أحجام" },

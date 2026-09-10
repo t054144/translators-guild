@@ -329,3 +329,47 @@ html[dir="rtl"] .marquee-track {
 .stack > * + * {
   margin-top: var(--stack, 1rem);
 }
+
+/* ── opening title sequence ── */
+.intro-mark {
+  font-size: clamp(2.6rem, 10vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 0.9;
+  color: #fff;
+}
+.intro-rule {
+  display: block;
+  height: 1px;
+  width: min(60vw, 320px);
+  margin: 1.4rem auto 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+}
+.intro-kicker {
+  margin-top: 1.1rem;
+  font-size: 11px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.42);
+}
+.intro-eyebrow {
+  margin-bottom: 0.8rem;
+  font-size: 10.5px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+}
+.intro-line {
+  font-size: clamp(1.8rem, 5.4vw, 3.6rem);
+  font-weight: 700;
+  line-height: 1.03;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-wrap: balance;
+}
+.intro-sub {
+  margin-top: 0.9rem;
+  font-size: clamp(12px, 1.6vw, 14px);
+  letter-spacing: 0.06em;
+  color: rgba(255, 255, 255, 0.55);
+}

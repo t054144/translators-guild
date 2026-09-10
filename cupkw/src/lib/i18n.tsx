@@ -54,8 +54,8 @@ export const T: Dict = {
   // ── customiser ───────────────────────────────────────
   "cz.title": { en: "The Customisation Studio", ar: "استوديو التصميم" },
   "cz.sub": {
-    en: "Feed a name through the punchcard, pick from twenty shell colours, three finishes and three sizes, then set Pedazl crystals on anything you like. Every change is live on the model.",
-    ar: "أدخل اسماً في البطاقة المثقوبة، اختر من عشرين لون قشرة وثلاث تشطيبات وثلاثة أحجام، ثم رصّ كريستال بيدازل على ما تشاء. كل تغيير يظهر مباشرة على المجسم.",
+    en: "Feed a name through the punchcard, pick from thirty-six shell colours, three finishes and three sizes, then set Pedazl crystals on anything you like. Every change is live on the model.",
+    ar: "أدخل اسماً في البطاقة المثقوبة، اختر من ستة وثلاثين لون قشرة وثلاث تشطيبات وثلاثة أحجام، ثم رصّ كريستال بيدازل على ما تشاء. كل تغيير يظهر مباشرة على المجسم.",
   },
   "cz.step.size": { en: "Size", ar: "الحجم" },
   "cz.step.color": { en: "Shell colour", ar: "لون القشرة" },
@@ -244,6 +244,26 @@ export const T: Dict = {
   "common.new": { en: "New", ar: "جديد" },
   "common.from": { en: "From", ar: "يبدأ من" },
   "common.loading": { en: "Loading", ar: "جاري التحميل" },
+
+  /* ── opening title sequence ── */
+  "intro.aria": { en: "Opening sequence", ar: "المقدمة" },
+  "intro.mark": { en: "Kuwait's tumbler, built to your spec", ar: "ترمس الكويت، مصمّم على مقاسك" },
+  "intro.arrive": { en: "One tumbler. Every temperature. Your name.", ar: "ترمس واحد. كل درجة حرارة. اسمك." },
+  "intro.arriveSub": { en: "32 hours cold. 14 hours hot.", ar: "٣٢ ساعة برودة. ١٤ ساعة حرارة." },
+  "intro.piecesEyebrow": { en: "Nine parts", ar: "تسعة أجزاء" },
+  "intro.pieces": { en: "Every piece comes apart.", ar: "كل جزء يُفكّ." },
+  "intro.piecesSub": {
+    en: "Lid, gasket, straw, steel, shell, base — apart by hand in under a minute, and every one recyclable.",
+    ar: "غطاء، حلقة، شفاطة، فولاذ، قشرة، قاعدة — تُفكّ باليد في أقل من دقيقة، وكلها قابلة للتدوير.",
+  },
+  "intro.sizesEyebrow": { en: "Three sizes", ar: "ثلاثة أحجام" },
+  "intro.mm": { en: "mm", ar: "مم" },
+  "intro.ml": { en: "ml", ar: "مل" },
+  "intro.kd": { en: "KD", ar: "د.ك" },
+  "intro.ask": { en: "Now put your name on it.", ar: "الآن ضع اسمك عليه." },
+  "intro.cta": { en: "Build yours", ar: "صمّم ترمسك" },
+  "intro.enter": { en: "Look around first", ar: "تجوّل أولاً" },
+  "intro.skip": { en: "Skip", ar: "تخطَّ" },
 };
 
 type Ctx = {

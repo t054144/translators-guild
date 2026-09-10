@@ -45,6 +45,24 @@ export const COLORS: ColorDef[] = [
   { id: "bubblegum", en: "Bubblegum",       ar: "علكة",           base: "#EE93C1", cold: "#FAC5DE", hot: "#BC538D" },
   { id: "olive", en: "Olive",               ar: "زيتوني",         base: "#767445", cold: "#A5A26C", hot: "#494722" },
   { id: "cloud", en: "Cloud Grey",          ar: "رمادي سحابي",    base: "#C8CCD0", cold: "#DDEBF5", hot: "#AEA096" },
+
+  // ── second run ──
+  { id: "saffron", en: "Saffron",           ar: "زعفراني",        base: "#E0A32E", cold: "#F4D48B", hot: "#A96F0C" },
+  { id: "pomegranate", en: "Pomegranate",   ar: "رماني",          base: "#9E2B3E", cold: "#D3697C", hot: "#61121F" },
+  { id: "date", en: "Date",                 ar: "تمري",           base: "#6E4A2E", cold: "#9E7A5C", hot: "#422615" },
+  { id: "cardamom", en: "Cardamom",         ar: "هيل",            base: "#9DA97C", cold: "#C8D2AC", hot: "#6B7550" },
+  { id: "gulf-teal", en: "Gulf Teal",       ar: "فيروزي",         base: "#17808C", cold: "#5FBEC6", hot: "#05505A" },
+  { id: "plum", en: "Dusk Plum",            ar: "برقوقي",         base: "#6B3F63", cold: "#9E7396", hot: "#43213E" },
+  { id: "indigo", en: "Indigo",             ar: "نيلي",           base: "#3A4B9E", cold: "#7C8DD6", hot: "#1F2A62" },
+  { id: "camel", en: "Camel",               ar: "جملي",           base: "#C29A6B", cold: "#E3C9A5", hot: "#8E6538" },
+  { id: "graphite", en: "Graphite",         ar: "جرافيت",         base: "#3A3D42", cold: "#5F6B78", hot: "#1E2024" },
+  { id: "coral", en: "Coral",               ar: "مرجاني",         base: "#F0705C", cold: "#FBA694", hot: "#B8402C" },
+  { id: "lime", en: "Lime",                 ar: "ليموني",         base: "#C7D93C", cold: "#E4F08A", hot: "#8FA010" },
+  { id: "sky", en: "Sky",                   ar: "سماوي",          base: "#6FB6E8", cold: "#AEDCF7", hot: "#3B7FB0" },
+  { id: "blush", en: "Blush",               ar: "زهري فاتح",      base: "#EFC9C2", cold: "#FBE4E0", hot: "#C1908A" },
+  { id: "forest", en: "Forest",             ar: "غابة",           base: "#2F5D3A", cold: "#5E9270", hot: "#17351F" },
+  { id: "oud", en: "Oud",                   ar: "عودي",           base: "#4A3040", cold: "#7A5A6E", hot: "#2A1725" },
+  { id: "canary", en: "Canary",             ar: "كناري",          base: "#F2C111", cold: "#FBE380", hot: "#BE8C00" },
 ];
 
 /** The colour the lit dots burn in. */

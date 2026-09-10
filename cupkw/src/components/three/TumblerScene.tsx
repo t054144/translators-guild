@@ -26,11 +26,20 @@ type Props = {
   mood?: "dark" | "light";
   interactive?: boolean;
   zoom?: number;
+  /** fires once, on the first frame actually drawn */
+  onFirstFrame?: () => void;
 };
 
 /* ─────────────────── camera choreography ─────────────────── */
 
 const FOV = 34;
+
+/** Click the tumbler to walk up the ladder, then back to the start. */
+const ZOOM_STEPS = [1, 1.5, 2.05];
+
+/** reused every frame so the rig allocates nothing */
+const ORBIT_TARGET = new THREE.Vector3(0, 0.1, 0);
+const SCRATCH = new THREE.Vector3();
 
 /**
  * How far back the camera has to sit for a tumbler of this height to sit in
@@ -82,6 +91,16 @@ function Rig({
       camera.position.lerp(target.current, 1 - Math.pow(0.002, Math.min(dt, 0.05) * 3));
       camera.lookAt(0, 0.1, 0);
       if (camera.position.distanceTo(target.current) < 0.02) settled.current = true;
+    } else {
+      // Ease the orbit radius toward the requested distance while leaving the
+      // direction alone, so a click-zoom keeps whatever angle you rotated to.
+      SCRATCH.copy(camera.position).sub(ORBIT_TARGET);
+      const cur = SCRATCH.length();
+      if (cur > 1e-4 && Math.abs(cur - distance) > 0.004) {
+        const k = 1 - Math.pow(0.004, Math.min(dt, 0.05) * 3);
+        const next = cur + (distance - cur) * k;
+        camera.position.copy(ORBIT_TARGET).addScaledVector(SCRATCH, next / cur);
+      }
     }
     if (cinematic) {
       // slow breathing dolly — the camera is never quite still
@@ -91,6 +110,17 @@ function Rig({
     }
   });
 
+  return null;
+}
+
+/** Calls back on the first drawn frame, so callers can wait for pixels. */
+function FirstFrame({ onDone }: { onDone: () => void }) {
+  const fired = useRef(false);
+  useFrame(() => {
+    if (fired.current) return;
+    fired.current = true;
+    onDone();
+  });
   return null;
 }
 
@@ -134,24 +164,64 @@ export default function TumblerScene({
   mood = "dark",
   interactive = true,
   zoom = 1,
+  onFirstFrame,
 }: Props) {
   const [ready, setReady] = useState(false);
   useEffect(() => setReady(true), []);
 
+  /* ── click to zoom ──────────────────────────────────────────────
+     A press that does not travel is a click, so orbit-drag still works.
+     A press that landed on a labelled part is a pick, not a zoom.      */
+  const [zoomStep, setZoomStep] = useState(0);
+  const press = useRef<{ x: number; y: number; t: number } | null>(null);
+  const pickedAt = useRef(0);
+
+  const handlePick = useMemo(
+    () =>
+      onPickPart
+        ? (part: PartId | null) => {
+            pickedAt.current = performance.now();
+            onPickPart(part);
+          }
+        : undefined,
+    [onPickPart]
+  );
+
+  const onPointerDown = (e: React.PointerEvent) => {
+    press.current = { x: e.clientX, y: e.clientY, t: performance.now() };
+  };
+  const onPointerUp = (e: React.PointerEvent) => {
+    const p = press.current;
+    press.current = null;
+    if (!p || !interactive) return;
+    // Distance is the only reliable test for drag-vs-tap: a single heavy
+    // WebGL frame can stall the main thread long enough that a real tap
+    // measures as a multi-second press.
+    const moved = Math.hypot(e.clientX - p.x, e.clientY - p.y);
+    if (moved > 6) return; // that was an orbit drag
+    if (performance.now() - pickedAt.current < 200) return; // that was a part pick
+    setZoomStep((z) => (z + 1) % ZOOM_STEPS.length);
+  };
+
   const dpr = useMemo<[number, number]>(() => [1, 1.8], []);
 
   // exploded parts spread vertically, so they need extra headroom
-  const distance = useMemo(
+  const baseDistance = useMemo(
     () => fitDistance(size.heightMm, exploded ? 1.95 : 1.3) / zoom,
     [size.heightMm, exploded, zoom]
   );
+  const distance = baseDistance / ZOOM_STEPS[zoomStep];
+
+  // going back to a wide shot should also drop the zoom, or the next
+  // exploded view opens already pushed in
+  useEffect(() => setZoomStep(0), [exploded, size.heightMm]);
 
   if (!ready) {
     return <div className={className} aria-hidden />;
   }
 
   return (
-    <div className={className}>
+    <div className={className} data-zoom-step={zoomStep} onPointerDown={onPointerDown} onPointerUp={onPointerUp}>
       <Canvas
         // three 0.186 removed PCFSoftShadowMap, which is what bare `shadows`
         // asks for — it warned on every mount and fell back to hard shadows.
@@ -159,9 +229,10 @@ export default function TumblerScene({
         dpr={dpr}
         gl={{ antialias: true, alpha: true, preserveDrawingBuffer: false }}
         camera={{ position: [0, 0.1, distance], fov: FOV, near: 0.1, far: 100 }}
-        onPointerMissed={() => onPickPart?.(null)}
+        onPointerMissed={() => handlePick?.(null)}
       >
         <AdaptiveDpr pixelated={false} />
+        {onFirstFrame && <FirstFrame onDone={onFirstFrame} />}
         <Studio mood={mood} />
 
         <Suspense fallback={null}>
@@ -175,7 +246,7 @@ export default function TumblerScene({
                   exploded={exploded}
                   showLabels={showLabels}
                   activePart={activePart}
-                  onPickPart={onPickPart}
+                  onPickPart={handlePick}
                 />
               </Float>
             ) : (
@@ -186,7 +257,7 @@ export default function TumblerScene({
                 exploded={exploded}
                 showLabels={showLabels}
                 activePart={activePart}
-                onPickPart={onPickPart}
+                onPickPart={handlePick}
               />
             )}
           </group>
@@ -209,8 +280,9 @@ export default function TumblerScene({
           enablePan={false}
           autoRotate={autoSpin && preset === "free"}
           autoRotateSpeed={cinematic ? 0.9 : 1.6}
-          minDistance={distance * 0.5}
-          maxDistance={distance * 1.9}
+          enableZoom={interactive && !cinematic}
+          minDistance={baseDistance / (ZOOM_STEPS[ZOOM_STEPS.length - 1] * 1.15)}
+          maxDistance={baseDistance * 1.9}
           minPolarAngle={0.05}
           maxPolarAngle={Math.PI - 0.05}
           target={[0, 0.1, 0]}

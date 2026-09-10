@@ -1,7 +1,8 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { useIntroPlaying } from "@/lib/intro-gate";
 import { useBuild, colorOf, sizeOf, stoneOf, dotOf, type Build } from "@/lib/build-store";
 import type { ShellSpec } from "@/lib/shellTexture";
 import type { ThermalState, PartId } from "@/lib/config";
@@ -115,6 +116,10 @@ type StageProps = {
   mood?: "dark" | "light";
   interactive?: boolean;
   zoom?: number;
+  /** fires once, on the first frame actually drawn */
+  onFirstFrame?: () => void;
+  /** the opening sequence's own stage, which is exempt from its gate */
+  duringIntro?: boolean;
   className?: string;
 };
 
@@ -123,10 +128,30 @@ export default function Stage({
   build: buildOverride,
   thermal: thermalOverride,
   animateLife = false,
+  duringIntro = false,
   className = "stage h-full w-full",
   ...rest
 }: StageProps) {
   const ctx = useBuild();
+  const introPlaying = useIntroPlaying();
+
+  /* A canvas well off screen is pure cost, so it waits its turn. */
+  const host = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  useEffect(() => {
+    const el = host.current;
+    if (!el) return;
+    if (typeof IntersectionObserver !== "function") {
+      setInView(true);
+      return;
+    }
+    const io = new IntersectionObserver(
+      ([entry]) => setInView(entry.isIntersecting),
+      { rootMargin: "250px 0px" }
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
   const build = buildOverride ?? ctx.build;
   const thermal = thermalOverride ?? ctx.thermal;
 
@@ -135,13 +160,21 @@ export default function Stage({
   const shell = useShellSpec(build, thermal, { lifeGenOverride: gen });
   const size = sizeOf(build);
 
+  const live = duringIntro || (inView && !introPlaying);
+
   return (
-    <TumblerScene
-      className={className}
-      size={size}
-      shell={shell}
-      texture={build.texture}
-      {...rest}
-    />
+    <div ref={host} className={className}>
+      {live ? (
+        <TumblerScene
+          className="h-full w-full"
+          size={size}
+          shell={shell}
+          texture={build.texture}
+          {...rest}
+        />
+      ) : (
+        <SceneSkeleton />
+      )}
+    </div>
   );
 }

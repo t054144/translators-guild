@@ -219,7 +219,7 @@ export default function TumblerModel({
 
   const lidBottom = bodyH - h * 0.012;
   const lidSkirtH = h * 0.125;
-  const strawR = r * 0.082;
+  const strawR = r * 0.118; // ~8mm bore on the 450ml, which is a real straw
   // The straw has to clear the moulded lid face and stand proud of it. Sized to
   // the body it finished 2mm above the lid, which read as no straw at all.
   const lidTopY = lidBottom + lidSkirtH + h * 0.01;
@@ -461,19 +461,43 @@ export default function TumblerModel({
             onPickPart?.(activePart === "straw" ? null : "straw");
           }}
         >
+          {/* outer tube */}
           <mesh castShadow>
-            <cylinderGeometry args={[strawR, strawR, strawH, 28, 1, true]} />
+            <cylinderGeometry args={[strawR, strawR, strawH, 40, 1, true]} />
             <meshPhysicalMaterial
               color={shade(bodyColor, isDark ? 0.1 : -0.16)}
-              roughness={texture === "matte" ? 0.72 : 0.24}
+              roughness={texture === "matte" ? 0.66 : 0.2}
               metalness={0.03}
-              clearcoat={0.6}
+              clearcoat={0.7}
+              clearcoatRoughness={0.18}
               side={THREE.DoubleSide}
             />
           </mesh>
-          <mesh position={[0, strawH / 2, 0]} rotation={[Math.PI / 2, 0, 0]}>
-            <torusGeometry args={[strawR, strawR * 0.26, 10, 28]} />
-            <meshStandardMaterial color={shade(bodyColor, isDark ? 0.2 : -0.28)} roughness={0.45} />
+
+          {/* the bore, darker and set in from the wall, so the tip reads open */}
+          <mesh>
+            <cylinderGeometry args={[strawR * 0.74, strawR * 0.74, strawH * 0.998, 32, 1, true]} />
+            <meshStandardMaterial
+              color={shade(bodyColor, -0.45)}
+              roughness={0.85}
+              side={THREE.BackSide}
+            />
+          </mesh>
+
+          {/* the rolled lip at the mouth */}
+          <mesh position={[0, strawH / 2, 0]} rotation={[Math.PI / 2, 0, 0]} castShadow>
+            <torusGeometry args={[strawR * 0.87, strawR * 0.14, 12, 40]} />
+            <meshPhysicalMaterial
+              color={shade(bodyColor, isDark ? 0.24 : -0.3)}
+              roughness={0.34}
+              clearcoat={0.8}
+            />
+          </mesh>
+
+          {/* a dark disc down the bore so you cannot see through the straw */}
+          <mesh position={[0, strawH * 0.34, 0]} rotation={[Math.PI / 2, 0, 0]}>
+            <circleGeometry args={[strawR * 0.74, 32]} />
+            <meshStandardMaterial color={shade(bodyColor, -0.62)} roughness={0.95} />
           </mesh>
         </group>
       </Drift>
