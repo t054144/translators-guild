@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Vessel 001 - the CODED cohort tumbler. A cinematic advertisement opening, then a scroll-driven vessel you can spin, engrave, explode and recolour.">
+<meta name="description" content="Vessel 001 - the CODED cohort tumbler. An 18-second advertisement opening, then a vessel you can tap to zoom, drag to spin, engrave and recolour.">
 <meta name="author" content="Shaikha Alkhaldi">
 <style>:root{color-scheme:dark}html,body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style>
 </head>
@@ -54,7 +54,14 @@ body::after{
 #stage.live{pointer-events:auto;cursor:grab}
 #stage.live.dragging{cursor:grabbing}
 
-.content{position:relative;z-index:3}
+.content{position:relative;z-index:3;pointer-events:none}
+
+/* The content layer sits above the canvas, so without this it swallows every
+   drag and tap aimed at the vessel. Only the parts you actually operate get
+   the events back: the bar, each act's text column, and the footer. */
+.content .topbar,
+.content .col,
+.content footer{pointer-events:auto}
 .wrap{max-width:1220px;margin:0 auto;padding:0 var(--gut)}
 
 /* ─────────── the film (advertisement opening) ─────────── */
@@ -286,6 +293,7 @@ footer{border-top:1px solid var(--line);padding:46px 0 60px;position:relative;z-
   transition:opacity 1.1s cubic-bezier(.4,0,.2,1);pointer-events:none}
 #filmdim.out{opacity:0}
 body.filming #stage{z-index:45}
+body.filming #callouts{z-index:51}
 body.filming{overflow:hidden}
 .cards{position:fixed;inset:0;z-index:50;pointer-events:none;display:block}
 .card{transition:opacity .7s cubic-bezier(.4,0,.2,1),transform .9s cubic-bezier(.2,.8,.3,1)}
@@ -391,8 +399,16 @@ body.filming .bars i{height:8.6vh}
     <p class="sub">Engraved once · hashed into the pattern · never repeated</p>
   </div>
   <div class="beat small" id="b5">
-    <div class="num">Five finishes</div>
+    <div class="num">Fourteen finishes</div>
     <p class="sub">Sixty vessels · one of each name · then never again</p>
+  </div>
+  <div class="beat small" id="b6">
+    <div class="num">It comes apart</div>
+    <p class="sub">Lid · straw · gasket · mirror bore · vacuum wall · foot — by hand, in under a minute</p>
+  </div>
+  <div class="beat small" id="b7">
+    <div class="num">Three sizes</div>
+    <p class="sub">To scale · 450 ml, 750 ml and 1 litre</p>
   </div>
 </div>
 <button id="skip" type="button">Skip film</button>
@@ -437,6 +453,7 @@ body.filming .bars i{height:8.6vh}
           <span><b>6 h</b> hot</span><span><b>12 h</b> cold</span>
           <span>dishwasher safe</span><span><b>18/8</b> stainless</span>
         </div>
+        <p class="hint" id="zoomHint" style="margin-top:14px">Tap the vessel to zoom · drag to spin</p>
 
         <div class="stats">
           <div class="stat"><div class="v">473<small>ml</small></div><div class="k">capacity</div></div>
@@ -684,11 +701,20 @@ function lifeStep(){
 
 /* ─────────── colourways ─────────── */
 var WAYS=[
-  {id:"midnight",label:"Midnight",note:"· the issue finish",body:"#333c4d",hi:"#4e586d",ink:"#f2f5fa"},
-  {id:"sand",     label:"Sand",    note:"· dark ink",        body:"#b9a98d",hi:"#d8cbb2",ink:"#2a2620"},
-  {id:"oxide",    label:"Oxide",   note:"",                  body:"#8a4536",hi:"#b3604c",ink:"#fdf1ec"},
-  {id:"moss",     label:"Moss",    note:"",                  body:"#3f4c3c",hi:"#5e7059",ink:"#f0f5ee"},
-  {id:"graphite", label:"Graphite",note:"· matte black",      body:"#2a2c30",hi:"#474b52",ink:"#eef0f4"}
+  {id:"midnight", label:"Midnight", note:"· the issue finish", body:"#333c4d",hi:"#4e586d",ink:"#f2f5fa"},
+  {id:"sand",     label:"Sand",     note:"· dark ink",         body:"#b9a98d",hi:"#d8cbb2",ink:"#2a2620"},
+  {id:"oxide",    label:"Oxide",    note:"",                   body:"#8a4536",hi:"#b3604c",ink:"#fdf1ec"},
+  {id:"moss",     label:"Moss",     note:"",                   body:"#3f4c3c",hi:"#5e7059",ink:"#f0f5ee"},
+  {id:"graphite", label:"Graphite", note:"· matte black",      body:"#2a2c30",hi:"#474b52",ink:"#eef0f4"},
+  {id:"saffron",  label:"Saffron",  note:"· dark ink",         body:"#c98f2c",hi:"#e3b45c",ink:"#2b2208"},
+  {id:"pomegranate",label:"Pomegranate",note:"",               body:"#8d2836",hi:"#b24a58",ink:"#fdeef0"},
+  {id:"gulf",     label:"Gulf",     note:"",                   body:"#17707c",hi:"#3d9aa6",ink:"#eefbfd"},
+  {id:"indigo",   label:"Indigo",   note:"",                   body:"#33417e",hi:"#5566a8",ink:"#eef1fd"},
+  {id:"camel",    label:"Camel",    note:"· dark ink",         body:"#b08a5f",hi:"#d0ad84",ink:"#2b2216"},
+  {id:"oud",      label:"Oud",      note:"",                   body:"#45303c",hi:"#654c5a",ink:"#f7eef3"},
+  {id:"pearl",    label:"Pearl",    note:"· dark ink",         body:"#e4e0d6",hi:"#f4f2ec",ink:"#26241f"},
+  {id:"forest",   label:"Forest",   note:"",                   body:"#2c4f37",hi:"#4a7355",ink:"#eef7f0"},
+  {id:"coral",    label:"Coral",    note:"· dark ink",         body:"#d9614d",hi:"#ec8874",ink:"#2e1610"}
 ];
 var way=WAYS[0];
 
@@ -776,7 +802,7 @@ var ctx=cv.getContext("2d");
 var W=0,H=0,dpr=1;
 
 /* world: radius 1, body height 4.6 (matches the straight-walled vessel) */
-var BODY_H=5.0, LID_H=0.72, LID_R=1.00, STRAW_R=0.165, STRAW_L=1.05, STRAW_ORB=0.0;
+var BODY_H=5.0, LID_H=0.72, LID_R=1.00, STRAW_R=0.200, STRAW_L=1.05, STRAW_ORB=0.0;
 
 var S={rot:0,tilt:.20,scale:64,cx:0,cy:0,explode:0,wrap:1,light:0.42,shade:1,spin:0.012,
        focus:null,glow:{c:"242,160,61",a:0},laser:0,cxF:.50};
@@ -791,6 +817,10 @@ function seedVapour(){
     v:.12+Math.random()*.22,w:.5+Math.random()*1.6,s:Math.random()*TAU});
 }
 var dragRot=0, spinVel=0, dragging=false, lastX=0;
+var ZOOMS=[1,1.6,2.25], zoomIdx=0, pressAt=null;
+var LADDER=[{ml:450,mm:200,kd:6,lab:"450 ml"},
+            {ml:750,mm:255,kd:9,lab:"750 ml"},
+            {ml:1000,mm:300,kd:11,lab:"1 litre"}];
 
 function resize(){
   dpr=Math.min(window.devicePixelRatio||1,2);
@@ -831,8 +861,9 @@ function cylPath(cx,r,k,yTop,yBot){
   ctx.closePath();
 }
 
-function drawVessel(){
-  ctx.clearRect(0,0,W,H);
+/* One vessel, at whatever position and scale S currently holds. Split out
+   of drawVessel so the sizes beat can call it three times in one frame. */
+function drawBody(){
   var sc=S.scale, r=sc, k=S.tilt, bh=BODY_H*sc;
   var cx=S.cx;
   var yTop=(S.focus==null)?S.cy-(bh-(LID_H+STRAW_L)*sc)/2:S.cy-S.focus*bh;
@@ -980,11 +1011,27 @@ function drawVessel(){
   if(ctx.roundRect){ctx.roundRect(sx-sr,stTop,sr*2,(sy-stTop)+sr,sr);}
   else{ctx.rect(sx-sr,stTop,sr*2,(sy-stTop)+sr);}
   ctx.fill();
-  ctx.fillStyle="rgba(190,206,232,.30)";
+  /* the tip: a lit rim, then a dark bore, so it reads as an open tube */
+  ctx.fillStyle="rgba(198,214,240,.34)";
   ctx.beginPath(); ctx.ellipse(sx,stTop,sr,k*sr,0,0,TAU); ctx.fill();
-  ctx.strokeStyle="rgba(6,9,16,.5)"; ctx.lineWidth=1;
+  var bg2=ctx.createLinearGradient(sx-sr*.66,0,sx+sr*.66,0);
+  bg2.addColorStop(0,"rgba(4,7,13,.96)");
+  bg2.addColorStop(.55,"rgba(18,25,40,.92)");
+  bg2.addColorStop(1,"rgba(4,7,13,.96)");
+  ctx.fillStyle=bg2;
+  ctx.beginPath(); ctx.ellipse(sx,stTop+k*sr*.16,sr*.66,k*sr*.66,0,0,TAU); ctx.fill();
+  ctx.strokeStyle="rgba(6,9,16,.55)"; ctx.lineWidth=1;
   ctx.beginPath(); ctx.ellipse(sx,stTop,sr,k*sr,0,0,TAU); ctx.stroke();
 
+  window.__geo={cx:cx,r:r,k:k,yTop:yTop,bh:bh};
+  window.__lid={top:lidTop,bot:lidBot};
+}
+
+/* Everything that is light in the air rather than object: the bloom out of
+   the mouth, the engraving head, sparks, vapour. Drawn once, on top. */
+function drawExtras(){
+  var g=window.__geo; if(!g)return;
+  var cx=g.cx, r=g.r, k=g.k, yTop=g.yTop, bh=g.bh;
   /* bloom above the mouth — light in the air, so it sits over everything */
   if(S.glow.a>0.01){
     ctx.save(); ctx.globalCompositeOperation="lighter";
@@ -1048,8 +1095,43 @@ function drawVessel(){
     ctx.restore();
   }
 
-  window.__geo={cx:cx,r:r,k:k,yTop:yTop,bh:bh};
-  positionCallouts(cx,r,yTop,bh,lidTop,lidBot);
+  positionCallouts(cx,r,yTop,bh,window.__lid?window.__lid.top:yTop,window.__lid?window.__lid.bot:yTop);
+}
+
+/* ── the frame ── */
+function drawVessel(){
+  ctx.clearRect(0,0,W,H);
+  if(S.trio){
+    var sx=S.cx, sy=S.cy, ss=S.scale, se=S.explode, sf=S.focus;
+    S.explode=0; S.focus=null;
+    for(var i=0;i<S.trio.length;i++){
+      S.cx=S.trio[i].cx; S.cy=S.trio[i].cy; S.scale=S.trio[i].sc;
+      drawBody();
+    }
+    S.cx=sx; S.cy=sy; S.scale=ss; S.explode=se; S.focus=sf;
+    /* caption each one, and rule a shared baseline so "to scale" is legible */
+    var base=S.trio[0].base;
+    ctx.save();
+    ctx.strokeStyle="rgba(147,166,201,.20)"; ctx.lineWidth=1;
+    ctx.beginPath();
+    ctx.moveTo(S.trio[0].cx-S.trio[0].sc*2.1, base+0.5);
+    ctx.lineTo(S.trio[2].cx+S.trio[2].sc*2.1, base+0.5);
+    ctx.stroke();
+    ctx.textAlign="center"; ctx.textBaseline="top";
+    for(var j=0;j<S.trio.length;j++){
+      var L=LADDER[j], T=S.trio[j];
+      ctx.font="600 13px 'IBM Plex Mono', monospace";
+      ctx.fillStyle="#eaeef6";
+      ctx.fillText(L.lab, T.cx, base+16);
+      ctx.font="500 10.5px 'IBM Plex Mono', monospace";
+      ctx.fillStyle="#7f8ead";
+      ctx.fillText(L.mm+" mm · "+L.kd+" KD", T.cx, base+36);
+    }
+    ctx.restore();
+  }else{
+    drawBody();
+  }
+  drawExtras();
 }
 
 function positionCallouts(cx,r,yTop,bh,lidTop,lidBot){
@@ -1149,11 +1231,11 @@ function clink(){                        /* stainless steel, on the title card *
 }
 
 /* ─────────── the film ─────────── */
-var film={on:false,t0:0,dur:15.4};
+var film={on:false,t0:0,dur:18.4};
 var dimEl=document.getElementById("filmdim");
 var progEl=document.getElementById("progress");
 var flashEl=document.getElementById("flash");
-var CUTS=[4.70,6.00,7.50,9.00,10.70,12.20], cutIdx=0;
+var CUTS=[4.00,5.10,6.40,7.70,10.10,12.70,14.30,15.70], cutIdx=0;
 
 function shown(id,on){var e=document.getElementById(id); if(e)e.classList.toggle("show",!!on);}
 function flash(){
@@ -1166,23 +1248,26 @@ function flash(){
 /* every cut is instantaneous — a new camera, not a move */
 function doCut(i){
   flash(); if(sound)thump();
+  S.trio=null;
   if(i===0){S.cxF=.50; S.focus=.129; S.rot=-.16; S.tilt=.09;}   /* macro: the badge   */
   if(i===1){S.cxF=.66; S.focus=.030; S.rot= .20; S.tilt=.34;}   /* into the hot bore  */
   if(i===2){S.cxF=.66; S.focus=.030; S.rot=-.18; S.tilt=.34;}   /* into the cold bore */
-  if(i===3){S.cxF=.52; S.focus=.955; S.rot=-.02; S.tilt=.16;}   /* macro: the name    */
-  if(i===4){S.cxF=.50; S.focus=null; S.tilt=.22;}               /* colourway strobe   */
-  if(i===5){S.cxF=.74; S.focus=null; S.tilt=.20; S.rot=0;       /* hero + title       */
+  if(i===3){S.cxF=.66; S.focus=null; S.rot=-.06; S.tilt=.28;}   /* it comes apart     */
+  if(i===4){S.cxF=.50; S.focus=null; S.rot=0;    S.tilt=.17;}   /* three sizes        */
+  if(i===5){S.cxF=.52; S.focus=.955; S.rot=-.02; S.tilt=.16;}   /* macro: the name    */
+  if(i===6){S.cxF=.50; S.focus=null; S.tilt=.22;}               /* colourway strobe   */
+  if(i===7){S.cxF=.74; S.focus=null; S.tilt=.20; S.rot=0;       /* hero + title       */
             way=WAYS[0]; dirty=true; if(sound)clink();}
 }
 
 function startFilm(){
-  film.on=true; film.t0=performance.now(); cutIdx=0;
+  film.on=true; film.t0=performance.now(); cutIdx=0; zoomIdx=0;
   document.body.classList.add("filming");
   dimEl.classList.remove("out");
   document.getElementById("skip").style.display="";
   document.getElementById("snd").style.display="";
   revealT=0; engraveT=0; dirty=true;
-  S.cxF=.50; S.focus=null; S.laser=0; S.glow.a=0; S.explode=0;
+  S.cxF=.50; S.focus=null; S.laser=0; S.glow.a=0; S.explode=0; S.trio=null;
   S.wrap=0; S.shade=0; S.rot=-.22; S.tilt=.06;
   way=WAYS[0]; sparks.length=0; seedVapour();
   window.scrollTo(0,0);
@@ -1192,11 +1277,11 @@ function endFilm(){
   film.on=false;
   document.body.classList.remove("filming");
   dimEl.classList.add("out");
-  ["c1","c3","b1","b2","b3","b4","b5"].forEach(function(id){shown(id,false);});
+  ["c1","c3","b1","b2","b3","b4","b5","b6","b7"].forEach(function(id){shown(id,false);});
   progEl.style.width="0";
   document.getElementById("skip").style.display="none";
   document.getElementById("snd").style.display="none";
-  revealT=1; engraveT=1; S.laser=0; S.glow.a=0; S.focus=null;
+  revealT=1; engraveT=1; S.laser=0; S.glow.a=0; S.focus=null; S.trio=null;
   vapour.length=0; sparks.length=0;
   way=WAYS[0]; dirty=true;
   cv.classList.add("live");
@@ -1208,70 +1293,101 @@ function filmStep(now){
   while(cutIdx<CUTS.length&&t>=CUTS[cutIdx]){doCut(cutIdx);cutIdx++;}
 
   S.cx=W*S.cxF; S.cy=H*0.50;
-  if(t>4.70&&vapour.length)vapour.length=0;
+  if(t>4.00&&vapour.length)vapour.length=0;
 
   /* cold open, then the dots ignite out of the centre */
-  if(t<3.20){
-    S.wrap=0; S.shade=0; S.explode=0; S.glow.a=0; S.focus=null;
+  if(t<2.60){
+    S.wrap=0; S.shade=0; S.explode=0; S.glow.a=0; S.focus=null; S.trio=null;
     S.scale=S.baseScale*0.46; S.rot=-0.22; S.tilt=0.06;
-    var nr=easeOut(clamp((t-1.05)/1.05,0,1));
+    var nr=easeOut(clamp((t-0.60)/1.10,0,1));
     if(nr>=1){ if(revealT<1){revealT=1;dirty=true;} }
     else if(Math.abs(nr-revealT)>0.004){revealT=nr;dirty=true;}
   }
 
-  shown("c1",t>2.10&&t<3.30);
-  shown("b1",t>4.92&&t<5.92);
-  shown("b2",t>6.22&&t<7.42);
-  shown("b3",t>7.72&&t<8.92);
-  shown("b4",t>9.24&&t<10.62);
-  shown("b5",t>10.92&&t<12.12);
-  shown("c3",t>12.42&&t<film.dur);
+  shown("c1",t>1.70&&t<2.70);
+  shown("b1",t>4.20&&t<5.05);
+  shown("b2",t>5.30&&t<6.35);
+  shown("b3",t>6.60&&t<7.65);
+  shown("b6",t>7.95&&t<10.05);
+  shown("b7",t>10.35&&t<12.65);
+  shown("b4",t>12.95&&t<14.25);
+  shown("b5",t>14.50&&t<15.65);
+  shown("c3",t>15.95&&t<film.dur);
 
-  if(t>=3.20&&t<4.70){                          /* the grid curls into an object */
-    var wp=clamp((t-3.20)/1.45,0,1);
+  if(t>=2.60&&t<4.00){                          /* the grid curls into an object */
+    var wp=clamp((t-2.60)/1.35,0,1);
     if(!film.wooshed&&sound){film.wooshed=true;whoosh();}
-    S.wrap=ease(wp); S.shade=ease(clamp((t-3.30)/1.25,0,1));
+    S.wrap=ease(wp); S.shade=ease(clamp((t-2.70)/1.15,0,1));
     S.scale=S.baseScale*lerp(0.46,1.0,ease(wp));
     S.rot=lerp(-0.22,0,ease(wp));
     S.tilt=lerp(0.06,0.20,ease(wp));
-    S.light=lerp(-1.35,0.42,ease(clamp((t-3.55)/1.15,0,1)));
+    S.light=lerp(-1.35,0.42,ease(clamp((t-2.90)/1.05,0,1)));
     S.focus=null; S.explode=0; S.glow.a=0;
   }
-  else if(t>=4.70&&t<6.00){                     /* macro: 18/8 stainless */
+  else if(t>=4.00&&t<5.10){                     /* macro: 18/8 stainless */
     S.wrap=1; S.shade=1; S.glow.a=0; S.explode=0;
-    S.scale=S.baseScale*lerp(2.60,2.32,(t-4.70)/1.30);
-    S.rot=-0.16+(t-4.70)*0.013; S.light=0.28;
+    S.scale=S.baseScale*lerp(2.60,2.34,(t-4.00)/1.10);
+    S.rot=-0.16+(t-4.00)*0.013; S.light=0.28;
   }
-  else if(t>=6.00&&t<7.50){                     /* 6 hours hot */
-    S.scale=S.baseScale*lerp(1.22,1.13,(t-6.00)/1.50);
-    S.rot=0.20+(t-6.00)*0.011; S.explode=0.62;
+  else if(t>=5.10&&t<6.40){                     /* 6 hours hot */
+    S.scale=S.baseScale*lerp(1.22,1.13,(t-5.10)/1.30);
+    S.rot=0.20+(t-5.10)*0.011; S.explode=0.62;
     S.glow.c="242,160,61";
-    S.glow.a=easeOut(clamp((t-6.04)/0.55,0,1));
+    S.glow.a=easeOut(clamp((t-5.14)/0.50,0,1));
     S.light=0.42;
   }
-  else if(t>=7.50&&t<9.00){                     /* 12 hours cold */
-    S.scale=S.baseScale*lerp(1.18,1.10,(t-7.50)/1.50);
-    S.rot=-0.18+(t-7.50)*0.011; S.explode=0.62;
+  else if(t>=6.40&&t<7.70){                     /* 12 hours cold */
+    S.scale=S.baseScale*lerp(1.18,1.10,(t-6.40)/1.30);
+    S.rot=-0.18+(t-6.40)*0.011; S.explode=0.62;
     S.glow.c="127,212,230";
-    S.glow.a=easeOut(clamp((t-7.54)/0.50,0,1));
+    S.glow.a=easeOut(clamp((t-6.44)/0.46,0,1));
   }
-  else if(t>=9.00&&t<10.70){                    /* the name burns in */
-    S.scale=S.baseScale*1.30; S.explode=0; S.glow.a=0;
-    S.rot=lerp(-0.02,0.02,(t-9.00)/1.70);
-    var lp=clamp((t-9.18)/0.95,0,1);
+  else if(t>=7.70&&t<10.10){                    /* it comes apart */
+    S.glow.a=0; S.focus=null; S.trio=null;
+    /* the parts travel upward, so drop the framing to keep the straw in */
+    S.cy=H*0.585;
+    S.scale=S.baseScale*lerp(0.78,0.70,clamp((t-7.70)/2.40,0,1));
+    S.explode=easeOut(clamp((t-7.78)/1.15,0,1));
+    S.rot=-0.06+(t-7.70)*0.016;
+    S.light=0.42;
+  }
+  else if(t>=10.10&&t<12.70){                   /* three sizes, to scale */
+    S.glow.a=0; S.focus=null; S.explode=0; S.light=0.42;
+    S.rot=(t-10.10)*0.012;
+    var reveal=easeOut(clamp((t-10.18)/0.85,0,1));
+    var unit=S.baseScale*0.60;
+    var gap=unit*2.5;
+    var base=H*0.50+unit*2.9;
+    S.trio=LADDER.map(function(L,i){
+      var sc=unit*(L.mm/255);
+      var span=(BODY_H+LID_H+STRAW_L)*sc;
+      return {
+        cx:W*0.5+(i-1)*gap*reveal,
+        cy:base-span/2,
+        sc:sc,
+        base:base
+      };
+    });
+    S.scale=unit;
+  }
+  else if(t>=12.70&&t<14.30){                   /* the name burns in */
+    S.trio=null; S.scale=S.baseScale*1.30; S.explode=0; S.glow.a=0;
+    S.rot=lerp(-0.02,0.02,(t-12.70)/1.60);
+    var lp=clamp((t-12.86)/0.90,0,1);
     S.laser=lp<1?Math.max(lp,0.001):0;
     var ne=easeOut(lp);
     if(Math.abs(ne-engraveT)>0.008||(lp>=1&&engraveT<1)){engraveT=lp>=1?1:ne;dirty=true;}
   }
-  else if(t>=10.70&&t<12.20){                   /* five finishes, strobed */
-    S.laser=0; S.explode=0; S.focus=null;
+  else if(t>=14.30&&t<15.70){                   /* every finish, strobed */
+    S.laser=0; S.explode=0; S.focus=null; S.trio=null;
     S.scale=S.baseScale*1.00; S.rot+=0.0026;
-    var wi=Math.floor((t-10.70)/0.24)%WAYS.length;
+    var wi=Math.floor((t-14.30)/0.10)%WAYS.length;
     if(way!==WAYS[wi]){way=WAYS[wi];dirty=true;if(sound)tick();}
   }
-  else if(t>=12.20){                            /* hero, then the ask */
-    S.scale=S.baseScale*lerp(1.02,0.95,clamp((t-12.20)/2.10,0,1));
-    S.rot=lerp(0,0.055,clamp((t-12.20)/3.20,0,1));
+  else if(t>=15.70){                            /* hero, then the ask */
+    S.trio=null;
+    S.scale=S.baseScale*lerp(1.02,0.95,clamp((t-15.70)/2.10,0,1));
+    S.rot=lerp(0,0.055,clamp((t-15.70)/3.20,0,1));
     S.explode=0; S.focus=null; S.light=0.42;
   }
 
@@ -1286,13 +1402,13 @@ function frame(now){
   if(film.on){ filmStep(now); }
   else{
     var st=sampleTrack(window.scrollY||window.pageYOffset||0);
-    S.scale=lerp(S.scale,S.baseScale*st.sm,0.09);
+    S.scale=lerp(S.scale,S.baseScale*st.sm*ZOOMS[zoomIdx],0.09);
     S.explode=lerp(S.explode,st.ex,0.08);
     S.tilt=lerp(S.tilt,st.tilt,0.08);
     S.wrap=lerp(S.wrap,1,0.14);
     S.shade=lerp(S.shade,1,0.14);
     S.light=lerp(S.light,0.42,0.05);
-    S.focus=null; S.laser=0; S.glow.a=0;
+    S.focus=null; S.laser=0; S.glow.a=0; S.trio=null;
     S.cx=lerp(S.cx||S.homeX,S.homeX,0.10);
     S.cy=lerp(S.cy||S.homeY,S.homeY+st.dy*S.baseScale,0.10);
     if(!dragging){
@@ -1309,6 +1425,7 @@ function frame(now){
 /* ─────────── interaction ─────────── */
 cv.addEventListener("pointerdown",function(e){
   if(film.on)return;
+  pressAt={x:e.clientX,y:e.clientY};
   if(mode==="draw"){paintAt(e);return;}
   dragging=true; lastX=e.clientX; spinVel=0;
   cv.classList.add("dragging");
@@ -1321,8 +1438,19 @@ cv.addEventListener("pointermove",function(e){
   var dx=e.clientX-lastX; lastX=e.clientX;
   S.rot+=dx/460; spinVel=dx/460*0.35;
 });
-["pointerup","pointercancel","pointerleave"].forEach(function(ev){
-  cv.addEventListener(ev,function(){dragging=false;cv.classList.remove("dragging");});
+cv.addEventListener("pointerup",function(e){
+  dragging=false; cv.classList.remove("dragging");
+  /* A press that did not travel is a tap: step the zoom. Distance is the
+     only reliable test — one heavy frame makes a real tap measure long. */
+  var p=pressAt; pressAt=null;
+  if(!p||film.on||mode==="draw")return;
+  if(Math.hypot(e.clientX-p.x,e.clientY-p.y)>6)return;
+  zoomIdx=(zoomIdx+1)%ZOOMS.length;
+  var zh=document.getElementById("zoomHint");
+  if(zh)zh.textContent=zoomIdx?("Zoomed "+ZOOMS[zoomIdx].toFixed(2)+"× — tap again"):"Tap the vessel to zoom · drag to spin";
+});
+["pointercancel","pointerleave"].forEach(function(ev){
+  cv.addEventListener(ev,function(){dragging=false;pressAt=null;cv.classList.remove("dragging");});
 });
 
 function pick(e){
