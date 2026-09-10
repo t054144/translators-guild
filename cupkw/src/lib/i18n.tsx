@@ -264,6 +264,35 @@ export const T: Dict = {
   "intro.cta": { en: "Build yours", ar: "صمّم ترمسك" },
   "intro.enter": { en: "Look around first", ar: "تجوّل أولاً" },
   "intro.skip": { en: "Skip", ar: "تخطَّ" },
+
+  /* ── cinematic hero reveal ── */
+  "hc.skip": { en: "Skip reveal", ar: "تخطَّ العرض" },
+  "hc.eyebrow": { en: "Made in Kuwait · Fully recyclable", ar: "صُنع في الكويت · قابل لإعادة التدوير بالكامل" },
+  "hc.headline1": { en: "More Than a Tumbler.", ar: "أكثر من مجرد ترمس." },
+  "hc.headline2": { en: "Designed around the way you drink.", ar: "صُمم على طريقتك في الشرب." },
+  "hc.cta": { en: "Explore the Tumbler", ar: "استكشف الترمس" },
+  "hc.tagline": { en: "Your drink. Your temperature.", ar: "مشروبك. حرارتك." },
+  "hc.tempPerfect": { en: "Perfect temperature.", ar: "الحرارة المثالية." },
+  "hc.aria": {
+    en: "A cinematic reveal of the CUP.KW tumbler, rotating slowly in a dark studio.",
+    ar: "عرض سينمائي لترمس CUP.KW، يدور ببطء في استوديو مظلم.",
+  },
+
+  /* ── voucher box ── */
+  "vb.eyebrow": { en: "A small reward", ar: "مكافأة صغيرة" },
+  "vb.label": { en: "YOUR VOUCHER", ar: "قسيمتك" },
+  "vb.sub": { en: "Something is waiting inside.", ar: "شيء ما بانتظارك بالداخل." },
+  "vb.cta": { en: "Open the box", ar: "افتح الصندوق" },
+  "vb.aria.closed": { en: "Voucher box, closed. Activate to reveal your voucher.", ar: "صندوق القسيمة، مغلق. فعّله لكشف قسيمتك." },
+  "vb.opened.title": { en: "10% off your first build", ar: "خصم ١٠٪ على أول تصميم" },
+  "vb.opened.sub": {
+    en: "One code, one build. Use it at checkout — it's yours whenever you're ready.",
+    ar: "كود واحد، تصميم واحد. استخدمه عند الدفع — إنه لك متى ما كنت جاهزاً.",
+  },
+  "vb.copy": { en: "Copy code", ar: "نسخ الكود" },
+  "vb.copied": { en: "Copied", ar: "تم النسخ" },
+  "vb.redeem": { en: "Start your build", ar: "ابدأ تصميمك" },
+  "vb.again": { en: "Close the box", ar: "أغلق الصندوق" },
 };
 
 type Ctx = {

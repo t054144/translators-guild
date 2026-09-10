@@ -1,4 +1,5 @@
-import Hero from "@/components/sections/Hero";
+import CinematicHero from "@/components/sections/CinematicHero";
+import VoucherBox from "@/components/sections/VoucherBox";
 import Marquee from "@/components/sections/Marquee";
 import Anatomy from "@/components/sections/Anatomy";
 import Thermal from "@/components/sections/Thermal";
@@ -11,7 +12,8 @@ import Community from "@/components/sections/Community";
 export default function Home() {
   return (
     <>
-      <Hero />
+      <CinematicHero />
+      <VoucherBox />
       <Marquee />
       <Anatomy />
       <Thermal />
