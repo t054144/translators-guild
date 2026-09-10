@@ -9,7 +9,7 @@ import { useI18n } from "@/lib/i18n";
 import { useBuild, DEFAULT_BUILD, type Build } from "@/lib/build-store";
 import { COLLAB_BOX, VOUCHER_PARTNERS } from "@/lib/config";
 
-/** The collab thumbler is fixed. No colour, no pattern, no Pedazl — exactly as designed. */
+/** The collab tumbler is fixed. No colour, no pattern, no Pedazl — exactly as designed. */
 const LOCKED_BUILD: Build = {
   ...DEFAULT_BUILD,
   size: "750",
@@ -89,7 +89,7 @@ export default function CollabBox() {
                 <span className="text-[11px] font-medium text-white/70">{t("cb.locked")}</span>
               </div>
 
-              {/* the thumbler, in the box */}
+              {/* the tumbler, in the box */}
               <div className="stage relative mt-2 h-[46vh] min-h-[330px]">
                 <Stage
                   build={LOCKED_BUILD}

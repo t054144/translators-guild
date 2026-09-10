@@ -49,7 +49,7 @@ export const DEFAULT_BUILD: Build = {
 
 export type BagLine = {
   key: string;
-  kind: "thumbler" | "box";
+  kind: "tumbler" | "box";
   build?: Build;
   qty: number;
   unitPrice: number;
@@ -93,7 +93,7 @@ export function priceOf(b: Build) {
 export function priceBreakdown(b: Build) {
   const rows: { key: string; en: string; ar: string; kd: number }[] = [];
   const s = sizeOf(b);
-  rows.push({ key: "base", en: `${s.en} thumbler`, ar: `ترمس ${s.ar}`, kd: s.priceKD });
+  rows.push({ key: "base", en: `${s.en} tumbler`, ar: `ترمس ${s.ar}`, kd: s.priceKD });
 
   if (hasEngraving(b)) {
     const m = fieldModeOf(b);

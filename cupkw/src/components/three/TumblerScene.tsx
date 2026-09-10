@@ -33,7 +33,7 @@ type Props = {
 const FOV = 34;
 
 /**
- * How far back the camera has to sit for a thumbler of this height to sit in
+ * How far back the camera has to sit for a tumbler of this height to sit in
  * frame with a little air around it. Without this the 1-litre crops and the
  * 450 ml floats in the middle of an empty stage.
  */

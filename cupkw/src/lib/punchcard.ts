@@ -1,7 +1,7 @@
 /**
  * The punchcard field.
  *
- * The thumbler carries a grid of small dots down its front. Most sit dark; the
+ * The tumbler carries a grid of small dots down its front. Most sit dark; the
  * lit ones carry the engraving. A name is fed through the field as upright 5×7
  * dot-matrix glyphs stacked top to bottom — same name, same pattern, forever.
  */
@@ -208,7 +208,7 @@ export function lifeStep(f: Field): Field {
 
 /**
  * GRID — the field exactly as the shell is manufactured: a plain, uniform
- * punched grid, every dot lit. This is the stock thumbler, un-engraved.
+ * punched grid, every dot lit. This is the stock tumbler, un-engraved.
  */
 export function gridField(): Field {
   const f = makeField(MIN_ROWS);

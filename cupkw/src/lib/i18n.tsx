@@ -21,7 +21,7 @@ export const T: Dict = {
 
   // ── hero ─────────────────────────────────────────────
   "hero.eyebrow": { en: "Made in Kuwait · Fully recyclable", ar: "صُنع في الكويت · قابل لإعادة التدوير بالكامل" },
-  "hero.title1": { en: "One thumbler.", ar: "ترمس واحد." },
+  "hero.title1": { en: "One tumbler.", ar: "ترمس واحد." },
   "hero.title2": { en: "Every temperature.", ar: "كل درجات الحرارة." },
   "hero.title3": { en: "Your name.", ar: "باسمك أنت." },
   "hero.sub": {
@@ -30,7 +30,7 @@ export const T: Dict = {
   },
   "hero.cta": { en: "Build yours", ar: "ابدأ تصميمك" },
   "hero.cta2": { en: "See the collab box", ar: "شاهد بوكس التعاون" },
-  "hero.scroll": { en: "Drag the thumbler to spin it", ar: "اسحب الترمس ليدور" },
+  "hero.scroll": { en: "Drag the tumbler to spin it", ar: "اسحب الترمس ليدور" },
 
   // ── 3D viewer ────────────────────────────────────────
   "v3.title": { en: "Every part, in the open", ar: "كل جزء، مكشوف" },
@@ -93,7 +93,7 @@ export const T: Dict = {
   "eg.plate": { en: "Name plate reads", ar: "لوحة الاسم تقرأ" },
   "cz.thermal": { en: "Thermal preview", ar: "معاينة الحرارة" },
   "cz.thermalHint": {
-    en: "This is the same thumbler, three times. Watch the shell move.",
+    en: "This is the same tumbler, three times. Watch the shell move.",
     ar: "هذا هو نفس الترمس، ثلاث مرات. راقب القشرة تتحرك.",
   },
   "cz.ambient": { en: "Empty", ar: "فارغ" },
@@ -148,7 +148,7 @@ export const T: Dict = {
   },
   "tech.recycle.title": { en: "Recyclable, all the way down", ar: "قابل لإعادة التدوير، حتى آخر جزء" },
   "tech.recycle.body": {
-    en: "Most thumblers can't be recycled because the steel, plastic and silicone are bonded together. Ours come apart by hand in under a minute — every component separates into a single, clean material stream. Bring it back to us when you're done and we'll do it for you.",
+    en: "Most tumblers can't be recycled because the steel, plastic and silicone are bonded together. Ours come apart by hand in under a minute — every component separates into a single, clean material stream. Bring it back to us when you're done and we'll do it for you.",
     ar: "معظم الترامس لا يمكن تدويرها لأن الستانلس والبلاستيك والسيليكون ملتصقون. ترمسنا يُفكّك باليد في أقل من دقيقة — كل جزء ينفصل إلى مادة نقية واحدة. أعده إلينا عند انتهائك ونتولى الأمر.",
   },
   "tech.thermo.title": { en: "The shell tells you", ar: "القشرة تخبرك" },
@@ -161,7 +161,7 @@ export const T: Dict = {
   "cb.eyebrow": { en: "Limited drop · 4 days", ar: "إصدار محدود · ٤ أيام" },
   "cb.title": { en: "CODED × Moudhi Collection Box", ar: "بوكس مجموعة كوديد × مضاوي" },
   "cb.sub": {
-    en: "The navy thumbler exactly as it was designed — the CODED mark, the stock punchcard grid, matte navy shell. No customisation, no changes. Boxed with vouchers from five of Kuwait's best.",
+    en: "The navy tumbler exactly as it was designed — the CODED mark, the stock punchcard grid, matte navy shell. No customisation, no changes. Boxed with vouchers from five of Kuwait's best.",
     ar: "الترمس الكحلي كما صُمّم بالضبط — شعار كوديد، وشبكة النقاط الأصلية، وقشرة كحلية مطفية. بلا تخصيص وبلا تغيير. معلّب مع قسائم من خمسة من الأفضل في الكويت.",
   },
   "cb.locked": { en: "Fixed colourway and engraving — not customisable", ar: "لون ونقش ثابتان — غير قابل للتخصيص" },
@@ -174,7 +174,7 @@ export const T: Dict = {
   "cb.secs": { en: "Seconds", ar: "ثانية" },
   "cb.claim": { en: "Claim the box", ar: "احصل على البوكس" },
   "cb.ended": { en: "This drop has closed", ar: "انتهى هذا الإصدار" },
-  "cb.item1": { en: "750 ml CODED × Moudhi thumbler — matte navy, stock punchcard grid", ar: "ترمس كوديد × مضاوي ٧٥٠ مل — كحلي مطفي، بشبكة النقاط الأصلية" },
+  "cb.item1": { en: "750 ml CODED × Moudhi tumbler — matte navy, stock punchcard grid", ar: "ترمس كوديد × مضاوي ٧٥٠ مل — كحلي مطفي، بشبكة النقاط الأصلية" },
   "cb.item2": { en: "Matching reusable straw + cleaning brush", ar: "شفاطة قابلة لإعادة الاستخدام + فرشاة تنظيف" },
   "cb.item3": { en: "Numbered collector card", ar: "كرت مجموعة مرقّم" },
   "cb.item4": { en: "Five café vouchers", ar: "خمس قسائم مقاهي" },
@@ -223,7 +223,7 @@ export const T: Dict = {
   // ── bag ──────────────────────────────────────────────
   "bag.title": { en: "Your bag", ar: "حقيبتك" },
   "bag.empty": { en: "Nothing here yet.", ar: "لا شيء هنا بعد." },
-  "bag.emptyCta": { en: "Build a thumbler", ar: "صمّم ترمساً" },
+  "bag.emptyCta": { en: "Build a tumbler", ar: "صمّم ترمساً" },
   "bag.checkout": { en: "Checkout", ar: "إتمام الشراء" },
   "bag.remove": { en: "Remove", ar: "إزالة" },
   "bag.subtotal": { en: "Subtotal", ar: "المجموع الفرعي" },
@@ -233,7 +233,7 @@ export const T: Dict = {
   "bag.soon": { en: "Payment gateway coming soon — your build is saved.", ar: "بوابة الدفع قريباً — تصميمك محفوظ." },
 
   // ── footer / misc ────────────────────────────────────
-  "ft.tag": { en: "CUP.KW — Kuwait's thumbler, built to your spec.", ar: "CUP.KW — ترمس الكويت، مصمّم على مقاسك." },
+  "ft.tag": { en: "CUP.KW — Kuwait's tumbler, built to your spec.", ar: "CUP.KW — ترمس الكويت، مصمّم على مقاسك." },
   "ft.shop": { en: "Shop", ar: "المتجر" },
   "ft.about": { en: "About", ar: "عن المتجر" },
   "ft.care": { en: "Care & recycling", ar: "العناية وإعادة التدوير" },

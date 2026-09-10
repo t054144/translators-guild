@@ -70,7 +70,7 @@ export default function Customizer() {
 
   const add = () => {
     addToBag({
-      kind: "thumbler",
+      kind: "tumbler",
       qty: 1,
       unitPrice: price,
       build: { ...build },

@@ -112,7 +112,7 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* ── the thumbler ── */}
+        {/* ── the tumbler ── */}
         <div className="relative lg:col-span-5">
           <div className="stage relative h-[52vh] min-h-[340px] w-full sm:h-[60vh] lg:h-[78vh]">
             <Stage thermal={thermal} cinematic autoSpin mood="dark" />

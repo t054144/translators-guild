@@ -69,12 +69,12 @@ const plexAr = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "CUP.KW — Kuwait's thumbler, built to your spec",
+  title: "CUP.KW — Kuwait's tumbler, built to your spec",
   description:
     "32 hours cold, 14 hours hot, and a shell that changes colour with what's inside. Twenty colours, three sizes, three finishes, and Pedazl crystals on anything you want. Fully recyclable. Made in Kuwait.",
-  keywords: ["thumbler", "tumbler", "Kuwait", "CUP.KW", "CODED", "Moudhi", "recyclable", "Pedazl"],
+  keywords: ["tumbler", "Kuwait", "CUP.KW", "CODED", "Moudhi", "recyclable", "Pedazl"],
   openGraph: {
-    title: "CUP.KW — Kuwait's thumbler, built to your spec",
+    title: "CUP.KW — Kuwait's tumbler, built to your spec",
     description: "32 hours cold. 14 hours hot. Your colour. Fully recyclable.",
     type: "website",
   },

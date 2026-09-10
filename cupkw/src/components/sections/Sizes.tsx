@@ -9,7 +9,7 @@ import { SIZES, type SizeKey } from "@/lib/config";
 import { mix, shade } from "@/lib/shellTexture";
 
 /**
- * A to-scale silhouette of the real thumbler: straight-wall cylinder, threaded
+ * A to-scale silhouette of the real tumbler: straight-wall cylinder, threaded
  * lid, centre straw, and the punchcard column down the front. Cheap to draw,
  * and the proportions are the actual millimetres.
  */

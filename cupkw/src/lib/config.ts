@@ -1,6 +1,6 @@
 // CUP.KW — product configuration
 //
-// Dimensions and colours are taken from the real thumbler: a straight-wall
+// Dimensions and colours are taken from the real tumbler: a straight-wall
 // navy cylinder with a threaded lid, a centre straw port, and a punchcard dot
 // field down the front between the CODED mark and the [ NAME ] label.
 
@@ -21,7 +21,7 @@ export type ColorDef = {
 };
 
 /**
- * CODED Navy is the original — the colourway of the thumbler as designed, and
+ * CODED Navy is the original — the colourway of the tumbler as designed, and
  * the one the collab box ships in, unchanged.
  */
 export const COLORS: ColorDef[] = [
@@ -168,7 +168,7 @@ export const VOUCHER_PARTNERS = [
   { id: "matchamatcha", en: "Matcha Matcha", ar: "ماتشا ماتشا", logo: "/partners/matchamatcha.png", brand: "#E8A81E", ink: "#3A2A08", enPerk: "Free ceremonial matcha upgrade",   arPerk: "ترقية ماتشا سيريمونيال مجاناً" },
 ];
 
-/** Labelled anatomy of the thumbler, used by the 3D exploded view */
+/** Labelled anatomy of the tumbler, used by the 3D exploded view */
 export type PartId = "lid" | "strawPort" | "straw" | "gasket" | "innerWall" | "vacuum" | "outerWall" | "punchcard" | "base";
 
 export const PARTS: { id: PartId; en: string; ar: string; enDesc: string; arDesc: string }[] = [

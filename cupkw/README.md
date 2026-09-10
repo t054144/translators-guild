@@ -1,12 +1,12 @@
 # CUP.KW
 
-Kuwait's thumbler, built to your spec. A storefront for the CODED × Moudhi
-vacuum thumbler — with a real-time 3D configurator, a punchcard engraving
+Kuwait's tumbler, built to your spec. A storefront for the CODED × Moudhi
+vacuum tumbler — with a real-time 3D configurator, a punchcard engraving
 machine, and a bilingual EN/AR interface.
 
 ## The product this is built around
 
-A straight-wall matte navy vacuum thumbler. Threaded lid, centre straw port,
+A straight-wall matte navy vacuum tumbler. Threaded lid, centre straw port,
 colour-matched reusable straw. Down the front: a boxed `CODED` mark, a field of
 punched dots, and a `[ NAME ]` plate at the foot. Geometry, proportions and
 colours in this repo are taken from photographs of the real article — see
