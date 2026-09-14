@@ -3,6 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The browser enforces this list. Scripts may come from this page and nowhere
+     else, and the page may only talk to Supabase and Wikipedia, so a widget or
+     tracker added later cannot run here or carry a member's session away. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://bldqausimrsusdzfbubk.supabase.co https://en.wikipedia.org; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>The Translators' Guild</title>
 <meta name="description" content="A guide to Arabic-English translation by functional equivalence: eight translators who changed the world, the seven procedures, nine text types, and seven trials.">
 <meta name="author" content="Shaikha Alkhaldi">

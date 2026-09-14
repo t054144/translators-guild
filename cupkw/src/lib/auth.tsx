@@ -54,6 +54,20 @@ function writeUsers(u: LocalUser[]) {
   }
 }
 
+/**
+ * The fallback store is a development convenience, not an account system: it
+ * keeps accounts in the visitor's own browser behind a scramble that is not
+ * cryptography. On a deployed site that would imitate a real login, so it is
+ * allowed to run on a local machine only. Anywhere else, sign-in says plainly
+ * that it is unavailable rather than pretending to hold an account.
+ */
+const LOCAL_FALLBACK_OK =
+  typeof window !== "undefined" &&
+  ["localhost", "127.0.0.1", "[::1]", "::1"].includes(window.location.hostname);
+
+const NOT_CONFIGURED =
+  "Accounts are unavailable: this site has no account service configured.";
+
 /** not cryptography — just so a readable password never sits in localStorage */
 function scramble(s: string) {
   let h = 5381;
@@ -106,7 +120,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             setUser(null);
           }
         });
-      } else {
+      } else if (LOCAL_FALLBACK_OK) {
         try {
           const raw = window.localStorage.getItem(LS_SESSION);
           if (raw) setUser(JSON.parse(raw));
@@ -143,6 +157,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       await sb.auth.signInWithPassword({ email, password }).catch(() => null);
       return {};
     }
+    if (!LOCAL_FALLBACK_OK) return { error: NOT_CONFIGURED };
     const users = readUsers();
     if (users.some((u) => u.email.toLowerCase() === email.toLowerCase())) {
       return { error: "An account with that email already exists." };
@@ -168,6 +183,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (error) return { error: error.message };
       return {};
     }
+    if (!LOCAL_FALLBACK_OK) return { error: NOT_CONFIGURED };
     const users = readUsers();
     const found = users.find((u) => u.email.toLowerCase() === email.toLowerCase());
     if (!found) return { error: "No account with that email. Create one first." };
