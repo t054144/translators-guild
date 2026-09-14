@@ -2451,9 +2451,16 @@ async function pressSeal() {
       gateSay("Seal cut. Confirm the address from your inbox, then sign in.", true);
     } catch (e) {
       gateBusy(false);
-      gateSay(/already/i.test(e.message)
-        ? "That address is already on the roll &mdash; sign in instead."
-        : "The seal was refused: " + e.message);
+      if (/already/i.test(e.message)) {
+        /* Never name an address that is already on the roll: that answer turns
+           this form into a lookup tool for anyone holding a list of addresses.
+           An address that is taken gets the same reply as one that is free. */
+        setAuthMode("in");
+        gateEl.email.value = email;
+        gateSay("Seal cut. Confirm the address from your inbox, then sign in.", true);
+        return;
+      }
+      gateSay("The seal was refused: " + e.message);
     }
     return;
   }
