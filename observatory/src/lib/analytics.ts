@@ -623,3 +623,82 @@ export function narrative(snap: Snapshot, launches: Launch[]): Beat[] {
 
   return beats;
 }
+
+/* ── fun facts ───────────────────────────────────────────────────────────── */
+
+/**
+ * Four short findings for the front page.
+ *
+ * Same contract as the Debrief narrative — computed from the rows in view, one
+ * line each — but deliberately terse. These are the things worth noticing at a
+ * glance; the reasoning behind them lives in section 11. A fact whose numbers
+ * are not in the data is not emitted, so the strip shortens rather than guesses.
+ */
+export interface Fact {
+  id: string;
+  kicker: string;
+  body: Seg[];
+}
+
+export function funFacts(snap: Snapshot, launches: Launch[]): Fact[] {
+  if (launches.length === 0) return [];
+
+  const out: Fact[] = [];
+  const vehicles = rankBy(launches, (l) => l.rocket_name);
+  const years = byYear(launches);
+  const profiles = boosterProfiles(snap, launches);
+
+  const top = vehicles[0];
+  if (top && launches.length > 1) {
+    out.push({
+      id: 'concentration',
+      kicker: 'One vehicle',
+      body: [n(top.label), ' flies ', n(`${((top.count / launches.length) * 100).toFixed(1)}%`),
+             ' of every launch here.'],
+    });
+  }
+
+  const best = [...profiles].sort(
+    (a, b) => b.landing_successes - a.landing_successes || b.flight_count - a.flight_count,
+  )[0];
+  if (best && best.flight_count > 1) {
+    out.push({
+      id: 'core',
+      kicker: 'One core',
+      body: [n(best.serial), ' flew ', n(best.flight_count), ' times and landed ',
+             n(best.landing_successes), ' of them.'],
+    });
+  }
+
+  const attempts = launches.filter((l) => l.landing_attempt === true).length;
+  const landed = launches.filter((l) => l.landing_outcome === 'success').length;
+  if (attempts > 0) {
+    out.push({
+      id: 'landings',
+      kicker: 'Landing',
+      body: [n(landed), ' of ', n(attempts), ' boosters were recovered — ',
+             n(`${((landed / attempts) * 100).toFixed(0)}%`), ' stuck it.'],
+    });
+  }
+
+  const turns = profiles.flatMap((p) => p.turnarounds);
+  const fastest = turns.length ? Math.min(...turns) : null;
+  if (fastest !== null) {
+    out.push({
+      id: 'turnaround',
+      kicker: 'Turnaround',
+      body: ['The quickest a core flew again was ', n(`${Math.round(fastest)} days`), '.'],
+    });
+  } else {
+    const peak = years.length ? years.reduce((a, b) => (b.total > a.total ? b : a)) : null;
+    if (peak && years.length > 1) {
+      out.push({
+        id: 'peak',
+        kicker: 'Busiest year',
+        body: [n(peak.label), ' — ', n(peak.total), ' launches.'],
+      });
+    }
+  }
+
+  return out.slice(0, 4);
+}

@@ -18,7 +18,8 @@ import { Counter, LineagePanel, Panel, StatusBadge } from '../components/ui.tsx'
 import { Proportion } from '../components/charts.tsx';
 import { useStore } from '../lib/store.tsx';
 import {
-  NOT_PROVIDED, dataKind, dataKindLabel, fmtDate, fmtDateTime, headlineMetrics, indexById, type Metric,
+  NOT_PROVIDED, dataKind, dataKindLabel, fmtDate, fmtDateTime, funFacts, headlineMetrics, indexById,
+  type Metric,
 } from '../lib/analytics.ts';
 import { OUTCOME_LABEL, type Launch } from '../lib/types.ts';
 
@@ -114,6 +115,7 @@ export default function MissionControl() {
   const payloadIdx = useMemo(() => indexById(snapshot.payloads), [snapshot.payloads]);
 
   const metrics = useMemo(() => headlineMetrics(snapshot, launches), [snapshot, launches]);
+  const facts = useMemo(() => funFacts(snapshot, launches), [snapshot, launches]);
 
   /** The mission the vehicle represents: next upcoming, else most recent. */
   const focus = useMemo<Launch | null>(() => {
@@ -362,6 +364,27 @@ export default function MissionControl() {
             </button>
           ))}
         </div>
+
+        {facts.length > 0 && (
+          <div className="facts">
+            <span className="facts-tag">Worth noticing</span>
+            {facts.map((f) => (
+              <div className="fact" key={f.id}>
+                <span className="lbl">{f.kicker}</span>
+                <p>
+                  {f.body.map((seg, i) =>
+                    typeof seg === 'string'
+                      ? <span key={i}>{seg}</span>
+                      : <span className="nar-n" key={i}>{seg.n}</span>,
+                  )}
+                </p>
+              </div>
+            ))}
+            <button className="facts-more" type="button" onClick={() => nav('/debrief')}>
+              FULL DEBRIEF →
+            </button>
+          </div>
+        )}
 
         {openMetric && (
           <Panel
