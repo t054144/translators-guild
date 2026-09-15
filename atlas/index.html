@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>The Word Atlas</title>
+<meta name="description" content="One word, set in 55 languages and 23 writing systems.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500&family=Noto+Sans+Hebrew:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500&family=Noto+Sans+Bengali:wght@400;500&family=Noto+Sans+Tamil:wght@400;500&family=Noto+Sans+Telugu:wght@400;500&family=Noto+Sans+Kannada:wght@400;500&family=Noto+Sans+Malayalam:wght@400;500&family=Noto+Sans+Gujarati:wght@400;500&family=Noto+Sans+Gurmukhi:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+Sinhala:wght@400;500&family=Noto+Sans+Thai:wght@400;500&family=Noto+Sans+Khmer:wght@400;500&family=Noto+Sans+Myanmar:wght@400;500&family=Noto+Sans+Ethiopic:wght@400;500&family=Noto+Sans+Georgian:wght@400;500&family=Noto+Sans+Armenian:wght@400;500&family=Noto+Sans+JP:wght@400;500&family=Noto+Sans+KR:wght@400;500&family=Noto+Sans+SC:wght@400;500&display=swap">
+<style>
+/* ── tokens ─────────────────────────────────────────────── */
+:root{
+  --paper:#E9E9E4;
+  --card:#FAFAF7;
+  --card-2:#F2F2ED;
+  --ink:#17181C;
+  --ink-2:#41444B;
+  --muted:#767A82;
+  --rule:#D6D6CF;
+  --rule-2:#C2C2B8;
+  --accent:#1F4FA8;
+  --accent-soft:#DFE6F4;
+  --mark:#A8442A;
+  --shadow:0 1px 2px rgba(23,24,28,.05), 0 8px 24px -16px rgba(23,24,28,.28);
+
+  --f-display:"Bodoni Moda","Didot","Playfair Display",Georgia,serif;
+  --f-sans:"IBM Plex Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+
+  --step-0:.875rem;
+  --step-1:1rem;
+  --step-2:1.25rem;
+  --step-3:1.75rem;
+  --wrap:1320px;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#121317;
+    --card:#1A1B20;
+    --card-2:#212228;
+    --ink:#ECEBE5;
+    --ink-2:#BFC0BB;
+    --muted:#8B8F97;
+    --rule:#2A2C33;
+    --rule-2:#3B3E46;
+    --accent:#8FAAF2;
+    --accent-soft:#1D2740;
+    --mark:#E08A6B;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#121317;
+  --card:#1A1B20;
+  --card-2:#212228;
+  --ink:#ECEBE5;
+  --ink-2:#BFC0BB;
+  --muted:#8B8F97;
+  --rule:#2A2C33;
+  --rule-2:#3B3E46;
+  --accent:#8FAAF2;
+  --accent-soft:#1D2740;
+  --mark:#E08A6B;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -16px rgba(0,0,0,.8);
+}
+
+/* ── base ───────────────────────────────────────────────── */
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-sans);
+  font-size:var(--step-1);
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,4vw,44px);}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;}
+
+.eyebrow{
+  font-family:var(--f-mono);
+  font-size:.6875rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+/* ── masthead ───────────────────────────────────────────── */
+.masthead{border-bottom:1px solid var(--rule);padding-block:clamp(22px,4vw,34px) 20px;}
+.masthead-row{display:flex;flex-wrap:wrap;gap:20px 32px;align-items:baseline;justify-content:space-between;}
+.wordmark{
+  font-family:var(--f-display);
+  font-weight:400;
+  font-size:clamp(1.5rem,3.4vw,2rem);
+  letter-spacing:-.01em;
+  margin:0;
+  line-height:1;
+}
+.wordmark em{font-style:italic;}
+.tagline{color:var(--ink-2);font-size:var(--step-0);margin:.55rem 0 0;max-width:46ch;}
+.ledger{display:flex;flex-wrap:wrap;gap:6px 22px;}
+.ledger div{display:flex;flex-direction:column;gap:2px;}
+.ledger b{
+  font-family:var(--f-mono);font-weight:500;font-size:1.0625rem;
+  font-variant-numeric:tabular-nums;color:var(--ink);line-height:1.2;
+}
+
+/* ── concept selector ───────────────────────────────────── */
+.concepts{
+  display:flex;gap:8px;overflow-x:auto;padding-block:16px;
+  scrollbar-width:thin;
+}
+.concept{
+  flex:0 0 auto;
+  font-family:var(--f-sans);
+  font-size:var(--step-0);
+  font-weight:500;
+  color:var(--ink-2);
+  background:transparent;
+  border:1px solid var(--rule-2);
+  border-radius:999px;
+  padding:7px 16px;
+  cursor:pointer;
+  white-space:nowrap;
+  transition:background .16s ease,color .16s ease,border-color .16s ease;
+}
+.concept:hover{border-color:var(--accent);color:var(--accent);}
+.concept[aria-pressed="true"]{
+  background:var(--ink);border-color:var(--ink);color:var(--paper);
+}
+
+/* ── plate (hero) ───────────────────────────────────────── */
+.plate{
+  border-bottom:1px solid var(--rule);
+  padding-block:clamp(26px,5vw,52px) clamp(26px,4vw,40px);
+}
+.plate-word{
+  font-family:var(--f-display);
+  font-weight:400;
+  font-size:clamp(3.25rem,12vw,8.25rem);
+  line-height:.92;
+  letter-spacing:-.025em;
+  margin:.18em 0 0;
+  text-wrap:balance;
+}
+.plate-gloss{
+  color:var(--ink-2);
+  font-size:var(--step-2);
+  max-width:56ch;
+  margin:.7rem 0 0;
+  text-wrap:pretty;
+}
+.ribbon{
+  margin-top:clamp(22px,3vw,34px);
+  padding-top:18px;
+  border-top:1px solid var(--rule);
+  display:flex;flex-wrap:wrap;
+  align-items:baseline;
+  gap:4px 0;
+  color:var(--muted);
+  font-size:1.1875rem;
+  line-height:1.9;
+}
+.ribbon span{padding-inline:.5em;}
+.ribbon span + span{border-left:1px solid var(--rule-2);}
+
+/* ── toolbar ────────────────────────────────────────────── */
+.toolbar{
+  position:sticky;
+  top:env(safe-area-inset-top, 0px);
+  z-index:5;
+  background:color-mix(in srgb, var(--paper) 92%, transparent);
+  backdrop-filter:saturate(1.4) blur(10px);
+  border-bottom:1px solid var(--rule);
+}
+.toolbar-inner{
+  display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;
+  padding-block:12px;
+}
+.field{
+  display:flex;align-items:center;gap:8px;
+  background:var(--card);
+  border:1px solid var(--rule-2);
+  border-radius:6px;
+  padding:0 10px;
+  height:36px;
+}
+.field:focus-within{border-color:var(--accent);}
+.field label{
+  font-family:var(--f-mono);font-size:.625rem;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted);
+}
+.field input,.field select{
+  border:0;background:transparent;color:var(--ink);
+  font-family:var(--f-sans);font-size:var(--step-0);
+  height:34px;min-width:0;
+}
+.field input{width:140px;}
+.field input:focus,.field select:focus{outline:none;}
+.field select{cursor:pointer;max-width:170px;}
+.tally{
+  margin-left:auto;
+  font-family:var(--f-mono);font-size:.75rem;
+  color:var(--muted);font-variant-numeric:tabular-nums;
+}
+
+/* ── specimen grid ──────────────────────────────────────── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(228px,1fr));
+  gap:14px;
+  padding-block:22px clamp(32px,6vw,64px);
+  align-items:stretch;
+}
+.card{
+  display:flex;flex-direction:column;
+  background:var(--card);
+  border:1px solid var(--rule);
+  border-radius:3px;
+  padding:14px 16px 15px;
+  cursor:pointer;
+  text-align:left;
+  font:inherit;color:inherit;
+  transition:border-color .16s ease, box-shadow .16s ease, transform .16s ease;
+}
+.card:hover{border-color:var(--rule-2);box-shadow:var(--shadow);transform:translateY(-2px);}
+.card-top{display:flex;align-items:center;gap:7px;min-height:18px;}
+.dot{width:7px;height:7px;border-radius:50%;flex:0 0 auto;}
+.fam{
+  font-family:var(--f-mono);font-size:.625rem;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--muted);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.iso{
+  margin-left:auto;font-family:var(--f-mono);font-size:.625rem;
+  color:var(--muted);letter-spacing:.06em;flex:0 0 auto;
+}
+.term{
+  display:block;
+  font-size:clamp(1.85rem,4.4vw,2.6rem);
+  line-height:1.24;
+  font-weight:400;
+  margin:16px 0 0;
+  color:var(--ink);
+  word-break:break-word;
+  overflow-wrap:anywhere;
+}
+.roman{
+  font-family:var(--f-mono);
+  font-size:.8125rem;
+  color:var(--accent);
+  margin-top:6px;
+  word-break:break-word;
+}
+.card-foot{
+  margin-top:auto;
+  padding-top:12px;
+  border-top:1px solid var(--rule);
+  display:flex;flex-direction:column;gap:3px;
+}
+.card-foot .names{display:flex;flex-wrap:wrap;gap:4px 8px;align-items:baseline;}
+.auto{font-size:.9375rem;color:var(--ink);line-height:1.35;}
+.en{font-size:.8125rem;color:var(--muted);}
+.meta{
+  font-family:var(--f-mono);font-size:.625rem;color:var(--muted);
+  letter-spacing:.04em;font-variant-numeric:tabular-nums;
+  display:flex;flex-wrap:wrap;gap:5px;align-items:center;margin-top:3px;
+}
+.rtl-badge{color:var(--mark);font-weight:500;letter-spacing:.08em;}
+.empty{
+  grid-column:1/-1;padding:48px 0;text-align:center;color:var(--muted);
+  font-size:var(--step-0);
+}
+
+/* ── script faces ───────────────────────────────────────── */
+[data-s="Arabic"]      {font-family:"Noto Sans Arabic","Geeza Pro",serif;}
+[data-s="Hebrew"]      {font-family:"Noto Sans Hebrew","Arial Hebrew",serif;}
+[data-s="Devanagari"]  {font-family:"Noto Sans Devanagari","Nirmala UI",serif;}
+[data-s="Bengali"]     {font-family:"Noto Sans Bengali","Nirmala UI",serif;}
+[data-s="Gurmukhi"]    {font-family:"Noto Sans Gurmukhi","Nirmala UI",serif;}
+[data-s="Gujarati"]    {font-family:"Noto Sans Gujarati","Nirmala UI",serif;}
+[data-s="Tamil"]       {font-family:"Noto Sans Tamil","Nirmala UI",serif;}
+[data-s="Telugu"]      {font-family:"Noto Sans Telugu","Nirmala UI",serif;}
+[data-s="Kannada"]     {font-family:"Noto Sans Kannada","Nirmala UI",serif;}
+[data-s="Malayalam"]   {font-family:"Noto Sans Malayalam","Nirmala UI",serif;}
+[data-s="Sinhala"]     {font-family:"Noto Sans Sinhala","Iskoola Pota",serif;}
+[data-s="Thai"]        {font-family:"Noto Sans Thai","Leelawadee UI",serif;}
+[data-s="Khmer"]       {font-family:"Noto Sans Khmer","Khmer UI",serif;}
+[data-s="Myanmar"]     {font-family:"Noto Sans Myanmar","Myanmar Text",serif;}
+[data-s="Ethiopic"]    {font-family:"Noto Sans Ethiopic","Nyala",serif;}
+[data-s="Georgian"]    {font-family:"Noto Sans Georgian","Sylfaen",serif;}
+[data-s="Armenian"]    {font-family:"Noto Sans Armenian","Sylfaen",serif;}
+[data-s="Japanese"]    {font-family:"Noto Sans JP","Hiragino Sans","Yu Gothic",sans-serif;}
+[data-s="Hangul"]      {font-family:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",sans-serif;}
+[data-s="Han"]         {font-family:"Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;}
+[data-s="Greek"]       {font-family:"IBM Plex Sans","Noto Sans",sans-serif;}
+[data-s="Cyrillic"]    {font-family:"IBM Plex Sans","Noto Sans",sans-serif;}
+[data-s="Latin"]       {font-family:"IBM Plex Sans",sans-serif;}
+
+/* ── colophon ───────────────────────────────────────────── */
+.colophon{
+  border-top:1px solid var(--rule);
+  padding-block:26px clamp(34px,6vw,56px);
+  color:var(--muted);
+  font-size:.8125rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:22px 40px;
+}
+.colophon h2{
+  font-family:var(--f-mono);font-size:.625rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--ink-2);margin:0 0 7px;font-weight:500;
+}
+.colophon p{margin:0 0 8px;max-width:58ch;line-height:1.6;}
+.colophon a{color:var(--accent);text-underline-offset:2px;}
+
+/* ── toast ──────────────────────────────────────────────── */
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:calc(22px + env(safe-area-inset-bottom, 0px));
+  transform:translate(-50%,14px);
+  background:var(--ink);color:var(--paper);
+  font-family:var(--f-mono);font-size:.75rem;letter-spacing:.04em;
+  padding:9px 16px;border-radius:999px;
+  opacity:0;pointer-events:none;
+  transition:opacity .2s ease, transform .2s ease;
+  z-index:20;
+}
+.toast.on{opacity:1;transform:translate(-50%,0);}
+
+@media (max-width:560px){
+  .field input{width:100px;}
+  .tally{margin-left:0;width:100%;}
+  .ribbon{font-size:1.0625rem;line-height:1.85;}
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+}
+.stagger{animation:rise .34s cubic-bezier(.22,.7,.3,1) both;}
+@keyframes rise{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <div class="masthead-row">
+      <div>
+        <h1 class="wordmark">The Word <em>Atlas</em></h1>
+        <p class="tagline">One idea, set in the world's writing systems. Pick a word; every language shows it in its own script, with romanisation and where it sits on the family tree.</p>
+      </div>
+      <div class="ledger">
+        <div><span class="eyebrow">Languages</span><b>55</b></div>
+        <div><span class="eyebrow">Scripts</span><b>23</b></div>
+        <div><span class="eyebrow">Families</span><b>16</b></div>
+        <div><span class="eyebrow">Entries</span><b>330</b></div>
+      </div>
+    </div>
+    <nav class="concepts" id="concepts" aria-label="Choose a word"></nav>
+  </div>
+</header>
+
+<section class="plate">
+  <div class="wrap">
+    <p class="eyebrow" id="plateKicker">Water</p>
+    <h2 class="plate-word" id="plateWord">Water</h2>
+    <p class="plate-gloss" id="plateGloss"></p>
+    <div class="ribbon" id="ribbon" aria-hidden="true"></div>
+  </div>
+</section>
+
+<div class="toolbar">
+  <div class="wrap toolbar-inner">
+    <div class="field">
+      <label for="q">Find</label>
+      <input id="q" type="search" placeholder="language or script" autocomplete="off">
+    </div>
+    <div class="field">
+      <label for="fam">Family</label>
+      <select id="fam"><option value="">All</option></select>
+    </div>
+    <div class="field">
+      <label for="sort">Order</label>
+      <select id="sort">
+        <option value="speakers">Most spoken</option>
+        <option value="family">By family</option>
+        <option value="az">A–Z</option>
+        <option value="script">By script</option>
+      </select>
+    </div>
+    <p class="tally" id="tally"></p>
+  </div>
+</div>
+
+<main class="wrap">
+  <div class="grid" id="grid"></div>
+</main>
+
+<footer class="wrap colophon">
+  <div>
+    <h2>About the data</h2>
+    <p>330 entries compiled by hand: 6 concepts across 55 languages. Speaker counts are first-language estimates rounded to the nearest million, in the range Ethnologue and Wikipedia report.</p>
+  </div>
+  <div>
+    <h2>On romanisation</h2>
+    <p>Transliterations follow the common scholarly scheme for each script (ALA-LC, ISO 15919, Hepburn, Revised Romanisation, Pinyin). They approximate pronunciation — they do not replace it.</p>
+  </div>
+  <div>
+    <h2>Growing it</h2>
+    <p>Every source here is open and bulk-downloadable: <a href="https://kaikki.org/">Wiktionary extracts</a>, <a href="https://tatoeba.org/en/downloads">Tatoeba</a> sentence pairs, <a href="https://query.wikidata.org/">Wikidata</a> lexemes, and <a href="https://panlex.org/">PanLex</a>, which holds over a billion translation pairs.</p>
+  </div>
+  <div>
+    <h2>Reading a card</h2>
+    <p>Coloured dot and label give the language family; the monospace code is its ISO 639-3 identifier. The foot line names the script, writing direction, and native speakers. Click any card to copy the word.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* ── concepts ───────────────────────────────────────────── */
+const CONCEPTS = [
+  { id:'water',  en:'Water',  gloss:'The first word in almost every field linguist’s notebook, and one of the most stable in the core vocabulary — which is why it is used to measure how closely two languages are related.' },
+  { id:'mother', en:'Mother', gloss:'Listen across the grid and a pattern surfaces: ma, am, mam, amma. Infants worldwide produce that sound first, and languages that share no ancestor kept it anyway.' },
+  { id:'moon',   en:'Moon',   gloss:'Many languages build the word from their root for month, or for measure. The same object told everyone the same thing about time.' },
+  { id:'love',   en:'Love',   gloss:'The least translatable word here. Greek splits it into four, Arabic runs to dozens of gradations, and Hawaiian aloha carries greeting, farewell and compassion at once.' },
+  { id:'friend', en:'Friend', gloss:'Often built from a root meaning to stand with, to be near, or simply to be known — kinship terms bent outward toward people you chose.' },
+  { id:'peace',  en:'Peace',  gloss:'Salaam, shalom and salama are cousins from one Semitic root for wholeness. Slavic mir means peace and world in the same breath.' }
+];
+
+/* ── family colours ─────────────────────────────────────── */
+const FAM = {
+  'Indo-European':'#3B6FD4', 'Afro-Asiatic':'#C8922E', 'Sino-Tibetan':'#C2553A',
+  'Dravidian':'#1F9AA0',     'Austronesian':'#7B5EC4', 'Atlantic-Congo':'#3E9A6D',
+  'Japonic':'#C6558F',       'Koreanic':'#9B4F7A',     'Turkic':'#8A7C36',
+  'Uralic':'#6E8C3F',        'Kartvelian':'#9C6B3F',   'Tai–Kadai':'#5D86B5',
+  'Austroasiatic':'#A8603F', 'Mongolic':'#6C7A94',     'Isolate':'#7A7D82',
+  'Constructed':'#59708F'
+};
+
+/* ── the atlas ──────────────────────────────────────────── */
+/* w = [water, mother, moon, love, friend, peace] as [native, romanisation] */
+const LANGS = [
+{n:'Arabic',a:'العربية',iso:'ara',bcp:'ar',f:'Afro-Asiatic',s:'Arabic',d:'rtl',sp:335,w:[['ماء','māʾ'],['أم','umm'],['قمر','qamar'],['حب','ḥubb'],['صديق','ṣadīq'],['سلام','salām']]},
+{n:'Hebrew',a:'עברית',iso:'heb',bcp:'he',f:'Afro-Asiatic',s:'Hebrew',d:'rtl',sp:9,w:[['מים','mayim'],['אמא','ima'],['ירח','yareḥ'],['אהבה','ahava'],['חבר','ḥaver'],['שלום','shalom']]},
+{n:'Amharic',a:'አማርኛ',iso:'amh',bcp:'am',f:'Afro-Asiatic',s:'Ethiopic',d:'ltr',sp:35,w:[['ውሃ','wəha'],['እናት','ənat'],['ጻረቃ','čəräqa'],['ፍቅር','fəqər'],['ጓደኛ','gwadäñña'],['ሰላም','sälam']]},
+{n:'Hausa',a:'Harshen Hausa',iso:'hau',bcp:'ha',f:'Afro-Asiatic',s:'Latin',d:'ltr',sp:54,w:[['ruwa','ruwa'],['uwa','uwa'],['wata','wata'],['ƴauna','ƙauna'],['aboki','aboki'],['salama','salama']]},
+{n:'Persian',a:'فارسی',iso:'fas',bcp:'fa',f:'Indo-European',s:'Arabic',d:'rtl',sp:80,w:[['آب','āb'],['مادر','mādar'],['ماه','māh'],['عشق','ʿešq'],['دوست','dūst'],['صلح','ṣolḥ']]},
+{n:'Hindi',a:'हिन्दी',iso:'hin',bcp:'hi',f:'Indo-European',s:'Devanagari',d:'ltr',sp:345,w:[['पानी','pānī'],['माँ','māṅ'],['चाँद','cāṅd'],['प्यार','pyār'],['दोस्त','dost'],['शांति','śānti']]},
+{n:'Bengali',a:'বাংলা',iso:'ben',bcp:'bn',f:'Indo-European',s:'Bengali',d:'ltr',sp:237,w:[['জল','jol'],['মা','mā'],['চাঁদ','cāṅd'],['ভালোবাসা','bhālobāsā'],['বন্ধু','bondhu'],['শান্তি','śānti']]},
+{n:'Urdu',a:'اردو',iso:'urd',bcp:'ur',f:'Indo-European',s:'Arabic',d:'rtl',sp:70,w:[['پانی','pānī'],['ماں','māṅ'],['چاند','cānd'],['محبت','moḥabbat'],['دوست','dost'],['امن','aman']]},
+{n:'Punjabi',a:'ਪੰਜਾਬੀ',iso:'pan',bcp:'pa',f:'Indo-European',s:'Gurmukhi',d:'ltr',sp:113,w:[['ਪਾਣੀ','pāṇī'],['ਮਾਂ','māṁ'],['ਚੰਦ','cand'],['ਪਿਆਰ','piār'],['ਦੋਸਤ','dost'],['ਸ਼ਾਂਤੀ','śāntī']]},
+{n:'Gujarati',a:'ગુજરાતી',iso:'guj',bcp:'gu',f:'Indo-European',s:'Gujarati',d:'ltr',sp:57,w:[['પાણી','pāṇī'],['મા','mā'],['ચંદ્ર','candra'],['પ્રેમ','prem'],['મિત્ર','mitra'],['શાંતિ','śānti']]},
+{n:'Marathi',a:'मराठी',iso:'mar',bcp:'mr',f:'Indo-European',s:'Devanagari',d:'ltr',sp:83,w:[['पाणी','pāṇī'],['आई','āī'],['चंद्र','candra'],['प्रेम','prem'],['मित्र','mitra'],['शांती','śāntī']]},
+{n:'Nepali',a:'नेपाली',iso:'nep',bcp:'ne',f:'Indo-European',s:'Devanagari',d:'ltr',sp:16,w:[['पानी','pānī'],['आमा','āmā'],['चन्द्रमा','candramā'],['माया','māyā'],['साथी','sāthī'],['शान्ति','śānti']]},
+{n:'Sinhala',a:'සිංහල',iso:'sin',bcp:'si',f:'Indo-European',s:'Sinhala',d:'ltr',sp:16,w:[['වතුර','vathura'],['අම්මා','ammā'],['සඳ','saṅda'],['ආදරය','ādaraya'],['යාළුවා','yāḷuvā'],['සාමය','sāmaya']]},
+{n:'Russian',a:'Русский',iso:'rus',bcp:'ru',f:'Indo-European',s:'Cyrillic',d:'ltr',sp:154,w:[['вода','voda'],['мать','matʹ'],['луна','luna'],['любовь','lyubovʹ'],['друг','drug'],['мир','mir']]},
+{n:'Ukrainian',a:'Українська',iso:'ukr',bcp:'uk',f:'Indo-European',s:'Cyrillic',d:'ltr',sp:33,w:[['вода','voda'],['мати','maty'],['місяць','misyatsʹ'],['любов','lyubov'],['друг','druh'],['мир','myr']]},
+{n:'Polish',a:'Polski',iso:'pol',bcp:'pl',f:'Indo-European',s:'Latin',d:'ltr',sp:40,w:[['woda','voda'],['matka','matka'],['księżyc','ksientshits'],['miłość','miwoshch'],['przyjaciel','pshiyatsiel'],['pokój','pokuy']]},
+{n:'Czech',a:'Čeština',iso:'ces',bcp:'cs',f:'Indo-European',s:'Latin',d:'ltr',sp:10,w:[['voda','voda'],['matka','matka'],['měsíc','myesits'],['láska','laaska'],['přítel','pshiitel'],['mír','miir']]},
+{n:'Greek',a:'Ελληνικά',iso:'ell',bcp:'el',f:'Indo-European',s:'Greek',d:'ltr',sp:13,w:[['νερό','neró'],['μητέρα','mitéra'],['φεγγάρι','fengári'],['αγάπη','agápi'],['φίλος','fílos'],['ειρήνη','eiríni']]},
+{n:'German',a:'Deutsch',iso:'deu',bcp:'de',f:'Indo-European',s:'Latin',d:'ltr',sp:95,w:[['Wasser','vasser'],['Mutter','mutter'],['Mond','mont'],['Liebe','leebe'],['Freund','froynt'],['Frieden','freeden']]},
+{n:'Dutch',a:'Nederlands',iso:'nld',bcp:'nl',f:'Indo-European',s:'Latin',d:'ltr',sp:25,w:[['water','vahter'],['moeder','mooder'],['maan','mahn'],['liefde','leefde'],['vriend','vreent'],['vrede','vrayde']]},
+{n:'Swedish',a:'Svenska',iso:'swe',bcp:'sv',f:'Indo-European',s:'Latin',d:'ltr',sp:10,w:[['vatten','vatten'],['mor','moor'],['måne','moane'],['kärlek','charlek'],['vän','ven'],['fred','freyd']]},
+{n:'Icelandic',a:'Íslenska',iso:'isl',bcp:'is',f:'Indo-European',s:'Latin',d:'ltr',sp:.4,w:[['vatn','vatn'],['móðir','mothir'],['tungl','tungl'],['ást','owst'],['vinur','vinur'],['friður','frithur']]},
+{n:'Irish',a:'Gaeilge',iso:'gle',bcp:'ga',f:'Indo-European',s:'Latin',d:'ltr',sp:.2,w:[['uisce','ishke'],['máthair','mawher'],['gealach','galakh'],['grá','graw'],['cara','kara'],['síocháin','sheekhawn']]},
+{n:'Welsh',a:'Cymraeg',iso:'cym',bcp:'cy',f:'Indo-European',s:'Latin',d:'ltr',sp:.9,w:[['dŵr','door'],['mam','mam'],['lleuad','llayad'],['cariad','karyad'],['ffrind','frind'],['heddwch','hethukh']]},
+{n:'French',a:'Français',iso:'fra',bcp:'fr',f:'Indo-European',s:'Latin',d:'ltr',sp:74,w:[['eau','oh'],['mère','mair'],['lune','lün'],['amour','amoor'],['ami','amee'],['paix','pay']]},
+{n:'Spanish',a:'Español',iso:'spa',bcp:'es',f:'Indo-European',s:'Latin',d:'ltr',sp:485,w:[['agua','agwa'],['madre','madre'],['luna','luna'],['amor','amor'],['amigo','amigo'],['paz','pas']]},
+{n:'Portuguese',a:'Português',iso:'por',bcp:'pt',f:'Indo-European',s:'Latin',d:'ltr',sp:236,w:[['água','agwa'],['mãe','maẽ'],['lua','looa'],['amor','amor'],['amigo','amigo'],['paz','pas']]},
+{n:'Italian',a:'Italiano',iso:'ita',bcp:'it',f:'Indo-European',s:'Latin',d:'ltr',sp:65,w:[['acqua','akkwa'],['madre','madre'],['luna','luna'],['amore','amore'],['amico','amiko'],['pace','pache']]},
+{n:'Romanian',a:'Română',iso:'ron',bcp:'ro',f:'Indo-European',s:'Latin',d:'ltr',sp:24,w:[['apă','apuh'],['mamă','mamuh'],['lună','lunuh'],['dragoste','dragoste'],['prieten','prieten'],['pace','pache']]},
+{n:'Armenian',a:'Հայերեն',iso:'hye',bcp:'hy',f:'Indo-European',s:'Armenian',d:'ltr',sp:5,w:[['ջուր','jur'],['մայր','mayr'],['լուսին','lusin'],['սեր','ser'],['ընկեր','ənker'],['խաղաղություն','khaġaġutʿyun']]},
+{n:'Mandarin Chinese',a:'中文',iso:'cmn',bcp:'zh',f:'Sino-Tibetan',s:'Han',d:'ltr',sp:940,w:[['水','shuǐ'],['母亲','mǔqīn'],['月亮','yuèliàng'],['爱','ài'],['朋友','péngyǒu'],['和平','hépíng']]},
+{n:'Burmese',a:'မြန်မာ',iso:'mya',bcp:'my',f:'Sino-Tibetan',s:'Myanmar',d:'ltr',sp:33,w:[['ရေ','ye'],['အမေ','a-me'],['လ','la'],['အချစ်','a-chit'],['သူငယ်ချင်း','thu-ngeh-chin'],['ငြိမ်းချမ်းရေး','nyein-chan-yay']]},
+{n:'Japanese',a:'日本語',iso:'jpn',bcp:'ja',f:'Japonic',s:'Japanese',d:'ltr',sp:123,w:[['水','mizu'],['母','haha'],['月','tsuki'],['愛','ai'],['友達','tomodachi'],['平和','heiwa']]},
+{n:'Korean',a:'한국어',iso:'kor',bcp:'ko',f:'Koreanic',s:'Hangul',d:'ltr',sp:81,w:[['물','mul'],['어머니','eomeoni'],['달','dal'],['사랑','sarang'],['친구','chingu'],['평화','pyeonghwa']]},
+{n:'Tamil',a:'தமிழ்',iso:'tam',bcp:'ta',f:'Dravidian',s:'Tamil',d:'ltr',sp:79,w:[['தண்ணீர்','taṇṇīr'],['அம்மா','ammā'],['நிலா','nilā'],['அன்பு','aṉbu'],['நண்பன்','naṇpaṉ'],['அமைதி','amaidi']]},
+{n:'Telugu',a:'తెలుగు',iso:'tel',bcp:'te',f:'Dravidian',s:'Telugu',d:'ltr',sp:83,w:[['నీరు','nīru'],['అమ్మ','amma'],['చంద్రుడు','candruḍu'],['ప్రేమ','prema'],['స్నేహితుడు','snēhituḍu'],['శాంతి','śānti']]},
+{n:'Kannada',a:'ಕನ್ನಡ',iso:'kan',bcp:'kn',f:'Dravidian',s:'Kannada',d:'ltr',sp:44,w:[['ನೀರು','nīru'],['ಅಮ್ಮ','amma'],['ಚಂದ್ರ','candra'],['ಪ್ರೀತಿ','prīti'],['ಸ್ನೇಹಿತ','snēhita'],['ಶಾಂತಿ','śānti']]},
+{n:'Malayalam',a:'മലയാളം',iso:'mal',bcp:'ml',f:'Dravidian',s:'Malayalam',d:'ltr',sp:35,w:[['വെള്ളം','veḷḷaṁ'],['അമ്മ','amma'],['ചന്ദ്രൻ','candran'],['സ്നേഹം','snēhaṁ'],['സുഹൃത്ത്','suhṝtt'],['സമാധാനം','samādhānaṁ']]},
+{n:'Turkish',a:'Türkçe',iso:'tur',bcp:'tr',f:'Turkic',s:'Latin',d:'ltr',sp:84,w:[['su','su'],['anne','anne'],['ay','ay'],['aşk','ashk'],['arkadaş','arkadash'],['barış','barush']]},
+{n:'Finnish',a:'Suomi',iso:'fin',bcp:'fi',f:'Uralic',s:'Latin',d:'ltr',sp:5,w:[['vesi','vesi'],['äiti','aiti'],['kuu','kuu'],['rakkaus','rakkaus'],['ystävä','ystava'],['rauha','rauha']]},
+{n:'Hungarian',a:'Magyar',iso:'hun',bcp:'hu',f:'Uralic',s:'Latin',d:'ltr',sp:13,w:[['víz','veez'],['anya','onya'],['hold','hold'],['szerelem','serelem'],['barát','baraat'],['béke','bayke']]},
+{n:'Georgian',a:'ქართული',iso:'kat',bcp:'ka',f:'Kartvelian',s:'Georgian',d:'ltr',sp:4,w:[['წყალი','tsʼqʼali'],['დედა','deda'],['მთვარე','mtvare'],['სიყვარული','siqʼvaruli'],['მეგობარი','megobari'],['მშვიდობა','mshvidoba']]},
+{n:'Thai',a:'ไทย',iso:'tha',bcp:'th',f:'Tai–Kadai',s:'Thai',d:'ltr',sp:61,w:[['น้ำ','nám'],['แม่','mâe'],['ดวงจันทร์','duang jan'],['ความรัก','khwaam rák'],['เพื่อน','phỳan'],['สันติภาพ','sǎnti phâap']]},
+{n:'Vietnamese',a:'Tiếng Việt',iso:'vie',bcp:'vi',f:'Austroasiatic',s:'Latin',d:'ltr',sp:85,w:[['nước','nuuhk'],['mẹ','me'],['mặt trăng','mat trang'],['tình yêu','tinh yeu'],['bạn','ban'],['hòa bình','hoa binh']]},
+{n:'Khmer',a:'ខ្មែរ',iso:'khm',bcp:'km',f:'Austroasiatic',s:'Khmer',d:'ltr',sp:17,w:[['ទឹក','tɪk'],['ម្ដាយ','mdaay'],['ព្រះចន្ទ','preah chan'],['ស្នេហា','sneha'],['មិត្ត','mit'],['សន្តិភាព','santiphap']]},
+{n:'Indonesian',a:'Bahasa Indonesia',iso:'ind',bcp:'id',f:'Austronesian',s:'Latin',d:'ltr',sp:43,w:[['air','ah-eer'],['ibu','ibu'],['bulan','bulan'],['cinta','chinta'],['teman','teman'],['damai','damai']]},
+{n:'Tagalog',a:'Tagalog',iso:'tgl',bcp:'tl',f:'Austronesian',s:'Latin',d:'ltr',sp:28,w:[['tubig','tubig'],['ina','ina'],['buwan','buwan'],['pag-ibig','pag-ibig'],['kaibigan','kaibigan'],['kapayapaan','kapayapaan']]},
+{n:'Hawaiian',a:'ʻŌlelo Hawaiʻi',iso:'haw',bcp:'haw',f:'Austronesian',s:'Latin',d:'ltr',sp:.03,w:[['wai','wai'],['makuahine','makuahine'],['mahina','mahina'],['aloha','aloha'],['hoaaloha','hoaaloha'],['maluhia','maluhia']]},
+{n:'Māori',a:'Te Reo Māori',iso:'mri',bcp:'mi',f:'Austronesian',s:'Latin',d:'ltr',sp:.15,w:[['wai','wai'],['whaea','faea'],['marama','marama'],['aroha','aroha'],['hoa','hoa'],['rangimārie','rangimaarie']]},
+{n:'Swahili',a:'Kiswahili',iso:'swh',bcp:'sw',f:'Atlantic-Congo',s:'Latin',d:'ltr',sp:18,w:[['maji','maji'],['mama','mama'],['mwezi','mwezi'],['upendo','upendo'],['rafiki','rafiki'],['amani','amani']]},
+{n:'Yoruba',a:'Yorùbá',iso:'yor',bcp:'yo',f:'Atlantic-Congo',s:'Latin',d:'ltr',sp:46,w:[['omi','omi'],['ìyá','iya'],['òṣùpá','oshupa'],['ìfẹ́','ife'],['ọ̀rẹ́','ore'],['àlááfía','alaafia']]},
+{n:'Zulu',a:'isiZulu',iso:'zul',bcp:'zu',f:'Atlantic-Congo',s:'Latin',d:'ltr',sp:12,w:[['amanzi','amanzi'],['umama','umama'],['inyanga','inyanga'],['uthando','uthando'],['umngane','umngane'],['ukuthula','ukuthula']]},
+{n:'Basque',a:'Euskara',iso:'eus',bcp:'eu',f:'Isolate',s:'Latin',d:'ltr',sp:.8,w:[['ura','ura'],['ama','ama'],['ilargi','ilargi'],['maitasuna','maitasuna'],['lagun','lagun'],['bakea','bakea']]},
+{n:'Mongolian',a:'Монгол',iso:'mon',bcp:'mn',f:'Mongolic',s:'Cyrillic',d:'ltr',sp:5,w:[['ус','us'],['ээж','eej'],['сар','sar'],['хайр','khair'],['найз','naiz'],['энх тайван','enkh taivan']]},
+{n:'Esperanto',a:'Esperanto',iso:'epo',bcp:'eo',f:'Constructed',s:'Latin',d:'ltr',sp:.001,w:[['akvo','akvo'],['patrino','patrino'],['luno','luno'],['amo','amo'],['amiko','amiko'],['paco','patso']]}
+];
+
+/* ── state ──────────────────────────────────────────────── */
+let active = 0;
+const $ = id => document.getElementById(id);
+
+/* ── build concept chips ────────────────────────────────── */
+CONCEPTS.forEach((c, i) => {
+  const b = document.createElement('button');
+  b.className = 'concept';
+  b.type = 'button';
+  b.textContent = c.en;
+  b.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
+  b.addEventListener('click', () => { active = i; render(true); });
+  $('concepts').appendChild(b);
+});
+
+/* ── family filter options ──────────────────────────────── */
+[...new Set(LANGS.map(l => l.f))].sort().forEach(f => {
+  const o = document.createElement('option');
+  o.value = f; o.textContent = f;
+  $('fam').appendChild(o);
+});
+
+/* ── helpers ────────────────────────────────────────────── */
+function speakers(m){
+  if (m >= 1) return Math.round(m) + 'M speakers';
+  if (m >= 0.01) return (m * 1000).toFixed(0) + 'K speakers';
+  return 'few L1 speakers';
+}
+
+function visible(){
+  const q = $('q').value.trim().toLowerCase();
+  const fam = $('fam').value;
+  let rows = LANGS.filter(l => {
+    if (fam && l.f !== fam) return false;
+    if (!q) return true;
+    return (l.n + ' ' + l.a + ' ' + l.s + ' ' + l.f + ' ' + l.iso).toLowerCase().includes(q);
+  });
+  const by = $('sort').value;
+  const coll = new Intl.Collator('en');
+  if (by === 'speakers') rows.sort((a, b) => b.sp - a.sp);
+  if (by === 'az')       rows.sort((a, b) => coll.compare(a.n, b.n));
+  if (by === 'family')   rows.sort((a, b) => coll.compare(a.f, b.f) || b.sp - a.sp);
+  if (by === 'script')   rows.sort((a, b) => coll.compare(a.s, b.s) || b.sp - a.sp);
+  return rows;
+}
+
+/* ── render ─────────────────────────────────────────────── */
+function render(animate){
+  const c = CONCEPTS[active];
+
+  [...$('concepts').children].forEach((b, i) =>
+    b.setAttribute('aria-pressed', i === active ? 'true' : 'false'));
+
+  $('plateKicker').textContent = 'The word for';
+  $('plateWord').textContent = c.en;
+  $('plateGloss').textContent = c.gloss;
+
+  const ribbon = $('ribbon');
+  ribbon.textContent = '';
+  LANGS.forEach(l => {
+    const s = document.createElement('span');
+    s.textContent = l.w[active][0];
+    s.setAttribute('data-s', l.s);
+    s.lang = l.bcp;
+    if (l.d === 'rtl') s.dir = 'rtl';
+    ribbon.appendChild(s);
+  });
+
+  const rows = visible();
+  const grid = $('grid');
+  grid.textContent = '';
+
+  if (!rows.length){
+    const p = document.createElement('p');
+    p.className = 'empty';
+    p.textContent = 'No language matches that. Try clearing the filters.';
+    grid.appendChild(p);
+  }
+
+  rows.forEach((l, i) => {
+    const [native, roman] = l.w[active];
+
+    const card = document.createElement('button');
+    card.className = 'card' + (animate ? ' stagger' : '');
+    card.type = 'button';
+    if (animate) card.style.animationDelay = Math.min(i * 11, 380) + 'ms';
+    card.setAttribute('aria-label', native + ' — ' + c.en + ' in ' + l.n);
+
+    const top = document.createElement('div');
+    top.className = 'card-top';
+    const dot = document.createElement('span');
+    dot.className = 'dot';
+    dot.style.background = FAM[l.f] || '#888';
+    const fam = document.createElement('span');
+    fam.className = 'fam';
+    fam.textContent = l.f;
+    const iso = document.createElement('span');
+    iso.className = 'iso';
+    iso.textContent = l.iso;
+    top.append(dot, fam, iso);
+
+    const term = document.createElement('span');
+    term.className = 'term';
+    term.textContent = native;
+    term.setAttribute('data-s', l.s);
+    term.lang = l.bcp;
+    if (l.d === 'rtl') term.dir = 'rtl';
+
+    const rom = document.createElement('div');
+    rom.className = 'roman';
+    rom.textContent = roman;
+
+    const foot = document.createElement('div');
+    foot.className = 'card-foot';
+    const names = document.createElement('div');
+    names.className = 'names';
+    const auto = document.createElement('span');
+    auto.className = 'auto';
+    auto.textContent = l.a;
+    auto.setAttribute('data-s', l.s);
+    auto.lang = l.bcp;
+    if (l.d === 'rtl') auto.dir = 'rtl';
+    const en = document.createElement('span');
+    en.className = 'en';
+    en.textContent = l.n;
+    names.append(auto, en);
+
+    const meta = document.createElement('div');
+    meta.className = 'meta';
+    const parts = [l.s + ' script', speakers(l.sp)];
+    parts.forEach((t, k) => {
+      const sp = document.createElement('span');
+      sp.textContent = (k ? '· ' : '') + t;
+      meta.appendChild(sp);
+    });
+    if (l.d === 'rtl'){
+      const b = document.createElement('span');
+      b.className = 'rtl-badge';
+      b.textContent = '· RTL';
+      meta.appendChild(b);
+    }
+    foot.append(names, meta);
+
+    card.append(top, term, rom, foot);
+    card.addEventListener('click', () => copy(native, l.n));
+    grid.appendChild(card);
+  });
+
+  $('tally').textContent = rows.length + ' of ' + LANGS.length + ' languages';
+}
+
+/* ── copy ───────────────────────────────────────────────── */
+let toastTimer;
+function copy(text, lang){
+  const done = () => {
+    const t = $('toast');
+    t.textContent = 'Copied “' + text + '” — ' + lang;
+    t.classList.add('on');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('on'), 1900);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done, done);
+  } else {
+    done();
+  }
+}
+
+/* ── wire up ────────────────────────────────────────────── */
+$('q').addEventListener('input', () => render(false));
+$('fam').addEventListener('change', () => render(false));
+$('sort').addEventListener('change', () => render(false));
+
+render(false);
+</script>
+</body>
+</html>

@@ -1,0 +1,1011 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Launch Ledger</title>
+<meta name="description" content="Every orbital launch attempt, by operator, vehicle and outcome.">
+<style>
+:root{
+  --bg:#0B0E14;
+  --panel:#131822;
+  --panel-2:#1A2030;
+  --panel-3:#212940;
+  --rule:#232B3C;
+  --rule-2:#2E3850;
+  --text:#E6EBF5;
+  --text-2:#A8B3C7;
+  --muted:#78849A;
+  --accent:#F2A33C;
+  --accent-dim:#3A2C16;
+  --ok:#3FBF87;
+  --fail:#E4695E;
+  --part:#D9A441;
+  --pend:#6E7C99;
+
+  --sans:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --wrap:1400px;
+  --r:10px;
+}
+*{box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{
+  margin:0;background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-size:15px;line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:clamp(16px,3vw,32px);}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px;}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.01em;}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;}
+.lbl{
+  font-family:var(--mono);font-size:10px;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--muted);
+}
+
+/* ── header ─────────────────────────────────────────────── */
+.top{
+  border-bottom:1px solid var(--rule);
+  background:linear-gradient(180deg,#10151E,var(--bg));
+  padding-block:calc(18px + env(safe-area-inset-top,0px)) 18px;
+}
+.top-row{display:flex;flex-wrap:wrap;gap:16px 28px;align-items:flex-end;justify-content:space-between;}
+.brand{display:flex;align-items:center;gap:11px;}
+.beacon{
+  width:11px;height:11px;border-radius:50%;background:var(--accent);
+  box-shadow:0 0 0 4px rgba(242,163,60,.14);flex:0 0 auto;
+  animation:pulse 2.6s ease-in-out infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.45}}
+.brand h1{font-size:20px;letter-spacing:.02em;}
+.brand p{margin:2px 0 0;color:var(--text-2);font-size:13px;}
+.live{
+  display:flex;align-items:baseline;gap:9px;
+  background:var(--panel);border:1px solid var(--rule-2);
+  border-radius:999px;padding:7px 16px;
+}
+.live b{font-family:var(--mono);font-size:19px;color:var(--accent);font-variant-numeric:tabular-nums;}
+
+/* ── provenance ─────────────────────────────────────────── */
+.prov{
+  margin-top:14px;display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;
+  background:var(--accent-dim);border:1px solid #4E3A1C;
+  border-radius:var(--r);padding:10px 14px;font-size:13px;color:#F3D9AE;
+}
+.prov strong{color:var(--accent);font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;}
+.prov.live-data{background:#10241B;border-color:#1F4433;color:#BFE6D2;}
+.prov.live-data strong{color:var(--ok);}
+
+/* ── filters ────────────────────────────────────────────── */
+.filters{
+  border-bottom:1px solid var(--rule);background:var(--panel);
+  position:sticky;top:0;z-index:20;
+}
+.filters-in{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding-block:12px;}
+.fld{display:flex;flex-direction:column;gap:4px;}
+.fld select,.fld input{
+  background:var(--panel-2);color:var(--text);
+  border:1px solid var(--rule-2);border-radius:7px;
+  padding:7px 10px;font-family:var(--sans);font-size:13px;height:34px;
+  min-width:0;
+}
+.fld input[type="date"]{font-family:var(--mono);font-size:12px;}
+.fld select:focus,.fld input:focus{outline:none;border-color:var(--accent);}
+.reset{
+  align-self:flex-end;background:transparent;color:var(--text-2);
+  border:1px solid var(--rule-2);border-radius:7px;height:34px;padding:0 14px;
+  font-family:var(--sans);font-size:13px;cursor:pointer;transition:.15s;
+}
+.reset:hover{border-color:var(--accent);color:var(--accent);}
+
+/* ── tabs ───────────────────────────────────────────────── */
+.tabs{display:flex;gap:2px;overflow-x:auto;border-bottom:1px solid var(--rule);}
+.tab{
+  flex:0 0 auto;background:transparent;border:0;border-bottom:2px solid transparent;
+  color:var(--muted);font-family:var(--mono);font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;padding:14px 16px;cursor:pointer;transition:.18s;white-space:nowrap;
+}
+.tab:hover{color:var(--text-2);}
+.tab[aria-selected="true"]{color:var(--accent);border-bottom-color:var(--accent);}
+
+/* ── panels ─────────────────────────────────────────────── */
+.panel{
+  background:var(--panel);border:1px solid var(--rule);
+  border-radius:var(--r);padding:18px 20px;
+}
+.panel-hd{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;justify-content:space-between;margin-bottom:16px;}
+.panel-hd h2{font-size:15px;}
+.basis{font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.05em;}
+main{padding-block:20px 56px;display:flex;flex-direction:column;gap:16px;}
+.view[hidden]{display:none !important;}
+.view{display:flex;flex-direction:column;gap:16px;animation:fade .28s ease both;}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+
+/* ── stat cards ─────────────────────────────────────────── */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(178px,1fr));gap:12px;}
+.stat{
+  background:var(--panel);border:1px solid var(--rule);border-radius:var(--r);
+  padding:16px 18px;display:flex;flex-direction:column;gap:6px;
+  transition:border-color .18s;
+}
+.stat:hover{border-color:var(--rule-2);}
+.stat b{font-family:var(--mono);font-size:30px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em;}
+.stat small{color:var(--muted);font-size:12px;}
+.stat.hero b{color:var(--accent);}
+
+/* ── headline ───────────────────────────────────────────── */
+.headline{
+  background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--accent);
+  border-radius:var(--r);padding:20px 22px;
+}
+.headline p{margin:8px 0 0;font-size:19px;line-height:1.45;text-wrap:pretty;max-width:68ch;}
+
+/* ── charts ─────────────────────────────────────────────── */
+.chart{width:100%;overflow-x:auto;}
+.chart svg{display:block;max-width:100%;height:auto;}
+.bar{transition:opacity .15s;cursor:pointer;}
+.bar:hover{opacity:.72;}
+.gridline{stroke:var(--rule);stroke-width:1;}
+.axis-txt{fill:var(--muted);font-family:var(--mono);font-size:10px;}
+.bar-lbl{fill:var(--text-2);font-family:var(--sans);font-size:11.5px;}
+.bar-val{fill:var(--text);font-family:var(--mono);font-size:11px;font-weight:500;}
+.axis-title{fill:var(--muted);font-family:var(--mono);font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;}
+
+.tip{
+  position:fixed;pointer-events:none;z-index:60;opacity:0;
+  background:#050810;border:1px solid var(--rule-2);border-radius:7px;
+  padding:8px 11px;font-size:12px;box-shadow:0 10px 30px rgba(0,0,0,.6);
+  transition:opacity .12s;max-width:260px;
+}
+.tip.on{opacity:1;}
+.tip b{display:block;font-size:12.5px;margin-bottom:3px;}
+.tip span{font-family:var(--mono);color:var(--accent);font-variant-numeric:tabular-nums;}
+
+/* ── status bar ─────────────────────────────────────────── */
+.statusbar{display:flex;height:30px;border-radius:6px;overflow:hidden;border:1px solid var(--rule-2);}
+.statusbar div{
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:11px;color:#08111A;font-weight:600;
+  transition:flex-grow .4s ease;min-width:0;overflow:hidden;
+}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:12px;}
+.legend span{display:flex;align-items:center;gap:7px;font-size:12.5px;color:var(--text-2);}
+.swatch{width:10px;height:10px;border-radius:3px;flex:0 0 auto;}
+
+/* ── tables ─────────────────────────────────────────────── */
+.tbl-scroll{overflow-x:auto;}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:520px;}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--rule);}
+th{
+  font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--muted);cursor:pointer;user-select:none;white-space:nowrap;
+  position:sticky;top:0;background:var(--panel);
+}
+th:hover{color:var(--accent);}
+th[data-dir]{color:var(--accent);}
+th .car{opacity:.6;font-size:9px;}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;}
+tbody tr:hover{background:var(--panel-2);}
+tbody tr:last-child td{border-bottom:0;}
+.pill{
+  display:inline-block;padding:2px 9px;border-radius:999px;
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;
+}
+.p-ok{background:rgba(63,191,135,.14);color:var(--ok);}
+.p-fail{background:rgba(228,105,94,.14);color:var(--fail);}
+.p-part{background:rgba(217,164,65,.14);color:var(--part);}
+.p-pend{background:rgba(110,124,153,.18);color:#9AA7C0;}
+.microbar{height:4px;border-radius:2px;background:var(--accent);display:block;margin-top:5px;}
+
+/* ── story ──────────────────────────────────────────────── */
+.beats{display:flex;flex-direction:column;gap:2px;counter-reset:b;}
+.beat{
+  background:var(--panel);border:1px solid var(--rule);padding:22px 24px;
+  display:grid;grid-template-columns:auto 1fr;gap:4px 20px;align-items:start;
+}
+.beat:first-child{border-radius:var(--r) var(--r) 0 0;}
+.beat:last-child{border-radius:0 0 var(--r) var(--r);}
+.beat::before{
+  counter-increment:b;content:counter(b,decimal-leading-zero);
+  font-family:var(--mono);font-size:11px;color:var(--accent);
+  border:1px solid var(--accent-dim);border-radius:5px;padding:3px 7px;
+}
+.beat h3{font-size:12.5px;color:var(--text-2);font-family:var(--mono);letter-spacing:.1em;text-transform:uppercase;font-weight:500;}
+.beat p{grid-column:2;margin:6px 0 0;font-size:16.5px;line-height:1.55;max-width:66ch;text-wrap:pretty;}
+.beat p em{color:var(--accent);font-style:normal;font-family:var(--mono);font-variant-numeric:tabular-nums;}
+
+/* ── quality ────────────────────────────────────────────── */
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(186px,1fr));gap:14px 24px;}
+.kv div{display:flex;flex-direction:column;gap:3px;}
+.kv b{font-family:var(--mono);font-size:15px;font-weight:500;word-break:break-word;}
+.note{color:var(--text-2);font-size:13.5px;line-height:1.6;max-width:76ch;margin:0;}
+.note + .note{margin-top:9px;}
+.flag{color:var(--accent);}
+
+.empty{padding:40px 0;text-align:center;color:var(--muted);font-size:14px;}
+@media (max-width:640px){
+  .beat{grid-template-columns:1fr;}
+  .beat p{grid-column:1;}
+  .stat b{font-size:25px;}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ DATA ══ the loader rewrites everything between these tags ══ -->
+<script id="dataset" type="application/json">
+{"meta":{"provenance":"seed","source":"Illustrative seed sample — not verified launch records","source_url":"https://ll.thespacedevs.com/2.3.0/launches/","fetched_at":"","window":{"from":"2025-01-02","to":"2025-06-28"},"raw_rows":64,"kept_rows":64,"quality":[{"issue":"Seed sample in place of live records","action":"Shipped 64 structurally realistic rows so every tab renders before the loader runs. Replaced wholesale by fetch_launches.py.","rows":64,"example":"Falcon 9 | Starlink Group 12-5"}],"excluded":[]},
+"rows":[
+{"i":"s01","n":"Falcon 9 | Starlink Group 12-5","d":"2025-01-02","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s02","n":"Long March 2D | Yaogan-42","d":"2025-01-06","p":"CASC","r":"Long March 2D","s":"Success","o":"Sun-Synchronous Orbit","c":"China"},
+{"i":"s03","n":"Electron | Owl The Way Up","d":"2025-01-08","p":"Rocket Lab","r":"Electron","s":"Success","o":"Sun-Synchronous Orbit","c":"USA"},
+{"i":"s04","n":"Falcon 9 | Starlink Group 11-2","d":"2025-01-10","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s05","n":"New Glenn | Blue Ring Pathfinder","d":"2025-01-13","p":"Blue Origin","r":"New Glenn","s":"Success","o":"Medium Earth Orbit","c":"USA"},
+{"i":"s06","n":"Starship | Flight 7","d":"2025-01-16","p":"SpaceX","r":"Starship","s":"Partial Failure","o":"Suborbital","c":"USA"},
+{"i":"s07","n":"Falcon 9 | Starlink Group 13-1","d":"2025-01-18","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s08","n":"Long March 3B | ChinaSat 10R","d":"2025-01-22","p":"CASC","r":"Long March 3B","s":"Success","o":"Geostationary Transfer Orbit","c":"China"},
+{"i":"s09","n":"Soyuz-2.1a | Progress MS-29","d":"2025-01-25","p":"Roscosmos","r":"Soyuz-2.1a","s":"Success","o":"Low Earth Orbit","c":"Russia"},
+{"i":"s10","n":"Falcon 9 | Transporter-12","d":"2025-01-28","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Sun-Synchronous Orbit","c":"USA"},
+{"i":"s11","n":"Ariane 6 | CSO-3","d":"2025-02-01","p":"Arianespace","r":"Ariane 6","s":"Success","o":"Sun-Synchronous Orbit","c":"France"},
+{"i":"s12","n":"Electron | IoT 4 You and Me","d":"2025-02-03","p":"Rocket Lab","r":"Electron","s":"Success","o":"Low Earth Orbit","c":"New Zealand"},
+{"i":"s13","n":"Falcon 9 | Starlink Group 12-9","d":"2025-02-05","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s14","n":"Long March 6A | Yaogan-43","d":"2025-02-08","p":"CASC","r":"Long March 6A","s":"Success","o":"Low Earth Orbit","c":"China"},
+{"i":"s15","n":"Vulcan Centaur | USSF-106","d":"2025-02-11","p":"United Launch Alliance","r":"Vulcan Centaur","s":"Success","o":"Geostationary Transfer Orbit","c":"USA"},
+{"i":"s16","n":"Falcon 9 | NROL-57","d":"2025-02-13","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s17","n":"Ceres-1 | Tianqi 33-36","d":"2025-02-15","p":"Galactic Energy","r":"Ceres-1","s":"Success","o":"Sun-Synchronous Orbit","c":"China"},
+{"i":"s18","n":"H3 | Michibiki-6","d":"2025-02-18","p":"Mitsubishi Heavy Industries","r":"H3","s":"Success","o":"Geostationary Transfer Orbit","c":"Japan"},
+{"i":"s19","n":"Falcon 9 | Starlink Group 11-8","d":"2025-02-20","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s20","n":"Electron | Fasterstellar","d":"2025-02-22","p":"Rocket Lab","r":"Electron","s":"Failure","o":"Low Earth Orbit","c":"New Zealand"},
+{"i":"s21","n":"Long March 5 | Shijian-25","d":"2025-02-25","p":"CASC","r":"Long March 5","s":"Success","o":"Geostationary Transfer Orbit","c":"China"},
+{"i":"s22","n":"Falcon 9 | Starlink Group 13-4","d":"2025-02-27","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s23","n":"PSLV | RISAT-1C","d":"2025-03-02","p":"ISRO","r":"PSLV","s":"Success","o":"Sun-Synchronous Orbit","c":"India"},
+{"i":"s24","n":"Falcon Heavy | Europa Clipper Follow-on","d":"2025-03-04","p":"SpaceX","r":"Falcon Heavy","s":"Success","o":"Heliocentric","c":"USA"},
+{"i":"s25","n":"Falcon 9 | Starlink Group 12-14","d":"2025-03-06","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s26","n":"Soyuz-2.1b | Glonass-K2 No. 14","d":"2025-03-09","p":"Roscosmos","r":"Soyuz-2.1b","s":"Success","o":"Medium Earth Orbit","c":"Russia"},
+{"i":"s27","n":"Electron | Owl Night Long","d":"2025-03-11","p":"Rocket Lab","r":"Electron","s":"Success","o":"Sun-Synchronous Orbit","c":"New Zealand"},
+{"i":"s28","n":"Long March 2D | Yaogan-44","d":"2025-03-13","p":"CASC","r":"Long March 2D","s":"Success","o":"Sun-Synchronous Orbit","c":"China"},
+{"i":"s29","n":"Falcon 9 | Crew-11","d":"2025-03-16","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s30","n":"Zhuque-2E | Tech Demo","d":"2025-03-18","p":"LandSpace","r":"Zhuque-2E","s":"Success","o":"Sun-Synchronous Orbit","c":"China"},
+{"i":"s31","n":"Falcon 9 | Starlink Group 11-13","d":"2025-03-20","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s32","n":"Atlas V | Kuiper Batch 2","d":"2025-03-23","p":"United Launch Alliance","r":"Atlas V","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s33","n":"Alpha | Message in a Booster","d":"2025-03-25","p":"Firefly Aerospace","r":"Alpha","s":"Failure","o":"Low Earth Orbit","c":"USA"},
+{"i":"s34","n":"Falcon 9 | Starlink Group 12-19","d":"2025-03-27","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s35","n":"Long March 7A | ChinaSat 3B","d":"2025-03-30","p":"CASC","r":"Long March 7A","s":"Success","o":"Geostationary Transfer Orbit","c":"China"},
+{"i":"s36","n":"Falcon 9 | Bandwagon-3","d":"2025-04-02","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s37","n":"Electron | Finding Hot Wildfires","d":"2025-04-04","p":"Rocket Lab","r":"Electron","s":"Success","o":"Sun-Synchronous Orbit","c":"New Zealand"},
+{"i":"s38","n":"Ariane 6 | Galileo L14","d":"2025-04-07","p":"Arianespace","r":"Ariane 6","s":"Success","o":"Medium Earth Orbit","c":"France"},
+{"i":"s39","n":"Falcon 9 | Starlink Group 13-9","d":"2025-04-09","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s40","n":"Long March 6A | Qianfan Group 05","d":"2025-04-12","p":"CASC","r":"Long March 6A","s":"Success","o":"Low Earth Orbit","c":"China"},
+{"i":"s41","n":"Starship | Flight 8","d":"2025-04-14","p":"SpaceX","r":"Starship","s":"Failure","o":"Suborbital","c":"USA"},
+{"i":"s42","n":"Falcon 9 | Starlink Group 12-23","d":"2025-04-16","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s43","n":"LVM3 | BlueBird Block 2","d":"2025-04-19","p":"ISRO","r":"LVM3","s":"Success","o":"Low Earth Orbit","c":"India"},
+{"i":"s44","n":"Soyuz-2.1a | Soyuz MS-28","d":"2025-04-21","p":"Roscosmos","r":"Soyuz-2.1a","s":"Success","o":"Low Earth Orbit","c":"Russia"},
+{"i":"s45","n":"Falcon 9 | Starlink Group 11-20","d":"2025-04-24","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s46","n":"Ceres-1 | Yunyao-1 Batch","d":"2025-04-26","p":"Galactic Energy","r":"Ceres-1","s":"Success","o":"Sun-Synchronous Orbit","c":"China"},
+{"i":"s47","n":"Falcon 9 | Axiom Mission 5","d":"2025-04-29","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s48","n":"Long March 3B | Beidou G5","d":"2025-05-02","p":"CASC","r":"Long March 3B","s":"Success","o":"Geostationary Transfer Orbit","c":"China"},
+{"i":"s49","n":"Electron | Stonehenge","d":"2025-05-05","p":"Rocket Lab","r":"Electron","s":"Success","o":"Low Earth Orbit","c":"New Zealand"},
+{"i":"s50","n":"Falcon 9 | Starlink Group 12-28","d":"2025-05-07","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s51","n":"Vulcan Centaur | USSF-87","d":"2025-05-10","p":"United Launch Alliance","r":"Vulcan Centaur","s":"Success","o":"Geostationary Transfer Orbit","c":"USA"},
+{"i":"s52","n":"Falcon 9 | Starlink Group 13-14","d":"2025-05-12","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s53","n":"H3 | HTV-X2","d":"2025-05-15","p":"Mitsubishi Heavy Industries","r":"H3","s":"Success","o":"Low Earth Orbit","c":"Japan"},
+{"i":"s54","n":"Long March 2D | Yaogan-45","d":"2025-05-18","p":"CASC","r":"Long March 2D","s":"Success","o":"Sun-Synchronous Orbit","c":"China"},
+{"i":"s55","n":"Falcon 9 | Transporter-14","d":"2025-05-21","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Sun-Synchronous Orbit","c":"USA"},
+{"i":"s56","n":"New Glenn | Escapade","d":"2025-05-24","p":"Blue Origin","r":"New Glenn","s":"Success","o":"Heliocentric","c":"USA"},
+{"i":"s57","n":"Electron | Synspective Strix-4","d":"2025-05-27","p":"Rocket Lab","r":"Electron","s":"Success","o":"Sun-Synchronous Orbit","c":"New Zealand"},
+{"i":"s58","n":"Falcon 9 | Starlink Group 11-27","d":"2025-05-30","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s59","n":"PSLV | Oceansat-4","d":"2025-06-03","p":"ISRO","r":"PSLV","s":"Success","o":"Sun-Synchronous Orbit","c":"India"},
+{"i":"s60","n":"Falcon 9 | Starlink Group 12-33","d":"2025-06-07","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s61","n":"Long March 5B | Qianfan Group 08","d":"2025-06-11","p":"CASC","r":"Long March 5B","s":"Success","o":"Low Earth Orbit","c":"China"},
+{"i":"s62","n":"Ariane 6 | MTG-S1","d":"2025-06-16","p":"Arianespace","r":"Ariane 6","s":"Success","o":"Geostationary Transfer Orbit","c":"France"},
+{"i":"s63","n":"Falcon 9 | Starlink Group 13-19","d":"2025-06-22","p":"SpaceX","r":"Falcon 9","s":"Success","o":"Low Earth Orbit","c":"USA"},
+{"i":"s64","n":"Electron | Live And Let Fly","d":"2025-06-28","p":"Rocket Lab","r":"Electron","s":"Success","o":"Low Earth Orbit","c":"New Zealand"}
+]}
+</script>
+<!-- ══ END DATA ══ -->
+
+<header class="top">
+  <div class="wrap">
+    <div class="top-row">
+      <div class="brand">
+        <span class="beacon" aria-hidden="true"></span>
+        <div>
+          <h1>Launch Ledger</h1>
+          <p>Every orbital launch attempt, by operator, vehicle and outcome.</p>
+        </div>
+      </div>
+      <div class="live">
+        <span class="lbl">In view</span>
+        <b id="liveCount">0</b>
+        <span class="lbl">launches</span>
+      </div>
+    </div>
+    <div class="prov" id="prov"></div>
+  </div>
+</header>
+
+<div class="filters">
+  <div class="wrap filters-in">
+    <div class="fld"><label class="lbl" for="fOp">Operator</label>
+      <select id="fOp"><option value="">All operators</option></select></div>
+    <div class="fld"><label class="lbl" for="fSt">Outcome</label>
+      <select id="fSt"><option value="">All outcomes</option></select></div>
+    <div class="fld"><label class="lbl" for="fFrom">From</label>
+      <input id="fFrom" type="date"></div>
+    <div class="fld"><label class="lbl" for="fTo">To</label>
+      <input id="fTo" type="date"></div>
+    <button class="reset" id="fReset" type="button">Reset</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="tabs" role="tablist" id="tabs"></div>
+</div>
+
+<main class="wrap">
+  <section class="view" id="v-overview" role="tabpanel">
+    <div class="stats" id="ovStats"></div>
+    <div class="headline"><span class="lbl">The finding</span><p id="ovHeadline"></p></div>
+    <div class="panel">
+      <div class="panel-hd"><h2>Outcome split</h2><span class="basis" id="ovBasis"></span></div>
+      <div class="statusbar" id="ovStatusBar"></div>
+      <div class="legend" id="ovLegend"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h2>Latest launches</h2><span class="basis" id="ovRecentBasis"></span></div>
+      <div class="tbl-scroll"><table id="ovRecent"></table></div>
+    </div>
+  </section>
+
+  <section class="view" id="v-operators" role="tabpanel" hidden>
+    <div class="panel">
+      <div class="panel-hd"><h2>Launches by operator</h2><span class="basis" id="opBasis"></span></div>
+      <div class="chart" id="opChart"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h2>Operator table</h2><span class="basis">Click any heading to sort</span></div>
+      <div class="tbl-scroll"><table id="opTable"></table></div>
+    </div>
+  </section>
+
+  <section class="view" id="v-vehicles" role="tabpanel" hidden>
+    <div class="panel">
+      <div class="panel-hd"><h2>Launches by vehicle</h2><span class="basis" id="veBasis"></span></div>
+      <div class="chart" id="veChart"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h2>Vehicle table</h2><span class="basis">Click any heading to sort</span></div>
+      <div class="tbl-scroll"><table id="veTable"></table></div>
+    </div>
+  </section>
+
+  <section class="view" id="v-time" role="tabpanel" hidden>
+    <div class="panel">
+      <div class="panel-hd"><h2>Launches per month</h2><span class="basis" id="tiBasis"></span></div>
+      <div class="chart" id="tiChart"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h2>Cumulative launches</h2><span class="basis" id="cuBasis"></span></div>
+      <div class="chart" id="cuChart"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h2>Month table</h2><span class="basis">Click any heading to sort</span></div>
+      <div class="tbl-scroll"><table id="tiTable"></table></div>
+    </div>
+  </section>
+
+  <section class="view" id="v-quality" role="tabpanel" hidden>
+    <div class="panel">
+      <div class="panel-hd"><h2>Where this data came from</h2></div>
+      <div class="kv" id="qlProv"></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h2>Cleaning log</h2><span class="basis">Every change made to the raw records</span></div>
+      <div class="tbl-scroll"><table id="qlTable"></table></div>
+    </div>
+    <div class="panel">
+      <div class="panel-hd"><h2>What is excluded</h2></div>
+      <div id="qlExcl"></div>
+    </div>
+  </section>
+
+  <section class="view" id="v-story" role="tabpanel" hidden>
+    <div class="beats" id="stBeats"></div>
+    <div class="panel">
+      <div class="panel-hd"><h2>Reading note</h2></div>
+      <p class="note">Every figure in these five paragraphs is computed from the rows currently in view, so the story rewrites itself when you change a filter. No number is typed by hand.</p>
+    </div>
+  </section>
+</main>
+
+<div class="tip" id="tip" role="status" aria-live="polite"></div>
+
+<script>
+"use strict";
+
+/* ═══ data ═══════════════════════════════════════════════ */
+const DB   = JSON.parse(document.getElementById('dataset').textContent);
+const ROWS = DB.rows;
+const META = DB.meta;
+
+const C = { accent:'#F2A33C', ok:'#3FBF87', fail:'#E4695E', part:'#D9A441', pend:'#6E7C99',
+            rule:'#232B3C', muted:'#78849A', text:'#E6EBF5' };
+const STATUS_COLOR = { 'Success':C.ok, 'Failure':C.fail, 'Partial Failure':C.part,
+                       'Scheduled':C.pend, 'Unknown':C.pend };
+const STATUS_CLASS = { 'Success':'p-ok', 'Failure':'p-fail', 'Partial Failure':'p-part',
+                       'Scheduled':'p-pend', 'Unknown':'p-pend' };
+
+const $  = id => document.getElementById(id);
+const nf = n => n.toLocaleString('en-US');
+const pc = (a,b) => b ? (a/b*100) : 0;
+const pc1 = (a,b) => pc(a,b).toFixed(1) + '%';
+
+const TABS = [
+  ['overview','Overview'], ['operators','Operators'], ['vehicles','Vehicles'],
+  ['time','Time'], ['quality','Quality'], ['story','The Story']
+];
+
+/* ═══ state ══════════════════════════════════════════════ */
+const state = { tab:'overview', op:'', st:'', from:'', to:'',
+                sort:{ op:['launches','desc'], ve:['launches','desc'],
+                       ti:['month','asc'], rc:['d','desc'] } };
+
+/* ═══ filtering ══════════════════════════════════════════ */
+function filtered(){
+  return ROWS.filter(r =>
+    (!state.op   || r.p === state.op) &&
+    (!state.st   || r.s === state.st) &&
+    (!state.from || r.d >= state.from) &&
+    (!state.to   || r.d <= state.to));
+}
+function groupBy(rows, key){
+  const m = new Map();
+  rows.forEach(r => {
+    const k = r[key];
+    if (!m.has(k)) m.set(k, { key:k, launches:0, success:0, failure:0, other:0, rows:[] });
+    const g = m.get(k);
+    g.launches++;
+    if (r.s === 'Success') g.success++;
+    else if (r.s === 'Failure' || r.s === 'Partial Failure') g.failure++;
+    else g.other++;
+    g.rows.push(r);
+  });
+  return [...m.values()];
+}
+function byMonth(rows){
+  const m = new Map();
+  rows.forEach(r => {
+    const k = r.d.slice(0,7);
+    if (!m.has(k)) m.set(k, { month:k, launches:0, success:0, failure:0 });
+    const g = m.get(k);
+    g.launches++;
+    if (r.s === 'Success') g.success++;
+    if (r.s === 'Failure' || r.s === 'Partial Failure') g.failure++;
+  });
+  return [...m.values()].sort((a,b) => a.month < b.month ? -1 : 1);
+}
+const monthName = k => {
+  const [y,m] = k.split('-');
+  return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1] + ' ' + y.slice(2);
+};
+
+/* ═══ tooltip ════════════════════════════════════════════ */
+const tip = $('tip');
+function showTip(e, title, value){
+  tip.innerHTML = '';
+  const b = document.createElement('b'); b.textContent = title;
+  const s = document.createElement('span'); s.textContent = value;
+  tip.append(b, s);
+  tip.classList.add('on');
+  moveTip(e);
+}
+function moveTip(e){
+  const pad = 14, w = tip.offsetWidth, h = tip.offsetHeight;
+  let x = e.clientX + pad, y = e.clientY + pad;
+  if (x + w > innerWidth  - 8) x = e.clientX - w - pad;
+  if (y + h > innerHeight - 8) y = e.clientY - h - pad;
+  tip.style.left = Math.max(8,x) + 'px';
+  tip.style.top  = Math.max(8,y) + 'px';
+}
+const hideTip = () => tip.classList.remove('on');
+
+/* ═══ svg helpers ════════════════════════════════════════ */
+const NS = 'http://www.w3.org/2000/svg';
+function el(tag, attrs, text){
+  const n = document.createElementNS(NS, tag);
+  for (const k in attrs) n.setAttribute(k, attrs[k]);
+  if (text != null) n.textContent = text;
+  return n;
+}
+/* nice zero-based tick step so the axis reads in round numbers */
+function ticks(max){
+  if (max <= 0) return [0,1];
+  const raw  = max / 4;
+  const mag  = Math.pow(10, Math.floor(Math.log10(raw)));
+  const step = [1,2,2.5,5,10].map(m => m*mag).find(s => s >= raw) || 10*mag;
+  const top  = Math.ceil(max/step)*step;
+  const out  = [];
+  for (let v = 0; v <= top + 1e-9; v += step) out.push(Math.round(v*100)/100);
+  return out;
+}
+
+/* ── horizontal bars, axis always anchored at zero ─────── */
+function hBars(mount, items, unit){
+  mount.textContent = '';
+  if (!items.length){ mount.innerHTML = '<p class="empty">No launches match these filters.</p>'; return; }
+
+  const padL = 176, padR = 58, padT = 26, padB = 40;
+  const rowH = 30, gap = 9;
+  const W = Math.max(mount.clientWidth || 720, 560);
+  const H = padT + items.length*(rowH+gap) - gap + padB;
+  const plotW = W - padL - padR;
+  const max = Math.max(...items.map(d => d.value));
+  const tk = ticks(max);
+  const scale = v => (v / tk[tk.length-1]) * plotW;
+
+  const svg = el('svg', { viewBox:`0 0 ${W} ${H}`, width:W, height:H, role:'img' });
+  svg.setAttribute('aria-label', `Bar chart, ${items.length} rows, axis in ${unit}, starting at zero`);
+
+  tk.forEach(t => {
+    const x = padL + scale(t);
+    svg.appendChild(el('line', { x1:x, y1:padT-8, x2:x, y2:H-padB+4,
+      stroke:t===0 ? '#3A4560' : C.rule, 'stroke-width':1 }));
+    svg.appendChild(el('text', { x, y:H-padB+19, class:'axis-txt', 'text-anchor':'middle' }, nf(t)));
+  });
+  svg.appendChild(el('text', { x:padL, y:H-padB+34, class:'axis-title' }, unit + ' — axis starts at 0'));
+
+  items.forEach((d,i) => {
+    const y = padT + i*(rowH+gap);
+    const w = Math.max(scale(d.value), d.value > 0 ? 2 : 0);
+
+    svg.appendChild(el('text', { x:padL-12, y:y+rowH/2+4, class:'bar-lbl', 'text-anchor':'end' },
+      d.label.length > 24 ? d.label.slice(0,23) + '…' : d.label));
+
+    const bar = el('rect', { x:padL, y, width:w, height:rowH, rx:4,
+      fill:d.color || C.accent, class:'bar' });
+    bar.addEventListener('mouseenter', e => showTip(e, d.label, d.tip || (nf(d.value)+' '+unit)));
+    bar.addEventListener('mousemove', moveTip);
+    bar.addEventListener('mouseleave', hideTip);
+    svg.appendChild(bar);
+
+    svg.appendChild(el('text', { x:padL+w+9, y:y+rowH/2+4, class:'bar-val' }, nf(d.value)));
+  });
+  mount.appendChild(svg);
+}
+
+/* ── vertical columns over time ────────────────────────── */
+function columns(mount, items, unit){
+  mount.textContent = '';
+  if (!items.length){ mount.innerHTML = '<p class="empty">No launches match these filters.</p>'; return; }
+
+  const padL = 54, padR = 20, padT = 22, padB = 56;
+  const W = Math.max(mount.clientWidth || 760, 560);
+  const H = 320;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const max = Math.max(...items.map(d => d.value));
+  const tk = ticks(max);
+  const top = tk[tk.length-1];
+  const y0 = v => padT + plotH - (v/top)*plotH;
+  const slot = plotW / items.length;
+  const bw = Math.min(slot*0.62, 54);
+
+  const svg = el('svg', { viewBox:`0 0 ${W} ${H}`, width:W, height:H, role:'img' });
+  svg.setAttribute('aria-label', `Column chart, ${items.length} periods, axis in ${unit}, starting at zero`);
+
+  tk.forEach(t => {
+    const y = y0(t);
+    svg.appendChild(el('line', { x1:padL, y1:y, x2:W-padR, y2:y,
+      stroke:t===0 ? '#3A4560' : C.rule, 'stroke-width':1 }));
+    svg.appendChild(el('text', { x:padL-10, y:y+4, class:'axis-txt', 'text-anchor':'end' }, nf(t)));
+  });
+  svg.appendChild(el('text', { x:padL, y:16, class:'axis-title' }, unit + ' — axis starts at 0'));
+
+  items.forEach((d,i) => {
+    const x = padL + i*slot + (slot-bw)/2;
+    const h = Math.max((d.value/top)*plotH, d.value > 0 ? 2 : 0);
+    const bar = el('rect', { x, y:padT+plotH-h, width:bw, height:h, rx:4, fill:C.accent, class:'bar' });
+    bar.addEventListener('mouseenter', e => showTip(e, d.label, d.tip || (nf(d.value)+' '+unit)));
+    bar.addEventListener('mousemove', moveTip);
+    bar.addEventListener('mouseleave', hideTip);
+    svg.appendChild(bar);
+    svg.appendChild(el('text', { x:x+bw/2, y:padT+plotH-h-8, class:'bar-val', 'text-anchor':'middle' }, nf(d.value)));
+    svg.appendChild(el('text', { x:x+bw/2, y:H-padB+20, class:'axis-txt', 'text-anchor':'middle' }, d.label));
+  });
+  svg.appendChild(el('text', { x:W-padR, y:H-padB+38, class:'axis-title', 'text-anchor':'end' }, 'Month'));
+  mount.appendChild(svg);
+}
+
+/* ── cumulative line ───────────────────────────────────── */
+function lineChart(mount, items, unit){
+  mount.textContent = '';
+  if (items.length < 2){ mount.innerHTML = '<p class="empty">Needs at least two months in view to draw a trend.</p>'; return; }
+
+  const padL = 54, padR = 20, padT = 22, padB = 52;
+  const W = Math.max(mount.clientWidth || 760, 560);
+  const H = 260;
+  const plotW = W - padL - padR, plotH = H - padT - padB;
+  const max = Math.max(...items.map(d => d.value));
+  const tk = ticks(max);
+  const top = tk[tk.length-1];
+  const px = i => padL + (i/(items.length-1))*plotW;
+  const py = v => padT + plotH - (v/top)*plotH;
+
+  const svg = el('svg', { viewBox:`0 0 ${W} ${H}`, width:W, height:H, role:'img' });
+  svg.setAttribute('aria-label', `Line chart of cumulative ${unit}, axis starting at zero`);
+
+  tk.forEach(t => {
+    const y = py(t);
+    svg.appendChild(el('line', { x1:padL, y1:y, x2:W-padR, y2:y,
+      stroke:t===0 ? '#3A4560' : C.rule, 'stroke-width':1 }));
+    svg.appendChild(el('text', { x:padL-10, y:y+4, class:'axis-txt', 'text-anchor':'end' }, nf(t)));
+  });
+  svg.appendChild(el('text', { x:padL, y:16, class:'axis-title' }, 'Cumulative ' + unit + ' — axis starts at 0'));
+
+  const pts = items.map((d,i) => [px(i), py(d.value)]);
+  svg.appendChild(el('path', {
+    d:'M' + padL + ',' + py(0) + 'L' + pts.map(p => p.join(',')).join('L') +
+      'L' + px(items.length-1) + ',' + py(0) + 'Z',
+    fill:'rgba(242,163,60,.11)', stroke:'none' }));
+  svg.appendChild(el('path', { d:'M' + pts.map(p => p.join(',')).join('L'),
+    fill:'none', stroke:C.accent, 'stroke-width':2, 'stroke-linejoin':'round' }));
+
+  items.forEach((d,i) => {
+    const dot = el('circle', { cx:px(i), cy:py(d.value), r:5, fill:'#0B0E14',
+      stroke:C.accent, 'stroke-width':2, class:'bar' });
+    dot.addEventListener('mouseenter', e => showTip(e, d.label, nf(d.value) + ' ' + unit + ' to date'));
+    dot.addEventListener('mousemove', moveTip);
+    dot.addEventListener('mouseleave', hideTip);
+    svg.appendChild(dot);
+    if (i % Math.ceil(items.length/8 || 1) === 0 || i === items.length-1)
+      svg.appendChild(el('text', { x:px(i), y:H-padB+20, class:'axis-txt', 'text-anchor':'middle' }, d.label));
+  });
+  svg.appendChild(el('text', { x:W-padR, y:H-padB+36, class:'axis-title', 'text-anchor':'end' }, 'Month'));
+  mount.appendChild(svg);
+}
+
+/* ═══ sortable tables ════════════════════════════════════ */
+function table(mount, cols, rows, sortKey){
+  const [key, dir] = state.sort[sortKey];
+  const sorted = [...rows].sort((a,b) => {
+    const x = a[key], y = b[key];
+    const c = typeof x === 'number' ? x - y : String(x).localeCompare(String(y));
+    return dir === 'asc' ? c : -c;
+  });
+
+  mount.textContent = '';
+  const thead = document.createElement('thead');
+  const tr = document.createElement('tr');
+  cols.forEach(col => {
+    const th = document.createElement('th');
+    th.textContent = col.head + ' ';
+    if (col.key === key){
+      th.dataset.dir = dir;
+      const car = document.createElement('span');
+      car.className = 'car';
+      car.textContent = dir === 'asc' ? '▲' : '▼';
+      th.appendChild(car);
+    }
+    th.addEventListener('click', () => {
+      state.sort[sortKey] = (col.key === key)
+        ? [col.key, dir === 'asc' ? 'desc' : 'asc']
+        : [col.key, typeof rows[0]?.[col.key] === 'number' ? 'desc' : 'asc'];
+      render();
+    });
+    tr.appendChild(th);
+  });
+  thead.appendChild(tr);
+
+  const tbody = document.createElement('tbody');
+  sorted.forEach(r => {
+    const t = document.createElement('tr');
+    cols.forEach(col => {
+      const td = document.createElement('td');
+      if (col.num) td.className = 'n';
+      col.cell ? col.cell(td, r) : (td.textContent = r[col.key]);
+      t.appendChild(td);
+    });
+    tbody.appendChild(t);
+  });
+  mount.append(thead, tbody);
+}
+
+/* ═══ render ═════════════════════════════════════════════ */
+function render(){
+  const rows = filtered();
+  const n = rows.length;
+  $('liveCount').textContent = nf(n);
+
+  const ops  = groupBy(rows, 'p').sort((a,b) => b.launches - a.launches);
+  const vehs = groupBy(rows, 'r').sort((a,b) => b.launches - a.launches);
+  const mons = byMonth(rows);
+  const succ = rows.filter(r => r.s === 'Success').length;
+  const fail = rows.filter(r => r.s === 'Failure' || r.s === 'Partial Failure').length;
+
+  /* ── overview ── */
+  const busiest = mons.length ? mons.reduce((a,b) => b.launches > a.launches ? b : a) : null;
+  $('ovStats').textContent = '';
+  [
+    ['Launches in view', nf(n), n === ROWS.length ? 'the whole file' : 'of ' + nf(ROWS.length) + ' in the file', true],
+    ['Operators', nf(ops.length), 'distinct launch providers'],
+    ['Vehicles', nf(vehs.length), 'distinct rocket types'],
+    ['Success rate', n ? pc1(succ, n) : '—', nf(succ) + ' of ' + nf(n) + ' attempts'],
+    ['Busiest month', busiest ? monthName(busiest.month) : '—',
+      busiest ? nf(busiest.launches) + ' launches' : 'no data in range']
+  ].forEach(([lab,val,sub,hero]) => {
+    const d = document.createElement('div');
+    d.className = 'stat' + (hero ? ' hero' : '');
+    const l = document.createElement('span'); l.className = 'lbl'; l.textContent = lab;
+    const b = document.createElement('b'); b.textContent = val;
+    const s = document.createElement('small'); s.textContent = sub;
+    d.append(l,b,s);
+    $('ovStats').appendChild(d);
+  });
+
+  const lead = ops[0];
+  $('ovHeadline').textContent = n === 0
+    ? 'No launches match the current filters, so there is nothing to report. Widen the date range or clear the operator filter.'
+    : `${lead.key} flew ${nf(lead.launches)} of the ${nf(n)} launches in view — ${pc1(lead.launches, n)} of all activity, `
+      + `and ${ops.length > 1 ? (lead.launches / ops[1].launches).toFixed(1) + ' times the next operator, ' + ops[1].key
+                              : 'the only operator in range'}. `
+      + `Across every operator, ${pc1(succ, n)} of attempts reached orbit successfully.`;
+
+  $('ovBasis').textContent = 'Built from ' + nf(n) + ' launches';
+  const parts = [
+    ['Success', succ, C.ok],
+    ['Failure', rows.filter(r => r.s === 'Failure').length, C.fail],
+    ['Partial Failure', rows.filter(r => r.s === 'Partial Failure').length, C.part],
+    ['Other', rows.filter(r => !['Success','Failure','Partial Failure'].includes(r.s)).length, C.pend]
+  ].filter(p => p[1] > 0);
+
+  $('ovStatusBar').textContent = '';
+  $('ovLegend').textContent = '';
+  parts.forEach(([lab,cnt,col]) => {
+    const seg = document.createElement('div');
+    seg.style.cssText = `flex-grow:${cnt};background:${col}`;
+    seg.textContent = pc(cnt,n) > 8 ? pc1(cnt,n) : '';
+    seg.title = `${lab}: ${nf(cnt)} launches (${pc1(cnt,n)})`;
+    $('ovStatusBar').appendChild(seg);
+
+    const lg = document.createElement('span');
+    const sw = document.createElement('span'); sw.className = 'swatch'; sw.style.background = col;
+    lg.append(sw, document.createTextNode(`${lab} — ${nf(cnt)} (${pc1(cnt,n)})`));
+    $('ovLegend').appendChild(lg);
+  });
+
+  const recent = [...rows].sort((a,b) => a.d < b.d ? 1 : -1).slice(0,8);
+  $('ovRecentBasis').textContent = recent.length
+    ? `Showing ${recent.length} of ${nf(n)} launches in view — newest first`
+    : 'Nothing in view';
+  table($('ovRecent'), [
+    { head:'Date', key:'d', num:true },
+    { head:'Launch', key:'n' },
+    { head:'Operator', key:'p' },
+    { head:'Vehicle', key:'r' },
+    { head:'Outcome', key:'s', cell:(td,r) => {
+        const sp = document.createElement('span');
+        sp.className = 'pill ' + (STATUS_CLASS[r.s] || 'p-pend');
+        sp.textContent = r.s;
+        td.appendChild(sp);
+      }}
+  ], recent, 'rc');
+
+  /* ── operators ── */
+  $('opBasis').textContent = `Built from ${nf(n)} launches — ${nf(ops.length)} operators`;
+  hBars($('opChart'), ops.map(o => ({
+    label:o.key, value:o.launches,
+    tip:`${nf(o.launches)} launches — ${pc1(o.launches,n)} of all in view`
+  })), 'launches');
+
+  table($('opTable'), [
+    { head:'Operator', key:'key', cell:(td,r) => {
+        td.textContent = r.key;
+        const bar = document.createElement('span');
+        bar.className = 'microbar';
+        bar.style.width = Math.max(pc(r.launches, ops[0]?.launches || 1), 2) + '%';
+        td.appendChild(bar);
+      }},
+    { head:'Launches', key:'launches', num:true },
+    { head:'Share', key:'share', num:true, cell:(td,r) => td.textContent = pc1(r.launches, n) },
+    { head:'Success', key:'success', num:true },
+    { head:'Fail / partial', key:'failure', num:true },
+    { head:'Success rate', key:'rate', num:true, cell:(td,r) => td.textContent = pc1(r.success, r.launches) }
+  ], ops.map(o => ({ ...o, share:pc(o.launches,n), rate:pc(o.success,o.launches) })), 'op');
+
+  /* ── vehicles ── */
+  const topV = vehs.slice(0,14);
+  $('veBasis').textContent = `Built from ${nf(n)} launches — ${nf(vehs.length)} vehicles`
+    + (vehs.length > 14 ? `, top 14 charted, all ${nf(vehs.length)} in the table below` : '');
+  hBars($('veChart'), topV.map(v => ({
+    label:v.key, value:v.launches,
+    tip:`${nf(v.launches)} launches — ${pc1(v.launches,n)} of all in view`
+  })), 'launches');
+
+  table($('veTable'), [
+    { head:'Vehicle', key:'key' },
+    { head:'Operator', key:'op' },
+    { head:'Launches', key:'launches', num:true },
+    { head:'Share', key:'share', num:true, cell:(td,r) => td.textContent = pc1(r.launches, n) },
+    { head:'Success rate', key:'rate', num:true, cell:(td,r) => td.textContent = pc1(r.success, r.launches) }
+  ], vehs.map(v => ({ ...v, op:[...new Set(v.rows.map(r => r.p))].join(', '),
+                      share:pc(v.launches,n), rate:pc(v.success,v.launches) })), 've');
+
+  /* ── time ── */
+  $('tiBasis').textContent = `Built from ${nf(n)} launches across ${nf(mons.length)} months`;
+  columns($('tiChart'), mons.map(m => ({
+    label:monthName(m.month), value:m.launches,
+    tip:`${nf(m.launches)} launches — ${nf(m.success)} successful`
+  })), 'launches');
+
+  let run = 0;
+  $('cuBasis').textContent = `Running total across ${nf(mons.length)} months`;
+  lineChart($('cuChart'), mons.map(m => ({ label:monthName(m.month), value:(run += m.launches) })), 'launches');
+
+  table($('tiTable'), [
+    { head:'Month', key:'month', cell:(td,r) => td.textContent = monthName(r.month) },
+    { head:'Launches', key:'launches', num:true },
+    { head:'Successful', key:'success', num:true },
+    { head:'Fail / partial', key:'failure', num:true },
+    { head:'Success rate', key:'rate', num:true, cell:(td,r) => td.textContent = pc1(r.success, r.launches) }
+  ], mons.map(m => ({ ...m, rate:pc(m.success,m.launches) })), 'ti');
+
+  /* ── story ── */
+  const top3 = ops.slice(0,3).reduce((s,o) => s + o.launches, 0);
+  const topVeh = vehs[0];
+  const busiestOp = ops[0];
+  const worst = ops.filter(o => o.launches >= 3).sort((a,b) => pc(a.success,a.launches) - pc(b.success,b.launches))[0];
+  const avgPerMonth = mons.length ? (n / mons.length) : 0;
+
+  const beats = n === 0 ? [
+    ['The question worth asking','Who is actually flying, and how often?'],
+    ['What you found','Nothing — the current filters exclude every row in the file.'],
+    ['The evidence','0 launches of ' + nf(ROWS.length) + ' in the file are in view.'],
+    ['What surprised you','Filters silently hide data. That is exactly the failure this page is built to make visible.'],
+    ['What you would do next week','Clear a filter and look again.']
+  ] : [
+    ['The question worth asking',
+      `Spaceflight gets reported launch by launch, so nobody sees the shape of it. Across ${nf(mons.length)} months and ${nf(n)} attempts, who is actually flying — and does flying more often mean flying better?`],
+    ['What you found',
+      `Launch is far more concentrated than the headlines suggest. ${busiestOp.key} alone accounts for <em>${pc1(busiestOp.launches,n)}</em> of all attempts, and the top three operators together take <em>${pc1(top3,n)}</em>. The remaining ${nf(Math.max(ops.length-3,0))} operators share what is left.`],
+    ['The evidence',
+      `${nf(n)} launches from <em>${nf(ops.length)}</em> operators flying <em>${nf(vehs.length)}</em> vehicle types. ${busiestOp.key}: <em>${nf(busiestOp.launches)}</em> launches${ops[1] ? `, against <em>${nf(ops[1].launches)}</em> for ${ops[1].key} — a factor of <em>${(busiestOp.launches/ops[1].launches).toFixed(1)}</em>` : ''}. The single busiest vehicle is ${topVeh.key} at <em>${nf(topVeh.launches)}</em> flights, <em>${pc1(topVeh.launches,n)}</em> of everything in view. The cadence averages <em>${avgPerMonth.toFixed(1)}</em> launches a month.`],
+    ['What surprised you',
+      worst && pc(worst.success,worst.launches) < pc(succ,n)
+        ? `Cadence and reliability come apart. Overall <em>${pc1(succ,n)}</em> of attempts succeeded, but ${worst.key} sits at <em>${pc1(worst.success,worst.launches)}</em> across <em>${nf(worst.launches)}</em> flights. Volume is not the same thing as a working rocket.`
+        : `The failure rate is lower than the news cycle implies: <em>${nf(fail)}</em> failed or partially failed out of <em>${nf(n)}</em>, which is <em>${pc1(fail,n)}</em>. Rockets mostly work now — that is genuinely new.`],
+    ['What you would do next week',
+      `Watch ${busiestOp.key}'s monthly cadence against everyone else's combined. If one operator is <em>${pc1(busiestOp.launches,n)}</em> of global launch, then their stand-down is the whole world's stand-down — and that concentration is the risk worth tracking, not any single failure.`]
+  ];
+
+  $('stBeats').textContent = '';
+  beats.forEach(([h,p]) => {
+    const d = document.createElement('div'); d.className = 'beat';
+    const t = document.createElement('h3'); t.textContent = h;
+    const x = document.createElement('p'); x.innerHTML = p;
+    d.append(t,x);
+    $('stBeats').appendChild(d);
+  });
+}
+
+/* ═══ quality tab (static: describes the file, not the filters) ═══ */
+function renderQuality(){
+  const live = META.provenance === 'live';
+  $('prov').className = 'prov' + (live ? ' live-data' : '');
+  $('prov').textContent = '';
+  const s = document.createElement('strong');
+  s.textContent = live ? 'Live data' : 'Seed sample';
+  const t = document.createElement('span');
+  t.textContent = live
+    ? `${nf(META.kept_rows)} real launch records from Launch Library 2, fetched ${META.fetched_at.slice(0,16).replace('T',' ')} UTC.`
+    : `These ${nf(META.kept_rows)} rows are an illustrative sample, not verified launch records. Run fetch_launches.py to replace them with real data from Launch Library 2.`;
+  $('prov').append(s,t);
+
+  $('qlProv').textContent = '';
+  [
+    ['Source', live ? 'Launch Library 2 (The Space Devs)' : 'Illustrative seed sample'],
+    ['Endpoint', META.source_url || '—'],
+    ['Fetched', META.fetched_at ? META.fetched_at.slice(0,16).replace('T',' ') + ' UTC' : 'not yet fetched'],
+    ['Window', META.window.from + ' → ' + META.window.to],
+    ['Rows received', nf(META.raw_rows)],
+    ['Rows kept', nf(META.kept_rows)],
+    ['Rows dropped', nf(META.raw_rows - META.kept_rows)]
+  ].forEach(([k,v]) => {
+    const d = document.createElement('div');
+    const l = document.createElement('span'); l.className = 'lbl'; l.textContent = k;
+    const b = document.createElement('b'); b.textContent = v;
+    d.append(l,b);
+    $('qlProv').appendChild(d);
+  });
+
+  table($('qlTable'), [
+    { head:'What was wrong', key:'issue' },
+    { head:'What I did', key:'action' },
+    { head:'Rows affected', key:'rows', num:true },
+    { head:'Example from the file', key:'example' }
+  ], META.quality, 'op');
+  $('qlTable').querySelectorAll('th').forEach(th => {
+    th.style.cursor = 'default';
+    th.replaceWith(th.cloneNode(true));
+  });
+
+  const box = $('qlExcl');
+  box.textContent = '';
+  const p = document.createElement('p');
+  p.className = 'note';
+  const dropped = META.raw_rows - META.kept_rows;
+  p.innerHTML = dropped > 0
+    ? `<span class="flag">${nf(dropped)} rows were dropped</span> before any chart was drawn, and every one is listed below by id. No chart on this page silently omits a row: the "built from N launches" note on each panel is the exact count that chart used.`
+    : `Nothing was dropped. All <span class="flag">${nf(META.kept_rows)} rows</span> received are charted. Each panel states the row count it was built from, and filters change that count in the open rather than hiding rows.`;
+  box.appendChild(p);
+
+  const p2 = document.createElement('p');
+  p2.className = 'note';
+  p2.textContent = 'Launches with an unconfirmed outcome are kept and counted under "Other" in the outcome split, never folded into the success figure. Success rate is always stated as a share of attempts in view, never of attempts with a known result.';
+  box.appendChild(p2);
+
+  if (META.excluded && META.excluded.length){
+    const wrapEl = document.createElement('div');
+    wrapEl.className = 'tbl-scroll';
+    wrapEl.style.marginTop = '14px';
+    const t2 = document.createElement('table');
+    wrapEl.appendChild(t2);
+    box.appendChild(wrapEl);
+    table(t2, [
+      { head:'Launch id', key:'id' },
+      { head:'Name', key:'name' },
+      { head:'Why it was dropped', key:'reason' }
+    ], META.excluded, 've');
+  }
+}
+
+/* ═══ tabs ═══════════════════════════════════════════════ */
+TABS.forEach(([id,label], i) => {
+  const b = document.createElement('button');
+  b.className = 'tab'; b.type = 'button'; b.role = 'tab';
+  b.textContent = label;
+  b.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+  b.addEventListener('click', () => {
+    state.tab = id;
+    [...$('tabs').children].forEach((x,j) => x.setAttribute('aria-selected', TABS[j][0] === id ? 'true' : 'false'));
+    TABS.forEach(([t]) => $('v-' + t).hidden = (t !== id));
+    render();  /* re-measure: charts in a hidden panel have no width to size against */
+  });
+  $('tabs').appendChild(b);
+});
+
+/* ═══ filter wiring ══════════════════════════════════════ */
+[...new Set(ROWS.map(r => r.p))].sort().forEach(v => {
+  const o = document.createElement('option'); o.value = v; o.textContent = v; $('fOp').appendChild(o);
+});
+[...new Set(ROWS.map(r => r.s))].sort().forEach(v => {
+  const o = document.createElement('option'); o.value = v; o.textContent = v; $('fSt').appendChild(o);
+});
+const dates = ROWS.map(r => r.d).sort();
+$('fFrom').value = state.from = dates[0];
+$('fTo').value   = state.to   = dates[dates.length-1];
+$('fFrom').min = $('fTo').min = dates[0];
+$('fFrom').max = $('fTo').max = dates[dates.length-1];
+
+$('fOp').addEventListener('change', e => { state.op = e.target.value; render(); });
+$('fSt').addEventListener('change', e => { state.st = e.target.value; render(); });
+$('fFrom').addEventListener('change', e => { state.from = e.target.value; render(); });
+$('fTo').addEventListener('change', e => { state.to = e.target.value; render(); });
+$('fReset').addEventListener('click', () => {
+  state.op = state.st = '';
+  state.from = dates[0]; state.to = dates[dates.length-1];
+  $('fOp').value = $('fSt').value = '';
+  $('fFrom').value = state.from; $('fTo').value = state.to;
+  render();
+});
+
+let rt;
+addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(render, 160); });
+
+renderQuality();
+render();
+</script>
+</body>
+</html>
