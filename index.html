@@ -851,6 +851,17 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         </div>
       </div>
 
+      <div class="step" id="step-resume" hidden>
+        <div class="step-head">
+          <span class="step-chip">1</span>
+          <span class="sh-en">The Member's Seal</span>
+        </div>
+        <p class="note">This browser still holds your seal, so there is nothing to type. Signed in as <b id="resume-who"></b>.</p>
+        <div class="row">
+          <button id="resume-btn">Enter the hall</button>
+          <button class="link" id="resume-other">Use another address</button>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -2316,8 +2327,25 @@ function gateQuiet() { gateEl.msg.hidden = true; gateEl.msg.classList.remove("go
 /* Back to the seal, so a signed-out member returns to a clean threshold. */
 function resetGateSteps() {
   const a = document.getElementById("step-seal");
+  document.getElementById("step-resume").hidden = true;
   a.hidden = false; a.classList.remove("swap-out", "swap-in");
 }
+
+/* A remembered member meets the gate on every visit like everyone else, but
+   has nothing to type: the session in this browser is still good, so the
+   passphrase is replaced by a single way back in. */
+function showResume(email) {
+  document.getElementById("resume-who").textContent = email;
+  document.getElementById("step-seal").hidden = true;
+  document.getElementById("step-resume").hidden = false;
+}
+
+document.getElementById("resume-btn").addEventListener("click", unlock);
+document.getElementById("resume-other").addEventListener("click", () => {
+  /* the hall's own sign-out already clears the session, forgets this
+     browser's copy of the marks and lands back on the seal */
+  document.getElementById("signout-btn").click();
+});
 
 function setAuthMode(mode) {
   authMode = mode;
@@ -3239,13 +3267,13 @@ loadPortraits();
    died and cannot be refreshed, the gate is where we land. */
 (async function resume() {
   const kept = readStoredSession();
-  if (kept) views.gate.hidden = true;
   if (!kept || !(await freshToken())) { storeSession(null); show("gate"); return; }
+  /* The gate is the first thing on every visit, signed in or not. A member
+     this browser remembers is simply not asked for the passphrase again. */
   state.member = session.user.email || state.member; save();
-  connectBackend(state.member);
-  renderHall();
-  setAct(markCount() ? 3 : 2);
-  show("hall");
+  showResume(state.member);
+  setAct(1);
+  show("gate");
 })();
 </script>
 
