@@ -851,27 +851,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         </div>
       </div>
 
-      <div class="step" id="step-tongue" hidden>
-        <div class="step-head">
-          <span class="step-chip">2</span>
-          <span class="sh-en">The Tongue-Gate</span>
-        </div>
-        <div class="challenge">
-          <p class="tracked mag">Render this into natural English to enter</p>
-          <p class="phrase" id="gate-phrase">على عيني</p>
-          <p class="gloss">word for word: <span id="gate-literal">"upon my eye"</span> &mdash; and that is the one answer the door refuses</p>
-        </div>
-        <div class="field">
-          <label for="tongue">Your rendering</label>
-          <input id="tongue" type="text" autocomplete="off" spellcheck="false" placeholder="what would an English speaker actually say?">
-        </div>
-        <p class="msg" id="tongue-msg" hidden></p>
-        <div class="row">
-          <button id="tongue-btn">Enter the hall</button>
-          <button class="ghost" id="tongue-swap">Another phrase</button>
-          <button class="link" id="tongue-skip">Skip for now</button>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -1801,54 +1780,6 @@ const ROOTS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════
-   THE TONGUE-GATE — the threshold, after the seal.
-
-   `ok` is deliberately generous: the point is to refuse the
-   word-for-word reading, not to hunt for one blessed phrasing.
-   `literalTries` are the readings that earn the specific
-   "that is the literal" answer rather than a flat no. Anyone
-   can walk past with Skip, so the gate teaches without
-   locking a member out of their own hall.
-   ═══════════════════════════════════════════════════════════ */
-const GATE_PHRASES = [
-  { ar: "على عيني", lit: '"upon my eye"',
-    literalTries: ["on my eye","upon my eye","on my eyes","my eye","upon my eyes","on the eye","over my eye"],
-    ok: ["gladly","of course","consider it done","with pleasure","my pleasure","sure","done","happily",
-         "absolutely","anything for you","no problem","you got it","right away","will do","certainly",
-         "say no more","at your service","happy to","glad to","be happy to","be glad to","sure thing",
-         "no trouble","count on me","count on it","leave it to me","leave it with me","as you wish",
-         "definitely","on it","of course i will","ill do it","i will","yes of course","without question",
-         "anything you need","whatever you need","right this minute","straight away"] },
-  { ar: "ولا يهمّك", lit: '"and it does not concern you"',
-    literalTries: ["it does not concern you","does not concern you","it doesnt concern you","not your concern",
-                   "and it does not concern you","none of your concern"],
-    ok: ["dont worry","don't worry","no worries","no problem","its fine","it's fine","forget about it",
-         "forget it","i got it","leave it to me","all good","dont mention it","don't mention it",
-         "never mind","not a problem","im on it","i'm on it","not to worry","think nothing of it",
-         "no bother","its no bother","its nothing","it's nothing","no trouble","dont worry about it",
-         "nothing to worry about","ill handle it","i'll handle it","ill take care of it","taken care of",
-         "consider it handled","its handled","relax","no need to worry","dont give it a thought",
-         "put it out of your mind","its under control","it's under control"] },
-  { ar: "أبشِر", lit: '"receive good tidings"',
-    literalTries: ["receive good tidings","good tidings","rejoice","be glad","take good news","glad tidings"],
-    ok: ["you got it","consider it done","done","sure","of course","right away","will do","no problem",
-         "on it","absolutely","say no more","gladly","coming right up","good news","with pleasure",
-         "certainly","sure thing","happy to","glad to","ill get right on it","i'll get right on it",
-         "coming up","at once","straight away","its as good as done","it's as good as done",
-         "count on it","leave it to me","ill see to it","i'll see to it"] },
-  { ar: "اللّه يعطيك العافية", lit: '"may God give you health"',
-    literalTries: ["may god give you health","god give you health","may god grant you health",
-                   "god grant you health","may god give you strength","god bless your health"],
-    ok: ["thanks for your hard work","thank you for your hard work","well done","keep it up","nice work",
-         "good work","great work","thanks for everything","appreciate it","you work hard",
-         "thank you for everything","keep up the good work","thanks for all your work","much appreciated",
-         "thanks for your effort","thank you for your effort","good job","nice job","well played",
-         "hats off","hats off to you","more power to you","youve earned a rest","you've earned a rest",
-         "take a rest","nice going","kudos","respect","thanks for the effort","that was good work",
-         "youve worked hard","you've worked hard","thank you for the hard work"] }
-];
-
-/* ═══════════════════════════════════════════════════════════
    THE LINEAGE — translators who changed the world.
 
    Each one carries a portrait and one worked example of the
@@ -2382,14 +2313,10 @@ function gateSay(text, good) {
 }
 function gateQuiet() { gateEl.msg.hidden = true; gateEl.msg.classList.remove("good"); }
 
-/* Back to step 1, so a signed-out member does not return to a half-crossed
-   threshold. */
+/* Back to the seal, so a signed-out member returns to a clean threshold. */
 function resetGateSteps() {
-  const a = document.getElementById("step-seal"), b = document.getElementById("step-tongue");
-  b.hidden = true; b.classList.remove("swap-in");
+  const a = document.getElementById("step-seal");
   a.hidden = false; a.classList.remove("swap-out", "swap-in");
-  document.getElementById("tongue").value = "";
-  document.getElementById("tongue-msg").hidden = true;
 }
 
 function setAuthMode(mode) {
@@ -2500,71 +2427,19 @@ async function pressSeal() {
   }
 }
 
-/* The seal proves who you are; the Tongue-Gate is the threshold itself.
-   Signing in or joining lands here, and Skip is always open. */
+/* The seal is the whole threshold: signing in or joining opens the hall. */
 function enterHall(email) {
   gateBusy(false);
   gateQuiet();
   gateEl.pass.value = ""; gateEl.pass2.value = "";
   state.member = email; save();
 
-  const a = document.getElementById("step-seal"), b = document.getElementById("step-tongue");
+  const a = document.getElementById("step-seal");
   a.classList.add("swap-out");
   setTimeout(() => {
     a.hidden = true; a.classList.remove("swap-out");
-    b.hidden = false; b.classList.remove("swap-in"); void b.offsetWidth; b.classList.add("swap-in");
-    paintGatePhrase();
-    document.getElementById("tongue").focus();
+    unlock();
   }, 290);
-}
-
-/* ═══════════ THE TONGUE-GATE ═══════════ */
-let gateIdx = 0, gateMisses = 0;
-
-function paintGatePhrase() {
-  const p = GATE_PHRASES[gateIdx % GATE_PHRASES.length];
-  const ph = document.getElementById("gate-phrase");
-  ph.textContent = p.ar;
-  ph.classList.remove("phrase"); void ph.offsetWidth; ph.classList.add("phrase");
-  document.getElementById("gate-literal").textContent = p.lit;
-  document.getElementById("tongue").value = "";
-  document.getElementById("tongue-msg").hidden = true;
-  gateMisses = 0;
-}
-
-document.getElementById("tongue-swap").addEventListener("click", () => {
-  gateIdx++; paintGatePhrase(); document.getElementById("tongue").focus();
-});
-document.getElementById("tongue-skip").addEventListener("click", unlock);
-document.getElementById("tongue-btn").addEventListener("click", tryTongue);
-document.getElementById("tongue").addEventListener("keydown", e => { if (e.key === "Enter") tryTongue(); });
-
-function tryTongue() {
-  const p = GATE_PHRASES[gateIdx % GATE_PHRASES.length];
-  const val = document.getElementById("tongue").value;
-  const msg = document.getElementById("tongue-msg");
-  msg.classList.remove("msg"); void msg.offsetWidth; msg.classList.add("msg");
-
-  if (loose(val, p.ok)) {
-    msg.hidden = false; msg.classList.add("good");
-    msg.textContent = "Accepted. Meaning first, words second.";
-    setTimeout(unlock, 480);
-    return;
-  }
-  msg.classList.remove("good"); msg.hidden = false;
-
-  if (loose(val, p.literalTries)) {
-    msg.innerHTML = "That is the <b>word-for-word</b> — it is printed above the field. The door wants what an English speaker would say instead.";
-    return;
-  }
-  gateMisses++;
-
-  if (gateMisses >= 2) {
-    msg.innerHTML = "Still not it. One rendering that opens the door: <b>" + p.ok[0] +
-                    "</b> — or try another phrase, or skip past.";
-  } else {
-    msg.textContent = "Not yet. Don't translate the words — say what the phrase does.";
-  }
 }
 
 function unlock() {
