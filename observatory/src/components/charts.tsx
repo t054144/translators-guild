@@ -12,6 +12,71 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useTip } from './ui.tsx';
 
+/* ── value tweening ──────────────────────────────────────────────────────── */
+
+const EASE_OUT = (t: number) => 1 - (1 - t) ** 3;
+
+/**
+ * Interpolates each datum from the value it was last showing to its new value,
+ * keyed by `key` so a series that reorders still animates per-item.
+ *
+ * This replaces SVG `<animate>`, which restarts from zero on every render — so
+ * changing a filter read as the chart reloading rather than the data moving.
+ * A key appearing for the first time grows from zero, which is correct: it had
+ * no previous state.
+ */
+function useTweened(data: Datum[], dur = 460): Datum[] {
+  const [shown, setShown] = useState<Datum[]>(data);
+  const prev = useRef<Map<string, number>>(new Map());
+  const target = useRef<Datum[]>(data);
+  const raf = useRef(0);
+
+  target.current = data;
+  // Re-run only when the values actually change, not on every parent render.
+  const sig = data.map((d) => `${d.key}:${d.value}`).join('|');
+
+  useEffect(() => {
+    const next = target.current;
+    const settle = () => {
+      prev.current = new Map(next.map((d) => [d.key, d.value]));
+      setShown(next);
+    };
+
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      settle();
+      return;
+    }
+
+    // First mount: there is no previous state to travel from, and animating
+    // every chart from zero meant a section arrived with N charts each driving
+    // a React re-render per frame — which is what made navigation stutter. The
+    // panel cascade carries the entrance; the tween is for data *changes*.
+    if (prev.current.size === 0) {
+      settle();
+      return;
+    }
+
+    const from = prev.current;
+    const t0 = performance.now();
+    const step = (now: number) => {
+      const t = Math.min((now - t0) / dur, 1);
+      const e = EASE_OUT(t);
+      setShown(
+        next.map((d) => {
+          const start = from.get(d.key) ?? 0;
+          return { ...d, value: start + (d.value - start) * e };
+        }),
+      );
+      if (t < 1) raf.current = requestAnimationFrame(step);
+      else settle();
+    };
+    raf.current = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(raf.current);
+  }, [sig, dur]);
+
+  return shown;
+}
+
 const C = {
   cyan: '#4dd4e8',
   ok: '#3dd68c',
@@ -66,7 +131,7 @@ export function HBars({ data, unit, max: cap, labelWidth = 168 }: {
 }) {
   const [ref, W] = useWidth();
   const tip = useTip();
-  if (data.length === 0) return <div className="empty">NO DATA IN RANGE</div>;
+  const tween = useTweened(data);
 
   const padL = labelWidth;
   const padR = 56;
@@ -75,9 +140,16 @@ export function HBars({ data, unit, max: cap, labelWidth = 168 }: {
   const rowH = 22;
   const gap = 6;
   const plotW = Math.max(W - padL - padR, 80);
-  const H = padT + data.length * (rowH + gap) - gap + padB;
-  const tk = ticks(cap ?? Math.max(...data.map((d) => d.value)));
+  const H = padT + Math.max(data.length, 1) * (rowH + gap) - gap + padB;
+
+  // Ticks come from the target values, never the tweened ones, so the axis
+  // holds still while the bars move. An axis that rescales mid-animation is
+  // the thing that makes a chart feel unstable.
+  const tk = ticks(cap ?? Math.max(...data.map((d) => d.value), 0));
   const top = tk[tk.length - 1] ?? 1;
+
+  if (data.length === 0) return <div className="empty" ref={ref}>NO DATA IN RANGE</div>;
+  const drawn = tween.length === data.length ? tween : data;
 
   return (
     <div className="chart" ref={ref}>
@@ -96,7 +168,8 @@ export function HBars({ data, unit, max: cap, labelWidth = 168 }: {
 
         {data.map((d, i) => {
           const y = padT + i * (rowH + gap);
-          const w = Math.max((d.value / top) * plotW, d.value > 0 ? 2 : 0);
+          const v = drawn[i]?.value ?? d.value;
+          const w = Math.max((v / top) * plotW, v > 0 ? 2 : 0);
           return (
             <g key={d.key}>
               <text x={padL - 10} y={y + rowH / 2 + 4} className="lbl-txt" textAnchor="end">
@@ -108,11 +181,8 @@ export function HBars({ data, unit, max: cap, labelWidth = 168 }: {
                 onMouseEnter={(e) => tip.show(e, d.label, d.note ?? `${nf(d.value)} ${unit}`)}
                 onMouseMove={tip.move}
                 onMouseLeave={tip.hide}
-              >
-                <animate attributeName="width" from="0" to={String(w)} dur="0.55s"
-                         fill="freeze" calcMode="spline" keySplines="0.22 0.7 0.28 1" keyTimes="0;1" />
-              </rect>
-              <text x={padL + w + 8} y={y + rowH / 2 + 4} className="val-txt">{nf(d.value)}</text>
+              />
+              <text x={padL + w + 8} y={y + rowH / 2 + 4} className="val-txt">{nf(Math.round(v))}</text>
             </g>
           );
         })}
@@ -128,7 +198,7 @@ export function Columns({ data, unit, height = 260, xTitle = '' }: {
 }) {
   const [ref, W] = useWidth();
   const tip = useTip();
-  if (data.length === 0) return <div className="empty">NO DATA IN RANGE</div>;
+  const tween = useTweened(data);
 
   const padL = 46;
   const padR = 14;
@@ -136,11 +206,15 @@ export function Columns({ data, unit, height = 260, xTitle = '' }: {
   const padB = 48;
   const plotW = Math.max(W - padL - padR, 80);
   const plotH = height - padT - padB;
-  const tk = ticks(Math.max(...data.map((d) => d.value)));
+  const tk = ticks(Math.max(...data.map((d) => d.value), 0));
   const top = tk[tk.length - 1] ?? 1;
+
+  if (data.length === 0) return <div className="empty" ref={ref}>NO DATA IN RANGE</div>;
+
   const slot = plotW / data.length;
   const bw = Math.min(slot * 0.66, 46);
   const every = Math.ceil(data.length / 14) || 1;
+  const drawn = tween.length === data.length ? tween : data;
 
   return (
     <div className="chart" ref={ref}>
@@ -159,7 +233,8 @@ export function Columns({ data, unit, height = 260, xTitle = '' }: {
 
         {data.map((d, i) => {
           const x = padL + i * slot + (slot - bw) / 2;
-          const h = Math.max((d.value / top) * plotH, d.value > 0 ? 1.5 : 0);
+          const v = drawn[i]?.value ?? d.value;
+          const h = Math.max((v / top) * plotH, v > 0 ? 1.5 : 0);
           return (
             <g key={d.key}>
               <rect
@@ -168,12 +243,7 @@ export function Columns({ data, unit, height = 260, xTitle = '' }: {
                 onMouseEnter={(e) => tip.show(e, d.label, d.note ?? `${nf(d.value)} ${unit}`)}
                 onMouseMove={tip.move}
                 onMouseLeave={tip.hide}
-              >
-                <animate attributeName="height" from="0" to={String(h)} dur="0.5s" begin={`${i * 0.012}s`}
-                         fill="freeze" calcMode="spline" keySplines="0.22 0.7 0.28 1" keyTimes="0;1" />
-                <animate attributeName="y" from={String(padT + plotH)} to={String(padT + plotH - h)} dur="0.5s"
-                         begin={`${i * 0.012}s`} fill="freeze" calcMode="spline" keySplines="0.22 0.7 0.28 1" keyTimes="0;1" />
-              </rect>
+              />
               {i % every === 0 && (
                 <text x={x + bw / 2} y={height - padB + 16} className="ax-txt" textAnchor="middle">{d.label}</text>
               )}
@@ -193,7 +263,9 @@ export function LineChart({ data, unit, height = 240, xTitle = '' }: {
 }) {
   const [ref, W] = useWidth();
   const tip = useTip();
+  const tween = useTweened(data);
   const pathRef = useRef<SVGPathElement | null>(null);
+  const drawnOnce = useRef(false);
 
   const padL = 46;
   const padR = 16;
@@ -204,25 +276,31 @@ export function LineChart({ data, unit, height = 240, xTitle = '' }: {
   const tk = useMemo(() => ticks(Math.max(...data.map((d) => d.value), 1)), [data]);
   const top = tk[tk.length - 1] ?? 1;
 
+  const drawn = tween.length === data.length ? tween : data;
   const px = (i: number) => padL + (data.length > 1 ? (i / (data.length - 1)) * plotW : plotW / 2);
   const py = (v: number) => padT + plotH - (v / top) * plotH;
-  const d = data.map((pt, i) => `${px(i)},${py(pt.value)}`).join('L');
+  const d = drawn.map((pt, i) => `${px(i)},${py(pt.value)}`).join('L');
 
+  /**
+   * The progressive draw runs once, when the line first appears. Re-running it
+   * on every filter change would replay an intro the user has already seen;
+   * after that the line morphs between values instead.
+   */
   useEffect(() => {
     const el = pathRef.current;
-    if (!el) return;
+    if (!el || drawnOnce.current || data.length < 2) return;
+    drawnOnce.current = true;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const len = el.getTotalLength();
     el.style.transition = 'none';
     el.style.strokeDasharray = `${len}`;
     el.style.strokeDashoffset = `${len}`;
-    // Force a reflow so the transition starts from the dashed state.
     void el.getBoundingClientRect();
     el.style.transition = 'stroke-dashoffset 0.85s cubic-bezier(0.22,0.7,0.28,1)';
     el.style.strokeDashoffset = '0';
-  }, [d]);
+  }, [data.length]);
 
-  if (data.length < 2) return <div className="empty">NEEDS AT LEAST TWO POINTS IN RANGE</div>;
+  if (data.length < 2) return <div className="empty" ref={ref}>NEEDS AT LEAST TWO POINTS IN RANGE</div>;
   const every = Math.ceil(data.length / 10) || 1;
 
   return (
@@ -245,7 +323,7 @@ export function LineChart({ data, unit, height = 240, xTitle = '' }: {
 
         {data.map((pt, i) => (
           <circle
-            key={pt.key} cx={px(i)} cy={py(pt.value)} r="3.4"
+            key={pt.key} cx={px(i)} cy={py(drawn[i]?.value ?? pt.value)} r="3.4"
             fill="#05070a" stroke={C.cyan} strokeWidth="1.4" className="bar-r"
             onMouseEnter={(e) => tip.show(e, pt.label, pt.note ?? `${nf(pt.value)} ${unit}`)}
             onMouseMove={tip.move}

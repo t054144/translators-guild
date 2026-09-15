@@ -243,8 +243,38 @@ kbd {
 /* ── main ────────────────────────────────────────────────────────────────── */
 
 .main { overflow-y: auto; overflow-x: hidden; position: relative; }
-.view { padding: 20px 24px 64px; max-width: 1680px; animation: viewIn 0.34s var(--ease) both; }
-@keyframes viewIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+/* The view fades on opacity alone. A transform here would make the view a
+   containing block for `position: fixed`, trapping full-screen overlays inside
+   the content column — the motion is carried by the panels instead. */
+.view { padding: 20px 24px 64px; max-width: 1680px; animation: viewIn 0.24s var(--ease) both; }
+@keyframes viewIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Panels arrive in sequence rather than all at once, so a section reads as
+   assembling instead of snapping into place. Cascade is capped at ~180ms —
+   past that a reveal stops feeling responsive and starts feeling slow. */
+@keyframes panelIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+.view > .stack > *,
+.view > .metrics,
+.view > .grid-2 > *,
+.view > .panel {
+  animation: panelIn 0.42s var(--ease) both;
+}
+.view > .stack > *:nth-child(1) { animation-delay: 0.01s; }
+.view > .stack > *:nth-child(2) { animation-delay: 0.05s; }
+.view > .stack > *:nth-child(3) { animation-delay: 0.09s; }
+.view > .stack > *:nth-child(4) { animation-delay: 0.13s; }
+.view > .stack > *:nth-child(5) { animation-delay: 0.16s; }
+.view > .stack > *:nth-child(6) { animation-delay: 0.18s; }
+.view > .stack > *:nth-child(n + 7) { animation-delay: 0.2s; }
+
+/* Panels inside a two-up row lag their container slightly, so the row reads
+   left-to-right rather than as one block. */
+.view > .stack > .grid-2 > *:nth-child(2),
+.view > .grid-2 > *:nth-child(2) { animation-delay: 0.08s; }
 
 .view-head {
   display: flex; flex-wrap: wrap; gap: 10px 24px;
@@ -347,6 +377,12 @@ thead th {
 thead th:hover { color: var(--cyan); }
 thead th[data-sorted] { color: var(--cyan); }
 tbody td { padding: 8px 12px; border-bottom: 1px solid var(--line); vertical-align: middle; }
+
+/* Windowed tables need a uniform row height so the spacer rows can hold the
+   correct scroll height. 34px matches 8px padding + one line of 12.5px text. */
+.tbl-wrap tbody tr { height: 34px; }
+.tbl-wrap tbody tr[aria-hidden='true'] { height: auto; }
+.tbl-wrap tbody tr[aria-hidden='true']:hover { background: none; cursor: default; }
 tbody tr { cursor: pointer; transition: background 0.1s var(--ease); }
 tbody tr:hover { background: var(--panel-2); }
 tbody tr.sel { background: var(--cyan-dim); }

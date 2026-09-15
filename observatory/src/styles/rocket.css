@@ -263,7 +263,6 @@
   z-index: 4;
   display: grid; place-items: center;
   width: 16px; height: 16px;
-  transition: bottom 0.5s var(--ease);
 }
 .node-dot {
   width: 9px; height: 9px; border-radius: 50%;
@@ -368,10 +367,23 @@
 
 /* ── data stream backdrop ────────────────────────────────────────────────── */
 
+/* The top/bottom fade is painted as a static overlay, not a mask.
+   A mask-image on this container forced the compositor to re-evaluate the
+   whole masked layer on every frame its children moved, which held the entire
+   page at 30fps. The overlay never changes, so it costs nothing to composite. */
 .stream {
   position: absolute; inset: 0; overflow: hidden; pointer-events: none;
   z-index: 0; opacity: 0.32;
-  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
+}
+.stream::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(
+    180deg,
+    #070b11 0%,
+    rgba(7, 11, 17, 0) 17%,
+    rgba(10, 14, 20, 0) 83%,
+    #0a0e14 100%);
 }
 .stream-col {
   position: absolute; top: -120%;

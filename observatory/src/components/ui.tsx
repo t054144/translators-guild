@@ -245,10 +245,49 @@ export function DataTable<T>({
     setSort(([k, d]) => (k === key ? [k, d === 'asc' ? 'desc' : 'asc'] : [key, 'desc']));
   }, []);
 
+  /**
+   * Row windowing.
+   *
+   * The table scrolls inside a fixed-height container, so reconciling every row
+   * pays for hundreds that are never on screen — a few hundred rows cost a
+   * visible frame on navigation, and the live dataset is several times the
+   * fixture. Only the visible slice plus an overscan margin is rendered; two
+   * spacer rows hold the scroll height so the scrollbar stays honest.
+   *
+   * This requires uniform row height, which `tbody tr` fixes in CSS.
+   */
+  const ROW_H = 34;
+  const OVERSCAN = 10;
+  const wrapRef = useRef<HTMLDivElement | null>(null);
+  const [view, setView] = useState({ start: 0, end: 40 });
+
+  const recalc = useCallback(() => {
+    const el = wrapRef.current;
+    if (!el) return;
+    const first = Math.max(0, Math.floor(el.scrollTop / ROW_H) - OVERSCAN);
+    const visible = Math.ceil(el.clientHeight / ROW_H) + OVERSCAN * 2;
+    setView({ start: first, end: first + visible });
+  }, []);
+
+  useEffect(() => {
+    recalc();
+    const el = wrapRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(recalc);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [recalc, rows.length]);
+
   if (rows.length === 0) return <div className="empty">{empty}</div>;
 
+  const start = Math.min(view.start, Math.max(0, sorted.length - 1));
+  const end = Math.min(view.end, sorted.length);
+  const window_ = sorted.slice(start, end);
+  const padTop = start * ROW_H;
+  const padBottom = Math.max(0, (sorted.length - end) * ROW_H);
+
   return (
-    <div className="tbl-wrap">
+    <div className="tbl-wrap" ref={wrapRef} onScroll={recalc}>
       <table>
         <thead>
           <tr>
@@ -266,7 +305,8 @@ export function DataTable<T>({
           </tr>
         </thead>
         <tbody>
-          {sorted.map((r, i) => {
+          {padTop > 0 && <tr aria-hidden="true" style={{ height: padTop }}><td colSpan={columns.length} /></tr>}
+          {window_.map((r, i) => {
             const id = rowId?.(r);
             return (
               <tr
@@ -282,6 +322,7 @@ export function DataTable<T>({
               </tr>
             );
           })}
+          {padBottom > 0 && <tr aria-hidden="true" style={{ height: padBottom }}><td colSpan={columns.length} /></tr>}
         </tbody>
       </table>
     </div>

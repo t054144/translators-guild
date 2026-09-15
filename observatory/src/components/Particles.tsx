@@ -53,14 +53,16 @@ export function Particles({ mode, intensity = 1, className }: Props) {
 
     let w = 0;
     let h = 0;
-    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+    // Decorative dots gain nothing from a 2x backing store, and it quadruples
+    // the fill cost. Text and charts are DOM/SVG, so they stay crisp regardless.
+    let dpr = Math.min(window.devicePixelRatio || 1, 1.25);
     let budget = mobile ? 140 : BUDGET_MAX;
 
     const resize = () => {
       const rect = canvas.parentElement?.getBoundingClientRect();
       w = Math.max(rect?.width ?? canvas.clientWidth, 1);
       h = Math.max(rect?.height ?? canvas.clientHeight, 1);
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      dpr = Math.min(window.devicePixelRatio || 1, 1.25);
       canvas.width = Math.floor(w * dpr);
       canvas.height = Math.floor(h * dpr);
       canvas.style.width = `${w}px`;
@@ -141,29 +143,41 @@ export function Particles({ mode, intensity = 1, className }: Props) {
       const k = intensityRef.current;
 
       if (mode === 'field') {
+        // Integrate first, then draw one batched path per parallax layer.
+        // Setting fillStyle/globalAlpha and issuing a fill per particle cost
+        // ~1000 canvas state changes a frame and pinned the page at 30fps;
+        // three fills total holds 60.
         for (const p of parts) {
           p.y += p.vy * k * dt;
           if (p.y > h) {
             p.y = -2;
             p.x = Math.random() * w;
           }
-          ctx.globalAlpha = 0.18 + p.layer * 0.2;
-          ctx.fillStyle = p.layer === 2 ? '#7fe3f2' : '#9fb0c4';
+        }
+        for (let layer = 0; layer < 3; layer += 1) {
+          ctx.globalAlpha = 0.18 + layer * 0.2;
+          ctx.fillStyle = layer === 2 ? '#7fe3f2' : '#9fb0c4';
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          for (const p of parts) {
+            if (p.layer !== layer) continue;
+            const d = p.r * 2;
+            ctx.rect(p.x, p.y, d, d);
+          }
           ctx.fill();
         }
       } else if (mode === 'data') {
+        ctx.globalAlpha = 0.5;
+        ctx.fillStyle = '#4dd4e8';
+        ctx.beginPath();
         for (const p of parts) {
           p.x += p.vx * k * dt;
           if (p.x > w) {
             p.x = -4;
             p.y = Math.random() * h;
           }
-          ctx.globalAlpha = 0.5;
-          ctx.fillStyle = '#4dd4e8';
-          ctx.fillRect(p.x, p.y, 3, 1);
+          ctx.rect(p.x, p.y, 3, 1);
         }
+        ctx.fill();
       } else {
         if (k > 0.02) spawnExhaust(Math.ceil(k * (mobile ? 3 : 7)));
         for (let i = parts.length - 1; i >= 0; i -= 1) {
@@ -173,16 +187,26 @@ export function Particles({ mode, intensity = 1, className }: Props) {
           p.vy *= 0.985;
           p.r *= 1.028;
           p.life -= dt;
-          if (p.life <= 0 || p.y > h + 40) {
-            parts.splice(i, 1);
-            continue;
-          }
-          const t = p.life / p.max;
+          if (p.life <= 0 || p.y > h + 40) parts.splice(i, 1);
+        }
+        // Four temperature bands rather than a unique colour per particle, so
+        // the plume draws in four batched fills instead of one per particle.
+        for (let band = 0; band < 4; band += 1) {
+          const lo = band / 4;
+          const hi = (band + 1) / 4;
+          const t = (lo + hi) / 2;
           ctx.globalAlpha = t * 0.5;
-          ctx.fillStyle = `hsl(${p.hue}, ${72 + t * 22}%, ${44 + t * 34}%)`;
+          ctx.fillStyle = `hsl(${20 + band * 8}, ${72 + t * 22}%, ${44 + t * 34}%)`;
           ctx.beginPath();
-          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-          ctx.fill();
+          let drew = false;
+          for (const p of parts) {
+            const life = p.life / p.max;
+            if (life < lo || life >= hi) continue;
+            ctx.moveTo(p.x + p.r, p.y);
+            ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+            drew = true;
+          }
+          if (drew) ctx.fill();
         }
         // Shed particles rather than drop frames.
         if (parts.length > budget) parts.splice(0, parts.length - budget);

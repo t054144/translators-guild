@@ -15,15 +15,41 @@ import type { Launch } from './lib/types.ts';
 
 import MissionControl from './sections/MissionControl.tsx';
 
-const LaunchDatabase = lazy(() => import('./sections/LaunchDatabase.tsx'));
-const Upcoming = lazy(() => import('./sections/Upcoming.tsx'));
-const RocketLab = lazy(() => import('./sections/RocketLab.tsx'));
-const BoosterReuse = lazy(() => import('./sections/BoosterReuse.tsx'));
-const PayloadIntel = lazy(() => import('./sections/PayloadIntel.tsx'));
-const LaunchSites = lazy(() => import('./sections/LaunchSites.tsx'));
-const Analytics = lazy(() => import('./sections/Analytics.tsx'));
-const DataExplorer = lazy(() => import('./sections/DataExplorer.tsx'));
-const SystemStatus = lazy(() => import('./sections/SystemStatus.tsx'));
+/**
+ * Section chunks are code-split so the first paint is the instrument frame,
+ * then warmed on the first idle callback. Without the warm-up, the first visit
+ * to a section punched a Suspense fallback into the middle of the navigation —
+ * a hard cut exactly where the transition should be continuous. The chunks are
+ * 4–10 KB each, so fetching them all costs less than one flash.
+ */
+const CHUNKS = {
+  launches: () => import('./sections/LaunchDatabase.tsx'),
+  upcoming: () => import('./sections/Upcoming.tsx'),
+  rockets: () => import('./sections/RocketLab.tsx'),
+  boosters: () => import('./sections/BoosterReuse.tsx'),
+  payloads: () => import('./sections/PayloadIntel.tsx'),
+  sites: () => import('./sections/LaunchSites.tsx'),
+  analytics: () => import('./sections/Analytics.tsx'),
+  explorer: () => import('./sections/DataExplorer.tsx'),
+  status: () => import('./sections/SystemStatus.tsx'),
+};
+
+const LaunchDatabase = lazy(CHUNKS.launches);
+const Upcoming = lazy(CHUNKS.upcoming);
+const RocketLab = lazy(CHUNKS.rockets);
+const BoosterReuse = lazy(CHUNKS.boosters);
+const PayloadIntel = lazy(CHUNKS.payloads);
+const LaunchSites = lazy(CHUNKS.sites);
+const Analytics = lazy(CHUNKS.analytics);
+const DataExplorer = lazy(CHUNKS.explorer);
+const SystemStatus = lazy(CHUNKS.status);
+
+type IdleFn = (cb: () => void) => void;
+const onIdle: IdleFn = (cb) => {
+  const ric = (window as unknown as { requestIdleCallback?: (c: () => void) => void }).requestIdleCallback;
+  if (ric) ric(cb);
+  else window.setTimeout(cb, 400);
+};
 
 export interface SectionDef {
   idx: string;
@@ -225,6 +251,12 @@ function Shell() {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [onKeyDown]);
 
+  // Warm every section chunk once the shell is idle, so navigation never
+  // stalls on a network round-trip mid-transition.
+  useEffect(() => {
+    onIdle(() => { for (const load of Object.values(CHUNKS)) void load(); });
+  }, []);
+
   const live = store.snapshot.meta.is_live;
 
   return (
@@ -325,7 +357,29 @@ npm run ingest -- --fixture # synthetic, flagged, for interface work`}
           </div>
         )}
 
-        <Suspense fallback={<div className="view"><div className="empty">LOADING MODULE…</div></div>}>
+        <Suspense
+          fallback={
+            <div className="view" aria-busy="true">
+              <div className="view-head">
+                <div style={{ width: '100%' }}>
+                  <div className="skel" style={{ width: 110, height: 8, marginBottom: 12 }} />
+                  <div className="skel" style={{ width: 260, height: 22 }} />
+                </div>
+              </div>
+              <div className="stack">
+                <div className="metrics">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <div className="metric" key={i}>
+                      <div className="skel" style={{ width: 70, height: 7 }} />
+                      <div className="skel" style={{ width: 54, height: 22, marginTop: 8 }} />
+                    </div>
+                  ))}
+                </div>
+                <div className="panel" style={{ height: 280 }} />
+              </div>
+            </div>
+          }
+        >
           {store.boot.phase === 'ready' && (
           <Routes>
             <Route path="/" element={<MissionControl />} />
