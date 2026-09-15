@@ -14,7 +14,7 @@
 import { useMemo } from 'react';
 import { Panel } from '../components/ui.tsx';
 import { useStore } from '../lib/store.tsx';
-import { NOT_PROVIDED, fmtDateTime } from '../lib/analytics.ts';
+import { NOT_PROVIDED, dataKind, dataKindLabel, fmtDateTime } from '../lib/analytics.ts';
 import { SOURCE_STATE_LABEL, type SourceState } from '../lib/types.ts';
 import { CONNECTORS } from '../lib/connectors.ts';
 
@@ -60,8 +60,8 @@ export default function SystemStatus() {
           </p>
         </div>
         <div className="row">
-          <span className={`badge ${meta.is_live ? 'b-ok' : 'b-warn'}`}>
-            {meta.is_live ? 'LIVE DATA' : 'FIXTURE DATA'}
+          <span className={`badge ${dataKind(meta) === 'fixture' ? 'b-warn' : dataKind(meta) === 'archive' ? 'b-info' : 'b-ok'}`}>
+            {dataKindLabel(meta)}
           </span>
           <span className={`badge ${freshness.cls}`}>{freshness.label}</span>
         </div>

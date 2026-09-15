@@ -10,7 +10,7 @@ import { HashRouter, NavLink, Navigate, Route, Routes, useNavigate } from 'react
 
 import { StoreProvider, useStore } from './lib/store.tsx';
 import { TipProvider } from './components/ui.tsx';
-import { fmtDate } from './lib/analytics.ts';
+import { dataKind, dataKindLabel, fmtDate } from './lib/analytics.ts';
 import type { Launch } from './lib/types.ts';
 
 import MissionControl from './sections/MissionControl.tsx';
@@ -32,6 +32,7 @@ const CHUNKS = {
   analytics: () => import('./sections/Analytics.tsx'),
   explorer: () => import('./sections/DataExplorer.tsx'),
   status: () => import('./sections/SystemStatus.tsx'),
+  debrief: () => import('./sections/Debrief.tsx'),
 };
 
 const LaunchDatabase = lazy(CHUNKS.launches);
@@ -43,6 +44,7 @@ const LaunchSites = lazy(CHUNKS.sites);
 const Analytics = lazy(CHUNKS.analytics);
 const DataExplorer = lazy(CHUNKS.explorer);
 const SystemStatus = lazy(CHUNKS.status);
+const Debrief = lazy(CHUNKS.debrief);
 
 type IdleFn = (cb: () => void) => void;
 const onIdle: IdleFn = (cb) => {
@@ -70,6 +72,7 @@ export const SECTIONS: SectionDef[] = [
   { idx: '08', path: '/analytics', label: 'Mission Analytics', short: 'ANALYTICS' },
   { idx: '09', path: '/explorer', label: 'Data Explorer', short: 'DATA' },
   { idx: '10', path: '/status', label: 'System Status', short: 'STATUS' },
+  { idx: '11', path: '/debrief', label: 'Debrief', short: 'DEBRIEF' },
 ];
 
 /* ── command palette ─────────────────────────────────────────────────────── */
@@ -257,7 +260,7 @@ function Shell() {
     onIdle(() => { for (const load of Object.values(CHUNKS)) void load(); });
   }, []);
 
-  const live = store.snapshot.meta.is_live;
+  const kind = dataKind(store.snapshot.meta);
 
   return (
     <div className="shell">
@@ -270,8 +273,9 @@ function Shell() {
           </div>
         </div>
 
-        <span className={`badge ${live ? 'b-ok' : 'b-warn'}`} title={store.snapshot.meta.provenance_note}>
-          {live ? 'LIVE DATA' : 'FIXTURE DATA'}
+        <span className={`badge ${kind === 'fixture' ? 'b-warn' : kind === 'archive' ? 'b-info' : 'b-ok'}`}
+              title={store.snapshot.meta.provenance_note}>
+          {dataKindLabel(store.snapshot.meta)}
         </span>
 
         <div className="topbar-spacer" />
@@ -392,6 +396,7 @@ npm run ingest -- --fixture # synthetic, flagged, for interface work`}
             <Route path="/analytics" element={<Analytics />} />
             <Route path="/explorer" element={<DataExplorer />} />
             <Route path="/status" element={<SystemStatus />} />
+            <Route path="/debrief" element={<Debrief />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           )}

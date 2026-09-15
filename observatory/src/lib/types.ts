@@ -119,6 +119,10 @@ export interface Launch {
   wiki_url: string | null;
   image_url: string | null;
   upcoming: boolean;
+  /** Failure cause exactly as the source records it. Never inferred. */
+  failure_reason: string | null;
+  /** Seconds after liftoff at which the source places the failure. */
+  failure_time_s: number | null;
 }
 
 export interface Rocket {
@@ -244,11 +248,19 @@ export interface IngestReport {
   dropped: number;
 }
 
+/**
+ * What kind of records the snapshot holds. `live` was fetched from a serving
+ * API; `archive` is real data from a frozen source; `fixture` is synthetic.
+ * The distinction matters on every badge — "live" on frozen data is a lie.
+ */
+export type DataKind = 'live' | 'archive' | 'fixture';
+
 export interface SnapshotMeta {
   schema_version: number;
   generated_at: string | null;
-  /** True only when every record came from a live source fetch. */
+  /** True for real records (live or archive); false for fixture. */
   is_live: boolean;
+  data_kind?: DataKind;
   /** Loud, human-readable statement of what this data actually is. */
   provenance_note: string;
   sources: SourceHealth[];

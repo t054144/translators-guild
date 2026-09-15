@@ -61,6 +61,14 @@ function Dossier({ launch, onClose }: { launch: Launch; onClose: () => void }) {
       state: launch.landing_outcome === 'success' ? 'ok' : launch.landing_outcome === 'failure' ? 'fail' : 'none',
     });
   }
+  if (launch.failure_reason) {
+    events.push({
+      t: launch.failure_time_s !== null ? `T+${launch.failure_time_s}s` : 'FAILURE',
+      label: launch.failure_reason,
+      detail: 'Cause as recorded by the source — failures[].reason',
+      state: 'fail',
+    });
+  }
   events.push({
     t: 'OUTCOME',
     label: OUTCOME_LABEL[launch.outcome],

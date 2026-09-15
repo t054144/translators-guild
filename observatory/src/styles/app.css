@@ -662,3 +662,45 @@ input::placeholder { color: var(--text-4); }
   .masthead-hero { padding-top: 16px; }
   .hero-title { font-size: clamp(1.9rem, 9vw, 2.6rem); }
 }
+
+/* ── narrative (Debrief) ─────────────────────────────────────────────────── */
+
+/* Editorial measure inside a console. The prose is set wider and larger than
+   any panel text because it is meant to be read start to finish, not scanned;
+   the figures inside it stay in the telemetry face so they read as measured. */
+.narrative {
+  border: 1px solid var(--line-2);
+  border-radius: var(--r);
+  background: var(--panel);
+  overflow: hidden;
+}
+.nar-beat {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 18px;
+  padding: clamp(18px, 2.4vw, 28px) clamp(16px, 2.4vw, 30px);
+  border-bottom: 1px solid var(--line);
+}
+.nar-beat:last-child { border-bottom: 0; }
+.nar-mark { display: flex; justify-content: flex-end; padding-top: 4px; }
+.nar-idx {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+  color: var(--cyan); border: 1px solid var(--cyan-line);
+  padding: 3px 7px; height: fit-content;
+}
+.nar-text { min-width: 0; max-width: 74ch; }
+.nar-head {
+  font-family: var(--cond); font-size: clamp(17px, 1.6vw, 21px); font-weight: 600;
+  letter-spacing: 0.01em; margin: 6px 0 10px; text-wrap: balance;
+}
+.nar-body { margin: 0; font-size: clamp(14px, 1.15vw, 15.5px); line-height: 1.72; color: var(--text-2); text-wrap: pretty; }
+.nar-n {
+  font-family: var(--mono); font-variant-numeric: tabular-nums;
+  color: var(--text); background: var(--panel-3);
+  padding: 0 5px; border-radius: 2px; font-size: 0.92em;
+}
+.note.flag { color: var(--warn); }
+@media (max-width: 900px) {
+  .nar-beat { grid-template-columns: 1fr; gap: 8px; }
+  .nar-mark { justify-content: flex-start; }
+}

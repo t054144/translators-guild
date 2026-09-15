@@ -125,7 +125,7 @@ export function Ascent({ launch, rocket, boosters, payloads, onExit, onOpenDossi
           { label: 'SOURCE STATUS STRING', value: launch.outcome_raw },
           { label: 'LANDING', value: launch.landing_outcome.replace('_', ' ').toUpperCase() },
           { label: 'LANDING ZONE', value: launch.landing_zone },
-          ...(failed ? [{ label: 'CAUSE', value: null }] : []),
+          ...(failed ? [{ label: launch.failure_time_s !== null ? `CAUSE (T+${launch.failure_time_s}s)` : 'CAUSE', value: launch.failure_reason }] : []),
         ];
     }
   }, [current.id, launch, rocket, boosters, payloads, failed]);
@@ -230,7 +230,9 @@ export function Ascent({ launch, rocket, boosters, payloads, onExit, onOpenDossi
               <div style={{ padding: '10px 14px', borderTop: '1px solid var(--line-2)' }}>
                 <span className="badge b-fail">TRAJECTORY TERMINATED</span>
                 <p style={{ margin: '8px 0 0', fontSize: 12.5, color: 'var(--text-2)', lineHeight: 1.6 }}>
-                  The source records the outcome but no cause. No explanation is generated here.
+                  {launch.failure_reason
+                    ? `Cause as recorded by the source: “${launch.failure_reason}”. Nothing beyond that is inferred.`
+                    : 'The source records the outcome but no cause. No explanation is generated here.'}
                 </p>
               </div>
             )}

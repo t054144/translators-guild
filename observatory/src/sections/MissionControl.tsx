@@ -18,7 +18,7 @@ import { Counter, LineagePanel, Panel, StatusBadge } from '../components/ui.tsx'
 import { Proportion } from '../components/charts.tsx';
 import { useStore } from '../lib/store.tsx';
 import {
-  NOT_PROVIDED, fmtDate, fmtDateTime, headlineMetrics, indexById, type Metric,
+  NOT_PROVIDED, dataKind, dataKindLabel, fmtDate, fmtDateTime, headlineMetrics, indexById, type Metric,
 } from '../lib/analytics.ts';
 import { OUTCOME_LABEL, type Launch } from '../lib/types.ts';
 
@@ -159,6 +159,7 @@ export default function MissionControl() {
   }, []);
 
   const live = snapshot.meta.is_live;
+  const kind = dataKind(snapshot.meta);
   const recent = useMemo(() => [...launches].reverse().slice(0, 7), [launches]);
 
   const outcomeParts = useMemo(() => {
@@ -196,7 +197,7 @@ export default function MissionControl() {
       <header className="masthead-hero">
         <div className="hero-kicker">
           <span className="eyebrow">01 — Mission Control</span>
-          <span className={`badge ${live ? 'b-ok' : 'b-warn'}`}>{live ? 'LIVE DATA' : 'FIXTURE DATA'}</span>
+          <span className={`badge ${kind === 'fixture' ? 'b-warn' : kind === 'archive' ? 'b-info' : 'b-ok'}`}>{dataKindLabel(snapshot.meta)}</span>
           <span className="lbl">
             {snapshot.meta.window.from?.slice(0, 4) ?? '—'} – {snapshot.meta.window.to?.slice(0, 4) ?? '—'}
           </span>

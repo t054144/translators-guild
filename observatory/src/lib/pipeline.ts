@@ -174,6 +174,8 @@ export function normalizeLaunch(raw: RawRecord, ctx: NormalizeContext): RecordEn
     wiki_url: asString(dig(p, 'pad', 'wiki_url')),
     image_url: asString(dig(p, 'image', 'image_url')) ?? asString(dig(p, 'image')),
     upcoming: net ? new Date(net).getTime() > Date.now() : false,
+    failure_reason: asString(dig(p, 'failreason')),
+    failure_time_s: null,
   };
 
   const q = qualityOf(payload as unknown as Record<string, unknown>,
@@ -504,10 +506,16 @@ export function validateLaunches(rows: RecordEnvelope<Launch>[]): ValidationResu
     return true;
   });
 
-  // Flight numbers are ours, assigned chronologically over the kept set.
+  // Where the source numbered its own flights, that numbering is kept. Only a
+  // record with no flight number receives a snapshot index, and is marked so.
   kept.sort((a, b) => (a.normalized_payload.net! < b.normalized_payload.net! ? -1 : 1));
+  let filled = 0;
   kept.forEach((env, i) => {
-    env.normalized_payload.flight_number = i + 1;
+    if (env.normalized_payload.flight_number === null) {
+      env.normalized_payload.flight_number = i + 1;
+      env.data_quality.flight_number = 'derived';
+      filled += 1;
+    }
   });
 
   reports.push({
@@ -538,7 +546,9 @@ export function validateLaunches(rows: RecordEnvelope<Launch>[]): ValidationResu
   }
   reports.push({
     step: 'derive:flight_number',
-    detail: 'Sequential index over the kept set, ordered by launch date. Local to this snapshot.',
+    detail: filled === 0
+      ? 'Source supplied a flight number on every record; none were assigned here.'
+      : `${filled} record(s) had no source flight number and received a snapshot index by launch date.`,
     in_count: kept.length,
     out_count: kept.length,
     dropped: 0,

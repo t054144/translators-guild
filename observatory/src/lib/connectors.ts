@@ -185,8 +185,37 @@ export const spacexArchive: Connector = {
   },
 };
 
+/* ── r/SpaceX API v4, reassembled from community mirrors ─────────────────── */
+
+/**
+ * The archived v4 dataset, recovered. While the API was live, dozens of public
+ * repositories saved verbatim dumps of its collections. Six of those dumps —
+ * launches, rockets, cores, launchpads, landpads, payloads — are pinned under
+ * data/v4-mirror/, and every foreign key between them resolves, which is what
+ * confirms they came from the same era of the same database.
+ *
+ * It is real and it is complete for what it covers. It is also frozen at
+ * 2022-12-05 and will never gain a record. System Status reports it STALE for
+ * that reason; the badges say ARCHIVE, never LIVE.
+ *
+ * File reading lives in the ingest CLI, not here — this module is imported by
+ * the browser bundle for the registry table and must stay free of node APIs.
+ */
+export const spacexV4Mirror: Connector = {
+  id: 'spacex-v4-mirror',
+  name: 'r/SpaceX API v4 — reassembled from community mirrors',
+  endpoint: 'data/v4-mirror/*.json',
+  docs_url: 'https://github.com/r-spacex/SpaceX-API/tree/master/docs',
+  decommissioned: false,
+  decommission_note: null,
+  provides: ['launch', 'rocket', 'booster', 'launchpad', 'landing_zone', 'payload'],
+  async fetchAll(): Promise<ConnectorResult> {
+    throw new Error('spacex-v4-mirror is loaded from pinned files by scripts/ingest.ts, not fetched.');
+  },
+};
+
 /* ── registry ────────────────────────────────────────────────────────────── */
 
-export const CONNECTORS: Connector[] = [launchLibrary2, spacexArchive];
+export const CONNECTORS: Connector[] = [spacexV4Mirror, launchLibrary2, spacexArchive];
 
 export const activeConnectors = (): Connector[] => CONNECTORS.filter((c) => !c.decommissioned);
