@@ -29,14 +29,17 @@
 .complex::after {
   content: '';
   position: absolute;
-  left: 0; right: 0; bottom: 84px; height: 1px;
+  left: 0; right: 0; bottom: 94px; height: 1px;
   background: linear-gradient(90deg, transparent, var(--line-3) 22%, var(--line-3) 78%, transparent);
   z-index: 1;
 }
 
 .pad-deck {
   position: absolute;
-  left: 50%; bottom: 58px; transform: translateX(-50%);
+  /* Deck top is aligned to the engine bells, not to the SVG's lower edge:
+     the viewBox carries ~18px of empty space below the hardware at hero size,
+     which otherwise leaves the vehicle hovering above its own pad. */
+  left: 50%; bottom: 68px; transform: translateX(-50%);
   width: 190px; height: 26px;
   border: 1px solid var(--line-3);
   border-bottom-width: 2px;

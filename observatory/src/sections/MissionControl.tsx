@@ -193,19 +193,41 @@ export default function MissionControl() {
 
   return (
     <div className="view">
-      <div className="view-head">
-        <div>
+      <header className="masthead-hero">
+        <div className="hero-kicker">
           <span className="eyebrow">01 — Mission Control</span>
-          <h1 className="view-title">Mission Intelligence</h1>
-          <p className="view-sub">
-            Explore the operational history, engineering patterns, and launch data behind SpaceX missions.
-          </p>
+          <span className={`badge ${live ? 'b-ok' : 'b-warn'}`}>{live ? 'LIVE DATA' : 'FIXTURE DATA'}</span>
+          <span className="lbl">
+            {snapshot.meta.window.from?.slice(0, 4) ?? '—'} – {snapshot.meta.window.to?.slice(0, 4) ?? '—'}
+          </span>
         </div>
-        <div className="row">
+
+        <h1 className="hero-title">
+          Mission <span className="b">Intelligence</span>
+        </h1>
+
+        <div className="hero-rule">
+          <span className="lbl">SpaceX Data Observatory</span>
+        </div>
+
+        <p className="hero-sub">
+          Explore the operational history, engineering patterns, and launch data behind SpaceX missions.
+        </p>
+
+        <div className="hero-actions">
+          {focus && (
+            <button className="btn primary" type="button" onClick={() => ignite(focus)}>
+              ENTER MISSION MODE
+            </button>
+          )}
           <button className="btn" type="button" onClick={() => nav('/explorer')}>DATA LINEAGE</button>
-          {focus && <button className="btn primary" type="button" onClick={() => ignite(focus)}>ENTER MISSION MODE</button>}
+          <button className="btn" type="button" onClick={() => nav('/launches')}>LAUNCH DATABASE</button>
+          <span className="spacer" />
+          <span className="lbl">
+            {Object.values(snapshot.meta.counts).reduce((a, b) => a + b, 0).toLocaleString()} records collected
+          </span>
         </div>
-      </div>
+      </header>
 
       <div className="stack">
         <div className={`prov-banner${live ? ' live' : ''}`}>
