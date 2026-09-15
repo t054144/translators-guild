@@ -201,6 +201,18 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   transition: opacity 500ms var(--ease), transform 500ms var(--ease);
 }
 #spine.away { opacity: 0; transform: translateY(-100%); pointer-events: none; }
+#whoami {
+  position: absolute; left: clamp(.75rem,3vw,1.5rem); top: 50%; transform: translateY(-50%);
+  display: flex; align-items: center; gap: .48rem; max-width: 34vw;
+  font-size: .72rem; font-weight: 600; letter-spacing: .04em; color: var(--white);
+  overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+}
+#whoami .who-dot {
+  width: 7px; height: 7px; border-radius: 50%; flex: none;
+  background: var(--grad-h); box-shadow: 0 0 10px rgba(167,38,208,.9);
+}
+#whoami #who-name { overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 760px) { #whoami { max-width: 42vw; font-size: .68rem; } }
 .act {
   display: flex; align-items: center; gap: .5rem;
   font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
@@ -272,7 +284,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .logo3d { perspective: 950px; transform-style: preserve-3d;
   transition: transform 320ms ease-out; will-change: transform; }
 .logo-face {
-  display: block; width: clamp(116px, 25vw, 174px); aspect-ratio: 1;
+  display: block; width: clamp(84px, 17vw, 116px); aspect-ratio: 1;
   background-image: var(--logo); background-size: cover; background-position: center;
   border-radius: 22.5%; transform-style: preserve-3d;
   box-shadow: 0 34px 64px -20px rgba(101,15,208,.85),
@@ -304,7 +316,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 
 /* ═══════════ THE GATE ═══════════ */
 #gate { max-width: 60rem; margin: 0 auto; display: grid; gap: clamp(1.5rem,4vw,2.5rem); }
-.brandmark { display: grid; justify-items: center; gap: 1.5rem; }
+.brandmark { display: grid; justify-items: center; gap: .9rem; }
 
 .door { padding: clamp(1.5rem,5vw,3rem); position: relative; overflow: hidden; }
 .door::before { content: ""; position: absolute; inset: 0; background: var(--grad-soft); pointer-events: none; }
@@ -803,6 +815,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 <div class="dotfield" aria-hidden="true"></div>
 
 <nav id="spine" aria-label="Where you are">
+  <span id="whoami" hidden><span class="who-dot" aria-hidden="true"></span><span id="who-name"></span></span>
   <span class="act" data-act="1"><span class="a-n">I</span><span class="a-bar"><i></i></span><span class="a-lab">The Threshold</span></span>
   <span class="act" data-act="2"><span class="a-n">II</span><span class="a-bar"><i></i></span><span class="a-lab">The Method</span></span>
   <span class="act" data-act="3"><span class="a-n">III</span><span class="a-bar"><i></i></span><span class="a-lab">The Trials</span></span>
@@ -823,43 +836,31 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 
     <div class="panel door">
       <div class="step" id="step-seal">
-        <div class="step-head">
-          <span class="step-chip">1</span>
-          <span class="sh-en">The Member's Seal</span>
+        <div class="auth-tabs" role="tablist" aria-label="Log in or sign up">
+          <button class="auth-tab on" id="tab-in" role="tab" aria-selected="true">Log in</button>
+          <button class="auth-tab" id="tab-up" role="tab" aria-selected="false">Sign up</button>
         </div>
-        <div class="auth-tabs" role="tablist" aria-label="Sign in or join">
-          <button class="auth-tab on" id="tab-in" role="tab" aria-selected="true">Sign in</button>
-          <button class="auth-tab" id="tab-up" role="tab" aria-selected="false">Join the guild</button>
+        <p class="note" id="auth-lede">You stay logged in on this browser, and your progress follows you to any device you log in from.</p>
+        <div class="field" id="field-name" hidden>
+          <label for="fullname">Full name</label>
+          <input id="fullname" type="text" autocomplete="name" placeholder="Your name">
         </div>
-        <p class="note" id="auth-lede">Your marks are kept against your address, so the climb follows you to any device.</p>
         <div class="field">
-          <label for="email">Guild address</label>
+          <label for="email">Email</label>
           <input id="email" type="email" autocomplete="username" spellcheck="false" placeholder="you@example.com">
         </div>
         <div class="field">
-          <label for="pass">Passphrase</label>
+          <label for="pass">Password</label>
           <input id="pass" type="password" autocomplete="current-password" placeholder="••••••••">
         </div>
         <div class="field" id="field-confirm" hidden>
-          <label for="pass2">Passphrase again</label>
+          <label for="pass2">Confirm password</label>
           <input id="pass2" type="password" autocomplete="new-password" placeholder="••••••••">
         </div>
         <p class="msg" id="seal-msg" hidden></p>
         <div class="row">
-          <button id="seal-btn">Enter the hall</button>
-          <button class="link" id="forgot-btn">Forgotten it?</button>
-        </div>
-      </div>
-
-      <div class="step" id="step-resume" hidden>
-        <div class="step-head">
-          <span class="step-chip">1</span>
-          <span class="sh-en">The Member's Seal</span>
-        </div>
-        <p class="note">This browser still holds your seal, so there is nothing to type. Signed in as <b id="resume-who"></b>.</p>
-        <div class="row">
-          <button id="resume-btn">Enter the hall</button>
-          <button class="link" id="resume-other">Use another address</button>
+          <button id="seal-btn">Log in</button>
+          <button class="link" id="forgot-btn">Forgot your password?</button>
         </div>
       </div>
     </div>
@@ -877,7 +878,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       </div>
       <div class="rank-box">
         <span class="r-n">Rank</span>
-        <p class="r-en" id="rank-en">Apprentice</p>
+        <p class="r-en" id="rank-en">Beginner</p>
         <span class="r-n" id="rank-n">0 of 9 marks</span>
       </div>
     </div>
@@ -918,7 +919,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 
     <div class="hall-foot">
       <button class="ghost" id="reset-btn">Melt the marks</button>
-      <button class="ghost" id="signout-btn">Sign out</button>
+      <button class="ghost" id="signout-btn">Log out</button>
       <p class="note" id="store-note" style="flex:1 1 20rem"></p>
     </div>
 
@@ -962,11 +963,11 @@ function paintRing(svg, earned) {
 
 /* ═══════════ RANKS ═══════════ */
 const RANKS = [
-  { at: 0, en: "Apprentice",  ar: "مُبتَدِئ" },
-  { at: 3, en: "Scribe",      ar: "ناسِخ" },
-  { at: 5, en: "Dragoman",    ar: "تُرجُمان" },
-  { at: 7, en: "Master",      ar: "مُعَلِّم" },
-  { at: 9, en: "Guildmaster", ar: "شيخ الصِّناعة" }
+  { at: 0, en: "Beginner",          ar: "مُبتَدِئ" },
+  { at: 3, en: "Intermediate",      ar: "مُتَوَسِّط" },
+  { at: 5, en: "Advanced",          ar: "مُتَقَدِّم" },
+  { at: 7, en: "Professional",      ar: "مُحتَرِف" },
+  { at: 9, en: "Master Translator", ar: "مُتَرجِم أُستاذ" }
 ];
 
 /* ═══════════ PORTRAITS ═══════════ */
@@ -1952,15 +1953,27 @@ const ITEMS = [
 
 /* ═══════════ STATE ═══════════ */
 const STORE_KEY = "nafithat-al-mutarjim-v1";
-let state = { marks: {}, member: "" };
+let state = { marks: {}, member: "", name: "" };
 
 function load() {
   try { const raw = localStorage.getItem(STORE_KEY); if (raw) state = Object.assign(state, JSON.parse(raw)); }
   catch (e) {}
+  state.seenRank = normRank(state.seenRank);
 }
 function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
 function markCount() { return Object.keys(state.marks).filter(k => state.marks[k]).length; }
 function currentRank() { let r = RANKS[0]; const n = markCount(); for (const c of RANKS) if (n >= c.at) r = c; return r; }
+/* The ladder used to be named after guild offices. A stored rank from then
+   maps onto its rung here, so nobody is announced a level they already had. */
+const OLD_RANKS = { Apprentice: 0, Scribe: 3, Dragoman: 5, Master: 7, Guildmaster: 9 };
+function normRank(name) {
+  if (!name) return "";
+  if (RANKS.some(r => r.en === name)) return name;
+  const at = OLD_RANKS[name];
+  if (at === undefined) return "";
+  const hit = RANKS.filter(r => r.at <= at).pop();
+  return hit ? hit.en : "";
+}
 function grant(id) {
   if (!state.marks[id]) { state.marks[id] = true; save(); pushBackend(); return true; }
   return false;
@@ -2022,7 +2035,13 @@ function asSession(j) {
     access_token: j.access_token,
     refresh_token: j.refresh_token || "",
     expires_at: Date.now() + ((j.expires_in || 3600) * 1000),
-    user: { id: (j.user && j.user.id) || "", email: ((j.user && j.user.email) || "").toLowerCase() }
+    user: {
+      id: (j.user && j.user.id) || "",
+      email: ((j.user && j.user.email) || "").toLowerCase(),
+      /* the name given at sign-up; Supabase keeps it on the account, so it
+         comes back on every later log-in and nobody types it twice */
+      name: ((j.user && j.user.user_metadata && j.user.user_metadata.full_name) || "").trim()
+    }
   };
 }
 
@@ -2053,13 +2072,20 @@ async function freshToken() {
     const next = asSession(await authPost("/token?grant_type=refresh_token",
                                           { refresh_token: session.refresh_token }));
     if (!next) { storeSession(null); return null; }
+    next.user.id = next.user.id || session.user.id;
+    next.user.email = next.user.email || session.user.email;
+    next.user.name = next.user.name || session.user.name || "";
     storeSession(next);
     return next.access_token;
   } catch (e) { storeSession(null); return null; }
 }
 
-async function signUp(email, pass) {
-  return asSession(await authPost("/signup", { email: email, password: pass }));
+async function signUp(email, pass, name) {
+  /* full_name rides in user_metadata, so it belongs to the account rather
+     than to this browser and is waiting on the next log-in from anywhere */
+  return asSession(await authPost("/signup", {
+    email: email, password: pass, data: { full_name: name }
+  }));
 }
 
 async function signIn(email, pass) {
@@ -2127,7 +2153,7 @@ function absorb(row) {
   if (row.marks && typeof row.marks === "object") {
     Object.keys(row.marks).forEach(k => { if (row.marks[k]) state.marks[k] = true; });
   }
-  if (typeof row.seen_rank === "string" && row.seen_rank && !state.seenRank) state.seenRank = row.seen_rank;
+  if (typeof row.seen_rank === "string" && row.seen_rank && !state.seenRank) state.seenRank = normRank(row.seen_rank);
   if (row.finale_seen) state.finale = true;
   save();
   return markCount() !== before;
@@ -2194,7 +2220,7 @@ document.addEventListener("visibilitychange", async () => {
 
 const BACKENDS = {
   supabase: { label: "Supabase · live", live: true,
-    note: "<b>Backend live — Supabase.</b> Each mark is written to a Postgres row owned by your account, and the database checks that ownership on every read and write, so the climb follows you to any device you sign in from." },
+    note: "<b>Backend live — Supabase.</b> Each mark is written to a Postgres row owned by your account, and the database checks that ownership on every read and write, so the climb follows you to any device you log in from." },
   guild: { label: "Artifact store · live", live: true,
     note: "<b>Backend live — artifact store.</b> An artifact sandbox blocks outbound requests, so this copy uses the built-in store rather than Supabase. Still server-side, still cross-device." },
   local: { label: "Local only · this browser", live: false,
@@ -2301,13 +2327,15 @@ function setAct(n) {
 })();
 
 /* ═══════════ THE GATE ═══════════ */
-let authMode = "in";          // "in" to sign in, "up" to join
+let authMode = "in";          // "in" to log in, "up" to sign up
 let authBusy = false;
 
 const gateEl = {
   tabIn: document.getElementById("tab-in"),
   tabUp: document.getElementById("tab-up"),
   lede: document.getElementById("auth-lede"),
+  name: document.getElementById("fullname"),
+  nameField: document.getElementById("field-name"),
   email: document.getElementById("email"),
   pass: document.getElementById("pass"),
   pass2: document.getElementById("pass2"),
@@ -2324,28 +2352,19 @@ function gateSay(text, good) {
 }
 function gateQuiet() { gateEl.msg.hidden = true; gateEl.msg.classList.remove("good"); }
 
-/* Back to the seal, so a signed-out member returns to a clean threshold. */
+/* Back to a clean form, so a logged-out member starts from an empty one. */
 function resetGateSteps() {
   const a = document.getElementById("step-seal");
-  document.getElementById("step-resume").hidden = true;
   a.hidden = false; a.classList.remove("swap-out", "swap-in");
 }
 
-/* A remembered member meets the gate on every visit like everyone else, but
-   has nothing to type: the session in this browser is still good, so the
-   passphrase is replaced by a single way back in. */
-function showResume(email) {
-  document.getElementById("resume-who").textContent = email;
-  document.getElementById("step-seal").hidden = true;
-  document.getElementById("step-resume").hidden = false;
+/* The member's name, top left, for as long as they are logged in. */
+function paintWho() {
+  const box = document.getElementById("whoami");
+  const who = (state.name || "").trim() || state.member || "";
+  box.hidden = !who;
+  document.getElementById("who-name").textContent = who;
 }
-
-document.getElementById("resume-btn").addEventListener("click", unlock);
-document.getElementById("resume-other").addEventListener("click", () => {
-  /* the hall's own sign-out already clears the session, forgets this
-     browser's copy of the marks and lands back on the seal */
-  document.getElementById("signout-btn").click();
-});
 
 function setAuthMode(mode) {
   authMode = mode;
@@ -2354,34 +2373,37 @@ function setAuthMode(mode) {
   gateEl.tabIn.classList.toggle("on", !up);
   gateEl.tabUp.setAttribute("aria-selected", String(up));
   gateEl.tabIn.setAttribute("aria-selected", String(!up));
+  /* a new member gives a name and confirms the password; a returning one
+     has both on the account already and only proves who they are */
+  gateEl.nameField.hidden = !up;
   gateEl.confirm.hidden = !up;
-  gateEl.btn.textContent = up ? "Take the seal" : "Enter the hall";
+  gateEl.btn.textContent = up ? "Sign up" : "Log in";
   gateEl.forgot.hidden = up;
   gateEl.pass.setAttribute("autocomplete", up ? "new-password" : "current-password");
   gateEl.lede.textContent = up
-    ? "Choose a passphrase of at least eight characters. It belongs to your account, not to the site."
-    : "You stay signed in on this browser, and your marks follow you to any device you sign in from.";
+    ? "Your name and password belong to your account, not to this browser. Eight characters or more for the password."
+    : "You stay logged in on this browser, and your progress follows you to any device you log in from.";
   gateQuiet();
 }
 
 function gateBusy(on, label) {
   authBusy = on;
   gateEl.btn.disabled = on;
-  gateEl.btn.textContent = on ? label : (authMode === "up" ? "Take the seal" : "Enter the hall");
+  gateEl.btn.textContent = on ? label : (authMode === "up" ? "Sign up" : "Log in");
 }
 
 gateEl.tabIn.addEventListener("click", () => setAuthMode("in"));
 gateEl.tabUp.addEventListener("click", () => setAuthMode("up"));
 gateEl.btn.addEventListener("click", pressSeal);
-[gateEl.email, gateEl.pass, gateEl.pass2].forEach(f =>
+[gateEl.name, gateEl.email, gateEl.pass, gateEl.pass2].forEach(f =>
   f.addEventListener("keydown", e => { if (e.key === "Enter") pressSeal(); }));
 
 gateEl.forgot.addEventListener("click", async () => {
   const email = gateEl.email.value.trim().toLowerCase();
-  if (!email) { gateSay("Type your guild address first, then ask again."); return; }
+  if (!email) { gateSay("Type your email first, then ask again."); return; }
   try {
     await sendReset(email);
-    gateSay("If that address is on the roll, a reset link is on its way to it.", true);
+    gateSay("If that email has an account, a reset link is on its way to it.", true);
   } catch (e) {
     gateSay("The reset could not be sent: " + e.message);
   }
@@ -2391,76 +2413,83 @@ async function pressSeal() {
   if (authBusy) return;
   const email = gateEl.email.value.trim().toLowerCase();
   const pass = gateEl.pass.value;
+  const name = gateEl.name.value.trim().replace(/\s+/g, " ");
   gateQuiet();
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { gateSay("That does not look like an address."); return; }
-  if (!pass) { gateSay("The passphrase is missing."); return; }
+  if (authMode === "up" && !name) { gateSay("Your full name is missing."); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { gateSay("That does not look like an email address."); return; }
+  if (!pass) { gateSay("The password is missing."); return; }
 
   if (authMode === "up") {
     if (pass.length < 8) { gateSay("Eight characters at least &mdash; this one is shorter."); return; }
-    if (pass !== gateEl.pass2.value) { gateSay("The two passphrases do not match."); return; }
-    gateBusy(true, "Cutting the seal\u2026");
+    if (pass !== gateEl.pass2.value) { gateSay("The two passwords do not match."); return; }
+    gateBusy(true, "Creating your account\u2026");
     try {
-      const sess = await signUp(email, pass);
-      if (sess) { storeSession(sess); enterHall(sess.user.email || email); return; }
+      const sess = await signUp(email, pass, name);
+      if (sess) { storeSession(sess); enterHall(sess.user.email || email, sess.user.name || name); return; }
       // the project asks for a confirmed address before it hands out a session
       gateBusy(false);
       setAuthMode("in");
       gateEl.email.value = email;
-      gateSay("Seal cut. Confirm the address from your inbox, then sign in.", true);
+      gateSay("Account made. Confirm your email from your inbox, then log in.", true);
     } catch (e) {
       gateBusy(false);
       if (/already/i.test(e.message)) {
-        /* Never name an address that is already on the roll: that answer turns
+        /* Never name an address that already has an account: that answer turns
            this form into a lookup tool for anyone holding a list of addresses.
            An address that is taken gets the same reply as one that is free. */
         setAuthMode("in");
         gateEl.email.value = email;
-        gateSay("Seal cut. Confirm the address from your inbox, then sign in.", true);
+        gateSay("Account made. Confirm your email from your inbox, then log in.", true);
         return;
       }
-      gateSay("The seal was refused: " + e.message);
+      gateSay("The account could not be made: " + e.message);
     }
     return;
   }
 
-  gateBusy(true, "Pressing the seal\u2026");
+  gateBusy(true, "Logging you in\u2026");
   try {
     const sess = await signIn(email, pass);
     if (!sess) throw new Error("no session came back");
     storeSession(sess);
-    enterHall(sess.user.email || email);
+    /* the name was given once at sign-up and comes back on the account, so
+       a returning member never types it again */
+    enterHall(sess.user.email || email, sess.user.name || "");
   } catch (e) {
     gateBusy(false);
     if (/not confirmed/i.test(e.message)) {
       /* the account exists but the address was never confirmed — quite a
-         different problem from a wrong passphrase, so say so */
-      gateSay("That address is on the roll but has never been confirmed. Open the link in your inbox, then sign in.");
+         different problem from a wrong password, so say so */
+      gateSay("That account exists but its email has never been confirmed. Open the link in your inbox, then log in.");
     } else if (e.status === 400) {
       /* Supabase answers the same way for an unknown address and a wrong
-         passphrase, so name both possibilities and offer the way forward */
-      gateSay('That address and passphrase do not match &mdash; and if you have never joined, ' +
+         password, so name both possibilities and offer the way forward */
+      gateSay('That email and password do not match &mdash; and if you have never signed up, ' +
               'there is no account yet to match. ' +
-              '<button type="button" class="link" id="to-join">Take a seal instead</button>');
+              '<button type="button" class="link" id="to-join">Sign up instead</button>');
       const j = document.getElementById("to-join");
       if (j) j.addEventListener("click", () => {
         const keep = gateEl.email.value;
         setAuthMode("up");
         gateEl.email.value = keep;
-        gateEl.pass.focus();
+        gateEl.name.focus();
       });
     } else {
-      gateSay("The door did not answer: " + e.message);
+      gateSay("The server did not answer: " + e.message);
     }
   }
 }
 
-/* The seal is the whole threshold: signing in or joining opens the hall. */
-function enterHall(email) {
+/* The form is the whole threshold: logging in or signing up opens the hall. */
+function enterHall(email, name) {
   gateBusy(false);
   gateQuiet();
   gateEl.pass.value = ""; gateEl.pass2.value = "";
-  state.member = email; save();
+  state.member = email;
+  state.name = name || "";
+  save();
+  paintWho();
 
   const a = document.getElementById("step-seal");
   a.classList.add("swap-out");
@@ -2500,8 +2529,8 @@ function renderClimb() {
   const next = RANKS[k + 1];
   const gap = next ? next.at - n : 0;
   const nextTxt = next
-    ? 'Next rung: <b>' + next.en + '</b> — ' + gap + ' more mark' + (gap === 1 ? '' : 's') + ' to go.'
-    : '<span class="done">Every mark earned. You hold the highest rank in the house.</span>';
+    ? 'Next level: <b>' + next.en + '</b> — ' + gap + ' more mark' + (gap === 1 ? '' : 's') + ' to go.'
+    : '<span class="done">Every mark earned. You hold the highest level there is.</span>';
 
   let stations = "";
   RANKS.forEach(r => {
@@ -2525,7 +2554,7 @@ function renderClimb() {
       '<span class="beacon' + (BACKENDS[backend].live ? " live" : "") + '"><i></i>' +
         BACKENDS[backend].label + '</span>' +
       '<p class="note">' + n + ' of ' + TOTAL_MARKS + ' marks · ' +
-        Math.round(n / TOTAL_MARKS * 100) + '% of the way to Guildmaster</p>' +
+        Math.round(n / TOTAL_MARKS * 100) + '% of the way to Master Translator</p>' +
     '</div>';
 
   requestAnimationFrame(() => {
@@ -2538,7 +2567,7 @@ function levelUp(rank) {
   const ov = el("div", null,
     '<div class="u-inner">' +
       '<span class="u-logo" aria-hidden="true"></span>' +
-      '<p class="u-kicker">New rank</p>' +
+      '<p class="u-kicker">New level</p>' +
       '<p class="u-rank">' + rank.en + '</p>' +
       '<div class="dots lg"><i></i><i></i><i></i></div>' +
     '</div>');
@@ -2621,13 +2650,15 @@ document.getElementById("signout-btn").addEventListener("click", async () => {
   dbDoc = null;
   await signOut();
   /* the marks stay on the server against the account; this browser forgets
-     them so the next person to sign in does not inherit them */
-  state.marks = {}; state.seenRank = ""; state.finale = false; state.member = "";
+     them so the next person to log in does not inherit them */
+  state.marks = {}; state.seenRank = ""; state.finale = false;
+  state.member = ""; state.name = "";
   save();
+  paintWho();
   backend = "local";
   b.disabled = false;
   setAuthMode("in");
-  gateEl.email.value = ""; gateEl.pass.value = ""; gateEl.pass2.value = "";
+  gateEl.name.value = ""; gateEl.email.value = ""; gateEl.pass.value = ""; gateEl.pass2.value = "";
   resetGateSteps();
   setAct(1);
   show("gate");
@@ -3261,19 +3292,21 @@ function runRoots() {
 load();
 setAuthMode("in");
 setAct(1);
+paintWho();
 loadPortraits();
 
-/* A session that survived the last visit skips the gate. If the token has
-   died and cannot be refreshed, the gate is where we land. */
+/* The front page is the log in / sign up form. A member whose session
+   survived the last visit never sees it: they are logged in already, so the
+   hall opens straight away. A token that has died and cannot be refreshed
+   lands on the form. */
 (async function resume() {
   const kept = readStoredSession();
   if (!kept || !(await freshToken())) { storeSession(null); show("gate"); return; }
-  /* The gate is the first thing on every visit, signed in or not. A member
-     this browser remembers is simply not asked for the passphrase again. */
-  state.member = session.user.email || state.member; save();
-  showResume(state.member);
-  setAct(1);
-  show("gate");
+  state.member = session.user.email || state.member;
+  state.name = session.user.name || state.name || "";
+  save();
+  paintWho();
+  unlock();
 })();
 </script>
 
