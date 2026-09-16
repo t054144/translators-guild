@@ -1,0 +1,7 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/auth/callback", "destination": "/auth/callback/index.html" }
+  ]
+}

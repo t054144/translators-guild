@@ -2667,10 +2667,20 @@ async function freshToken() {
 
 /* The name is stored on the account itself, alongside the address, so a
    member is greeted by name once they are in. */
+/* Where the confirmation link in the email should land. Built from the
+   page the member is actually on, so a preview deployment confirms back
+   into that preview rather than into production. The address must also be
+   on the redirect allow-list in the Supabase dashboard; anything not on it
+   is ignored by the service, which is the point of the list. */
+function callbackURL() {
+  return location.origin + "/auth/callback";
+}
+
 async function signUp(email, pass, profile) {
-  return asSession(await authPost("/signup", {
-    email: email, password: pass, data: profile || {}
-  }));
+  return asSession(await authPost(
+    "/signup?redirect_to=" + encodeURIComponent(callbackURL()),
+    { email: email, password: pass, data: profile || {} }
+  ));
 }
 
 async function signIn(email, pass) {
@@ -2678,7 +2688,7 @@ async function signIn(email, pass) {
 }
 
 async function sendReset(email) {
-  await authPost("/recover", { email: email });
+  await authPost("/recover?redirect_to=" + encodeURIComponent(callbackURL()), { email: email });
 }
 
 async function signOut() {
