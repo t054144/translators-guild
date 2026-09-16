@@ -371,6 +371,34 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .btn-wide { width: 100%; }
 .auth-alt { margin: 0; text-align: center; font-size: .82rem; color: var(--lilac-dim); }
 .auth-alt .link { font-weight: 600; color: var(--lilac); }
+
+/* ---------- the Member's Seal dashboard ---------- */
+.seal-eyebrow { margin: 0 0 .25rem; font-size: .66rem; font-weight: 600; letter-spacing: .26em;
+  text-transform: uppercase; color: var(--lilac-dim); }
+.seal-journey { padding: clamp(1.1rem,4vw,1.6rem); display: grid; gap: 1.1rem; }
+.j-head { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; flex-wrap: wrap; }
+.j-head h2 { font-family: var(--f-serif); font-size: 1.15rem; font-weight: 600; color: var(--white); margin: 0; }
+.j-next { font-size: .78rem; color: var(--lilac-dim); }
+.j-bar { height: 8px; border-radius: var(--r-pill); background: rgba(214,191,234,.14); overflow: hidden; }
+.j-bar i { display: block; height: 100%; border-radius: inherit; background: var(--grad-h);
+  transition: width 700ms var(--ease); }
+.j-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: .6rem; }
+.j-tile { background: rgba(214,191,234,.06); border: var(--hair); border-radius: var(--r-md);
+  padding: .8rem .75rem; text-align: center; }
+.j-tile b { display: block; font-family: var(--f-serif); font-size: 1.45rem; font-weight: 600; color: var(--white);
+  line-height: 1.15; }
+.j-tile.wide b { font-size: 1.05rem; }
+.j-tile span { display: block; margin-top: .2rem; font-size: .64rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--lilac-dim); }
+.j-continue { display: grid; gap: .55rem; }
+.j-continue .j-label { font-size: .64rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--lilac-dim); }
+.j-continue button { width: 100%; text-align: center; }
+.j-done { margin: 0; font-size: .84rem; color: var(--lilac-dim); line-height: 1.6; }
+@media (max-width: 30rem) {
+  .j-stats { grid-template-columns: 1fr 1fr; }
+  .j-tile:last-child { grid-column: 1 / -1; }
+}
 #auth-lede { margin: 0; }
 
 /* ═══════════ THE HALL ═══════════ */
@@ -947,15 +975,18 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <span class="face" role="img" aria-label="Guild"></span>
       </div>
       <div class="hall-id">
-        <h1>The Guild Hall</h1>
+        <p class="seal-eyebrow">Member's Seal</p>
+        <h1 id="seal-welcome">The Guild Hall</h1>
         <p class="note" id="hall-who" hidden></p>
       </div>
       <div class="rank-box">
         <span class="r-n">Rank</span>
-        <p class="r-en" id="rank-en">Apprentice</p>
+        <p class="r-en" id="rank-en">Initiate</p>
         <span class="r-n" id="rank-n">0 of 9 marks</span>
       </div>
     </div>
+
+    <div class="panel seal-journey" id="seal-journey"></div>
 
     <div>
       <div class="strip-head">
@@ -2234,6 +2265,23 @@ function fromGuildDoc(d) {
   return { marks: d.marks, seen_rank: d.seenRank, finale_seen: d.finale };
 }
 
+/* The account's own record of who this member is. Row-level security means
+   this can only ever return the signed-in member's own row. */
+async function loadProfile() {
+  try {
+    const r = await fetch(SUPABASE.url + "/rest/v1/profiles?select=first_name,last_name,marks,rank_slug",
+                          { headers: await sbHeaders() });
+    if (!r.ok) return;
+    const rows = await r.json();
+    const p = rows && rows[0];
+    if (!p || !session) return;
+    if (p.first_name) session.user.firstName = p.first_name;
+    if (p.last_name) session.user.lastName = p.last_name;
+    storeSession(session);
+    paintWho();
+  } catch (e) { /* the hall works without it */ }
+}
+
 async function connectBackend(email) {
   const member = String(email || "").trim().toLowerCase();
   state.member = member; save();
@@ -2242,6 +2290,7 @@ async function connectBackend(email) {
   try {
     const row = await sbRead();
     backend = "supabase";
+    loadProfile();
     absorb(row);
     await sbWrite(member);
   } catch (e) {
@@ -2785,11 +2834,63 @@ function checkLevelUp() {
   }
 }
 
+/* The name shown is whatever the account carries, never a hard-coded one. */
+function memberName() {
+  const u = (session && session.user) || {};
+  const first = (u.firstName || "").trim();
+  if (first) return first;
+  const addr = u.email || state.member || "";
+  return addr ? addr.split("@")[0] : "";
+}
+
+/* The Member's Seal: who you are here, how far you have come, and the one
+   thing to do next. Everything in it is read from the account. */
+function paintSeal() {
+  const n = markCount(), rank = currentRank(), who = memberName();
+  const welcome = document.getElementById("seal-welcome");
+  if (welcome) welcome.textContent = who ? "Welcome, " + who : "The Guild Hall";
+
+  const box = document.getElementById("seal-journey");
+  if (!box) return;
+
+  const next = RANKS.find(r => r.at > n);
+  const gap = next ? next.at - n : 0;
+  const nextTxt = next
+    ? gap + (gap === 1 ? " mark to " : " marks to ") + next.en
+    : "Every mark earned";
+
+  const trials = ITEMS.filter(t => t.kind === "trial");
+  const done = trials.filter(t => state.marks[t.id]).length;
+  const nextTrial = trials.find(t => !state.marks[t.id]);
+
+  box.innerHTML =
+    '<div class="j-head"><h2>Your journey</h2><span class="j-next">' + nextTxt + '</span></div>' +
+    '<div class="j-bar"><i style="width:' + Math.round(n / TOTAL_MARKS * 100) + '%"></i></div>' +
+    '<div class="j-stats">' +
+      '<div class="j-tile"><b>' + n + '</b><span>Marks</span></div>' +
+      '<div class="j-tile"><b>' + done + ' / ' + trials.length + '</b><span>Trials</span></div>' +
+      '<div class="j-tile wide"><b>' + rank.en + '</b><span>Rank</span></div>' +
+    '</div>' +
+    '<div class="j-continue"><span class="j-label">' +
+      (done ? "Continue where you stopped" : "Start here") + '</span></div>';
+
+  const cont = box.querySelector(".j-continue");
+  if (nextTrial) {
+    const b = el("button", null, nextTrial.en);
+    b.addEventListener("click", () => openItem(nextTrial));
+    cont.appendChild(b);
+  } else {
+    cont.appendChild(el("p", "j-done",
+      "Every trial here is complete. New chambers and exercises are on their way."));
+  }
+}
+
 function renderHall() {
   const n = markCount(), rank = currentRank();
   paintRing(document.getElementById("hall-ring"), n);
   document.getElementById("rank-en").textContent = rank.en;
   document.getElementById("rank-n").textContent = n + " of " + TOTAL_MARKS + " marks";
+  paintSeal();
 
   ["method", "trials", "chambers"].forEach(sec => {
     const box = document.getElementById("sec-" + sec);
