@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- The browser enforces this list. Scripts may come from this page and nowhere
-     else, and the page may only talk to Supabase and Wikipedia, so a widget or
+     else, and the page may only talk to its own database, so a widget or
      tracker added later cannot run here or carry a member's session away. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://bldqausimrsusdzfbubk.supabase.co https://en.wikipedia.org; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://bldqausimrsusdzfbubk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>The Translators' Guild</title>
 <meta name="description" content="A guide to Arabic-English translation by functional equivalence: eight translators who changed the world, the seven procedures, nine text types, and seven trials.">
 <meta name="author" content="Shaikha Alkhaldi">
@@ -756,6 +756,10 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   background: linear-gradient(180deg, rgba(167,38,208,.14), rgba(101,15,208,.05)); box-shadow: none; }
 .strip-card .s-name { font-family: var(--f-serif); font-size: .88rem; font-weight: 600; color: var(--white); line-height: 1.25; }
 .strip-card .s-life { font-size: .66rem; letter-spacing: .1em; color: var(--lilac-dim); font-variant-numeric: tabular-nums; }
+.strip-card .s-ar { font-family: var(--f-ar); font-size: .74rem; color: var(--lilac); line-height: 1.5; }
+.strip-card .s-role { font-size: .6rem; letter-spacing: .06em; color: var(--lilac-dim); line-height: 1.45; }
+.f-ar { font-family: var(--f-ar); font-size: .84rem; color: var(--lilac); }
+.d-ar { font-family: var(--f-ar); font-size: 1.05rem; color: var(--lilac); line-height: 1.7; }
 
 .medal { width: 62px; height: 62px; border-radius: 50%; flex: none;
   display: grid; place-items: center; position: relative; background: var(--grad);
@@ -1141,18 +1145,98 @@ const RANKS = [
   { at: 9, en: "Master Translator", ar: "مُترجِم أوّل" }
 ];
 
-/* ═══════════ PORTRAITS ═══════════ */
-/* id -> { src, credit }. Empty until a portrait resolves; every frame
-   renders the medallion first, so the page never waits on this. */
+/* ═══════════ PORTRAITS ═══════════
+   One image per figure, held as a file in this repository rather than
+   fetched from anywhere. Each record says what the picture actually is:
+   a manuscript, a later depiction, or a real photograph. A depiction is
+   never labelled a portrait, and no face here is generated.
+   ═══════════════════════════════════════════════════════════════════ */
+const FIGURE_IMAGE = {
+  hunayn: {
+    file: "lineage/hunayn-ibn-ishaq.jpg",
+    image_type: "associated_manuscript",
+    authenticity: "not_a_contemporary_portrait",
+    alt: "Manuscript associated with Ḥunayn ibn Isḥāq: al-Masāʾil fī al-ṭibb lil-mutaʿallimīn, British Library Or 5725.",
+    source_name: "Qatar Digital Library / British Library",
+    source_page: "https://www.qdl.qa/en/archive/81055/vdc_100023629092.0x000002",
+    credit: "British Library, Or 5725" },
+  muqaffa: {
+    file: "lineage/ibn-al-muqaffa.png",
+    image_type: "later_artistic_depiction",
+    authenticity: "not_a_contemporary_portrait",
+    alt: "Later artistic depiction of Ibn al-Muqaffaʿ by Khalil Gibran, 1917.",
+    source_name: "Khalil Gibran, 1917",
+    source_page: "https://commons.wikimedia.org/wiki/File:Ibn_al-Muqaffa%27_by_Khalil_Gibran.png",
+    credit: "Khalil Gibran, 1917" },
+  jahiz: {
+    file: "lineage/al-jahiz.png",
+    image_type: "imagined_depiction",
+    authenticity: "not_a_contemporary_portrait",
+    alt: "Imagined depiction of Al-Jāḥiẓ, derived from a Qatari postage stamp portrait.",
+    source_name: "Qatari postage stamp portrait",
+    source_page: "https://commons.wikimedia.org/wiki/File:Al-jahiz_Portrait.png",
+    credit: "Imagined depiction" },
+  jayyusi: {
+    file: "lineage/salma-khadra-jayyusi.jpg",
+    image_type: "photographic_portrait",
+    authenticity: "photograph_of_the_person",
+    alt: "Photograph of Salma Khadra Jayyusi.",
+    source_name: "Sheikh Zayed Book Award",
+    source_page: "https://www.zayedaward.ae/en/previous-editions/winners/salma-khadra-jayyusi",
+    credit: "Sheikh Zayed Book Award" },
+  jerome: {
+    file: "lineage/jerome.jpg",
+    image_type: "historical_artistic_depiction",
+    authenticity: "not_a_contemporary_portrait",
+    alt: "Saint Jerome in His Study by Antonello da Messina, about 1475.",
+    source_name: "The National Gallery, London",
+    source_page: "https://www.nationalgallery.org.uk/paintings/antonello-da-messina-saint-jerome-in-his-study",
+    credit: "Antonello da Messina, c. 1475" },
+  tyndale: {
+    file: "lineage/william-tyndale.jpg",
+    image_type: "later_historical_depiction",
+    authenticity: "not_confirmed_from_life",
+    alt: "Historical portrait of William Tyndale.",
+    source_name: "Pitts Theology Library, Emory University",
+    source_page: "https://commons.wikimedia.org/wiki/File:Portrait_of_William_Tyndale.jpg",
+    credit: "Pitts Theology Library" },
+  rabassa: {
+    file: "lineage/gregory-rabassa.jpg",
+    image_type: "photographic_portrait",
+    authenticity: "photograph_of_the_person",
+    alt: "Photograph of Gregory Rabassa.",
+    source_name: "New Directions Publishing",
+    source_page: "https://www.ndbooks.com/author/gregory-rabassa/",
+    credit: "New Directions Publishing" }
+};
+
+/* Display names carry their own spelling and their Arabic, exactly as the
+   specification sets them out. */
+const FIGURE_NAME = {
+  hunayn:  { en: "Ḥunayn ibn Isḥāq",  ar: "حنين بن إسحاق",        role: "Translator · Physician · Scholar" },
+  muqaffa: { en: "Ibn al-Muqaffaʿ",   ar: "عبد الله بن المقفع",    role: "Translator · Prose stylist" },
+  jahiz:   { en: "Al-Jāḥiẓ",          ar: "الجاحظ",                role: "Prose writer · Rhetorician" },
+  jayyusi: { en: "Salma Khadra Jayyusi", ar: "سلمى خضراء الجيوسي", role: "Poet · Translator · Anthologist" },
+  jerome:  { en: "Jerome",            ar: "جيروم",                 role: "Translator · Scholar" },
+  tyndale: { en: "William Tyndale",   ar: "وليام تندل",            role: "Bible translator" },
+  rabassa: { en: "Gregory Rabassa",   ar: "غريغوري راباسا",        role: "Literary translator" },
+  gerard:  { en: "Gerard of Cremona", ar: "جيرارد الكريموني",      role: "Translator · Toledo" }
+};
+
+const figName = f => (FIGURE_NAME[f.id] && FIGURE_NAME[f.id].en) || f.name;
+const figAr   = f => (FIGURE_NAME[f.id] && FIGURE_NAME[f.id].ar) || "";
+const figRole = f => (FIGURE_NAME[f.id] && FIGURE_NAME[f.id].role) || "";
+
 const PORTRAITS = {};
 
+/* The frame holds one image and nothing else: no initials, no second
+   picture. Until the file exists the frame simply stays quiet. */
 function portraitFrame(f, big) {
   return '<span class="pf' + (big ? " pf-lg" : "") + '" data-fig="' + f.id + '">' +
-           '<span class="medal' + (big ? " lg" : "") + '"><span>' + f.mono + '</span></span>' +
+           '<span class="medal' + (big ? " lg" : "") + '"></span>' +
          '</span>';
 }
 
-/* Drop the image into any frame on the page that is still bare. */
 function paintPortraits(root) {
   (root || document).querySelectorAll(".pf[data-fig]").forEach(fr => {
     const pic = PORTRAITS[fr.dataset.fig];
@@ -1168,20 +1252,13 @@ function paintPortraits(root) {
   });
 }
 
-async function loadPortraits() {
-  await Promise.all(LINEAGE.map(async f => {
-    const alt = "Portrait of " + f.name;
-    if (f.img) { PORTRAITS[f.id] = { src: f.img, credit: f.credit || "", alt: alt }; return; }
-    if (!f.wiki) return;
-    try {
-      const r = await fetch("https://en.wikipedia.org/api/rest_v1/page/summary/" +
-                            encodeURIComponent(f.wiki), { headers: { Accept: "application/json" } });
-      if (!r.ok) return;
-      const j = await r.json();
-      const src = j.thumbnail && j.thumbnail.source;
-      if (src) PORTRAITS[f.id] = { src: src, credit: "via Wikipedia", alt: alt };
-    } catch (e) { /* the medallion stands */ }
-  }));
+/* No network, no third-party lookup: the images are files served from this
+   site. A missing file leaves the frame empty rather than guessing. */
+function loadPortraits() {
+  Object.keys(FIGURE_IMAGE).forEach(id => {
+    const rec = FIGURE_IMAGE[id];
+    PORTRAITS[id] = { src: rec.file, alt: rec.alt, credit: rec.credit, meta: rec };
+  });
   paintPortraits();
 }
 
@@ -1229,9 +1306,10 @@ function runLineage(startAt) {
         '<span class="d-portrait">' + portraitFrame(f, true) +
           (pic && pic.credit ? '<span class="p-credit">' + pic.credit + '</span>' : '') +
         '</span>' +
-        '<span class="d-txt"><h3>' + f.name + '</h3>' +
+        '<span class="d-txt"><h3>' + figName(f) + '</h3>' +
+          (figAr(f) ? '<span class="d-ar" dir="rtl" lang="ar">' + figAr(f) + '</span>' : '') +
           '<span class="d-meta">' + f.life + ' \u00b7 ' + f.place + '</span>' +
-          '<span class="d-pair">' + f.pair + '</span></span>';
+          '<span class="d-pair">' + (figRole(f) || f.pair) + '</span></span>';
       card.appendChild(top);
       card.appendChild(el("p", "pull", f.line));
       const blocks = el("div", "blocks");
@@ -1266,9 +1344,10 @@ function runLineage(startAt) {
       b.innerHTML =
         portraitFrame(f, false) +
         '<span class="f-txt">' +
-          '<span class="f-name">' + f.name + '</span>' +
+          '<span class="f-name">' + figName(f) + '</span>' +
+          (figAr(f) ? '<span class="f-ar" dir="rtl" lang="ar">' + figAr(f) + '</span>' : '') +
           '<span class="f-meta">' + f.life + '</span>' +
-          '<span class="f-pair">' + f.pair + '</span>' +
+          '<span class="f-pair">' + (figRole(f) || f.pair) + '</span>' +
         '</span>';
       b.addEventListener("click", () => {
         cur = k; render();
@@ -1279,15 +1358,6 @@ function runLineage(startAt) {
     stage.appendChild(grid);
     paintPortraits(grid);
 
-    const note = el("div", "verdict");
-    note.appendChild(el("span", "vh", "On the portraits"));
-    note.appendChild(el("p", "vb",
-      "The pictures are pulled from each translator's Wikipedia article, so nothing here is a face I " +
-      "invented. For the pre-modern figures they are <b>later depictions rather than likenesses</b> \u2014 " +
-      "nobody drew Hunayn or al-Jahiz from life, and a manuscript painting made centuries afterwards is " +
-      "a picture of how they were remembered. Where no image loads, the lettered medallion stands in its " +
-      "place. The initials, the dates and the language pairs are true throughout."));
-    stage.appendChild(note);
 
     stage.appendChild(backFoot());
   }
@@ -1966,7 +2036,7 @@ const ROOTS = [
    THE LINEAGE — translators who changed the world.
 
    Each one carries a portrait and one worked example of the
-   actual translating. The portrait is fetched from Wikipedia
+   actual translating. The image is a file held by this site
    at run time by the `wiki` title, so nothing here is an
    invented likeness; set `img` to a local file to override
    it. If neither resolves, the lettered medallion stands, so
@@ -2988,7 +3058,9 @@ function renderHall() {
     const b = el("button", "strip-card");
     b.innerHTML =
       portraitFrame(f, false) +
-      '<span class="s-name">' + f.name + '</span>' +
+      '<span class="s-name">' + figName(f) + '</span>' +
+      (figAr(f) ? '<span class="s-ar" dir="rtl" lang="ar">' + figAr(f) + '</span>' : '') +
+      '<span class="s-role">' + (figRole(f) || f.pair) + '</span>' +
       '<span class="s-life">' + f.life + '</span>';
     b.addEventListener("click", () => openItem(ITEMS[0], i));
     strip.appendChild(b);
