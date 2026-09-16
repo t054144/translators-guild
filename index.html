@@ -443,8 +443,42 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 /* ═══════════ THE HALL ═══════════ */
 #hall { max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
 
-.hall-head { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1rem,3vw,2rem);
+/* The Hall opens with a greeting, not with a scoreboard. The rank lives on
+   the Member's Seal, where it belongs. */
+.hall-head { display: grid; gap: .5rem; padding: clamp(.4rem,2vw,.8rem) 0 0; }
+.hall-head h1 { font-family: var(--f-serif); font-size: clamp(1.9rem,6vw,3rem); font-weight: 600;
+  color: var(--white); margin: 0; line-height: 1.06; letter-spacing: -.01em; }
+.hall-sub { margin: 0; color: var(--lilac); font-size: clamp(.98rem,2.6vw,1.1rem); }
+.hall-quote { margin: 1.1rem 0 0; padding-inline-start: 1rem; border-inline-start: 2px solid rgba(167,38,208,.5); }
+.hall-quote blockquote { margin: 0; font-family: var(--f-serif); font-style: italic;
+  font-size: clamp(.95rem,2.4vw,1.05rem); color: var(--lilac); line-height: 1.5; }
+.hall-quote figcaption { margin-top: .3rem; font-size: .7rem; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--lilac-dim); }
+
+/* The Seal keeps the old identity block: portrait ring, name, rank. */
+#seal { max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
+.seal-head { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(1rem,3vw,2rem);
   align-items: center; padding: clamp(1.1rem,3vw,1.6rem); }
+
+/* The record: one row per Trial, what was actually scored and when. */
+.record { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.rec-row { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .85rem;
+  padding: .7rem .9rem; border-radius: var(--r-md); border: var(--hair);
+  background: rgba(255,255,255,.025); }
+.rec-row.held { border-color: rgba(167,38,208,.45); background: rgba(167,38,208,.08); }
+.rec-pip { font-size: .95rem; color: var(--lilac-dim); line-height: 1; }
+.rec-row.held .rec-pip { color: #fff; }
+.rec-body { display: grid; gap: .15rem; min-width: 0; }
+.rec-name { font-weight: 600; color: var(--white); font-size: .95rem; }
+.rec-detail { font-size: .78rem; color: var(--lilac-dim); line-height: 1.45; }
+.rec-state { font-size: .66rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--lilac-dim); white-space: nowrap; }
+.rec-row.held .rec-state { color: var(--lilac); }
+.record.soon .rec-row { background: none; border-style: dashed; }
+@media (max-width: 560px) {
+  .rec-row { grid-template-columns: auto 1fr; }
+  .rec-state { grid-column: 2; justify-self: start; }
+}
 .hall-id { display: grid; gap: .1rem; min-width: 0; }
 .hall-id .h-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .95rem; color: var(--lilac); }
 .hall-id h1 { font-family: var(--f-serif); font-size: clamp(1.5rem,4vw,2rem); font-weight: 600; color: var(--white); margin: 0; line-height: 1.1; }
@@ -454,7 +488,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .rank-box .r-ar { font-family: var(--f-ar); direction: rtl; font-size: .92rem; color: var(--lilac); margin: 0; }
 .rank-box .r-n { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--lilac-dim); font-variant-numeric: tabular-nums; }
 @media (max-width: 800px) {
-  .hall-head { grid-template-columns: auto 1fr; }
+  .seal-head { grid-template-columns: auto 1fr; }
   .rank-box { grid-column: 1 / -1; justify-items: start; text-align: left; }
 }
 
@@ -1015,22 +1049,15 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 
   <!-- ══════════════ THE HALL ══════════════ -->
   <section id="hall" class="view" hidden>
-    <div class="panel hall-head">
-      <div class="hall-mark">
-        <svg class="ring" id="hall-ring" viewBox="0 0 100 100" aria-hidden="true"></svg>
-        <span class="face" role="img" aria-label="Guild"></span>
-      </div>
-      <div class="hall-id">
-        <p class="seal-eyebrow">Member's Seal</p>
-        <h1 id="seal-welcome">The Guild Hall</h1>
-        <p class="note" id="hall-who" hidden></p>
-      </div>
-      <div class="rank-box">
-        <span class="r-n">Rank</span>
-        <p class="r-en" id="rank-en">Initiate</p>
-        <span class="r-n" id="rank-n">0 of 9 marks</span>
-      </div>
-    </div>
+    <header class="hall-head">
+      <p class="seal-eyebrow">The Guild Hall</p>
+      <h1 id="hall-welcome">Welcome.</h1>
+      <p class="hall-sub">Your translation journey continues.</p>
+      <figure class="hall-quote">
+        <blockquote>Words travel worlds. Translators do the driving.</blockquote>
+        <figcaption>Anna Rusconi</figcaption>
+      </figure>
+    </header>
 
     <div class="panel seal-journey" id="seal-journey"></div>
 
@@ -1066,17 +1093,49 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       <div class="ledger" id="sec-chambers"></div>
     </div>
 
-    <div class="panel climb" id="climb"></div>
-
     <div class="hall-foot">
+      <button class="ghost" id="seal-btn-open">Member's Seal</button>
       <button class="ghost" id="admin-btn" hidden>Content Admin</button>
-      <button class="ghost" id="reset-btn">Melt the marks</button>
       <button class="ghost" id="signout-btn">Log Out</button>
       <p class="note" id="store-note" style="flex:1 1 20rem"></p>
     </div>
 
     <p class="credit">Shaikha Alkhaldi</p>
 
+  </section>
+
+  <!-- ══════════════ THE MEMBER'S SEAL ══════════════
+       The Hall answers "what do I do next?". The Seal answers "who am I
+       as a translator, and what have I done?". They are two screens, not
+       two halves of one. -->
+  <section id="seal" class="view" hidden>
+    <div class="panel seal-head">
+      <div class="hall-mark">
+        <svg class="ring" id="hall-ring" viewBox="0 0 100 100" aria-hidden="true"></svg>
+        <span class="face" role="img" aria-label="Guild"></span>
+      </div>
+      <div class="hall-id">
+        <p class="seal-eyebrow">Member's Seal</p>
+        <h1 id="seal-name">Member</h1>
+        <p class="note" id="hall-who" hidden></p>
+      </div>
+      <div class="rank-box">
+        <span class="r-n">Rank</span>
+        <p class="r-en" id="rank-en">Initiate</p>
+        <span class="r-n" id="rank-n">0 marks</span>
+      </div>
+    </div>
+
+    <div class="panel climb" id="climb"></div>
+
+    <div class="panel" id="seal-record"></div>
+
+    <div class="panel" id="seal-later"></div>
+
+    <div class="hall-foot">
+      <button class="ghost" id="seal-back">← Back to the hall</button>
+      <button class="ghost" id="reset-btn">Melt the marks</button>
+    </div>
   </section>
 
   <!-- ══════════════ A TRIAL OR GUIDE ══════════════ -->
@@ -1119,11 +1178,21 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 </main>
 
 <script>
-const TOTAL_MARKS = 9;
+/* ═══════════ WHAT A MARK IS ═══════════
+   A Mark is earned by passing a Trial, and by nothing else. Chambers are
+   free to wander and carry no score, so they are counted out of both the
+   total and the tally. Nothing here is a fixed number: the total is however
+   many Trials are published, so adding a Trial moves every count on the
+   site at once and none of them has to be edited by hand.
+   ═══════════════════════════════════════════════════════════════════ */
+function publishedTrials() {
+  return ITEMS.filter(t => t.kind === "trial" && t.published !== false);
+}
+function totalMarks() { return publishedTrials().length; }
 
-/* ═══════════ THE MARK RING — nine dots around the logo ═══════════ */
+/* ═══════════ THE MARK RING — one dot per published Trial ═══════════ */
 function paintRing(svg, earned) {
-  const n = TOTAL_MARKS, out = [];
+  const n = Math.max(totalMarks(), 1), out = [];
   for (let i = 0; i < n; i++) {
     const a = (2 * Math.PI / n) * i - Math.PI / 2;
     const cx = (50 + Math.cos(a) * 46).toFixed(2);
@@ -1179,18 +1248,23 @@ const FIGURE_IMAGE = {
     file: "lineage/al-jahiz.jpg",
     image_type: "imagined_depiction",
     authenticity: "not_a_contemporary_portrait",
-    alt: "Imagined depiction of Al-Jāḥiẓ, derived from a Qatari postage stamp portrait.",
-    source_name: "Qatari postage stamp portrait",
-    source_page: "https://commons.wikimedia.org/wiki/File:Al-jahiz_Portrait.png",
-    credit: "Imagined depiction" },
+    /* No likeness of Al-Jāḥiẓ made in his lifetime survives. Whatever the
+       image shows is a later imagining, so the card says exactly that and
+       claims no artist or holder that has not been confirmed. */
+    alt: "Later imagined depiction of Al-Jāḥiẓ. No likeness of him from his own time survives.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Imagined depiction · not from life" },
   jayyusi: {
     file: "lineage/salma-khadra-jayyusi.jpg",
     image_type: "photographic_portrait",
     authenticity: "photograph_of_the_person",
+    /* A real photograph of her; the photographer and the publication it
+       first appeared in are not established, so no holder is credited. */
     alt: "Photograph of Salma Khadra Jayyusi.",
-    source_name: "Sheikh Zayed Book Award",
-    source_page: "https://www.zayedaward.ae/en/previous-editions/winners/salma-khadra-jayyusi",
-    credit: "Sheikh Zayed Book Award" },
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Photograph" },
   jerome: {
     file: "lineage/jerome.jpg",
     image_type: "historical_artistic_depiction",
@@ -1206,10 +1280,13 @@ const FIGURE_IMAGE = {
     file: "lineage/william-tyndale.jpg",
     image_type: "later_historical_depiction",
     authenticity: "not_confirmed_from_life",
-    alt: "Historical portrait of William Tyndale.",
-    source_name: "Pitts Theology Library, Emory University",
-    source_page: "https://commons.wikimedia.org/wiki/File:Portrait_of_William_Tyndale.jpg",
-    credit: "Pitts Theology Library" },
+    /* Tyndale portraits are posthumous: none is confirmed to have been
+       painted from life, and the holder of this particular one has not been
+       established, so the card credits no institution. */
+    alt: "Historical portrait of William Tyndale, painted after his death.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Historical portrait · not from life" },
   ishaq: {
     file: "lineage/ishaq-ibn-hunayn.jpg",
     image_type: "artistic_depiction",
@@ -1250,18 +1327,6 @@ const FIGURE_IMAGE = {
     source_name: "Supplied by the site owner",
     source_page: "",
     credit: "Historical engraving" },
-  gerard: {
-    file: "lineage/gerard-of-cremona.jpg",
-    /* No likeness of Gerard of Cremona survives. This is a period
-       illumination of God the Father, chosen by the site owner as an image
-       of his world rather than of him, and it is labelled as such on the
-       card so no reader mistakes it for a portrait. */
-    image_type: "unrelated_period_illumination",
-    authenticity: "not_a_depiction_of_this_person",
-    alt: "Fifteenth-century illuminated miniature of God the Father in a mandorla. A period image, not a likeness of Gerard of Cremona.",
-    source_name: "Supplied by the site owner",
-    source_page: "",
-    credit: "Period illumination · not a likeness" },
   luther: {
     file: "lineage/martin-luther.jpg",
     image_type: "painted_portrait",
@@ -1322,8 +1387,7 @@ const FIGURE_NAME = {
   dryden:  { en: "John Dryden",       ar: "جون درايدن",       role: "Poet · Translator · Critic" },
   nida:    { en: "Eugene A. Nida",    ar: "يوجين أ. نايدا",   role: "Translation theorist · Linguist" },
   venuti:  { en: "Lawrence Venuti",   ar: "لورنس فينوتي",     role: "Translation theorist · Translator" },
-  rabassa: { en: "Gregory Rabassa",   ar: "غريغوري راباسا",        role: "Literary translator" },
-  gerard:  { en: "Gerard of Cremona", ar: "جيرارد الكريموني",      role: "Translator · Toledo" }
+  rabassa: { en: "Gregory Rabassa",   ar: "غريغوري راباسا",        role: "Literary translator" }
 };
 
 /* Recommended reading, taken only from the works the specification itself
@@ -2325,19 +2389,6 @@ const LINEAGE = [
     what: "A linguist who spent his career on Bible translation across many languages, and wrote the books that turned translating into an object of systematic study - among them <i>Toward a Science of Translating</i> and, with Charles Taber, <i>The Theory and Practice of Translation</i>.",
     why: "He set formal correspondence, which follows the shape of the original, against what he called dynamic or functional equivalence, which aims for an effect on the reader like the effect the original had on its own. The pair is often reduced to <b>equivalence means natural-sounding</b>, which is not what he argued: his framework is about the whole relationship between text, receptor and context." },
 
-  { id: "gerard", mono: "G", name: "Gerard of Cremona", life: "1114 - 1187", place: "Toledo",
-    wiki: "Gerard of Cremona", img: "",
-    pair: "Arabic to Latin",
-    line: "Europe got its science back in translation, out of Arabic.",
-    what: "He translated some eighty works from Arabic into Latin, among them Ptolemy's Almagest and Avicenna's Canon of Medicine.",
-    why: "Greek science returned to Europe <b>through Arabic</b>, and largely through him. The Canon remained the standard European medical textbook for five hundred years. He is the return half of Hunayn's journey - Greek to Arabic to Latin, three centuries and two thousand kilometres apart.",
-    ex: {
-      lab: "A book with its route fossilised in its name",
-      srcLab: "Greek", src: "ἡ μεγίστη <i>(hē megistē)</i> &mdash; \"the greatest\"", srcDir: "ltr",
-      litLab: "Through Arabic", lit: "المجسطي <i>(al-Majisṭī)</i> &mdash; the Greek word with the Arabic definite article fixed to the front",
-      outLab: "Into Latin", out: "<i>Almagesti</i> &mdash; <b>the Almagest</b>, which is what Europe has called Ptolemy ever since", outDir: "ltr",
-      note: "Europe knows the greatest book of ancient astronomy by an Arabic-shaped name, because that is the road it came down: Greek to Arabic to Latin. The same fused article is sitting inside <b>algebra</b>, <b>alcohol</b> and <b>alkali</b>. The word <i>sine</i> is commonly traced to this same Toledo work &mdash; Arabic <i>jayb</i>, \"fold, pocket, bay\", rendered into Latin as <i>sinus</i>, itself a misreading of a transliterated Sanskrit term. Mathematicians still use a translator's slip." } },
-
   { id: "rabassa", mono: "R", name: "Gregory Rabassa", life: "1922 - 2016", place: "New York",
     wiki: "Gregory Rabassa", img: "",
     pair: "Spanish & Portuguese to English",
@@ -2410,11 +2461,60 @@ function load() {
   catch (e) {}
 }
 function save() { try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch (e) {} }
-function markCount() { return Object.keys(state.marks).filter(k => state.marks[k]).length; }
+/* Only Trials count. Marks recorded against a Chamber by an earlier version
+   of the site are left in place rather than deleted — nobody's history is
+   thrown away — they simply no longer add to the tally, because a Chamber
+   is not scored. */
+function markCount() {
+  const scored = new Set(publishedTrials().map(t => t.id));
+  return Object.keys(state.marks).filter(k => state.marks[k] && scored.has(k)).length;
+}
 function currentRank() { let r = RANKS[0]; const n = markCount(); for (const c of RANKS) if (n >= c.at) r = c; return r; }
 function grant(id) {
   if (!state.marks[id]) { state.marks[id] = true; save(); pushBackend(); return true; }
   return false;
+}
+
+/* ═══════════ THE RECORD ═══════════
+   Every attempt at a Trial is kept, passed or failed, with the score it
+   earned and the day it was made. Nothing is overwritten and nothing is
+   thrown away, so the Member's Seal can show a real history rather than a
+   single flag saying "done". Attempts are stamped with the content version
+   they were made against, so correcting a Trial later never invalidates
+   what somebody already did.
+   ═══════════════════════════════════════════════════════════════════ */
+const CONTENT_VERSION = 2;
+
+function recordAttempt(id, score, total, passed) {
+  if (!Array.isArray(state.history)) state.history = [];
+  const item = ITEMS.find(t => t.id === id);
+  state.history.push({
+    id: id,
+    score: score,
+    total: total,
+    passed: !!passed,
+    at: new Date().toISOString(),
+    direction: (item && item.direction) || "",
+    content_version: (item && item.content_version) || CONTENT_VERSION
+  });
+  /* keep the record from growing without bound on a shared browser */
+  if (state.history.length > 400) state.history = state.history.slice(-400);
+  save(); pushBackend();
+}
+
+/* The best a Trial has ever been done, for the Seal. */
+function bestAttempt(id) {
+  return (state.history || [])
+    .filter(a => a.id === id)
+    .reduce((b, a) => (!b || a.score / Math.max(a.total, 1) > b.score / Math.max(b.total, 1) ? a : b), null);
+}
+function attemptCount(id) { return (state.history || []).filter(a => a.id === id).length; }
+
+/* One call for every Trial ending: record it, then award the Mark if it
+   was passed. Marks are never awarded anywhere else. */
+function settleTrial(id, score, total, passed) {
+  recordAttempt(id, score, total, passed);
+  return passed ? grant(id) : false;
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -2731,10 +2831,11 @@ function xferBlock(x) {
 const views = {
   gate:     document.getElementById("gate"),
   hall:     document.getElementById("hall"),
+  seal:     document.getElementById("seal"),
   trial:    document.getElementById("trial"),
   admin:    document.getElementById("admin")
 };
-const DEPTH = { gate: 0, hall: 1, trial: 2, admin: 2 };
+const DEPTH = { gate: 0, hall: 1, seal: 2, trial: 2, admin: 2 };
 let curView = null;
 
 function show(name) {
@@ -3097,7 +3198,7 @@ function unlock() {
 /* ═══════════ THE HALL ═══════════ */
 /* ═══════════ THE CLIMB ═══════════ */
 function renderClimb() {
-  const n = markCount(), rank = currentRank(), last = RANKS.length - 1;
+  const n = markCount(), rank = currentRank(), last = RANKS.length - 1, tm = totalMarks();
 
   let k = 0;
   for (let i = 0; i < RANKS.length; i++) if (n >= RANKS[i].at) k = i;
@@ -3134,8 +3235,8 @@ function renderClimb() {
     '<div class="climb-foot">' +
       '<span class="beacon' + (BACKENDS[backend].live ? " live" : "") + '"><i></i>' +
         BACKENDS[backend].label + '</span>' +
-      '<p class="note">' + n + ' of ' + TOTAL_MARKS + ' marks · ' +
-        Math.round(n / TOTAL_MARKS * 100) + '% of the way to Master Translator</p>' +
+      '<p class="note">' + n + ' of ' + tm + ' mark' + (tm === 1 ? '' : 's') + ' · ' +
+        Math.round(n / Math.max(tm, 1) * 100) + '% of the way to Master Translator</p>' +
     '</div>';
 
   requestAnimationFrame(() => {
@@ -3165,7 +3266,7 @@ function levelUp(rank) {
 
 function checkLevelUp() {
   const r = currentRank();
-  const full = markCount() >= TOTAL_MARKS;
+  const full = markCount() >= totalMarks();
   if (!state.seenRank) { state.seenRank = r.en; save(); pushBackend(); return; }
   if (state.seenRank !== r.en) {
     state.seenRank = r.en; save(); pushBackend();
@@ -3192,10 +3293,21 @@ function memberName() {
 
 /* The Member's Seal: who you are here, how far you have come, and the one
    thing to do next. Everything in it is read from the account. */
+/* The Hall greets you by your given name, never by your address. */
+function firstName() {
+  const u = (session && session.user) || {};
+  const f = (u.firstName || "").trim();
+  if (f) return f;
+  const full = memberName();
+  return full ? full.split(" ")[0] : "";
+}
+
+/* ─── THE HALL: what to do next ─── */
 function paintSeal() {
-  const n = markCount(), rank = currentRank(), who = memberName();
-  const welcome = document.getElementById("seal-welcome");
-  if (welcome) welcome.textContent = who ? "Welcome, " + who : "The Guild Hall";
+  const n = markCount(), rank = currentRank(), who = firstName();
+
+  const welcome = document.getElementById("hall-welcome");
+  if (welcome) welcome.textContent = who ? "Welcome, " + who + "." : "Welcome.";
 
   const box = document.getElementById("seal-journey");
   if (!box) return;
@@ -3206,13 +3318,13 @@ function paintSeal() {
     ? gap + (gap === 1 ? " mark to " : " marks to ") + next.en
     : "Every mark earned";
 
-  const trials = ITEMS.filter(t => t.kind === "trial");
+  const trials = publishedTrials();
   const done = trials.filter(t => state.marks[t.id]).length;
   const nextTrial = trials.find(t => !state.marks[t.id]);
 
   box.innerHTML =
-    '<div class="j-head"><h2>Your journey</h2><span class="j-next">' + nextTxt + '</span></div>' +
-    '<div class="j-bar"><i style="width:' + Math.round(n / TOTAL_MARKS * 100) + '%"></i></div>' +
+    '<div class="j-head"><h2>Where you are</h2><span class="j-next">' + nextTxt + '</span></div>' +
+    '<div class="j-bar"><i style="width:' + Math.round(n / Math.max(totalMarks(), 1) * 100) + '%"></i></div>' +
     '<div class="j-stats">' +
       '<div class="j-tile"><b>' + n + '</b><span>Marks</span></div>' +
       '<div class="j-tile"><b>' + done + ' / ' + trials.length + '</b><span>Trials</span></div>' +
@@ -3228,15 +3340,84 @@ function paintSeal() {
     cont.appendChild(b);
   } else {
     cont.appendChild(el("p", "j-done",
-      "Every trial here is complete. New chambers and exercises are on their way."));
+      "Every trial published so far is complete. More are being written."));
   }
 }
 
-function renderHall() {
-  const n = markCount(), rank = currentRank();
+/* ─── THE SEAL: who you are, and what you have actually done ───
+   Everything on this screen is read back from the record of real
+   attempts. Where a part of the craft is not being recorded yet, the
+   Seal says so plainly instead of showing an invented number. */
+function renderSeal() {
+  const n = markCount(), rank = currentRank(), tm = totalMarks();
+
   paintRing(document.getElementById("hall-ring"), n);
+  const nameEl = document.getElementById("seal-name");
+  if (nameEl) nameEl.textContent = memberName() || "Member";
   document.getElementById("rank-en").textContent = rank.en;
-  document.getElementById("rank-n").textContent = n + " of " + TOTAL_MARKS + " marks";
+  document.getElementById("rank-n").textContent =
+    n + " of " + tm + " mark" + (tm === 1 ? "" : "s");
+  paintWho();
+  renderClimb();
+
+  /* ── the record of trials ── */
+  const trials = publishedTrials();
+  const rows = trials.map(t => {
+    const best = bestAttempt(t.id);
+    const tries = attemptCount(t.id);
+    const held = !!state.marks[t.id];
+    let detail;
+    if (best) {
+      const when = new Date(best.at).toLocaleDateString(undefined,
+        { year: "numeric", month: "short", day: "numeric" });
+      detail = "Best " + best.score + " of " + best.total + " · " +
+               tries + " attempt" + (tries === 1 ? "" : "s") + " · " + when;
+    } else if (held) {
+      detail = "Passed before this site began keeping scores";
+    } else {
+      detail = "Not attempted yet";
+    }
+    return '<li class="rec-row' + (held ? " held" : "") + '">' +
+             '<span class="rec-pip" aria-hidden="true">' + (held ? "✦" : "✧") + '</span>' +
+             '<span class="rec-body">' +
+               '<span class="rec-name">' + t.en + '</span>' +
+               '<span class="rec-detail">' + detail + '</span>' +
+             '</span>' +
+             '<span class="rec-state">' + (held ? "Mark held" : "Open") + '</span>' +
+           '</li>';
+  }).join("");
+
+  document.getElementById("seal-record").innerHTML =
+    '<div class="j-head"><h2>Your trials</h2>' +
+      '<span class="j-next">' + trials.filter(t => state.marks[t.id]).length +
+      ' of ' + trials.length + ' passed</span></div>' +
+    '<ul class="record">' + rows + '</ul>';
+
+  /* ── what is not being recorded yet ──
+     Named honestly so the Seal never implies it is tracking something it
+     is not. Each of these arrives with the part of the platform that
+     produces it. */
+  const pending = [
+    ["Translation history", "Free-text translation trials are being built; once they exist, every rendering you submit is kept here with its feedback."],
+    ["Interpreting history", "The Booth records a score today. Full consecutive and simultaneous work is still to come."],
+    ["Glossary", "Saving terms, collocations and idioms with their context."],
+    ["Mistakes and strengths", "Errors sorted by kind — lexical, collocational, register, cultural, pragmatic — so practice can be aimed at what you actually get wrong."],
+    ["Portfolio", "Source, target, revisions and final version, kept as a body of work."]
+  ];
+  document.getElementById("seal-later").innerHTML =
+    '<div class="j-head"><h2>Not yet recording</h2>' +
+      '<span class="j-next">Named, not guessed</span></div>' +
+    '<p class="note" style="margin:0 0 .9rem">These are part of the Guild’s plan. ' +
+      'Until each one is built, the Seal says so rather than showing a number it does not have.</p>' +
+    '<ul class="record soon">' + pending.map(p =>
+      '<li class="rec-row"><span class="rec-pip" aria-hidden="true">·</span>' +
+        '<span class="rec-body"><span class="rec-name">' + p[0] + '</span>' +
+        '<span class="rec-detail">' + p[1] + '</span></span>' +
+        '<span class="rec-state">Coming</span></li>').join("") +
+    '</ul>';
+}
+
+function renderHall() {
   paintSeal();
 
   ["method", "trials", "chambers"].forEach(sec => {
@@ -3276,7 +3457,6 @@ function renderHall() {
   });
   paintPortraits(strip);
 
-  renderClimb();
   paintStore();
   checkLevelUp();
 }
@@ -3306,10 +3486,18 @@ document.getElementById("reset-btn").addEventListener("click", () => {
   state.marks = {};
   state.seenRank = RANKS[0].en;
   state.finale = false;
-  save(); pushBackend(); renderHall();
+  save(); pushBackend(); renderHall(); renderSeal();
 });
 document.getElementById("back-btn").addEventListener("click", () => {
   stopBooth(); renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
+});
+
+/* The Seal is its own screen, opened from the Hall and closed back to it. */
+document.getElementById("seal-btn-open").addEventListener("click", () => {
+  renderSeal(); show("seal");
+});
+document.getElementById("seal-back").addEventListener("click", () => {
+  renderHall(); show("hall");
 });
 
 /* ═══════════ SHELL HELPERS ═══════════ */
@@ -3554,7 +3742,7 @@ function finish(log, total) {
   const hits = log.filter(r => r.hit).length;
   const need = Math.ceil(total * 0.6);
   const pass = hits >= need;
-  const fresh = pass ? grant(active.id) : false;
+  const fresh = settleTrial(active.id, hits, total, pass);
 
   stage.innerHTML = "";
   setCount("Complete");
@@ -3775,7 +3963,7 @@ function runBooth() {
   function end() {
     stopBooth();
     const pass = hits >= NEED;
-    const fresh = pass ? grant("booth") : false;
+    const fresh = settleTrial("booth", hits, Math.max(hits, NEED), pass);
 
     stage.innerHTML = "";
     setCount("Time");
@@ -3860,12 +4048,10 @@ function runRegister() {
       "Pick the wrong level and the translation is accurate and still wrong."));
     stage.appendChild(v);
 
+    /* A Chamber is not scored: there is nothing to finish and nothing to
+       win, so it offers no button that pretends otherwise. */
     const foot = el("div", "foot");
-    if (!state.marks.register) {
-      const b = el("button", null, "I've walked all four levels");
-      b.addEventListener("click", () => { grant("register"); renderHall(); openItem(active); });
-      foot.appendChild(b);
-    } else foot.appendChild(el("p", "earned", "✦ Mark held for this chamber"));
+    foot.appendChild(el("p", "note", "A chamber · free to wander · nothing here is scored"));
     const back = el("button", "ghost", "Back to the hall");
     back.addEventListener("click", () => { renderHall(); show("hall"); });
     foot.appendChild(back);
@@ -3912,12 +4098,9 @@ function runRoots() {
       "and <i>fated</i>, and no single English word carries both. That gap is where translation actually happens."));
     stage.appendChild(v);
 
+    /* Unscored, like every Chamber. */
     const foot = el("div", "foot");
-    if (!state.marks.roots) {
-      const b = el("button", null, "I've opened every root");
-      b.addEventListener("click", () => { grant("roots"); renderHall(); openItem(active); });
-      foot.appendChild(b);
-    } else foot.appendChild(el("p", "earned", "✦ Mark held for this chamber"));
+    foot.appendChild(el("p", "note", "A chamber · free to wander · nothing here is scored"));
     const back = el("button", "ghost", "Back to the hall");
     back.addEventListener("click", () => { renderHall(); show("hall"); });
     foot.appendChild(back);
