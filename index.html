@@ -399,6 +399,45 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   .j-stats { grid-template-columns: 1fr 1fr; }
   .j-tile:last-child { grid-column: 1 / -1; }
 }
+
+/* ---------- content admin ---------- */
+.admin-head { padding: clamp(1.2rem,4vw,1.8rem); display: flex; gap: 1rem; align-items: flex-start;
+  justify-content: space-between; flex-wrap: wrap; }
+.admin-head h1 { font-family: var(--f-serif); font-size: clamp(1.5rem,4vw,2rem); margin: 0 0 .4rem; color: var(--white); }
+.admin-body { padding: clamp(1.1rem,4vw,1.6rem); display: grid; gap: 1.1rem; margin-top: 1.1rem; }
+.adm-bar { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
+.adm-bar select { font-family: var(--f-sans); font-size: .85rem; color: var(--white);
+  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md); padding: .6rem .8rem; }
+.adm-bar .count { margin-inline-start: auto; font-size: .78rem; color: var(--lilac-dim); }
+.adm-list { display: grid; gap: .55rem; }
+.adm-row { display: grid; gap: .3rem; text-align: start; padding: .85rem 1rem; border: var(--hair);
+  border-radius: var(--r-md); background: rgba(214,191,234,.05); color: var(--lilac);
+  font-family: var(--f-sans); box-shadow: none; }
+.adm-row:hover { background: rgba(214,191,234,.12); color: var(--white); transform: none; box-shadow: none; }
+.adm-row .src { font-size: .98rem; color: var(--white); line-height: 1.5; }
+.adm-row .meta { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--lilac-dim); }
+.chip { display: inline-block; padding: .15rem .5rem; border-radius: var(--r-pill); font-size: .6rem;
+  font-weight: 700; letter-spacing: .12em; text-transform: uppercase; border: 1px solid transparent; }
+.chip.verified { color: #8fe8c9; border-color: rgba(46,217,160,.4); background: rgba(46,217,160,.12); }
+.chip.needs_review { color: var(--amber); border-color: rgba(255,196,107,.4); background: rgba(255,196,107,.12); }
+.chip.under_revision { color: var(--lilac); border-color: rgba(214,191,234,.3); background: rgba(214,191,234,.1); }
+.chip.community_reported { color: #ffb3c1; border-color: rgba(255,92,122,.4); background: rgba(255,92,122,.12); }
+.chip.archived { color: var(--lilac-dim); border-color: rgba(214,191,234,.2); background: rgba(214,191,234,.06); }
+.adm-form { display: grid; gap: .9rem; }
+.adm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .8rem; }
+.adm-form textarea { font-family: var(--f-sans); font-size: 1rem; color: var(--white); line-height: 1.6;
+  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md); padding: .9rem 1.1rem;
+  width: 100%; min-height: 5.5rem; resize: vertical; }
+.adm-form textarea:focus, .adm-bar select:focus, .adm-form select:focus { outline: none;
+  border-color: rgba(167,38,208,.75); box-shadow: 0 0 0 4px rgba(167,38,208,.16); }
+.adm-form select { font-family: var(--f-sans); font-size: .95rem; color: var(--white); width: 100%;
+  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md); padding: .8rem .9rem; }
+.adm-form .field label { margin-bottom: .1rem; }
+.adm-actions { display: flex; gap: .7rem; flex-wrap: wrap; }
+.adm-empty { margin: 0; font-size: .88rem; color: var(--lilac-dim); line-height: 1.7; }
+.rep-card { display: grid; gap: .5rem; padding: .95rem 1.1rem; border: var(--hair); border-radius: var(--r-md);
+  background: rgba(214,191,234,.05); }
+.rep-card .what { color: var(--white); font-size: .95rem; }
 #auth-lede { margin: 0; }
 
 /* ═══════════ THE HALL ═══════════ */
@@ -1023,6 +1062,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div class="panel climb" id="climb"></div>
 
     <div class="hall-foot">
+      <button class="ghost" id="admin-btn" hidden>Content Admin</button>
       <button class="ghost" id="reset-btn">Melt the marks</button>
       <button class="ghost" id="signout-btn">Log Out</button>
       <p class="note" id="store-note" style="flex:1 1 20rem"></p>
@@ -1045,6 +1085,28 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     </div>
     <div class="stage" id="stage"></div>
     <div class="center"><button class="link" id="back-btn">← Back to the hall</button></div>
+  </section>
+
+  <!-- ══════════════ CONTENT ADMIN ══════════════ -->
+  <section id="admin" class="view" hidden>
+    <div class="panel admin-head">
+      <div>
+        <p class="seal-eyebrow">Curator</p>
+        <h1>Content Admin</h1>
+        <p class="note">Nothing reaches a learner until it is marked Verified. Unchecked material stays hidden rather than being guessed at.</p>
+      </div>
+      <button class="ghost" id="admin-back">← Back to the hall</button>
+    </div>
+
+    <div class="panel admin-body">
+      <div class="auth-tabs" role="tablist" aria-label="Library or reports">
+        <button class="auth-tab on" id="adm-tab-lib" role="tab" aria-selected="true">Library</button>
+        <button class="auth-tab" id="adm-tab-rep" role="tab" aria-selected="false">Reports</button>
+      </div>
+      <p class="msg" id="adm-msg" hidden role="status" aria-live="polite"></p>
+      <div id="adm-library"></div>
+      <div id="adm-reports" hidden></div>
+    </div>
   </section>
 
 </main>
@@ -2291,6 +2353,7 @@ async function connectBackend(email) {
     const row = await sbRead();
     backend = "supabase";
     loadProfile();
+    admCheck();
     absorb(row);
     await sbWrite(member);
   } catch (e) {
@@ -2389,9 +2452,10 @@ function xferBlock(x) {
 const views = {
   gate:     document.getElementById("gate"),
   hall:     document.getElementById("hall"),
-  trial:    document.getElementById("trial")
+  trial:    document.getElementById("trial"),
+  admin:    document.getElementById("admin")
 };
-const DEPTH = { gate: 0, hall: 1, trial: 2 };
+const DEPTH = { gate: 0, hall: 1, trial: 2, admin: 2 };
 let curView = null;
 
 function show(name) {
@@ -3576,6 +3640,292 @@ function runRoots() {
   }
   render();
 }
+
+/* ═══════════════════════════════════════════════════════════
+   CONTENT ADMIN — add, correct and verify the material.
+
+   Everything here goes through the same row-level security as
+   the rest of the site: the database checks on every request
+   that the caller is on the admins table. Hiding this screen is
+   a convenience, not the protection.
+   ═══════════════════════════════════════════════════════════ */
+const ADM = {
+  kind: ["proverb","idiom","collocation","sentence","passage","text","specialised","interpreting","detective","duel","untranslatable"],
+  chamber: ["translation","specialisation","kuwaiti","interpreting","mentor"],
+  direction: ["ar_en","en_ar","both"],
+  variety: ["formal_arabic","kuwaiti_arabic","english","other"],
+  domain: ["general","technical","legal","journalistic","political","literary","academic","cultural"],
+  verification: ["needs_review","under_revision","community_reported","verified","archived"]
+};
+const ADM_LABEL = {
+  ar_en: "Arabic → English", en_ar: "English → Arabic", both: "Both directions",
+  formal_arabic: "Formal Arabic", kuwaiti_arabic: "Kuwaiti Arabic", english: "English", other: "Other",
+  specialised: "Specialised text", needs_review: "Needs review", under_revision: "Under revision",
+  community_reported: "Community reported", verified: "Verified", archived: "Archived",
+  specialisation: "Specialisation"
+};
+const admWord = v => ADM_LABEL[v] || (v || "").replace(/_/g, " ").replace(/^./, c => c.toUpperCase());
+
+let admIsAdmin = false, admItems = [], admFilter = "all";
+
+function admSay(text, good) {
+  const m = document.getElementById("adm-msg");
+  m.hidden = false; m.classList.toggle("good", !!good); m.textContent = text;
+}
+function admQuiet() { document.getElementById("adm-msg").hidden = true; }
+
+/* The admins table returns a row only to a member who is on it. */
+async function admCheck() {
+  try {
+    const r = await fetch(SUPABASE.url + "/rest/v1/admins?select=user_id", { headers: await sbHeaders() });
+    if (!r.ok) return;
+    const rows = await r.json();
+    admIsAdmin = Array.isArray(rows) && rows.length > 0;
+    const b = document.getElementById("admin-btn");
+    if (b) b.hidden = !admIsAdmin;
+  } catch (e) { /* not an admin, or offline */ }
+}
+
+async function admLoad() {
+  const box = document.getElementById("adm-library");
+  box.innerHTML = '<p class="adm-empty">Loading…</p>';
+  try {
+    const r = await fetch(SUPABASE.url + "/rest/v1/activities?select=*&order=id.desc&limit=200",
+                          { headers: await sbHeaders() });
+    if (!r.ok) throw new Error("read " + r.status);
+    admItems = await r.json();
+    admRender();
+  } catch (e) {
+    box.innerHTML = '<p class="adm-empty">The library could not be read. ' +
+      'If this keeps happening your account may no longer be an administrator.</p>';
+  }
+}
+
+function admRender() {
+  const box = document.getElementById("adm-library");
+  const shown = admFilter === "all" ? admItems : admItems.filter(i => i.verification === admFilter);
+
+  const bar = el("div", "adm-bar");
+  const sel = el("select");
+  sel.setAttribute("aria-label", "Filter by status");
+  [["all", "All statuses"]].concat(ADM.verification.map(v => [v, admWord(v)]))
+    .forEach(([v, t]) => { const o = el("option", null, t); o.value = v; if (v === admFilter) o.selected = true; sel.appendChild(o); });
+  sel.addEventListener("change", () => { admFilter = sel.value; admRender(); });
+  const add = el("button", null, "Add new item");
+  add.addEventListener("click", () => admForm(null));
+  const count = el("span", "count", shown.length + " of " + admItems.length + " shown");
+  bar.appendChild(sel); bar.appendChild(add); bar.appendChild(count);
+
+  box.innerHTML = "";
+  box.appendChild(bar);
+
+  if (!shown.length) {
+    box.appendChild(el("p", "adm-empty",
+      admItems.length
+        ? "Nothing with that status."
+        : "The library is empty. Everything the site teaches today is still written into the page itself; " +
+          "anything you add here is stored in the database instead, and can be corrected without a developer."));
+    return;
+  }
+
+  const list = el("div", "adm-list");
+  shown.forEach(it => {
+    const b = el("button", "adm-row");
+    b.innerHTML =
+      '<span class="src" dir="auto">' + admEsc((it.source_text || "").slice(0, 120)) + '</span>' +
+      '<span class="meta">' + admWord(it.kind) + ' · ' + admWord(it.direction) + ' · ' +
+      admWord(it.variety) + ' · ' + admWord(it.domain) + ' · ' + it.marks + ' marks ' +
+      '<span class="chip ' + it.verification + '">' + admWord(it.verification) + '</span></span>';
+    b.addEventListener("click", () => admForm(it));
+    list.appendChild(b);
+  });
+  box.appendChild(list);
+}
+
+function admEsc(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+const ADM_TEXT_FIELDS = [
+  ["source_text", "Source text", true],
+  ["target_text", "Target text / model answer", false],
+  ["literal_meaning", "Literal meaning", false],
+  ["intended_meaning", "Intended meaning", false],
+  ["cultural_note", "Cultural or contextual note", false],
+  ["usage_example", "Usage example", false],
+  ["english_equivalent", "English equivalent, only if one genuinely exists", false],
+  ["strategy", "Translation strategy", false],
+  ["provenance", "Provenance — where this came from", false],
+  ["source_ref", "Source reference", false],
+  ["contributor", "Contributor", false]
+];
+
+function admForm(item) {
+  admQuiet();
+  const box = document.getElementById("adm-library");
+  const it = item || { kind: "proverb", chamber: "translation", direction: "ar_en",
+                       variety: "formal_arabic", domain: "general", difficulty: 1, marks: 1,
+                       verification: "needs_review" };
+  box.innerHTML = "";
+
+  const form = el("div", "adm-form");
+  const grid = el("div", "adm-grid");
+
+  function pick(key, label, options) {
+    const f = el("div", "field");
+    const l = el("label", null, label); l.setAttribute("for", "adm-" + key);
+    const s = el("select"); s.id = "adm-" + key;
+    options.forEach(v => { const o = el("option", null, admWord(v)); o.value = v; if (it[key] === v) o.selected = true; s.appendChild(o); });
+    f.appendChild(l); f.appendChild(s); grid.appendChild(f);
+  }
+  function num(key, label, min, max) {
+    const f = el("div", "field");
+    const l = el("label", null, label); l.setAttribute("for", "adm-" + key);
+    const i = el("input"); i.id = "adm-" + key; i.type = "number"; i.min = min; i.max = max;
+    i.value = it[key] == null ? min : it[key];
+    f.appendChild(l); f.appendChild(i); grid.appendChild(f);
+  }
+
+  pick("kind", "Type", ADM.kind);
+  pick("chamber", "Chamber", ADM.chamber);
+  pick("direction", "Direction", ADM.direction);
+  pick("variety", "Language variety", ADM.variety);
+  pick("domain", "Domain", ADM.domain);
+  pick("verification", "Verification status", ADM.verification);
+  num("difficulty", "Difficulty 1–5", 1, 5);
+  num("marks", "Marks awarded", 0, 20);
+  form.appendChild(grid);
+
+  ADM_TEXT_FIELDS.forEach(([key, label, required]) => {
+    const f = el("div", "field");
+    const l = el("label", null, label + (required ? " *" : "")); l.setAttribute("for", "adm-" + key);
+    const t = el("textarea"); t.id = "adm-" + key; t.value = it[key] || "";
+    t.setAttribute("dir", "auto");
+    if (key !== "source_text" && key !== "target_text" && key !== "cultural_note") t.style.minHeight = "3.2rem";
+    f.appendChild(l); f.appendChild(t); form.appendChild(f);
+  });
+
+  const actions = el("div", "adm-actions");
+  const save = el("button", null, item ? "Save changes" : "Add to the library");
+  save.addEventListener("click", () => admSave(item));
+  const cancel = el("button", "ghost", "Cancel");
+  cancel.addEventListener("click", () => { admQuiet(); admRender(); });
+  actions.appendChild(save); actions.appendChild(cancel);
+
+  if (item) {
+    const arch = el("button", "ghost", "Archive this item");
+    arch.addEventListener("click", async () => {
+      document.getElementById("adm-verification").value = "archived";
+      await admSave(item);
+    });
+    actions.appendChild(arch);
+  }
+  form.appendChild(actions);
+  box.appendChild(form);
+  document.getElementById("adm-source_text").focus();
+}
+
+async function admSave(item) {
+  const body = {};
+  ["kind","chamber","direction","variety","domain","verification"].forEach(k => {
+    body[k] = document.getElementById("adm-" + k).value;
+  });
+  body.difficulty = Number(document.getElementById("adm-difficulty").value) || 1;
+  body.marks = Number(document.getElementById("adm-marks").value) || 0;
+  ADM_TEXT_FIELDS.forEach(([k]) => {
+    const v = document.getElementById("adm-" + k).value.trim();
+    body[k] = v || null;
+  });
+
+  if (!body.source_text) { admSay("The source text is required."); return; }
+  if (body.verification === "verified") {
+    body.verified_at = new Date().toISOString();
+    body.verified_by = (session && session.user && session.user.email) || "";
+  }
+
+  try {
+    const headers = Object.assign(await sbHeaders(), { "Prefer": "return=representation" });
+    const url = SUPABASE.url + "/rest/v1/activities" + (item ? "?id=eq." + item.id : "");
+    const r = await fetch(url, { method: item ? "PATCH" : "POST", headers: headers, body: JSON.stringify(body) });
+    if (!r.ok) {
+      const t = await r.text();
+      throw new Error(r.status + " " + t.slice(0, 160));
+    }
+    await admLoad();
+    admSay(item ? "Saved." : "Added to the library.", true);
+  } catch (e) {
+    admSay("It could not be saved: " + e.message);
+  }
+}
+
+/* ── reports ── */
+async function admReports() {
+  const box = document.getElementById("adm-reports");
+  box.innerHTML = '<p class="adm-empty">Loading…</p>';
+  try {
+    const r = await fetch(SUPABASE.url + "/rest/v1/content_reports?select=*&order=id.desc&limit=100",
+                          { headers: await sbHeaders() });
+    if (!r.ok) throw new Error("read " + r.status);
+    const rows = await r.json();
+    box.innerHTML = "";
+    if (!rows.length) {
+      box.appendChild(el("p", "adm-empty", "No one has reported a problem with any item."));
+      return;
+    }
+    rows.forEach(rep => {
+      const c = el("div", "rep-card");
+      c.innerHTML =
+        '<span class="what">' + admWord(rep.report_type) + ' — item #' + rep.activity_id + '</span>' +
+        '<span class="meta">' + admEsc(rep.description || "no description") + '</span>' +
+        '<span class="meta"><span class="chip ' + (rep.status === "open" ? "needs_review" : "archived") + '">' +
+        admWord(rep.status) + '</span></span>';
+      const row = el("div", "adm-actions");
+      [["reviewing","Reviewing"],["corrected","Corrected"],["rejected","Rejected"],["archived","Archive"]]
+        .forEach(([v, label]) => {
+          const b = el("button", "ghost", label);
+          b.addEventListener("click", () => admSetReport(rep.id, v));
+          row.appendChild(b);
+        });
+      c.appendChild(row);
+      box.appendChild(c);
+    });
+  } catch (e) {
+    box.innerHTML = '<p class="adm-empty">The reports could not be read.</p>';
+  }
+}
+
+async function admSetReport(id, status) {
+  try {
+    const headers = Object.assign(await sbHeaders(), { "Prefer": "return=minimal" });
+    const r = await fetch(SUPABASE.url + "/rest/v1/content_reports?id=eq." + id,
+      { method: "PATCH", headers: headers, body: JSON.stringify({ status: status }) });
+    if (!r.ok) throw new Error(String(r.status));
+    admReports();
+  } catch (e) { admSay("That report could not be updated."); }
+}
+
+/* ── wiring ── */
+document.getElementById("admin-btn").addEventListener("click", () => {
+  admQuiet(); show("admin"); admLoad();
+});
+document.getElementById("admin-back").addEventListener("click", () => {
+  renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
+});
+document.getElementById("adm-tab-lib").addEventListener("click", () => {
+  document.getElementById("adm-tab-lib").classList.add("on");
+  document.getElementById("adm-tab-rep").classList.remove("on");
+  document.getElementById("adm-library").hidden = false;
+  document.getElementById("adm-reports").hidden = true;
+  admLoad();
+});
+document.getElementById("adm-tab-rep").addEventListener("click", () => {
+  document.getElementById("adm-tab-rep").classList.add("on");
+  document.getElementById("adm-tab-lib").classList.remove("on");
+  document.getElementById("adm-library").hidden = true;
+  document.getElementById("adm-reports").hidden = false;
+  admReports();
+});
 
 /* ═══════════ BOOT ═══════════ */
 load();
