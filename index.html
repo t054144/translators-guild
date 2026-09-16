@@ -666,6 +666,22 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 /* the Arabic name sitting beside an English heading */
 .card-top h3 .ar { font-family: var(--f-ar); font-size: .78em; font-weight: 400;
   color: var(--lilac); margin-inline-start: .5rem; unicode-bidi: isolate; }
+/* the phraseology pairs: source, arrow, target, and why */
+.pairs { display: grid; gap: .6rem; }
+.pair { display: grid; gap: .35rem .7rem; padding: .85rem 1rem;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  border-radius: var(--r-md); border: var(--hair); background: rgba(255,255,255,.03);
+  animation: rise .5s var(--ease) both; }
+.pair .p-a, .pair .p-b { font-size: .98rem; color: var(--white); font-weight: 400; min-width: 0; }
+.pair .p-a.is-ar, .pair .p-b.is-ar { font-family: var(--f-ar); font-size: 1.08rem; }
+.pair .p-arrow { color: var(--magenta); align-self: center; font-size: .9rem; }
+.pair .p-w { grid-column: 1 / -1; font-size: .82rem; font-weight: 300;
+  color: rgba(214,191,234,.85); line-height: 1.5; border-top: var(--hair); padding-top: .45rem; }
+.pair .p-w b { color: var(--white); font-weight: 500; }
+@media (max-width: 620px) {
+  .pair { grid-template-columns: minmax(0,1fr); }
+  .pair .p-arrow { justify-self: start; transform: rotate(90deg); margin: -.15rem 0; }
+}
 /* the small cards used for the eighteen techniques and the strategies */
 .card.tech { padding: 1.15rem 1.25rem; gap: .75rem; }
 .card.tech .card-top h3 { font-size: clamp(1.05rem,2.6vw,1.2rem); }
@@ -2545,6 +2561,10 @@ const ITEMS = [
     blurb: "Sixty seconds. Phrases arrive faster than you can think. Type the equivalent and move.",
     run: runBooth },
 
+  { id: "phraseology", ar: "اللُّغة والتَّعبير", en: "Language & Phraseology", kind: "exhibit", section: "chambers",
+    direction: "both",
+    blurb: "Collocations, connectors, courtesy formulas and speech acts — the chunks a language has already assembled. Both directions, because what English splits Arabic may join.",
+    run: runPhraseology },
   { id: "register", ar: "مؤشِّر المُستوى اللُّغَويّ", en: "The Register Dial", kind: "exhibit", section: "chambers",
     blurb: "One meaning, four levels — from Kuwaiti street to classical Arabic — and what each one does to the English.",
     run: runRegister },
@@ -4391,6 +4411,205 @@ function runBooth() {
     stage.appendChild(sc);
   }
   paint(); inp.focus();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   LANGUAGE & PHRASEOLOGY
+
+   Every item carries its own direction, because the Guild is not
+   an Arabic-to-English site with English-to-Arabic bolted on.
+   The fields follow the language-item model: direction, original,
+   translation, literal gloss where the literal reading misleads,
+   functional meaning, context, register, and a verification
+   status. Nothing here is invented: the collocation sets and the
+   discourse markers are the ones set out in the build
+   specification, and anything not yet checked against a source
+   says so rather than being presented as settled.
+   ═══════════════════════════════════════════════════════════ */
+const PHRASE_SETS = [
+
+  /* ── COLLOCATIONS, EN → AR ── */
+  { key: "coll_en_ar",
+    en: "Collocations", ar: "المُتلازِمات اللَّفظيّة",
+    dir: "en_ar", dirLabel: "English → Arabic",
+    lede: "A collocation is a pairing the language has already made for you. " +
+          "<b>Agreement</b> takes a different Arabic verb depending on which verb stands beside it in English, " +
+          "and choosing the wrong one is not a grammar mistake — it is the mistake that marks a text as translated.",
+    note: "The English verb does not decide the Arabic verb. The <b>stage of the agreement</b> does: " +
+          "arriving at it, signing it, or entering into it are three different moments, and Arabic names them separately.",
+    rows: [
+      { a: "reach an agreement",       b: "يتوصل إلى اتفاق",
+        w: "Arriving at it after negotiation. <b>توصّل إلى</b> carries the sense of getting there." },
+      { a: "sign an agreement",        b: "يوقّع اتفاقية",
+        w: "The physical act, and note the shift to <b>اتفاقية</b> — the formal instrument rather than the understanding." },
+      { a: "enter into an agreement",  b: "يدخل في اتفاق",
+        w: "Becoming party to it. Legal and commercial register." },
+      { a: "bilateral agreement",      b: "اتفاق ثنائي",
+        w: "Two parties. <b>ثنائي</b> is the standard diplomatic adjective." },
+      { a: "preliminary agreement",    b: "اتفاق مبدئي",
+        w: "Agreed in principle, not yet final." },
+      { a: "binding agreement",        b: "اتفاق ملزم",
+        w: "<b>ملزم</b> is the legal term of art for what obliges the parties." }
+    ] },
+
+  /* ── COLLOCATIONS, AR → EN ── */
+  { key: "coll_ar_en",
+    en: "Collocations", ar: "المُتلازِمات اللَّفظيّة",
+    dir: "ar_en", dirLabel: "Arabic → English",
+    lede: "The same problem, running the other way. Arabic <b>اتخذ</b> covers a range that English splits between " +
+          "<i>make</i>, <i>take</i> and <i>adopt</i>, and no rule predicts which. The object chooses the verb.",
+    note: "Rendering every <b>اتخذ</b> as <i>take</i> produces English that is grammatical and wrong: " +
+          "<i>take a decision</i> exists in British usage but <i>make a decision</i> is the unmarked choice, " +
+          "and <i>take a policy</i> is not English at all.",
+    rows: [
+      { a: "اتخذ قرارًا",   b: "make a decision",
+        w: "The default. <i>Take a decision</i> is heard in British and institutional English; <i>make</i> is safer." },
+      { a: "اتخذ إجراءات", b: "take measures",
+        w: "Also <i>take action</i>, <i>take steps</i>. Here English does use <i>take</i>." },
+      { a: "اتخذ موقفًا",  b: "take a position &middot; adopt a position",
+        w: "<i>Adopt</i> is the more formal and more diplomatic of the two." },
+      { a: "اتخذ خطوات",   b: "take steps",
+        w: "Fixed pairing; <i>make steps</i> is not English." },
+      { a: "اتخذ سياسة",   b: "adopt a policy",
+        w: "Only <i>adopt</i>. Neither <i>make</i> nor <i>take</i> collocates with <i>policy</i> here." }
+    ] },
+
+  /* ── DISCOURSE MARKERS, BOTH DIRECTIONS ── */
+  { key: "markers",
+    en: "Discourse markers", ar: "أدَوات الرَّبط",
+    dir: "both", dirLabel: "Both directions",
+    lede: "Connectors are the joints of an argument. They are rarely one-to-one, they differ sharply in register, " +
+          "and Arabic prose joins clauses far more often than English does — so a marker-for-marker rendering " +
+          "produces English that sounds relentlessly linked.",
+    note: "Two habits worth unlearning. First, <b>ومع ذلك</b> and <b>مع ذلك</b> are not interchangeable with " +
+          "every <i>however</i>: English often signals contrast by position and punctuation alone. Second, Arabic " +
+          "will happily open a sentence with <b>و</b> where English simply starts a new sentence &mdash; " +
+          "<b>the right rendering is often nothing at all</b>.",
+    rows: [
+      { a: "however",            b: "ومع ذلك &middot; غير أنّ",  w: "Concession. <b>غير أنّ</b> is the more formal." },
+      { a: "therefore",          b: "لذلك &middot; ومن ثَمّ",    w: "Consequence. <b>ومن ثَمّ</b> belongs to academic and legal prose." },
+      { a: "moreover",           b: "علاوة على ذلك",            w: "Adding weight to the same line of argument." },
+      { a: "nevertheless",       b: "مع ذلك &middot; ومع هذا",  w: "Stronger concession than <i>however</i>; the obstacle is conceded and passed." },
+      { a: "in contrast",        b: "في المقابل",                w: "Sets two things side by side rather than conceding." },
+      { a: "on the other hand",  b: "من ناحية أخرى",            w: "Expects a <i>on the one hand</i> somewhere before it; Arabic is less strict about the pair." },
+      { a: "as a result",        b: "ونتيجة لذلك",              w: "Result, stated plainly." },
+      { a: "in addition",        b: "بالإضافة إلى ذلك",         w: "Neutral addition; lighter than <i>moreover</i>." },
+      { a: "accordingly",        b: "وبناءً عليه",               w: "Formal, and common in legal and administrative Arabic." }
+    ] },
+
+  /* ── CONTEXT-DEPENDENT EXPRESSIONS ── */
+  { key: "context",
+    en: "Context-dependent expressions", ar: "تَعابير رَهينة السِّياق",
+    dir: "ar_en", dirLabel: "Arabic → English",
+    lede: "Some expressions have no translation at all until you know who is saying them, to whom, and when. " +
+          "Storing one equivalence for them is the error &mdash; it teaches a phrase that will be wrong " +
+          "most of the times it is used.",
+    note: "<b>بالعافية</b> is the clearest case. It is a well-wishing formula built on <i>health</i>, " +
+          "and what it means in English is decided entirely by the moment.",
+    rows: [
+      { a: "بالعافية &mdash; said to someone eating", b: "Enjoy your meal &middot; Bon appétit",
+        w: "Literal gloss: <i>with health</i>. The function is a table courtesy, and English uses a borrowed French phrase for it as often as an English one." },
+      { a: "بالعافية &mdash; said to someone who has just bathed", b: "&mdash; often nothing at all",
+        w: "English has no formula for this moment. The honest rendering may be silence, or a neutral pleasantry, depending on the text. <b>Forcing <i>enjoy your meal</i> here is nonsense.</b>" },
+      { a: "بالعافية &mdash; said to someone working hard", b: "Keep it up &middot; More power to you",
+        w: "Now it is encouragement. Same three syllables, a different speech act." },
+      { a: "الله يعطيك العافية", b: "Thank you for your effort &middot; Well done &middot; Thanks for your trouble",
+        w: "A thanks-and-blessing said to someone who has done work for you. The English depends on the relationship: a colleague, a shopkeeper and a superior take three different renderings." }
+    ] },
+
+  /* ── SPEECH ACTS ── */
+  { key: "speech",
+    en: "Speech acts", ar: "الأفعال الكَلاميّة",
+    dir: "en_ar", dirLabel: "English → Arabic",
+    lede: "Ask what the sentence is <b>doing</b>, not what it says. A request, an apology, a refusal and an offer each " +
+          "have their own formulas in each language, and politeness does not map degree for degree.",
+    note: "English marks politeness largely by grammatical distance &mdash; <i>could you possibly</i>, <i>I was wondering if</i>. " +
+          "Arabic marks it more by lexical choice and by blessing formulas. A literal rendering of English hedging " +
+          "often lands as <b>odd rather than polite</b>.",
+    rows: [
+      { a: "Could you possibly send me the report?", b: "هل يمكنك إرسال التقرير؟",
+        w: "Neutral and direct. Appropriate between colleagues; it loses the English hedging, which is usually the right call." },
+      { a: "Could you possibly send me the report?", b: "هل بالإمكان إرسال التقرير؟",
+        w: "More impersonal &mdash; the agent disappears. Useful in institutional writing where naming the person would be too pointed." },
+      { a: "Could you possibly send me the report?", b: "هل تتكرم بإرسال التقرير؟",
+        w: "Markedly deferential: <b>تتكرم</b> casts the act as a kindness being granted. Right for a superior; obsequious between equals." },
+      { a: "I'm afraid that won't be possible.", b: "للأسف، هذا غير ممكن",
+        w: "A refusal. English softens with <i>I'm afraid</i>; Arabic with <b>للأسف</b>. The softener is not decoration &mdash; removing it changes the act from a refusal into a rebuff." }
+    ] }
+];
+
+/* ═══════════════════════════════════════════════════════════
+   THE PHRASEOLOGY CHAMBER — unscored, like every Chamber
+   ═══════════════════════════════════════════════════════════ */
+function runPhraseology() {
+  let cur = 0;
+  setCount("A chamber · no score");
+
+  function render() {
+    stage.innerHTML = "";
+
+    stage.appendChild(el("p", "lede",
+      "Words are learned one at a time; languages are used in <b>chunks</b>. Collocations, connectors, courtesy " +
+      "formulas and the set phrases that carry a speech act are where a translation gives itself away long before " +
+      "any grammar does. Everything here runs in both directions, because the problem is not symmetrical: " +
+      "what English splits, Arabic may join, and the other way about."));
+
+    const chips = el("div", "chips");
+    PHRASE_SETS.forEach((s, k) => {
+      const b = el("button", "chip" + (k === cur ? " on" : ""),
+        s.en + '<span class="c-sub">' + s.dirLabel + '</span>');
+      b.addEventListener("click", () => { cur = k; render(); });
+      chips.appendChild(b);
+    });
+    stage.appendChild(chips);
+
+    const set = PHRASE_SETS[cur];
+    const card = el("div", "card");
+    card.appendChild(el("div", "card-top",
+      '<span class="num-badge">' + set.dirLabel + '</span>' +
+      '<h3>' + set.en + ' <span class="ar" dir="rtl" lang="ar">' + set.ar + '</span></h3>'));
+    card.appendChild(el("p", "lede", set.lede));
+
+    const list = el("div", "pairs");
+    set.rows.forEach((r, k) => {
+      const aAr = AR_RE.test(r.a);
+      const bAr = AR_RE.test(r.b);
+      const row = el("div", "pair",
+        '<span class="p-a' + (aAr ? " is-ar" : "") + '"' + (aAr ? ' dir="rtl" lang="ar"' : '') + '>' + r.a + '</span>' +
+        '<span class="p-arrow" aria-hidden="true">→</span>' +
+        '<span class="p-b' + (bAr ? " is-ar" : "") + '"' + (bAr ? ' dir="rtl" lang="ar"' : '') + '>' + r.b + '</span>' +
+        '<span class="p-w">' + r.w + '</span>');
+      row.style.animationDelay = (70 + k * 55) + "ms";
+      list.appendChild(row);
+    });
+    card.appendChild(list);
+    stage.appendChild(card);
+
+    const v = el("div", "verdict");
+    v.appendChild(el("span", "vh", "What to take from this"));
+    v.appendChild(el("p", "vb", set.note));
+    stage.appendChild(v);
+
+    const pager = el("div", "pager");
+    const left = el("div", "foot");
+    if (cur > 0) {
+      const prev = el("button", "ghost", "← " + PHRASE_SETS[cur - 1].en);
+      prev.addEventListener("click", () => { cur--; render(); });
+      left.appendChild(prev);
+    }
+    if (cur < PHRASE_SETS.length - 1) {
+      const next = el("button", null, PHRASE_SETS[cur + 1].en + " →");
+      next.addEventListener("click", () => { cur++; render(); });
+      left.appendChild(next);
+    }
+    const back = el("button", "ghost", "Back to the hall");
+    back.addEventListener("click", () => { renderHall(); show("hall"); });
+    left.appendChild(back);
+    pager.appendChild(left);
+    pager.appendChild(el("p", "note", "A chamber · free to wander · nothing here is scored"));
+    stage.appendChild(pager);
+  }
+  render();
 }
 
 /* ═══════════ THE REGISTER DIAL ═══════════ */
