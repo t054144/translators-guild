@@ -2773,14 +2773,15 @@ async function pressSeal() {
 
 /* A member is greeted by name, but only once they are inside — never on the
    public Member's Seal screen. */
+/* The heading carries the greeting; this line is the quieter half of the
+   identity, so it does not say Welcome twice. */
 function paintWho() {
   const who = document.getElementById("hall-who");
   if (!who) return;
   const u = (session && session.user) || {};
-  const name = (u.firstName || "").trim();
-  if (name) { who.textContent = "Welcome, " + name; who.hidden = false; }
-  else if (u.email) { who.textContent = u.email; who.hidden = false; }
-  else { who.textContent = ""; who.hidden = true; }
+  const addr = u.email || state.member || "";
+  who.textContent = addr;
+  who.hidden = !addr;
 }
 
 /* The seal is the whole threshold: signing in or joining opens the hall. */
@@ -2898,11 +2899,14 @@ function checkLevelUp() {
   }
 }
 
-/* The name shown is whatever the account carries, never a hard-coded one. */
+/* The name shown is whatever the account carries, never a hard-coded one:
+   first and last name together, and the address only for the few accounts
+   that were created before sign-up asked for a name. */
 function memberName() {
   const u = (session && session.user) || {};
-  const first = (u.firstName || "").trim();
-  if (first) return first;
+  const full = [(u.firstName || "").trim(), (u.lastName || "").trim()]
+    .filter(Boolean).join(" ");
+  if (full) return full;
   const addr = u.email || state.member || "";
   return addr ? addr.split("@")[0] : "";
 }
