@@ -1144,8 +1144,7 @@ const RANKS = [
   { at: 2, en: "Apprentice",        ar: "مُبتَدِئ" },
   { at: 4, en: "Scribe",            ar: "ناسِخ" },
   { at: 6, en: "Translator",        ar: "مُترجِم" },
-  { at: 8, en: "Artisan",           ar: "صانِع" },
-  { at: 9, en: "Master Translator", ar: "مُترجِم أوّل" }
+  { at: 8, en: "Master Translator", ar: "مُترجِم أوّل" }
 ];
 
 /* ═══════════ PORTRAITS ═══════════
@@ -1251,6 +1250,18 @@ const FIGURE_IMAGE = {
     source_name: "Supplied by the site owner",
     source_page: "",
     credit: "Historical engraving" },
+  gerard: {
+    file: "lineage/gerard-of-cremona.jpg",
+    /* No likeness of Gerard of Cremona survives. This is a period
+       illumination of God the Father, chosen by the site owner as an image
+       of his world rather than of him, and it is labelled as such on the
+       card so no reader mistakes it for a portrait. */
+    image_type: "unrelated_period_illumination",
+    authenticity: "not_a_depiction_of_this_person",
+    alt: "Fifteenth-century illuminated miniature of God the Father in a mandorla. A period image, not a likeness of Gerard of Cremona.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Period illumination · not a likeness" },
   luther: {
     file: "lineage/martin-luther.jpg",
     image_type: "painted_portrait",
