@@ -440,8 +440,42 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .rep-card .what { color: var(--white); font-size: .95rem; }
 #auth-lede { margin: 0; }
 
+/* ═══════════ BOTTOM NAVIGATION ═══════════
+   Phone-first: on a small screen this bar is how the Guild is navigated,
+   so it is always within thumb reach and every target is a full 56px. It
+   is not rendered above 760px, where the hall's own headings are visible
+   at a glance and a fixed bar would only steal room. */
+#bottom-nav { display: none; }
+@media (max-width: 760px) {
+  #bottom-nav {
+    display: grid; grid-template-columns: repeat(5, 1fr);
+    position: fixed; inset-inline: 0; bottom: 0; z-index: 60;
+    padding: .3rem .25rem calc(.3rem + env(safe-area-inset-bottom));
+    background: rgba(17,6,32,.86);
+    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+    border-top: 1px solid rgba(214,191,234,.16);
+  }
+  #bottom-nav button {
+    display: grid; gap: .15rem; justify-items: center; align-content: center;
+    min-height: 56px; padding: .35rem .2rem;
+    background: none; border: 0; border-radius: 14px; cursor: pointer;
+    font-family: inherit; color: var(--lilac-dim);
+    -webkit-tap-highlight-color: transparent;
+  }
+  #bottom-nav .bn-i { font-size: 1.02rem; line-height: 1; }
+  #bottom-nav .bn-t { font-size: .6rem; letter-spacing: .07em; text-transform: uppercase; }
+  #bottom-nav button[aria-current="page"] { color: var(--white); background: rgba(167,38,208,.18); }
+  #bottom-nav button[aria-current="page"] .bn-i { color: var(--magenta); }
+  #bottom-nav button:focus-visible { outline: 2px solid var(--magenta); outline-offset: -2px; }
+  /* room so the bar never sits on top of the last card */
+  body.has-nav main { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)); }
+}
+
 /* ═══════════ THE HALL ═══════════ */
 #hall { max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
+/* the act spine is fixed across the top, so a jumped-to section stops
+   below it rather than underneath it */
+#block-method, #block-trials, #block-chambers { scroll-margin-top: 4.5rem; }
 
 /* The Hall opens with a greeting, not with a scoreboard. The rank lives on
    the Member's Seal, where it belongs. */
@@ -1077,7 +1111,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       <div class="strip" id="strip"></div>
     </div>
 
-    <div>
+    <div id="block-method">
       <div class="sec-head">
         <h2>The Method</h2>
         <span class="note" style="margin-inline-start:auto">Read these first — the trials assume them</span>
@@ -1085,7 +1119,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       <div class="ledger" id="sec-method"></div>
     </div>
 
-    <div>
+    <div id="block-trials">
       <div class="sec-head">
         <h2>The Trials</h2>
         <span class="note" style="margin-inline-start:auto">Scored · each one earns a guild mark</span>
@@ -1093,7 +1127,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       <div class="ledger" id="sec-trials"></div>
     </div>
 
-    <div>
+    <div id="block-chambers">
       <div class="sec-head">
         <h2>The Chambers</h2>
         <span class="note" style="margin-inline-start:auto">Free to wander · no score</span>
@@ -1184,6 +1218,30 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   </section>
 
 </main>
+
+<!-- ══════════════ BOTTOM NAVIGATION ══════════════
+     A phone should not have to scroll the whole hall to reach a trial.
+     This bar is the primary navigation on a small screen and is not
+     rendered at all on a large one, where the hall's own headings do the
+     job. It appears only once somebody is through the gate. -->
+<nav id="bottom-nav" aria-label="Guild sections" hidden>
+  <button type="button" data-go="home" aria-current="page">
+    <span class="bn-i" aria-hidden="true">&#9737;</span><span class="bn-t">Home</span>
+  </button>
+  <button type="button" data-go="chambers">
+    <span class="bn-i" aria-hidden="true">&#9671;</span><span class="bn-t">Chambers</span>
+  </button>
+  <button type="button" data-go="trials">
+    <span class="bn-i" aria-hidden="true">&#10022;</span><span class="bn-t">Trials</span>
+  </button>
+  <button type="button" data-go="interpret">
+    <span class="bn-i" aria-hidden="true">&#9673;</span><span class="bn-t">Interpret</span>
+  </button>
+  <button type="button" data-go="seal">
+    <span class="bn-i" aria-hidden="true">&#9733;</span><span class="bn-t">Seal</span>
+  </button>
+</nav>
+
 
 <script>
 /* ═══════════ WHAT A MARK IS ═══════════
@@ -2917,6 +2975,12 @@ function show(name) {
 
   curView = name;
   window.scrollTo({ top: 0 });
+
+  /* the bar belongs to the Guild, not to the gate */
+  if (typeof showNav === "function") showNav(name !== "gate");
+  if (typeof paintNav === "function") {
+    paintNav(name === "seal" ? "seal" : name === "hall" ? "home" : "");
+  }
 }
 
 /* ═══════════ THE ACT SPINE ═══════════ */
@@ -3552,6 +3616,61 @@ document.getElementById("seal-btn-open").addEventListener("click", () => {
 document.getElementById("seal-back").addEventListener("click", () => {
   renderHall(); show("hall");
 });
+
+/* ═══════════ BOTTOM NAVIGATION ═══════════
+   Five destinations, each one a real place rather than a label: the hall,
+   the chambers, the trials, the interpreting trial, and the seal. It is
+   shown only to someone who is through the gate, and it marks where they
+   are so the bar is never a row of identical buttons. */
+const navBar = document.getElementById("bottom-nav");
+
+function navTo(where) {
+  const jump = id => {
+    renderHall();
+    if (curView !== "hall") show("hall");
+    requestAnimationFrame(() => {
+      const t = document.getElementById(id);
+      if (t) t.scrollIntoView({ behavior: prefersStill() ? "auto" : "smooth", block: "start" });
+    });
+  };
+  if (where === "home")      { renderHall(); show("hall"); window.scrollTo({ top: 0, behavior: prefersStill() ? "auto" : "smooth" }); }
+  if (where === "chambers")  jump("block-chambers");
+  if (where === "trials")    jump("block-trials");
+  if (where === "seal")      { renderSeal(); show("seal"); }
+  if (where === "interpret") {
+    /* The Booth is a Trial, not a Chamber, and it is the interpreting one. */
+    const booth = ITEMS.find(t => t.id === "booth");
+    if (booth) openItem(booth);
+  }
+  paintNav(where);
+}
+
+function prefersStill() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function paintNav(active) {
+  if (!navBar) return;
+  navBar.querySelectorAll("button").forEach(b => {
+    const on = b.dataset.go === active;
+    if (on) b.setAttribute("aria-current", "page");
+    else b.removeAttribute("aria-current");
+  });
+}
+
+/* The bar belongs to the signed-in Guild, never to the gate. */
+function showNav(on) {
+  if (!navBar) return;
+  navBar.hidden = !on;
+  document.body.classList.toggle("has-nav", !!on);
+}
+
+if (navBar) {
+  navBar.addEventListener("click", e => {
+    const b = e.target.closest("button[data-go]");
+    if (b) navTo(b.dataset.go);
+  });
+}
 
 /* ═══════════ SHELL HELPERS ═══════════ */
 const stage = document.getElementById("stage");
