@@ -1036,12 +1036,16 @@ function paintRing(svg, earned) {
 }
 
 /* ═══════════ RANKS ═══════════ */
+/* The Guild is the place, never the rank. These names and thresholds are
+   mirrored in the ranks table in the database, where they can be retuned
+   without touching this file. */
 const RANKS = [
-  { at: 0, en: "Apprentice",  ar: "مُبتَدِئ" },
-  { at: 3, en: "Scribe",      ar: "ناسِخ" },
-  { at: 5, en: "Dragoman",    ar: "تُرجُمان" },
-  { at: 7, en: "Master",      ar: "مُعَلِّم" },
-  { at: 9, en: "Guildmaster", ar: "شيخ الصِّناعة" }
+  { at: 0, en: "Initiate",          ar: "مُنتسِب" },
+  { at: 2, en: "Apprentice",        ar: "مُبتَدِئ" },
+  { at: 4, en: "Scribe",            ar: "ناسِخ" },
+  { at: 6, en: "Translator",        ar: "مُترجِم" },
+  { at: 8, en: "Artisan",           ar: "صانِع" },
+  { at: 9, en: "Master Translator", ar: "مُترجِم أوّل" }
 ];
 
 /* ═══════════ PORTRAITS ═══════════ */
@@ -2738,7 +2742,7 @@ function renderClimb() {
       '<span class="beacon' + (BACKENDS[backend].live ? " live" : "") + '"><i></i>' +
         BACKENDS[backend].label + '</span>' +
       '<p class="note">' + n + ' of ' + TOTAL_MARKS + ' marks · ' +
-        Math.round(n / TOTAL_MARKS * 100) + '% of the way to Guildmaster</p>' +
+        Math.round(n / TOTAL_MARKS * 100) + '% of the way to Master Translator</p>' +
     '</div>';
 
   requestAnimationFrame(() => {
