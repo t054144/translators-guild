@@ -629,6 +629,14 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   color: var(--white); margin: 0; line-height: 1.15; }
 .card-top .num-badge { font-family: var(--f-serif); font-size: .8rem; font-weight: 700;
   letter-spacing: .1em; color: var(--magenta); text-transform: uppercase; }
+/* the Arabic name sitting beside an English heading */
+.card-top h3 .ar { font-family: var(--f-ar); font-size: .78em; font-weight: 400;
+  color: var(--lilac); margin-inline-start: .5rem; unicode-bidi: isolate; }
+/* the small cards used for the eighteen techniques and the strategies */
+.card.tech { padding: 1.15rem 1.25rem; gap: .75rem; }
+.card.tech .card-top h3 { font-size: clamp(1.05rem,2.6vw,1.2rem); }
+.card.tech .lede { font-size: .9rem; }
+.card.tech .block { padding: .7rem .85rem; }
 
 .blocks { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fit, minmax(15rem,1fr)); }
 .block { border-radius: var(--r-md); border: var(--hair); background: rgba(255,255,255,.035); padding: 1rem 1.15rem; display: grid; align-content: start; gap: .5rem; }
@@ -1661,7 +1669,7 @@ const PROC_CLOSE = {
 /* ═══════════════════════════════════════════════════════════
    GUIDE 2 · THE TEXT TYPES
    ═══════════════════════════════════════════════════════════ */
-const TEXT_TYPES = [
+const TEXT_WORLDS = [
   { key: "journalistic", en: "Journalistic", ar: "صَحافيّ",
     intro: "News is the highest-volume translation work in the Arab world and the fastest. An agency desk may rebuild a wire story in eight minutes. What you are handling is not prose but a <b>structure</b>: an inverted pyramid with the whole story in sentence one, a headline that obeys its own grammar in each language, and a set of house formulas that repeat across every story a newsroom publishes.",
     introAr: "الترجمة الصحفيّة أكثر أنواع الترجمة انتشاراً وأسرعها إيقاعاً. والنصّ الخبريّ ليس نصّاً أدبيّاً بل بنية ثابتة: الخبر كلّه في الجملة الأولى، والعنوان له قواعده الخاصّة في كلّ لغة، والصياغات مكرّرة معروفة في كلّ غرفة أخبار. فمهمّتك أن تنقل البنية لا الكلمات.",
@@ -1691,7 +1699,7 @@ const TEXT_TYPES = [
         w: "English buries the news in the middle of a thirty-word sentence. Arabic news style puts it first and pushes the circumstances into a second sentence. Same facts, <b>opposite architecture</b> — and no amount of care at word level gets you there." }
     ] },
 
-  { key: "political", en: "Political", ar: "سِياسيّ",
+  { key: "political", en: "Political & Diplomatic", ar: "سِياسيّ ودِبلوماسيّ",
     intro: "In political translation the vocabulary <b>is</b> the argument. Two renderings can both be accurate and carry opposite claims, so the choice of a word is the choice of a position — and you are making it whether you notice or not. Professionals handle this by not deciding alone: they work to a style guide, flag contested terms upward, and keep the source's attributions and hedges exactly where they were.",
     introAr: "في النصّ السياسيّ يكون اختيار المفردة هو الموقف نفسه. فقد تكون ترجمتان صحيحتين لغويّاً وتحملان معنيين متعارضين. ولهذا لا يقرّر المترجم وحده: يلتزم بدليل التحرير، ويشير إلى المصطلحات الخلافيّة ليقرّرها المحرّر، ويحافظ على النسبة والتحوّط كما وردا في الأصل دون تقوية أو تخفيف.",
     how: ["Establish who is publishing this and for whom before you settle a single term.",
@@ -1836,19 +1844,19 @@ const TEXT_TYPES = [
         w: "The Arabic is dialect, and dialect in fiction is characterisation. A rendering in clean standard English silently promotes the character two social classes and erases the author's reason for writing him that way." }
     ] },
 
-  { key: "marketing", en: "Marketing & Localisation", ar: "تَسويقيّ",
+  { key: "marketing", en: "Marketing & Transcreation", ar: "تَسويقيّ وإبداعيّ",
     intro: "Advertising is the genre where you are often paid <b>not</b> to translate. What the client owns is an effect — a feeling, a decision to buy — and the English sentence that produced it is disposable scaffolding. The deliverable is a new Arabic line that does the same job. That is a different service with its own name: transcreation, التَّرجَمة الإبداعيّة, and it is billed differently for good reason.",
     introAr: "الإعلان هو النوع الذي قد يُدفع لك فيه كي لا تترجم. فما يملكه العميل هو الأثر — شعور، أو قرار شراء — والجملة الإنجليزيّة التي أنتجته مجرّد سقالة تُهدَم بعد البناء. والمطلوب سطر عربيّ جديد يؤدّي الوظيفة نفسها، وهذه خدمة أخرى لها اسمها: الترجمة الإبداعيّة.",
     how: ["Ask for the creative brief and the campaign's single message. Translate <b>that</b>, not the copy.",
           "Write three or four Arabic options, never one. The client is choosing, not receiving.",
           "Say every option out loud in the target dialect and listen for accidental meanings.",
           "Check the line and the product name against existing brands and slang in that market.",
-          "Localise the whole package: units, currency, dates, faces, colours, and the occasion itself.",
+          "Name the technique you used for each option — adaptation, discursive creation, compensation — so the client is choosing between arguments, not guesses.",
           "Return the options with one line of rationale each, so the client can judge the effect, not the wording."],
     lede: "Advertising is the one genre where you are often asked not to translate at all. The deliverable is the emotion the campaign produces, and the sentence is disposable.",
     demands: ["Work from the creative brief, not the source sentence",
               "Check the new line for unintended readings out loud, in dialect",
-              "Localise units, names, faces, colours and holidays alongside the words"],
+              "Know which of the three you are being paid for: translation, adaptation, or transcreation"],
     trap: "Translating a slogan. A slogan is a piece of engineering tuned to one language's sounds and puns; carried across word-for-word it arrives dead. What you owe the client is a new slogan with the same job.",
     xfers: [
       { s: "Just do it.",
@@ -1865,7 +1873,38 @@ const TEXT_TYPES = [
         w: "Nothing in the brief was about Christmas. It was about a loaded table and a crowded family, and in this market that table is set at sunset in Ramadan. <b>Adapt the vehicle, deliver the cargo.</b>" }
     ] },
 
-  { key: "audiovisual", en: "Audiovisual", ar: "سَمعيّ بَصَريّ",
+  { key: "localization", en: "Localization", ar: "التَّوطين",
+    intro: "Localization is not a genre — it is a <b>process</b>, and the text is only part of what goes through it. A product is being moved into a market, and the words travel with dates, currencies, units, name fields, address forms, sort orders, images, colours, legal notices and the direction the interface runs in. The translator here works inside strings, not paragraphs, and often cannot see where a string will land.",
+    introAr: "التَّوطين ليس نوعًا نصّيًّا بل <b>عمليّة</b>، والنصّ جزء ممّا يمرّ بها. فالمنتَج يُنقَل إلى سوق جديدة، وتسافر معه التواريخ والعملات والوحدات وحقول الأسماء وصِيَغ العناوين والصور والألوان والإشعارات القانونيّة واتّجاه الواجهة نفسها.",
+    how: ["Ask for context before you translate a string: where does it appear, what is the character limit, what can replace the placeholder?",
+          "Never reorder or invent placeholders. <code>{count}</code> and <code>%s</code> are code; moving them is a bug, not a style choice.",
+          "Translate the interface into Arabic <b>and</b> mirror it: the layout flips to right-to-left, not just the text alignment.",
+          "Convert what has to convert — dates, times, currencies, units, number formats, week start — and flag what must not, such as version numbers and product names.",
+          "Check that a name field, an address form and an alphabetical sort still work for the target market.",
+          "Review images, icons, colours and examples for things that do not travel: hand gestures, flags, holidays, sample names and addresses.",
+          "Plan for expansion: Arabic and English do not occupy the same width, and a button is a fixed box."],
+    lede: "A process, not a genre: the product is being moved into a market, and the words are only one of the things that have to change.",
+    demands: ["Context for every string before it is translated",
+              "Placeholders and markup carried through untouched",
+              "True right-to-left layout, not right-aligned English layout",
+              "Dates, units, currencies and sort orders converted, product names and versions left alone"],
+    trap: "Treating the string list as a text. Strings arrive out of order and out of context, so the same English word becomes a button, a heading and an error message in three different places. Translating the list top to bottom without asking where each one lands produces an interface that is correct line by line and incoherent as a whole.",
+    xfers: [
+      { s: "You have {count} new messages",
+        b: "لديك {count} رسائل جديدة",
+        g: "the placeholder stays exactly as it is — and Arabic needs more than one form behind it",
+        w: "Arabic counts in singular, dual, and several plural shapes, so one sentence with one placeholder cannot be right for 1, 2, 3 and 11. This is a <b>plural rule</b>, not a translation choice, and it has to be handled in the localization framework rather than patched in the string." },
+      { s: "03/04/2026",
+        b: "٤ مارس ٢٠٢٦ &mdash; or 3 April 2026",
+        g: "an ambiguous date is a defect, not a string",
+        w: "Nothing in the source says which number is the month. Rendering it either way is a guess with a one-in-two chance of being wrong, and in an invoice or a medical record that is not a small error. Raise it; do not translate it." },
+      { s: "an interface with a back arrow pointing left",
+        b: "واجهة عربيّة يشير سهم الرجوع فيها إلى اليمين",
+        g: "the layout mirrors; the text is the last part of it",
+        w: "Progress bars, carousels, sliders, breadcrumbs and back arrows all reverse in a right-to-left interface, because they encode direction of travel. Right-aligning Arabic inside a left-to-right layout leaves an interface that reads correctly and <b>behaves backwards</b>." }
+    ] },
+
+  { key: "audiovisual", en: "Audiovisual Translation", ar: "سَمعيّ بَصَريّ",
     intro: "Subtitling is translation with a ruler and a stopwatch. You have roughly 37 to 42 characters per line, two lines at most, and a viewer who reads about 17 characters a second <b>while also watching the picture</b>. Most of the work is deciding what to leave out, because the image and the actor's voice have already delivered half the meaning before your words arrive.",
     introAr: "الترجمة السمعيّة البصريّة ترجمة بمسطرة وساعة. لديك نحو ٣٧ إلى ٤٢ حرفاً في السطر، وسطران على الأكثر، ومشاهدٌ يقرأ نحو ١٧ حرفاً في الثانية وهو يتابع الصورة. وأكثر عملك أن تقرّر ما تحذفه، لأنّ الصورة ونبرة الممثّل أدّتا نصف المعنى قبل أن تصل كلماتك.",
     how: ["Watch the scene before writing. The picture decides what you are allowed to cut.",
@@ -2207,17 +2246,18 @@ const ROOTS = [
     words: [
       { w: "تَرجَمة", tr: "tarjama", en: "translation" },
       { w: "مُتَرجِم", tr: "mutarjim", en: "translator" },
-      { w: "تُرجُمان", tr: "turjumān", en: "dragoman — the court interpreter; English borrowed the word" },
+      { w: "تُرجُمان", tr: "turjumān", en: "the court interpreter of the Ottoman and earlier chanceries. English <i>dragoman</i> is this word, borrowed centuries ago through Italian and French — a fossil of contact, <b>not</b> a translation you may use today. Modern تُرجُمان renders as <i>interpreter</i>" },
       { w: "تَرجَمَ", tr: "tarjama", en: "he translated" },
       { w: "مُتَرجَم", tr: "mutarjam", en: "translated — of a text" }
     ] },
   { root: "ك ت ب", sense: "to write",
     words: [
+      { w: "كَتَبَ", tr: "kataba", en: "he wrote — the bare verb the rest are built from" },
       { w: "كِتاب", tr: "kitāb", en: "book" },
       { w: "كاتِب", tr: "kātib", en: "writer, clerk" },
       { w: "مَكتَب", tr: "maktab", en: "desk, office" },
       { w: "مَكتَبة", tr: "maktaba", en: "library, bookshop" },
-      { w: "مَكتوب", tr: "maktūb", en: "written — and so, fate" },
+      { w: "مَكتوب", tr: "maktūb", en: "written — also <i>a letter</i>, also <i>what is fated</i>; the context picks one" },
       { w: "كِتابة", tr: "kitāba", en: "writing, the act of" },
       { w: "اِكتِتاب", tr: "iktitāb", en: "subscription" }
     ] },
@@ -2245,14 +2285,12 @@ const ROOTS = [
 /* ═══════════════════════════════════════════════════════════
    THE LINEAGE — translators who changed the world.
 
-   Each one carries a portrait and one worked example of the
-   actual translating. The image is a file held by this site
-   at run time by the `wiki` title, so nothing here is an
-   invented likeness; set `img` to a local file to override
-   it. If neither resolves, the lettered medallion stands, so
-   a missing or renamed article costs nothing but the picture.
-   For the pre-modern figures these are later depictions
-   rather than likenesses, and the caption says so.
+   Each one carries one image and one worked example of the
+   actual translating. Every image is a file in this repository,
+   listed in FIGURE_IMAGE above with a record of what it actually
+   is. Nothing is fetched from anywhere at run time and no face
+   here is generated. For the pre-modern figures these are later
+   depictions rather than likenesses, and the card says so.
    ═══════════════════════════════════════════════════════════ */
 const LINEAGE = [
   { id: "hunayn", mono: "H", name: "Hunayn ibn Ishaq", life: "809 - 873", place: "Baghdad",
@@ -2413,13 +2451,18 @@ const LINEAGE = [
 /* ═══════════ REGISTRY ═══════════ */
 const ITEMS = [
   { id: "lineage", ar: "", en: "The Lineage", kind: "guide", section: "method",
-    blurb: "Eight translators across eleven centuries whose work changed what the world could read - four from the Arabic tradition, four from the Western one.",
+    blurb: "Sixteen translators, from the fourth century to our own, whose work changed what the world could read &mdash; eight from the Arabic tradition, eight from the Western one.",
     run: runLineage },
   { id: "procedures", ar: "الإجراءات السَّبعة", en: "The Seven Procedures", kind: "guide", section: "method",
-    blurb: "The seven things a translator can actually do to a sentence — borrowing, calque, literal, transposition, modulation, equivalence, adaptation — each worked in Arabic and English.",
+    blurb: "The foundational framework of the field — borrowing, calque, literal, transposition, modulation, equivalence, adaptation — each worked in Arabic and English. One framework among several, and the one the others answer.",
     run: runProcedures },
-  { id: "texttypes", ar: "أنواع النُّصوص", en: "The Text Types", kind: "guide", section: "method",
-    blurb: "Nine genres, and what each one demands: journalistic, political, legal, technical, medical, literary, marketing, audiovisual, academic.",
+  { id: "toolkit", ar: "عُدّة المُترجِم", en: "The Translator's Toolkit", kind: "guide", section: "method",
+    blurb: "Method, strategy, technique and shift are four different things, and eighteen named techniques sit under them. What you actually did to a phrase, and what to call it.",
+    run: runToolkit },
+  /* The id stays "texttypes" so nobody's stored progress is orphaned by the
+     rename; only what a learner sees has changed. */
+  { id: "texttypes", ar: "عوالِم النُّصوص", en: "The Text Worlds", kind: "guide", section: "method",
+    blurb: "Ten worlds a translation can land in — journalistic, political and diplomatic, legal, technical, medical, literary, transcreation, localization, audiovisual, academic — and why they are not all the same kind of category.",
     run: runTextTypes },
 
   { id: "nameproc", ar: "ما هذا الإجراء؟", en: "Name the Procedure", kind: "trial", section: "trials",
@@ -3538,10 +3581,16 @@ function runProcedures() {
     setDots(PROCEDURES.length, cur, cur);
 
     if (cur === 0) {
+      /* §34: this framework is foundational, not total. Saying it covers
+         every decision a translator makes is not true and teaches the
+         learner to stop looking. */
       stage.appendChild(el("p", "lede",
-        "Every translation decision you will ever make is one of seven moves. Vinay and Darbelnet named them in 1958 " +
-        "and nobody has needed an eighth since. Knowing which one you are using is what separates a translator from " +
-        "someone with a dictionary — because it lets you <b>defend the choice</b> instead of hoping it sounds right."));
+        "In 1958 Vinay and Darbelnet set out seven procedures for getting a sentence from one language into another. " +
+        "It is the <b>foundational</b> framework of the field and the vocabulary most translators still argue in — " +
+        "but it is one framework, not the whole of translation theory, and it does not account for every decision you " +
+        "will make. Later work adds to it: Molina and Hurtado Albir's techniques describe the move itself in far finer " +
+        "detail, and strategies describe how you approach the problem before you make any move at all. " +
+        "Learn these seven first, because they let you <b>name and defend a choice</b> instead of hoping it sounds right."));
     }
 
     const chips = el("div", "chips");
@@ -3609,19 +3658,32 @@ function runProcedures() {
    ═══════════════════════════════════════════════════════════ */
 function runTextTypes() {
   let cur = 0;
-  setCount("A guide · " + TEXT_TYPES.length + " genres");
+  setCount("A guide · " + TEXT_WORLDS.length + " worlds");
 
   function render() {
     stage.innerHTML = "";
-    setDots(TEXT_TYPES.length, cur, cur);
+    setDots(TEXT_WORLDS.length, cur, cur);
 
     stage.appendChild(el("p", "lede",
-      "There is no such thing as translating well in general. Every genre has its own idea of what a good translation is, " +
+      "There is no such thing as translating well in general. Every world has its own idea of what a good translation is, " +
       "and they contradict each other — the care that makes a contract correct makes an advertisement useless. " +
-      "<b>Identify the text type first.</b> It decides everything after."));
+      "<b>Work out which world you are in first.</b> It decides everything after."));
+
+    /* §22: these ten are deliberately not one clean category, and saying
+       so is part of the teaching. Pretending they are a tidy list of nine
+       "text types" is the thing being corrected. */
+    stage.appendChild(el("p", "note",
+      "These ten are not all the same kind of thing, and it would be false to line them up as if they were. " +
+      "<b>Legal</b>, <b>Medical</b> and <b>Technical</b> are subject domains. <b>Journalistic</b>, " +
+      "<b>Political &amp; Diplomatic</b> and <b>Academic</b> are discourse environments with their own conventions and " +
+      "institutions. <b>Transcreation</b> and <b>Localization</b> are processes — services with a different brief and a " +
+      "different price. <b>Audiovisual Translation</b> is a set of media and modes, defined by the constraints of screen " +
+      "and sound. <b>Literary</b> cuts across all of them. Real texts sit in more than one at once: a patient consent " +
+      "form is medical and legal; a pharmaceutical advertisement is medical, legal and marketing, and the law decides " +
+      "how much of the marketing survives."));
 
     const chips = el("div", "chips");
-    TEXT_TYPES.forEach((t, k) => {
+    TEXT_WORLDS.forEach((t, k) => {
       const b = el("button", "chip" + (k === cur ? " on" : ""),
         t.en + '<span class="c-sub ar" style="letter-spacing:0">' + t.ar + '</span>');
       b.addEventListener("click", () => { cur = k; render(); });
@@ -3629,7 +3691,7 @@ function runTextTypes() {
     });
     stage.appendChild(chips);
 
-    const t = TEXT_TYPES[cur];
+    const t = TEXT_WORLDS[cur];
     const card = el("div", "card");
     card.appendChild(el("div", "card-top",
       '<h3>' + t.en + '</h3>'));
@@ -3656,12 +3718,12 @@ function runTextTypes() {
     const pager = el("div", "pager");
     const left = el("div", "foot");
     if (cur > 0) {
-      const prev = el("button", "ghost", "← " + TEXT_TYPES[cur - 1].en);
+      const prev = el("button", "ghost", "← " + TEXT_WORLDS[cur - 1].en);
       prev.addEventListener("click", () => { cur--; render(); });
       left.appendChild(prev);
     }
-    if (cur < TEXT_TYPES.length - 1) {
-      const next = el("button", null, TEXT_TYPES[cur + 1].en + " →");
+    if (cur < TEXT_WORLDS.length - 1) {
+      const next = el("button", null, TEXT_WORLDS[cur + 1].en + " →");
       next.addEventListener("click", () => { cur++; render(); });
       left.appendChild(next);
     } else {
@@ -3670,7 +3732,212 @@ function runTextTypes() {
       left.appendChild(go);
     }
     pager.appendChild(left);
-    pager.appendChild(el("p", "note", "Genre " + (cur + 1) + " of " + TEXT_TYPES.length));
+    pager.appendChild(el("p", "note", "World " + (cur + 1) + " of " + TEXT_WORLDS.length));
+    stage.appendChild(pager);
+    stage.appendChild(backFoot());
+  }
+  render();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   THE TRANSLATOR'S TOOLKIT — method, strategy, technique
+
+   The Seven Procedures are one framework. This guide keeps the
+   three levels apart, because conflating them is the commonest
+   confusion in the field: a method is a choice about the whole
+   text, a strategy is how you approach a problem, a technique
+   is what you did to this phrase, and a shift is what a
+   comparison of the two texts afterwards reveals.
+
+   The technique taxonomy is Molina and Hurtado Albir (2002),
+   "Translation Techniques Revisited", Meta 47(4). Their
+   definitions are summarised here, not quoted.
+   ═══════════════════════════════════════════════════════════ */
+const LEVELS = [
+  { en: "Method", ar: "طَريقة", scope: "The whole text",
+    what: "A decision taken once, before you start, that governs everything after: what kind of translation is this going to be? Literal or free; foreign-sounding or domesticated; philological, communicative, or adapted. It follows from the brief — who commissioned it, for which reader, to do what job.",
+    ex: "\"This user manual will be communicative: the reader must be able to operate the machine without noticing the translation.\"" },
+  { en: "Strategy", ar: "استراتيجيّة", scope: "The translator, working",
+    what: "How you go about solving a problem — a process, not a product. Reading the whole text first; searching parallel texts in the target language; paraphrasing to get past a block; leaving a gap and returning; checking a term against an authority; deciding to consult the client. Strategies are largely invisible in the finished text.",
+    ex: "\"I cannot place this term. I will read three target-language contracts of the same type and see what they call it.\"" },
+  { en: "Technique", ar: "تِقنيّة", scope: "This phrase, this line",
+    what: "What you actually did to a specific segment, visible by comparing it with the source. Techniques are countable, nameable and affect small units. The eighteen below are the standard set.",
+    ex: "\"I rendered the noun phrase with a verb: transposition.\"" },
+  { en: "Shift", ar: "تَحَوُّل", scope: "The two texts, compared",
+    what: "A descriptive term, not a choice: a difference between source and target that shows up when the two are laid side by side. Catford's category. A shift is the evidence; the technique is the act that produced it.",
+    ex: "\"The source has a passive, the target an active. That is a shift; the technique was transposition.\"" }
+];
+
+const TECHNIQUES = [
+  { en: "Adaptation", ar: "التَّكييف",
+    what: "Replace a cultural element of the source with one belonging to the target culture.",
+    ex: "A Christmas dinner in an advertisement becomes an <b>إفطار</b> table in Ramadan." },
+  { en: "Amplification", ar: "التَّوسيع",
+    what: "Introduce detail not formulated in the source, to make it usable for the new reader.",
+    ex: "<b>رمضان</b> becomes \"Ramadan, the Muslim month of fasting\" for a reader who would not otherwise know." },
+  { en: "Borrowing", ar: "الاِقتِراض",
+    what: "Take the word straight from the source language — bare, or naturalised into the target's spelling and sound.",
+    ex: "<i>bank</i> &rarr; <b>بنك</b> (naturalised); <i>lobby</i> &rarr; <b>لوبي</b>." },
+  { en: "Calque", ar: "النَّسخ",
+    what: "Translate a foreign word or phrase literally, element by element, so the target gains a new construction built on the source's pattern.",
+    ex: "<i>skyscraper</i> &rarr; <b>ناطِحة سَحاب</b>; <i>Security Council</i> &rarr; <b>مَجلِس الأمن</b>." },
+  { en: "Compensation", ar: "التَّعويض",
+    what: "Something is lost at one point, so an equivalent effect is introduced at another point where the target language allows it.",
+    ex: "A pun that cannot survive in line two is replaced by a different pun in line four, so the page keeps its wit." },
+  { en: "Description", ar: "الوَصف",
+    what: "Replace a term with a description of its form or function, when no equivalent exists.",
+    ex: "<b>مَجلِس</b> &rarr; \"a formal reception room where a household receives guests\"." },
+  { en: "Discursive creation", ar: "الإبداع الخِطابيّ",
+    what: "Establish a temporary equivalence that is unpredictable out of context — it works only for this text.",
+    ex: "A film titled <i>Jaws</i> released in Arabic under a title that shares none of its words." },
+  { en: "Established equivalent", ar: "المُكافِئ المُتعارَف عليه",
+    what: "Use the term or expression already recognised in the target language as <b>the</b> equivalent, whether by dictionary, institution or usage.",
+    ex: "<i>human rights</i> &rarr; <b>حُقوق الإنسان</b>. Not a creative choice; using anything else is an error." },
+  { en: "Generalization", ar: "التَّعميم",
+    what: "Use a more general, more neutral term than the source's.",
+    ex: "<b>عَباءة</b> &rarr; \"robe\", where the specific garment is not the point." },
+  { en: "Linguistic amplification", ar: "التَّوسيع اللُّغَويّ",
+    what: "Add linguistic elements — typical of interpreting and dubbing, where the line must fill a space.",
+    ex: "<i>No way</i> &rarr; <b>لا سَبيل إلى ذلك أبدًا</b>." },
+  { en: "Linguistic compression", ar: "الضَّغط اللُّغَويّ",
+    what: "Synthesise the source into fewer elements. The subtitler's daily technique, imposed by the character limit.",
+    ex: "<i>Are you going to have dinner with us?</i> &rarr; <b>أستَعشَّى معنا؟</b>" },
+  { en: "Literal translation", ar: "التَّرجَمة الحَرفيّة",
+    what: "Render word for word where the target language permits it without distortion. A legitimate technique, not a failure — when it works.",
+    ex: "<i>the Ministry of Foreign Affairs</i> &rarr; <b>وِزارة الخارِجيّة</b>." },
+  { en: "Modulation", ar: "التَّطويع",
+    what: "Change the point of view, the focus, or the cognitive category — say the same thing from a different angle.",
+    ex: "<i>It is not difficult</i> &rarr; <b>إنّه سَهل</b>: a negation becomes an affirmation." },
+  { en: "Particularization", ar: "التَّخصيص",
+    what: "Use a more precise, more concrete term than the source's. The mirror of generalization.",
+    ex: "<i>the vehicle</i> &rarr; <b>الشّاحِنة</b>, when the context has established it is a lorry." },
+  { en: "Reduction", ar: "الحَذف",
+    what: "Suppress an element of the source that the target reader does not need or the target language will not carry.",
+    ex: "An honorific chain before a name, dropped in an English news report that has no slot for it." },
+  { en: "Substitution", ar: "الاِستِبدال",
+    what: "Exchange a linguistic element for a paralinguistic one, or the reverse. Chiefly an interpreter's technique.",
+    ex: "A hand placed on the heart in greeting, rendered in speech as \"thank you\"." },
+  { en: "Transposition", ar: "الإبدال النَّحويّ",
+    what: "Change the grammatical category without changing the meaning.",
+    ex: "<i>He is a fast reader</i> &rarr; <b>يَقرَأ بِسُرعة</b>: adjective plus noun becomes verb plus adverbial." },
+  { en: "Variation", ar: "التَّنويع",
+    what: "Change elements that carry variation — dialect, tone, social register, the style of a character's speech.",
+    ex: "A character's Kuwaiti speech rendered in an English register that marks them as local and informal, rather than as neutral." }
+];
+
+const STRATEGIES = [
+  { en: "Read the whole text before translating any of it",
+    what: "Genre, purpose, audience and the argument's shape all decide sentence-level choices. Deciding them from sentence one means revising from sentence two." },
+  { en: "Work from the brief, not from the sentence",
+    what: "Who commissioned this, for which reader, to do what? A brief that is never asked for is a brief you have invented yourself." },
+  { en: "Search parallel texts, not dictionaries",
+    what: "For a contract, a leaflet, a press release: find three real ones written natively in the target language and see what they actually say. A dictionary gives you a word; a parallel text gives you the convention." },
+  { en: "Name the problem before solving it",
+    what: "Is this a terminology problem, a cultural one, a register one, a pragmatic one? Each has different solutions, and misdiagnosing it wastes the search." },
+  { en: "Leave a marker and move on",
+    what: "A hard segment solved under pressure is usually solved badly. Flag it, keep the momentum, and return with the rest of the text in your head." },
+  { en: "Verify, do not infer, an official equivalent",
+    what: "Institutional names, legal terms, drug names and treaty titles have fixed forms. Inventing a plausible one is the error that is hardest to see and most damaging to find." },
+  { en: "Revise against the source, then against the target alone",
+    what: "Two passes with different questions. The first asks whether anything was lost or added; the second asks whether this reads as something written in this language." },
+  { en: "Consult the client — and say why",
+    what: "An ambiguity in the source, a factual error, a term with no settled equivalent: these are the client's decisions, not the translator's. Raising them is professional practice, not weakness." }
+];
+
+/* ═══════════════════════════════════════════════════════════
+   GUIDE 3 · THE TOOLKIT
+   ═══════════════════════════════════════════════════════════ */
+function runToolkit() {
+  let tab = 0;                       /* 0 levels · 1 techniques · 2 strategies */
+  const TABS = ["The four levels", "Eighteen techniques", "Working strategies"];
+  setCount("A guide · method, technique, strategy");
+
+  function render() {
+    stage.innerHTML = "";
+    setDots(TABS.length, tab, tab);
+
+    stage.appendChild(el("p", "lede",
+      "Translators argue about <b>method</b>, <b>strategy</b>, <b>technique</b> and <b>shift</b> as though they were " +
+      "four words for the same thing. They are not, and keeping them apart is what lets you say precisely what you did " +
+      "and why. The Seven Procedures live at the technique level; they are the foundational list, and the eighteen " +
+      "techniques here are the finer-grained set the field has settled on since."));
+
+    const chips = el("div", "chips");
+    TABS.forEach((label, k) => {
+      const b = el("button", "chip" + (k === tab ? " on" : ""), label);
+      b.addEventListener("click", () => { tab = k; render(); });
+      chips.appendChild(b);
+    });
+    stage.appendChild(chips);
+
+    if (tab === 0) {
+      LEVELS.forEach(l => {
+        const card = el("div", "card");
+        card.appendChild(el("div", "card-top",
+          '<span class="num-badge">' + l.scope + '</span>' +
+          '<h3>' + l.en + ' <span class="ar" dir="rtl" lang="ar">' + l.ar + '</span></h3>'));
+        card.appendChild(el("p", "lede", l.what));
+        card.appendChild(el("div", "block demand",
+          '<span class="b-lab">Sounds like</span><p>' + l.ex + '</p>'));
+        stage.appendChild(card);
+      });
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", "Why it matters in practice"));
+      v.appendChild(el("p", "vb",
+        "A reviewer who writes \"too literal\" is talking about method. A reviewer who writes \"wrong term\" is talking " +
+        "about technique. If you cannot tell which you are being asked to change, you will fix the wrong thing. " +
+        "The Decision Lab in the trials runs on exactly this: <b>problem &rarr; decision &rarr; reason &rarr; technique " +
+        "&rarr; genre rule &rarr; reference</b>."));
+      stage.appendChild(v);
+    }
+
+    if (tab === 1) {
+      stage.appendChild(el("p", "note",
+        "Molina and Hurtado Albir, <i>Translation Techniques Revisited</i> (Meta 47:4, 2002). Summarised, not quoted. " +
+        "Several overlap with the Seven Procedures by design &mdash; this taxonomy was built to refine them, not replace them."));
+      const grid = el("div", "ledger");
+      TECHNIQUES.forEach(t => {
+        const card = el("div", "card tech");
+        card.appendChild(el("div", "card-top",
+          '<h3>' + t.en + ' <span class="ar" dir="rtl" lang="ar">' + t.ar + '</span></h3>'));
+        card.appendChild(el("p", "lede", t.what));
+        card.appendChild(el("div", "block demand", '<span class="b-lab">For instance</span><p>' + t.ex + '</p>'));
+        grid.appendChild(card);
+      });
+      stage.appendChild(grid);
+    }
+
+    if (tab === 2) {
+      stage.appendChild(el("p", "note",
+        "A strategy is how you work, not what appears in the file. These are the ones that change a translation most."));
+      const grid = el("div", "ledger");
+      STRATEGIES.forEach(sg => {
+        const card = el("div", "card tech");
+        card.appendChild(el("div", "card-top", '<h3>' + sg.en + '</h3>'));
+        card.appendChild(el("p", "lede", sg.what));
+        grid.appendChild(card);
+      });
+      stage.appendChild(grid);
+    }
+
+    const pager = el("div", "pager");
+    const left = el("div", "foot");
+    if (tab > 0) {
+      const prev = el("button", "ghost", "← " + TABS[tab - 1]);
+      prev.addEventListener("click", () => { tab--; render(); });
+      left.appendChild(prev);
+    }
+    if (tab < TABS.length - 1) {
+      const next = el("button", null, TABS[tab + 1] + " →");
+      next.addEventListener("click", () => { tab++; render(); });
+      left.appendChild(next);
+    } else {
+      const go = el("button", null, "To the trials →");
+      go.addEventListener("click", () => { renderHall(); show("hall"); setAct(3); });
+      left.appendChild(go);
+    }
+    pager.appendChild(left);
+    pager.appendChild(el("p", "note", TABS[tab]));
     stage.appendChild(pager);
     stage.appendChild(backFoot());
   }
@@ -4090,12 +4357,28 @@ function runRoots() {
     card.appendChild(list);
     stage.appendChild(card);
 
+    /* §20: the old line here — "English builds words by borrowing; Arabic
+       builds them by bending three consonants" — was false in both
+       directions and taught the learner a caricature. English derives
+       heavily (nation, national, nationalise, nationality) and Arabic
+       borrows heavily (تِلفاز, ديمقراطيّة, بنك). What is actually
+       different is the mechanism, and that is what is taught now. */
     const v = el("div", "verdict");
-    v.appendChild(el("span", "vh", "Why a translator cares"));
+    v.appendChild(el("span", "vh", "What is actually going on"));
     v.appendChild(el("p", "vb",
-      "English builds words by borrowing; Arabic builds them by bending three consonants. " +
-      "So an Arabic word arrives carrying its whole family with it — <b>مَكتوب</b> means both <i>written</i> " +
-      "and <i>fated</i>, and no single English word carries both. That gap is where translation actually happens."));
+      "Both languages borrow and both languages derive. English borrows (<i>algebra</i>, <i>safari</i>) and derives " +
+      "(<i>nation, national, nationalise, nationality</i>); Arabic borrows (<b>بنك</b>, <b>ديمقراطيّة</b>, <b>تِلفاز</b>) " +
+      "and derives. The difference is the <b>mechanism</b>. English derivation stacks affixes onto the front and back of " +
+      "a stem, so the stem stays visibly intact. Arabic derivation threads a consonantal root through a <b>pattern</b> " +
+      "(وَزْن), so the root is interleaved with the pattern rather than sitting at one end of it: ك-ت-ب in the pattern " +
+      "مَفعول gives <b>مَكتوب</b>, and in مَفعَلة gives <b>مَكتَبة</b>."));
+    v.appendChild(el("p", "vb",
+      "Two consequences a translator meets constantly. First, the pattern carries meaning of its own — فاعِل gives the " +
+      "one who does it, مَفعول the one it is done to, مَفعَل the place — so a reader can often infer a word never met " +
+      "before. Second, a root's family is a network of <b>related but not predictable</b> senses: derivation gives you " +
+      "the likely reading, context gives you the actual one. <b>مَكتوب</b> is <i>written</i>, and it is also <i>a " +
+      "letter</i>, and it is also <i>what is fated</i> — three different English words, and only the sentence around it " +
+      "decides which. That is where the translating happens: not in the root, but in the choice the root leaves open."));
     stage.appendChild(v);
 
     /* Unscored, like every Chamber. */
