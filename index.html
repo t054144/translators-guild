@@ -760,6 +760,9 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 .strip-card .s-role { font-size: .6rem; letter-spacing: .06em; color: var(--lilac-dim); line-height: 1.45; }
 .f-ar { font-family: var(--f-ar); font-size: .84rem; color: var(--lilac); }
 .d-ar { font-family: var(--f-ar); font-size: 1.05rem; color: var(--lilac); line-height: 1.7; }
+.b-read { margin: .1rem 0 0; padding-inline-start: 1.1rem; display: grid; gap: .3rem; }
+.b-read li { font-size: .9rem; line-height: 1.6; color: var(--lilac); }
+.b-read li::marker { color: var(--lilac-dim); }
 
 .medal { width: 62px; height: 62px; border-radius: 50%; flex: none;
   display: grid; place-items: center; position: relative; background: var(--grad);
@@ -1151,6 +1154,9 @@ const RANKS = [
    a manuscript, a later depiction, or a real photograph. A depiction is
    never labelled a portrait, and no face here is generated.
    ═══════════════════════════════════════════════════════════════════ */
+/* One record per figure, carrying what the image is, where it came from,
+   who made it, and what may be said about it. Fields left empty are simply
+   not established yet; nothing is filled in by guesswork. */
 const FIGURE_IMAGE = {
   hunayn: {
     file: "lineage/hunayn-ibn-ishaq.jpg",
@@ -1309,6 +1315,33 @@ const FIGURE_NAME = {
   gerard:  { en: "Gerard of Cremona", ar: "جيرارد الكريموني",      role: "Translator · Toledo" }
 };
 
+/* Recommended reading, taken only from the works the specification itself
+   names. Where it named none, none is listed: nothing is invented here. */
+const FIGURE_READING = {
+  hunayn:  ["Dimitri Gutas, <i>Greek Thought, Arabic Culture</i>",
+            "Ghada Osman, scholarship on Ḥunayn's translation methodology"],
+  muqaffa: ["Scholarship on Ibn al-Muqaffaʿ and the <i>Kalīla wa Dimna</i> tradition"],
+  jahiz:   ["<i>Kitāb al-Ḥayawān</i>"],
+  tahtawi: ["<i>Takhlīṣ al-Ibrīz fī Talkhīṣ Bārīz</i>",
+            "<i>An Imam in Paris</i>, the English translation"],
+  jayyusi: ["<i>Modern Arabic Poetry: An Anthology</i>",
+            "<i>Modern Arabic Fiction: An Anthology</i>",
+            "<i>The Legacy of Muslim Spain</i>"],
+  jerome:  ["<i>Letter to Pammachius</i> (<i>De optimo genere interpretandi</i>)"],
+  luther:  ["<i>Sendbrief vom Dolmetschen</i>, 1530"],
+  schleiermacher: ["“On the Different Methods of Translating”, 1813"],
+  dryden:  ["Preface to <i>Ovid's Epistles</i>, 1680"],
+  nida:    ["<i>Toward a Science of Translating</i>",
+            "<i>The Theory and Practice of Translation</i>",
+            "<i>Contexts in Translating</i>",
+            "<i>Fascinated by Languages</i>"],
+  rabassa: ["<i>If This Be Treason: Translation and Its Dyscontents</i>"],
+  venuti:  ["<i>The Translator's Invisibility</i>",
+            "<i>The Scandals of Translation</i>"]
+};
+
+const figReading = f => FIGURE_READING[f.id] || [];
+
 const figName = f => (FIGURE_NAME[f.id] && FIGURE_NAME[f.id].en) || f.name;
 const figAr   = f => (FIGURE_NAME[f.id] && FIGURE_NAME[f.id].ar) || "";
 const figRole = f => (FIGURE_NAME[f.id] && FIGURE_NAME[f.id].role) || "";
@@ -1411,6 +1444,12 @@ function runLineage(startAt) {
       const blocks = el("div", "blocks");
       blocks.appendChild(el("div", "block demand", '<span class="b-lab">What they did</span><p>' + f.what + '</p>'));
       blocks.appendChild(el("div", "block", '<span class="b-lab">Why it mattered</span><p>' + f.why + '</p>'));
+      const books = figReading(f);
+      if (books.length) {
+        blocks.appendChild(el("div", "block",
+          '<span class="b-lab">Recommended reading</span><ul class="b-read"><li>' +
+          books.join('</li><li>') + '</li></ul>'));
+      }
       card.appendChild(blocks);
       if (f.ex) card.appendChild(exampleBlock(f.ex));
       stage.appendChild(card);
