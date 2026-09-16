@@ -19,7 +19,11 @@ as listed. A square-ish original crops best, but the card crops to 1:1.
 | `jerome.jpg` | Jerome | Painted depiction of Jerome at his book |
 | `william-tyndale.jpg` | William Tyndale | Historical portrait |
 | `friedrich-schleiermacher.jpg` | Friedrich Schleiermacher | Historical engraving |
+| `martin-luther.jpg` | Martin Luther | Historical portrait |
+| `john-dryden.jpg` | John Dryden | Historical portrait |
+| `eugene-nida.jpg` | Eugene A. Nida | Photograph |
 | `gregory-rabassa.jpg` | Gregory Rabassa | Photograph |
+| `lawrence-venuti.jpg` | Lawrence Venuti | Photograph |
 
 Until a file exists the card shows an empty frame. It never shows initials,
 never substitutes another image, and never generates a face.

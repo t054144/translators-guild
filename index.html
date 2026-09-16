@@ -1245,6 +1245,38 @@ const FIGURE_IMAGE = {
     source_name: "Supplied by the site owner",
     source_page: "",
     credit: "Historical engraving" },
+  luther: {
+    file: "lineage/martin-luther.jpg",
+    image_type: "painted_portrait",
+    authenticity: "historical_portrait",
+    alt: "Portrait of Martin Luther.",
+    source_name: "Awaiting the file",
+    source_page: "",
+    credit: "Historical portrait" },
+  dryden: {
+    file: "lineage/john-dryden.jpg",
+    image_type: "painted_portrait",
+    authenticity: "historical_portrait",
+    alt: "Portrait of John Dryden.",
+    source_name: "Awaiting the file",
+    source_page: "",
+    credit: "Historical portrait" },
+  nida: {
+    file: "lineage/eugene-nida.jpg",
+    image_type: "photographic_portrait",
+    authenticity: "photograph_of_the_person",
+    alt: "Photograph of Eugene A. Nida.",
+    source_name: "Awaiting the file",
+    source_page: "",
+    credit: "Photograph" },
+  venuti: {
+    file: "lineage/lawrence-venuti.jpg",
+    image_type: "photographic_portrait",
+    authenticity: "photograph_of_the_person",
+    alt: "Photograph of Lawrence Venuti.",
+    source_name: "Awaiting the file",
+    source_page: "",
+    credit: "Photograph" },
   rabassa: {
     file: "lineage/gregory-rabassa.jpg",
     image_type: "photographic_portrait",
@@ -1269,6 +1301,10 @@ const FIGURE_NAME = {
   qusta:   { en: "Qusṭā ibn Lūqā",   ar: "قسطا بن لوقا",          role: "Physician · Scientist · Translator" },
   tahtawi: { en: "Rifāʿa al-Ṭahṭāwī", ar: "رفاعة رافع الطهطاوي",  role: "Translator · Educator" },
   schleiermacher: { en: "Friedrich Schleiermacher", ar: "فريدريش شلايرماخر", role: "Translator · Philosopher" },
+  luther:  { en: "Martin Luther",     ar: "مارتن لوثر",      role: "Bible translator · Reformer" },
+  dryden:  { en: "John Dryden",       ar: "جون درايدن",       role: "Poet · Translator · Critic" },
+  nida:    { en: "Eugene A. Nida",    ar: "يوجين أ. نايدا",   role: "Translation theorist · Linguist" },
+  venuti:  { en: "Lawrence Venuti",   ar: "لورنس فينوتي",     role: "Translation theorist · Translator" },
   rabassa: { en: "Gregory Rabassa",   ar: "غريغوري راباسا",        role: "Literary translator" },
   gerard:  { en: "Gerard of Cremona", ar: "جيرارد الكريموني",      role: "Translator · Toledo" }
 };
@@ -2211,12 +2247,33 @@ const LINEAGE = [
       outLab: "What he wrote", out: "\"congregation\" &middot; \"elder\" &middot; \"love\"", outDir: "ltr",
       note: "Not a matter of taste. Each choice removed a word that held up an institution and put a plain English one where it stood, which is a large part of why the books were burned and then so was he. Where English had nothing he made it: <b>Passover</b>, <b>scapegoat</b>, <b>atonement</b>, <b>mercy seat</b> are his coinages, and roughly four fifths of the King James New Testament is his wording untouched." } },
 
+  { id: "luther", mono: "ML", name: "Martin Luther", life: "1483 - 1546", place: "Wittenberg",
+    wiki: "", img: "",
+    pair: "Greek, Hebrew & Latin to German",
+    line: "He translated for people who had never been asked what German sounded like.",
+    what: "He translated the New Testament into German in 1522 and the complete Bible by 1534, and in 1530 wrote an open letter on translating that defended the choices he had made against critics who wanted the Latin followed word by word.",
+    why: "He argued that the test of a rendering was whether ordinary German speakers recognised their own language in it - so he listened to how people actually spoke and wrote that, rather than tracking the Latin. The result carried far beyond religion: it is one of the texts that shaped written German itself." },
+
   { id: "schleiermacher", mono: "FS", name: "Friedrich Schleiermacher", life: "1768 - 1834", place: "Berlin",
     wiki: "", img: "",
     pair: "Greek to German",
     line: "Move the reader toward the writer, or the writer toward the reader.",
     what: "A philosopher and theologian who translated Plato into German, and who in an 1813 lecture on the different methods of translating set out the choice a translator cannot avoid: leave the writer in place and move the reader toward him, or leave the reader in place and move the writer toward him.",
     why: "Almost every later theory argues with that lecture. It is often flattened into the pair <b>foreignization and domestication</b> - terms that came later, from Venuti - and the flattening loses the point, which was not that one path is right and the other wrong, but that a translator must choose one and stay with it." },
+
+  { id: "dryden", mono: "JD", name: "John Dryden", life: "1631 - 1700", place: "London",
+    wiki: "", img: "",
+    pair: "Latin & Greek to English",
+    line: "Three ways to carry a poem across, and a warning about two of them.",
+    what: "A poet and critic who translated Virgil, Ovid and others into English, and who in his preface to <i>Ovid's Epistles</i> in 1680 named three ways of doing it: metaphrase, word by word; paraphrase, sense for sense with the author kept in view; and imitation, where the translator departs from the original at will.",
+    why: "Naming the three made it possible to argue about which one a given text deserved. He preferred the middle way and distrusted the extremes - and translators have been arguing along that same line ever since, usually without knowing whose terms they are using." },
+
+  { id: "nida", mono: "EN", name: "Eugene A. Nida", life: "1914 - 2011", place: "United States",
+    wiki: "", img: "",
+    pair: "Translation theory · Bible translation",
+    line: "He tried to make translation something you could study, not only practise.",
+    what: "A linguist who spent his career on Bible translation across many languages, and wrote the books that turned translating into an object of systematic study - among them <i>Toward a Science of Translating</i> and, with Charles Taber, <i>The Theory and Practice of Translation</i>.",
+    why: "He set formal correspondence, which follows the shape of the original, against what he called dynamic or functional equivalence, which aims for an effect on the reader like the effect the original had on its own. The pair is often reduced to <b>equivalence means natural-sounding</b>, which is not what he argued: his framework is about the whole relationship between text, receptor and context." },
 
   { id: "gerard", mono: "G", name: "Gerard of Cremona", life: "1114 - 1187", place: "Toledo",
     wiki: "Gerard of Cremona", img: "",
@@ -2242,7 +2299,14 @@ const LINEAGE = [
       srcLab: "Spanish", src: "&hellip; aquella tarde remota en que su padre lo llevó a <b>conocer</b> el hielo.", srcDir: "ltr",
       litLab: "Word for word", lit: "&hellip; that distant afternoon when his father took him to <b>know</b> ice.",
       outLab: "What he wrote", out: "&hellip; that distant afternoon when his father took him to <b>discover</b> ice.", outDir: "ltr",
-      note: "<i>Conocer</i> is to know, to meet, to be acquainted with. \"Know\" is dead on the page in English and \"see\" throws the wonder away; <b>discover</b> is a child meeting the thing for the first time, which is what the Spanish actually does. García Márquez waited three years for him and then said the English was better than the Spanish." } }
+      note: "<i>Conocer</i> is to know, to meet, to be acquainted with. \"Know\" is dead on the page in English and \"see\" throws the wonder away; <b>discover</b> is a child meeting the thing for the first time, which is what the Spanish actually does. García Márquez waited three years for him and then said the English was better than the Spanish." } },
+
+  { id: "venuti", mono: "LV", name: "Lawrence Venuti", life: "born 1953", place: "United States",
+    wiki: "", img: "",
+    pair: "Italian to English · theory",
+    line: "Whose voice disappears when a translation reads smoothly?",
+    what: "A translator from Italian and a theorist who argued that English-language publishing prizes translations that read as though they were never translated, leaving the translator invisible - and who set out the case in <i>The Translator's Invisibility</i> and <i>The Scandals of Translation</i>.",
+    why: "He gave the argument its current vocabulary: <b>domestication</b>, which smooths a text into the target culture, and <b>foreignization</b>, which keeps the reader aware that they are reading from elsewhere. Neither is simply the good one. They are choices with consequences - for the writer, for the reader, and for whose literature gets to sound like itself." },
 ];
 
 /* ═══════════ REGISTRY ═══════════ */
