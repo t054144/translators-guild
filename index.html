@@ -1188,10 +1188,13 @@ const FIGURE_IMAGE = {
     file: "lineage/jerome.jpg",
     image_type: "historical_artistic_depiction",
     authenticity: "not_a_contemporary_portrait",
-    alt: "Saint Jerome in His Study by Antonello da Messina, about 1475.",
-    source_name: "The National Gallery, London",
-    source_page: "https://www.nationalgallery.org.uk/paintings/antonello-da-messina-saint-jerome-in-his-study",
-    credit: "Antonello da Messina, c. 1475" },
+    /* the image supplied is a painted Jerome at his book, not the Antonello
+       da Messina panel named in the specification; the caption stays neutral
+       until the painting and its holder are confirmed */
+    alt: "Painted depiction of Jerome at work over a book.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Painted depiction" },
   tyndale: {
     file: "lineage/william-tyndale.jpg",
     image_type: "later_historical_depiction",
@@ -1200,6 +1203,46 @@ const FIGURE_IMAGE = {
     source_name: "Pitts Theology Library, Emory University",
     source_page: "https://commons.wikimedia.org/wiki/File:Portrait_of_William_Tyndale.jpg",
     credit: "Pitts Theology Library" },
+  ishaq: {
+    file: "lineage/ishaq-ibn-hunayn.jpg",
+    image_type: "artistic_depiction",
+    authenticity: "not_a_contemporary_portrait",
+    alt: "Artistic depiction of Isḥāq ibn Ḥunayn.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Artistic depiction" },
+  qusta: {
+    file: "lineage/qusta-ibn-luqa.jpg",
+    image_type: "later_engraved_depiction",
+    authenticity: "not_a_contemporary_portrait",
+    alt: "Later engraved depiction of Qusṭā ibn Lūqā.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Later engraved depiction" },
+  thabit: {
+    file: "lineage/thabit-ibn-qurra.jpg",
+    image_type: "artistic_depiction",
+    authenticity: "not_a_contemporary_portrait",
+    alt: "Artistic depiction of Thābit ibn Qurra.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Artistic depiction" },
+  tahtawi: {
+    file: "lineage/rifaa-al-tahtawi.jpg",
+    image_type: "painted_depiction",
+    authenticity: "not_confirmed_painted_from_life",
+    alt: "Painted depiction of Rifāʿa al-Ṭahṭāwī.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Painted depiction" },
+  schleiermacher: {
+    file: "lineage/friedrich-schleiermacher.jpg",
+    image_type: "engraved_portrait",
+    authenticity: "historical_engraving",
+    alt: "Historical engraved portrait of Friedrich Schleiermacher.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Historical engraving" },
   rabassa: {
     file: "lineage/gregory-rabassa.jpg",
     image_type: "photographic_portrait",
@@ -1219,6 +1262,11 @@ const FIGURE_NAME = {
   jayyusi: { en: "Salma Khadra Jayyusi", ar: "سلمى خضراء الجيوسي", role: "Poet · Translator · Anthologist" },
   jerome:  { en: "Jerome",            ar: "جيروم",                 role: "Translator · Scholar" },
   tyndale: { en: "William Tyndale",   ar: "وليام تندل",            role: "Bible translator" },
+  ishaq:   { en: "Isḥāq ibn Ḥunayn", ar: "إسحاق بن حنين",        role: "Translator · Physician" },
+  thabit:  { en: "Thābit ibn Qurra", ar: "ثابت بن قرة",           role: "Mathematician · Astronomer · Translator" },
+  qusta:   { en: "Qusṭā ibn Lūqā",   ar: "قسطا بن لوقا",          role: "Physician · Scientist · Translator" },
+  tahtawi: { en: "Rifāʿa al-Ṭahṭāwī", ar: "رفاعة رافع الطهطاوي",  role: "Translator · Educator" },
+  schleiermacher: { en: "Friedrich Schleiermacher", ar: "فريدريش شلايرماخر", role: "Translator · Philosopher" },
   rabassa: { en: "Gregory Rabassa",   ar: "غريغوري راباسا",        role: "Literary translator" },
   gerard:  { en: "Gerard of Cremona", ar: "جيرارد الكريموني",      role: "Translator · Toledo" }
 };
@@ -1323,12 +1371,12 @@ function runLineage(startAt) {
       const nav = el("div", "pager");
       const foot = el("div", "foot");
       if (cur > 0) {
-        const prev = el("button", "ghost", "← " + LINEAGE[cur - 1].name);
+        const prev = el("button", "ghost", "← " + figName(LINEAGE[cur - 1]));
         prev.addEventListener("click", () => { cur--; render(); });
         foot.appendChild(prev);
       }
       if (cur < LINEAGE.length - 1) {
-        const next = el("button", null, LINEAGE[cur + 1].name + " →");
+        const next = el("button", null, figName(LINEAGE[cur + 1]) + " →");
         next.addEventListener("click", () => { cur++; render(); });
         foot.appendChild(next);
       }
@@ -2084,6 +2132,34 @@ const LINEAGE = [
       outLab: "What does not", out: "the ṭawīl metre, the rhyme, the archaic diction &mdash; every part of it that was doing the work", outDir: "ltr",
       note: "Al-Jahiz translated nothing; this is his argument worked out, not his rendering. In the <i>Book of Animals</i> he held that poetry <b>cannot</b> cross, because metre, sound-shape and rhetorical figure are not decoration on the meaning &mdash; they are part of it, so all that arrives is the report. He also insisted a translator must be equally strong in both tongues, or he will damage both." } },
 
+  { id: "ishaq", mono: "IH", name: "Ishaq ibn Hunayn", life: "c. 830 - 910", place: "Baghdad",
+    wiki: "", img: "",
+    pair: "Greek & Syriac to Arabic",
+    line: "The second generation - carrying a method, not just a post.",
+    what: "He translated Greek philosophy and science into Arabic - works of Aristotle, Euclid's <i>Elements</i>, and a version of Ptolemy's <i>Almagest</i> - and practised as a physician at the Abbasid court, as his father had before him.",
+    why: "A method only survives if someone inherits it. He worked the way Hunayn worked: gather every manuscript, settle what the text actually says, and only then carry the sense across. The Arabic Aristotle that later philosophers argued over, and that Europe eventually read through Latin, came in large part through the translations of his generation." },
+
+  { id: "thabit", mono: "TQ", name: "Thabit ibn Qurra", life: "c. 826 - 901", place: "Harran, then Baghdad",
+    wiki: "", img: "",
+    pair: "Greek & Syriac to Arabic",
+    line: "He corrected translations because he could do the mathematics.",
+    what: "A mathematician and astronomer from Harran who translated Greek scientific works into Arabic and revised translations already in circulation, among them Euclid and Ptolemy, alongside his own work in mathematics and astronomy.",
+    why: "He is the argument against treating translation and subject knowledge as separate trades. Revising a mathematical text means being able to follow the proof; where he changed a rendering, he changed it because he knew what the mathematics had to say." },
+
+  { id: "qusta", mono: "QL", name: "Qusta ibn Luqa", life: "c. 820 - 912", place: "Baalbek, then Baghdad",
+    wiki: "", img: "",
+    pair: "Greek to Arabic",
+    line: "Three languages, and the sciences in all of them.",
+    what: "A physician and scientist from Baalbek who worked in Greek, Syriac and Arabic. He translated Greek mathematical and mechanical works into Arabic and wrote his own treatises on medicine and the sciences.",
+    why: "He belongs to the generation that had to build a technical Arabic while using it. Translating mechanics or medicine meant deciding what a term would mean in Arabic from then on, and then writing original work in the vocabulary he had just settled." },
+
+  { id: "tahtawi", mono: "RT", name: "Rifaa al-Tahtawi", life: "1801 - 1873", place: "Tahta, Paris, Cairo",
+    wiki: "", img: "",
+    pair: "French to Arabic",
+    line: "He did not translate a shelf of books. He built the school that did.",
+    what: "Sent to Paris in 1826 as imam to an Egyptian student mission, he learned French, translated, and wrote an account of the city and its institutions, <i>Takhlis al-Ibriz fi Talkhis Bariz</i>. Back in Cairo he led the School of Languages, Madrasat al-Alsun, which trained translators and produced translations across law, geography, history and the sciences.",
+    why: "Institutions outlast individuals. The school turned translation in Egypt into a trained profession rather than a personal gift, and a great deal of modern Arabic technical vocabulary was settled by the work that came out of it." },
+
   { id: "jayyusi", mono: "SJ", name: "Salma Khadra Jayyusi", life: "1926 - 2023", place: "Palestine & the US",
     wiki: "Salma Khadra Jayyusi", img: "",
     pair: "Arabic to English",
@@ -2122,6 +2198,13 @@ const LINEAGE = [
       litLab: "What was expected", lit: "\"church\" &middot; \"priest\" &middot; \"charity\" &mdash; the Latin-descended words already in place",
       outLab: "What he wrote", out: "\"congregation\" &middot; \"elder\" &middot; \"love\"", outDir: "ltr",
       note: "Not a matter of taste. Each choice removed a word that held up an institution and put a plain English one where it stood, which is a large part of why the books were burned and then so was he. Where English had nothing he made it: <b>Passover</b>, <b>scapegoat</b>, <b>atonement</b>, <b>mercy seat</b> are his coinages, and roughly four fifths of the King James New Testament is his wording untouched." } },
+
+  { id: "schleiermacher", mono: "FS", name: "Friedrich Schleiermacher", life: "1768 - 1834", place: "Berlin",
+    wiki: "", img: "",
+    pair: "Greek to German",
+    line: "Move the reader toward the writer, or the writer toward the reader.",
+    what: "A philosopher and theologian who translated Plato into German, and who in an 1813 lecture on the different methods of translating set out the choice a translator cannot avoid: leave the writer in place and move the reader toward him, or leave the reader in place and move the writer toward him.",
+    why: "Almost every later theory argues with that lecture. It is often flattened into the pair <b>foreignization and domestication</b> - terms that came later, from Venuti - and the flattening loses the point, which was not that one path is right and the other wrong, but that a translator must choose one and stay with it." },
 
   { id: "gerard", mono: "G", name: "Gerard of Cremona", life: "1114 - 1187", place: "Toledo",
     wiki: "Gerard of Cremona", img: "",
