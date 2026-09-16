@@ -1154,20 +1154,22 @@ const RANKS = [
 const FIGURE_IMAGE = {
   hunayn: {
     file: "lineage/hunayn-ibn-ishaq.jpg",
-    image_type: "associated_manuscript",
+    image_type: "painted_depiction",
     authenticity: "not_a_contemporary_portrait",
-    alt: "Manuscript associated with Ḥunayn ibn Isḥāq: al-Masāʾil fī al-ṭibb lil-mutaʿallimīn, British Library Or 5725.",
-    source_name: "Qatar Digital Library / British Library",
-    source_page: "https://www.qdl.qa/en/archive/81055/vdc_100023629092.0x000002",
-    credit: "British Library, Or 5725" },
+    alt: "Painted depiction of Ḥunayn ibn Isḥāq at his desk.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Painted depiction" },
   muqaffa: {
     file: "lineage/ibn-al-muqaffa.png",
     image_type: "later_artistic_depiction",
     authenticity: "not_a_contemporary_portrait",
-    alt: "Later artistic depiction of Ibn al-Muqaffaʿ by Khalil Gibran, 1917.",
-    source_name: "Khalil Gibran, 1917",
-    source_page: "https://commons.wikimedia.org/wiki/File:Ibn_al-Muqaffa%27_by_Khalil_Gibran.png",
-    credit: "Khalil Gibran, 1917" },
+    /* the drawing supplied may or may not be Gibran's 1917 depiction; the
+       caption does not name an artist that has not been confirmed */
+    alt: "Later artistic depiction of Ibn al-Muqaffaʿ.",
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Later artistic depiction" },
   jahiz: {
     file: "lineage/al-jahiz.png",
     image_type: "imagined_depiction",
@@ -1248,9 +1250,9 @@ const FIGURE_IMAGE = {
     image_type: "photographic_portrait",
     authenticity: "photograph_of_the_person",
     alt: "Photograph of Gregory Rabassa.",
-    source_name: "New Directions Publishing",
-    source_page: "https://www.ndbooks.com/author/gregory-rabassa/",
-    credit: "New Directions Publishing" }
+    source_name: "Supplied by the site owner",
+    source_page: "",
+    credit: "Photograph" }
 };
 
 /* Display names carry their own spelling and their Arabic, exactly as the
@@ -1294,8 +1296,18 @@ function paintPortraits(root) {
     im.loading = "lazy";
     im.decoding = "async";
     im.addEventListener("load", () => im.classList.add("on"));
-    im.addEventListener("error", () => im.remove());
-    im.src = pic.src;
+    /* uploads arrive with whatever extension the phone gave them, so try
+       the usual ones in turn before giving up and leaving the frame bare */
+    const stem = pic.src.replace(/\.(jpg|jpeg|png|webp)$/i, "");
+    const tries = [pic.src].concat(
+      [".jpg", ".jpeg", ".png", ".webp"].map(e => stem + e).filter(u => u !== pic.src));
+    let at = 0;
+    im.addEventListener("error", () => {
+      at += 1;
+      if (at < tries.length) im.src = tries[at];
+      else im.remove();
+    });
+    im.src = tries[0];
     fr.appendChild(im);
   });
 }
