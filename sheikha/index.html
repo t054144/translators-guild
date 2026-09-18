@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sheikha Khaldi</title>
-<meta name="description" content="An introduction — linguistics, translation, the desert, and everything above it.">
+<meta name="description" content="An introduction — linguistics and translation studies.">
 <style>
 /* ============================================================
    SHEIKHA KHALDI — interstellar introduction
@@ -248,6 +248,48 @@ ul.list .s{color:var(--dim);font-size:.9rem;margin-left:auto;text-align:right}
   *{animation:none!important;transition-duration:.01ms!important}
   .rise{opacity:1;transform:none}
 }
+
+/* ---------- bullets ---------- */
+ul.bul{list-style:none;margin-top:2.4rem}
+ul.bul li{
+  position:relative;padding:.85rem 0 .85rem 2.1rem;
+  font-size:clamp(1.02rem,1.75vw,1.32rem);line-height:1.5;color:var(--star);
+}
+ul.bul li::before{
+  content:"";position:absolute;left:.35rem;top:1.42rem;
+  width:5px;height:5px;border-radius:50%;background:var(--sand);opacity:.85;
+}
+ul.bul li span{display:block;font-size:.88rem;color:var(--dim);margin-top:.3rem;line-height:1.5}
+
+/* ---------- likes grid ---------- */
+.likes{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
+  gap:1px;background:var(--line);border:1px solid var(--line);margin-top:2.6rem}
+.likes div{
+  background:var(--void);padding:1.9rem 1.3rem;text-align:center;
+  font-size:.96rem;letter-spacing:.02em;color:var(--star);
+  transition:background .5s,color .5s;
+}
+.likes div:hover{background:rgba(224,185,120,.07);color:var(--sand-soft)}
+.likes b{display:block;font-family:var(--serif);font-size:1.45rem;
+  color:var(--sand-soft);font-weight:400;margin-bottom:.45rem}
+
+/* ---------- people ---------- */
+.people{display:grid;grid-template-columns:repeat(auto-fit,minmax(13rem,1fr));
+  gap:clamp(1.4rem,3vw,2.6rem);margin-top:2.8rem}
+.person{text-align:center}
+.shot{
+  width:100%;aspect-ratio:1/1;border-radius:50%;overflow:hidden;
+  border:1px solid var(--line);background:rgba(150,175,215,.05);
+  display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;
+  position:relative;
+}
+.shot img{width:100%;height:100%;object-fit:cover;display:block}
+.shot .ph{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;
+  color:var(--dim);padding:0 1rem;text-align:center;line-height:1.7}
+.person .nm{font-family:var(--arabic);font-size:1.3rem;color:var(--star);direction:rtl}
+.person .rl{font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--sand);opacity:.8;margin-top:.5rem}
+
 </style>
 </head>
 <body>
@@ -268,75 +310,83 @@ ul.list .s{color:var(--dim);font-size:.9rem;margin-left:auto;text-align:right}
 
   <section id="hero">
     <div class="wrap">
-      <div class="eyebrow rise d1">Kuwait University</div>
-      <h1 class="rise d2">Sheikha<br>Khaldi</h1>
+      <h1 class="rise d1">Sheikha<br>Khaldi</h1>
       <div class="role rise d3">
-        Linguistics <b>·</b> Translation Studies<br>
-        Arabic <b>·</b> English <b>·</b> and five more to come
+        Linguistics <b>·</b> Translation Studies
       </div>
     </div>
   </section>
 
   <section>
     <div class="wrap narrow">
-      <div class="eyebrow rise d1">First, the thing I care about most</div>
-      <h2 class="rise d2">I am never late.<br><em>I am early.</em></h2>
-      <p class="lede rise d3">Time is the one thing nobody can give back. I am a morning person, I am disciplined, and I show up before I need to.</p>
-      <div class="rule rise d3"></div>
-      <p class="rise d4">And I notice the people who treat my time the same way. It is the fastest way I learn who someone is.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="eyebrow rise d1">Why linguistics</div>
-      <h2 class="rise d2">I wanted <em>fourteen</em> languages.</h2>
-      <p class="rise d3">Then I had a word with myself and settled on seven. Still ambitious. Still the plan.</p>
-      <div class="grid g3 rise d4">
-        <div><span class="stat">14</span><span class="stat-label">the dream</span></div>
-        <div><span class="stat">7</span><span class="stat-label">the plan</span></div>
-        <div><span class="stat">2</span><span class="stat-label">so far</span></div>
-      </div>
-      <p class="quiet rise d5" style="margin-top:2.4rem">I did not choose linguistics to master one language. I chose it because I love languages — the whole species of them.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="eyebrow rise d1">The part I love most</div>
-      <h2 class="rise d2">Phonetics &amp; <em>phonology</em></h2>
-      <p class="rise d3">Generative phonology especially — the rules underneath the sound, the system you can't hear but can prove. Anything that touches the IPA, I'm in.</p>
-      <div class="ipa rise d4">
-        <span>ʕ</span><span>ħ</span><span>q</span><span>ɣ</span><span>χ</span><span>sˤ</span><span>dˤ</span><span>ʔ</span><span>ð</span><span>θ</span>
-      </div>
-      <p class="quiet rise d5" style="margin-top:2rem">I am a student. There is a whole world of this left to learn — that is the appealing part, not the daunting one.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="eyebrow rise d1">Translation studies</div>
-      <h2 class="rise d2">A minor,<br>because there is <em>no major</em>.</h2>
-      <p class="rise d3">Kuwait University has no translation major — and no interpretation courses at all. I was genuinely disappointed when I found that out. So I take everything the minor offers:</p>
-      <ul class="list rise d4">
-        <li><span class="n">01</span><span class="t">Translation I &amp; II</span><span class="s">Arabic ⇄ English</span></li>
-        <li><span class="n">02</span><span class="t">Literary Translation</span><span class="s"></span></li>
-        <li><span class="n">03</span><span class="t">Translation for Special Purposes</span><span class="s"></span></li>
-        <li><span class="n">04</span><span class="t">Audiovisual Translation</span><span class="s"></span></li>
-        <li><span class="n">05</span><span class="t">Translation &amp; Culture</span><span class="s"></span></li>
-        <li><span class="n">06</span><span class="t">Translation Technology</span><span class="s"></span></li>
+      <div class="eyebrow rise d1">Hello</div>
+      <h2 class="rise d2">A little <em>about me</em></h2>
+      <ul class="bul">
+        <li class="rise d3">I love languages — all of them</li>
+        <li class="rise d3">I wanted fourteen. I settled on seven.</li>
+        <li class="rise d4">A morning person, and a disciplined one</li>
+        <li class="rise d4">Always early. Time matters to me.</li>
+        <li class="rise d5">Happiest in the desert in winter</li>
       </ul>
     </div>
   </section>
 
   <section>
     <div class="wrap narrow">
-      <div class="eyebrow rise d1">The destination</div>
-      <h2 class="rise d2">A booth at the <em>United Nations</em>.</h2>
-      <p class="lede rise d3">A conference interpreter. Political, international. The room where the sentence has to be right the first time, because there is no second time.</p>
-      <div class="rule rise d4"></div>
-      <p class="rise d4">I follow international politics closely. Interpretation is where the two things I care about meet — language under pressure, and what happens when it fails.</p>
-      <p class="quiet rise d5">No certificate for it yet. No course to take here. For now: watching, listening, and waiting for the door.</p>
+      <div class="eyebrow rise d1">My major</div>
+      <h2 class="rise d2">Linguistics</h2>
+      <ul class="bul">
+        <li class="rise d3">Because I love languages, not one language</li>
+        <li class="rise d3">Phonetics &amp; phonology — my favourite part</li>
+        <li class="rise d4">Generative phonology<span>The rules underneath the sound</span></li>
+        <li class="rise d4">Anything to do with the IPA</li>
+        <li class="rise d5">Still a student. Still a world left to learn.</li>
+      </ul>
+      <div class="ipa rise d5">
+        <span>ʕ</span><span>ħ</span><span>q</span><span>ɣ</span><span>χ</span><span>sˤ</span><span>dˤ</span><span>ʔ</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap narrow">
+      <div class="eyebrow rise d1">My minor</div>
+      <h2 class="rise d2">Translation <em>Studies</em></h2>
+      <ul class="bul">
+        <li class="rise d3">There is no translation major here — only a minor</li>
+        <li class="rise d3">And no interpretation courses at all</li>
+        <li class="rise d4">Translation I &amp; II<span>Arabic ⇄ English</span></li>
+        <li class="rise d4">Literary · Audiovisual · Special Purposes</li>
+        <li class="rise d5">Translation &amp; Culture · Translation Technology</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap narrow">
+      <div class="eyebrow rise d1">The dream</div>
+      <h2 class="rise d2">To be an <em>interpreter</em></h2>
+      <ul class="bul">
+        <li class="rise d3">Conference interpretation</li>
+        <li class="rise d3">Political, international</li>
+        <li class="rise d4">Where the sentence has to be right the first time</li>
+        <li class="rise d5">I follow international politics closely</li>
+      </ul>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="eyebrow rise d1">Outside of class</div>
+      <h2 class="rise d2">Things I <em>like</em></h2>
+      <div class="likes rise d3">
+        <div><b>Coding</b>and building things</div>
+        <div><b>Cybersecurity</b>four certificates, Coded</div>
+        <div><b>Reading</b>always</div>
+        <div><b>Movies</b>a lot of them</div>
+        <div><b>Podcasts</b>in Arabic</div>
+        <div><b>Camping</b>كشتة, in winter</div>
+      </div>
     </div>
   </section>
 
@@ -344,101 +394,49 @@ ul.list .s{color:var(--dim);font-size:.9rem;margin-left:auto;text-align:right}
     <div class="wrap narrow">
       <div class="eyebrow rise d1">Arabic poetry</div>
       <div class="verse rise d2">
-        <span class="todo">PLACEHOLDER — send me the bayt you want here</span>
+        <span class="todo">PLACEHOLDER — the bayt you choose</span>
         <span class="poet">— المتنبي</span>
       </div>
-      <p class="translation rise d3">Translation goes here, once you pick the verse.</p>
-      <div class="rule rise d4" style="margin-left:auto;margin-right:auto"></div>
-      <p class="rise d4" style="margin:0 auto;text-align:center">Al-Mutanabbi. Imru' al-Qais. And from my own century — <strong>Badr bin Abdul Mohsen</strong>.</p>
+      <p class="quiet rise d4" style="margin:2.4rem auto 0;text-align:center">
+        المتنبي · امرؤ القيس · بدر بن عبدالمحسن
+      </p>
     </div>
   </section>
 
   <section>
     <div class="wrap narrow">
-      <div class="eyebrow rise d1">An unpopular opinion</div>
-      <h2 class="rise d2">I do not like<br>English poetry.</h2>
-      <p class="lede rise d3">I grew up inside Arabic poetry. It is my mother tongue and it is the language <em>built</em> for this — the meter, the rhyme, the weight a single word can carry.</p>
-      <p class="rise d4">So everything after it arrives second. I'm aware that's not a fair standard. I'm keeping it anyway.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="eyebrow rise d1">The other language</div>
-      <h2 class="rise d2">Code &amp; <em>cybersecurity</em></h2>
-      <p class="rise d3">A language is a system of rules that produces meaning, and so is a program. The difference is the penalty for a mistake: in Arabic, an error is a bad sentence. In code, it's a door someone walks through.</p>
-      <p class="rise d3">That is what pulled me toward security. Translation taught me to read something and ask what it's really doing — that is the same instinct.</p>
-      <div class="grid g2 rise d4">
-        <div class="card">
-          <h3>Coded</h3>
-          <p>Courses in programming, cybersecurity, and AI-assisted development. Four certificates.</p>
-        </div>
-        <div class="card">
-          <h3>Built</h3>
-          <p>Websites — including this one. I'm not claiming expert. I'm claiming I keep going.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap">
-      <div class="eyebrow rise d1">What I read</div>
-      <h2 class="rise d2">Books I'd<br><em>actually</em> push on you</h2>
-      <ul class="list rise d3">
-        <li><span class="n">01</span><span class="t">The Kite Runner</span><span class="s">Khaled Hosseini</span></li>
-        <li><span class="n">02</span><span class="t">A Thousand Splendid Suns</span><span class="s">Khaled Hosseini</span></li>
-        <li><span class="n">03</span><span class="t"><span class="todo">MORE TITLES — send them</span></span><span class="s"></span></li>
+      <div class="eyebrow rise d1">Books I recommend</div>
+      <ul class="bul">
+        <li class="rise d2">The Kite Runner<span>Khaled Hosseini</span></li>
+        <li class="rise d3">A Thousand Splendid Suns<span>Khaled Hosseini</span></li>
+        <li class="rise d4"><span class="todo">MORE TITLES — send them</span></li>
       </ul>
-      <p class="quiet rise d4" style="margin-top:2rem">Read these two. That's the whole recommendation.</p>
     </div>
   </section>
 
   <section>
     <div class="wrap">
-      <div class="eyebrow rise d1">What I listen to</div>
-      <h2 class="rise d2">بدون ورق<br><em>Without Paper</em></h2>
-      <p class="rise d3">My favourite podcast, in Arabic. Two people on it changed how I think — not what I believe, but the machinery underneath it.</p>
-      <div class="grid g2 rise d4">
-        <div class="card">
-          <h3>د. نايف بن نهار</h3>
-          <p><span class="todo">ONE IDEA HE CHANGED — send it</span></p>
+      <div class="eyebrow rise d1">بدون ورق · my favourite podcast</div>
+      <h2 class="rise d2">Two people who<br>changed how I <em>think</em></h2>
+      <div class="people rise d3">
+        <div class="person">
+          <div class="shot"><img src="images/naif.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'ADD images/naif.jpg'}))"></div>
+          <div class="nm">د. نايف بن نهار</div>
+          <div class="rl">Bidun Waraq</div>
         </div>
-        <div class="card">
-          <h3>ياسر الحزيمي</h3>
-          <p><span class="todo">ONE IDEA HE CHANGED — send it</span></p>
+        <div class="person">
+          <div class="shot"><img src="images/yasser.jpg" alt="" onerror="this.replaceWith(Object.assign(document.createElement('div'),{className:'ph',textContent:'ADD images/yasser.jpg'}))"></div>
+          <div class="nm">ياسر الحزيمي</div>
+          <div class="rl">Bidun Waraq</div>
         </div>
       </div>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap narrow">
-      <div class="eyebrow rise d1">Home ground</div>
-      <h2 class="rise d2">My father keeps camels.<br>One of them is <em>mine</em>.</h2>
-      <p class="lede rise d3">Her name is <strong>Mutarig</strong>. I grew up around them — the desert is not a place I visit, it's a place I'm from.</p>
-      <div class="rule rise d4"></div>
-      <p class="rise d4">And I am counting the days until winter, until <strong>kashta</strong> — camping out there again, where the sky is the only thing with a view of everything.</p>
-    </div>
-  </section>
-
-  <section>
-    <div class="wrap narrow">
-      <div class="eyebrow rise d1">And above it</div>
-      <h2 class="rise d2"><em>Interstellar</em></h2>
-      <p class="lede rise d3">Space, planets, the scale of it. It is my favourite film and I don't think the reason is complicated: it is about time, distance, and someone keeping a promise across both.</p>
-      <div class="rule rise d4"></div>
-      <p class="rise d4 quiet">Which, now that I've said the rest of this out loud, is roughly what I've been talking about the entire time.</p>
     </div>
   </section>
 
   <section id="close">
     <div class="wrap narrow">
-      <div class="eyebrow rise d1">That's me</div>
-      <h2 class="rise d2">Sheikha Khaldi</h2>
-      <p class="signoff rise d3">Seven languages, one booth at the UN,<br>and a camel named Mutarig.</p>
-      <div class="rule rise d4" style="margin:2.6rem auto"></div>
-      <p class="quiet rise d4" style="margin:0 auto;text-align:center">Thank you for your time — which I promise I do not take lightly.</p>
+      <h2 class="rise d1">Thank you</h2>
+      <p class="signoff rise d3">Sheikha Khaldi</p>
     </div>
   </section>
 
@@ -545,7 +543,7 @@ ul.list .s{color:var(--dim);font-size:.9rem;margin-left:auto;text-align:right}
   requestAnimationFrame(frame);
 
   /* ---------------- cold open ---------------- */
-  var LINE = "Time is the only thing\nwe cannot get back.";
+  var LINE = "A few things about me.";
   var typeEl = document.getElementById("type");
   var openEl = document.getElementById("open");
   var enterEl = document.getElementById("enter");
