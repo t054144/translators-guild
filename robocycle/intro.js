@@ -34,7 +34,7 @@
 (function () {
   'use strict';
 
-  var SEEN_KEY = 'robocycle.intro.v1';
+  var SEEN_KEY = 'robocycle.intro.v2';
   /* Seen recently, rather than seen ever: a visitor who comes back a
      month later gets the film again, and there are two explicit ways
      to ask for it before then. */
@@ -895,7 +895,6 @@
     try {
       var v = window.localStorage.getItem(SEEN_KEY);
       if (!v) return false;
-      if (v === '1') return true;                 // written by an earlier version
       return (Date.now() - parseInt(v, 10)) < SEEN_FOR;
     } catch (e) { return false; }
   }

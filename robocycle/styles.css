@@ -306,6 +306,12 @@ h1 em { font-style: normal; color: var(--leaf); }
 }
 .btn--film:hover { background: rgba(255, 204, 0, .13); border-color: rgba(255, 204, 0, .6); }
 
+.film-line {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
+  margin: 26px 0 0;
+}
+.film-line span { font-size: .88rem; color: var(--text-faint); }
+
 .btn--ghost { background: rgba(255,255,255,.03); border-color: var(--line-lit); color: var(--text); }
 .btn--ghost:hover { background: rgba(255,255,255,.07); }
 
@@ -455,6 +461,8 @@ footer.foot { border-top: 1px solid var(--line); padding: 50px 0 60px; color: va
 
 @media (max-width: 640px) {
   body { font-size: 16px; }
+  .film-line { flex-direction: column; align-items: flex-start; }
+  .film-line span { font-size: .82rem; }
   .bars::before, .bars::after { height: 5vh; }
   .intro-ui { padding-top: calc(5vh + 14px); }
   .frame { top: calc(5vh + 18px); bottom: calc(5vh + 18px); left: 16px; right: 16px; border-width: 2px; }
