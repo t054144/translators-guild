@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Shaikha Al-Khaldi</title>
+<meta name="description" content="Shaikha Al-Khaldi — Linguistics, Translation Studies.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@200;300;400;500&family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#050506;
+    --ink:#f2efe9;
+    --dim:rgba(242,239,233,.42);
+    --faint:rgba(242,239,233,.16);
+    --rule:rgba(242,239,233,.10);
+    --accent:#c8a46a;
+    --gutter:clamp(22px,6vw,110px);
+    --step:clamp(11px,.72vw,13px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:Inter,system-ui,sans-serif;font-weight:300;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+  }
+  canvas#stage{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block}
+  .vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
+    background:radial-gradient(ellipse at 50% 45%,transparent 35%,rgba(5,5,6,.72) 100%)}
+  .grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.05;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+    animation:drift 7s steps(6) infinite}
+  @keyframes drift{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}100%{transform:translate(0,0)}}
+  .scan{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.35;
+    background:repeating-linear-gradient(to bottom,rgba(255,255,255,.012) 0 1px,transparent 1px 3px)}
+
+  main{position:relative;z-index:3}
+  section{
+    min-height:100svh;padding:14vh var(--gutter) 12vh;
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;
+  }
+  .num{
+    font-size:var(--step);letter-spacing:.42em;color:var(--faint);
+    position:absolute;top:8vh;left:var(--gutter);
+  }
+  .eyebrow{
+    font-size:var(--step);letter-spacing:.42em;color:var(--dim);
+    text-transform:uppercase;margin-bottom:clamp(30px,6vh,64px);
+  }
+  h1{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:clamp(42px,9.5vw,148px);line-height:.95;letter-spacing:.01em;
+  }
+  .field{
+    font-size:clamp(20px,3.4vw,44px);font-weight:200;letter-spacing:.18em;
+    text-transform:uppercase;line-height:1.5;
+  }
+  .role{font-size:var(--step);letter-spacing:.38em;color:var(--faint);text-transform:uppercase;margin-top:6px}
+  .list{display:flex;flex-direction:column;gap:clamp(10px,2.1vh,22px)}
+  .list li{list-style:none;
+    font-size:clamp(17px,3vw,40px);font-weight:200;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--dim);transition:color .5s ease,letter-spacing .6s ease}
+  .list li:hover{color:var(--ink);letter-spacing:.26em}
+  .group{margin-bottom:clamp(38px,8vh,84px)}
+  .group h3{
+    font-size:var(--step);letter-spacing:.42em;color:var(--accent);
+    text-transform:uppercase;font-weight:400;margin-bottom:clamp(16px,3vh,30px)}
+  .rule{height:1px;background:var(--rule);margin:clamp(26px,5vh,54px) 0;width:min(560px,100%)}
+  .big{
+    font-size:clamp(26px,5.6vw,80px);font-weight:200;letter-spacing:.14em;
+    text-transform:uppercase;line-height:1.25}
+  .stack{display:flex;flex-direction:column;gap:clamp(14px,3.4vh,40px)}
+
+  /* archive photographs */
+  .archive{display:grid;gap:clamp(20px,3.4vw,44px);
+    grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));align-items:end}
+  figure{margin:0}
+  .plate{
+    position:relative;aspect-ratio:4/5;overflow:hidden;
+    background:#0b0b0d;border:1px solid var(--rule);
+    filter:grayscale(1) contrast(1.06) brightness(.9);
+    transition:filter .7s ease,transform .7s ease}
+  figure:hover .plate{filter:grayscale(.25) contrast(1.02) brightness(1);transform:translateY(-4px)}
+  .plate img{width:100%;height:100%;object-fit:cover;display:block}
+  .plate img[data-missing]{display:none}
+  .plate .await{
+    position:absolute;inset:0;display:none;align-items:center;justify-content:center;
+    padding:16px;text-align:center;
+    font-size:clamp(12px,1.2vw,15px);letter-spacing:.14em;color:rgba(242,239,233,.34);
+    background:
+      repeating-linear-gradient(135deg,rgba(255,255,255,.022) 0 1px,transparent 1px 9px),
+      linear-gradient(160deg,#101013,#08080a)}
+  .plate[data-empty] .await{display:flex}
+  .wide{aspect-ratio:16/10}
+  figcaption{margin-top:14px;font-size:clamp(14px,1.5vw,19px);letter-spacing:.06em;color:var(--ink)}
+  figcaption .sub{display:block;margin-top:5px;font-size:11px;letter-spacing:.3em;
+    text-transform:uppercase;color:var(--faint)}
+  [lang="ar"]{font-family:'Noto Kufi Arabic',sans-serif;direction:rtl}
+  figcaption[lang="ar"]{text-align:left}
+  .plate .await{font-family:'Noto Kufi Arabic',sans-serif}
+  .ar-serif{font-family:Amiri,serif;direction:rtl}
+
+  .poets{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(18px,4vh,46px)}
+  .poet{font-family:Amiri,serif;direction:rtl;
+    font-size:clamp(28px,6vw,86px);font-weight:400;color:var(--dim);
+    transition:color .6s ease}
+  .poet:hover{color:var(--ink)}
+  .verse{font-family:Amiri,serif;direction:rtl;width:fit-content;
+    font-size:clamp(19px,2.9vw,40px);line-height:2;color:var(--ink);
+    border-right:1px solid var(--accent);padding-right:clamp(16px,2.5vw,34px);
+    max-width:24ch}
+  .epithet{width:fit-content;font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;
+    font-size:clamp(15px,1.9vw,24px);color:var(--dim);letter-spacing:0;line-height:2}
+
+  .principle{max-width:62ch;margin-bottom:clamp(30px,6vh,60px)}
+  .principle h4{font-size:clamp(16px,2.3vw,30px);font-weight:300;
+    letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+  .principle p{font-size:clamp(14px,1.35vw,17px);line-height:1.85;color:var(--dim);font-weight:300}
+
+  #end{align-items:center;text-align:center;justify-content:center}
+  .echo{display:flex;flex-wrap:wrap;gap:12px 26px;justify-content:center;
+    max-width:760px;margin-bottom:clamp(40px,9vh,96px)}
+  .echo span{font-size:var(--step);letter-spacing:.34em;text-transform:uppercase;
+    color:var(--faint);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease}
+  #end.seen .echo span{opacity:1;transform:none}
+  #end.fade .echo span{opacity:0;transform:translateY(-8px)}
+  #end .echo span:nth-child(n){transition-delay:calc(var(--i,0) * .12s)}
+
+  /* reveal */
+  .rv{opacity:0;transform:translateY(26px);filter:blur(5px);
+    transition:opacity 1.15s cubic-bezier(.2,.7,.2,1),transform 1.15s cubic-bezier(.2,.7,.2,1),filter 1.15s ease}
+  .seen .rv{opacity:1;transform:none;filter:none}
+  .seen .rv:nth-child(2){transition-delay:.1s}
+  .seen .rv:nth-child(3){transition-delay:.2s}
+  .seen .rv:nth-child(4){transition-delay:.3s}
+  .seen .rv:nth-child(5){transition-delay:.4s}
+  .seen .rv:nth-child(6){transition-delay:.5s}
+
+  .progress{position:fixed;left:var(--gutter);bottom:5vh;z-index:5;display:flex;gap:9px}
+  .progress i{width:16px;height:1px;background:var(--faint);transition:background .5s,width .5s}
+  .progress i.on{background:var(--accent);width:30px}
+  @media (max-width:640px){.progress{display:none}}
+
+  @media (prefers-reduced-motion:reduce){
+    .rv{opacity:1;transform:none;filter:none;transition:none}
+    .grain{animation:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<canvas id="stage"></canvas>
+<div class="vignette"></div>
+<div class="scan"></div>
+<div class="grain"></div>
+
+<main>
+  <section id="s0" data-scene="0">
+    <span class="num">01</span>
+    <h1 class="rv">Shaikha<br>Al-Khaldi</h1>
+    <div class="rule rv"></div>
+    <div class="rv">
+      <div class="field">Linguistics</div>
+      <div class="role">Major</div>
+    </div>
+    <div class="rv" style="margin-top:clamp(22px,4vh,44px)">
+      <div class="field">Translation Studies</div>
+      <div class="role">Minor</div>
+    </div>
+  </section>
+
+  <section id="s1" data-scene="1">
+    <span class="num">02</span>
+    <p class="eyebrow rv">What I Study</p>
+    <div class="group rv">
+      <h3>Linguistics</h3>
+      <ul class="list">
+        <li>Phonetics</li>
+        <li>Phonology</li>
+        <li>IPA</li>
+      </ul>
+    </div>
+    <div class="group rv">
+      <h3>Translation</h3>
+      <ul class="list">
+        <li>Translation Studies</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="s2" data-scene="2">
+    <span class="num">03</span>
+    <p class="eyebrow rv">Where I Want to Go</p>
+    <div class="stack">
+      <div class="big rv">Conference Interpreting</div>
+      <div class="big rv">United Nations</div>
+      <div class="big rv">Interpreting Booth</div>
+    </div>
+  </section>
+
+  <section id="s3" data-scene="3">
+    <span class="num">04</span>
+    <p class="eyebrow rv">Things I Like</p>
+    <ul class="list rv">
+      <li>Books</li>
+      <li>Cinema</li>
+      <li>Podcasts</li>
+      <li>Arabic Poetry</li>
+    </ul>
+  </section>
+
+  <section id="s4" data-scene="4">
+    <span class="num">05</span>
+    <p class="eyebrow rv">Things That Shaped Me</p>
+    <div class="group rv">
+      <h3>Podcasts</h3>
+      <figure style="max-width:min(560px,100%)">
+        <div class="plate wide" data-plate>
+          <img src="assets/bidoun-waraq.jpg" alt="بدون ورق">
+          <span class="await">بدون ورق</span>
+        </div>
+        <figcaption lang="ar">بدون ورق</figcaption>
+      </figure>
+    </div>
+    <div class="archive rv" style="max-width:min(560px,100%)">
+      <figure>
+        <div class="plate" data-plate>
+          <img src="assets/nayef-bin-nahar.jpg" alt="د. نايف بن نهار">
+          <span class="await">د. نايف بن نهار</span>
+        </div>
+        <figcaption lang="ar">د. نايف بن نهار</figcaption>
+      </figure>
+      <figure>
+        <div class="plate" data-plate>
+          <img src="assets/yasser-alhuzaimi.jpg" alt="أ. ياسر الحزيمي">
+          <span class="await">أ. ياسر الحزيمي</span>
+        </div>
+        <figcaption lang="ar">أ. ياسر الحزيمي</figcaption>
+      </figure>
+    </div>
+    <div class="rule rv"></div>
+    <figure class="rv" style="max-width:min(380px,100%)">
+      <div class="plate wide" data-plate>
+        <img src="assets/fnjan.jpg" alt="فنجان">
+        <span class="await">فنجان</span>
+      </div>
+      <figcaption lang="ar">فنجان</figcaption>
+    </figure>
+  </section>
+
+  <section id="s5" data-scene="5">
+    <span class="num">06</span>
+    <p class="eyebrow rv">Arabic Poetry</p>
+    <h3 class="rv" style="font-size:var(--step);letter-spacing:.42em;color:var(--accent);text-transform:uppercase;font-weight:400;margin-bottom:clamp(20px,4vh,40px)">Poets I Return To</h3>
+    <div class="poets rv">
+      <div class="poet" lang="ar">امرؤ القيس</div>
+      <div class="poet" lang="ar">المتنبي</div>
+    </div>
+    <div class="verse rv" style="margin:clamp(24px,5vh,54px) 0">
+      وإن كنتُ الأخيرَ زمانُهُ<br>لآتٍ بما لم تستطِعْهُ الأوائلُ
+    </div>
+    <div class="rule rv"></div>
+    <figure class="rv" style="max-width:min(340px,100%)">
+      <div class="plate" data-plate>
+        <img src="assets/badr-bin-abdulmohsen.jpg" alt="بدر بن عبدالمحسن">
+        <span class="await">بدر بن عبدالمحسن</span>
+      </div>
+      <figcaption lang="ar">بدر بن عبدالمحسن
+        <span class="epithet">البدر · مهندس الكلمة</span>
+      </figcaption>
+    </figure>
+    <div class="ar-serif rv" style="font-size:clamp(24px,4vw,56px);margin-top:clamp(22px,4vh,44px);width:fit-content">رديني</div>
+  </section>
+
+  <section id="s6" data-scene="6">
+    <span class="num">07</span>
+    <p class="eyebrow rv">Beyond Language</p>
+    <ul class="list rv">
+      <li>Coding</li>
+      <li>Programming</li>
+      <li>Cybersecurity</li>
+    </ul>
+  </section>
+
+  <section id="s7" data-scene="7">
+    <span class="num">08</span>
+    <p class="eyebrow rv">A Few Things About Me</p>
+    <div class="stack">
+      <div class="big rv">Morning Person</div>
+      <div class="big rv">Disciplined</div>
+    </div>
+  </section>
+
+  <section id="s8" data-scene="8">
+    <span class="num">09</span>
+    <p class="eyebrow rv">Principles I Live By</p>
+    <div class="principle rv">
+      <h4>Know where you come from</h4>
+      <p>Language, culture, and identity are worth understanding and preserving.</p>
+    </div>
+    <div class="principle rv">
+      <h4>Words matter</h4>
+      <p>Choose them carefully. The way we speak to people matters.</p>
+    </div>
+    <div class="principle rv">
+      <h4>Good manners matter</h4>
+      <p>Politeness is never outdated. Respect, kindness, and proper manners matter.</p>
+    </div>
+    <div class="principle rv">
+      <h4>Never stop improving</h4>
+      <p>There is always something to learn, refine, or do better.</p>
+    </div>
+  </section>
+
+  <section id="end" data-scene="9">
+    <span class="num">10</span>
+    <div class="echo">
+      <span style="--i:0">Linguistics</span>
+      <span style="--i:1">Translation</span>
+      <span style="--i:2">Interpreting</span>
+      <span style="--i:3">Books</span>
+      <span style="--i:4">Cinema</span>
+      <span style="--i:5">Podcasts</span>
+      <span style="--i:6">Poetry</span>
+      <span style="--i:7">Technology</span>
+    </div>
+    <p class="eyebrow rv" style="margin-bottom:clamp(20px,4vh,40px)">Still Becoming</p>
+    <h1 class="rv" style="font-size:clamp(34px,7vw,110px)">Shaikha Al-Khaldi</h1>
+  </section>
+</main>
+
+<div class="progress" aria-hidden="true"></div>
+
+<script>
+/* ---------- photographs: show the frame until the original file is added ---------- */
+document.querySelectorAll('.plate img').forEach(function(img){
+  var mark=function(){img.setAttribute('data-missing','');img.parentElement.setAttribute('data-empty','');};
+  img.addEventListener('error',mark);
+  if(img.complete && img.naturalWidth===0) mark();
+});
+
+/* ---------- reveal + progress ---------- */
+var sections=[].slice.call(document.querySelectorAll('section'));
+var bar=document.querySelector('.progress');
+sections.forEach(function(){var i=document.createElement('i');bar.appendChild(i);});
+var dots=[].slice.call(bar.children);
+var current=0;
+
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.classList.add('seen');
+      var i=sections.indexOf(e.target);
+      if(i>-1){current=i;dots.forEach(function(d,j){d.classList.toggle('on',j===i);});}
+    }
+  });
+},{threshold:.35});
+sections.forEach(function(s){io.observe(s);});
+
+/* the ending: the echoes appear, then quietly leave */
+var endEl=document.getElementById('end');
+new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      endEl.classList.remove('fade');
+      clearTimeout(endEl._t);
+      endEl._t=setTimeout(function(){endEl.classList.add('fade');},2600);
+    }
+  });
+},{threshold:.5}).observe(endEl);
+
+/* ---------- the 3D stage ---------- */
+var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+var script=document.createElement('script');
+script.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+script.onload=boot;
+script.onerror=function(){document.getElementById('stage').style.display='none';};
+document.head.appendChild(script);
+
+function boot(){
+  var canvas=document.getElementById('stage'),THREE=window.THREE;
+  var renderer;
+  try{
+    renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+  }catch(err){canvas.style.display='none';return;}
+  renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));
+  renderer.setSize(innerWidth,innerHeight);
+
+  var scene=new THREE.Scene();
+  scene.fog=new THREE.FogExp2(0x050506,.055);
+  var camera=new THREE.PerspectiveCamera(52,innerWidth/innerHeight,.1,220);
+  camera.position.set(0,0,26);
+
+  var N = innerWidth<720 ? 4200 : 9000;
+  var pos=new THREE.BufferAttribute(new Float32Array(N*3),3);
+  var tgt=new Float32Array(N*3);
+  var seed=new Float32Array(N*3);
+  for(var i=0;i<N;i++){
+    seed[i*3]=Math.random();seed[i*3+1]=Math.random();seed[i*3+2]=Math.random();
+    pos.array[i*3]=(Math.random()-.5)*90;
+    pos.array[i*3+1]=(Math.random()-.5)*60;
+    pos.array[i*3+2]=(Math.random()-.5)*60;
+  }
+  var geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',pos);
+
+  var sprite=(function(){
+    var c=document.createElement('canvas');c.width=c.height=64;
+    var g=c.getContext('2d').createRadialGradient(32,32,0,32,32,32);
+    g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.35,'rgba(255,255,255,.5)');
+    g.addColorStop(1,'rgba(255,255,255,0)');
+    var x=c.getContext('2d');x.fillStyle=g;x.fillRect(0,0,64,64);
+    return new THREE.CanvasTexture(c);
+  })();
+
+  var mat=new THREE.PointsMaterial({
+    size:.30,map:sprite,transparent:true,opacity:.82,depthWrite:false,
+    blending:THREE.AdditiveBlending,color:new THREE.Color(0xd9d3c6)
+  });
+  var points=new THREE.Points(geo,mat);
+  scene.add(points);
+
+  /* a few slow drifting lines, for depth */
+  var lines=new THREE.Group();
+  for(var L=0;L<14;L++){
+    var pts=[];
+    for(var k=0;k<24;k++) pts.push(new THREE.Vector3((Math.random()-.5)*70,(Math.random()-.5)*44,(Math.random()-.5)*50));
+    var lg=new THREE.BufferGeometry().setFromPoints(pts);
+    lines.add(new THREE.Line(lg,new THREE.LineBasicMaterial({color:0x8d7c5c,transparent:true,opacity:.055})));
+  }
+  scene.add(lines);
+
+  /* ---- the shapes each section settles into ---- */
+  var TAU=Math.PI*2;
+  var shapes=[
+    function(i,a,b,c,o){ // 01 a slow sphere: the person, before anything else
+      var u=a*TAU,v=Math.acos(2*b-1),r=15+c*1.4;
+      o[0]=r*Math.sin(v)*Math.cos(u);o[1]=r*Math.sin(v)*Math.sin(u)*.72;o[2]=r*Math.cos(v);
+    },
+    function(i,a,b,c,o){ // 02 sound: a sheet of waves
+      var x=(a-.5)*64,z=(b-.5)*44;
+      o[0]=x;o[1]=Math.sin(x*.42)*3.1+Math.sin(z*.33)*1.7+(c-.5)*.7;o[2]=z;
+    },
+    function(i,a,b,c,o){ // 03 the hall, and the booth above it
+      if(a<.72){var row=Math.floor(b*18),ang=(a/.72-.5)*2.0;var rad=9+row*1.5;
+        o[0]=Math.sin(ang)*rad;o[1]=-7+row*.42;o[2]=Math.cos(ang)*rad-14;}
+      else{var t=(a-.72)/.28;o[0]=(t-.5)*13;o[1]=7+(b-.5)*5.2;o[2]=6+(c-.5)*3;}
+    },
+    function(i,a,b,c,o){ // 04 four things, four clusters
+      var q=Math.floor(a*4),ox=[-17,17,-17,17][q],oy=[9,9,-9,-9][q];
+      o[0]=ox+(b-.5)*13;o[1]=oy+(c-.5)*11;o[2]=(a*7%1-.5)*13;
+    },
+    function(i,a,b,c,o){ // 05 voices: concentric rings
+      var ring=Math.floor(b*7),ang=a*TAU,r=4+ring*3.1;
+      o[0]=Math.cos(ang)*r;o[1]=Math.sin(ang)*r*.62;o[2]=(ring-3)*2.4+(c-.5)*1.2;
+    },
+    function(i,a,b,c,o){ // 06 ink: strokes falling like written lines
+      var col=Math.floor(a*9);
+      o[0]=(col-4)*5.4+Math.sin(b*9+col)*1.5;
+      o[1]=(b-.5)*40;
+      o[2]=(c-.5)*11;
+    },
+    function(i,a,b,c,o){ // 07 a lattice
+      var g=7,x=Math.floor(a*g),y=Math.floor(b*g),z=Math.floor(c*g);
+      o[0]=(x/(g-1)-.5)*40;o[1]=(y/(g-1)-.5)*30;o[2]=(z/(g-1)-.5)*30;
+    },
+    function(i,a,b,c,o){ // 08 a helix: routine
+      var t=a*TAU*4;o[0]=Math.cos(t)*11;o[1]=(a-.5)*40;o[2]=Math.sin(t)*11+(c-.5)*2;
+    },
+    function(i,a,b,c,o){ // 09 four pillars
+      var p=Math.floor(a*4);
+      o[0]=(p-1.5)*11+(b-.5)*2.3;o[1]=(c-.5)*36;o[2]=(b*5%1-.5)*2.3;
+    },
+    function(i,a,b,c,o){ // 10 a line, and then only the name
+      o[0]=(a-.5)*72;o[1]=(b-.5)*1.1;o[2]=(c-.5)*5;
+    }
+  ];
+  var tint=[0xd9d3c6,0xbcd0d8,0xc8a46a,0xd9d3c6,0xc8a46a,0xe0cfa8,0x9fd4c2,0xd9d3c6,0xc8a46a,0xf2efe9];
+
+  var scn=0,buf=[0,0,0];
+  function build(n){
+    var f=shapes[n];
+    for(var i=0;i<N;i++){
+      f(i,seed[i*3],seed[i*3+1],seed[i*3+2],buf);
+      tgt[i*3]=buf[0];tgt[i*3+1]=buf[1];tgt[i*3+2]=buf[2];
+    }
+    mat.color.lerp(new THREE.Color(tint[n]),1);
+  }
+  build(0);
+
+  sections.forEach(function(s){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(e.isIntersecting){var n=+e.target.dataset.scene;if(n!==scn){scn=n;build(n);}}
+      });
+    },{threshold:.4}).observe(s);
+  });
+
+  var mx=0,my=0;
+  addEventListener('pointermove',function(e){
+    mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5);
+  },{passive:true});
+
+  addEventListener('resize',function(){
+    camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth,innerHeight);
+  });
+
+  var arr=pos.array,t0=performance.now();
+  (function frame(now){
+    requestAnimationFrame(frame);
+    var t=(now-t0)/1000;
+    var ease=reduced?.2:.045;
+    for(var i=0;i<N;i++){
+      var j=i*3;
+      arr[j]  += (tgt[j]  -arr[j])  *ease;
+      arr[j+1]+= (tgt[j+1]-arr[j+1])*ease + Math.sin(t*.55+seed[j]*9)*.0045;
+      arr[j+2]+= (tgt[j+2]-arr[j+2])*ease;
+    }
+    pos.needsUpdate=true;
+    points.rotation.y = reduced?0:t*.018;
+    lines.rotation.y  = reduced?0:-t*.01;
+    camera.position.x += (mx*4.4-camera.position.x)*.03;
+    camera.position.y += (-my*2.8-camera.position.y)*.03;
+    camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+  })(t0);
+}
+</script>
+</body>
+</html>
