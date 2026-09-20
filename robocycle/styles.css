@@ -145,7 +145,7 @@ body.intro-running { overflow: hidden; }
   display: flex; flex-direction: column; align-items: center; gap: 18px;
   max-width: none;
 }
-.card--brand .logo-lockup { width: clamp(150px, 26vw, 260px); height: auto; }
+.card--brand .logo-lockup { width: clamp(118px, 17vw, 190px); height: auto; }
 .card--brand .wordmark {
   font-family: var(--f-display);
   font-weight: 600;
@@ -220,7 +220,7 @@ header.bar {
 .bar .wrap { display: flex; align-items: center; gap: 18px; min-height: 72px; }
 
 .mark { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; }
-.mark img { height: 40px; width: auto; }
+.mark img { height: 42px; width: auto; }
 .mark .wordmark {
   font-family: var(--f-display); font-weight: 600;
   font-size: 20px; letter-spacing: .03em; color: #fff;
@@ -243,7 +243,7 @@ nav.links a:hover { color: var(--text); }
 }
 .hero > .wrap { position: relative; }
 
-.hero-logo { width: clamp(180px, 22vw, 260px); margin-bottom: 30px; }
+.hero-logo { width: clamp(120px, 15vw, 172px); margin-bottom: 26px; }
 
 .eyebrow {
   font-family: var(--f-display); font-weight: 400; font-size: 13px;
@@ -373,14 +373,16 @@ footer.foot { border-top: 1px solid var(--line); padding: 50px 0 60px; color: va
   font-family: var(--f-display); font-size: 12px; letter-spacing: .2em;
   text-transform: uppercase; color: var(--text-faint); margin: 0 0 16px;
 }
-.partners ul {
-  list-style: none; margin: 0; padding: 0;
-  display: flex; flex-wrap: wrap; gap: 14px 30px; align-items: center;
+/* The lockup was drawn on white, so it is given white to sit on
+   rather than being forced onto the dark page. */
+.lockup-plate {
+  background: #fff;
+  border-radius: var(--r-lg);
+  padding: 22px;
+  width: fit-content;
+  max-width: min(420px, 100%);
 }
-.partners li {
-  font-family: var(--f-display); font-weight: 400;
-  font-size: .95rem; letter-spacing: .06em; color: var(--text-dim);
-}
+.lockup-plate img { width: 100%; height: auto; }
 
 .foot-row { display: flex; flex-wrap: wrap; gap: 18px; align-items: center; }
 .foot-row .ar { font-family: var(--f-ar); direction: rtl; }
