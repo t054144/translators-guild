@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -7,385 +7,449 @@
 <meta name="description" content="Shaikha Al-Khaldi — Linguistics, Translation Studies.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@200;300;400;500&family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Inter:wght@200;300;400;500&family=Amiri:wght@400&family=Noto+Kufi+Arabic:wght@300;400;600&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#050506;
     --ink:#f2efe9;
-    --dim:rgba(242,239,233,.42);
-    --faint:rgba(242,239,233,.16);
-    --rule:rgba(242,239,233,.10);
+    --dim:rgba(242,239,233,.55);
+    --faint:rgba(242,239,233,.20);
+    --rule:rgba(242,239,233,.13);
     --accent:#c8a46a;
-    --gutter:clamp(22px,6vw,110px);
-    --step:clamp(11px,.72vw,13px);
+    --pad:clamp(26px,5.5vw,96px);
   }
   *{box-sizing:border-box;margin:0;padding:0}
-  html{scroll-behavior:smooth}
+  html,body{height:100%}
   body{
     background:var(--bg);color:var(--ink);
     font-family:Inter,system-ui,sans-serif;font-weight:300;
     -webkit-font-smoothing:antialiased;overflow-x:hidden;
   }
+
+  /* ---------- the deck ---------- */
+  .deck{
+    height:100svh;overflow-y:scroll;scroll-snap-type:y mandatory;
+    scroll-behavior:smooth;position:relative;z-index:3;
+    scrollbar-width:none;
+  }
+  .deck::-webkit-scrollbar{display:none}
+  .slide{
+    height:100svh;scroll-snap-align:start;scroll-snap-stop:always;
+    padding:clamp(56px,9vh,92px) var(--pad) clamp(58px,9vh,86px);
+    display:flex;flex-direction:column;justify-content:center;
+    position:relative;overflow:hidden;
+  }
+
+  /* slide header */
+  .kicker{
+    position:absolute;top:clamp(26px,5vh,48px);left:var(--pad);
+    font-size:clamp(10px,.72vw,12px);letter-spacing:.42em;text-transform:uppercase;
+    color:var(--faint);
+  }
+  h2{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:clamp(30px,5.4vw,72px);line-height:1.04;letter-spacing:.005em;
+    margin-bottom:clamp(14px,2.4vh,26px);
+  }
+  .bar{width:clamp(48px,7vw,110px);height:1px;background:var(--accent);
+    margin-bottom:clamp(22px,4vh,44px)}
+
+  /* body: bullets on the left, picture on the right when there is one */
+  .body{display:grid;grid-template-columns:1fr;gap:clamp(26px,4vw,60px);align-items:center;
+    min-height:0}
+  .slide.has-media .body{grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr)}
+
+  ul{list-style:none;display:flex;flex-direction:column;gap:clamp(12px,2.1vh,24px);
+    max-width:min(54ch,100%)}
+  li{
+    position:relative;padding-left:clamp(22px,1.9vw,34px);
+    font-size:clamp(17px,2.05vw,30px);font-weight:300;line-height:1.35;
+    letter-spacing:.02em;
+    opacity:0;transform:translateY(14px);
+    transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1);
+  }
+  li::before{
+    content:"";position:absolute;left:0;top:.62em;
+    width:clamp(10px,1vw,18px);height:1px;background:var(--accent);opacity:.85;
+  }
+  .slide.live li{opacity:1;transform:none}
+  .slide.live li:nth-child(1){transition-delay:.06s}
+  .slide.live li:nth-child(2){transition-delay:.16s}
+  .slide.live li:nth-child(3){transition-delay:.26s}
+  .slide.live li:nth-child(4){transition-delay:.36s}
+  li .sub{
+    display:block;margin-top:7px;padding-left:0;
+    font-size:clamp(12px,1.05vw,15px);line-height:1.7;color:var(--dim);letter-spacing:.01em;
+  }
+  li .tag{
+    display:block;margin-top:6px;
+    font-size:clamp(10px,.72vw,12px);letter-spacing:.34em;text-transform:uppercase;
+    color:var(--faint);
+  }
+
+  /* sub-groups (a heading above a set of bullets) */
+  .set{margin-bottom:clamp(20px,3.4vh,40px);max-width:min(30ch,100%)}
+  .set:last-child{margin-bottom:0}
+  .set:has(li:not([lang="ar"])){max-width:min(54ch,100%)}
+  .set h3{
+    font-size:clamp(10px,.72vw,12px);letter-spacing:.38em;text-transform:uppercase;
+    color:var(--accent);font-weight:400;margin-bottom:clamp(10px,1.7vh,18px);
+  }
+
+  /* pictures — hidden until a real file is added */
+  .media{margin:0;min-width:0}
+  .media[hidden]{display:none}
+  .media img{
+    width:100%;height:auto;max-height:min(58vh,520px);object-fit:cover;display:block;
+    border:1px solid var(--rule);
+    filter:grayscale(.55) contrast(1.05) brightness(.94);
+  }
+  .media figcaption{
+    margin-top:10px;font-size:clamp(11px,.8vw,13px);letter-spacing:.06em;color:var(--dim);
+  }
+  .media.row{display:grid;grid-template-columns:1fr 1fr;gap:clamp(12px,1.6vw,22px)}
+  .media.row figure{margin:0}
+
+  /* arabic */
+  [lang="ar"]{font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;text-align:right}
+  li[lang="ar"]{padding-left:0;padding-right:clamp(22px,1.9vw,34px)}
+  li[lang="ar"]::before{left:auto;right:0}
+  .verse{
+    font-family:Amiri,serif;direction:rtl;text-align:right;
+    font-size:clamp(16px,1.75vw,26px);line-height:2.1;color:var(--ink);
+    border-right:1px solid var(--accent);padding-right:clamp(14px,1.5vw,24px);
+    margin-top:clamp(18px,3vh,32px);width:fit-content;margin-left:auto;
+  }
+
+  /* title + closing slides */
+  .title-slide,.end-slide{justify-content:center}
+  h1{
+    font-family:'Cormorant Garamond',serif;font-weight:300;
+    font-size:clamp(40px,8.4vw,132px);line-height:.98;
+  }
+  .title-slide .fields{margin-top:clamp(26px,5vh,56px);display:flex;flex-direction:column;
+    gap:clamp(14px,2.6vh,28px)}
+  .title-slide .fields div{font-size:clamp(16px,2vw,28px);letter-spacing:.16em;
+    text-transform:uppercase;font-weight:200}
+  .title-slide .fields span{display:block;margin-top:5px;font-size:clamp(10px,.72vw,12px);
+    letter-spacing:.36em;color:var(--faint)}
+  .end-slide{text-align:center;align-items:center}
+  .end-slide .closing{font-size:clamp(11px,.85vw,14px);letter-spacing:.44em;
+    text-transform:uppercase;color:var(--accent);margin-bottom:clamp(20px,4vh,40px)}
+
+  /* presenter furniture */
+  .count{
+    position:fixed;right:var(--pad);bottom:clamp(22px,4vh,40px);z-index:6;
+    font-size:clamp(10px,.72vw,12px);letter-spacing:.3em;color:var(--faint);
+  }
+  .count b{color:var(--ink);font-weight:400}
+  .track{position:fixed;left:0;top:0;height:2px;width:0;background:var(--accent);
+    z-index:7;opacity:.75;transition:width .45s ease}
+  .nav{position:fixed;right:var(--pad);bottom:clamp(58px,9vh,84px);z-index:6;display:flex;gap:10px}
+  .nav button{
+    width:34px;height:34px;border:1px solid var(--rule);background:transparent;
+    color:var(--dim);cursor:pointer;font-size:13px;line-height:1;
+    transition:border-color .3s,color .3s}
+  .nav button:hover{border-color:var(--accent);color:var(--ink)}
+  @media (max-width:760px){.nav{display:none}}
+
+  /* background */
   canvas#stage{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;display:block}
   .vignette{position:fixed;inset:0;z-index:1;pointer-events:none;
-    background:radial-gradient(ellipse at 50% 45%,transparent 35%,rgba(5,5,6,.72) 100%)}
-  .grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.05;
+    background:radial-gradient(ellipse at 50% 45%,transparent 38%,rgba(5,5,6,.78) 100%)}
+  .grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.045;
     background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
     animation:drift 7s steps(6) infinite}
   @keyframes drift{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-2%)}100%{transform:translate(0,0)}}
-  .scan{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.35;
-    background:repeating-linear-gradient(to bottom,rgba(255,255,255,.012) 0 1px,transparent 1px 3px)}
 
-  main{position:relative;z-index:3}
-  section{
-    min-height:100svh;padding:14vh var(--gutter) 12vh;
-    display:flex;flex-direction:column;justify-content:center;
-    position:relative;
+  @media (max-width:760px){
+    .slide{height:auto;min-height:100svh;padding-top:clamp(64px,12vh,96px)}
+    .deck{scroll-snap-type:none}
+    .slide.has-media .body{grid-template-columns:1fr}
+    .media img{max-height:42vh}
   }
-  .num{
-    font-size:var(--step);letter-spacing:.42em;color:var(--faint);
-    position:absolute;top:8vh;left:var(--gutter);
-  }
-  .eyebrow{
-    font-size:var(--step);letter-spacing:.42em;color:var(--dim);
-    text-transform:uppercase;margin-bottom:clamp(30px,6vh,64px);
-  }
-  h1{
-    font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(42px,9.5vw,148px);line-height:.95;letter-spacing:.01em;
-  }
-  .field{
-    font-size:clamp(20px,3.4vw,44px);font-weight:200;letter-spacing:.18em;
-    text-transform:uppercase;line-height:1.5;
-  }
-  .role{font-size:var(--step);letter-spacing:.38em;color:var(--faint);text-transform:uppercase;margin-top:6px}
-  .list{display:flex;flex-direction:column;gap:clamp(10px,2.1vh,22px)}
-  .list li{list-style:none;
-    font-size:clamp(17px,3vw,40px);font-weight:200;letter-spacing:.2em;text-transform:uppercase;
-    color:var(--dim);transition:color .5s ease,letter-spacing .6s ease}
-  .list li:hover{color:var(--ink);letter-spacing:.26em}
-  .group{margin-bottom:clamp(38px,8vh,84px)}
-  .group h3{
-    font-size:var(--step);letter-spacing:.42em;color:var(--accent);
-    text-transform:uppercase;font-weight:400;margin-bottom:clamp(16px,3vh,30px)}
-  .rule{height:1px;background:var(--rule);margin:clamp(26px,5vh,54px) 0;width:min(560px,100%)}
-  .big{
-    font-size:clamp(26px,5.6vw,80px);font-weight:200;letter-spacing:.14em;
-    text-transform:uppercase;line-height:1.25}
-  .stack{display:flex;flex-direction:column;gap:clamp(14px,3.4vh,40px)}
-
-  /* archive photographs */
-  .archive{display:grid;gap:clamp(20px,3.4vw,44px);
-    grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));align-items:end}
-  figure{margin:0}
-  .plate{
-    position:relative;aspect-ratio:4/5;overflow:hidden;
-    background:#0b0b0d;border:1px solid var(--rule);
-    filter:grayscale(1) contrast(1.06) brightness(.9);
-    transition:filter .7s ease,transform .7s ease}
-  figure:hover .plate{filter:grayscale(.25) contrast(1.02) brightness(1);transform:translateY(-4px)}
-  .plate img{width:100%;height:100%;object-fit:cover;display:block}
-  .plate img[data-missing]{display:none}
-  .plate .await{
-    position:absolute;inset:0;display:none;align-items:center;justify-content:center;
-    padding:16px;text-align:center;
-    font-size:clamp(12px,1.2vw,15px);letter-spacing:.14em;color:rgba(242,239,233,.34);
-    background:
-      repeating-linear-gradient(135deg,rgba(255,255,255,.022) 0 1px,transparent 1px 9px),
-      linear-gradient(160deg,#101013,#08080a)}
-  .plate[data-empty] .await{display:flex}
-  .wide{aspect-ratio:16/10}
-  figcaption{margin-top:14px;font-size:clamp(14px,1.5vw,19px);letter-spacing:.06em;color:var(--ink)}
-  figcaption .sub{display:block;margin-top:5px;font-size:11px;letter-spacing:.3em;
-    text-transform:uppercase;color:var(--faint)}
-  [lang="ar"]{font-family:'Noto Kufi Arabic',sans-serif;direction:rtl}
-  figcaption[lang="ar"]{text-align:left}
-  .plate .await{font-family:'Noto Kufi Arabic',sans-serif}
-  .ar-serif{font-family:Amiri,serif;direction:rtl}
-
-  .poets{display:flex;flex-direction:column;align-items:flex-start;gap:clamp(18px,4vh,46px)}
-  .poet{font-family:Amiri,serif;direction:rtl;
-    font-size:clamp(28px,6vw,86px);font-weight:400;color:var(--dim);
-    transition:color .6s ease}
-  .poet:hover{color:var(--ink)}
-  .verse{font-family:Amiri,serif;direction:rtl;width:fit-content;
-    font-size:clamp(19px,2.9vw,40px);line-height:2;color:var(--ink);
-    border-right:1px solid var(--accent);padding-right:clamp(16px,2.5vw,34px);
-    max-width:24ch}
-  .epithet{width:fit-content;font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;
-    font-size:clamp(15px,1.9vw,24px);color:var(--dim);letter-spacing:0;line-height:2}
-
-  .principle{max-width:62ch;margin-bottom:clamp(30px,6vh,60px)}
-  .principle h4{font-size:clamp(16px,2.3vw,30px);font-weight:300;
-    letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
-  .principle p{font-size:clamp(14px,1.35vw,17px);line-height:1.85;color:var(--dim);font-weight:300}
-
-  #end{align-items:center;text-align:center;justify-content:center}
-  .echo{display:flex;flex-wrap:wrap;gap:12px 26px;justify-content:center;
-    max-width:760px;margin-bottom:clamp(40px,9vh,96px)}
-  .echo span{font-size:var(--step);letter-spacing:.34em;text-transform:uppercase;
-    color:var(--faint);opacity:0;transform:translateY(6px);transition:opacity 1s ease,transform 1s ease}
-  #end.seen .echo span{opacity:1;transform:none}
-  #end.fade .echo span{opacity:0;transform:translateY(-8px)}
-  #end .echo span:nth-child(n){transition-delay:calc(var(--i,0) * .12s)}
-
-  /* reveal */
-  .rv{opacity:0;transform:translateY(26px);filter:blur(5px);
-    transition:opacity 1.15s cubic-bezier(.2,.7,.2,1),transform 1.15s cubic-bezier(.2,.7,.2,1),filter 1.15s ease}
-  .seen .rv{opacity:1;transform:none;filter:none}
-  .seen .rv:nth-child(2){transition-delay:.1s}
-  .seen .rv:nth-child(3){transition-delay:.2s}
-  .seen .rv:nth-child(4){transition-delay:.3s}
-  .seen .rv:nth-child(5){transition-delay:.4s}
-  .seen .rv:nth-child(6){transition-delay:.5s}
-
-  .progress{position:fixed;left:var(--gutter);bottom:5vh;z-index:5;display:flex;gap:9px}
-  .progress i{width:16px;height:1px;background:var(--faint);transition:background .5s,width .5s}
-  .progress i.on{background:var(--accent);width:30px}
-  @media (max-width:640px){.progress{display:none}}
-
   @media (prefers-reduced-motion:reduce){
-    .rv{opacity:1;transform:none;filter:none;transition:none}
+    li{opacity:1;transform:none;transition:none}
     .grain{animation:none}
-    html{scroll-behavior:auto}
+    .deck{scroll-behavior:auto}
   }
 </style>
 </head>
 <body>
 <canvas id="stage"></canvas>
 <div class="vignette"></div>
-<div class="scan"></div>
 <div class="grain"></div>
+<div class="track" id="track"></div>
 
-<main>
-  <section id="s0" data-scene="0">
-    <span class="num">01</span>
-    <h1 class="rv">Shaikha<br>Al-Khaldi</h1>
-    <div class="rule rv"></div>
-    <div class="rv">
-      <div class="field">Linguistics</div>
-      <div class="role">Major</div>
-    </div>
-    <div class="rv" style="margin-top:clamp(22px,4vh,44px)">
-      <div class="field">Translation Studies</div>
-      <div class="role">Minor</div>
+<div class="deck" id="deck" tabindex="0">
+
+  <!-- 01 -->
+  <section class="slide title-slide" data-scene="0">
+    <h1>Shaikha<br>Al-Khaldi</h1>
+    <div class="fields">
+      <div>Linguistics<span>Major</span></div>
+      <div>Translation Studies<span>Minor</span></div>
     </div>
   </section>
 
-  <section id="s1" data-scene="1">
-    <span class="num">02</span>
-    <p class="eyebrow rv">What I Study</p>
-    <div class="group rv">
-      <h3>Linguistics</h3>
-      <ul class="list">
-        <li>Phonetics</li>
-        <li>Phonology</li>
-        <li>IPA</li>
+  <!-- 02 -->
+  <section class="slide" data-scene="1">
+    <span class="kicker">02</span>
+    <h2>What I Study</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <div>
+        <div class="set">
+          <h3>Linguistics</h3>
+          <ul>
+            <li>Phonetics</li>
+            <li>Phonology</li>
+            <li>IPA</li>
+          </ul>
+        </div>
+        <div class="set">
+          <h3>Translation</h3>
+          <ul>
+            <li>Translation Studies</li>
+          </ul>
+        </div>
+      </div>
+      <figure class="media" hidden>
+        <img data-src="assets/slide-02.jpg" alt="">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="slide" data-scene="2">
+    <span class="kicker">03</span>
+    <h2>Where I Want to Go</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <ul>
+        <li>Conference Interpreting</li>
+        <li>United Nations</li>
+        <li>Interpreting Booth</li>
+      </ul>
+      <figure class="media" hidden>
+        <img data-src="assets/slide-03.jpg" alt="">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="slide" data-scene="3">
+    <span class="kicker">04</span>
+    <h2>Things I Like</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <ul>
+        <li>Books</li>
+        <li>Cinema</li>
+        <li>Podcasts</li>
+        <li>Arabic Poetry</li>
+      </ul>
+      <figure class="media" hidden>
+        <img data-src="assets/slide-04.jpg" alt="">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="slide" data-scene="4">
+    <span class="kicker">05</span>
+    <h2>Things That Shaped Me</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <div class="set">
+        <h3>Podcasts</h3>
+        <ul>
+          <li lang="ar">بدون ورق</li>
+          <li lang="ar">د. نايف بن نهار</li>
+          <li lang="ar">أ. ياسر الحزيمي</li>
+          <li lang="ar">فنجان</li>
+        </ul>
+      </div>
+      <div class="media row" hidden>
+        <figure><img data-src="assets/bidoun-waraq.jpg" alt="بدون ورق"><figcaption lang="ar">بدون ورق</figcaption></figure>
+        <figure><img data-src="assets/fnjan.jpg" alt="فنجان"><figcaption lang="ar">فنجان</figcaption></figure>
+        <figure><img data-src="assets/nayef-bin-nahar.jpg" alt="د. نايف بن نهار"><figcaption lang="ar">د. نايف بن نهار</figcaption></figure>
+        <figure><img data-src="assets/yasser-alhuzaimi.jpg" alt="أ. ياسر الحزيمي"><figcaption lang="ar">أ. ياسر الحزيمي</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 -->
+  <section class="slide" data-scene="5">
+    <span class="kicker">06</span>
+    <h2>Arabic Poetry</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <div class="set">
+        <h3>Poets I Return To</h3>
+        <ul>
+          <li lang="ar">امرؤ القيس</li>
+          <li lang="ar">المتنبي</li>
+          <li lang="ar">بدر بن عبدالمحسن
+            <span class="sub">البدر · مهندس الكلمة · رديني</span>
+          </li>
+        </ul>
+        <div class="verse">
+          وإن كنتُ الأخيرَ زمانُهُ<br>لآتٍ بما لم تستطِعْهُ الأوائلُ
+        </div>
+      </div>
+      <figure class="media" hidden>
+        <img data-src="assets/badr-bin-abdulmohsen.jpg" alt="بدر بن عبدالمحسن">
+        <figcaption lang="ar">بدر بن عبدالمحسن</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="slide" data-scene="6">
+    <span class="kicker">07</span>
+    <h2>Beyond Language</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <ul>
+        <li>Coding</li>
+        <li>Programming</li>
+        <li>Cybersecurity</li>
+      </ul>
+      <figure class="media" hidden>
+        <img data-src="assets/slide-07.jpg" alt="">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section class="slide" data-scene="7">
+    <span class="kicker">08</span>
+    <h2>A Few Things About Me</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <ul>
+        <li>Morning Person</li>
+        <li>Disciplined</li>
+      </ul>
+      <figure class="media" hidden>
+        <img data-src="assets/slide-08.jpg" alt="">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section class="slide" data-scene="8">
+    <span class="kicker">09</span>
+    <h2>Principles I Live By</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <ul>
+        <li>Know where you come from
+          <span class="sub">Language, culture, and identity are worth understanding and preserving.</span>
+        </li>
+        <li>Words matter
+          <span class="sub">Choose them carefully. The way we speak to people matters.</span>
+        </li>
+        <li>Good manners matter
+          <span class="sub">Politeness is never outdated. Respect, kindness, and proper manners matter.</span>
+        </li>
+        <li>Never stop improving
+          <span class="sub">There is always something to learn, refine, or do better.</span>
+        </li>
       </ul>
     </div>
-    <div class="group rv">
-      <h3>Translation</h3>
-      <ul class="list">
-        <li>Translation Studies</li>
-      </ul>
-    </div>
   </section>
 
-  <section id="s2" data-scene="2">
-    <span class="num">03</span>
-    <p class="eyebrow rv">Where I Want to Go</p>
-    <div class="stack">
-      <div class="big rv">Conference Interpreting</div>
-      <div class="big rv">United Nations</div>
-      <div class="big rv">Interpreting Booth</div>
-    </div>
+  <!-- 10 -->
+  <section class="slide end-slide" data-scene="9">
+    <p class="closing">Still Becoming</p>
+    <h1 style="font-size:clamp(34px,6.6vw,104px)">Shaikha Al-Khaldi</h1>
   </section>
 
-  <section id="s3" data-scene="3">
-    <span class="num">04</span>
-    <p class="eyebrow rv">Things I Like</p>
-    <ul class="list rv">
-      <li>Books</li>
-      <li>Cinema</li>
-      <li>Podcasts</li>
-      <li>Arabic Poetry</li>
-    </ul>
-  </section>
+</div>
 
-  <section id="s4" data-scene="4">
-    <span class="num">05</span>
-    <p class="eyebrow rv">Things That Shaped Me</p>
-    <div class="group rv">
-      <h3>Podcasts</h3>
-      <figure style="max-width:min(560px,100%)">
-        <div class="plate wide" data-plate>
-          <img src="assets/bidoun-waraq.jpg" alt="بدون ورق">
-          <span class="await">بدون ورق</span>
-        </div>
-        <figcaption lang="ar">بدون ورق</figcaption>
-      </figure>
-    </div>
-    <div class="archive rv" style="max-width:min(560px,100%)">
-      <figure>
-        <div class="plate" data-plate>
-          <img src="assets/nayef-bin-nahar.jpg" alt="د. نايف بن نهار">
-          <span class="await">د. نايف بن نهار</span>
-        </div>
-        <figcaption lang="ar">د. نايف بن نهار</figcaption>
-      </figure>
-      <figure>
-        <div class="plate" data-plate>
-          <img src="assets/yasser-alhuzaimi.jpg" alt="أ. ياسر الحزيمي">
-          <span class="await">أ. ياسر الحزيمي</span>
-        </div>
-        <figcaption lang="ar">أ. ياسر الحزيمي</figcaption>
-      </figure>
-    </div>
-    <div class="rule rv"></div>
-    <figure class="rv" style="max-width:min(380px,100%)">
-      <div class="plate wide" data-plate>
-        <img src="assets/fnjan.jpg" alt="فنجان">
-        <span class="await">فنجان</span>
-      </div>
-      <figcaption lang="ar">فنجان</figcaption>
-    </figure>
-  </section>
-
-  <section id="s5" data-scene="5">
-    <span class="num">06</span>
-    <p class="eyebrow rv">Arabic Poetry</p>
-    <h3 class="rv" style="font-size:var(--step);letter-spacing:.42em;color:var(--accent);text-transform:uppercase;font-weight:400;margin-bottom:clamp(20px,4vh,40px)">Poets I Return To</h3>
-    <div class="poets rv">
-      <div class="poet" lang="ar">امرؤ القيس</div>
-      <div class="poet" lang="ar">المتنبي</div>
-    </div>
-    <div class="verse rv" style="margin:clamp(24px,5vh,54px) 0">
-      وإن كنتُ الأخيرَ زمانُهُ<br>لآتٍ بما لم تستطِعْهُ الأوائلُ
-    </div>
-    <div class="rule rv"></div>
-    <figure class="rv" style="max-width:min(340px,100%)">
-      <div class="plate" data-plate>
-        <img src="assets/badr-bin-abdulmohsen.jpg" alt="بدر بن عبدالمحسن">
-        <span class="await">بدر بن عبدالمحسن</span>
-      </div>
-      <figcaption lang="ar">بدر بن عبدالمحسن
-        <span class="epithet">البدر · مهندس الكلمة</span>
-      </figcaption>
-    </figure>
-    <div class="ar-serif rv" style="font-size:clamp(24px,4vw,56px);margin-top:clamp(22px,4vh,44px);width:fit-content">رديني</div>
-  </section>
-
-  <section id="s6" data-scene="6">
-    <span class="num">07</span>
-    <p class="eyebrow rv">Beyond Language</p>
-    <ul class="list rv">
-      <li>Coding</li>
-      <li>Programming</li>
-      <li>Cybersecurity</li>
-    </ul>
-  </section>
-
-  <section id="s7" data-scene="7">
-    <span class="num">08</span>
-    <p class="eyebrow rv">A Few Things About Me</p>
-    <div class="stack">
-      <div class="big rv">Morning Person</div>
-      <div class="big rv">Disciplined</div>
-    </div>
-  </section>
-
-  <section id="s8" data-scene="8">
-    <span class="num">09</span>
-    <p class="eyebrow rv">Principles I Live By</p>
-    <div class="principle rv">
-      <h4>Know where you come from</h4>
-      <p>Language, culture, and identity are worth understanding and preserving.</p>
-    </div>
-    <div class="principle rv">
-      <h4>Words matter</h4>
-      <p>Choose them carefully. The way we speak to people matters.</p>
-    </div>
-    <div class="principle rv">
-      <h4>Good manners matter</h4>
-      <p>Politeness is never outdated. Respect, kindness, and proper manners matter.</p>
-    </div>
-    <div class="principle rv">
-      <h4>Never stop improving</h4>
-      <p>There is always something to learn, refine, or do better.</p>
-    </div>
-  </section>
-
-  <section id="end" data-scene="9">
-    <span class="num">10</span>
-    <div class="echo">
-      <span style="--i:0">Linguistics</span>
-      <span style="--i:1">Translation</span>
-      <span style="--i:2">Interpreting</span>
-      <span style="--i:3">Books</span>
-      <span style="--i:4">Cinema</span>
-      <span style="--i:5">Podcasts</span>
-      <span style="--i:6">Poetry</span>
-      <span style="--i:7">Technology</span>
-    </div>
-    <p class="eyebrow rv" style="margin-bottom:clamp(20px,4vh,40px)">Still Becoming</p>
-    <h1 class="rv" style="font-size:clamp(34px,7vw,110px)">Shaikha Al-Khaldi</h1>
-  </section>
-</main>
-
-<div class="progress" aria-hidden="true"></div>
+<div class="count"><b id="cur">01</b> / 10</div>
+<nav class="nav" aria-label="Slides">
+  <button id="prev" aria-label="Previous slide">&#8593;</button>
+  <button id="next" aria-label="Next slide">&#8595;</button>
+</nav>
 
 <script>
-/* ---------- photographs: show the frame until the original file is added ---------- */
-document.querySelectorAll('.plate img').forEach(function(img){
-  var mark=function(){img.setAttribute('data-missing','');img.parentElement.setAttribute('data-empty','');};
-  img.addEventListener('error',mark);
-  if(img.complete && img.naturalWidth===0) mark();
+var deck=document.getElementById('deck');
+var slides=[].slice.call(document.querySelectorAll('.slide'));
+var cur=document.getElementById('cur'), track=document.getElementById('track');
+var index=0;
+
+/* pictures: load only if the file is really there, otherwise the slide stays text-only */
+slides.forEach(function(slide){
+  slide.querySelectorAll('.media').forEach(function(media){
+    var imgs=[].slice.call(media.querySelectorAll('img')), pending=imgs.length, any=false;
+    imgs.forEach(function(img){
+      var fig=img.closest('figure');
+      img.addEventListener('load',function(){any=true;done();});
+      img.addEventListener('error',function(){if(fig&&fig!==media)fig.remove();done();});
+      img.src=img.dataset.src;
+    });
+    function done(){
+      if(--pending>0) return;
+      if(!any) return;
+      if(media.classList.contains('row') && media.querySelectorAll('figure').length<2)
+        media.classList.remove('row');
+      media.hidden=false;slide.classList.add('has-media');
+    }
+  });
 });
 
-/* ---------- reveal + progress ---------- */
-var sections=[].slice.call(document.querySelectorAll('section'));
-var bar=document.querySelector('.progress');
-sections.forEach(function(){var i=document.createElement('i');bar.appendChild(i);});
-var dots=[].slice.call(bar.children);
-var current=0;
-
-var io=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){
-      e.target.classList.add('seen');
-      var i=sections.indexOf(e.target);
-      if(i>-1){current=i;dots.forEach(function(d,j){d.classList.toggle('on',j===i);});}
-    }
-  });
-},{threshold:.35});
-sections.forEach(function(s){io.observe(s);});
-
-/* the ending: the echoes appear, then quietly leave */
-var endEl=document.getElementById('end');
-new IntersectionObserver(function(es){
+/* which slide are we on */
+function activate(i){
+  if(i<0||i===index&&slides[i].classList.contains('live')) return;
+  index=i;
+  slides.forEach(function(x,j){x.classList.toggle('live',j===i);});
+  cur.textContent=String(i+1).padStart(2,'0');
+  track.style.width=(i/(slides.length-1)*100)+'%';
+  if(window.__scene) window.__scene(+slides[i].dataset.scene);
+}
+var io=new IntersectionObserver(function(es){
   es.forEach(function(e){
-    if(e.isIntersecting){
-      endEl.classList.remove('fade');
-      clearTimeout(endEl._t);
-      endEl._t=setTimeout(function(){endEl.classList.add('fade');},2600);
-    }
+    if(e.isIntersecting) activate(slides.indexOf(e.target));
   });
-},{threshold:.5}).observe(endEl);
+},{root:deck,threshold:.55});
+slides.forEach(function(s){io.observe(s);});
+activate(0);
 
-/* ---------- the 3D stage ---------- */
+function go(n){
+  n=Math.max(0,Math.min(slides.length-1,n));
+  slides[n].scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('next').onclick=function(){go(index+1);};
+document.getElementById('prev').onclick=function(){go(index-1);};
+
+addEventListener('keydown',function(e){
+  var k=e.key;
+  if(k==='ArrowRight'||k==='ArrowDown'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();go(index+1);}
+  else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){e.preventDefault();go(index-1);}
+  else if(k==='Home'){e.preventDefault();go(0);}
+  else if(k==='End'){e.preventDefault();go(slides.length-1);}
+  else if(k==='f'||k==='F'){
+    if(document.fullscreenElement) document.exitFullscreen();
+    else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
+  }
+});
+deck.focus();
+
+/* ---------- background ---------- */
 var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-var script=document.createElement('script');
-script.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
-script.onload=boot;
-script.onerror=function(){document.getElementById('stage').style.display='none';};
-document.head.appendChild(script);
+var s=document.createElement('script');
+s.src='https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+s.onload=boot;
+s.onerror=function(){document.getElementById('stage').style.display='none';};
+document.head.appendChild(s);
 
 function boot(){
-  var canvas=document.getElementById('stage'),THREE=window.THREE;
-  var renderer;
-  try{
-    renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
-  }catch(err){canvas.style.display='none';return;}
+  var canvas=document.getElementById('stage'),THREE=window.THREE,renderer;
+  try{renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});}
+  catch(err){canvas.style.display='none';return;}
   renderer.setPixelRatio(Math.min(devicePixelRatio,1.75));
   renderer.setSize(innerWidth,innerHeight);
 
@@ -394,116 +458,68 @@ function boot(){
   var camera=new THREE.PerspectiveCamera(52,innerWidth/innerHeight,.1,220);
   camera.position.set(0,0,26);
 
-  var N = innerWidth<720 ? 4200 : 9000;
+  var N=innerWidth<720?3200:7000;
   var pos=new THREE.BufferAttribute(new Float32Array(N*3),3);
-  var tgt=new Float32Array(N*3);
-  var seed=new Float32Array(N*3);
+  var tgt=new Float32Array(N*3), seed=new Float32Array(N*3);
   for(var i=0;i<N;i++){
     seed[i*3]=Math.random();seed[i*3+1]=Math.random();seed[i*3+2]=Math.random();
     pos.array[i*3]=(Math.random()-.5)*90;
     pos.array[i*3+1]=(Math.random()-.5)*60;
     pos.array[i*3+2]=(Math.random()-.5)*60;
   }
-  var geo=new THREE.BufferGeometry();
-  geo.setAttribute('position',pos);
+  var geo=new THREE.BufferGeometry();geo.setAttribute('position',pos);
 
   var sprite=(function(){
     var c=document.createElement('canvas');c.width=c.height=64;
-    var g=c.getContext('2d').createRadialGradient(32,32,0,32,32,32);
+    var x=c.getContext('2d');
+    var g=x.createRadialGradient(32,32,0,32,32,32);
     g.addColorStop(0,'rgba(255,255,255,1)');g.addColorStop(.35,'rgba(255,255,255,.5)');
     g.addColorStop(1,'rgba(255,255,255,0)');
-    var x=c.getContext('2d');x.fillStyle=g;x.fillRect(0,0,64,64);
+    x.fillStyle=g;x.fillRect(0,0,64,64);
     return new THREE.CanvasTexture(c);
   })();
+  var mat=new THREE.PointsMaterial({size:.28,map:sprite,transparent:true,opacity:.7,
+    depthWrite:false,blending:THREE.AdditiveBlending,color:new THREE.Color(0xd9d3c6)});
+  var points=new THREE.Points(geo,mat);scene.add(points);
 
-  var mat=new THREE.PointsMaterial({
-    size:.30,map:sprite,transparent:true,opacity:.82,depthWrite:false,
-    blending:THREE.AdditiveBlending,color:new THREE.Color(0xd9d3c6)
-  });
-  var points=new THREE.Points(geo,mat);
-  scene.add(points);
-
-  /* a few slow drifting lines, for depth */
-  var lines=new THREE.Group();
-  for(var L=0;L<14;L++){
-    var pts=[];
-    for(var k=0;k<24;k++) pts.push(new THREE.Vector3((Math.random()-.5)*70,(Math.random()-.5)*44,(Math.random()-.5)*50));
-    var lg=new THREE.BufferGeometry().setFromPoints(pts);
-    lines.add(new THREE.Line(lg,new THREE.LineBasicMaterial({color:0x8d7c5c,transparent:true,opacity:.055})));
-  }
-  scene.add(lines);
-
-  /* ---- the shapes each section settles into ---- */
   var TAU=Math.PI*2;
   var shapes=[
-    function(i,a,b,c,o){ // 01 a slow sphere: the person, before anything else
-      var u=a*TAU,v=Math.acos(2*b-1),r=15+c*1.4;
-      o[0]=r*Math.sin(v)*Math.cos(u);o[1]=r*Math.sin(v)*Math.sin(u)*.72;o[2]=r*Math.cos(v);
-    },
-    function(i,a,b,c,o){ // 02 sound: a sheet of waves
-      var x=(a-.5)*64,z=(b-.5)*44;
-      o[0]=x;o[1]=Math.sin(x*.42)*3.1+Math.sin(z*.33)*1.7+(c-.5)*.7;o[2]=z;
-    },
-    function(i,a,b,c,o){ // 03 the hall, and the booth above it
-      if(a<.72){var row=Math.floor(b*18),ang=(a/.72-.5)*2.0;var rad=9+row*1.5;
+    function(i,a,b,c,o){var u=a*TAU,v=Math.acos(2*b-1),r=15+c*1.4;
+      o[0]=r*Math.sin(v)*Math.cos(u);o[1]=r*Math.sin(v)*Math.sin(u)*.72;o[2]=r*Math.cos(v);},
+    function(i,a,b,c,o){var x=(a-.5)*64,z=(b-.5)*44;
+      o[0]=x;o[1]=Math.sin(x*.42)*3.1+Math.sin(z*.33)*1.7+(c-.5)*.7;o[2]=z;},
+    function(i,a,b,c,o){
+      if(a<.72){var row=Math.floor(b*18),ang=(a/.72-.5)*2.0,rad=9+row*1.5;
         o[0]=Math.sin(ang)*rad;o[1]=-7+row*.42;o[2]=Math.cos(ang)*rad-14;}
-      else{var t=(a-.72)/.28;o[0]=(t-.5)*13;o[1]=7+(b-.5)*5.2;o[2]=6+(c-.5)*3;}
-    },
-    function(i,a,b,c,o){ // 04 four things, four clusters
-      var q=Math.floor(a*4),ox=[-17,17,-17,17][q],oy=[9,9,-9,-9][q];
-      o[0]=ox+(b-.5)*13;o[1]=oy+(c-.5)*11;o[2]=(a*7%1-.5)*13;
-    },
-    function(i,a,b,c,o){ // 05 voices: concentric rings
-      var ring=Math.floor(b*7),ang=a*TAU,r=4+ring*3.1;
-      o[0]=Math.cos(ang)*r;o[1]=Math.sin(ang)*r*.62;o[2]=(ring-3)*2.4+(c-.5)*1.2;
-    },
-    function(i,a,b,c,o){ // 06 ink: strokes falling like written lines
-      var col=Math.floor(a*9);
-      o[0]=(col-4)*5.4+Math.sin(b*9+col)*1.5;
-      o[1]=(b-.5)*40;
-      o[2]=(c-.5)*11;
-    },
-    function(i,a,b,c,o){ // 07 a lattice
-      var g=7,x=Math.floor(a*g),y=Math.floor(b*g),z=Math.floor(c*g);
-      o[0]=(x/(g-1)-.5)*40;o[1]=(y/(g-1)-.5)*30;o[2]=(z/(g-1)-.5)*30;
-    },
-    function(i,a,b,c,o){ // 08 a helix: routine
-      var t=a*TAU*4;o[0]=Math.cos(t)*11;o[1]=(a-.5)*40;o[2]=Math.sin(t)*11+(c-.5)*2;
-    },
-    function(i,a,b,c,o){ // 09 four pillars
-      var p=Math.floor(a*4);
-      o[0]=(p-1.5)*11+(b-.5)*2.3;o[1]=(c-.5)*36;o[2]=(b*5%1-.5)*2.3;
-    },
-    function(i,a,b,c,o){ // 10 a line, and then only the name
-      o[0]=(a-.5)*72;o[1]=(b-.5)*1.1;o[2]=(c-.5)*5;
-    }
+      else{var t=(a-.72)/.28;o[0]=(t-.5)*13;o[1]=7+(b-.5)*5.2;o[2]=6+(c-.5)*3;}},
+    function(i,a,b,c,o){var q=Math.floor(a*4),ox=[-17,17,-17,17][q],oy=[9,9,-9,-9][q];
+      o[0]=ox+(b-.5)*13;o[1]=oy+(c-.5)*11;o[2]=(a*7%1-.5)*13;},
+    function(i,a,b,c,o){var ring=Math.floor(b*7),ang=a*TAU,r=4+ring*3.1;
+      o[0]=Math.cos(ang)*r;o[1]=Math.sin(ang)*r*.62;o[2]=(ring-3)*2.4+(c-.5)*1.2;},
+    function(i,a,b,c,o){var col=Math.floor(a*9);
+      o[0]=(col-4)*5.4+Math.sin(b*9+col)*1.5;o[1]=(b-.5)*40;o[2]=(c-.5)*11;},
+    function(i,a,b,c,o){var g=7,x=Math.floor(a*g),y=Math.floor(b*g),z=Math.floor(c*g);
+      o[0]=(x/(g-1)-.5)*40;o[1]=(y/(g-1)-.5)*30;o[2]=(z/(g-1)-.5)*30;},
+    function(i,a,b,c,o){var t=a*TAU*4;o[0]=Math.cos(t)*11;o[1]=(a-.5)*40;o[2]=Math.sin(t)*11+(c-.5)*2;},
+    function(i,a,b,c,o){var p=Math.floor(a*4);
+      o[0]=(p-1.5)*11+(b-.5)*2.3;o[1]=(c-.5)*36;o[2]=(b*5%1-.5)*2.3;},
+    function(i,a,b,c,o){o[0]=(a-.5)*72;o[1]=(b-.5)*1.1;o[2]=(c-.5)*5;}
   ];
   var tint=[0xd9d3c6,0xbcd0d8,0xc8a46a,0xd9d3c6,0xc8a46a,0xe0cfa8,0x9fd4c2,0xd9d3c6,0xc8a46a,0xf2efe9];
-
-  var scn=0,buf=[0,0,0];
-  function build(n){
-    var f=shapes[n];
+  var scn=-1,buf=[0,0,0];
+  window.__scene=function(n){
+    if(n===scn||!shapes[n]) return;
+    scn=n;var f=shapes[n];
     for(var i=0;i<N;i++){
       f(i,seed[i*3],seed[i*3+1],seed[i*3+2],buf);
       tgt[i*3]=buf[0];tgt[i*3+1]=buf[1];tgt[i*3+2]=buf[2];
     }
-    mat.color.lerp(new THREE.Color(tint[n]),1);
-  }
-  build(0);
-
-  sections.forEach(function(s){
-    new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(e.isIntersecting){var n=+e.target.dataset.scene;if(n!==scn){scn=n;build(n);}}
-      });
-    },{threshold:.4}).observe(s);
-  });
+    mat.color.set(tint[n]);
+  };
+  window.__scene(0);
 
   var mx=0,my=0;
-  addEventListener('pointermove',function(e){
-    mx=(e.clientX/innerWidth-.5);my=(e.clientY/innerHeight-.5);
-  },{passive:true});
-
+  addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;},{passive:true});
   addEventListener('resize',function(){
     camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();
     renderer.setSize(innerWidth,innerHeight);
@@ -512,19 +528,17 @@ function boot(){
   var arr=pos.array,t0=performance.now();
   (function frame(now){
     requestAnimationFrame(frame);
-    var t=(now-t0)/1000;
-    var ease=reduced?.2:.045;
+    var t=(now-t0)/1000,ease=reduced?.2:.05;
     for(var i=0;i<N;i++){
       var j=i*3;
-      arr[j]  += (tgt[j]  -arr[j])  *ease;
-      arr[j+1]+= (tgt[j+1]-arr[j+1])*ease + Math.sin(t*.55+seed[j]*9)*.0045;
-      arr[j+2]+= (tgt[j+2]-arr[j+2])*ease;
+      arr[j]  +=(tgt[j]  -arr[j])  *ease;
+      arr[j+1]+=(tgt[j+1]-arr[j+1])*ease+Math.sin(t*.55+seed[j]*9)*.004;
+      arr[j+2]+=(tgt[j+2]-arr[j+2])*ease;
     }
     pos.needsUpdate=true;
-    points.rotation.y = reduced?0:t*.018;
-    lines.rotation.y  = reduced?0:-t*.01;
-    camera.position.x += (mx*4.4-camera.position.x)*.03;
-    camera.position.y += (-my*2.8-camera.position.y)*.03;
+    points.rotation.y=reduced?0:t*.016;
+    camera.position.x+=(mx*3.6-camera.position.x)*.03;
+    camera.position.y+=(-my*2.2-camera.position.y)*.03;
     camera.lookAt(0,0,0);
     renderer.render(scene,camera);
   })(t0);

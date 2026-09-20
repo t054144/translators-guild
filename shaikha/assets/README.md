@@ -1,21 +1,36 @@
-# Photographs
+# Images
 
-Drop the original images here with these exact filenames. Nothing else needs
-changing — the page picks them up automatically. Until a file exists, the page
-shows an empty archive frame with the name in it, never a substitute image.
+Drop image files in this folder using the exact filenames below. Nothing else
+needs changing — each slide picks its image up automatically and switches to a
+two-column layout (bullets left, picture right).
 
-| File                            | Appears in                    |
-|---------------------------------|-------------------------------|
-| `bidoun-waraq.jpg`              | 05 — بدون ورق (large plate)   |
-| `nayef-bin-nahar.jpg`           | 05 — د. نايف بن نهار          |
-| `yasser-alhuzaimi.jpg`          | 05 — أ. ياسر الحزيمي          |
-| `fnjan.jpg`                     | 05 — فنجان                    |
-| `badr-bin-abdulmohsen.jpg`      | 06 — بدر بن عبدالمحسن         |
+If a file is not here, that slide simply stays text-only. It never shows a
+broken image or an empty placeholder box, so the deck is always safe to
+present as-is.
+
+| Slide | File | What it is |
+|---|---|---|
+| 02 What I Study | `slide-02.jpg` | optional — IPA chart, phonetics, notes |
+| 03 Where I Want to Go | `slide-03.jpg` | optional — UN hall / interpreting booth |
+| 04 Things I Like | `slide-04.jpg` | optional |
+| 05 Things That Shaped Me | `bidoun-waraq.jpg` | بدون ورق |
+| 05 | `fnjan.jpg` | فنجان |
+| 05 | `nayef-bin-nahar.jpg` | د. نايف بن نهار |
+| 05 | `yasser-alhuzaimi.jpg` | أ. ياسر الحزيمي |
+| 06 Arabic Poetry | `badr-bin-abdulmohsen.jpg` | بدر بن عبدالمحسن |
+| 07 Beyond Language | `slide-07.jpg` | optional — code, terminal |
+| 08 A Few Things About Me | `slide-08.jpg` | optional |
 
 Notes
-- `.jpg` is expected. If yours are `.png`, either rename them or change the
-  `src` in `../index.html`.
-- Portraits read best around 4:5; `bidoun-waraq` and `fnjan` sit in wider
-  16:10 frames.
-- Images are rendered desaturated and warm back to colour on hover — this is
-  a CSS filter, so the original files are untouched.
+- Filenames must end in `.jpg`. If yours are `.png`, either rename them or
+  change the matching `data-src` in `../index.html`.
+- Landscape or square works best. Slide 05 places its images in a 2x2 grid;
+  whichever ones are missing are dropped and the rest fill the space.
+- Images are shown slightly desaturated to match the deck. The original files
+  are never modified.
+
+## Presenting
+
+- Arrow keys, space, or Page Up / Page Down move between slides
+- `F` toggles fullscreen
+- `Home` / `End` jump to the first or last slide
