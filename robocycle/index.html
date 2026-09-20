@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The browser enforces this list. Scripts come from this folder and
+     nowhere else, and the page talks to no other origin. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>RoboCycle — Give electronics a second life</title>
+<meta name="description" content="RoboCycle is an environmental technology platform for Kuwait: community collection booths for electronic waste, rewards for responsible disposal, device tracking, and recovered components redirected into technology projects.">
+<meta name="theme-color" content="#05070a">
+<meta property="og:title" content="RoboCycle">
+<meta property="og:description" content="Electronic waste doesn't disappear. It goes somewhere.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="intro-running">
+
+<!-- ══════════════════════════════════════════════════════════════
+     THE OPENING
+
+     The sequence is rendered live on the canvas below. If a filmed
+     plate is ever shot, drop it in as <video id="plate"> inside this
+     element and hide #stage: the director track in intro.js, the
+     titles, the skip control and the returning-visitor memory all
+     key off the same clock.
+     ══════════════════════════════════════════════════════════════ -->
+<div id="intro" role="region" aria-label="Opening sequence">
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="bars" aria-hidden="true"></div>
+
+  <div class="cards" aria-live="polite">
+    <p class="card">Electronic waste doesn’t disappear.</p>
+    <p class="card">It goes somewhere.</p>
+    <p class="card card--brand">RoboCycle<span class="dot">.</span></p>
+    <p class="card card--line">Give electronics a second life.</p>
+  </div>
+
+  <div class="intro-ui">
+    <button id="sound" class="ghost-btn" type="button" aria-pressed="false">Sound off</button>
+    <button id="skip" class="ghost-btn" type="button">Skip intro →</button>
+  </div>
+
+  <div id="intro-progress" class="intro-progress" aria-hidden="true"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     THE SITE — the move from the problem to the solution
+     ══════════════════════════════════════════════════════════════ -->
+<div id="site" class="site" data-enter="pending">
+
+  <header class="bar">
+    <div class="wrap">
+      <a class="mark" href="#top"><span class="glyph"></span> RoboCycle</a>
+      <nav class="links">
+        <a href="#problem">The problem</a>
+        <a href="#how">How it works</a>
+        <a href="#booths">Booths</a>
+        <a href="#recovery">Recovery</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">Environmental technology · Kuwait</p>
+        <h1>The drawer is not <em>disposal</em>.</h1>
+        <p class="lede">
+          Every household keeps a box of dead electronics. Chargers, phones,
+          laptops, batteries — stored beside each other for years, degrading
+          quietly. RoboCycle moves them out of the home and back into use:
+          community collection booths, rewards for bringing devices in,
+          tracking for every unit collected, and recovered components
+          redirected into working technology projects.
+        </p>
+        <div class="cta-row">
+          <a class="btn btn--primary" href="#booths">Find a Collection Booth</a>
+          <a class="btn btn--ghost" href="#track">Track Your Device</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="problem" class="problem">
+      <div class="wrap">
+        <p class="kicker reveal">The problem</p>
+        <h2 class="reveal">Electronic waste accumulates where people live.</h2>
+        <p class="section-lede reveal">
+          Stored electronics are not inert. Lithium cells swell and vent as
+          they age, damaged cables arc under load, and overloaded power
+          strips carry devices that were never meant to stay connected.
+          Alongside the fire risk sits the slower one: heavy metals in
+          household waste, and recoverable material thrown away.
+        </p>
+        <div class="grid grid--3">
+          <article class="card-panel reveal">
+            <div class="stat-n">62M t</div>
+            <h3>Generated worldwide each year</h3>
+            <p>Electronic waste is the fastest-growing waste stream on the planet, and it grows faster than the systems built to collect it.</p>
+            <p class="stat-note">Global figure, reported for 2022.</p>
+          </article>
+          <article class="card-panel reveal">
+            <div class="stat-n">22.3%</div>
+            <h3>Formally collected and recycled</h3>
+            <p>The rest is stored, discarded with household waste, or handled informally — which is where both the safety risk and the material loss occur.</p>
+            <p class="stat-note">Global rate, reported for 2022.</p>
+          </article>
+          <article class="card-panel reveal">
+            <div class="stat-n">Years</div>
+            <h3>Spent in the drawer first</h3>
+            <p>Most devices are not thrown away when they stop being used. They are kept — ageing next to other cells, in unventilated spaces.</p>
+            <p class="stat-note">The interval RoboCycle exists to shorten.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="how">
+      <div class="wrap">
+        <p class="kicker reveal">The solution</p>
+        <h2 class="reveal">A collection system, not a campaign.</h2>
+        <p class="section-lede reveal">
+          RoboCycle runs the full path a device takes after it leaves the
+          home — and keeps that path visible to the person who handed it
+          over.
+        </p>
+        <div class="grid grid--4">
+          <article class="card-panel reveal">
+            <span class="step-no">01</span>
+            <h3>Drop it at a booth</h3>
+            <p>Community collection booths sited where people already go: malls, co-ops, university campuses and municipal buildings. No appointment, no fee.</p>
+          </article>
+          <article class="card-panel reveal">
+            <span class="step-no">02</span>
+            <h3>Earn on deposit</h3>
+            <p>Each accepted device earns points, weighted by what can be recovered from it. Points convert to partner credit — responsible disposal pays.</p>
+          </article>
+          <article class="card-panel reveal">
+            <span class="step-no">03</span>
+            <h3>Track what happens next</h3>
+            <p>Every unit gets an ID at the booth. Follow it through intake, triage, component recovery and reuse, from the device page.</p>
+          </article>
+          <article class="card-panel reveal">
+            <span class="step-no">04</span>
+            <h3>Components go back out</h3>
+            <p>Working parts are identified, catalogued and redirected to student, robotics and research projects instead of being shredded for scrap.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="booths">
+      <div class="wrap">
+        <p class="kicker reveal">Collection network</p>
+        <h2 class="reveal">Booths across the six governorates.</h2>
+        <p class="section-lede reveal">
+          Booths accept phones, laptops, tablets, chargers, cables, power
+          strips, small appliances and loose batteries. Batteries are taken
+          into separate, fire-rated containment on deposit.
+        </p>
+        <div class="booths reveal">
+          <div class="booth"><span class="pulse"></span><div><b>Al Asimah</b><span>Kuwait City · 4 booths</span></div></div>
+          <div class="booth"><span class="pulse"></span><div><b>Hawalli</b><span>Salmiya · 5 booths</span></div></div>
+          <div class="booth"><span class="pulse"></span><div><b>Farwaniya</b><span>Khaitan · 3 booths</span></div></div>
+          <div class="booth"><span class="pulse"></span><div><b>Mubarak Al-Kabeer</b><span>Adan · 2 booths</span></div></div>
+          <div class="booth"><span class="pulse"></span><div><b>Ahmadi</b><span>Fahaheel · 4 booths</span></div></div>
+          <div class="booth"><span class="pulse"></span><div><b>Jahra</b><span>Jahra · 2 booths</span></div></div>
+        </div>
+        <p class="section-lede reveal" style="margin-top:34px">
+          <a class="btn btn--primary" href="#booths">Find a Collection Booth</a>
+        </p>
+      </div>
+    </section>
+
+    <section id="recovery">
+      <div class="wrap">
+        <p class="kicker reveal">Recovery</p>
+        <h2 class="reveal">A dead laptop is a parts supply.</h2>
+        <p class="section-lede reveal">
+          Triage separates what still works from what does not. Screens,
+          drives, memory, motors, sensors, connectors and controllers are
+          tested, graded and listed — then routed to projects that would
+          otherwise buy the same parts new.
+        </p>
+        <div class="grid grid--3">
+          <article class="card-panel reveal">
+            <h3>Identified</h3>
+            <p>Each intake is opened and inventoried. Components are tested against their spec, not guessed at from the model number.</p>
+          </article>
+          <article class="card-panel reveal">
+            <h3>Catalogued</h3>
+            <p>Graded parts enter a searchable inventory with their condition, origin device and the tests they passed.</p>
+          </article>
+          <article class="card-panel reveal">
+            <h3>Redirected</h3>
+            <p>Schools, university labs and robotics teams in Kuwait request parts from the catalogue. Material that cannot be reused goes to licensed processing.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="track">
+      <div class="wrap">
+        <p class="kicker reveal">Tracking</p>
+        <h2 class="reveal">Follow a device you handed over.</h2>
+        <p class="section-lede reveal">
+          Enter the ID printed on your booth receipt to see where the device
+          is in the process, what was recovered from it, and where those
+          components went.
+        </p>
+        <p class="reveal"><a class="btn btn--ghost" href="#track">Track Your Device</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <span>RoboCycle · Kuwait</span>
+      <span>Give electronics a second life.</span>
+      <button id="replay" class="replay" type="button">Replay intro</button>
+    </div>
+  </footer>
+</div>
+
+<script src="intro.js"></script>
+</body>
+</html>
