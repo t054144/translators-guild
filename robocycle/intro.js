@@ -35,6 +35,10 @@
   'use strict';
 
   var SEEN_KEY = 'robocycle.intro.v1';
+  /* Seen recently, rather than seen ever: a visitor who comes back a
+     month later gets the film again, and there are two explicit ways
+     to ask for it before then. */
+  var SEEN_FOR = 30 * 24 * 60 * 60 * 1000;
   var W = 1600, H = 900;
   var ORIGIN  = { x: 812, y: 598 };    // the power strip: where it starts
   var ORIGIN2 = { x: 1180, y: 606 };   // the cable tangle: where it goes next
@@ -888,19 +892,26 @@
   }
 
   function readSeen() {
-    try { return window.localStorage.getItem(SEEN_KEY) === '1'; } catch (e) { return false; }
+    try {
+      var v = window.localStorage.getItem(SEEN_KEY);
+      if (!v) return false;
+      if (v === '1') return true;                 // written by an earlier version
+      return (Date.now() - parseInt(v, 10)) < SEEN_FOR;
+    } catch (e) { return false; }
   }
   function writeSeen() {
-    try { window.localStorage.setItem(SEEN_KEY, '1'); } catch (e) { /* private mode */ }
+    try { window.localStorage.setItem(SEEN_KEY, String(Date.now())); } catch (e) { /* private mode */ }
   }
 
   function wireReplay() {
-    var btn = document.getElementById('replay');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-      try { window.localStorage.removeItem(SEEN_KEY); } catch (e) {}
-      window.location.reload();
-    });
+    var btns = [document.getElementById('replay'), document.getElementById('watch')];
+    for (var i = 0; i < btns.length; i++) {
+      if (!btns[i]) continue;
+      btns[i].addEventListener('click', function () {
+        try { window.localStorage.removeItem(SEEN_KEY); } catch (e) {}
+        window.location.reload();
+      });
+    }
   }
 
   /* The logo is dropped in as logo.png. Until it is there — or if it

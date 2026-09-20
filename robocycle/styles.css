@@ -295,6 +295,17 @@ h1 em { font-style: normal; color: var(--leaf); }
 }
 .btn--primary:hover { box-shadow: 0 20px 52px -16px rgba(140, 198, 63, .9); }
 
+/* The way back into the film, for anyone who skipped it or has
+   already been here once. */
+.btn--film {
+  background: rgba(255, 204, 0, .07);
+  border-color: rgba(255, 204, 0, .38);
+  color: #ffd84d;
+  font-family: var(--f-display); font-weight: 400;
+  letter-spacing: .08em; text-transform: uppercase; font-size: 13px;
+}
+.btn--film:hover { background: rgba(255, 204, 0, .13); border-color: rgba(255, 204, 0, .6); }
+
 .btn--ghost { background: rgba(255,255,255,.03); border-color: var(--line-lit); color: var(--text); }
 .btn--ghost:hover { background: rgba(255,255,255,.07); }
 
@@ -339,6 +350,42 @@ h2 {
 .problem { background: linear-gradient(180deg, rgba(255,122,60,.055), transparent 62%); }
 .problem .kicker { color: var(--ember); }
 .problem .card-panel { border-color: rgba(255, 122, 60, .18); }
+
+/* The awareness section keeps the film's warmth; the giving
+   section returns to the brand's green. */
+.safety { background: linear-gradient(180deg, rgba(255,122,60,.04), transparent 55%); }
+.safety .kicker { color: var(--ember); }
+
+.advice {
+  margin-top: 42px;
+  border: 1px solid rgba(255, 122, 60, .22);
+  border-radius: var(--r-lg);
+  background: rgba(255, 122, 60, .04);
+  padding: 30px 32px;
+}
+.advice h3 {
+  font-family: var(--f-display); font-weight: 500; font-size: 1.14rem;
+  margin: 0 0 16px; color: var(--text);
+}
+.advice ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 12px; }
+.advice li {
+  position: relative; padding-left: 26px;
+  color: var(--text-dim); font-size: .96rem;
+  max-width: var(--measure);
+}
+.advice li::before {
+  content: ""; position: absolute; left: 0; top: .62em;
+  width: 8px; height: 8px; border-radius: 2px;
+  background: var(--ember); opacity: .75;
+}
+.advice-note {
+  margin: 22px 0 0; font-size: .82rem; color: var(--text-faint);
+  max-width: var(--measure);
+}
+
+.give { background: linear-gradient(180deg, rgba(140,198,63,.05), transparent 58%); }
+.give .kicker { color: var(--leaf); }
+.give h2 { max-width: 24ch; }
 
 .stat-n {
   font-family: var(--f-display); font-size: clamp(2rem, 5vw, 2.9rem);
