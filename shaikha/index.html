@@ -83,8 +83,8 @@
   }
   li .tag{
     display:block;margin-top:6px;
-    font-size:clamp(10px,.72vw,12px);letter-spacing:.34em;text-transform:uppercase;
-    color:var(--faint);
+    font-size:clamp(10px,.78vw,13px);letter-spacing:.32em;text-transform:uppercase;
+    color:var(--dim);
   }
 
   /* sub-groups (a heading above a set of bullets) */
@@ -114,6 +114,14 @@
   [lang="ar"]{font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;text-align:right}
   li[lang="ar"]{padding-left:0;padding-right:clamp(22px,1.9vw,34px)}
   li[lang="ar"]::before{left:auto;right:0}
+  li .line{
+    display:block;margin-top:9px;
+    font-family:Amiri,serif;direction:rtl;text-align:right;
+    font-size:clamp(14px,1.35vw,21px);line-height:1.95;color:var(--ink);
+    border-left:1px solid var(--accent);padding-left:clamp(12px,1.2vw,20px);
+    width:fit-content;
+  }
+  .set.poets{max-width:min(62ch,100%)}
   .verse{
     font-family:Amiri,serif;direction:rtl;text-align:right;
     font-size:clamp(16px,1.75vw,26px);line-height:2.1;color:var(--ink);
@@ -131,8 +139,8 @@
     gap:clamp(14px,2.6vh,28px)}
   .title-slide .fields div{font-size:clamp(16px,2vw,28px);letter-spacing:.16em;
     text-transform:uppercase;font-weight:200}
-  .title-slide .fields span{display:block;margin-top:5px;font-size:clamp(10px,.72vw,12px);
-    letter-spacing:.36em;color:var(--faint)}
+  .title-slide .fields span{display:block;margin-top:5px;font-size:clamp(10px,.78vw,13px);
+    letter-spacing:.36em;color:var(--dim)}
   .end-slide{text-align:center;align-items:center}
   .end-slide .closing{font-size:clamp(11px,.85vw,14px);letter-spacing:.44em;
     text-transform:uppercase;color:var(--accent);margin-bottom:clamp(20px,4vh,40px)}
@@ -200,17 +208,24 @@
     <div class="body">
       <div>
         <div class="set">
-          <h3>Linguistics</h3>
+          <h3>Degree</h3>
           <ul>
-            <li>Phonetics</li>
-            <li>Phonology</li>
-            <li>IPA</li>
+            <li>Linguistics<span class="tag">Major</span></li>
+            <li>Translation Studies<span class="tag">Minor</span></li>
           </ul>
         </div>
         <div class="set">
-          <h3>Translation</h3>
+          <h3>Where My Interest Sits</h3>
           <ul>
-            <li>Translation Studies</li>
+            <li>Phonetics
+              <span class="sub">How speech sounds are produced, transmitted and perceived.</span>
+            </li>
+            <li>Phonology
+              <span class="sub">How those sounds are organised into a system within a language.</span>
+            </li>
+            <li>Generative Phonology
+              <span class="sub">The rules underlying that system, and what they predict.</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -223,14 +238,23 @@
   <!-- 03 -->
   <section class="slide" data-scene="2">
     <span class="kicker">03</span>
-    <h2>Where I Want to Go</h2>
+    <h2>Where I Am Headed</h2>
     <div class="bar"></div>
     <div class="body">
-      <ul>
-        <li>Conference Interpreting</li>
-        <li>United Nations</li>
-        <li>Interpreting Booth</li>
-      </ul>
+      <div class="set">
+        <h3>The Goal</h3>
+        <ul>
+          <li>Conference Interpreter
+            <span class="sub">The career I am working toward.</span>
+          </li>
+          <li>Simultaneous Interpreting
+            <span class="sub">Working from the booth, in real time, as the speaker speaks.</span>
+          </li>
+          <li>The United Nations
+            <span class="sub">Where I want that work to take place.</span>
+          </li>
+        </ul>
+      </div>
       <figure class="media" hidden>
         <img data-src="assets/slide-03.jpg" alt="">
       </figure>
@@ -246,68 +270,50 @@
       <ul>
         <li>Books</li>
         <li>Cinema</li>
-        <li>Podcasts</li>
+        <li>Podcasts
+          <span class="sub">Bidoun Waraq &middot; Finjan</span>
+          <span class="sub">Dr. Nayef bin Nahar &middot; Yasser Al-Huzaimi</span>
+        </li>
         <li>Arabic Poetry</li>
       </ul>
-      <figure class="media" hidden>
-        <img data-src="assets/slide-04.jpg" alt="">
-      </figure>
+      <div class="media row" hidden>
+        <figure><img data-src="assets/bidoun-waraq.jpg" alt="Bidoun Waraq"><figcaption>Bidoun Waraq</figcaption></figure>
+        <figure><img data-src="assets/finjan.jpg" alt="Finjan"><figcaption>Finjan</figcaption></figure>
+        <figure><img data-src="assets/nayef-bin-nahar.jpg" alt="Dr. Nayef bin Nahar"><figcaption>Dr. Nayef bin Nahar</figcaption></figure>
+        <figure><img data-src="assets/yasser-alhuzaimi.jpg" alt="Yasser Al-Huzaimi"><figcaption>Yasser Al-Huzaimi</figcaption></figure>
+      </div>
     </div>
   </section>
 
   <!-- 05 -->
-  <section class="slide" data-scene="4">
-    <span class="kicker">05</span>
-    <h2>Things That Shaped Me</h2>
-    <div class="bar"></div>
-    <div class="body">
-      <div class="set">
-        <h3>Podcasts</h3>
-        <ul>
-          <li lang="ar">بدون ورق</li>
-          <li lang="ar">د. نايف بن نهار</li>
-          <li lang="ar">أ. ياسر الحزيمي</li>
-          <li lang="ar">فنجان</li>
-        </ul>
-      </div>
-      <div class="media row" hidden>
-        <figure><img data-src="assets/bidoun-waraq.jpg" alt="بدون ورق"><figcaption lang="ar">بدون ورق</figcaption></figure>
-        <figure><img data-src="assets/fnjan.jpg" alt="فنجان"><figcaption lang="ar">فنجان</figcaption></figure>
-        <figure><img data-src="assets/nayef-bin-nahar.jpg" alt="د. نايف بن نهار"><figcaption lang="ar">د. نايف بن نهار</figcaption></figure>
-        <figure><img data-src="assets/yasser-alhuzaimi.jpg" alt="أ. ياسر الحزيمي"><figcaption lang="ar">أ. ياسر الحزيمي</figcaption></figure>
-      </div>
-    </div>
-  </section>
-
-  <!-- 06 -->
   <section class="slide" data-scene="5">
-    <span class="kicker">06</span>
+    <span class="kicker">05</span>
     <h2>Arabic Poetry</h2>
     <div class="bar"></div>
     <div class="body">
-      <div class="set">
+      <div class="set poets">
         <h3>Poets I Return To</h3>
         <ul>
-          <li lang="ar">امرؤ القيس</li>
-          <li lang="ar">المتنبي</li>
-          <li lang="ar">بدر بن عبدالمحسن
-            <span class="sub">البدر · مهندس الكلمة · رديني</span>
+          <li>Imru&rsquo; al-Qais</li>
+          <li>Al-Mutanabbi
+            <span class="line" lang="ar">وإن كنتُ الأخيرَ زمانُهُ &nbsp;·&nbsp; لآتٍ بما لم تستطِعْهُ الأوائلُ</span>
+          </li>
+          <li>Badr bin Abdulmohsen
+            <span class="tag">Al-Badr &middot; The Architect of the Word</span>
+            <span class="line" lang="ar">رديني</span>
           </li>
         </ul>
-        <div class="verse">
-          وإن كنتُ الأخيرَ زمانُهُ<br>لآتٍ بما لم تستطِعْهُ الأوائلُ
-        </div>
       </div>
       <figure class="media" hidden>
-        <img data-src="assets/badr-bin-abdulmohsen.jpg" alt="بدر بن عبدالمحسن">
-        <figcaption lang="ar">بدر بن عبدالمحسن</figcaption>
+        <img data-src="assets/badr-bin-abdulmohsen.jpg" alt="Badr bin Abdulmohsen">
+        <figcaption>Badr bin Abdulmohsen</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- 07 -->
+  <!-- 06 -->
   <section class="slide" data-scene="6">
-    <span class="kicker">07</span>
+    <span class="kicker">06</span>
     <h2>Beyond Language</h2>
     <div class="bar"></div>
     <div class="body">
@@ -317,30 +323,29 @@
         <li>Cybersecurity</li>
       </ul>
       <figure class="media" hidden>
+        <img data-src="assets/slide-06.jpg" alt="">
+      </figure>
+    </div>
+  </section>
+
+  <!-- 07 — this slide only appears once it has bullet points of your own.
+       Add <li> items below and it switches itself on. -->
+  <section class="slide" data-scene="7" data-needs-content>
+    <span class="kicker">07</span>
+    <h2>Fun Things About Me</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <ul>
+      </ul>
+      <figure class="media" hidden>
         <img data-src="assets/slide-07.jpg" alt="">
       </figure>
     </div>
   </section>
 
   <!-- 08 -->
-  <section class="slide" data-scene="7">
-    <span class="kicker">08</span>
-    <h2>A Few Things About Me</h2>
-    <div class="bar"></div>
-    <div class="body">
-      <ul>
-        <li>Morning Person</li>
-        <li>Disciplined</li>
-      </ul>
-      <figure class="media" hidden>
-        <img data-src="assets/slide-08.jpg" alt="">
-      </figure>
-    </div>
-  </section>
-
-  <!-- 09 -->
   <section class="slide" data-scene="8">
-    <span class="kicker">09</span>
+    <span class="kicker">08</span>
     <h2>Principles I Live By</h2>
     <div class="bar"></div>
     <div class="body">
@@ -361,7 +366,7 @@
     </div>
   </section>
 
-  <!-- 10 -->
+  <!-- 09 -->
   <section class="slide end-slide" data-scene="9">
     <p class="closing">Still Becoming</p>
     <h1 style="font-size:clamp(34px,6.6vw,104px)">Shaikha Al-Khaldi</h1>
@@ -369,7 +374,7 @@
 
 </div>
 
-<div class="count"><b id="cur">01</b> / 10</div>
+<div class="count"><b id="cur">01</b> / <span id="total">9</span></div>
 <nav class="nav" aria-label="Slides">
   <button id="prev" aria-label="Previous slide">&#8593;</button>
   <button id="next" aria-label="Next slide">&#8595;</button>
@@ -377,7 +382,14 @@
 
 <script>
 var deck=document.getElementById('deck');
+
+/* a slide marked data-needs-content is left out until it has bullet points */
+[].slice.call(document.querySelectorAll('.slide[data-needs-content]')).forEach(function(s){
+  if(!s.querySelector('li')) s.remove();
+});
+
 var slides=[].slice.call(document.querySelectorAll('.slide'));
+document.getElementById('total').textContent=String(slides.length).padStart(2,'0');
 var cur=document.getElementById('cur'), track=document.getElementById('track');
 var index=0;
 
@@ -416,6 +428,10 @@ var io=new IntersectionObserver(function(es){
   });
 },{root:deck,threshold:.55});
 slides.forEach(function(s){io.observe(s);});
+slides.forEach(function(s,i){
+  var k=s.querySelector('.kicker');
+  if(k) k.textContent=String(i+1).padStart(2,'0');
+});
 activate(0);
 
 function go(n){

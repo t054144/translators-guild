@@ -1,33 +1,45 @@
 # Images
 
-Drop image files in this folder using the exact filenames below. Nothing else
-needs changing — each slide picks its image up automatically and switches to a
-two-column layout (bullets left, picture right).
+Drop image files in this folder using the exact filenames below. Each slide
+picks its image up automatically and switches to a two-column layout: bullet
+points on the left, picture on the right.
 
 If a file is not here, that slide simply stays text-only. It never shows a
 broken image or an empty placeholder box, so the deck is always safe to
-present as-is.
+present as it stands.
 
 | Slide | File | What it is |
 |---|---|---|
-| 02 What I Study | `slide-02.jpg` | optional — IPA chart, phonetics, notes |
-| 03 Where I Want to Go | `slide-03.jpg` | optional — UN hall / interpreting booth |
-| 04 Things I Like | `slide-04.jpg` | optional |
-| 05 Things That Shaped Me | `bidoun-waraq.jpg` | بدون ورق |
-| 05 | `fnjan.jpg` | فنجان |
-| 05 | `nayef-bin-nahar.jpg` | د. نايف بن نهار |
-| 05 | `yasser-alhuzaimi.jpg` | أ. ياسر الحزيمي |
-| 06 Arabic Poetry | `badr-bin-abdulmohsen.jpg` | بدر بن عبدالمحسن |
-| 07 Beyond Language | `slide-07.jpg` | optional — code, terminal |
-| 08 A Few Things About Me | `slide-08.jpg` | optional |
+| 02 What I Study | `slide-02.jpg` | optional — IPA chart, spectrogram, notes |
+| 03 Where I Am Headed | `slide-03.jpg` | optional — UN hall, interpreting booth |
+| 04 Things I Like | `bidoun-waraq.jpg` | Bidoun Waraq |
+| 04 | `finjan.jpg` | Finjan |
+| 04 | `nayef-bin-nahar.jpg` | Dr. Nayef bin Nahar |
+| 04 | `yasser-alhuzaimi.jpg` | Yasser Al-Huzaimi |
+| 05 Arabic Poetry | `badr-bin-abdulmohsen.jpg` | Badr bin Abdulmohsen |
+| 06 Beyond Language | `slide-06.jpg` | optional — code, terminal |
+| 07 Fun Things About Me | `slide-07.jpg` | optional |
 
 Notes
 - Filenames must end in `.jpg`. If yours are `.png`, either rename them or
   change the matching `data-src` in `../index.html`.
-- Landscape or square works best. Slide 05 places its images in a 2x2 grid;
-  whichever ones are missing are dropped and the rest fill the space.
+- Landscape or square works best. Slide 04 places its four images in a 2x2
+  grid; whichever are missing are dropped and the rest fill the space.
 - Images are shown slightly desaturated to match the deck. The original files
   are never modified.
+
+## The "Fun Things About Me" slide
+
+It is in `../index.html` but deliberately empty, so it stays out of the deck
+until it is yours. Add your own bullets inside its `<ul>`:
+
+    <li>Something you do</li>
+    <li>Something else
+      <span class="sub">A short line underneath, if you want one.</span>
+    </li>
+
+The slide switches itself on as soon as there is at least one `<li>`, and the
+slide numbers and the counter renumber themselves.
 
 ## Presenting
 
