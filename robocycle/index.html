@@ -18,6 +18,7 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body class="intro-running">
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- ══════════════════════════════════════════════════════════════
      THE OPENING
@@ -73,35 +74,34 @@
         <img src="mark.png" alt="" data-logo>
         <span class="wordmark">Rob<b>o</b>cycle</span>
       </a>
-      <nav class="links">
-        <a href="#top">Home</a>
-        <a href="#idea">Our Idea</a>
-        <a href="#how">How It Works</a>
-        <a href="#donate">Donate</a>
-        <a class="btn btn--primary btn--sm nav-cta" href="#donate">Donate<span class="long">&nbsp;Your Electronics</span></a>
+      <nav class="links" aria-label="Main">
+        <a href="/robocycle/">Home</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="donate.html">Donate</a>
+        <a href="collection-points.html">Collection Points</a>
+        <a href="my-request.html">My Request</a>
+        <a href="roboguide.html">RoboGuide</a>
+        <a class="btn btn--primary btn--sm nav-cta" href="donate.html">Donate<span class="long">&nbsp;Your Electronics</span></a>
       </nav>
     </div>
   </header>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
 
     <!-- ── HERO ─────────────────────────────────────────────── -->
     <section class="hero">
       <div class="wrap">
         <div class="hero-copy">
-          <span class="label">E-waste. New possibilities.</span>
-          <h1>Don’t throw it away.<br><span class="grad-text">Give it another purpose.</span></h1>
+          <span class="label">E-waste. Safer possibilities.</span>
+          <h1>Don’t throw it away.<br><span class="grad-text">Give it a safer purpose.</span></h1>
           <p class="lede">
-            Your unused electronics may contain components that can be useful again.
+            Donate your unused electronics through a safer and more organised
+            journey.
           </p>
-          <p class="lede">
-            Robocycle collects electronic devices, recovers useful components, and
-            gives them a new purpose through projects that need them.
-          </p>
-          <p class="lede-ar">معاً نعيد تدوير الإلكترونيات</p>
+<p class="lede-ar">معاً نعيد تدوير الإلكترونيات</p>
           <div class="cta-row">
-            <a class="btn btn--primary" href="#donate">Donate Your Device</a>
-            <a class="btn btn--ghost" href="#idea">Discover the Journey ↓</a>
+            <a class="btn btn--primary" href="donate.html">Donate Your Device</a>
+            <a class="btn btn--ghost" href="#why">How It Works ↓</a>
           </div>
           <p class="film-line">
             <button id="watch" class="btn btn--film" type="button">▶ Watch the opening film</button>
@@ -138,46 +138,62 @@
       </div>
     </section>
 
-    <!-- ── THE PROBLEM ──────────────────────────────────────── -->
-    <section id="idea" class="band-warm">
+    <!-- ── THREE REASONS, BRIEFLY ───────────────────────────── -->
+    <section id="why" class="band-warm">
       <div class="wrap">
         <div class="section-head center reveal">
-          <span class="label">Our idea</span>
-          <h2>It starts with<br>what we leave behind.</h2>
-          <p class="section-lede" style="margin-inline:auto">
-            Electronic devices often stay forgotten in our homes or end up as waste.
-            Inside them are batteries, electronic boards, sensors, chips and components
-            that should be handled responsibly.
-          </p>
-          <p class="section-lede" style="margin-inline:auto">
-            Instead of letting useful technology become waste,
-            Robocycle gives it another journey.
-          </p>
+          <span class="label">Why it matters</span>
+          <h2>Three reasons not to<br>bin your old electronics.</h2>
         </div>
 
-        <div class="clutter reveal">
-          <span class="thing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg> Old phones</span>
-          <span class="thing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6a4 4 0 0 0 8 0V8a4 4 0 0 1 8 0v6"/><path d="M18 20v-2M4 2v2"/></svg> Chargers</span>
-          <span class="thing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6a4 4 0 0 0 8 0V8a4 4 0 0 1 8 0v6"/><path d="M18 20v-2M4 2v2"/></svg> Cables</span>
-          <span class="thing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="11" rx="2"/><path d="M2 19h20"/></svg> Laptops</span>
-          <span class="thing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M8 8h3v3H8zM14 8h2M14 12h2M8 15h8"/></svg> Electronic boards</span>
-          <span class="thing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></svg> Small devices</span>
-          <span class="thing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="17" height="10" rx="2.5"/><path d="M22 10v4M6 11v2"/></svg> Batteries</span>
+        <div class="grid grid--3">
+          <article class="soft-card reveal">
+            <div class="icon-badge" style="color:var(--ember)">🔥</div>
+            <h3>Fire risk</h3>
+            <p>Damaged or crushed batteries can create a fire hazard.</p>
+          </article>
+          <article class="soft-card reveal">
+            <div class="icon-badge" style="color:var(--accent-blue)">💧</div>
+            <h3>Environmental harm</h3>
+            <p>Incorrect disposal may release harmful materials.</p>
+          </article>
+          <article class="soft-card reveal">
+            <div class="icon-badge" style="color:var(--green)">♻</div>
+            <h3>Lost value</h3>
+            <p>Useful components and materials may be wasted.</p>
+          </article>
         </div>
 
-        <!-- Kept short on purpose: the point is care, not alarm. -->
-        <div class="soft-card reveal" style="max-width:640px;margin:44px auto 0">
-          <div class="icon-badge" style="color:var(--accent-orange)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="17" height="10" rx="2.5"/><path d="M22 10v4M6 11v2"/></svg></div>
-          <h3>Batteries need care while they wait</h3>
-          <p>
-            A lithium battery does not become safe by being unused — cells swell and
-            vent as they age. Keep a swollen or hot battery out of the bin and out of
-            the house, keep loose cells apart with their terminals taped, and bring
-            them to us rather than storing them in a drawer.
-          </p>
-        </div>
+        <p style="text-align:center;margin-top:30px">
+          <button class="text-link" type="button" id="why-more">
+            Why electronic waste needs separate handling →
+          </button>
+        </p>
       </div>
     </section>
+
+    <dialog class="modal" id="why-modal" aria-labelledby="why-title">
+      <div class="modal-body">
+        <h2 id="why-title">Why it needs separate handling</h2>
+        <p>
+          A lithium battery in a household bin does not stay intact. It is tipped,
+          compacted and crushed on its way through collection and sorting, and a
+          damaged cell can short internally and enter thermal runaway — which is
+          how fires start in bin lorries and waste facilities.
+        </p>
+        <p>
+          Incorrect disposal also releases hazardous material into air, soil and
+          water, and throws away metals and components that are still good.
+        </p>
+        <p>
+          Keeping electronics out of general waste removes the hazard and keeps the
+          useful parts in circulation.
+        </p>
+        <div class="close-row">
+          <button class="btn btn--primary btn--sm" type="button" id="why-close">Got it</button>
+        </div>
+      </div>
+    </dialog>
 
     <!-- ── THE TURN ─────────────────────────────────────────── -->
     <section class="turn" id="turn">
@@ -194,11 +210,11 @@
       </div>
     </section>
 
-    <!-- ── HOW IT WORKS ─────────────────────────────────────── -->
+    <!-- ── THE JOURNEY, IN BRIEF ────────────────────────────── -->
     <section id="how" class="band-green">
       <div class="wrap">
         <div class="section-head center reveal">
-          <span class="label">How it works</span>
+          <span class="label">The journey</span>
           <h2>One device,<br>one continuous journey.</h2>
         </div>
 
@@ -206,55 +222,41 @@
           <div class="track" aria-hidden="true"><div class="track-fill" id="track-fill"></div></div>
 
           <div class="step">
-            <div class="panel">
-              <h3>You donate</h3>
-              <p>Got electronics you no longer need? Give them to Robocycle.</p>
-              <a class="btn btn--primary btn--sm" href="#donate">Donate</a>
-            </div>
+            <div class="panel"><h3>Unused device</h3>
+              <p>The one in the drawer that stopped being used.</p></div>
             <div class="node">1</div>
           </div>
-
           <div class="step">
-            <div class="panel">
-              <h3>We collect</h3>
-              <p>Your device begins its new journey.</p>
-            </div>
+            <div class="panel"><h3>Donation request</h3>
+              <p>You tell us what you have and how to reach you.</p>
+              <a class="btn btn--primary btn--sm" href="donate.html">Donate</a></div>
             <div class="node">2</div>
           </div>
-
           <div class="step">
-            <div class="panel">
-              <h3>We sort</h3>
-              <p>
-                Not everything inside an old device is waste. We identify components
-                that may still have value.
-              </p>
-              <div class="parts">
-                <span class="part">Circuit board</span>
-                <span class="part">Sensor</span>
-                <span class="part">Chip</span>
-                <span class="part">Microcontroller</span>
-                <span class="part">Components</span>
-              </div>
-            </div>
+            <div class="panel"><h3>Safe collection</h3>
+              <p>Arranged with you — never left in an unattended container if a battery is damaged.</p></div>
             <div class="node">3</div>
           </div>
-
           <div class="step">
-            <div class="panel">
-              <h3>We reuse</h3>
-              <p>Useful components can begin a completely different life.</p>
-              <div class="parts">
-                <span class="part">Student engineering project</span>
-                <span class="part">Robotics prototype</span>
-                <span class="part">IoT prototype</span>
-                <span class="part">Educational project</span>
-                <span class="part">Environmental technology</span>
-              </div>
-            </div>
+            <div class="panel"><h3>Professional assessment</h3>
+              <p>Opened by people equipped to do it, and tested properly.</p></div>
             <div class="node">4</div>
           </div>
+          <div class="step">
+            <div class="panel"><h3>Reuse or responsible recycling</h3>
+              <p>Good parts <em>may be</em> reused. What cannot be goes to qualified recycling.</p></div>
+            <div class="node">5</div>
+          </div>
+          <div class="step">
+            <div class="panel"><h3>Verified impact</h3>
+              <p>Shown only once it has actually happened.</p></div>
+            <div class="node">6</div>
+          </div>
         </div>
+
+        <p style="text-align:center;margin-top:36px">
+          <a class="btn btn--ghost" href="how-it-works.html">See the full journey</a>
+        </p>
       </div>
     </section>
 
@@ -333,58 +335,11 @@
         <div class="section-head center reveal">
           <span class="label">Donate</span>
           <h2>Ready to give your<br>electronics another life?</h2>
-        </div>
-
-        <div class="donate-card reveal">
-          <form id="donate-form" novalidate>
-            <div class="field-row">
-              <div class="field">
-                <label for="f-name">First name</label>
-                <input id="f-name" name="name" type="text" autocomplete="given-name" required>
-              </div>
-              <div class="field">
-                <label for="f-contact">Email or phone</label>
-                <input id="f-contact" name="contact" type="text" autocomplete="email" required>
-              </div>
-            </div>
-
-            <div class="field">
-              <label for="f-item">What would you like to donate?</label>
-              <select id="f-item" name="item">
-                <option>Phone</option>
-                <option>Laptop</option>
-                <option>Tablet</option>
-                <option>Electronic components</option>
-                <option>Chargers &amp; cables</option>
-                <option>Other</option>
-              </select>
-            </div>
-
-            <div class="field-row">
-              <div class="field">
-                <label for="f-qty">Approximate quantity</label>
-                <input id="f-qty" name="quantity" type="number" min="1" value="1">
-              </div>
-              <div class="field">
-                <label for="f-area">Preferred drop-off area</label>
-                <input id="f-area" name="area" type="text" placeholder="Governorate or area">
-              </div>
-            </div>
-
-            <button class="btn btn--primary" type="submit">I Want to Donate ♻</button>
-            <!-- No backend yet: this confirms to the person and stores
-                 nothing. Wire it to a collection endpoint before launch. -->
-            <p class="form-note">
-              This form is not connected to a collection system yet, so nothing is
-              sent or stored when you submit it.
-            </p>
-          </form>
-
-          <div class="thanks" id="thanks">
-            <img src="mark.png" alt="" data-logo>
-            <h3>Thank you! 💚</h3>
-            <p>Your electronics are one step closer to a new purpose.</p>
-          </div>
+          <p class="section-lede" style="margin-inline:auto">
+            Tell us what you have. It takes a minute, and it tells us how to
+            handle it safely.
+          </p>
+          <p><a class="btn btn--primary" href="donate.html">Donate Your Electronics</a></p>
         </div>
       </div>
     </section>
@@ -394,7 +349,7 @@
       <div class="wrap">
         <div class="section-head center reveal">
           <span class="label">Looking further</span>
-          <h2>Your contribution<br>can grow beyond technology.</h2>
+          <h2>Your contribution<br>can grow further.</h2>
         </div>
         <div class="chain reveal">
           <div class="link">
@@ -413,8 +368,8 @@
           </div>
         </div>
         <p class="section-lede reveal" style="text-align:center;margin:26px auto 0">
-          We’re exploring ways to turn every contribution into an even wider
-          environmental impact.
+          Verified donations may become eligible for future environmental,
+          educational, or community rewards.
         </p>
         <p style="text-align:center"><span class="soon reveal">Coming soon</span></p>
       </div>
@@ -442,16 +397,23 @@
             <img src="mark.png" alt="" data-logo>
             <span class="wordmark">Rob<b>o</b>cycle ♻</span>
           </a>
-          <p>Old electronics.<br>New possibilities.</p>
+          <p>Old electronics.<br>Safer possibilities.</p>
         </div>
-        <nav class="foot-links">
-          <a href="#top">Home</a>
-          <a href="#idea">Our Idea</a>
-          <a href="#how">How It Works</a>
-          <a href="#donate">Donate</a>
-          <a href="#donate">Contact</a>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="/robocycle/">Home</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="donate.html">Donate</a>
+          <a href="collection-points.html">Collection Points</a>
+          <a href="my-request.html">My Request</a>
+          <a href="roboguide.html">RoboGuide</a>
         </nav>
       </div>
+      <p class="disclaimer">
+        RoboCycle does not provide emergency, legal, or professional
+        battery-handling services. Operational collection and handling must
+        follow applicable requirements and approved safety procedures. In an
+        emergency in Kuwait, call 112.
+      </p>
       <div class="foot-row">
         <span>© 2026 Robocycle · Kuwait</span>
         <span class="ar">معاً نعيد تدوير الإلكترونيات</span>

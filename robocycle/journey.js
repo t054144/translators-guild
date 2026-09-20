@@ -67,6 +67,29 @@
     draw();
   }
 
+  /* ── the short explainer ────────────────────────────────────── */
+
+  var whyBtn = document.getElementById('why-more');
+  var whyModal = document.getElementById('why-modal');
+  if (whyBtn && whyModal && typeof whyModal.showModal === 'function') {
+    whyBtn.addEventListener('click', function () { whyModal.showModal(); });
+    var whyClose = document.getElementById('why-close');
+    if (whyClose) whyClose.addEventListener('click', function () { whyModal.close(); });
+  } else if (whyBtn) {
+    // No dialog support: send them to the page that says the same thing.
+    whyBtn.addEventListener('click', function () { location.href = 'how-it-works.html'; });
+  }
+
+  /* ── logo fallbacks on every page ───────────────────────────── */
+
+  var logos = document.querySelectorAll('img[data-logo]');
+  for (var L = 0; L < logos.length; L++) {
+    (function (img) {
+      if (img.complete && img.naturalWidth === 0) { img.remove(); return; }
+      img.addEventListener('error', function () { img.remove(); });
+    })(logos[L]);
+  }
+
   /* ── the donation form ──────────────────────────────────────── */
 
   /* There is no collection system behind this yet. The form says so
