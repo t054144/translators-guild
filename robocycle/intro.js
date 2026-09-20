@@ -35,6 +35,19 @@
   'use strict';
 
   var SEEN_KEY = 'robocycle.intro.v2';
+
+  /* The opening now plays on every visit.
+
+     The original brief asked for it to be remembered and not
+     replayed, and that worked — which turned out to be the problem:
+     the people who most need to show this site are the ones who
+     visit it most, and the film kept disappearing on them. An
+     awareness film nobody can get back to is not doing its job.
+
+     Set this to false to restore the old behaviour: the sequence is
+     then skipped for thirty days after anyone watches it, and the
+     two controls below play it on demand. */
+  var ALWAYS_PLAY = true;
   /* Seen recently, rather than seen ever: a visitor who comes back a
      month later gets the film again, and there are two explicit ways
      to ask for it before then. */
@@ -927,6 +940,7 @@
   }
 
   function readSeen() {
+    if (ALWAYS_PLAY) return false;
     try {
       var v = window.localStorage.getItem(SEEN_KEY);
       if (!v) return false;
