@@ -40,7 +40,7 @@
      to ask for it before then. */
   var SEEN_FOR = 30 * 24 * 60 * 60 * 1000;
   var W = 1600, H = 900;
-  var ORIGIN  = { x: 812, y: 598 };    // the power strip: where it starts
+  var ORIGIN  = { x: 818, y: 598 };    // a swollen lithium pack: where it starts
   var ORIGIN2 = { x: 1180, y: 606 };   // the cable tangle: where it goes next
 
   var intro    = document.getElementById('intro');
@@ -387,28 +387,55 @@
     dot(684, 605, 3.2, 'rgba(120,255,190,' + led.toFixed(3) + ')', 15);
     cable(692, 612, 730, 640, 762, 612, .2);
 
-    // THE POWER STRIP. Detailed enough to hold a macro frame.
-    slab(648, 590, 330, 30, 7, '#0e131a');
-    ctx.fillStyle = 'rgba(190,215,230,.05)'; ctx.fillRect(654, 594, 318, 1);
-    for (var s = 0; s < 4; s++) {
-      var sx = 676 + s * 76;
-      ctx.fillStyle = '#05080b';
-      roundRect(sx - 15, 596, 30, 18, 3); ctx.fill();
-      ctx.fillStyle = 'rgba(0,0,0,.8)';
-      ctx.fillRect(sx - 7, 600, 3, 8); ctx.fillRect(sx + 4, 600, 3, 8);
-      var base = 0.30 + 0.10 * Math.sin(t * 2 + s);
-      var a = Math.max(0, base * (1 - flick * (0.5 + 0.5 * Math.sin(t * 46 + s * 2))));
-      dot(sx, 588, 2.6, 'rgba(255,90,70,' + a.toFixed(3) + ')', 13);
-      // vent slots and a screw head, for the close frame
-      ctx.strokeStyle = 'rgba(0,0,0,.5)'; ctx.lineWidth = 1;
-      ctx.beginPath(); ctx.moveTo(sx - 12, 617); ctx.lineTo(sx + 12, 617); ctx.stroke();
+    /* THE ORIGIN. A dead laptop, opened up, with its battery pack
+       pulled out and left beside it — and that pack is what fails.
+       The bulge grows as the cell heats, which is the one warning
+       sign a household ever gets. */
+
+    // The laptop it came out of, lid half raised, board exposed.
+    slab(648, 598, 172, 22, 4, '#0d1218');
+    ctx.save();
+    ctx.translate(648, 598); ctx.rotate(-0.26);
+    slab(0, -104, 164, 104, 4, '#0a0e14');
+    ctx.restore();
+    // its bare board, with components to hold the macro frame
+    ctx.fillStyle = '#0a1410';
+    roundRect(664, 584, 140, 16, 2); ctx.fill();
+    for (var ch = 0; ch < 7; ch++) {
+      ctx.fillStyle = 'rgba(190,215,230,.07)';
+      ctx.fillRect(670 + ch * 19, 588, 9, 8);
     }
-    slab(690, 566, 34, 26, 4, '#0b1015');
-    slab(764, 570, 30, 22, 4, '#0a0e13');
-    slab(840, 564, 36, 28, 4, '#0b1015');
-    slab(900, 572, 30, 20, 4, '#0a0e14');
-    cable(700, 566, 690, 520, 640, 470, .14);
-    cable(858, 564, 900, 512, 960, 470, .12);
+
+    // THE PACK. Its swelling is the whole warning.
+    var swell = heat;                       // 0 → 1 as the cell heats
+    ctx.save();
+    ctx.translate(818, 602);
+    ctx.scale(1 + 0.16 * swell, 1 + 0.30 * swell);
+    ctx.translate(-818, -602);
+    slab(782, 586, 74, 32, 5, '#101820');
+    // the three cells inside it, which bulge before anything shows
+    for (var ce = 0; ce < 3; ce++) {
+      ctx.fillStyle = 'rgba(190,215,230,.05)';
+      roundRect(786 + ce * 23, 590, 19, 24, 3); ctx.fill();
+      if (swell > 0.15) {
+        // a cell under pressure reads as a seam opening, not a light
+        ctx.strokeStyle = 'rgba(255,150,80,' + (0.22 * swell).toFixed(3) + ')';
+        ctx.lineWidth = 1.2;
+        ctx.beginPath();
+        ctx.moveTo(786 + ce * 23, 602); ctx.lineTo(805 + ce * 23, 602);
+        ctx.stroke();
+      }
+    }
+    // contacts
+    ctx.fillStyle = 'rgba(200,180,120,.22)';
+    ctx.fillRect(784, 592, 4, 10); ctx.fillRect(784, 606, 4, 10);
+    ctx.restore();
+
+    // A power bank and one more phone, stacked against it.
+    slab(876, 590, 54, 28, 5, '#0b1016');
+    var pb = Math.max(0, (0.22 + 0.10 * Math.sin(t * 2.2)) * (1 - flick * 0.8));
+    dot(922, 596, 1.8, 'rgba(110,220,255,' + pb.toFixed(3) + ')', 9);
+    slab(940, 600, 40, 18, 4, '#0a0e14');
 
     // Router, still awake: the only thing in the room doing work.
     slab(994, 574, 108, 46, 6, '#0b1016');
@@ -447,6 +474,14 @@
     }
 
     /* ── the floor ─────────────────────────────────────────── */
+
+    // The power strip, coiled on the floor with the rest of it —
+    // present, but no longer the thing that fails.
+    slab(392, 742, 210, 22, 5, '#0b1016');
+    for (var ps = 0; ps < 3; ps++) {
+      dot(420 + ps * 62, 740, 1.8, 'rgba(255,90,70,.12)', 8);
+    }
+    cable(392, 752, 340, 736, 300, 756, .12);
 
     // A box of devices nobody has opened.
     slab(120, 714, 224, 78, 3, '#080c11');

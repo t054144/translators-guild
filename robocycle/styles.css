@@ -3,32 +3,39 @@
    معاً نعيد تدوير الإلكترونيات
 
    Two identities, on purpose. The opening is a field document:
-   near-black, a yellow frame, condensed captions. The site is the
-   brand: the greens of the mark, open and bright by comparison.
+   near-black, a yellow frame, condensed captions — a night interior
+   and a fire only read against black. The site it opens onto is
+   daylight: the greens of the mark on paper white. The cut from one
+   to the other is the argument, problem to solution.
    Nothing here is shared with any other site in this repository.
    ══════════════════════════════════════════════════════════════ */
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 
+  --paper:      #f7f9f6;
+  --paper-2:    #eef2ec;
+  --card:       #ffffff;
+  --line:       rgba(24, 48, 32, .13);
+  --line-lit:   rgba(24, 48, 32, .28);
+
+  --text:       #14201a;
+  --text-dim:   #4d5f54;
+  --text-faint: #7d8d83;
+
+  /* The film keeps its own dark, whatever the page does. */
   --ink:        #05070a;
-  --ink-2:      #0a0f15;
-  --ink-3:      #111922;
-  --line:       rgba(186, 214, 196, .13);
-  --line-lit:   rgba(186, 214, 196, .30);
-
-  --text:       #eaf2ec;
-  --text-dim:   #97a99d;
-  --text-faint: #64756a;
 
   /* Straight off the mark: the deep green of the wordmark, the
      mid green of the arrows, the light green of the leaf. */
   --green-deep: #1b6b35;
   --green:      #3f9f44;
-  --leaf:       #8cc63f;
-  --leaf-soft:  #b7e07a;
+  --leaf:       #8cc63f;      /* on the film's black */
+  --leaf-soft:  #b7e07a;      /* on the film's black */
+  --brand:      #2f8f3e;      /* the green that holds on paper */
+  --brand-ink:  #16532a;
 
-  --ember:      #ff7a3c;   /* the problem side only */
+  --ember:      #d1490d;      /* the problem, legible on light */
   --doc:        #ffcc00;   /* the documentary frame */
 
   --f-display: "Oswald", "Segoe UI", system-ui, sans-serif;
@@ -45,7 +52,7 @@
 html, body { margin: 0; padding: 0; }
 
 body {
-  background: var(--ink);
+  background: var(--paper);
   color: var(--text);
   font-family: var(--f-body);
   font-size: 17px;
@@ -204,8 +211,9 @@ body.intro-running { overflow: hidden; }
 .site { opacity: 1; }
 .site[data-enter="pending"] { opacity: 0; }
 .site[data-enter="running"] { animation: siteIn 1.5s var(--ease) both; }
+/* Out of the dark and into daylight. */
 @keyframes siteIn {
-  from { opacity: 0; transform: translateY(22px) scale(.992); filter: blur(6px); }
+  from { opacity: 0; transform: translateY(22px) scale(.992); filter: blur(6px) brightness(.4); }
   to   { opacity: 1; transform: none; filter: none; }
 }
 
@@ -213,7 +221,7 @@ body.intro-running { overflow: hidden; }
 
 header.bar {
   position: sticky; top: 0; z-index: 40;
-  background: rgba(5, 7, 10, .8);
+  background: rgba(247, 249, 246, .86);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--line);
 }
@@ -223,9 +231,9 @@ header.bar {
 .mark img { height: 42px; width: auto; }
 .mark .wordmark {
   font-family: var(--f-display); font-weight: 600;
-  font-size: 20px; letter-spacing: .03em; color: #fff;
+  font-size: 20px; letter-spacing: .03em; color: var(--brand-ink);
 }
-.mark .wordmark b { color: var(--leaf); font-weight: 600; }
+.mark .wordmark b { color: var(--brand); font-weight: 600; }
 
 nav.links { margin-left: auto; display: flex; gap: 26px; }
 nav.links a { font-size: 14px; color: var(--text-dim); text-decoration: none; transition: color .2s; }
@@ -237,8 +245,8 @@ nav.links a:hover { color: var(--text); }
 .hero::before {
   content: ""; position: absolute; inset: -30% -10% auto -10%; height: 90%;
   background:
-    radial-gradient(60% 70% at 20% 0%, rgba(255, 122, 60, .12), transparent 70%),
-    radial-gradient(58% 66% at 82% 16%, rgba(140, 198, 63, .16), transparent 72%);
+    radial-gradient(60% 70% at 18% 0%, rgba(209, 73, 13, .07), transparent 70%),
+    radial-gradient(58% 66% at 84% 14%, rgba(47, 143, 62, .13), transparent 72%);
   pointer-events: none;
 }
 .hero > .wrap { position: relative; }
@@ -248,11 +256,11 @@ nav.links a:hover { color: var(--text); }
 .eyebrow {
   font-family: var(--f-display); font-weight: 400; font-size: 13px;
   letter-spacing: .22em; text-transform: uppercase;
-  color: var(--leaf);
+  color: var(--brand);
   display: inline-flex; align-items: center; gap: 10px;
   margin-bottom: 20px;
 }
-.eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--leaf); opacity: .6; }
+.eyebrow::before { content: ""; width: 26px; height: 1px; background: var(--brand); opacity: .7; }
 
 h1 {
   font-family: var(--f-display);
@@ -264,7 +272,7 @@ h1 {
   max-width: 17ch;
   text-wrap: balance;
 }
-h1 em { font-style: normal; color: var(--leaf); }
+h1 em { font-style: normal; color: var(--brand); }
 
 .lede { font-size: clamp(1.02rem, 2.1vw, 1.22rem); color: var(--text-dim); max-width: var(--measure); margin: 0 0 16px; }
 
@@ -289,22 +297,22 @@ h1 em { font-style: normal; color: var(--leaf); }
 .btn:focus-visible { outline: 2px solid var(--leaf); outline-offset: 3px; }
 
 .btn--primary {
-  background: linear-gradient(135deg, var(--leaf), var(--green));
-  color: #06240f;
-  box-shadow: 0 14px 40px -14px rgba(140, 198, 63, .75);
+  background: linear-gradient(135deg, var(--brand), var(--brand-ink));
+  color: #fff;
+  box-shadow: 0 14px 34px -14px rgba(22, 83, 42, .55);
 }
-.btn--primary:hover { box-shadow: 0 20px 52px -16px rgba(140, 198, 63, .9); }
+.btn--primary:hover { box-shadow: 0 20px 44px -16px rgba(22, 83, 42, .65); }
 
 /* The way back into the film, for anyone who skipped it or has
    already been here once. */
 .btn--film {
-  background: rgba(255, 204, 0, .07);
-  border-color: rgba(255, 204, 0, .38);
+  background: var(--ink);
+  border-color: var(--ink);
   color: #ffd84d;
   font-family: var(--f-display); font-weight: 400;
   letter-spacing: .08em; text-transform: uppercase; font-size: 13px;
 }
-.btn--film:hover { background: rgba(255, 204, 0, .13); border-color: rgba(255, 204, 0, .6); }
+.btn--film:hover { background: #111a24; border-color: #111a24; }
 
 .film-line {
   display: flex; flex-wrap: wrap; align-items: center; gap: 14px;
@@ -312,8 +320,8 @@ h1 em { font-style: normal; color: var(--leaf); }
 }
 .film-line span { font-size: .88rem; color: var(--text-faint); }
 
-.btn--ghost { background: rgba(255,255,255,.03); border-color: var(--line-lit); color: var(--text); }
-.btn--ghost:hover { background: rgba(255,255,255,.07); }
+.btn--ghost { background: var(--card); border-color: var(--line-lit); color: var(--text); }
+.btn--ghost:hover { background: var(--paper-2); }
 
 /* ─────────────────────────────  SECTIONS  ────────────────────── */
 
@@ -337,36 +345,38 @@ h2 {
 .grid--4 { grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); }
 
 .card-panel {
-  background: linear-gradient(180deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+  background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--r-lg);
   padding: 28px 26px;
+  box-shadow: 0 1px 2px rgba(20, 40, 28, .04);
   transition: border-color .25s, transform .25s var(--ease);
 }
-.card-panel:hover { border-color: var(--line-lit); transform: translateY(-3px); }
+.card-panel:hover { border-color: var(--line-lit); transform: translateY(-3px);
+  box-shadow: 0 16px 34px -20px rgba(20, 40, 28, .35); }
 .card-panel h3 { font-family: var(--f-display); font-weight: 500; font-size: 1.14rem; margin: 0 0 10px; }
 .card-panel p { margin: 0; color: var(--text-dim); font-size: .95rem; }
 
 .step-no {
   font-family: var(--f-display); font-size: 13px; font-weight: 500;
-  letter-spacing: .18em; color: var(--leaf);
+  letter-spacing: .18em; color: var(--brand);
   display: block; margin-bottom: 14px;
 }
 
-.problem { background: linear-gradient(180deg, rgba(255,122,60,.055), transparent 62%); }
+.problem { background: linear-gradient(180deg, rgba(209,73,13,.05), transparent 62%); }
 .problem .kicker { color: var(--ember); }
-.problem .card-panel { border-color: rgba(255, 122, 60, .18); }
+.problem .card-panel { border-color: rgba(209, 73, 13, .2); }
 
 /* The awareness section keeps the film's warmth; the giving
    section returns to the brand's green. */
-.safety { background: linear-gradient(180deg, rgba(255,122,60,.04), transparent 55%); }
+.safety { background: linear-gradient(180deg, rgba(209,73,13,.05), transparent 55%); }
 .safety .kicker { color: var(--ember); }
 
 .advice {
   margin-top: 42px;
-  border: 1px solid rgba(255, 122, 60, .22);
+  border: 1px solid rgba(209, 73, 13, .22);
   border-radius: var(--r-lg);
-  background: rgba(255, 122, 60, .04);
+  background: rgba(209, 73, 13, .045);
   padding: 30px 32px;
 }
 .advice h3 {
@@ -389,8 +399,8 @@ h2 {
   max-width: var(--measure);
 }
 
-.give { background: linear-gradient(180deg, rgba(140,198,63,.05), transparent 58%); }
-.give .kicker { color: var(--leaf); }
+.give { background: linear-gradient(180deg, rgba(47,143,62,.07), transparent 58%); }
+.give .kicker { color: var(--brand); }
 .give h2 { max-width: 24ch; }
 
 .stat-n {
@@ -403,16 +413,16 @@ h2 {
 .booth {
   display: flex; align-items: center; gap: 14px;
   border: 1px solid var(--line); border-radius: var(--r-md);
-  padding: 16px 18px; background: rgba(255,255,255,.02);
+  padding: 16px 18px; background: var(--card);
 }
 .booth .pulse {
-  width: 9px; height: 9px; border-radius: 50%; background: var(--leaf); flex: none;
-  box-shadow: 0 0 0 0 rgba(140,198,63,.55); animation: pulse 2.6s infinite;
+  width: 9px; height: 9px; border-radius: 50%; background: var(--brand); flex: none;
+  box-shadow: 0 0 0 0 rgba(47,143,62,.5); animation: pulse 2.6s infinite;
 }
 @keyframes pulse {
-  0%   { box-shadow: 0 0 0 0 rgba(140,198,63,.5); }
-  70%  { box-shadow: 0 0 0 11px rgba(140,198,63,0); }
-  100% { box-shadow: 0 0 0 0 rgba(140,198,63,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(47,143,62,.45); }
+  70%  { box-shadow: 0 0 0 11px rgba(47,143,62,0); }
+  100% { box-shadow: 0 0 0 0 rgba(47,143,62,0); }
 }
 .booth b { font-weight: 600; font-size: .95rem; display: block; }
 .booth span { font-size: .82rem; color: var(--text-faint); }
@@ -426,12 +436,10 @@ footer.foot { border-top: 1px solid var(--line); padding: 50px 0 60px; color: va
   font-family: var(--f-display); font-size: 12px; letter-spacing: .2em;
   text-transform: uppercase; color: var(--text-faint); margin: 0 0 16px;
 }
-/* The lockup was drawn on white, so it is given white to sit on
-   rather than being forced onto the dark page. */
+/* The lockup was drawn on white and the page is now white, so it
+   simply sits on the page. */
 .lockup-plate {
-  background: #fff;
-  border-radius: var(--r-lg);
-  padding: 22px;
+  padding: 0;
   width: fit-content;
   max-width: min(420px, 100%);
 }
