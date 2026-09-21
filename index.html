@@ -374,6 +374,10 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 }
 .field input.code-box.filled { border-color: rgba(167,38,208,.55); background: rgba(167,38,208,.10); }
 .code-row.bad input.code-box { border-color: rgba(255,92,122,.6); }
+
+/* the build marker: legible if you look for it, invisible if you do not */
+.build-mark { margin: .2rem 0 0; text-align: center; font-size: .62rem;
+  letter-spacing: .14em; text-transform: uppercase; color: rgba(154,134,180,.5); }
 @media (max-width: 400px) { .code-row { gap: .3rem; } .field input.code-box { padding: .75rem .1rem; } }
 .field input[aria-invalid="true"]:focus { box-shadow: 0 0 0 4px rgba(255,92,122,.16); }
 
@@ -1115,6 +1119,11 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
           <span id="alt-text">Don't have an account?</span>
           <button type="button" class="link" id="alt-switch">Sign Up</button>
         </p>
+
+        <!-- Which build is actually running. A single HTML file gets cached
+             hard on phones, and without this there is no way to tell a fixed
+             site from a stale copy of it except by guessing. -->
+        <p class="build-mark">Guild build 9 &middot; 21 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
