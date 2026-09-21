@@ -6,14 +6,13 @@
   ],
   "headers": [
     {
-      "comment": "The Guild is one HTML file, so a cached copy of it is a cached copy of the whole application. Safari on iOS holds onto such a file hard, which meant a deployed fix could sit on the server for an hour while the phone kept running the old code. These pages must be revalidated on every visit; they are small, and correctness matters more than the few kilobytes.",
-      "source": "/(.*).html",
+      "source": "/",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
     },
     {
-      "source": "/",
+      "source": "/index.html",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
       ]
@@ -25,8 +24,7 @@
       ]
     },
     {
-      "comment": "The Lineage images never change once named, so they may be held for a year.",
-      "source": "/lineage/(.*)",
+      "source": "/lineage/:file*",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]
