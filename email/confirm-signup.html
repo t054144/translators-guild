@@ -1,0 +1,119 @@
+<!--
+  THE TRANSLATORS' GUILD — "Confirm signup" email template.
+
+  Paste the whole of this file into:
+    Supabase dashboard → Authentication → Emails → Confirm signup → Message body
+
+  The two Supabase variables it uses:
+    {{ .Token }}            the six digits the member types into the site
+    {{ .ConfirmationURL }}  the one-tap link, kept as a fallback
+
+  Built for email clients, not browsers: tables for layout, inline styles
+  throughout, no external stylesheet, no web font, no image. It renders the
+  same in Apple Mail, Gmail and Outlook, and it still reads correctly if a
+  client strips the background colours.
+-->
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin:0;padding:0;background-color:#110620;">
+  <tr>
+    <td align="center" style="padding:32px 16px;background-color:#110620;">
+
+      <!-- preheader: the one line shown in the inbox list, then hidden -->
+      <div style="display:none;max-height:0;overflow:hidden;opacity:0;color:transparent;height:0;width:0;">
+        Your Translators&rsquo; Guild confirmation code is {{ .Token }}
+      </div>
+
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:520px;width:100%;">
+
+        <!-- ── the mark ── -->
+        <tr>
+          <td align="center" style="padding:0 0 22px;">
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="center" style="width:56px;height:56px;background-color:#8218c7;background-image:linear-gradient(180deg,#a726d0 0%,#8218c7 48%,#650fd0 100%);border-radius:16px;font-family:Georgia,'Times New Roman',serif;font-size:24px;font-weight:700;color:#ffffff;line-height:56px;">
+                  G
+                </td>
+              </tr>
+            </table>
+            <p style="margin:14px 0 0;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:#9a86b4;">
+              The Translators&rsquo; Guild
+            </p>
+          </td>
+        </tr>
+
+        <!-- ── the card ── -->
+        <tr>
+          <td style="background-color:#1a0a2f;border:1px solid #33204a;border-radius:24px;padding:36px 30px;">
+
+            <p style="margin:0 0 8px;font-family:Georgia,'Times New Roman',serif;font-size:26px;font-weight:600;color:#ffffff;line-height:1.2;">
+              Confirm your email
+            </p>
+            <p style="margin:0 0 26px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#d6bfea;">
+              Welcome to the Guild. Enter these six digits on the page you signed up from
+              to confirm your address and begin.
+            </p>
+
+            <!-- ── the code ── -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td align="center" style="background-color:#251040;border:1px solid #4a2a6b;border-radius:16px;padding:22px 14px;">
+                  <p style="margin:0 0 10px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:#9a86b4;">
+                    Your code
+                  </p>
+                  <p style="margin:0;font-family:Georgia,'Times New Roman',serif;font-size:38px;font-weight:700;letter-spacing:10px;color:#ffffff;line-height:1.1;">
+                    {{ .Token }}
+                  </p>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:18px 0 0;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:#9a86b4;">
+              The code is good for one hour and can be used once.
+            </p>
+
+            <!-- ── the one-tap alternative ── -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:26px;">
+              <tr>
+                <td style="border-top:1px solid #33204a;padding-top:24px;">
+                  <p style="margin:0 0 14px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:13px;line-height:1.6;color:#9a86b4;">
+                    Reading this on the same device you signed up on? Confirm in one tap instead.
+                  </p>
+                  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                    <tr>
+                      <td align="center" style="background-color:#8218c7;background-image:linear-gradient(180deg,#a726d0 0%,#8218c7 48%,#650fd0 100%);border-radius:999px;">
+                        <a href="{{ .ConfirmationURL }}"
+                           style="display:block;padding:15px 24px;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:999px;">
+                          Confirm my email
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+            <p style="margin:24px 0 0;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:12px;line-height:1.6;color:#7d6b94;">
+              If you did not create an account with the Guild, you can ignore this message
+              and nothing will happen. Nobody can use your address without this code.
+            </p>
+          </td>
+        </tr>
+
+        <!-- ── the footer ── -->
+        <tr>
+          <td align="center" style="padding:22px 12px 0;">
+            <p style="margin:0 0 6px;font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13px;line-height:1.5;color:#9a86b4;">
+              &ldquo;Words travel worlds. Translators do the driving.&rdquo;
+            </p>
+            <p style="margin:0;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#6b5a82;">
+              Anna Rusconi
+            </p>
+            <p style="margin:18px 0 0;font-family:'Segoe UI',Helvetica,Arial,sans-serif;font-size:11px;color:#6b5a82;">
+              The Translators&rsquo; Guild &middot; Kuwait
+            </p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>

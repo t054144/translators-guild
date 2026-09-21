@@ -361,6 +361,20 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 
 .field-error { margin: 0; font-size: .76rem; line-height: 1.5; color: var(--coral); }
 .field input[aria-invalid="true"] { border-color: rgba(255,92,122,.6); }
+
+/* ── the six digits ──
+   Six boxes rather than one field: the shape of the input tells you what
+   is wanted before you read the label, and a digit landing in its own box
+   gives you a place to look when one is wrong. */
+.code-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: .5rem; }
+.field input.code-box {
+  text-align: center; padding: .85rem .2rem;
+  font-family: var(--f-serif); font-size: clamp(1.4rem, 6vw, 1.85rem); font-weight: 600;
+  letter-spacing: 0; caret-color: var(--magenta);
+}
+.field input.code-box.filled { border-color: rgba(167,38,208,.55); background: rgba(167,38,208,.10); }
+.code-row.bad input.code-box { border-color: rgba(255,92,122,.6); }
+@media (max-width: 400px) { .code-row { gap: .3rem; } .field input.code-box { padding: .75rem .1rem; } }
 .field input[aria-invalid="true"]:focus { box-shadow: 0 0 0 4px rgba(255,92,122,.16); }
 
 .check { display: flex; align-items: flex-start; gap: .6rem; cursor: pointer;
@@ -1100,6 +1114,50 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <p class="auth-alt">
           <span id="alt-text">Don't have an account?</span>
           <button type="button" class="link" id="alt-switch">Sign Up</button>
+        </p>
+      </div>
+
+      <!-- ── THE SIX DIGITS ──
+           Confirmation happens here, on the device the person is already
+           using, instead of sending them out to a link that may open on a
+           different machine. The code is read from the email and typed in;
+           nothing has to travel between devices but six digits. -->
+      <div class="step" id="step-code" hidden>
+        <div class="step-head">
+          <span class="step-chip">✦</span>
+          <span class="sh-en">Confirm your email</span>
+        </div>
+
+        <div>
+          <h2 class="auth-title">Check your email</h2>
+          <p class="note" id="code-lede">We have sent a six-digit code to your address.</p>
+        </div>
+
+        <form id="code-form" novalidate>
+          <div class="field">
+            <label id="code-label" for="code-1">Six-digit code</label>
+            <div class="code-row" role="group" aria-labelledby="code-label">
+              <input class="code-box" id="code-1" type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 1">
+              <input class="code-box" id="code-2" type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 2">
+              <input class="code-box" id="code-3" type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 3">
+              <input class="code-box" id="code-4" type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 4">
+              <input class="code-box" id="code-5" type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 5">
+              <input class="code-box" id="code-6" type="text" inputmode="numeric" maxlength="1" autocomplete="one-time-code" aria-label="Digit 6">
+            </div>
+            <p class="field-error" id="err-code" hidden></p>
+          </div>
+
+          <p class="msg" id="code-msg" hidden role="status" aria-live="polite"></p>
+
+          <button type="submit" id="code-btn" class="btn-wide">Confirm and enter</button>
+        </form>
+
+        <p class="auth-alt">
+          <span>Nothing arrived?</span>
+          <button type="button" class="link" id="code-resend">Send it again</button>
+        </p>
+        <p class="auth-alt">
+          <button type="button" class="link" id="code-back">← Use a different email</button>
         </p>
       </div>
     </div>
@@ -2769,6 +2827,40 @@ async function sendReset(email) {
   await authPost("/recover?redirect_to=" + encodeURIComponent(callbackURL()), { email: email });
 }
 
+/* ═══════════ CONFIRMING BY CODE ═══════════
+   The link in the confirmation email opens wherever the email happens to
+   be read, which on a phone is rarely the browser the person signed up
+   in. A six-digit code does not have that problem: it is read in one
+   place and typed in another, and the account is confirmed in the tab
+   already open. The link still works for anyone who prefers it. */
+async function verifyCode(email, token) {
+  /* Supabase names this type "email" for a signup confirmation — the
+     confirmation URL it generates carries type=email — while the resend
+     endpoint below names the same thing "signup". Older projects answer
+     to "signup" here too, so the documented name is tried first and the
+     older one only if the service rejects the type itself. A wrong or
+     expired code is a real answer and is not retried. */
+  try {
+    return asSession(await authPost("/verify", {
+      type: "email", email: email, token: token
+    }));
+  } catch (e) {
+    const said = (e && e.message) || "";
+    if (/expired|invalid|incorrect|not found/i.test(said)) throw e;
+    return asSession(await authPost("/verify", {
+      type: "signup", email: email, token: token
+    }));
+  }
+}
+
+/* Ask the service for a fresh code. Supabase rate-limits this by design,
+   and the wait it asks for is passed through rather than swallowed. */
+async function resendCode(email) {
+  await authPost("/resend?redirect_to=" + encodeURIComponent(callbackURL()), {
+    type: "signup", email: email
+  });
+}
+
 async function signOut() {
   const t = session && session.access_token;
   if (t) { try { await authPost("/logout", {}, t); } catch (e) { /* local sign-out still stands */ } }
@@ -3064,11 +3156,229 @@ function gateSay(text, good) {
 }
 function gateQuiet() { gateEl.msg.hidden = true; gateEl.msg.classList.remove("good"); }
 
+/* ═══════════════════════════════════════════════════════════
+   THE SIX DIGITS
+
+   A real verification, not a decorative one: the six digits are the
+   token Supabase generated and put in the email, and they are sent
+   back to /auth/v1/verify, which is the same endpoint the emailed
+   link uses. The service decides whether they are right, whether they
+   have expired and whether they have been used. Nothing is checked in
+   this page, and no code can be guessed past the service's own
+   rate limiting.
+
+   On success the service returns a real session, exactly as a password
+   login does, so the member lands inside the Guild with no second step.
+   ═══════════════════════════════════════════════════════════ */
+const codeEl = {
+  step:   document.getElementById("step-code"),
+  form:   document.getElementById("code-form"),
+  row:    document.querySelector("#step-code .code-row"),
+  boxes:  Array.prototype.slice.call(document.querySelectorAll("#step-code .code-box")),
+  lede:   document.getElementById("code-lede"),
+  err:    document.getElementById("err-code"),
+  msg:    document.getElementById("code-msg"),
+  btn:    document.getElementById("code-btn"),
+  resend: document.getElementById("code-resend"),
+  back:   document.getElementById("code-back")
+};
+const sealStep = document.getElementById("step-seal");
+
+let codeEmail = "";        /* the address awaiting confirmation */
+let codePass  = "";        /* held only until confirmation, never stored */
+let codeBusy  = false;
+let resendAt  = 0;         /* earliest moment a resend may be asked for */
+
+function codeSay(text, good) {
+  codeEl.msg.hidden = false;
+  codeEl.msg.classList.toggle("good", !!good);
+  codeEl.msg.innerHTML = text;
+}
+function codeQuiet() { codeEl.msg.hidden = true; codeEl.msg.classList.remove("good"); }
+
+function codeValue() {
+  return codeEl.boxes.map(b => b.value.replace(/\D/g, "")).join("");
+}
+function codeClear() {
+  codeEl.boxes.forEach(b => { b.value = ""; b.classList.remove("filled"); });
+  codeEl.row.classList.remove("bad");
+  codeEl.err.hidden = true;
+}
+function codeWorking(on, label) {
+  codeBusy = on;
+  codeEl.btn.disabled = on;
+  codeEl.btn.textContent = on ? label : "Confirm and enter";
+}
+
+/* Open the code step for an address. The password is kept in memory only
+   so that, on services configured to withhold a session until the address
+   is confirmed, the member can be signed straight in afterwards without
+   typing it again. It is dropped the moment it is used. */
+function askForCode(email, pass, firstTime) {
+  codeEmail = email;
+  codePass = pass || "";
+  codeClear();
+  codeQuiet();
+  codeWorking(false);
+  resendAt = Date.now() + 30000;
+  codeEl.lede.innerHTML = (firstTime
+      ? "Your account is made. We have sent a six-digit code to <b>"
+      : "We have sent a six-digit code to <b>") +
+    escapeText(email) + "</b>. Enter it below to confirm the address. " +
+    "The code lasts an hour, and the email also carries a button if you would rather tap it.";
+  sealStep.hidden = true;
+  codeEl.step.hidden = false;
+  setTimeout(() => codeEl.boxes[0].focus(), 60);
+}
+
+function leaveCodeStep() {
+  codeEmail = ""; codePass = "";
+  codeEl.step.hidden = true;
+  sealStep.hidden = false;
+}
+
+/* Anything shown back to the member is shown as text, never as markup. */
+function escapeText(s) {
+  return String(s == null ? "" : s)
+    .replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
+/* Typing behaviour people expect: one digit per box, moving forward as
+   you type and backward as you delete, a pasted code filling the row,
+   and the form submitting itself once the sixth digit lands. */
+codeEl.boxes.forEach((box, i) => {
+  box.addEventListener("input", () => {
+    const digits = box.value.replace(/\D/g, "");
+    if (digits.length > 1) { spreadCode(digits, i); return; }
+    box.value = digits;
+    box.classList.toggle("filled", !!digits);
+    codeEl.row.classList.remove("bad");
+    codeEl.err.hidden = true;
+    if (digits && i < codeEl.boxes.length - 1) codeEl.boxes[i + 1].focus();
+    if (codeValue().length === 6) codeEl.form.requestSubmit();
+  });
+  box.addEventListener("keydown", e => {
+    if (e.key === "Backspace" && !box.value && i > 0) {
+      e.preventDefault();
+      const prev = codeEl.boxes[i - 1];
+      prev.value = ""; prev.classList.remove("filled"); prev.focus();
+    }
+    if (e.key === "ArrowLeft" && i > 0) { e.preventDefault(); codeEl.boxes[i - 1].focus(); }
+    if (e.key === "ArrowRight" && i < codeEl.boxes.length - 1) { e.preventDefault(); codeEl.boxes[i + 1].focus(); }
+  });
+  box.addEventListener("focus", () => box.select());
+  box.addEventListener("paste", e => {
+    const text = (e.clipboardData || window.clipboardData).getData("text") || "";
+    if (/\d/.test(text)) { e.preventDefault(); spreadCode(text.replace(/\D/g, ""), i); }
+  });
+});
+
+function spreadCode(digits, from) {
+  for (let k = 0; k < digits.length && from + k < codeEl.boxes.length; k++) {
+    const b = codeEl.boxes[from + k];
+    b.value = digits[k];
+    b.classList.add("filled");
+  }
+  const next = Math.min(from + digits.length, codeEl.boxes.length - 1);
+  codeEl.boxes[next].focus();
+  if (codeValue().length === 6) codeEl.form.requestSubmit();
+}
+
+codeEl.form.addEventListener("submit", async e => {
+  e.preventDefault();
+  if (codeBusy) return;
+  const token = codeValue();
+  if (token.length !== 6) {
+    codeEl.row.classList.add("bad");
+    codeEl.err.textContent = "Enter all six digits.";
+    codeEl.err.hidden = false;
+    return;
+  }
+
+  codeQuiet();
+  codeWorking(true, "Confirming…");
+  try {
+    let sess = await verifyCode(codeEmail, token);
+
+    /* Some projects confirm the address but hand back no session. In that
+       case the password held from the sign-up completes the entry, and if
+       there is none the member is returned to the form already confirmed. */
+    if (!sess && codePass) {
+      try { sess = await signIn(codeEmail, codePass); } catch (err) { sess = null; }
+    }
+    if (sess) {
+      const email = codeEmail;
+      codePass = "";
+      storeSession(sess, true);
+      codeEl.step.hidden = true;
+      sealStep.hidden = false;
+      enterHall(sess.user || { email: email });
+      return;
+    }
+    codeWorking(false);
+    leaveCodeStep();
+    setAuthMode("in");
+    gateEl.email.value = codeEmail;
+    gateSay("Your email is confirmed. Log in to enter the Guild.", true);
+  } catch (err) {
+    codeWorking(false);
+    codeEl.row.classList.add("bad");
+    const said = (err && err.message) || "";
+    /* The service answers a wrong code and an expired code identically —
+       "Token has expired or is invalid" — so this message does not pretend
+       to know which it was, and names both remedies. */
+    if (/expired|invalid|incorrect|not found|token/i.test(said)) {
+      codeSay("That code is not right, or it has expired. Check the six digits, " +
+              "or ask for a new one below.");
+    } else if (err && err.status === 429) {
+      codeSay("Too many attempts. Please wait a minute and try again.");
+    } else {
+      codeSay("We could not reach the Guild's records. Check your connection and try again.");
+    }
+    codeEl.boxes[0].focus();
+    codeEl.boxes[0].select();
+  }
+});
+
+codeEl.resend.addEventListener("click", async () => {
+  if (codeBusy) return;
+  const wait = Math.ceil((resendAt - Date.now()) / 1000);
+  if (wait > 0) {
+    codeSay("Please wait " + wait + " more second" + (wait === 1 ? "" : "s") + " before asking again.");
+    return;
+  }
+  codeQuiet();
+  codeEl.resend.disabled = true;
+  try {
+    await resendCode(codeEmail);
+    resendAt = Date.now() + 60000;
+    codeClear();
+    codeSay("A new code is on its way to " + escapeText(codeEmail) + ".", true);
+    codeEl.boxes[0].focus();
+  } catch (err) {
+    const said = (err && err.message) || "";
+    const secs = (said.match(/(\d+)\s*second/i) || [])[1];
+    if (secs) codeSay("The service asks for " + secs + " seconds between emails. Please wait.");
+    else if (err && err.status === 429) codeSay("Too many requests. Please wait a minute.");
+    else codeSay("The code could not be sent again just now. Please try in a moment.");
+  }
+  codeEl.resend.disabled = false;
+});
+
+codeEl.back.addEventListener("click", () => {
+  leaveCodeStep();
+  setAuthMode("up");
+  gateQuiet();
+});
+
 /* Back to a clean form, so a logged-out member does not return to a
    half-filled one. */
 function resetGateSteps() {
   const a = document.getElementById("step-seal");
   a.hidden = false; a.classList.remove("swap-out", "swap-in");
+  /* a half-finished confirmation never greets the next person */
+  if (typeof leaveCodeStep === "function") { codeClear(); codeQuiet(); leaveCodeStep(); }
 }
 
 /* ─────────── field-level validation ─────────── */
@@ -3209,7 +3519,6 @@ gateEl.forgot.addEventListener("click", async () => {
 /* The one message a sign-up may ever give, whether the address was free or
    already taken. Saying which would turn this form into a lookup tool for
    anyone holding a list of addresses. */
-const SIGNUP_DONE = "Account created. Check your email for a confirmation link, then log in.";
 
 async function pressSeal() {
   if (authBusy) return;
@@ -3245,17 +3554,18 @@ async function pressSeal() {
          confirmed; with it off, the account is live immediately */
       if (sess) { storeSession(sess, true); enterHall(sess.user); return; }
       gateBusy(false);
-      setAuthMode("in");
-      gateEl.email.value = email;
+      gateQuiet();
       gateEl.pass.value = ""; gateEl.pass2.value = "";
-      gateSay(SIGNUP_DONE, true);
+      askForCode(email, pass, true);
     } catch (e) {
       gateBusy(false);
       if (/already/i.test(e.message)) {
-        setAuthMode("in");
-        gateEl.email.value = email;
+        /* The same neutral path as a fresh sign-up, so this screen never
+           reveals which addresses already hold an account. Someone who has
+           an account and did confirm it will find the code does not apply
+           and can simply log in. */
         gateEl.pass.value = ""; gateEl.pass2.value = "";
-        gateSay(SIGNUP_DONE, true);
+        askForCode(email, pass, true);
         return;
       }
       gateSay("Your account could not be created. Please try again in a few minutes.");
@@ -3277,7 +3587,10 @@ async function pressSeal() {
   } catch (e) {
     gateBusy(false);
     if (/not confirmed/i.test(e.message)) {
-      gateSay("Please confirm your email address first. The confirmation link is in your inbox.");
+      /* Nothing to go and find in an inbox: a fresh code is sent and the
+         six boxes open right here. */
+      try { await resendCode(email); } catch (err) { /* a code may already be in flight */ }
+      askForCode(email, pass, false);
     } else if (e.status === 400) {
       /* the service answers the same way for an unknown address and a wrong
          password, and so does this message */
