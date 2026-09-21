@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- The browser enforces this list. Scripts come from this folder and
+     nowhere else, and the page talks to no other origin. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Robocycle — Old electronics. New possibilities.</title>
+<meta name="description" content="Robocycle is an environmental technology platform for Kuwait: community collection booths for electronic waste, rewards for responsible disposal, device tracking, and recovered components redirected into technology projects.">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Robocycle">
+<meta property="og:description" content="Electronic waste doesn't disappear. It goes somewhere.">
+<link rel="icon" href="mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600&family=Nunito:wght@600;700;800&family=Oswald:wght@300;400&family=Playfair+Display:wght@400;500&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body class="intro-running">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<!-- ══════════════════════════════════════════════════════════════
+     THE OPENING
+
+     The sequence is rendered live on the canvas below. If a filmed
+     plate is ever shot, drop it in as <video id="plate"> inside this
+     element and hide #stage: the director track in intro.js, the
+     titles, the skip control and the returning-visitor memory all
+     key off the same clock.
+     ══════════════════════════════════════════════════════════════ -->
+<div id="intro" role="region" aria-label="Opening sequence">
+  <canvas id="stage" aria-hidden="true"></canvas>
+  <div class="bars" aria-hidden="true"></div>
+  <div id="frame" class="frame" aria-hidden="true"></div>
+
+  <!-- Field captions: what the frame is showing, not commentary. -->
+  <div aria-hidden="true">
+    <p class="caption">Residential interior · Kuwait · 02:14</p>
+    <p class="caption">Most of these devices have not been switched on in years.</p>
+    <p class="caption">A lithium cell degrades whether it is used or not.</p>
+    <p class="caption">Thermal runaway · 02:41</p>
+  </div>
+
+  <div class="cards" aria-live="polite">
+    <p class="card">Electronic waste doesn’t disappear.</p>
+    <p class="card">It goes somewhere.</p>
+    <div class="card card--brand">
+      <img class="logo-lockup" src="mark.png" alt="" data-logo>
+      <span class="wordmark">Rob<b>o</b>cycle</span>
+    </div>
+    <p class="card card--line">
+      Recycle electronics for a brighter tomorrow
+      <span class="ar">معاً نعيد تدوير الإلكترونيات</span>
+    </p>
+  </div>
+
+  <div class="intro-ui">
+    <button id="sound" class="ghost-btn" type="button" aria-pressed="false">Sound off</button>
+    <button id="skip" class="ghost-btn" type="button">Skip intro →</button>
+  </div>
+
+  <div id="intro-progress" class="intro-progress" aria-hidden="true"></div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     THE SITE — old electronics, new possibilities
+     ══════════════════════════════════════════════════════════════ -->
+<div id="site" class="site" data-enter="pending">
+
+  <header class="bar">
+    <div class="wrap">
+      <a class="mark" href="#top">
+        <img src="mark.png" alt="" data-logo>
+        <span class="wordmark">Rob<b>o</b>cycle</span>
+      </a>
+      <nav class="links" aria-label="Main">
+        <a href="/robocycle/">Home</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="donate.html">Donate</a>
+        <a href="collection-points.html">Collection Points</a>
+        <a href="my-request.html">My Request</a>
+        <a href="roboguide.html">RoboGuide</a>
+        <a class="btn btn--primary btn--sm nav-cta" href="donate.html">Donate<span class="long">&nbsp;Your Electronics</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" tabindex="-1">
+
+    <!-- ── HERO ─────────────────────────────────────────────── -->
+    <section class="hero">
+      <div class="wrap">
+        <div class="hero-copy">
+          <span class="label">E-waste. Safer possibilities.</span>
+          <h1>Don’t throw it away.<br><span class="grad-text">Give it a safer purpose.</span></h1>
+          <p class="lede">
+            Donate your unused electronics through a safer and more organised
+            journey.
+          </p>
+<p class="lede-ar">معاً نعيد تدوير الإلكترونيات</p>
+          <div class="cta-row">
+            <a class="btn btn--primary" href="donate.html">Donate Your Device</a>
+            <a class="btn btn--ghost" href="#why">How It Works ↓</a>
+          </div>
+          <p class="film-line">
+            <button id="watch" class="btn btn--film" type="button">▶ Watch the opening film</button>
+            <span>48 seconds · how a forgotten battery starts a fire</span>
+          </p>
+        </div>
+
+        <div class="robot-stage">
+          <div class="halo" aria-hidden="true"></div>
+          <!-- the recycling arrows, turning slowly behind the robot -->
+          <svg class="arrow-ring" viewBox="0 0 200 200" fill="none" aria-hidden="true">
+            <g stroke="url(#ring)" stroke-width="9" stroke-linecap="round" fill="none">
+              <path d="M100 26a74 74 0 0 1 64 37"/>
+              <path d="M164 137a74 74 0 0 1-64 37"/>
+              <path d="M36 137a74 74 0 0 1 0-74"/>
+            </g>
+            <g fill="#8cc63f">
+              <path d="M160 52l12 14-18 4z"/><path d="M110 178l-16-9 15-10z"/><path d="M30 60l6-17 11 14z"/>
+            </g>
+            <defs>
+              <linearGradient id="ring" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#8cc63f"/><stop offset="1" stop-color="#1b6b35"/>
+              </linearGradient>
+            </defs>
+          </svg>
+          <img class="robot" src="mark.png" alt="The Robocycle robot, holding a laptop" data-logo>
+          <div class="orbit" aria-hidden="true">
+            <span class="chip-float" style="color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg></span>
+            <span class="chip-float" style="color:var(--accent-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M10 2v3M14 2v3M10 19v3M14 19v3M2 10h3M2 14h3M19 10h3M19 14h3"/></svg></span>
+            <span class="chip-float" style="color:var(--accent-orange)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4v6a4 4 0 0 0 8 0V8a4 4 0 0 1 8 0v6"/><path d="M18 20v-2M4 2v2"/></svg></span>
+            <span class="chip-float" style="color:var(--green-deep)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2.5"/><path d="M8 8h3v3H8zM14 8h2M14 12h2M8 15h8"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── THREE REASONS, BRIEFLY ───────────────────────────── -->
+    <section id="why" class="band-warm">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="label">Why it matters</span>
+          <h2>Three reasons not to<br>bin your old electronics.</h2>
+        </div>
+
+        <div class="grid grid--3">
+          <article class="soft-card reveal">
+            <div class="icon-badge" style="color:var(--ember)">🔥</div>
+            <h3>Fire risk</h3>
+            <p>Damaged or crushed batteries can create a fire hazard.</p>
+          </article>
+          <article class="soft-card reveal">
+            <div class="icon-badge" style="color:var(--accent-blue)">💧</div>
+            <h3>Environmental harm</h3>
+            <p>Incorrect disposal may release harmful materials.</p>
+          </article>
+          <article class="soft-card reveal">
+            <div class="icon-badge" style="color:var(--green)">♻</div>
+            <h3>Lost value</h3>
+            <p>Useful components and materials may be wasted.</p>
+          </article>
+        </div>
+
+        <p style="text-align:center;margin-top:30px">
+          <button class="text-link" type="button" id="why-more">
+            Why electronic waste needs separate handling →
+          </button>
+        </p>
+      </div>
+    </section>
+
+    <dialog class="modal" id="why-modal" aria-labelledby="why-title">
+      <div class="modal-body">
+        <h2 id="why-title">Why it needs separate handling</h2>
+        <p>
+          A lithium battery in a household bin does not stay intact. It is tipped,
+          compacted and crushed on its way through collection and sorting, and a
+          damaged cell can short internally and enter thermal runaway — which is
+          how fires start in bin lorries and waste facilities.
+        </p>
+        <p>
+          Incorrect disposal also releases hazardous material into air, soil and
+          water, and throws away metals and components that are still good.
+        </p>
+        <p>
+          Keeping electronics out of general waste removes the hazard and keeps the
+          useful parts in circulation.
+        </p>
+        <div class="close-row">
+          <button class="btn btn--primary btn--sm" type="button" id="why-close">Got it</button>
+        </div>
+      </div>
+    </dialog>
+
+    <!-- ── THE TURN ─────────────────────────────────────────── -->
+    <section class="turn" id="turn">
+      <div class="wrap">
+        <div class="travel">
+          <span class="pod" style="color:var(--text-faint)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg></span>
+          <span class="arrow">→</span>
+          <span class="pod"><img src="mark.png" alt="" data-logo></span>
+        </div>
+        <p class="section-lede line-1" style="margin-inline:auto">
+          What if this wasn’t<br>the end of its story?
+        </p>
+        <p class="line-2 grad-text">Meet Robocycle.</p>
+      </div>
+    </section>
+
+    <!-- ── THE JOURNEY, IN BRIEF ────────────────────────────── -->
+    <section id="how" class="band-green">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="label">The journey</span>
+          <h2>One device,<br>one continuous journey.</h2>
+        </div>
+
+        <div class="journey" id="journey">
+          <div class="track" aria-hidden="true"><div class="track-fill" id="track-fill"></div></div>
+
+          <div class="step">
+            <div class="panel"><h3>Unused device</h3>
+              <p>The one in the drawer that stopped being used.</p></div>
+            <div class="node">1</div>
+          </div>
+          <div class="step">
+            <div class="panel"><h3>Donation request</h3>
+              <p>You tell us what you have and how to reach you.</p>
+              <a class="btn btn--primary btn--sm" href="donate.html">Donate</a></div>
+            <div class="node">2</div>
+          </div>
+          <div class="step">
+            <div class="panel"><h3>Safe collection</h3>
+              <p>Arranged with you — never left in an unattended container if a battery is damaged.</p></div>
+            <div class="node">3</div>
+          </div>
+          <div class="step">
+            <div class="panel"><h3>Professional assessment</h3>
+              <p>Opened by people equipped to do it, and tested properly.</p></div>
+            <div class="node">4</div>
+          </div>
+          <div class="step">
+            <div class="panel"><h3>Reuse or responsible recycling</h3>
+              <p>Good parts <em>may be</em> reused. What cannot be goes to qualified recycling.</p></div>
+            <div class="node">5</div>
+          </div>
+          <div class="step">
+            <div class="panel"><h3>Verified impact</h3>
+              <p>Shown only once it has actually happened.</p></div>
+            <div class="node">6</div>
+          </div>
+        </div>
+
+        <p style="text-align:center;margin-top:36px">
+          <a class="btn btn--ghost" href="how-it-works.html">See the full journey</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ── IMPACT STORY ─────────────────────────────────────── -->
+    <section id="impact">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="label">The story it creates</span>
+          <h2>Your device<br>can become something new.</h2>
+          <p class="section-lede" style="margin-inline:auto">
+            Instead of simply telling you that your device was recycled,
+            we want you to see the story it helped create.
+          </p>
+        </div>
+
+        <div class="chain reveal">
+          <div class="link">
+            <div class="icon-badge" style="color:var(--text-faint)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18.5h2"/></svg></div>
+            <b>Old electronics</b>
+            <span>A device that stopped being used</span>
+          </div>
+          <div class="hop">→</div>
+          <div class="link">
+            <div class="icon-badge" style="color:var(--accent-blue)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+            <b>Sensor recovered</b>
+            <span>Tested, graded and catalogued</span>
+          </div>
+          <div class="hop">→</div>
+          <div class="link">
+            <div class="icon-badge" style="color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-8 6-14 16-15 0 10-5 16-13 16H4z"/><path d="M4 20c3-5 7-8 11-9.5"/></svg></div>
+            <b>A new purpose</b>
+            <span>An environmental monitoring prototype</span>
+          </div>
+        </div>
+        <p class="form-note reveal" style="text-align:center;margin-top:22px">
+          An illustration of the journey we are building. We will show real
+          recovered components here once devices have actually been through it.
+        </p>
+      </div>
+    </section>
+
+    <!-- ── TRACKING PREVIEW ─────────────────────────────────── -->
+    <section class="band-warm">
+      <div class="wrap preview-grid">
+        <div class="reveal">
+          <span class="label">A glimpse ahead</span>
+          <h2>One day, your device<br>will write to you.</h2>
+          <p class="section-lede">
+            We are building a way to follow a donated device through its second life —
+            so the story comes back to the person who started it.
+          </p>
+          <span class="soon">Coming soon</span>
+        </div>
+        <div class="reveal">
+          <div class="phone-mock">
+            <div class="notch" aria-hidden="true"></div>
+            <div class="notif">
+              <div class="row">
+                <img src="mark.png" alt="" data-logo>
+                <b>Robocycle 🌱</b>
+              </div>
+              <p>
+                <b>Good news!</b><br>
+                A component recovered from your donated device has found a new purpose.
+              </p>
+              <span class="fake-btn">See Its Journey</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── DONATE ───────────────────────────────────────────── -->
+    <section id="donate" class="band-green">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="label">Donate</span>
+          <h2>Ready to give your<br>electronics another life?</h2>
+          <p class="section-lede" style="margin-inline:auto">
+            Tell us what you have. It takes a minute, and it tells us how to
+            handle it safely.
+          </p>
+          <p><a class="btn btn--primary" href="donate.html">Donate Your Electronics</a></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── A WIDER IMPACT, LATER ────────────────────────────── -->
+    <section>
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="label">Looking further</span>
+          <h2>Your contribution<br>can grow further.</h2>
+        </div>
+        <div class="chain reveal">
+          <div class="link">
+            <div class="icon-badge" style="color:var(--green-deep)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8l9-5 9 5v9l-9 5-9-5V8z"/><path d="M3 8l9 5 9-5M12 13v9"/></svg></div>
+            <b>Electronic donation</b>
+          </div>
+          <div class="hop">→</div>
+          <div class="link">
+            <div class="icon-badge" style="color:var(--green)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.6L21 11l-6.6 2.4L12 20l-2.4-6.6L3 11l6.6-2.4L12 2z"/></svg></div>
+            <b>Robocycle</b>
+          </div>
+          <div class="hop">→</div>
+          <div class="link">
+            <div class="icon-badge" style="color:var(--leaf)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20c0-8 6-14 16-15 0 10-5 16-13 16H4z"/><path d="M4 20c3-5 7-8 11-9.5"/></svg></div>
+            <b>Environmental contribution 🌱</b>
+          </div>
+        </div>
+        <p class="section-lede reveal" style="text-align:center;margin:26px auto 0">
+          Verified donations may become eligible for future environmental,
+          educational, or community rewards.
+        </p>
+        <p style="text-align:center"><span class="soon reveal">Coming soon</span></p>
+      </div>
+    </section>
+
+    <!-- ── PARTNERS ─────────────────────────────────────────── -->
+    <section class="band-warm">
+      <div class="wrap partners reveal">
+        <p>Robocycle was created with</p>
+        <div class="lockup-plate">
+          <img src="logo-full.png"
+               alt="Robocycle, with CODED, the Sabah Al Ahmad Center for Giftedness and Creativity, and the Kuwait Foundation for the Advancement of Sciences."
+               width="1254" height="1254" loading="lazy" data-logo>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="mark" href="#top">
+            <img src="mark.png" alt="" data-logo>
+            <span class="wordmark">Rob<b>o</b>cycle ♻</span>
+          </a>
+          <p>Old electronics.<br>Safer possibilities.</p>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="/robocycle/">Home</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="donate.html">Donate</a>
+          <a href="collection-points.html">Collection Points</a>
+          <a href="my-request.html">My Request</a>
+          <a href="roboguide.html">RoboGuide</a>
+        </nav>
+      </div>
+      <p class="disclaimer">
+        RoboCycle does not provide emergency, legal, or professional
+        battery-handling services. Operational collection and handling must
+        follow applicable requirements and approved safety procedures. In an
+        emergency in Kuwait, call 112.
+      </p>
+      <div class="foot-row">
+        <span>© 2026 Robocycle · Kuwait</span>
+        <span class="ar">معاً نعيد تدوير الإلكترونيات</span>
+        <button id="replay" class="replay" type="button">Replay the opening film</button>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<script src="intro.js"></script>
+<script src="journey.js"></script>
+</body>
+</html>

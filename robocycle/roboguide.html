@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>RoboGuide — RoboCycle</title>
+<meta name="description" content="Ask RoboCycle about donating electronics, battery safety, and how requests work.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600&family=Nunito:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="bar">
+    <div class="wrap">
+      <a class="mark" href="/robocycle/">
+        <img src="mark.png" alt="" data-logo>
+        <span class="wordmark">Rob<b>o</b>cycle</span>
+      </a>
+      <nav class="links" aria-label="Main">
+        <a href="/robocycle/">Home</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="donate.html">Donate</a>
+        <a href="collection-points.html">Collection Points</a>
+        <a href="my-request.html">My Request</a>
+        <a href="roboguide.html">RoboGuide</a>
+        <a class="btn btn--primary btn--sm nav-cta" href="donate.html">Donate<span class="long">&nbsp;Your Electronics</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <span class="label">RoboGuide</span>
+        <h1>Ask before<br>you do anything risky.</h1>
+        <p class="lede">
+          A guided answer set for the questions people actually have about donating
+          electronics. It is not an AI — see the note underneath.
+        </p>
+      </div>
+    </section>
+
+    <section style="padding-top:14px">
+      <div class="wrap">
+        <div class="guide-shell">
+          <div class="guide-head">
+            <img src="mark.png" alt="" data-logo>
+            <span>
+              <b>RoboGuide</b>
+              <span>Answers from RoboCycle’s own guidance</span>
+            </span>
+          </div>
+
+          <div class="thread" id="thread" role="log" aria-live="polite" aria-label="Conversation">
+            <div class="msg bot">
+              Hello 🌱 I can help with what RoboCycle accepts, how donating works,
+              what the request stages mean, and what to do about a battery that
+              worries you. Ask away, or pick one below.
+            </div>
+          </div>
+
+          <div class="suggestions">
+            <button type="button">What electronics do you accept?</button>
+            <button type="button">How does donating work?</button>
+            <button type="button">Where can I drop things off?</button>
+            <button type="button">My battery is swollen</button>
+            <button type="button">What happens to my data?</button>
+            <button type="button">Are there rewards?</button>
+          </div>
+
+          <form class="guide-form" id="guide-form">
+            <label for="guide-input" class="visually-hidden" style="position:absolute;left:-9999px">Your question</label>
+            <input id="guide-input" type="text" maxlength="300" autocomplete="off"
+                   placeholder="Ask RoboGuide a question…">
+            <button class="btn btn--primary btn--sm" type="submit">Ask</button>
+          </form>
+        </div>
+
+        <p class="guide-note">
+          RoboGuide answers from a fixed set of RoboCycle topics. It is not an AI
+          model, it cannot see your requests or personal details, and it will not
+          explain how to open, dismantle or handle a damaged battery — for that it
+          sends you to a person or the appropriate authority. Anything it does not
+          recognise goes to a human rather than being guessed at.
+        </p>
+      </div>
+    </section>
+  </main>
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="mark" href="/robocycle/">
+            <img src="mark.png" alt="" data-logo>
+            <span class="wordmark">Rob<b>o</b>cycle ♻</span>
+          </a>
+          <p>Old electronics.<br>Safer possibilities.</p>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="/robocycle/">Home</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="donate.html">Donate</a>
+          <a href="collection-points.html">Collection Points</a>
+          <a href="my-request.html">My Request</a>
+          <a href="roboguide.html">RoboGuide</a>
+        </nav>
+      </div>
+      <p class="disclaimer">
+        RoboCycle does not provide emergency, legal, or professional
+        battery-handling services. Operational collection and handling must
+        follow applicable requirements and approved safety procedures. In an
+        emergency in Kuwait, call 112.
+      </p>
+      <div class="foot-row">
+        <span>© 2026 RoboCycle · Kuwait</span>
+        <span class="ar">معاً نعيد تدوير الإلكترونيات</span>
+      </div>
+    </div>
+  </footer>
+</div>
+<script src="journey.js"></script>
+<script src="roboguide.js"></script>
+</body>
+</html>

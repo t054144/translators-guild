@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Donate your electronics — RoboCycle</title>
+<meta name="description" content="Tell RoboCycle what electronics you would like to donate, and how to reach you.">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Kufi+Arabic:wght@400;600&family=Nunito:wght@600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="bar">
+    <div class="wrap">
+      <a class="mark" href="/robocycle/">
+        <img src="mark.png" alt="" data-logo>
+        <span class="wordmark">Rob<b>o</b>cycle</span>
+      </a>
+      <nav class="links" aria-label="Main">
+        <a href="/robocycle/">Home</a>
+        <a href="how-it-works.html">How It Works</a>
+        <a href="donate.html">Donate</a>
+        <a href="collection-points.html">Collection Points</a>
+        <a href="my-request.html">My Request</a>
+        <a href="roboguide.html">RoboGuide</a>
+        <a class="btn btn--primary btn--sm nav-cta" href="donate.html">Donate<span class="long">&nbsp;Your Electronics</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-head">
+      <div class="wrap">
+        <span class="label">Donate</span>
+        <h1>Give your electronics<br>a safer purpose.</h1>
+        <p class="lede">
+          A few questions, so we know what you have and how to handle it safely.
+          Nothing is collected from you beyond what a pickup or drop-off needs.
+        </p>
+      </div>
+    </section>
+
+    <section style="padding-top:14px">
+      <div class="wrap">
+        <div class="donate-card">
+
+          <div class="demo-banner" role="status">
+            <b>Requests are not being accepted yet.</b>
+            RoboCycle has no collection service connected, so this form does not
+            submit or store anything. You can walk through it to see what will be
+            asked — and it will tell you plainly at the end rather than pretending
+            a request went through.
+          </div>
+
+          <ol class="steps-bar" id="steps-bar">
+            <li data-step="1" aria-current="step">Device</li>
+            <li data-step="2">Condition</li>
+            <li data-step="3">Quantity</li>
+            <li data-step="4">Method</li>
+            <li data-step="5">Details</li>
+            <li data-step="6">Review</li>
+          </ol>
+
+          <form id="donate-form" novalidate>
+
+            <!-- 1 ─ device ─────────────────────────────────── -->
+            <div class="step-panel is-on" data-panel="1">
+              <fieldset>
+                <legend>What would you like to donate?</legend>
+                <p class="hint">Pick one to start. You can add more items before you finish.</p>
+                <div class="choices" role="radiogroup" aria-label="Device type">
+                  <label class="choice"><input type="radio" name="device" value="Phone" checked><span class="tick" aria-hidden="true"></span><span>Phone</span></label>
+                  <label class="choice"><input type="radio" name="device" value="Laptop"><span class="tick" aria-hidden="true"></span><span>Laptop</span></label>
+                  <label class="choice"><input type="radio" name="device" value="Tablet"><span class="tick" aria-hidden="true"></span><span>Tablet</span></label>
+                  <label class="choice"><input type="radio" name="device" value="Power bank"><span class="tick" aria-hidden="true"></span><span>Power bank</span></label>
+                  <label class="choice"><input type="radio" name="device" value="Charger or cable"><span class="tick" aria-hidden="true"></span><span>Charger or cable</span></label>
+                  <label class="choice"><input type="radio" name="device" value="Electronic components"><span class="tick" aria-hidden="true"></span><span>Electronic components</span></label>
+                  <label class="choice"><input type="radio" name="device" value="Small electronic device"><span class="tick" aria-hidden="true"></span><span>Small electronic device</span></label>
+                  <label class="choice"><input type="radio" name="device" value="Other"><span class="tick" aria-hidden="true"></span><span>Other</span></label>
+                </div>
+              </fieldset>
+            </div>
+
+            <!-- 2 ─ condition ──────────────────────────────── -->
+            <div class="step-panel" data-panel="2">
+              <fieldset>
+                <legend>What condition is it in?</legend>
+                <p class="hint">This decides how we can accept it. If you are unsure, say so — that is a real answer.</p>
+                <div class="choices" role="radiogroup" aria-label="Condition">
+                  <label class="choice"><input type="radio" name="condition" value="Working" checked><span class="tick" aria-hidden="true"></span><span>Working</span></label>
+                  <label class="choice"><input type="radio" name="condition" value="Not working"><span class="tick" aria-hidden="true"></span><span>Not working</span></label>
+                  <label class="choice"><input type="radio" name="condition" value="Physically damaged" data-risk="1"><span class="tick" aria-hidden="true"></span><span>Physically damaged</span></label>
+                  <label class="choice"><input type="radio" name="condition" value="Battery is swollen" data-risk="1"><span class="tick" aria-hidden="true"></span><span>Battery is swollen</span></label>
+                  <label class="choice"><input type="radio" name="condition" value="Battery is leaking" data-risk="1"><span class="tick" aria-hidden="true"></span><span>Battery is leaking</span></label>
+                  <label class="choice"><input type="radio" name="condition" value="Becomes unusually hot" data-risk="1"><span class="tick" aria-hidden="true"></span><span>Becomes unusually hot</span></label>
+                  <label class="choice"><input type="radio" name="condition" value="I am not sure"><span class="tick" aria-hidden="true"></span><span>I am not sure</span></label>
+                </div>
+              </fieldset>
+
+              <div class="safety-note" id="safety-note" role="alert" aria-live="assertive">
+                <h3>⚠ Please handle this one differently</h3>
+                <p>
+                  Please do not place this device in a normal waste bin or an
+                  unattended RoboCycle collection container. Do not open,
+                  puncture, crush, charge, or attempt to remove a damaged battery.
+                </p>
+                <p>
+                  Contact RoboCycle or the appropriate local authority for safe
+                  handling guidance. In an emergency, call <b>112</b>.
+                </p>
+                <p>
+                  You can still continue this request — we need to know, so that
+                  it is never handled as an ordinary drop-off.
+                </p>
+              </div>
+            </div>
+
+            <!-- 3 ─ quantity ───────────────────────────────── -->
+            <div class="step-panel" data-panel="3">
+              <fieldset>
+                <legend>Roughly how many?</legend>
+                <p class="hint">An estimate is fine.</p>
+                <div class="field" style="max-width:220px">
+                  <label for="f-qty">Approximate quantity</label>
+                  <input id="f-qty" name="quantity" type="number" min="1" max="999" value="1" inputmode="numeric">
+                </div>
+              </fieldset>
+
+              <h3 style="font-size:1.05rem;margin:26px 0 12px">Items in this request</h3>
+              <div id="item-list"></div>
+              <button class="btn btn--ghost btn--sm" type="button" id="add-item">+ Add another item</button>
+            </div>
+
+            <!-- 4 ─ method ─────────────────────────────────── -->
+            <div class="step-panel" data-panel="4">
+              <fieldset>
+                <legend>How would you like to hand it over?</legend>
+                <p class="hint">Neither option is running yet, so whichever you pick we will contact you first.</p>
+                <div class="choices" role="radiogroup" aria-label="Donation method">
+                  <label class="choice"><input type="radio" name="method" value="Drop-off (coming soon)" checked><span class="tick" aria-hidden="true"></span><span>Drop-off <em style="color:var(--accent-orange);font-style:normal">· Coming soon</em></span></label>
+                  <label class="choice"><input type="radio" name="method" value="Request collection (coming soon)"><span class="tick" aria-hidden="true"></span><span>Request collection <em style="color:var(--accent-orange);font-style:normal">· Coming soon</em></span></label>
+                  <label class="choice"><input type="radio" name="method" value="Help me choose"><span class="tick" aria-hidden="true"></span><span>Help me choose</span></label>
+                </div>
+                <p class="hint" style="margin-top:16px">
+                  No collection point has been confirmed yet, so we are not listing
+                  any addresses. <a href="collection-points.html">See collection points</a>.
+                </p>
+              </fieldset>
+            </div>
+
+            <!-- 5 ─ details ────────────────────────────────── -->
+            <div class="step-panel" data-panel="5">
+              <fieldset>
+                <legend>How can we reach you?</legend>
+                <p class="hint">Only what a pickup or drop-off needs. No ID, no date of birth, no home address at this stage.</p>
+
+                <div class="field-row">
+                  <div class="field">
+                    <label for="f-name">First name</label>
+                    <input id="f-name" name="name" type="text" maxlength="60" autocomplete="given-name" required>
+                    <p class="error-text" id="err-name" hidden>Please tell us what to call you.</p>
+                  </div>
+                  <div class="field">
+                    <label for="f-method">Preferred contact method</label>
+                    <select id="f-method" name="contact_method">
+                      <option value="Email">Email</option>
+                      <option value="Phone">Phone</option>
+                      <option value="WhatsApp">WhatsApp</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <label for="f-contact">Email or phone</label>
+                  <input id="f-contact" name="contact" type="text" maxlength="120" autocomplete="email" required>
+                  <p class="error-text" id="err-contact" hidden>We need one way to reach you back.</p>
+                </div>
+
+                <div class="field">
+                  <label for="f-area">Preferred area</label>
+                  <input id="f-area" name="area" type="text" maxlength="80" placeholder="Governorate or area — not your street address">
+                </div>
+
+                <div class="field">
+                  <label for="f-note">Anything else? <span style="color:var(--text-faint);font-weight:400">(optional)</span></label>
+                  <input id="f-note" name="note" type="text" maxlength="300">
+                </div>
+
+                <label class="choice" style="margin-top:6px">
+                  <input type="checkbox" id="f-consent" name="consent" required>
+                  <span class="tick" aria-hidden="true"></span>
+                  <span>I agree to RoboCycle contacting me about this donation request.</span>
+                </label>
+                <p class="error-text" id="err-consent" hidden>We need your agreement before we can contact you.</p>
+              </fieldset>
+            </div>
+
+            <!-- 6 ─ review ─────────────────────────────────── -->
+            <div class="step-panel" data-panel="6">
+              <h2 style="font-size:1.5rem">Check this over</h2>
+              <p class="hint">Everything here can still be changed.</p>
+              <div id="review"></div>
+            </div>
+
+            <div class="form-nav">
+              <button class="btn btn--ghost" type="button" id="back" hidden>← Back</button>
+              <span class="spacer"></span>
+              <button class="btn btn--primary" type="button" id="next">Continue →</button>
+              <button class="btn btn--primary" type="submit" id="submit" hidden>I Want to Donate ♻</button>
+            </div>
+          </form>
+
+          <!-- 7 ─ outcome ──────────────────────────────────── -->
+          <div class="thanks" id="outcome" role="status" aria-live="polite"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap">
+      <div class="foot-grid">
+        <div class="foot-brand">
+          <a class="mark" href="/robocycle/">
+            <img src="mark.png" alt="" data-logo>
+            <span class="wordmark">Rob<b>o</b>cycle ♻</span>
+          </a>
+          <p>Old electronics.<br>Safer possibilities.</p>
+        </div>
+        <nav class="foot-links" aria-label="Footer">
+          <a href="/robocycle/">Home</a>
+          <a href="how-it-works.html">How It Works</a>
+          <a href="donate.html">Donate</a>
+          <a href="collection-points.html">Collection Points</a>
+          <a href="my-request.html">My Request</a>
+          <a href="roboguide.html">RoboGuide</a>
+        </nav>
+      </div>
+      <p class="disclaimer">
+        RoboCycle does not provide emergency, legal, or professional
+        battery-handling services. Operational collection and handling must
+        follow applicable requirements and approved safety procedures. In an
+        emergency in Kuwait, call 112.
+      </p>
+      <div class="foot-row">
+        <span>© 2026 RoboCycle · Kuwait</span>
+        <span class="ar">معاً نعيد تدوير الإلكترونيات</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+<script src="journey.js"></script>
+<script src="donate.js"></script>
+</body>
+</html>
