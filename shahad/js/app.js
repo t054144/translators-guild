@@ -29,6 +29,9 @@ const help       = $('#help');
 
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+/* ?export=1 strips the on-screen controls, for capturing slides as images. */
+if (new URLSearchParams(location.search).has('export')) document.body.classList.add('is-export');
+
 /* ---------- build slide markup ---------- */
 
 function chip(kind, glyph){

@@ -289,7 +289,9 @@ body.is-running #hud{ opacity:1; transform:none; }
   gap:clamp(.6rem,1.2vw,1rem) clamp(1.2rem,2.6vw,2.6rem);
 }
 .grid2 li{ display:flex; align-items:center; gap:.85rem; font-size:clamp(1rem,1.28vw,1.2rem); font-weight:500; }
-.grid2 .chip{ width:clamp(20px,1.85vw,26px); height:clamp(20px,1.85vw,26px); border-radius:6px; }
+/* size only — border-radius is what gives each chip its shape, so leave it
+   to the .chip--* rules rather than flattening them all into squares */
+.grid2 .chip{ width:clamp(20px,1.85vw,26px); height:clamp(20px,1.85vw,26px); }
 
 /* ---------- Quote / closing ---------- */
 .quote{
@@ -467,6 +469,11 @@ body.is-running .mini-btn{ opacity:.55; }
   .points b{ font-size:1.08rem; }
   #helpBtn{ display:none; }
 }
+
+/* ---------- Export mode (?export=1): slide art only ---------- */
+body.is-export #dock,
+body.is-export .mini-btn,
+body.is-export #progress{ display:none !important; }
 
 /* ---------- Motion preferences ---------- */
 @media (prefers-reduced-motion: reduce){

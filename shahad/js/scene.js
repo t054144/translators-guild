@@ -477,8 +477,8 @@ export function createWorld(canvas, slides){
         float(put(mushroom(C.gold, .6), 8.8, -4.6, -3.6), { spin: .3, bob: .2, speed: 1.1 });
         float(put(coin(.5, T.coin), 12.2, .4, -5), { spin: 1.4, bob: .3 });
         float(put(coin(.44, T.coin), -12.4, 1.2, -5.6), { spin: 1.3, bob: .3, speed: .9 });
-        put(cloud(1.3), -9.4, 9.1, -14);
-        put(cloud(1.1), 9.2, 8.6, -17);
+        put(cloud(1.5), -11.2, 12.6, -20);
+        put(cloud(1.2), 10.4, 10.8, -19);
         break;
       }
 
@@ -522,7 +522,7 @@ export function createWorld(canvas, slides){
             : cloud(.4 + Math.random() * .3);
     o.position.set(
       -GAP * .5 + Math.random() * (span + GAP),
-      4.2 + Math.random() * 9,
+      7.6 + Math.random() * 9,
       -30 + Math.random() * 13
     );
     scene.add(o);
