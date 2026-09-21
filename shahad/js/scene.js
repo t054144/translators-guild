@@ -7,7 +7,10 @@
    built from primitives, so nothing here needs an asset file.
    ============================================================ */
 
-import * as THREE from 'three';
+// A plain relative path, not a bare specifier: bare specifiers need an import
+// map, which Safari only understands from iOS 16.4. An older iPhone would fail
+// to resolve it and render nothing at all.
+import * as THREE from '../vendor/three.module.min.js';
 
 const GAP   = 26;      // distance between stations
 const SHIFT = 4.6;     // pushes props to the right of the text column
