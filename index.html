@@ -1123,7 +1123,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 9 &middot; 21 Sep</p>
+        <p class="build-mark">Guild build 10 &middot; 21 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -2834,7 +2834,67 @@ function callbackURL() {
    The third case is the one that mattered: treated as the second, it
    parks the member in front of six boxes waiting for a code that will
    never arrive. It is now recognised and sent to the log-in form. */
+/* ═══════════ ENROLMENT ═══════════
+   Joining the Guild does not go through Supabase's public sign-up, and for
+   a concrete reason. That endpoint insists on sending a confirmation email
+   through Supabase's shared sender, which allows roughly two messages an
+   hour for the entire site. In a room of students the third person to try
+   is refused outright — the endpoint answers 429 and no account is made at
+   all. People were being turned away by a mail quota that had nothing to do
+   with them.
+
+   Instead the Guild has its own enrolment function, running on Supabase
+   with the service-role key that never reaches this page. It creates the
+   account already settled, sends no message, and so has no quota. The
+   member is then signed in with their password in the ordinary way.
+
+   The cost, said plainly: an address is no longer proved to belong to the
+   person typing it. When a real mail provider is connected and Supabase's
+   own confirmation is switched back on, the six-digit flow below takes
+   over again and the proof returns. Nothing here has to be rewritten for
+   that: this path simply stops being used. */
+const ENROL_URL = SUPABASE.url + "/functions/v1/guild-enrol";
+
+async function enrol(email, pass, profile) {
+  const r = await fetch(ENROL_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "apikey": SUPABASE.key },
+    body: JSON.stringify({
+      email: email,
+      password: pass,
+      first_name: (profile && profile.first_name) || "",
+      last_name: (profile && profile.last_name) || ""
+    })
+  });
+  let j = null;
+  try { j = await r.json(); } catch (e) {}
+  if (r.ok) return { ok: true };
+  const err = new Error((j && j.message) || "enrolment failed");
+  err.code = (j && j.error) || "";
+  err.status = r.status;
+  throw err;
+}
+
 async function signUp(email, pass, profile) {
+  /* The Guild's own door first. */
+  try {
+    await enrol(email, pass, profile);
+    /* The account exists and is settled, so an ordinary log-in completes it. */
+    const sess = await signIn(email, pass);
+    return { session: sess, alreadyRegistered: false };
+  } catch (e) {
+    if (e.code === "already_registered" || e.status === 409) {
+      return { session: null, alreadyRegistered: true };
+    }
+    if (e.code === "weak_password" || e.code === "bad_email" || e.status === 429) {
+      throw e;                       /* a real answer about the member's input */
+    }
+    /* The function is unreachable or broken. Rather than leave somebody
+       unable to join, fall back to Supabase's own sign-up, which still
+       works whenever the mail quota has not been spent. */
+    console.warn("enrolment unavailable, falling back to Supabase sign-up:", e.message);
+  }
+
   const j = await authPost(
     "/signup?redirect_to=" + encodeURIComponent(callbackURL()),
     { email: email, password: pass, data: profile || {} }
@@ -3612,8 +3672,14 @@ async function pressSeal() {
          member and is not fixed by trying again immediately. Saying "try
          again in a few minutes" sent people round the same loop seven
          times, so the message now says what actually happened. */
+      if (e.code === "weak_password") {
+        setErr("pass", e.message || "Choose a longer password.");
+        gateEl.pass.focus();
+        return;
+      }
       if (e.status === 429 || /rate limit|too many/i.test(e.message || "")) {
-        gateSay("The Guild has sent as many confirmation emails as it is allowed this hour, " +
+        gateSay(e.message ||
+                "The Guild has sent as many confirmation emails as it is allowed this hour, " +
                 "so your account could not be created just now. This is a limit on our side, " +
                 "not a problem with your address. Please try again in an hour.");
         return;
