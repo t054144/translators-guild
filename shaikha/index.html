@@ -182,160 +182,6 @@
     .grain{animation:none}
     .deck{scroll-behavior:auto}
   }
-
-  /* ---------- Things I Like: the interactive hub ---------- */
-  .hub li{padding-left:0}
-  .hub li::before{display:none}
-  .hub .open{
-    -webkit-appearance:none;appearance:none;background:none;border:0;
-    display:inline-flex;align-items:center;gap:clamp(14px,1.6vw,26px);
-    padding:clamp(8px,1vh,12px) 0;min-height:44px;
-    font:inherit;font-size:inherit;color:var(--dim);letter-spacing:.02em;
-    cursor:pointer;text-align:left;
-    transition:color .45s ease,letter-spacing .55s ease;
-  }
-  .hub .open::before{
-    content:"";width:clamp(18px,2.4vw,44px);height:1px;background:var(--accent);
-    flex:none;transition:width .55s cubic-bezier(.2,.7,.2,1),opacity .4s ease;opacity:.8;
-  }
-  .hub button.open{color:rgba(242,239,233,.80)}
-  .hub button.open::after{
-    content:"+";font-size:.46em;font-weight:200;color:var(--accent);
-    opacity:.5;margin-left:.15em;
-    transition:opacity .4s ease,transform .5s cubic-bezier(.2,.7,.2,1);
-  }
-  .hub button.open:hover::after,.hub button.open:focus-visible::after{
-    opacity:1;transform:rotate(90deg);
-  }
-  .hub .open:hover,.hub .open:focus-visible{color:var(--ink);letter-spacing:.05em;outline:none}
-  .hub .open:hover::before,.hub .open:focus-visible::before{width:clamp(34px,5vw,86px);opacity:1}
-  .hub .open:focus-visible{text-decoration:underline;text-underline-offset:8px;
-    text-decoration-color:var(--accent);text-decoration-thickness:1px}
-
-  /* ---------- the reveal, inside the same scene ---------- */
-  .panel{
-    position:absolute;inset:0;z-index:5;
-    padding:clamp(52px,8vh,80px) var(--pad) clamp(52px,8vh,76px);
-    display:flex;flex-direction:column;justify-content:center;overflow:auto;
-    background:radial-gradient(ellipse at 30% 20%,rgba(20,18,16,.72),rgba(5,5,6,.93) 70%);
-    -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
-    opacity:0;transform:scale(1.035) translateY(12px);pointer-events:none;
-    transition:opacity .62s cubic-bezier(.2,.7,.2,1),transform .62s cubic-bezier(.2,.7,.2,1);
-  }
-  .panel[hidden]{display:none}
-  .panel.open{opacity:1;transform:none;pointer-events:auto}
-  .panel h3.ptitle{
-    font-family:'Cormorant Garamond',serif;font-weight:300;
-    font-size:clamp(26px,4.2vw,58px);line-height:1.05;margin-bottom:clamp(6px,1.2vh,14px);
-    letter-spacing:.005em;color:var(--ink);text-transform:none;
-  }
-  .panel .psub{
-    font-size:clamp(10px,.78vw,13px);letter-spacing:.38em;text-transform:uppercase;
-    color:var(--accent);margin-bottom:clamp(20px,3.4vh,40px);
-  }
-  .close{
-    position:absolute;top:clamp(18px,3vh,32px);right:var(--pad);
-    width:44px;height:44px;display:grid;place-items:center;
-    background:none;border:1px solid var(--rule);color:var(--dim);
-    font-size:17px;line-height:1;cursor:pointer;
-    transition:border-color .35s,color .35s,transform .35s;
-  }
-  .close:hover,.close:focus-visible{border-color:var(--accent);color:var(--ink);transform:rotate(90deg);outline:none}
-
-  /* a panel's contents rise as it opens */
-  .panel .rise{opacity:0;transform:translateY(16px);
-    transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-  .panel.open .rise{opacity:1;transform:none}
-  .panel.open .rise:nth-child(2){transition-delay:.08s}
-  .panel.open .rise:nth-child(3){transition-delay:.16s}
-  .panel.open .rise:nth-child(4){transition-delay:.24s}
-
-  /* portraits inside a panel */
-  .figs{display:grid;gap:clamp(16px,2.4vw,34px);
-    grid-template-columns:repeat(auto-fit,minmax(min(170px,44vw),1fr));
-    max-width:min(760px,100%)}
-  .figs figure{margin:0}
-  .figs img{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;
-    border:1px solid var(--rule);
-    filter:grayscale(.6) contrast(1.05) brightness(.93);
-    transition:filter .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
-  .figs figure:hover img{filter:grayscale(.1) brightness(1);transform:translateY(-5px)}
-  .figs figcaption{margin-top:11px;font-size:clamp(13px,1.15vw,17px);color:var(--ink)}
-  .figs figcaption[lang="ar"]{text-align:left}
-
-  /* the two podcast names */
-  .shows{display:flex;flex-wrap:wrap;gap:clamp(18px,3vw,48px);
-    margin-bottom:clamp(22px,3.6vh,44px)}
-  .shows span{
-    font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;
-    font-size:clamp(22px,3.2vw,46px);font-weight:300;color:var(--ink);
-  }
-
-  /* poetry: ink on paper */
-  #p-poetry{
-    background:
-      radial-gradient(ellipse at 72% 18%,rgba(200,164,106,.09),transparent 58%),
-      repeating-linear-gradient(94deg,rgba(242,239,233,.014) 0 2px,transparent 2px 7px),
-      radial-gradient(ellipse at 30% 20%,rgba(24,20,16,.78),rgba(5,5,6,.95) 70%);
-  }
-  .poem{display:flex;flex-direction:column;gap:clamp(16px,2.8vh,34px);
-    max-width:min(64ch,100%)}
-  .poem .who{
-    font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;
-    font-size:clamp(20px,2.7vw,38px);font-weight:400;color:var(--ink);width:fit-content;
-  }
-  .poem .epithet{
-    font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;
-    font-size:clamp(12px,1.05vw,16px);color:var(--dim);margin-top:7px;width:fit-content;
-  }
-  .poem .say{
-    font-family:Amiri,serif;direction:rtl;text-align:right;
-    font-size:clamp(14px,1.45vw,23px);line-height:2;color:var(--ink);
-    border-left:1px solid var(--accent);padding-left:clamp(12px,1.2vw,20px);
-    margin-top:10px;width:fit-content;
-  }
-  .poem .work{
-    font-family:Amiri,serif;direction:rtl;font-size:clamp(16px,1.7vw,26px);
-    color:var(--ink);margin-top:10px;width:fit-content;
-  }
-  .poem-grid{display:grid;gap:clamp(24px,4vw,56px);align-items:start;
-    grid-template-columns:minmax(0,1fr)}
-  .poem-grid.with-photo{grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr)}
-
-  /* books */
-  .shelf{display:grid;gap:clamp(18px,2.6vw,38px);
-    grid-template-columns:repeat(auto-fit,minmax(min(150px,42vw),1fr));
-    max-width:min(900px,100%)}
-  .shelf figure{margin:0}
-  .shelf img{width:100%;aspect-ratio:2/3;object-fit:cover;display:block;
-    border:1px solid var(--rule);
-    transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s ease}
-  .shelf figure:hover img{transform:translateY(-6px);
-    box-shadow:0 18px 44px rgba(0,0,0,.55)}
-  .shelf .bt{display:block;margin-top:12px;font-size:clamp(13px,1.1vw,16px);color:var(--ink);line-height:1.35}
-  .shelf .ba{display:block;margin-top:4px;font-size:clamp(10px,.78vw,12px);
-    letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
-
-  /* closing motifs */
-  .echo{display:flex;flex-wrap:wrap;gap:10px clamp(16px,2.4vw,34px);justify-content:center;
-    max-width:min(720px,100%);margin-bottom:clamp(30px,6vh,68px)}
-  .echo span{font-size:clamp(9px,.72vw,12px);letter-spacing:.34em;text-transform:uppercase;
-    color:var(--faint);opacity:0;transform:translateY(6px);
-    transition:opacity 1.1s ease,transform 1.1s ease;transition-delay:calc(var(--i) * .14s)}
-  .slide.live .echo span{opacity:1;transform:none}
-  .slide.live.dim .echo span{opacity:0;transform:translateY(-7px);transition-delay:calc(var(--i) * .05s)}
-
-  @media (max-width:760px){
-    .panel{justify-content:flex-start;padding-top:clamp(74px,13vh,104px)}
-    .poem-grid.with-photo{grid-template-columns:1fr}
-    .close{right:clamp(16px,4vw,26px)}
-    .figs{grid-template-columns:repeat(2,minmax(0,1fr))}
-    .hub .open{font-size:clamp(20px,6vw,30px)}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .panel,.panel .rise,.echo span{transition-duration:.01ms}
-    .close:hover{transform:none}
-  }
 </style>
 </head>
 <body>
@@ -346,16 +192,12 @@
 
 <div class="deck" id="deck" tabindex="0">
 
-  <!-- 01 introduction -->
+  <!-- 01 -->
   <section class="slide title-slide" data-scene="0">
     <h1>Shaikha<br>Al-Khaldi</h1>
-    <div class="fields">
-      <div>Linguistics<span>Major</span></div>
-      <div>Translation Studies<span>Minor</span></div>
-    </div>
   </section>
 
-  <!-- 02 what I study -->
+  <!-- 02 -->
   <section class="slide" data-scene="1">
     <span class="kicker">02</span>
     <h2>What I Study</h2>
@@ -363,17 +205,24 @@
     <div class="body">
       <div>
         <div class="set">
-          <h3>Linguistics</h3>
+          <h3>Degree</h3>
           <ul>
-            <li>Phonetics</li>
-            <li>Phonology</li>
-            <li>IPA</li>
+            <li>Linguistics<span class="tag">Major</span></li>
+            <li>Translation Studies<span class="tag">Minor</span></li>
           </ul>
         </div>
         <div class="set">
-          <h3>Translation</h3>
+          <h3>Where My Interest Sits</h3>
           <ul>
-            <li>Translation Studies</li>
+            <li>Phonetics
+              <span class="sub">How speech sounds are produced, transmitted and perceived.</span>
+            </li>
+            <li>Phonology
+              <span class="sub">How those sounds are organised into a system within a language.</span>
+            </li>
+            <li>Generative Phonology
+              <span class="sub">The rules underlying that system, and what they predict.</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -383,95 +232,85 @@
     </div>
   </section>
 
-  <!-- 03 my aims -->
+  <!-- 03 -->
   <section class="slide" data-scene="2">
     <span class="kicker">03</span>
-    <h2>My Aims</h2>
+    <h2>Where I Am Headed</h2>
     <div class="bar"></div>
     <div class="body">
-      <ul>
-        <li>Simultaneous Interpreting (UN)</li>
-      </ul>
+      <div class="set">
+        <h3>The Goal</h3>
+        <ul>
+          <li>Conference Interpreter
+            <span class="sub">The career I am working toward.</span>
+          </li>
+          <li>Simultaneous Interpreting
+            <span class="sub">Working from the booth, in real time, as the speaker speaks.</span>
+          </li>
+          <li>The United Nations
+            <span class="sub">Where I want that work to take place.</span>
+          </li>
+        </ul>
+      </div>
       <figure class="media" hidden>
         <img data-src="assets/slide-03.jpg" alt="">
       </figure>
     </div>
   </section>
 
-  <!-- 04 things I like — one scene, three reveals -->
-  <section class="slide" data-scene="3" id="likes">
+  <!-- 04 -->
+  <section class="slide" data-scene="3">
     <span class="kicker">04</span>
     <h2>Things I Like</h2>
     <div class="bar"></div>
     <div class="body">
-      <ul class="hub">
-        <li><button class="open" data-panel="books" data-scene="3">Books</button></li>
-        <li><button class="open" data-panel="podcasts" data-scene="4">Podcasts</button></li>
-        <li><button class="open" data-panel="poetry" data-scene="5">Arabic Poetry</button></li>
+      <ul>
+        <li>Books</li>
+        <li>Cinema</li>
+        <li>Podcasts
+          <span class="sub">Bidoun Waraq &middot; Finjan</span>
+          <span class="sub">Dr. Nayef bin Nahar &middot; Yasser Al-Huzaimi</span>
+        </li>
+        <li>Arabic Poetry</li>
       </ul>
-    </div>
-
-    <div class="panel" id="p-books" role="dialog" aria-modal="true" aria-label="Books I recommend" hidden>
-      <button class="close" aria-label="Back">&times;</button>
-      <h3 class="ptitle rise">Books I Recommend</h3>
-      <p class="psub rise">Books</p>
-      <div class="shelf rise" id="shelf"></div>
-    </div>
-
-    <div class="panel" id="p-podcasts" role="dialog" aria-modal="true" aria-label="Podcasts" hidden>
-      <button class="close" aria-label="Back">&times;</button>
-      <h3 class="ptitle rise">Podcasts</h3>
-      <div class="shows rise">
-        <span>&#1576;&#1583;&#1608;&#1606; &#1608;&#1585;&#1602;</span>
-        <span>&#1601;&#1606;&#1580;&#1575;&#1606;</span>
-      </div>
-      <div class="figs rise" id="voices">
-        <figure><img data-src="assets/nayef-bin-nahar.jpg" alt="&#1583;. &#1606;&#1575;&#1610;&#1601; &#1576;&#1606; &#1606;&#1607;&#1575;&#1585;"><figcaption lang="ar">&#1583;. &#1606;&#1575;&#1610;&#1601; &#1576;&#1606; &#1606;&#1607;&#1575;&#1585;</figcaption></figure>
-        <figure><img data-src="assets/yasser-alhuzaimi.jpg" alt="&#1571;. &#1610;&#1575;&#1587;&#1585; &#1575;&#1604;&#1581;&#1586;&#1610;&#1605;&#1610;"><figcaption lang="ar">&#1571;. &#1610;&#1575;&#1587;&#1585; &#1575;&#1604;&#1581;&#1586;&#1610;&#1605;&#1610;</figcaption></figure>
-      </div>
-    </div>
-
-    <div class="panel" id="p-poetry" role="dialog" aria-modal="true" aria-label="Arabic poetry" hidden>
-      <button class="close" aria-label="Back">&times;</button>
-      <h3 class="ptitle rise">Arabic Poetry</h3>
-      <p class="psub rise">Poets I Return To</p>
-      <div class="poem-grid rise" id="poemgrid">
-        <div class="poem">
-          <div>
-            <div class="who">&#1575;&#1605;&#1585;&#1572; &#1575;&#1604;&#1602;&#1610;&#1587;</div>
-            <div class="say">&#1608;&#1604;&#1610;&#1604;&#1613; &#1603;&#1605;&#1608;&#1580;&#1616; &#1575;&#1604;&#1576;&#1581;&#1618;&#1585;&#1616; &#1571;&#1585;&#1582;&#1609; &#1587;&#1615;&#1583;&#1615;&#1608;&#1604;&#1614;&#1607;&#1615; &nbsp;&#183;&nbsp; &#1593;&#1604;&#1610;&#1614;&#1617; &#1576;&#1571;&#1606;&#1608;&#1575;&#1593; &#1575;&#1604;&#1607;&#1605;&#1608;&#1605;&#1616; &#1604;&#1610;&#1576;&#1578;&#1604;&#1610;..<br>&#1601;&#1602;&#1615;&#1604;&#1618;&#1578;&#1615; &#1604;&#1607;&#1615; &#1604;&#1605;&#1617;&#1614;&#1575; &#1578;&#1605;&#1591;&#1617;&#1614;&#1609; &#1576;&#1589;&#1615;&#1604;&#1618;&#1576;&#1616;&#1607;&#1616; &nbsp;&#183;&nbsp; &#1608; &#1571;&#1585;&#1583;&#1614;&#1601; &#1571;&#1593;&#1580;&#1575;&#1586;&#1611;&#1575;&#1548; &#1608; &#1606;&#1575;&#1569;&#1614; &#1576;&#1603;&#1614;&#1604;&#1618;&#1603;&#1614;&#1604;&#1616;!<br>&#1571;&#1604;&#1575; &#1571;&#1610;&#1607;&#1575; &#1575;&#1604;&#1604;&#1610;&#1604;&#1615; &#1575;&#1604;&#1591;&#1608;&#1610;&#1604;&#1615; &#1571;&#1604;&#1575; &#1575;&#1606;&#1580;&#1604;&#1610; &nbsp;&#183;&nbsp; &#1576;&#1589;&#1576;&#1581;&#1613;&#1548; &#1608;&#1605;&#1575; &#1575;&#1604;&#1573;&#1589;&#1618;&#1576;&#1575;&#1581;&#1615; &#1605;&#1606;&#1603;&#1614; &#1576;&#1571;&#1605;&#1579;&#1604;</div>
-          </div>
-          <div>
-            <div class="who">&#1575;&#1604;&#1605;&#1578;&#1606;&#1576;&#1610;</div>
-            <div class="say">&#1608;&#1573;&#1606; &#1603;&#1606;&#1578;&#1615; &#1575;&#1604;&#1571;&#1582;&#1610;&#1585;&#1614; &#1586;&#1605;&#1575;&#1606;&#1615;&#1607;&#1615;<br>&#1604;&#1570;&#1578;&#1613; &#1576;&#1605;&#1575; &#1604;&#1605; &#1578;&#1587;&#1578;&#1591;&#1616;&#1593;&#1618;&#1607;&#1615; &#1575;&#1604;&#1571;&#1608;&#1575;&#1574;&#1604;&#1615;</div>
-          </div>
-          <div>
-            <div class="who">&#1576;&#1583;&#1585; &#1576;&#1606; &#1593;&#1576;&#1583;&#1575;&#1604;&#1605;&#1581;&#1587;&#1606;</div>
-            <div class="epithet">&#1575;&#1604;&#1576;&#1583;&#1585; &#183; &#1605;&#1607;&#1606;&#1583;&#1587; &#1575;&#1604;&#1603;&#1604;&#1605;&#1577;</div>
-            <div class="work">&#1585;&#1583;&#1610;&#1606;&#1610;</div>
-          </div>
-        </div>
-        <figure class="media" id="badr" hidden>
-          <img data-src="assets/badr-bin-abdulmohsen.jpg" alt="&#1576;&#1583;&#1585; &#1576;&#1606; &#1593;&#1576;&#1583;&#1575;&#1604;&#1605;&#1581;&#1587;&#1606;">
-          <figcaption lang="ar">&#1576;&#1583;&#1585; &#1576;&#1606; &#1593;&#1576;&#1583;&#1575;&#1604;&#1605;&#1581;&#1587;&#1606;</figcaption>
-        </figure>
+      <div class="media row" hidden>
+        <figure><img data-src="assets/bidoun-waraq.jpg" alt="Bidoun Waraq"><figcaption>Bidoun Waraq</figcaption></figure>
+        <figure><img data-src="assets/finjan.jpg" alt="Finjan"><figcaption>Finjan</figcaption></figure>
+        <figure><img data-src="assets/nayef-bin-nahar.jpg" alt="Dr. Nayef bin Nahar"><figcaption>Dr. Nayef bin Nahar</figcaption></figure>
+        <figure><img data-src="assets/yasser-alhuzaimi.jpg" alt="Yasser Al-Huzaimi"><figcaption>Yasser Al-Huzaimi</figcaption></figure>
       </div>
     </div>
   </section>
 
-  <!-- 05 things that shaped me -->
-  <section class="slide" data-scene="4">
+  <!-- 05 -->
+  <section class="slide" data-scene="5">
     <span class="kicker">05</span>
-    <h2>Things That Shaped Me</h2>
+    <h2>Arabic Poetry</h2>
     <div class="bar"></div>
     <div class="body">
+      <div class="set poets">
+        <h3>Poets I Return To</h3>
+        <ul>
+          <li>Imru&rsquo; al-Qais
+            <span class="line" lang="ar">وليلٍ كموجِ البحْرِ أرخى سُدُولَهُ &nbsp;·&nbsp; عليَّ بأنواع الهمومِ ليبتلي..<br>فقُلْتُ لهُ لمَّا تمطَّى بصُلْبِهِ &nbsp;·&nbsp; و أردَف أعجازًا، و ناءَ بكَلْكَلِ!<br>ألا أيها الليلُ الطويلُ ألا انجلي &nbsp;·&nbsp; بصبحٍ، وما الإصْباحُ منكَ بأمثل</span>
+          </li>
+          <li>Al-Mutanabbi
+            <span class="line" lang="ar">وإن كنتُ الأخيرَ زمانُهُ &nbsp;·&nbsp; لآتٍ بما لم تستطِعْهُ الأوائلُ</span>
+          </li>
+          <li>Badr bin Abdulmohsen
+            <span class="tag">Al-Badr &middot; The Architect of the Word</span>
+            <span class="line" lang="ar">رديني</span>
+          </li>
+        </ul>
+      </div>
       <figure class="media" hidden>
-        <img data-src="assets/slide-05.jpg" alt="">
+        <img data-src="assets/badr-bin-abdulmohsen.jpg" alt="Badr bin Abdulmohsen">
+        <figcaption>Badr bin Abdulmohsen</figcaption>
       </figure>
     </div>
   </section>
 
-  <!-- 06 beyond language -->
+  <!-- 06 -->
   <section class="slide" data-scene="6">
     <span class="kicker">06</span>
     <h2>Beyond Language</h2>
@@ -500,15 +339,14 @@
     </div>
   </section>
 
-  <!-- 07 a few things about me -->
-  <section class="slide" data-scene="7">
+  <!-- 07 — this slide only appears once it has bullet points of your own.
+       Add <li> items below and it switches itself on. -->
+  <section class="slide" data-scene="7" data-needs-content>
     <span class="kicker">07</span>
-    <h2>A Few Things About Me</h2>
+    <h2>Fun Things About Me</h2>
     <div class="bar"></div>
     <div class="body">
       <ul>
-        <li>Morning Person</li>
-        <li>Disciplined</li>
       </ul>
       <figure class="media" hidden>
         <img data-src="assets/slide-07.jpg" alt="">
@@ -516,7 +354,7 @@
     </div>
   </section>
 
-  <!-- 08 principles -->
+  <!-- 08 -->
   <section class="slide" data-scene="8">
     <span class="kicker">08</span>
     <h2>Principles I Live By</h2>
@@ -526,30 +364,21 @@
         <li>Know where you come from
           <span class="sub">Language, culture, and identity are worth understanding and preserving.</span>
         </li>
-        <li>Choose your words well
-          <span class="sub">The way we speak to others matters.</span>
+        <li>Words matter
+          <span class="sub">Choose them carefully. The way we speak to people matters.</span>
         </li>
-        <li>Kindness &amp; good manners
-          <span class="sub">Respect and kindness never go out of place.</span>
+        <li>Good manners matter
+          <span class="sub">Politeness is never outdated. Respect, kindness, and proper manners matter.</span>
         </li>
-        <li>Keep growing
-          <span class="sub">There is always room to learn and improve.</span>
+        <li>Never stop improving
+          <span class="sub">There is always something to learn, refine, or do better.</span>
         </li>
       </ul>
     </div>
   </section>
 
-  <!-- 09 still becoming -->
+  <!-- 09 -->
   <section class="slide end-slide" data-scene="9">
-    <div class="echo">
-      <span style="--i:0">Linguistics</span>
-      <span style="--i:1">Translation</span>
-      <span style="--i:2">Interpreting</span>
-      <span style="--i:3">Books</span>
-      <span style="--i:4">Podcasts</span>
-      <span style="--i:5">Arabic Poetry</span>
-      <span style="--i:6">Technology</span>
-    </div>
     <p class="closing">Still Becoming</p>
     <h1 style="font-size:clamp(34px,6.6vw,104px)">Shaikha Al-Khaldi</h1>
   </section>
@@ -563,18 +392,6 @@
 </nav>
 
 <script>
-/* ------------------------------------------------------------------
-   BOOKS I RECOMMEND — add your books here.
-   cover is a file in assets/ and is optional: leave it out (or leave
-   the file absent) and the title and author still show.
-   While this list is empty, BOOKS stays a plain label rather than a
-   reveal, so nothing opens onto an empty panel.
-
-   { title:'...', author:'...', cover:'assets/book-1.jpg' },
--------------------------------------------------------------------*/
-var BOOKS = [
-];
-
 var deck=document.getElementById('deck');
 
 /* a slide marked data-needs-content is left out until it has bullet points */
@@ -589,9 +406,7 @@ var index=0;
 
 /* pictures: load only if the file is really there, otherwise the slide stays text-only */
 slides.forEach(function(slide){
-  [].slice.call(slide.querySelectorAll('.media')).filter(function(m){
-    return !m.closest('.panel');
-  }).forEach(function(media){
+  slide.querySelectorAll('.media').forEach(function(media){
     var imgs=[].slice.call(media.querySelectorAll('img')), pending=imgs.length, any=false;
     imgs.forEach(function(img){
       var fig=img.closest('figure');
@@ -639,11 +454,6 @@ document.getElementById('prev').onclick=function(){go(index-1);};
 
 addEventListener('keydown',function(e){
   var k=e.key;
-  if(window.__panelOpen&&window.__panelOpen()){
-    if(k==='Escape'||k==='Backspace'){e.preventDefault();window.__panelClose();}
-    else if(k!=='Tab'&&k!=='f'&&k!=='F') e.preventDefault();
-    return;
-  }
   if(k==='ArrowRight'||k==='ArrowDown'||k==='PageDown'||k===' '||k==='Enter'){e.preventDefault();go(index+1);}
   else if(k==='ArrowLeft'||k==='ArrowUp'||k==='PageUp'){e.preventDefault();go(index-1);}
   else if(k==='Home'){e.preventDefault();go(0);}
@@ -653,108 +463,6 @@ addEventListener('keydown',function(e){
     else document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();
   }
 });
-/* panel pictures: shown only if the real file is present */
-[].slice.call(document.querySelectorAll('.panel img[data-src]')).forEach(function(img){
-  var fig=img.closest('figure'), grid=img.closest('.poem-grid');
-  img.addEventListener('load',function(){
-    if(fig){fig.hidden=false;}
-    if(grid) grid.classList.add('with-photo');
-  });
-  img.addEventListener('error',function(){ if(fig) fig.remove(); else img.remove(); });
-  img.src=img.dataset.src;
-});
-
-/* ---------- Things I Like: reveals inside the one scene ---------- */
-(function(){
-  var shelf=document.getElementById('shelf'),
-      likes=document.getElementById('likes'),
-      openBtn=[].slice.call(document.querySelectorAll('.hub .open')),
-      live=null, lastFocus=null;
-
-  /* the shelf is built from BOOKS; with no books, BOOKS stops being a button */
-  if(BOOKS.length){
-    BOOKS.forEach(function(b){
-      var fig=document.createElement('figure');
-      if(b.cover){
-        var img=new Image();
-        img.alt=b.title||'';img.src=b.cover;
-        img.addEventListener('error',function(){img.remove();});
-        fig.appendChild(img);
-      }
-      var cap=document.createElement('figcaption');
-      cap.innerHTML='<b class="bt"></b><span class="ba"></span>';
-      cap.querySelector('.bt').textContent=b.title||'';
-      cap.querySelector('.ba').textContent=b.author||'';
-      fig.appendChild(cap);
-      shelf.appendChild(fig);
-    });
-  }else{
-    var b=document.querySelector('.hub .open[data-panel="books"]');
-    if(b){
-      var plain=document.createElement('span');
-      plain.className='open';plain.textContent=b.textContent;
-      plain.style.cursor='default';plain.style.color='var(--dim)';
-      b.parentNode.replaceChild(plain,b);
-      openBtn=openBtn.filter(function(x){return x!==b;});
-    }
-  }
-
-  function open(name,scene,btn){
-    var panel=document.getElementById('p-'+name);
-    if(!panel||live) return;
-    live=panel;lastFocus=btn||null;
-    panel.hidden=false;
-    deck.style.overflowY='hidden';
-    requestAnimationFrame(function(){requestAnimationFrame(function(){
-      panel.classList.add('open');
-    });});
-    if(window.__scene&&scene!=null) window.__scene(+scene);
-    var c=panel.querySelector('.close');
-    if(c) c.focus({preventScroll:true});
-  }
-  function close(){
-    if(!live) return;
-    var panel=live;live=null;
-    panel.classList.remove('open');
-    deck.style.overflowY='';
-    if(window.__scene) window.__scene(3);
-    if(lastFocus) lastFocus.focus({preventScroll:true});
-    setTimeout(function(){if(!panel.classList.contains('open')) panel.hidden=true;},650);
-  }
-  window.__panelOpen=function(){return !!live;};
-  window.__panelClose=close;
-
-  openBtn.forEach(function(btn){
-    btn.addEventListener('click',function(){open(btn.dataset.panel,btn.dataset.scene,btn);});
-  });
-  [].slice.call(document.querySelectorAll('.panel .close')).forEach(function(c){
-    c.addEventListener('click',close);
-  });
-  /* tapping the quiet area of a panel also closes it */
-  [].slice.call(document.querySelectorAll('.panel')).forEach(function(pn){
-    pn.addEventListener('click',function(e){if(e.target===pn) close();});
-  });
-  /* a panel belongs to its slide: leaving the slide closes it */
-  new IntersectionObserver(function(es){
-    es.forEach(function(e){if(!e.isIntersecting) close();});
-  },{root:deck,threshold:.35}).observe(likes);
-})();
-
-/* ---------- the ending: the motifs return, then go ---------- */
-(function(){
-  var end=document.querySelector('.end-slide');
-  if(!end) return;
-  new IntersectionObserver(function(es){
-    es.forEach(function(e){
-      clearTimeout(end._t);
-      if(e.isIntersecting){
-        end.classList.remove('dim');
-        end._t=setTimeout(function(){end.classList.add('dim');},2800);
-      }else end.classList.remove('dim');
-    });
-  },{root:deck,threshold:.6}).observe(end);
-})();
-
 deck.focus();
 
 /* ---------- background ---------- */

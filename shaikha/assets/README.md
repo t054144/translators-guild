@@ -1,59 +1,48 @@
 # Images
 
-Drop files in this folder using the exact filenames below. Nothing else needs
-changing. If a file is not here, that part of the site simply leaves it out —
-no broken image, no empty frame, no substitute — so the site is always safe to
-show as it stands.
+Drop image files in this folder using the exact filenames below. Each slide
+picks its image up automatically and switches to a two-column layout: bullet
+points on the left, picture on the right.
 
-## Photographs of people (use your own originals only)
+If a file is not here, that slide simply stays text-only. It never shows a
+broken image or an empty placeholder box, so the deck is always safe to
+present as it stands.
 
-| File | Where it appears |
-|---|---|
-| `nayef-bin-nahar.jpg` | Things I Like → Podcasts reveal |
-| `yasser-alhuzaimi.jpg` | Things I Like → Podcasts reveal |
-| `badr-bin-abdulmohsen.jpg` | Things I Like → Arabic Poetry reveal |
+| Slide | File | What it is |
+|---|---|---|
+| 02 What I Study | `slide-02.jpg` | optional — IPA chart, spectrogram, notes |
+| 03 Where I Am Headed | `slide-03.jpg` | optional — UN hall, interpreting booth |
+| 04 Things I Like | `bidoun-waraq.jpg` | Bidoun Waraq |
+| 04 | `finjan.jpg` | Finjan |
+| 04 | `nayef-bin-nahar.jpg` | Dr. Nayef bin Nahar |
+| 04 | `yasser-alhuzaimi.jpg` | Yasser Al-Huzaimi |
+| 05 Arabic Poetry | `badr-bin-abdulmohsen.jpg` | Badr bin Abdulmohsen |
+| 06 Beyond Language | `slide-06.jpg` | optional — code, terminal |
+| 07 Fun Things About Me | `slide-07.jpg` | optional |
 
-Names already sit beneath each photograph. Portraits read best around 4:5.
+Notes
+- Filenames must end in `.jpg`. If yours are `.png`, either rename them or
+  change the matching `data-src` in `../index.html`.
+- Landscape or square works best. Slide 04 places its four images in a 2x2
+  grid; whichever are missing are dropped and the rest fill the space.
+- Images are shown slightly desaturated to match the deck. The original files
+  are never modified.
 
-## Atmosphere images (all optional)
+## The "Fun Things About Me" slide
 
-| File | Slide |
-|---|---|
-| `slide-02.jpg` | What I Study |
-| `slide-03.jpg` | My Aims |
-| `slide-05.jpg` | Things That Shaped Me |
-| `slide-06.jpg` | Beyond Language |
-| `slide-07.jpg` | A Few Things About Me |
+It is in `../index.html` but deliberately empty, so it stays out of the deck
+until it is yours. Add your own bullets inside its `<ul>`:
 
-When one of these is present the slide splits into text on the left and the
-picture on the right; when it is absent the slide stays text-only.
+    <li>Something you do</li>
+    <li>Something else
+      <span class="sub">A short line underneath, if you want one.</span>
+    </li>
 
-## Books
+The slide switches itself on as soon as there is at least one `<li>`, and the
+slide numbers and the counter renumber themselves.
 
-The Books reveal is driven by a list at the top of the `<script>` in
-`../index.html`:
+## Presenting
 
-    var BOOKS = [
-      { title:'...', author:'...', cover:'assets/book-1.jpg' },
-    ];
-
-While the list is empty, BOOKS stays a plain label rather than something that
-opens, so it can never open onto an empty panel. Add one entry and it becomes
-interactive on its own. `cover` is optional — the title and author still show
-without it. Covers read best at 2:3.
-
-## How the site works
-
-Nine sections, scrolled or stepped through:
-
-01 Introduction · 02 What I Study · 03 My Aims · 04 Things I Like ·
-05 Things That Shaped Me · 06 Beyond Language · 07 A Few Things About Me ·
-08 Principles I Live By · 09 Still Becoming
-
-**Things I Like** is one scene, not three. Books, Podcasts and Arabic Poetry
-open as reveals layered over that same scene, and the background shifts with
-each one. Close with the × , the Escape key, or by tapping the empty area.
-Leaving the section closes whatever is open.
-
-- Arrow keys, space, Page Up / Page Down move between sections
-- `F` fullscreen, `Home` / `End` first or last
+- Arrow keys, space, or Page Up / Page Down move between slides
+- `F` toggles fullscreen
+- `Home` / `End` jump to the first or last slide
