@@ -1123,7 +1123,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 11 &middot; 21 Sep</p>
+        <p class="build-mark">Guild build 12 &middot; 21 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -3530,6 +3530,17 @@ function paintStrength() {
 }
 
 /* ─────────── show / hide a password ─────────── */
+/* Show or hide both password boxes together, keeping their buttons honest. */
+function setPasswordVisible(on) {
+  [["pass", "pass-eye"], ["pass2", "pass2-eye"]].forEach(pair => {
+    const i = document.getElementById(pair[0]), b = document.getElementById(pair[1]);
+    if (!i || !b) return;
+    i.type = on ? "text" : "password";
+    b.textContent = on ? "Hide" : "Show";
+    b.setAttribute("aria-pressed", String(!!on));
+  });
+}
+
 function wireEye(btnId, inputId) {
   const b = document.getElementById(btnId), i = document.getElementById(inputId);
   b.addEventListener("click", () => {
@@ -3567,6 +3578,13 @@ function setAuthMode(mode) {
 
   gateEl.pass.setAttribute("autocomplete", up ? "new-password" : "current-password");
   gateEl.pass.placeholder = up ? "Create a password" : "Enter your password";
+
+  /* A password chosen on a phone and never seen is a password that cannot
+     be typed again on a laptop. People were signing up successfully and
+     then being refused on a second device, because the thing they committed
+     to was not quite the thing they meant. While choosing one it is shown
+     by default; while entering a known one it is hidden as usual. */
+  setPasswordVisible(up);
   gateEl.btn.textContent = up ? "Create Account" : "Log In";
   gateEl.altText.textContent = up ? "Already have an account?" : "Don't have an account?";
   gateEl.altBtn.textContent = up ? "Log In" : "Sign Up";
@@ -3708,9 +3726,15 @@ async function pressSeal() {
       try { await resendCode(email); } catch (err) { /* a code may already be in flight */ }
       askForCode(email, pass, false);
     } else if (e.status === 400) {
-      /* the service answers the same way for an unknown address and a wrong
-         password, and so does this message */
-      gateSay("Your email address or password is incorrect. Please check both and try again.");
+      /* The service answers the same way for an unknown address and a wrong
+         password, and so does this message. The advice matters more than the
+         diagnosis: on a phone the usual cause is a password mistyped while
+         invisible at sign-up, so the remedy is to look at what you are
+         typing rather than to type it again. */
+      gateSay("That email address and password do not match. Tap <b>Show</b> to see what " +
+              "you are typing &mdash; a password chosen on a phone is easy to mistype. " +
+              "If you have never joined before, use <b>Sign Up</b> instead.");
+      setPasswordVisible(true);
     } else {
       gateSay("We could not reach the server. Please check your connection and try again.");
     }
