@@ -340,6 +340,46 @@
     .plate img{width:100%;max-width:120px}
     .face img{width:100%;max-width:132px}
   }
+
+  /* ---------- books: a shelf levelled by height, not by crop ---------- */
+  .shelf-row{
+    display:flex;flex-wrap:wrap;align-items:flex-end;
+    gap:clamp(18px,2.6vw,40px);max-width:min(1120px,100%);
+  }
+  .shelf-row figure{margin:0;display:flex;flex-direction:column;max-width:100%}
+  .shelf-row img{
+    height:clamp(150px,26vh,268px);width:auto;max-width:100%;display:block;
+    object-fit:contain;border:1px solid var(--rule);
+    box-shadow:0 12px 30px rgba(0,0,0,.45);
+    filter:saturate(.88) brightness(.94);
+    transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s ease,box-shadow .6s ease;
+  }
+  .shelf-row figure:hover img{
+    transform:translateY(-6px);filter:none;
+    box-shadow:0 20px 44px rgba(0,0,0,.6);
+  }
+  .shelf-row figcaption{margin-top:13px;max-width:clamp(120px,14vw,186px)}
+  .shelf-row .bt{
+    display:block;font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(14px,1.3vw,19px);line-height:1.2;color:var(--ink);
+  }
+  .shelf-row .bt[lang="ar"]{font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;
+    text-align:left;font-size:clamp(14px,1.25vw,18px);line-height:1.5}
+  .shelf-row .ba{
+    display:block;margin-top:5px;font-size:clamp(9px,.72vw,11px);
+    letter-spacing:.24em;text-transform:uppercase;color:var(--dim);
+  }
+  .shelf-row .ba[lang="ar"]{font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;
+    text-align:left;letter-spacing:0;text-transform:none;
+    font-size:clamp(11px,.92vw,14px)}
+
+  @media (max-width:760px){
+    .shelf-row{gap:clamp(12px,3vw,18px)}
+    .shelf-row img{height:clamp(98px,13.5vh,132px)}
+    .shelf-row figcaption{margin-top:9px;max-width:130px}
+    .shelf-row .bt{font-size:14px;line-height:1.2}
+    .shelf-row .ba{margin-top:3px;font-size:9px}
+  }
 </style>
 </head>
 <body>
@@ -449,13 +489,48 @@
   </section>
 
   <!-- 05 things I like / books -->
-  <section class="slide collection" data-scene="3" data-collection="books">
-    <span class="kicker">06</span>
+  <section class="slide" data-scene="3">
+    <span class="kicker">05</span>
     <p class="over">Things I Like</p>
     <h2>Books</h2>
     <div class="bar"></div>
-    <div class="body">
-      <div class="entries shelf"></div>
+
+    <div class="shelf-row">
+      <figure>
+        <img src="assets/book-bidaya-nihaya.jpg" alt="&#1575;&#1604;&#1576;&#1583;&#1575;&#1610;&#1577; &#1608;&#1575;&#1604;&#1606;&#1607;&#1575;&#1610;&#1577;">
+        <figcaption>
+          <b class="bt" lang="ar">&#1575;&#1604;&#1576;&#1583;&#1575;&#1610;&#1577; &#1608;&#1575;&#1604;&#1606;&#1607;&#1575;&#1610;&#1577;</b>
+          <span class="ba" lang="ar">&#1575;&#1576;&#1606; &#1603;&#1579;&#1610;&#1585;</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="assets/book-daa-wal-dawa.jpg" alt="&#1575;&#1604;&#1583;&#1575;&#1569; &#1608;&#1575;&#1604;&#1583;&#1608;&#1575;&#1569;">
+        <figcaption>
+          <b class="bt" lang="ar">&#1575;&#1604;&#1583;&#1575;&#1569; &#1608;&#1575;&#1604;&#1583;&#1608;&#1575;&#1569;</b>
+          <span class="ba" lang="ar">&#1575;&#1576;&#1606; &#1602;&#1610;&#1605; &#1575;&#1604;&#1580;&#1608;&#1586;&#1610;&#1577;</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="assets/book-kite-runner.jpg" alt="The Kite Runner">
+        <figcaption>
+          <b class="bt">The Kite Runner</b>
+          <span class="ba">Khaled Hosseini</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="assets/book-thousand-splendid-suns.jpg" alt="A Thousand Splendid Suns">
+        <figcaption>
+          <b class="bt">A Thousand Splendid Suns</b>
+          <span class="ba">Khaled Hosseini</span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="assets/book-tuesdays-with-morrie.jpg" alt="Tuesdays with Morrie">
+        <figcaption>
+          <b class="bt">Tuesdays with Morrie</b>
+          <span class="ba">Mitch Albom</span>
+        </figcaption>
+      </figure>
     </div>
   </section>
 
@@ -677,7 +752,7 @@ var deck=document.getElementById('deck');
     }
   };
 
-  var lists={poetry:POETS,books:BOOKS};
+  var lists={poetry:POETS};
   [].slice.call(document.querySelectorAll('.slide[data-collection]')).forEach(function(slide){
     var key=slide.dataset.collection, list=lists[key]||[], box=slide.querySelector('.entries');
     list.forEach(function(d){ box.appendChild(build[key](d)); });
