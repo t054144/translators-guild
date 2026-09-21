@@ -3568,6 +3568,17 @@ async function pressSeal() {
         askForCode(email, pass, true);
         return;
       }
+      /* The commonest real failure here is the mail service refusing to
+         send another message this hour, which has nothing to do with the
+         member and is not fixed by trying again immediately. Saying "try
+         again in a few minutes" sent people round the same loop seven
+         times, so the message now says what actually happened. */
+      if (e.status === 429 || /rate limit|too many/i.test(e.message || "")) {
+        gateSay("The Guild has sent as many confirmation emails as it is allowed this hour, " +
+                "so your account could not be created just now. This is a limit on our side, " +
+                "not a problem with your address. Please try again in an hour.");
+        return;
+      }
       gateSay("Your account could not be created. Please try again in a few minutes.");
     }
     return;
