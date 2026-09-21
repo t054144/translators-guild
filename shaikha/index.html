@@ -182,6 +182,111 @@
     .grain{animation:none}
     .deck{scroll-behavior:auto}
   }
+
+  /* ---------- Things I Like: three collections ---------- */
+  .over{
+    font-size:clamp(10px,.78vw,13px);letter-spacing:.42em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:clamp(8px,1.4vh,16px);
+  }
+  .collection .body{display:block;min-height:0}
+  .entries{width:100%}
+  .collection.scrolls .body{overflow-y:auto;-webkit-overflow-scrolling:touch}
+
+  /* podcasts — modern, editorial */
+  .pods{display:grid;gap:clamp(22px,3vw,46px) clamp(24px,3.4vw,54px);
+    grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));
+    max-width:min(1040px,100%)}
+  .pods .entry{display:grid;grid-template-columns:auto minmax(0,1fr);
+    gap:clamp(14px,1.6vw,24px);align-items:start}
+  .pods .entry.no-art{grid-template-columns:minmax(0,1fr)}
+  .pods .art{width:clamp(72px,7vw,108px);aspect-ratio:1;object-fit:cover;display:block;
+    border:1px solid var(--rule);
+    filter:grayscale(.45) brightness(.95);transition:filter .6s ease,transform .6s ease}
+  .pods .entry:hover .art{filter:none;transform:translateY(-3px)}
+
+  /* poetry — literary, atmospheric */
+  .slide.paper::after{
+    content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+    background:
+      radial-gradient(ellipse at 78% 14%,rgba(200,164,106,.07),transparent 56%),
+      repeating-linear-gradient(93deg,rgba(242,239,233,.012) 0 2px,transparent 2px 8px);
+  }
+  .verse-set{display:flex;flex-direction:column;gap:clamp(26px,4.4vh,54px);
+    max-width:min(74ch,100%)}
+  .verse-set .entry{display:grid;gap:clamp(18px,2.4vw,38px);align-items:start;
+    grid-template-columns:minmax(0,1fr)}
+  .verse-set .entry.has-portrait{grid-template-columns:minmax(0,1fr) clamp(120px,14vw,190px)}
+  .verse-set .portrait{width:100%;aspect-ratio:4/5;object-fit:cover;display:block;
+    border:1px solid var(--rule);filter:grayscale(.55) brightness(.93);
+    transition:filter .7s ease}
+  .verse-set .entry:hover .portrait{filter:grayscale(.1) brightness(1)}
+  .excerpt{
+    font-family:Amiri,serif;direction:rtl;text-align:right;
+    font-size:clamp(14px,1.45vw,23px);line-height:2;color:var(--ink);
+    border-left:1px solid var(--accent);padding-left:clamp(12px,1.2vw,20px);
+    margin-top:11px;width:fit-content;
+  }
+  .excerpt.ltr{direction:ltr;text-align:left;font-family:'Cormorant Garamond',serif}
+
+  /* books — curated, personal */
+  .shelf{display:grid;gap:clamp(22px,3vw,46px) clamp(22px,3vw,44px);
+    grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));
+    max-width:min(1060px,100%)}
+  .shelf .entry{display:grid;grid-template-columns:auto minmax(0,1fr);
+    gap:clamp(14px,1.6vw,24px);align-items:start}
+  .shelf .entry.no-art{grid-template-columns:minmax(0,1fr)}
+  .shelf .cover{width:clamp(76px,7.4vw,116px);aspect-ratio:2/3;object-fit:cover;display:block;
+    border:1px solid var(--rule);
+    transition:transform .6s cubic-bezier(.2,.7,.2,1),box-shadow .6s ease}
+  .shelf .entry:hover .cover{transform:translateY(-5px);box-shadow:0 16px 38px rgba(0,0,0,.5)}
+
+  /* the parts an entry is made of */
+  .entry .name{
+    font-family:'Cormorant Garamond',serif;font-weight:400;
+    font-size:clamp(19px,2.05vw,31px);line-height:1.15;color:var(--ink);
+  }
+  .entry .name[lang="ar"]{font-family:'Noto Kufi Arabic',sans-serif;font-weight:400;
+    direction:rtl;text-align:left;font-size:clamp(19px,2.15vw,33px)}
+  .entry .by{
+    margin-top:7px;font-size:clamp(10px,.78vw,12px);letter-spacing:.3em;
+    text-transform:uppercase;color:var(--accent);
+  }
+  .entry .work{margin-top:9px;font-size:clamp(14px,1.3vw,19px);color:var(--dim);
+    font-style:italic;font-family:'Cormorant Garamond',serif}
+  .entry .work[lang="ar"]{font-family:Amiri,serif;direction:rtl;text-align:left;font-style:normal;
+    font-size:clamp(15px,1.5vw,23px);color:var(--ink)}
+  .entry .note{margin-top:10px;font-size:clamp(12px,1.02vw,15px);line-height:1.75;
+    color:var(--dim);max-width:44ch}
+  .entry .why{display:block;margin-top:9px;font-size:clamp(11px,.92vw,14px);
+    line-height:1.7;color:var(--dim);max-width:44ch}
+  .entry .why b{display:block;font-weight:400;color:var(--accent);
+    font-size:clamp(9px,.7vw,11px);letter-spacing:.28em;text-transform:uppercase;
+    margin-bottom:5px}
+  .entry .link{display:inline-block;margin-top:11px;
+    font-size:clamp(10px,.78vw,12px);letter-spacing:.24em;text-transform:uppercase;
+    color:var(--dim);text-decoration:none;
+    border-bottom:1px solid var(--rule);padding-bottom:4px;
+    transition:color .4s,border-color .4s}
+  .entry .link:hover,.entry .link:focus-visible{color:var(--ink);border-color:var(--accent)}
+
+  /* entries arrive one after another */
+  .entry{opacity:0;transform:translateY(16px);
+    transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .slide.live .entry{opacity:1;transform:none}
+  .slide.live .entry:nth-child(2){transition-delay:.1s}
+  .slide.live .entry:nth-child(3){transition-delay:.2s}
+  .slide.live .entry:nth-child(4){transition-delay:.3s}
+  .slide.live .entry:nth-child(5){transition-delay:.4s}
+  .slide.live .entry:nth-child(6){transition-delay:.5s}
+
+  @media (max-width:760px){
+    .pods,.shelf{grid-template-columns:1fr;gap:clamp(20px,3.4vh,30px)}
+    .verse-set .entry.has-portrait{grid-template-columns:minmax(0,1fr) clamp(96px,26vw,130px)}
+    .entry .note,.entry .why{max-width:none}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .entry{opacity:1;transform:none;transition:none}
+  }
 </style>
 </head>
 <body>
@@ -258,55 +363,36 @@
     </div>
   </section>
 
-  <!-- 04 -->
-  <section class="slide" data-scene="3">
+  <!-- 04 things I like / podcasts -->
+  <section class="slide collection" data-scene="4" data-collection="podcasts">
     <span class="kicker">04</span>
-    <h2>Things I Like</h2>
+    <p class="over">Things I Like</p>
+    <h2>Podcasts</h2>
     <div class="bar"></div>
     <div class="body">
-      <ul>
-        <li>Books</li>
-        <li>Cinema</li>
-        <li>Podcasts
-          <span class="sub">Bidoun Waraq &middot; Finjan</span>
-          <span class="sub">Dr. Nayef bin Nahar &middot; Yasser Al-Huzaimi</span>
-        </li>
-        <li>Arabic Poetry</li>
-      </ul>
-      <div class="media row" hidden>
-        <figure><img data-src="assets/bidoun-waraq.jpg" alt="Bidoun Waraq"><figcaption>Bidoun Waraq</figcaption></figure>
-        <figure><img data-src="assets/finjan.jpg" alt="Finjan"><figcaption>Finjan</figcaption></figure>
-        <figure><img data-src="assets/nayef-bin-nahar.jpg" alt="Dr. Nayef bin Nahar"><figcaption>Dr. Nayef bin Nahar</figcaption></figure>
-        <figure><img data-src="assets/yasser-alhuzaimi.jpg" alt="Yasser Al-Huzaimi"><figcaption>Yasser Al-Huzaimi</figcaption></figure>
-      </div>
+      <div class="entries pods"></div>
     </div>
   </section>
 
-  <!-- 05 -->
-  <section class="slide" data-scene="5">
+  <!-- 05 things I like / arabic poetry -->
+  <section class="slide collection paper" data-scene="5" data-collection="poetry">
     <span class="kicker">05</span>
+    <p class="over">Things I Like</p>
     <h2>Arabic Poetry</h2>
     <div class="bar"></div>
     <div class="body">
-      <div class="set poets">
-        <h3>Poets I Return To</h3>
-        <ul>
-          <li>Imru&rsquo; al-Qais
-            <span class="line" lang="ar">وليلٍ كموجِ البحْرِ أرخى سُدُولَهُ &nbsp;·&nbsp; عليَّ بأنواع الهمومِ ليبتلي..<br>فقُلْتُ لهُ لمَّا تمطَّى بصُلْبِهِ &nbsp;·&nbsp; و أردَف أعجازًا، و ناءَ بكَلْكَلِ!<br>ألا أيها الليلُ الطويلُ ألا انجلي &nbsp;·&nbsp; بصبحٍ، وما الإصْباحُ منكَ بأمثل</span>
-          </li>
-          <li>Al-Mutanabbi
-            <span class="line" lang="ar">وإن كنتُ الأخيرَ زمانُهُ &nbsp;·&nbsp; لآتٍ بما لم تستطِعْهُ الأوائلُ</span>
-          </li>
-          <li>Badr bin Abdulmohsen
-            <span class="tag">Al-Badr &middot; The Architect of the Word</span>
-            <span class="line" lang="ar">رديني</span>
-          </li>
-        </ul>
-      </div>
-      <figure class="media" hidden>
-        <img data-src="assets/badr-bin-abdulmohsen.jpg" alt="Badr bin Abdulmohsen">
-        <figcaption>Badr bin Abdulmohsen</figcaption>
-      </figure>
+      <div class="entries verse-set"></div>
+    </div>
+  </section>
+
+  <!-- 06 things I like / books -->
+  <section class="slide collection" data-scene="3" data-collection="books">
+    <span class="kicker">06</span>
+    <p class="over">Things I Like</p>
+    <h2>Books</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <div class="entries shelf"></div>
     </div>
   </section>
 
@@ -392,7 +478,147 @@
 </nav>
 
 <script>
+/* ==================================================================
+   THINGS I LIKE — your three collections.
+
+   Add entries to the lists below and the matching slide fills itself
+   in. Every field except the first is optional: leave one out and it
+   simply is not drawn. A slide whose list is empty stays out of the
+   deck altogether, so nothing blank can ever be projected, and the
+   slide numbers renumber themselves.
+
+   Images go in assets/ . If a file is missing the entry still shows,
+   without the picture.
+   ------------------------------------------------------------------ */
+
+/* ---- 04 PODCASTS -------------------------------------------------
+   name  : the podcast            (required)
+   host  : who makes it
+   note  : a line on why you like it
+   art   : cover image, e.g. 'assets/pod-1.jpg'
+   url   : where to listen
+   ar    : true if the name is Arabic
+------------------------------------------------------------------- */
+var PODCASTS = [
+  // { name:'', host:'', note:'', art:'assets/pod-1.jpg', url:'' },
+];
+
+/* ---- 05 ARABIC POETRY --------------------------------------------
+   poet     : the poet            (required)
+   epithet  : what he is known as
+   work     : the poem or title
+   excerpt  : the lines themselves
+   note     : a line of your own
+   portrait : image, e.g. 'assets/badr-bin-abdulmohsen.jpg'
+   Arabic is assumed. Set latin:true for an entry written in English.
+------------------------------------------------------------------- */
+var POETS = [
+  {
+    poet:'\u0627\u0645\u0631\u0624 \u0627\u0644\u0642\u064a\u0633',
+    excerpt:'\u0648\u0644\u064a\u0644\u0655 \u0643\u0645\u0648\u062c\u0650 \u0627\u0644\u0628\u062d\u0652\u0631\u0650 \u0623\u0631\u062e\u0649 \u0633\u064f\u062f\u064f\u0648\u0644\u064e\u0647\u064f &nbsp;\u00b7&nbsp; \u0639\u0644\u064a\u064e\u0651 \u0628\u0623\u0646\u0648\u0627\u0639 \u0627\u0644\u0647\u0645\u0648\u0645\u0650 \u0644\u064a\u0628\u062a\u0644\u064a..<br>'+
+            '\u0641\u0642\u064f\u0644\u0652\u062a\u064f \u0644\u0647\u064f \u0644\u0645\u0651\u064e\u0627 \u062a\u0645\u0637\u0651\u064e\u0649 \u0628\u0635\u064f\u0644\u0652\u0628\u0650\u0647\u0650 &nbsp;\u00b7&nbsp; \u0648 \u0623\u0631\u062f\u064e\u0641 \u0623\u0639\u062c\u0627\u0632\u064b\u0627\u060c \u0648 \u0646\u0627\u0621\u064e \u0628\u0643\u064e\u0644\u0652\u0643\u064e\u0644\u0650!<br>'+
+            '\u0623\u0644\u0627 \u0623\u064a\u0647\u0627 \u0627\u0644\u0644\u064a\u0644\u064f \u0627\u0644\u0637\u0648\u064a\u0644\u064f \u0623\u0644\u0627 \u0627\u0646\u062c\u0644\u064a &nbsp;\u00b7&nbsp; \u0628\u0635\u0628\u062d\u0655\u060c \u0648\u0645\u0627 \u0627\u0644\u0625\u0635\u0652\u0628\u0627\u062d\u064f \u0645\u0646\u0643\u064e \u0628\u0623\u0645\u062b\u0644'
+  },
+  {
+    poet:'\u0627\u0644\u0645\u062a\u0646\u0628\u064a',
+    excerpt:'\u0648\u0625\u0646 \u0643\u0646\u062a\u064f \u0627\u0644\u0623\u062e\u064a\u0631\u064e \u0632\u0645\u0627\u0646\u064f\u0647\u064f &nbsp;\u00b7&nbsp; \u0644\u0622\u062a\u0655 \u0628\u0645\u0627 \u0644\u0645 \u062a\u0633\u062a\u0637\u0650\u0639\u0652\u0647\u064f \u0627\u0644\u0623\u0648\u0627\u0626\u0644\u064f'
+  },
+  {
+    poet:'\u0628\u062f\u0631 \u0628\u0646 \u0639\u0628\u062f\u0627\u0644\u0645\u062d\u0633\u0646',
+    epithet:'\u0627\u0644\u0628\u062f\u0631 \u00b7 \u0645\u0647\u0646\u062f\u0633 \u0627\u0644\u0643\u0644\u0645\u0629',
+    work:'\u0631\u062f\u064a\u0646\u064a',
+    portrait:'assets/badr-bin-abdulmohsen.jpg'
+  },
+];
+
+/* ---- 06 BOOKS ----------------------------------------------------
+   title  : the book              (required)
+   author : who wrote it
+   note   : what it is
+   why    : why you recommend it
+   cover  : image, e.g. 'assets/book-1.jpg'
+   ar     : true if the title is Arabic
+------------------------------------------------------------------- */
+var BOOKS = [
+  // { title:'', author:'', note:'', why:'', cover:'assets/book-1.jpg' },
+];
+
 var deck=document.getElementById('deck');
+
+/* ---------- Things I Like: build the three collections ---------- */
+(function(){
+  function el(tag,cls,html,lang){
+    var n=document.createElement(tag);
+    if(cls) n.className=cls;
+    if(html!=null) n.innerHTML=html;
+    if(lang) n.setAttribute('lang',lang);
+    return n;
+  }
+  function pic(cls,src,alt,entry){
+    if(!src) return null;
+    var img=new Image();
+    img.className=cls;img.alt=alt||'';img.loading='lazy';
+    img.addEventListener('error',function(){
+      img.remove();
+      entry.classList.add('no-art');
+      entry.classList.remove('has-portrait');
+    });
+    img.src=src;
+    return img;
+  }
+
+  var build = {
+    podcasts:function(d){
+      var e=el('div','entry'), txt=el('div','');
+      var art=pic('art',d.art,d.name,e);
+      if(art) e.appendChild(art); else e.classList.add('no-art');
+      txt.appendChild(el('div','name',d.name,d.ar?'ar':null));
+      if(d.host) txt.appendChild(el('div','by',d.host));
+      if(d.note) txt.appendChild(el('p','note',d.note));
+      if(d.url){
+        var a=el('a','link','Listen');
+        a.href=d.url;a.target='_blank';a.rel='noopener noreferrer';
+        txt.appendChild(a);
+      }
+      e.appendChild(txt);
+      return e;
+    },
+    poetry:function(d){
+      var e=el('div','entry'), txt=el('div','');
+      txt.appendChild(el('div','name',d.poet,d.latin?null:'ar'));
+      if(d.epithet) txt.appendChild(el('div','by',d.epithet));
+      if(d.work) txt.appendChild(el('div','work',d.work,d.latin?null:'ar'));
+      if(d.excerpt) txt.appendChild(el('div','excerpt'+(d.latin?' ltr':''),d.excerpt));
+      if(d.note) txt.appendChild(el('p','note',d.note));
+      e.appendChild(txt);
+      var por=pic('portrait',d.portrait,d.poet,e);
+      if(por){ e.classList.add('has-portrait'); e.appendChild(por); }
+      return e;
+    },
+    books:function(d){
+      var e=el('div','entry'), txt=el('div','');
+      var cov=pic('cover',d.cover,d.title,e);
+      if(cov) e.appendChild(cov); else e.classList.add('no-art');
+      txt.appendChild(el('div','name',d.title,d.ar?'ar':null));
+      if(d.author) txt.appendChild(el('div','by',d.author));
+      if(d.note) txt.appendChild(el('p','note',d.note));
+      if(d.why) txt.appendChild(el('p','why','<b>Why I recommend it</b>'+d.why));
+      e.appendChild(txt);
+      return e;
+    }
+  };
+
+  var lists={podcasts:PODCASTS,poetry:POETS,books:BOOKS};
+  [].slice.call(document.querySelectorAll('.slide[data-collection]')).forEach(function(slide){
+    var key=slide.dataset.collection, list=lists[key]||[], box=slide.querySelector('.entries');
+    if(!list.length){ slide.remove(); return; }
+    list.forEach(function(d){ box.appendChild(build[key](d)); });
+    /* a long collection scrolls inside its own slide rather than spilling */
+    requestAnimationFrame(function(){
+      if(box.scrollHeight>box.clientHeight+2) slide.classList.add('scrolls');
+    });
+  });
+})();
 
 /* a slide marked data-needs-content is left out until it has bullet points */
 [].slice.call(document.querySelectorAll('.slide[data-needs-content]')).forEach(function(s){

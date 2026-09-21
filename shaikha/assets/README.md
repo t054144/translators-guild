@@ -46,3 +46,34 @@ slide numbers and the counter renumber themselves.
 - Arrow keys, space, or Page Up / Page Down move between slides
 - `F` toggles fullscreen
 - `Home` / `End` jump to the first or last slide
+
+## Things I Like — the three collections
+
+Podcasts, Arabic Poetry and Books are each their own section now, and each is
+built from a list at the top of the `<script>` in `../index.html`. Paste your
+entries into the matching list and the slide fills itself in; the slide
+numbers and the counter renumber themselves.
+
+A section whose list is empty stays out of the deck entirely, so nothing
+blank can be projected. Right now **Podcasts** and **Books** are empty and do
+not appear; Arabic Poetry carries the three poets already dictated.
+
+Every field except the first is optional — leave one out and it is not drawn.
+
+    var PODCASTS = [
+      { name:'', host:'', note:'', art:'assets/pod-1.jpg', url:'' },
+    ];
+
+    var POETS = [
+      { poet:'', epithet:'', work:'', excerpt:'', note:'',
+        portrait:'assets/badr-bin-abdulmohsen.jpg' },
+    ];
+
+    var BOOKS = [
+      { title:'', author:'', note:'', why:'', cover:'assets/book-1.jpg' },
+    ];
+
+- `ar:true` on a podcast or book marks an Arabic title; poets are Arabic by
+  default, so use `latin:true` for one written in English.
+- Podcast artwork reads best square, book covers at 2:3, portraits at 4:5.
+- If an image file is missing the entry still shows, just without the picture.
