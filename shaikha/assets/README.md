@@ -11,7 +11,7 @@ present as it stands.
 | Slide | File | What it is |
 |---|---|---|
 | 02 What I Study | `slide-02.jpg` | optional — IPA chart, spectrogram, notes |
-| 03 Where I Am Headed | `slide-03.jpg` | optional — UN hall, interpreting booth |
+| 03 My Aims | `slide-03.jpg` | optional — UN hall, interpreting booth |
 | 04 Things I Like | `bidoun-waraq.jpg` | Bidoun Waraq |
 | 04 | `finjan.jpg` | Finjan |
 | 04 | `nayef-bin-nahar.jpg` | Dr. Nayef bin Nahar |
