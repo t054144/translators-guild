@@ -374,18 +374,7 @@
     </div>
   </section>
 
-  <!-- 05 things I like / arabic poetry -->
-  <section class="slide collection paper" data-scene="5" data-collection="poetry">
-    <span class="kicker">05</span>
-    <p class="over">Things I Like</p>
-    <h2>Arabic Poetry</h2>
-    <div class="bar"></div>
-    <div class="body">
-      <div class="entries verse-set"></div>
-    </div>
-  </section>
-
-  <!-- 06 things I like / books -->
+  <!-- 05 things I like / books -->
   <section class="slide collection" data-scene="3" data-collection="books">
     <span class="kicker">06</span>
     <p class="over">Things I Like</p>
@@ -393,6 +382,17 @@
     <div class="bar"></div>
     <div class="body">
       <div class="entries shelf"></div>
+    </div>
+  </section>
+
+  <!-- 06 things I like / arabic poetry -->
+  <section class="slide collection paper" data-scene="5" data-collection="poetry">
+    <span class="kicker">05</span>
+    <p class="over">Things I Like</p>
+    <h2>Arabic Poetry</h2>
+    <div class="bar"></div>
+    <div class="body">
+      <div class="entries verse-set"></div>
     </div>
   </section>
 
@@ -483,9 +483,9 @@
 
    Add entries to the lists below and the matching slide fills itself
    in. Every field except the first is optional: leave one out and it
-   simply is not drawn. A slide whose list is empty stays out of the
-   deck altogether, so nothing blank can ever be projected, and the
-   slide numbers renumber themselves.
+   simply is not drawn. A list left empty is fine: the slide still
+   shows, carrying its title alone until there is something to put
+   on it.
 
    Images go in assets/ . If a file is missing the entry still shows,
    without the picture.
@@ -611,7 +611,6 @@ var deck=document.getElementById('deck');
   var lists={podcasts:PODCASTS,poetry:POETS,books:BOOKS};
   [].slice.call(document.querySelectorAll('.slide[data-collection]')).forEach(function(slide){
     var key=slide.dataset.collection, list=lists[key]||[], box=slide.querySelector('.entries');
-    if(!list.length){ slide.remove(); return; }
     list.forEach(function(d){ box.appendChild(build[key](d)); });
     /* a long collection scrolls inside its own slide rather than spilling */
     requestAnimationFrame(function(){

@@ -54,9 +54,13 @@ built from a list at the top of the `<script>` in `../index.html`. Paste your
 entries into the matching list and the slide fills itself in; the slide
 numbers and the counter renumber themselves.
 
-A section whose list is empty stays out of the deck entirely, so nothing
-blank can be projected. Right now **Podcasts** and **Books** are empty and do
-not appear; Arabic Poetry carries the three poets already dictated.
+A list left empty is fine — the slide still shows, carrying its title alone
+until there is something to put on it. Right now **Podcasts** and **Books**
+stand as titles; Arabic Poetry carries the three poets already dictated.
+
+Deck order: 01 name · 02 What I Study · 03 My Aims · 04 Podcasts ·
+05 Books · 06 Arabic Poetry · 07 Beyond Language · 08 Principles ·
+09 Still Becoming
 
 Every field except the first is optional — leave one out and it is not drawn.
 
