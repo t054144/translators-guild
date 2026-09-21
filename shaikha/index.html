@@ -380,6 +380,20 @@
     .shelf-row .bt{font-size:14px;line-height:1.2}
     .shelf-row .ba{margin-top:3px;font-size:9px}
   }
+
+  /* a short specimen, so the alphabet is seen and not only named */
+  li .ipa{
+    display:flex;flex-wrap:wrap;gap:clamp(10px,1.4vw,22px);
+    margin-top:11px;align-items:baseline;
+  }
+  li .ipa i{
+    font-family:'Noto Kufi Arabic',sans-serif;font-style:normal;
+    font-size:clamp(13px,1.15vw,17px);color:var(--dim);margin-right:.35em;
+  }
+  li .ipa b{
+    font-weight:400;font-size:clamp(14px,1.3vw,20px);color:var(--accent);
+    letter-spacing:.02em;
+  }
 </style>
 </head>
 <body>
@@ -420,6 +434,16 @@
             </li>
             <li>Generative Phonology
               <span class="sub">The rules underlying that system, and what they predict.</span>
+            </li>
+            <li>IPA
+              <span class="sub">The International Phonetic Alphabet: one symbol for one sound, so any language can be written down exactly as it is said.</span>
+              <span class="ipa">
+                <i>&#1593;</i><b>&#661;</b>
+                <i>&#1602;</i><b>q</b>
+                <i>&#1584;</i><b>&#240;</b>
+                <i>&#1588;</i><b>&#643;</b>
+                <i>&#1582;</i><b>x</b>
+              </span>
             </li>
           </ul>
         </div>
