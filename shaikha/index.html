@@ -289,6 +289,57 @@
   @media (prefers-reduced-motion:reduce){
     .entry{opacity:1;transform:none;transition:none}
   }
+
+  /* ---------- podcasts: a banner, then the shows and the voices ---------- */
+  .lead{margin:0 0 clamp(26px,4.4vh,50px);max-width:min(760px,100%)}
+  .lead img{
+    width:100%;height:auto;display:block;border:1px solid var(--rule);
+    filter:contrast(1.04) brightness(.96) saturate(.85);
+  }
+  .lead figcaption{
+    margin-top:12px;font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;text-align:left;
+    font-size:clamp(14px,1.5vw,21px);color:var(--ink);
+  }
+
+  .strip{
+    display:flex;flex-wrap:wrap;align-items:flex-end;
+    gap:clamp(20px,3vw,46px);max-width:min(900px,100%);
+  }
+  .strip figure{margin:0;display:flex;flex-direction:column}
+  .strip figcaption{
+    margin-top:11px;font-size:clamp(12px,1.05vw,16px);color:var(--ink);line-height:1.3;
+  }
+  .strip figcaption[lang="ar"]{
+    font-family:'Noto Kufi Arabic',sans-serif;direction:rtl;text-align:left;
+    font-size:clamp(13px,1.2vw,18px);
+  }
+
+  /* a logo is never cropped: each carries its own ground */
+  .plate img{
+    width:clamp(84px,9vw,118px);aspect-ratio:1;object-fit:contain;display:block;
+    border:1px solid var(--rule);
+    transition:transform .6s cubic-bezier(.2,.7,.2,1),filter .6s ease;
+    filter:brightness(.94) saturate(.92);
+  }
+  .plate:hover img{transform:translateY(-4px);filter:none}
+
+  /* a portrait is cropped, and a little taller than the tiles */
+  .face img{
+    width:clamp(96px,10.5vw,146px);aspect-ratio:4/5;object-fit:cover;object-position:center 18%;
+    display:block;border:1px solid var(--rule);
+    filter:grayscale(.45) contrast(1.05) brightness(.95);
+    transition:filter .7s ease,transform .6s cubic-bezier(.2,.7,.2,1);
+  }
+  .face:hover img{filter:grayscale(0) brightness(1);transform:translateY(-4px)}
+
+  @media (max-width:760px){
+    .lead{margin-bottom:clamp(20px,3.4vh,30px)}
+    /* two by two, so the logos keep one row and the portraits the next */
+    .strip{display:grid;grid-template-columns:1fr 1fr;align-items:end;
+      gap:clamp(18px,4vw,26px) clamp(16px,4vw,22px)}
+    .plate img{width:100%;max-width:120px}
+    .face img{width:100%;max-width:132px}
+  }
 </style>
 </head>
 <body>
@@ -366,13 +417,34 @@
   </section>
 
   <!-- 04 things I like / podcasts -->
-  <section class="slide collection" data-scene="4" data-collection="podcasts">
+  <section class="slide" data-scene="4">
     <span class="kicker">04</span>
     <p class="over">Things I Like</p>
     <h2>Podcasts</h2>
     <div class="bar"></div>
-    <div class="body">
-      <div class="entries pods"></div>
+
+    <figure class="lead">
+      <img src="assets/thamania-banner.jpg" alt="&#1573;&#1583;&#1575;&#1593;&#1577; &#1579;&#1605;&#1575;&#1606;&#1610;&#1577;">
+      <figcaption lang="ar">&#1573;&#1583;&#1575;&#1593;&#1577; &#1579;&#1605;&#1575;&#1606;&#1610;&#1577;</figcaption>
+    </figure>
+
+    <div class="strip">
+      <figure class="plate">
+        <img src="assets/bedoun-warak.jpg" alt="&#1576;&#1583;&#1608;&#1606; &#1608;&#1585;&#1602;">
+        <figcaption lang="ar">&#1576;&#1583;&#1608;&#1606; &#1608;&#1585;&#1602;</figcaption>
+      </figure>
+      <figure class="plate">
+        <img src="assets/thamania-mark.jpg" alt="&#1579;&#1605;&#1575;&#1606;&#1610;&#1577;">
+        <figcaption lang="ar">&#1579;&#1605;&#1575;&#1606;&#1610;&#1577;</figcaption>
+      </figure>
+      <figure class="face">
+        <img src="assets/naif-bin-nahar.jpg" alt="Dr. Naif Bin Nahar">
+        <figcaption>Dr. Naif Bin Nahar</figcaption>
+      </figure>
+      <figure class="face">
+        <img src="assets/yasser-alhuzaimi.jpg" alt="Mr. Yasser Alhuzaimi">
+        <figcaption>Mr. Yasser Alhuzaimi</figcaption>
+      </figure>
     </div>
   </section>
 
@@ -494,17 +566,11 @@
    ------------------------------------------------------------------ */
 
 /* ---- 04 PODCASTS -------------------------------------------------
-   name  : the podcast            (required)
-   host  : who makes it
-   note  : a line on why you like it
-   art   : cover image, e.g. 'assets/pod-1.jpg'
-   url   : where to listen
-   ar    : true if the name is Arabic
+   The podcasts slide is laid out directly in the markup above, so the
+   banner can sit large at the top with the show and the two voices
+   beneath it. To add another show or voice, copy one <figure> inside
+   .strip : class="plate" for a logo, class="face" for a portrait.
 ------------------------------------------------------------------- */
-var PODCASTS = [
-  { name:'Dr. Naif Bin Nahar', art:'assets/naif-bin-nahar.jpg' },
-  { name:'Mr. Yasser Alhuzaimi', art:'assets/yasser-alhuzaimi.jpg' },
-];
 
 /* ---- 05 ARABIC POETRY --------------------------------------------
    poet     : the poet            (required)
@@ -611,7 +677,7 @@ var deck=document.getElementById('deck');
     }
   };
 
-  var lists={podcasts:PODCASTS,poetry:POETS,books:BOOKS};
+  var lists={poetry:POETS,books:BOOKS};
   [].slice.call(document.querySelectorAll('.slide[data-collection]')).forEach(function(slide){
     var key=slide.dataset.collection, list=lists[key]||[], box=slide.querySelector('.entries');
     list.forEach(function(d){ box.appendChild(build[key](d)); });
