@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Translation Handbook</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+@page { size: 176mm 250mm; margin: 0; }
+:root{
+  --ink:#1f1a2e; --ink-2:#4b4560; --ink-3:#817a95;
+  --purple:#6a0fd6; --deep:#3d1591; --soft:#f3effc; --line:#e4def3;
+  --ok:#0b7a52; --no:#c42a4d;
+  --serif:"Playfair Display",Georgia,serif; --sans:"Outfit",sans-serif;
+  --ar:"Amiri",serif; --ar-s:"Readex Pro",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#9a94a6}
+body{font-family:var(--sans);font-size:9.3pt;line-height:1.55;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact;counter-reset:pg}
+@media screen{body{padding:24px 0}.page{margin:0 auto 24px;box-shadow:0 8px 24px rgba(0,0,0,.3)}}
+
+.page{width:176mm;height:250mm;position:relative;overflow:hidden;background:#fff;break-after:page;counter-increment:pg}
+.body{position:absolute;top:20mm;bottom:18mm;left:20mm;right:20mm;overflow:hidden}
+.rh{position:absolute;top:10mm;left:20mm;right:20mm;display:flex;justify-content:space-between;font-size:7pt;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3)}
+.rh .ar{font-family:var(--ar-s);letter-spacing:0;text-transform:none;font-size:7.6pt}
+.pn{position:absolute;bottom:10mm;left:0;right:0;text-align:center;font-size:8pt;color:var(--ink-3)}
+.pn::before{content:counter(pg)}
+
+.ar{font-family:var(--ar);direction:rtl;unicode-bidi:isolate;font-size:1.22em;line-height:1.3}
+p{margin:0 0 2.4mm}
+b{font-weight:600} em{font-style:italic}
+
+/* chapter head */
+.part{font-size:7.4pt;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);font-weight:600}
+.chno{font-family:var(--serif);font-size:11pt;color:var(--purple);margin-top:3mm}
+h1{font-family:var(--serif);font-weight:700;font-size:21pt;line-height:1.15;color:var(--ink);margin:1mm 0 1mm}
+.art{font-family:var(--ar-s);font-weight:300;font-size:11pt;color:var(--ink-2);direction:rtl;text-align:left;unicode-bidi:isolate}
+.rule{height:.5mm;width:22mm;background:var(--purple);margin:3mm 0 4mm}
+.intro{font-size:9.8pt;color:var(--ink-2);margin-bottom:3mm}
+
+h2{font-family:var(--serif);font-weight:700;font-size:12pt;color:var(--deep);margin:4.6mm 0 2mm;line-height:1.25}
+h2 .n{color:var(--purple);margin-right:2mm}
+h2:first-child{margin-top:0}
+
+/* tables */
+table{width:100%;border-collapse:collapse;margin:0 0 3mm;font-size:8.8pt;line-height:1.42}
+th{background:var(--soft);color:var(--deep);font-weight:600;text-align:left;padding:1.3mm 2.2mm;font-size:8.2pt}
+td{padding:1.4mm 2.2mm;border-bottom:.25mm solid var(--line);vertical-align:top}
+td.r,th.r{text-align:right}
+td .ar{font-size:1.2em}
+.terms td:first-child{font-weight:600;width:30%}
+.terms td:nth-child(2){width:24%;text-align:right;color:var(--purple)}
+
+.remember{background:var(--soft);border-left:1mm solid var(--purple);padding:2.6mm 4mm .6mm;margin:4mm 0 0;border-radius:0 1.5mm 1.5mm 0}
+.remember .t{font-size:7.4pt;letter-spacing:.18em;text-transform:uppercase;color:var(--purple);font-weight:700;margin-bottom:1mm}
+.remember ul{margin-left:4.5mm}
+.note{font-size:8.4pt;color:var(--ink-3)}
+ul,ol{margin:0 0 2.4mm 5mm} li{margin-bottom:.8mm}
+li::marker{color:var(--purple)}
+.x{color:var(--no)} .ok{color:var(--ok)}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:6mm}
+svg{display:block}
+</style>
+</head>
+<body>
