@@ -1,6 +1,6 @@
-# Translation Handbook (B5, 35 pages)
+# Translation Handbook (B5, 44 pages)
 
-`Translation-Team-Handbook-B5.pdf` is the print-ready handbook for beginners: B5 (176 × 250 mm), 35 pages, with all fonts embedded.
+`Translation-Team-Handbook-B5.pdf` is the print-ready handbook for beginners: B5 (176 × 250 mm), 44 pages, with all fonts embedded.
 
 - `parts/*.html`: the page source, concatenated in filename order
 - `gloss.py`: regenerates `parts/09-gloss.html` from its term list

@@ -52,12 +52,56 @@
 <tr><td><b>UNTERM</b> · <b>Arabterm</b></td><td>Official and technical terms</td></tr>
 </table>
 <p class="small"><b>The three-check rule:</b> find options in a <b>bilingual</b> dictionary → confirm in a <b>monolingual</b> one → see real use in a <b>parallel text</b>.</p>
+<h3>The three-check rule in action <span class="lbl e" style="margin:0 0 0 2mm">Example</span></h3>
+<table class="t">
+<tr><td style="width:30%"><b>1 · Bilingual</b></td><td><em>fast colour</em>: the options include <span class="ar">سريع، صائم، ثابت</span></td></tr>
+<tr><td><b>2 · Monolingual</b></td><td><span class="ar">ثابت</span> = “does not fade”, which fits colours</td></tr>
+<tr><td><b>3 · Parallel text</b></td><td><span class="ar">ألوان ثابتة</span> appears in Arabic textile texts</td></tr>
+<tr><td><b>Decision</b></td><td><span class="ar">لون ثابت</span> ✓</td></tr>
+</table>
+<div class="err" style="margin-bottom:0"><span class="lbl">Common error</span><br>Taking the <b>first</b> meaning a bilingual dictionary gives. It is often not the right one for your context.</div>
+</div>
+<div class="folio"><i></i><i></i><i></i><span>Professional Practice</span></div>
+</section>
+
+<section class="page" data-id="c19b" id="c19b">
+<div class="tab" data-p="5">V</div>
+<div class="rh"><span>19 · Dictionaries, resources and AI/MT</span><span class="ar">الترجمة الآلية والذكاء الاصطناعي</span></div>
+<div class="body">
+
 <h3>Machine translation and AI <span class="ar">الترجمة الآلية والذكاء الاصطناعي</span></h3>
 <div class="concept"><span class="lbl c">Concept</span><dl>
 <dt>Machine translation <span class="ar">الترجمة الآلية</span></dt><dd>Translation done by software, such as neural MT or AI chat tools (LLMs).</dd>
 <dt>Hallucination <span class="ar">الهلوسة</span></dt><dd>AI output that sounds right but is <b>not in the source</b>, such as an added fact or a lost “not”.</dd>
 </dl></div>
-<div class="note" style="margin-bottom:0"><span class="lbl">Translator’s note</span><br><b>You are responsible</b> for every word you deliver, whatever tool you used. Check the terms, context, culture, names, numbers and negatives, and never paste a client’s private text into a public AI tool.</div>
+<h4>When to use machine translation</h4>
+<div class="cols">
+<div class="box" style="background:var(--ok-bg)"><b class="ok">Useful for</b><br>A first draft of simple texts · checking ideas · large volumes</div>
+<div class="box" style="background:var(--no-bg)"><b class="x">Risky for</b><br>Legal, medical and religious texts · idioms and poetry · confidential files</div>
+</div>
+<h3>A safe workflow</h3>
+<div class="fig"><svg viewBox="0 0 520 50" width="100%"><g font-family="Outfit" text-anchor="middle"><defs><marker id="am" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0L10 5L0 10z" fill="#8103d3"/></marker></defs>
+<g font-size="10" font-weight="600" fill="#fff"><rect x="0" y="2" width="92" height="28" rx="14" fill="#9e05cf"/><text x="46" y="20">Prepare text</text><rect x="107" y="2" width="92" height="28" rx="14" fill="#9004d1"/><text x="153" y="20">MT draft</text><rect x="214" y="2" width="92" height="28" rx="14" fill="#8103d3"/><text x="260" y="20">Post-edit</text><rect x="321" y="2" width="92" height="28" rx="14" fill="#6e05de"/><text x="367" y="20">Revise</text><rect x="428" y="2" width="92" height="28" rx="14" fill="#5c06ea"/><text x="474" y="20">Deliver</text></g>
+<g stroke="#8103d3" stroke-width="1.3" marker-end="url(#am)"><line x1="93" y1="16" x2="105" y2="16"/><line x1="200" y1="16" x2="212" y2="16"/><line x1="307" y1="16" x2="319" y2="16"/><line x1="414" y1="16" x2="426" y2="16"/></g>
+<g font-size="8" fill="#7b7291"><text x="46" y="44">fix typos, split sentences</text><text x="153" y="44">load your term list</text><text x="260" y="44">your judgement</text><text x="367" y="44">a second reader</text><text x="474" y="44">with commentary</text></g></g></svg></div>
+<h3>Typical machine errors <span class="dir">EN → AR</span></h3>
+<table class="t">
+<tr><th style="width:24%">Error</th><th>Machine output</th><th>Correction</th></tr>
+<tr><td><b>Literal idiom</b></td><td><em>raining cats and dogs</em> → <span class="x"><span class="ar">تمطر قططاً وكلاباً</span></span></td><td><span class="ar">تمطر بغزارة</span></td></tr>
+<tr><td><b>Wrong gender</b></td><td><em>The doctor said she…</em> → <span class="x"><span class="ar">قال الطبيب</span></span></td><td><span class="ar">قالت الطبيبة</span></td></tr>
+<tr><td><b>English word order</b></td><td><span class="x"><span class="ar">الحكومة أعلنت…</span></span></td><td><span class="ar">أعلنت الحكومة…</span></td></tr>
+<tr><td><b>Wrong collocation</b></td><td><em>pay attention</em> → <span class="x"><span class="ar">ادفع الانتباه</span></span></td><td><span class="ar">انتبه</span></td></tr>
+</table>
+<h3>Five rules for responsible use</h3>
+<ol class="steps">
+<li><b>You are responsible</b> for every word you deliver, whatever tool you used.</li>
+<li><b>Protect the client.</b> Never paste private or confidential text into a public AI tool.</li>
+<li><b>Verify</b> terms, names, numbers, dates and every “not”.</li>
+<li><b>Check culture and context.</b> MT often translates idioms word by word.</li>
+<li><b>Be open.</b> Tell the client if you used MT or AI.</li>
+</ol>
+<div class="note" style="margin-bottom:0"><span class="lbl">Example · a clear AI instruction</span>
+<p style="font-family:monospace;font-size:7.6pt;line-height:1.5;margin:1mm 0 0;color:#eee8ff">Translate the text below from English into Modern Standard Arabic for readers in the Gulf. Use a formal news style and verb-first sentences. Use this term: greenwashing = التضليل البيئي. Do not add, omit or summarise anything. List any unclear phrases separately.</p></div>
 </div>
 <div class="folio"><i></i><i></i><i></i><span>Professional Practice</span></div>
 </section>
@@ -77,29 +121,60 @@
 <div class="box"><b>Light post-editing</b><br>The text is <b>correct and understandable</b>, but not polished. It is for internal use.</div>
 <div class="box"><b>Full post-editing</b><br>The text is <b>ready to publish</b>, as good as a human translation.</div>
 </div>
-<h4>When to use machine translation</h4>
-<div class="cols">
-<div class="box" style="background:var(--ok-bg)"><b class="ok">Useful for</b><br>A first draft of simple texts · checking ideas · large volumes</div>
-<div class="box" style="background:var(--no-bg)"><b class="x">Risky for</b><br>Legal, medical and religious texts · idioms and poetry · confidential files</div>
-</div>
-<h3>Typical machine errors <span class="dir">EN → AR</span></h3>
+<h3>Six quality criteria</h3>
 <table class="t">
-<tr><th style="width:24%">Error</th><th>Machine output</th><th>Correction</th></tr>
-<tr><td><b>Literal idiom</b></td><td><em>raining cats and dogs</em> → <span class="x"><span class="ar">تمطر قططاً وكلاباً</span></span></td><td><span class="ar">تمطر بغزارة</span></td></tr>
-<tr><td><b>Wrong gender</b></td><td><em>The doctor said she…</em> → <span class="x"><span class="ar">قال الطبيب</span></span></td><td><span class="ar">قالت الطبيبة</span></td></tr>
-<tr><td><b>English word order</b></td><td><span class="x"><span class="ar">الحكومة أعلنت…</span></span></td><td><span class="ar">أعلنت الحكومة…</span></td></tr>
-<tr><td><b>Wrong collocation</b></td><td><em>pay attention</em> → <span class="x"><span class="ar">ادفع الانتباه</span></span></td><td><span class="ar">انتبه</span></td></tr>
+<tr><th style="width:24%">Criterion</th><th>Ask yourself</th></tr>
+<tr><td><b>Accuracy</b></td><td>Is the meaning the same? Was anything added or lost?</td></tr>
+<tr><td><b>Fluency</b></td><td>Does it read as if it had been written in the TL?</td></tr>
+<tr><td><b>Terminology</b></td><td>Are the terms correct and consistent with the term list?</td></tr>
+<tr><td><b>Grammar</b></td><td>Are agreement, tense, spelling and hamza all correct?</td></tr>
+<tr><td><b>Style</b></td><td>Do the register and tone fit the brief?</td></tr>
+<tr><td><b>Formatting</b></td><td>Are numbers, names, titles, captions and punctuation all correct?</td></tr>
 </table>
-<h3>Common grammar and style mistakes</h3>
+<h3>Revise in three readings</h3>
+<ol class="steps">
+<li><b>Accuracy reading</b>, with the ST next to you: check meaning, omissions and additions.</li>
+<li><b>Fluency reading</b>, without the ST: does it sound natural?</li>
+<li><b>Final proofread</b>: numbers, names, punctuation, titles and captions.</li>
+</ol>
+<p class="small">A full list of common grammar and style mistakes is on the next page.</p>
+<div class="take" style="margin-bottom:0"><span class="lbl">Key takeaway</span><br>Judge every translation for <b>accuracy, fluency, terminology, grammar, style and formatting</b>, and check every <b>number, name, title and caption</b>. The full checklist is on p. <span data-ref="qr"></span>.</div>
+</div>
+<div class="folio"><i></i><i></i><i></i><span>Professional Practice</span></div>
+</section>
+
+<section class="page" data-id="c20b" id="c20b">
+<div class="tab" data-p="5">V</div>
+<div class="rh"><span>20 · Translation quality and post-editing</span><span class="ar">أخطاء نحوية وأسلوبية شائعة</span></div>
+<div class="body">
+
+<h3>Common grammar and style mistakes <span class="ar">أخطاء شائعة</span></h3>
+<p>These mistakes appear in every kind of text. Check for them every time you revise.</p>
+<h4>In Arabic translations <span class="dir">EN → AR</span></h4>
 <table class="t">
-<tr><th style="width:34%">Mistake</th><th class="r">✗</th><th class="r">✓</th></tr>
+<tr><th style="width:30%">Mistake</th><th class="r">✗</th><th class="r">✓</th></tr>
+<tr><td>Subject first by habit</td><td class="r"><span class="ar">الحكومة أعلنت…</span></td><td class="r"><span class="ar">أعلنت الحكومة…</span></td></tr>
 <tr><td>Overusing <span class="ar">قام بـ</span></td><td class="r"><span class="ar">قام الوزير بزيارة الكويت</span></td><td class="r"><span class="ar">زار الوزير الكويت</span></td></tr>
 <tr><td>Passive with <span class="ar">من قِبَل</span></td><td class="r"><span class="ar">تمّ افتتاح المعرض من قِبَل الوزير</span></td><td class="r"><span class="ar">افتتح الوزير المعرض</span></td></tr>
 <tr><td>Numbers 3–10</td><td class="r"><span class="ar">ثلاث طلاب</span></td><td class="r"><span class="ar">ثلاثة طلاب</span></td></tr>
+<tr><td>Accusative after <span class="ar">كان / أصبح</span></td><td class="r"><span class="ar">أصبح الجوّ بارد</span></td><td class="r"><span class="ar">أصبح الجوّ بارداً</span></td></tr>
 <tr><td>Hamza, <span class="ar">ة / ه</span>, <span class="ar">ى / ي</span></td><td class="r"><span class="ar">انشاء · مدرسه · الى</span></td><td class="r"><span class="ar">إنشاء · مدرسة · إلى</span></td></tr>
-<tr><td>AR → EN: generic <em>the</em></td><td class="r"><em>The life is beautiful.</em></td><td class="r"><em>Life is beautiful.</em></td></tr>
+<tr><td>Pronoun agreement</td><td class="r"><span class="ar">المدينة وسكانه</span></td><td class="r"><span class="ar">المدينة وسكانها</span></td></tr>
+<tr><td>Letter openings</td><td class="r"><span class="ar">عزيزي السيد أحمد</span> (formal letter)</td><td class="r"><span class="ar">حضرة السيد أحمد المحترم</span></td></tr>
 </table>
-<div class="take" style="margin-bottom:0"><span class="lbl">Key takeaway</span><br>Judge every translation for <b>accuracy, fluency, terminology, grammar, style and formatting</b>, and check every <b>number, name, title and caption</b>. The full checklist is on p. <span data-ref="qr"></span>.</div>
+<h4>In English translations <span class="dir">AR → EN</span></h4>
+<table class="t">
+<tr><th style="width:30%">Mistake</th><th>✗</th><th>✓</th></tr>
+<tr><td>Long sentences joined by <em>and</em></td><td><em>…and he said, and he added, and…</em></td><td>Split them with full stops.</td></tr>
+<tr><td>Kept synonym pairs</td><td><em>brave and daring</em></td><td><em>very brave</em></td></tr>
+<tr><td>Generic <em>the</em></td><td><em>The life is beautiful.</em></td><td><em>Life is beautiful.</em></td></tr>
+<tr><td>Missing <em>to be</em></td><td><em>He in the office.</em></td><td><em>He is in the office.</em></td></tr>
+<tr><td>Preposition copied from Arabic</td><td><em>He married from her.</em> (<span class="ar">تزوّج منها</span>)</td><td><em>He married her.</em></td></tr>
+<tr><td>Past for present perfect</td><td><em>I lived here since 2010.</em></td><td><em>I have lived here since 2010.</em></td></tr>
+<tr><td>No capitals in titles</td><td><em>the minister of health</em></td><td><em>the Minister of Health</em></td></tr>
+<tr><td>Mixed spellings of names</td><td><em>Mohammed / Muhammad</em></td><td>Choose one and keep it.</td></tr>
+</table>
+<div class="take" style="margin-bottom:0"><span class="lbl">Key takeaway</span><br>Read your translation <b>once without the source</b>. If a sentence sounds translated, it needs rewriting.</div>
 </div>
 <div class="folio"><i></i><i></i><i></i><span>Professional Practice</span></div>
 </section>

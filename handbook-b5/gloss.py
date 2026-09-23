@@ -30,6 +30,7 @@ G=[
 ("Functional equivalence","التكافؤ الوظيفي","Keeps the function with a TL expression","c5"),
 ("Genre","الجنس النصّي","A familiar type of text, such as news or a contract","c18"),
 ("Hallucination","الهلوسة","AI output that is not in the source","c19"),
+("Homonymy","المشترك اللفظي","One word with unrelated meanings","c4b"),
 ("Hybrid","المصطلح الهجين","A term that is half translated, half transliterated","c12"),
 ("Ideational equivalence","التكافؤ الفكري","Keeps only the basic idea","c5"),
 ("Ideology","الأيديولوجيا","Beliefs that shape how events are described","c17"),
@@ -37,6 +38,7 @@ G=[
 ("Interpretation","الترجمة الشفهية","Oral translation of speech","c1"),
 ("Lexical creation","النحت المعجمي","Creating a new word for a lexical gap","c12"),
 ("Lexicalisation","التعجيم","When a new word enters the dictionary","c12"),
+("Linking words","أدوات الربط","Words that join ideas, e.g. however, therefore","c3b"),
 ("Literal translation","الترجمة الحرفية","Keeps the words and adjusts the grammar","c7"),
 ("Loan word + explanation","الاقتراض مع الشرح","Keeping a term and explaining it","c8"),
 ("Localisation","الأقلمة","Adapting websites and apps for a market","c7"),
@@ -50,6 +52,7 @@ G=[
 ("Neologism","اللفظ المستحدث","A brand-new word","c12"),
 ("Omission","الحذف","Removing words that repeat meaning","c8"),
 ("Phraseology","التعابير المسكوكة","The fixed word groups of a language","c6"),
+("Polysemy","تعدّد المعنى","One word with related meanings","c4b"),
 ("Post-editing","التحرير اللاحق","A human correcting machine output","c20"),
 ("Procedure","الإجراء","A technique for a word or phrase","c9"),
 ("Proverb","المثل","A traditional saying","c6"),
@@ -77,7 +80,7 @@ def entry(t,a,d,r): return f'<div class="g"><div class="gh"><b>{t}</b><span clas
 half=(len(G)+1)//2
 def page(items,first):
     head='''<div class="opener plain"><div class="kick"><span class="dots"><i></i><i></i><i></i></span> &nbsp;Quick reference</div><h2>Glossary</h2><div class="arT">مسرد المصطلحات</div></div>
-<p class="small">Every key term in the handbook, with its Arabic equivalent, a short definition and the page where it is explained.</p>''' if first else ''
+<p class="small" style="margin-bottom:1.4mm">Key terms, their Arabic equivalents, short definitions and the page where each is explained.</p>''' if first else ''
     return f'''<section class="page" data-id="{'gl' if first else 'gl2'}"{' id="gl"' if first else ''}>
 <div class="tab" data-p="Q">Q</div>
 <div class="rh"><span>Glossary</span><span class="ar">مسرد المصطلحات</span></div>
@@ -86,7 +89,7 @@ def page(items,first):
 </div>
 <div class="folio"><i></i><i></i><i></i><span>Quick Reference</span></div>
 </section>'''
-css='''<style>.gl{columns:2;column-gap:6mm;column-rule:.2mm solid var(--rule)}.g{break-inside:avoid;padding:1mm 0 1.1mm;border-bottom:.2mm dotted var(--d3)}.gh{display:grid;grid-template-columns:auto 1fr 6mm;gap:2mm;align-items:baseline}.gh b{font-size:8.2pt;color:var(--deep)}.gh .ar{text-align:right;color:var(--v2);font-size:1.05em}.gh em{font-style:normal;font-weight:700;color:var(--v3);text-align:right;font-size:7.6pt}.gd{font-size:7.5pt;color:var(--ink-2);line-height:1.3}</style>'''
-k=33
+css='''<style>.gl{columns:2;column-gap:6mm;column-rule:.2mm solid var(--rule)}.g{break-inside:avoid;padding:.9mm 0 1mm;border-bottom:.2mm dotted var(--d3)}.gh{display:grid;grid-template-columns:auto 1fr 6mm;gap:2mm;align-items:baseline;line-height:1.2}.gh b{font-size:8.2pt;color:var(--deep)}.gh .ar{text-align:right;color:var(--v2);font-size:1.05em;line-height:1.05}.gh em{font-style:normal;font-weight:700;color:var(--v3);text-align:right;font-size:7.6pt}.gd{font-size:7.5pt;color:var(--ink-2);line-height:1.28}</style>'''
+k=35
 open('parts/09-gloss.html','w').write(css+page(G[:k],True)+page(G[k:],False))
 print(len(G))
