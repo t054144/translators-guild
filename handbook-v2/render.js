@@ -21,7 +21,30 @@ fs.writeFileSync(path.join(dir, 'handbook.html'), parts.map(f => fs.readFileSync
         const nb = document.createElement('div'); nb.className = 'body'; np.appendChild(nb);
         const pn = document.createElement('div'); pn.className = 'pn'; np.appendChild(pn);
         cur.after(np);
-        while (b.scrollHeight > b.clientHeight + 1 && b.children.length > 1) nb.prepend(b.lastElementChild);
+        const over = () => b.scrollHeight > b.clientHeight + 1;
+        while (over() && b.children.length > 1) {
+          const last = b.lastElementChild;
+          const rows = last.tagName === 'TABLE' ? [...last.rows] : [];
+          const hdr = rows.length && rows[0].querySelector('th') ? rows[0] : null;
+          const data = hdr ? rows.slice(1) : rows;
+          if (data.length >= 4) {
+            // split a long table across the page break, repeating its header row
+            const t2 = last.cloneNode(false), tb = document.createElement('tbody'); t2.appendChild(tb);
+            if (hdr) tb.appendChild(hdr.cloneNode(true));
+            nb.prepend(t2);
+            const at = () => hdr ? tb.children[1] || null : tb.firstChild;
+            let moved = 0;
+            while ((over() || moved === 1) && data.length - moved > 2) { tb.insertBefore(data[data.length - 1 - moved], at()); moved++; }
+            if (moved === 0) { t2.remove(); nb.prepend(last); continue; }
+            if (over() || moved < 2) {
+              // could not split nicely: move the whole table instead
+              for (const r of [...tb.children].slice(hdr ? 1 : 0)) data[0].parentNode.appendChild(r);
+              t2.remove(); nb.prepend(last);
+            }
+            continue;
+          }
+          nb.prepend(last);
+        }
         let last = b.lastElementChild;
         while (last && b.children.length > 1 && (/^H[12]$/.test(last.tagName) || (last.tagName === 'P' && last.nextElementSibling === null && /:$/.test(last.textContent.trim())))) { nb.prepend(last); last = b.lastElementChild; }
         cur = np;

@@ -32,6 +32,7 @@ G = [("Adaptation","التكييف","Replacing a cultural situation with a famil
 ("Borrowing","الاقتراض","Taking a word from the SL as it is.","c10"),
 ("Calque","النسخ","Translating each part of an expression.","c10"),
 ("Client","العميل","The person or organisation who asks for a translation.","c3"),
+
 ("Collocation","التلازم اللفظي","Words that naturally go together.","c8"),
 ("Commentary","التعليق على الترجمة","A text that explains and justifies translation choices.","c17"),
 ("Commissioned translator","مترجم بتكليف","A translator who works for a client.","c2"),
@@ -41,6 +42,7 @@ G = [("Adaptation","التكييف","Replacing a cultural situation with a famil
 ("Cultural approximation","التقريب الثقافي","Bringing cultural meaning close to the TL reader.","c12"),
 ("Cultural substitution","الإبدال الثقافي","Replacing a cultural reference with a TL one.","c11"),
 ("Denotation","المعنى المعجمي","The basic dictionary meaning.","c5"),
+("Draft","المسوّدة","Your first version of a translation.","c15"),
 ("Descriptive translation","الترجمة الوصفية","Explaining a word by describing it.","c13"),
 ("Discourse analysis","تحليل الخطاب","Studying how language shows power and ideology.","c18"),
 ("Domestication","التوطين","Making a text feel local to the reader.","c11"),
@@ -55,26 +57,30 @@ G = [("Adaptation","التكييف","Replacing a cultural situation with a famil
 ("Ideational equivalence","التكافؤ الفكري","Keeps only the basic idea.","c7"),
 ("Ideology","الأيديولوجيا","Beliefs that affect how events are described.","c18"),
 ("Idiom","التعبير الاصطلاحي","A fixed expression whose meaning is not the sum of its words.","c8"),
-("Interpretation","الترجمة الشفهية","Translating speech.","c1"),
+("Interpreting","الترجمة الشفهية","Translating speech.","c1"),
 ("Lexical creation","النحت المعجمي","Creating a new word in the TL.","c13"),
 ("Literal translation","الترجمة الحرفية","Keeping the words and changing only the grammar.","c9"),
 ("Machine translation","الترجمة الآلية","Translation done by software.","c20"),
 ("Meaning","المعنى","The idea that words express.","c5"),
-("Metaphor","الاستعارة","A comparison without “as” or “like”.","c11"),
+("Method","منهج الترجمة","The general approach to a whole text, e.g. literal or free.","c10"),
+("Metaphor","الاستعارة","Describing something as if it were something else.","c11"),
 ("Modern Standard Arabic","الفصحى المعاصرة","The Arabic of newspapers, laws and education.","c4"),
 ("Modulation","التحوير","Changing the point of view.","c10"),
 ("Omission","الحذف","Leaving out words that repeat the meaning.","c11"),
 ("Post-editing","التحرير اللاحق","A human correcting machine translation.","c20"),
-("Procedure","الإجراء","A technique for translating a word or phrase.","c10"),
+("Procedure","إجراء الترجمة","A technique for translating a word or phrase.","c10"),
 ("Proverb","المثل","A traditional saying.","c8"),
 ("Register","المستوى اللغوي","How formal the language is.","c4"),
 ("Revision","المراجعة","Checking and correcting a translation.","c15"),
 ("Risk","الخطر","The chance that a choice causes a problem.","c16"),
 ("Self-initiated translator","مترجم بمبادرة ذاتية","A translator who chooses a text, with no client.","c2"),
 ("Simile","التشبيه","A comparison with “as” or “like”.","c11"),
+
 ("Source language (SL)","اللغة المصدر","The language of the original text.","howto"),
+("Source text (ST)","النص المصدر","The original text that you translate.","c1"),
 ("Strategy","الاستراتيجية","A planned solution to a translation problem.","c11"),
 ("Target language (TL)","اللغة الهدف","The language of the translation.","howto"),
+("Target text (TT)","النص الهدف","Your translation.","c1"),
 ("Term","المصطلح","A word with a special meaning in one field.","c14"),
 ("Translation","الترجمة التحريرية","Transferring the meaning of a written text.","c1"),
 ("Translation brief","موجز الترجمة","Client, purpose and audience.","c3"),
@@ -89,27 +95,35 @@ glossary = f'''<style>.gr{{display:grid;grid-template-columns:34mm 30mm 1fr 7mm;
 {rows}
 </div><div class="pn"></div></section>'''
 
-refs = '''<style>.rf p{padding-left:5mm;text-indent:-5mm;font-size:8.8pt;margin-bottom:1.8mm}</style>
-<section class="page" data-id="refs" id="refs" data-title="References" data-ar="المراجع"><div class="body">
+refs = '''<style>.rf p{padding-left:5mm;text-indent:-5mm;font-size:8pt;line-height:1.4;margin-bottom:1.1mm}.rf h2{margin-top:3mm;font-size:10.5pt}</style>
+<section class="page" data-id="refs" id="refs" data-title="References" data-ar="المراجع"><div class="body rf">
 <div class="part">Reference</div><h1 style="margin-top:3mm">References</h1><div class="art">المراجع</div><div class="rule"></div>
-<div class="rf">
 <h2>Team course materials</h2>
 <p>The Translation Team’s course notes and drafts, the <b>180</b> textbook and the <b>182</b> course book. <span class="note">(Full details to be added.)</span></p>
 <p><span class="ar">الترجمة: ماهيتها</span>, a text cited in the team notes. <span class="note">(Author and details to be confirmed.)</span></p>
 <h2>Books and articles</h2>
+<p>al-Jāḥiẓ (d. 868 CE). <em>Kitāb al-Ḥayawān</em> <span class="ar">(كتاب الحيوان)</span>.</p>
+<p>al-Ṣafadī (d. 1363 CE). <em>al-Ghayth al-Musajjam fī Sharḥ Lāmiyyat al-ʿAjam</em> <span class="ar">(الغيث المسجم في شرح لامية العجم)</span>.</p>
 <p>Baker, M. (2018). <em>In Other Words: A Coursebook on Translation</em> (3rd ed.). Routledge.</p>
+<p>Eco, U. (2003). <em>Dire quasi la stessa cosa: Esperienze di traduzione</em>. Bompiani.</p>
 <p>Fairclough, N. (1992). <em>Discourse and Social Change</em>. Polity Press.</p>
 <p>Farghal, M., &amp; Shunnaq, A. (1999). <em>Translation with Reference to English and Arabic: A Practical Guide</em>. Dar Al-Hilal.</p>
+<p>Firth, J. R. (1957). A synopsis of linguistic theory, 1930–1955. In <em>Studies in Linguistic Analysis</em> (pp. 1–32). Blackwell.</p>
+<p>Jakobson, R. (1959). On linguistic aspects of translation. In R. A. Brower (Ed.), <em>On Translation</em> (pp. 232–239). Harvard University Press.</p>
+<p>Jerome (395 CE). Letter 57, to Pammachius, on the best method of translating.</p>
 <p>Newmark, P. (1988). <em>A Textbook of Translation</em>. Prentice Hall.</p>
+<p>Nida, E. A., &amp; Taber, C. R. (1969). <em>The Theory and Practice of Translation</em>. E. J. Brill.</p>
 <p>Nord, C. (1997). <em>Translating as a Purposeful Activity</em>. St. Jerome.</p>
+<p>Piozzi, H. L. (1786). <em>Anecdotes of the Late Samuel Johnson, LL.D.</em> T. Cadell.</p>
 <p>Pym, A. (2015). Translating as risk management. <em>Journal of Pragmatics</em>, 85, 67–80.</p>
+<p>Schleiermacher, F. (1977). On the different methods of translating (A. Lefevere, Trans.). In A. Lefevere (Ed.), <em>Translating Literature: The German Tradition</em>. Van Gorcum. (Original lecture 1813)</p>
 <p>Venuti, L. (1995). <em>The Translator’s Invisibility</em>. Routledge.</p>
 <p>Vinay, J.-P., &amp; Darbelnet, J. (1995). <em>Comparative Stylistics of French and English</em> (J. C. Sager &amp; M.-J. Hamel, Trans.). John Benjamins. (Original work published 1958)</p>
 <h2>Texts quoted</h2>
 <p>al-Mutanabbi (d. 965 CE). <em>Dīwān</em>. · Shakespeare, W. (1609). <em>Sonnet 18</em>. · United Nations (1948). <em>Universal Declaration of Human Rights</em>, Article 1.</p>
 <h2>Dictionaries and resources</h2>
 <p>Baalbaki, M. <em>Al-Mawrid: A Modern English–Arabic Dictionary</em>. Dar El-Ilm Lilmalayin. · Wehr, H. (1994). <em>A Dictionary of Modern Written Arabic</em> (4th ed.). Spoken Language Services. · Academy of the Arabic Language, Cairo. <em>Al-Muʿjam al-Wasīṭ</em>. · <em>Oxford Collocations Dictionary for Students of English</em> (2nd ed., 2009). Oxford University Press. · UNTERM (United Nations terminology database). · Arabterm.</p>
-</div></div><div class="pn"></div></section>'''
+</div><div class="pn"></div></section>'''
 
 back = '''<section class="page" data-id="back" style="background:linear-gradient(195deg,#9e05cf 0%,#8103d3 45%,#5c06ea 100%);color:#fff">
 <div style="position:absolute;left:24mm;right:24mm;top:70mm">
@@ -121,5 +135,11 @@ back = '''<section class="page" data-id="back" style="background:linear-gradient
 <div style="position:absolute;right:24mm;bottom:22mm;text-align:right;font-size:7.4pt;letter-spacing:.22em;color:#eadcff;line-height:1.9">TRANSLATION TEAM<br>PROFESSIONAL CLUB<br>FIRST EDITION · 2026</div>
 </section>'''
 
-open('parts/04-end.html', 'w').write(checklists + glossary + refs + back)
+
+notes = ''.join(f'''<section class="page" data-id="notes{i}"{' id="notes"' if i==1 else ''}><div class="body">
+<h1 style="margin-top:0;font-size:16pt">Notes</h1><div class="art">ملاحظات</div><div class="rule"></div>
+<div style="position:absolute;left:0;right:0;top:26mm;bottom:0;background:repeating-linear-gradient(to bottom,transparent 0,transparent 8.6mm,var(--line) 8.6mm,var(--line) 8.9mm)"></div>
+</div><div class="pn"></div></section>''' for i in (1, 2))
+
+open('parts/04-end.html', 'w').write(checklists + glossary + refs + notes + back)
 print(len(G), 'glossary terms')

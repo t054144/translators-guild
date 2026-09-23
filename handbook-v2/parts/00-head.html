@@ -37,22 +37,30 @@ h1{font-family:var(--serif);font-weight:700;font-size:21pt;line-height:1.15;colo
 .rule{height:.5mm;width:22mm;background:var(--purple);margin:3mm 0 4mm}
 .intro{font-size:9.8pt;color:var(--ink-2);margin-bottom:3mm}
 
-h2{font-family:var(--serif);font-weight:700;font-size:12pt;color:var(--deep);margin:4.6mm 0 2mm;line-height:1.25}
+h2{font-family:var(--serif);font-weight:700;font-size:12pt;color:var(--deep);margin:4.2mm 0 1.8mm;line-height:1.25}
 h2 .n{color:var(--purple);margin-right:2mm}
 h2:first-child{margin-top:0}
 
 /* tables */
 table{width:100%;border-collapse:collapse;margin:0 0 3mm;font-size:8.8pt;line-height:1.42}
 th{background:var(--soft);color:var(--deep);font-weight:600;text-align:left;padding:1.3mm 2.2mm;font-size:8.2pt}
-td{padding:1.4mm 2.2mm;border-bottom:.25mm solid var(--line);vertical-align:top}
+td{padding:1.15mm 2.2mm;border-bottom:.25mm solid var(--line);vertical-align:top}
 td.r,th.r{text-align:right}
 td .ar{font-size:1.2em}
 .terms td:first-child{font-weight:600;width:30%}
 .terms td:nth-child(2){width:24%;text-align:right;color:var(--purple)}
 
-.remember{background:var(--soft);border-left:1mm solid var(--purple);padding:2.6mm 4mm .6mm;margin:4mm 0 0;border-radius:0 1.5mm 1.5mm 0}
+.remember{background:var(--soft);border-left:1mm solid var(--purple);padding:2.4mm 4mm .4mm;margin:3.4mm 0 0;border-radius:0 1.5mm 1.5mm 0}
 .remember .t{font-size:7.4pt;letter-spacing:.18em;text-transform:uppercase;color:var(--purple);font-weight:700;margin-bottom:1mm}
 .remember ul{margin-left:4.5mm}
+.epi{position:relative;padding:0 0 0 8mm;margin:0 0 3.4mm}
+.epi::before{content:"\201C";position:absolute;left:0;top:-3mm;font-family:var(--serif);font-size:30pt;color:var(--purple);line-height:1}
+.epi .qt{display:block;font-family:var(--serif);font-style:italic;font-size:9.9pt;line-height:1.45;color:var(--ink)}
+.epi .qa{display:block;font-family:var(--ar);direction:rtl;text-align:right;unicode-bidi:isolate;font-size:11pt;line-height:1.7;color:var(--ink);margin-bottom:1.4mm}
+.epi .by{display:block;font-size:7.8pt;color:var(--ink-3);margin-top:1.2mm;line-height:1.45}
+.plain{border:.35mm solid var(--line);border-radius:1.8mm;padding:2.6mm 4mm .4mm;margin:0 0 1mm}
+.plain .t{font-size:7.4pt;letter-spacing:.18em;text-transform:uppercase;color:var(--purple);font-weight:700;margin-bottom:1mm}
+.plain p{font-size:9.4pt;line-height:1.5}
 .note{font-size:8.4pt;color:var(--ink-3)}
 ul,ol{margin:0 0 2.4mm 5mm} li{margin-bottom:.8mm}
 li::marker{color:var(--purple)}
