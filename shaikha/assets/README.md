@@ -41,6 +41,17 @@ until it is yours. Add your own bullets inside its `<ul>`:
 The slide switches itself on as soon as there is at least one `<li>`, and the
 slide numbers and the counter renumber themselves.
 
+## The translation game, slide 09
+
+The rounds live in the `GAME` list at the top of the `<script>` in
+`../index.html`. Each is one Arabic line, one brief, and three renderings;
+`ok:true` marks the one the brief calls for. Copy a block to add a round.
+Keep all three defensible — the whole point is that the brief decides, not
+that two of them are wrong.
+
+Answer by clicking, or with the `1` `2` `3` keys while the slide is up. The
+game loops, so it can be played again without reloading.
+
 ## Presenting
 
 - Arrow keys, space, or Page Up / Page Down move between slides
