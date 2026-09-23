@@ -46,8 +46,14 @@ slide numbers and the counter renumber themselves.
 The rounds live in the `GAME` list at the top of the `<script>` in
 `../index.html`. Each is one Arabic line, one `brief`, and three renderings;
 `ok:true` marks the one the context calls for. Copy a block to add a round.
-Keep all three defensible — the whole point is that the context decides, not
-that two of them are wrong.
+
+None of the three may be a literal rendering: each has to read naturally and
+look right on its own, or the round answers itself. The procedures used are
+communicative, cultural equivalent and modulation, and the correct one is a
+different procedure each round.
+
+Answering turns the right one green and a wrong pick red, each with its own
+reason underneath.
 
 The line and the three choices are all that show at first. The context stays
 hidden until a choice is made, and is then revealed as the thing that settles

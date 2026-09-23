@@ -16,6 +16,8 @@
     --faint:rgba(242,239,233,.20);
     --rule:rgba(242,239,233,.13);
     --accent:#c8a46a;
+    --good:#8fbf94;
+    --bad:#d98c8c;
     --pad:clamp(26px,5.5vw,96px);
   }
   *{box-sizing:border-box;margin:0;padding:0}
@@ -442,14 +444,28 @@
   }
   .opt:hover:not(:disabled) .k,.opt:focus-visible:not(:disabled) .k{color:var(--dim)}
   .opt:disabled{cursor:default}
-  .opt.right{border-color:var(--accent);border-left-color:var(--accent);
-    color:var(--ink);background:rgba(200,164,106,.07)}
-  .opt.right .k{color:var(--accent)}
-  .opt.wrong{opacity:.42}
+  .opt.right{border-color:var(--good);border-left-color:var(--good);
+    color:var(--ink);background:rgba(143,191,148,.09)}
+  .opt.right .k{color:var(--good)}
+  .opt.bad{border-color:var(--bad);border-left-color:var(--bad);
+    color:var(--ink);background:rgba(217,140,140,.09)}
+  .opt.bad .k{color:var(--bad)}
+  .opt.dim{opacity:.32}
+
+  .optwrap{display:flex;flex-direction:column}
+  .owhy{
+    margin:7px 0 0 clamp(10px,1.2vw,18px);padding-left:clamp(10px,1.1vw,16px);
+    border-left:1px solid var(--rule);
+    font-size:clamp(11px,.92vw,14px);line-height:1.6;color:var(--dim);max-width:76ch;
+  }
+  .owhy[hidden]{display:none}
+  .owhy.g{border-left-color:var(--good)}
+  .owhy.r{border-left-color:var(--bad)}
+  .owhy.g b{color:var(--good);font-weight:400}
+  .owhy.r b{color:var(--bad);font-weight:400}
 
   .verdict{margin-top:clamp(12px,2vh,20px);max-width:78ch}
   .verdict[hidden]{display:none}
-  .vwhy{font-size:clamp(11px,.95vw,15px);line-height:1.65;color:var(--dim)}
   .vwhy b{color:var(--ink);font-weight:400}
   .onward{
     -webkit-appearance:none;appearance:none;background:none;border:0;
@@ -721,7 +737,6 @@
       <div class="opts"></div>
       <div class="verdict" hidden>
         <p class="ctx"><b>The context</b><span></span></p>
-        <p class="vwhy"></p>
         <button class="onward" type="button"></button>
       </div>
     </div>
@@ -806,55 +821,59 @@ var BOOKS = [
 /* ==================================================================
    09 A TRANSLATION GAME
 
-   Each round: one classical Arabic line, one brief, three renderings.
-   All three are defensible; the brief decides which one is right, and
-   the right answer is a different procedure each time. To add a round,
-   copy a block. `ok:true` marks the answer the brief calls for.
+   One classical Arabic line, three renderings. None of them is a
+   literal translation: each is a legitimate procedure and each reads
+   naturally, so all three look right. The context, which stays hidden
+   until a choice is made, is what settles it — and it settles on a
+   different procedure each round.
+
+   `ok:true` marks the answer. `why` is shown for the answer and for a
+   wrong pick, so both sides are explained.
    ------------------------------------------------------------------ */
 var GAME = [
   {
     line:'\u0633\u064e\u0628\u064e\u0642\u064e \u0627\u0644\u0633\u064e\u0651\u064a\u0641\u064f \u0627\u0644\u0639\u064e\u0630\u064e\u0644',
-    brief:'You are in the booth. The speaker drops the proverb in passing, does not pause for it, and is already three sentences further on.',
+    brief:'Live interpreting at a formal session. A delegate has just conceded a point, says it, and moves on without pausing.',
     options:[
-      {k:'Semantic', t:'The sword has outrun the reproach.',
-       ok:false,
-       why:'Faithful to the image, and a riddle at speed. The delegate is left decoding a metaphor while the speaker moves on.'},
       {k:'Communicative', t:'It is too late for blame \u2014 the thing is already done.',
        ok:true,
-       why:'In simultaneous interpreting the listener has one pass and no footnote. The sense has to arrive at the speed it was said, and the image is what you spend to buy that.'},
+       why:'The listener has one pass and no footnote, and what the delegate is doing is closing an argument. This lands the force at the speed it was said, which is the whole job in the booth.'},
       {k:'Cultural equivalent', t:'No use crying over spilt milk.',
        ok:false,
-       why:'It lands instantly, but it lowers the register: the Arabic is severe and final, the English is a shrug.'}
+       why:'It arrives instantly, and it drops the register through the floor. The Arabic is grave and final; this is a shrug, and a shrug is not what a delegate just conceded with.'},
+      {k:'Modulation', t:'What is done cannot now be undone.',
+       ok:false,
+       why:'Sound, and it turns a pointed remark into a general law. The reproach is the part the speaker meant, and it is exactly the part this loses.'}
     ]
   },
   {
     line:'\u0627\u0644\u0635\u064e\u0651\u064a\u0641\u064e \u0636\u064e\u064a\u064e\u0651\u0639\u0652\u062a\u0650 \u0627\u0644\u0644\u064e\u0651\u0628\u064e\u0646',
     brief:'A subtitle. One woman turns on another who let her chance go and now wants it back. Forty characters, a second and a half on screen.',
     options:[
-      {k:'Semantic', t:'In summer you let the milk go to waste.',
-       ok:false,
-       why:'Accurate and baffling. A subtitle cannot carry a gloss, and the viewer has no second to spend working out what the milk stands for.'},
       {k:'Communicative', t:'You wasted your chance when you had it.',
        ok:false,
-       why:'Clear, correct, and flat. It explains the line rather than letting the character deliver it, and the sting is gone.'},
+       why:'Clear, correct, and flat. It explains the line instead of letting her deliver it, and a subtitle that explains is a subtitle the audience hears the actress contradict.'},
       {k:'Cultural equivalent', t:'You made your bed \u2014 now lie in it.',
        ok:true,
-       why:'A subtitle has to work at the speed of speech and keep the edge. The English proverb does both, and the register matches one friend turning on another.'}
+       why:'It fits the frame, it keeps the sting, and the register is right for one friend turning on another. Speed and edge are what a subtitle has to buy, and this buys both.'},
+      {k:'Modulation', t:'Nobody took it from you \u2014 you let it go.',
+       ok:false,
+       why:'A good line, and too long for a second and a half. It also cools an accusation into an observation, which is the opposite of what she is doing.'}
     ]
   },
   {
     line:'\u0631\u064e\u062c\u064e\u0639\u064e \u0628\u0650\u062e\u064f\u0641\u064e\u0651\u064a\u0652 \u062d\u064f\u0646\u064e\u064a\u0652\u0646',
-    brief:'An annotated anthology of Arabic proverbs, read by students of the literature. There is room at the foot of the page.',
+    brief:'A newspaper profile in English. A minister flew abroad to win a concession and came back without it. One sentence, measured, and the piece reports rather than judges.',
     options:[
-      {k:'Semantic', t:'He came back with \u1e24unayn\u2019s slippers.',
-       ok:true,
-       why:'Here the image is the object of study, not an obstacle to it. The book exists to show how Arabic says things, and the footnote can carry \u1e24unayn and his story.'},
       {k:'Communicative', t:'He came back with nothing at all.',
        ok:false,
-       why:'True to the sense and useless to a reader who opened this book precisely to meet the proverb.'},
+       why:'Accurate, and in print it reads as the writer\u2019s verdict. The profile is meant to report; this editorialises in four words.'},
       {k:'Cultural equivalent', t:'He came home empty-handed.',
        ok:false,
-       why:'Idiomatic English that quietly deletes \u1e24unayn, and with him the reason the proverb exists at all.'}
+       why:'Natural English and completely dead. The reader skims past it, and the needle the Arabic carried \u2014 that he was sent off with something and returned with less \u2014 goes with it.'},
+      {k:'Modulation', t:'All he brought home was the journey itself.',
+       ok:true,
+       why:'The same sense reached from the other side: not what he lacked, but what he actually returned with. The irony survives, nobody is called a failure, and a broadsheet can print it.'}
     ]
   }
 ];
@@ -1013,7 +1032,6 @@ addEventListener('keydown',function(e){
       ctx=slide.querySelector('.ctx span'),
       opts=slide.querySelector('.opts'),
       verdict=slide.querySelector('.verdict'),
-      vwhy=slide.querySelector('.vwhy'),
       onward=slide.querySelector('.onward'),
       at=0, answered=false;
 
@@ -1025,31 +1043,48 @@ addEventListener('keydown',function(e){
     verdict.hidden=true;
     opts.innerHTML='';
     r.options.forEach(function(o,i){
+      var wrap=document.createElement('div');
+      wrap.className='optwrap';
       var b=document.createElement('button');
       b.type='button';b.className='opt';
       b.innerHTML='<span class="k"></span><span class="t"></span>';
       b.querySelector('.k').textContent=String.fromCharCode(65+i)+' \u00b7 '+o.k;
       b.querySelector('.t').innerHTML=o.t;
       b.addEventListener('click',function(){answer(i);});
-      opts.appendChild(b);
+      var w=document.createElement('p');
+      w.className='owhy';w.hidden=true;
+      wrap.appendChild(b);wrap.appendChild(w);
+      opts.appendChild(wrap);
     });
   }
 
   function answer(i){
     if(answered) return;
     answered=true;
-    var r=GAME[at], buttons=[].slice.call(opts.children);
-    buttons.forEach(function(b,j){
+    var r=GAME[at],
+        wraps=[].slice.call(opts.children),
+        correct=r.options.map(function(o){return o.ok;}).indexOf(true);
+
+    wraps.forEach(function(wrap,j){
+      var b=wrap.querySelector('.opt'), w=wrap.querySelector('.owhy'), o=r.options[j];
       b.disabled=true;
-      b.classList.add(r.options[j].ok?'right':'wrong');
+      if(o.ok){
+        b.classList.add('right');
+        w.className='owhy g';
+        w.innerHTML='<b>Correct.</b> '+o.why;
+        w.hidden=false;
+      }else if(j===i){
+        b.classList.add('bad');
+        w.className='owhy r';
+        w.innerHTML='<b>Not in this context.</b> '+o.why;
+        w.hidden=false;
+      }else{
+        b.classList.add('dim');
+      }
     });
-    var chose=r.options[i], right=r.options.filter(function(o){return o.ok;})[0];
+
     ctx.textContent=r.brief;
-    vwhy.innerHTML = chose.ok
-      ? '<b>Yes.</b> '+chose.why
-      : '<b>Not in this context.</b> '+chose.why+' Here the context calls for the '+
-        right.k.toLowerCase()+' rendering: '+right.why;
-    onward.textContent = (at<GAME.length-1) ? 'Next round' : 'Start over';
+    onward.textContent=(at<GAME.length-1)?'Next round':'Start over';
     verdict.hidden=false;
   }
 
