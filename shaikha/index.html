@@ -411,9 +411,10 @@
     width:fit-content;border-left:1px solid var(--accent);
     padding-left:clamp(12px,1.4vw,22px);margin-bottom:clamp(10px,1.8vh,18px);
   }
-  .ctx{
-    max-width:74ch;margin-bottom:clamp(12px,2vh,22px);
+  .verdict .ctx{
+    max-width:78ch;margin-bottom:clamp(10px,1.7vh,16px);
     font-size:clamp(11px,.95vw,15px);line-height:1.6;color:var(--ink);
+    border-left:1px solid var(--accent);padding-left:clamp(11px,1.2vw,18px);
   }
   .ctx b{
     display:block;font-weight:400;color:var(--accent);
@@ -713,13 +714,13 @@
     <p class="over">If there is time</p>
     <h2>A Translation Game</h2>
     <div class="bar"></div>
-    <p class="premise">All three translations are sound. The context decides which one is right.</p>
+    <p class="premise">All three are sound translations. Choose one, and the context will decide.</p>
 
     <div class="round">
       <p class="prompt" lang="ar"></p>
-      <p class="ctx"><b>The brief</b><span></span></p>
       <div class="opts"></div>
       <div class="verdict" hidden>
+        <p class="ctx"><b>The context</b><span></span></p>
         <p class="vwhy"></p>
         <button class="onward" type="button"></button>
       </div>
@@ -1020,7 +1021,7 @@ addEventListener('keydown',function(e){
     var r=GAME[at];
     answered=false;
     prompt.innerHTML=r.line;
-    ctx.textContent=r.brief;
+    ctx.textContent='';
     verdict.hidden=true;
     opts.innerHTML='';
     r.options.forEach(function(o,i){
@@ -1043,9 +1044,10 @@ addEventListener('keydown',function(e){
       b.classList.add(r.options[j].ok?'right':'wrong');
     });
     var chose=r.options[i], right=r.options.filter(function(o){return o.ok;})[0];
+    ctx.textContent=r.brief;
     vwhy.innerHTML = chose.ok
       ? '<b>Yes.</b> '+chose.why
-      : '<b>Not for this brief.</b> '+chose.why+' The brief calls for the '+
+      : '<b>Not in this context.</b> '+chose.why+' Here the context calls for the '+
         right.k.toLowerCase()+' rendering: '+right.why;
     onward.textContent = (at<GAME.length-1) ? 'Next round' : 'Start over';
     verdict.hidden=false;

@@ -44,10 +44,15 @@ slide numbers and the counter renumber themselves.
 ## The translation game, slide 09
 
 The rounds live in the `GAME` list at the top of the `<script>` in
-`../index.html`. Each is one Arabic line, one brief, and three renderings;
-`ok:true` marks the one the brief calls for. Copy a block to add a round.
-Keep all three defensible — the whole point is that the brief decides, not
+`../index.html`. Each is one Arabic line, one `brief`, and three renderings;
+`ok:true` marks the one the context calls for. Copy a block to add a round.
+Keep all three defensible — the whole point is that the context decides, not
 that two of them are wrong.
+
+The line and the three choices are all that show at first. The context stays
+hidden until a choice is made, and is then revealed as the thing that settles
+it — so the player has to commit before learning what the translation was
+actually for.
 
 Answer by clicking, or with the `1` `2` `3` keys while the slide is up. The
 game loops, so it can be played again without reloading.
