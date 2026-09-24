@@ -1,0 +1,12 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 665px; height: 945px; overflow: hidden; }
+body { position: relative; color: #fff; font-family: 'Carlito', sans-serif;
+  background: linear-gradient(165deg, #9D04CE 0%, #7A06DC 50%, #5E08EE 100%); }
+.dots { position: absolute; right: -38px; top: 58px; }
+.dots i { display: block; width: 150px; height: 150px; border-radius: 50%; margin-bottom: 16px; }
+.d1 { background: #8756C0; } .d2 { background: #867EF6; } .d3 { background: #CCCDFB; }
+.label { position: absolute; left: 56px; top: 64px; font-size: 13px; letter-spacing: 3.5px; text-transform: uppercase; color: #E6E3FF; }
+.band { position: absolute; left: 0; right: 0; bottom: 0; height: 176px; background: #fff; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; }
+.band img { height: 98px; }
+.band .ed { color: #3A2B69; font-size: 14px; letter-spacing: 1.5px; text-align: right; line-height: 1.6; }
+.rule { width: 72px; height: 4px; background: #CCCDFB; border-radius: 2px; }

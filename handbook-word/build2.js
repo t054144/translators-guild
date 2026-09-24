@@ -1,7 +1,8 @@
 // Builds Translation-Handbook.docx (second edition of the draft) from c2a.js and c2b.js.
 const fs = require('fs');
 const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, LevelFormat, PageNumber, Footer,
-  TableOfContents, Table, TableRow, TableCell, WidthType, ShadingType, BorderStyle, Tab, TabStopType } = require('docx');
+  TableOfContents, Table, TableRow, TableCell, WidthType, ShadingType, BorderStyle, Tab, TabStopType,
+  ImageRun, Header, SimpleField, NumberFormat, HorizontalPositionRelativeFrom, VerticalPositionRelativeFrom, TextWrappingType } = require('docx');
 
 const INK = '1F1A2E', ACCENT = '3D1591', GREY = '6B6680', LINE = 'CFC9DE';
 // PDF=1 builds a copy with fonts installed on the build machine, for the PDF export only.
@@ -30,7 +31,7 @@ function ar(t, o = {}) {
 }
 
 // ---------- blocks ----------
-let inst = 0, afterPart = false, chapter = null;
+let inst = 0, afterPart = false, chapter = null, mainStart = null;
 const body = [], glossary = [];
 const P = (children, opts = {}) => body.push(new Paragraph({ children, spacing: { after: 120, line: 290 }, ...opts }));
 const shade = { type: ShadingType.CLEAR, color: 'auto', fill: BOX };
@@ -61,7 +62,8 @@ function block(b) {
   switch (kind) {
     case 'front': H(HeadingLevel.HEADING_1, a, { pageBreakBefore: true }); break;
     case 'part':
-      H(HeadingLevel.HEADING_1, a, { pageBreakBefore: true });
+      if (a.startsWith('Part 1:')) mainStart = body.length;
+      H(HeadingLevel.HEADING_1, a, { pageBreakBefore: mainStart !== body.length });
       if (c) P(runs(c, { italics: true, color: GREY }), { spacing: { after: 360, line: 290 } });
       afterPart = true; break;
     case 'ch': {
@@ -98,13 +100,9 @@ function block(b) {
 
 // ---------- title page ----------
 const center = (children, spacing) => body.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing, children }));
-const wordmark = (size, spacingBefore) => {
-  const dot = c => new TextRun({ text: '●', font: 'Arial', size: Math.round(size / 1.7), color: c });
-  center([new TextRun({ text: 'Guild ', font: SERIF, size, bold: true, color: ACCENT }), dot('8756C0'), dot('867EF6'), dot('CCCDFB')], { before: spacingBefore, after: 0 });
-  center([new TextRun({ text: 'Translation Team', font: SERIF, size: Math.round(size / 2.6), bold: true, color: ACCENT })], { after: 40 });
-  center([new TextRun({ text: 'Professional Club', font: LATIN, size: Math.round(size / 4.6), color: GREY, characterSpacing: 60 })], { after: 0 });
-};
-wordmark(72, 900);
+// The logo is cut from the club's own artwork by art/logo.py; the covers are rendered by art/render.sh.
+const img = (file, w, h, extra = {}) => new ImageRun({ type: file.endsWith('.png') ? 'png' : 'jpg', data: fs.readFileSync(file), transformation: { width: w, height: h }, ...extra });
+center([img('art/logo-dark.png', 228, 112)], { before: 900, after: 0 });
 body.push(new Paragraph({ spacing: { after: 1200 }, children: [] }));
 center([new TextRun({ text: 'Translation Handbook', font: SERIF, size: 56, bold: true, color: INK })], { after: 200 });
 center([new TextRun({ text: 'A beginner’s guide to translating between English and Arabic', font: LATIN, size: 26, italics: true, color: INK })], { after: 500 });
@@ -184,11 +182,26 @@ R.sort((x, y) => refKey(x).localeCompare(refKey(y)));
 block(['part', 'References', 'All sources cited in this handbook, in APA style.']);
 R.forEach(r => P(runs(r), { indent: { left: 567, hanging: 567 }, spacing: { after: 100, line: 280 } }));
 
-// ---------- back cover ----------
-body.push(new Paragraph({ pageBreakBefore: true, spacing: { before: 2400, after: 200 }, alignment: AlignmentType.CENTER, children: [new TextRun({ text: '“Translate the meaning, not the words.”', font: SERIF, italics: true, size: 30, color: INK })] }));
-body.push(new Paragraph({ bidirectional: true, alignment: AlignmentType.CENTER, spacing: { after: 600 }, children: [ar('ترجِمِ المعنى، لا الكلمات.', { size: 28, color: GREY })] }));
-body.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 1600, line: 300 }, children: runs('A step-by-step guide for beginners who want to translate between English and Arabic: from preparing a text to checking and explaining the result, with examples in both languages, exercises and answers.', { color: GREY, size: 20 }) }));
-wordmark(48, 0);
+// ---------- covers ----------
+const pageSize = { width: PAGE_W, height: mm(250) };
+const coverSection = file => ({
+  properties: { page: { size: pageSize, margin: { top: 0, bottom: 0, left: 0, right: 0, header: 0, footer: 0 } } },
+  headers: { default: new Header({ children: [new Paragraph({ children: [] })] }) },
+  footers: { default: new Footer({ children: [new Paragraph({ children: [] })] }) },
+  children: [new Paragraph({ children: [img(file, 665, 945, { floating: {
+    horizontalPosition: { relative: HorizontalPositionRelativeFrom.PAGE, offset: 0 },
+    verticalPosition: { relative: VerticalPositionRelativeFrom.PAGE, offset: 0 },
+    behindDocument: true, allowOverlap: true, wrap: { type: TextWrappingType.NONE } } })] })],
+});
+const pageNum = new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ children: [PageNumber.CURRENT], font: LATIN, size: 17, color: GREY })] })] });
+const margins = { top: MARGIN, bottom: MARGIN, left: MARGIN, right: MARGIN, header: mm(10), footer: mm(9) };
+// running head: book title on the left, the current part on the right
+const runningHead = new Header({ children: [new Paragraph({
+  tabStops: [{ type: TabStopType.RIGHT, position: CONTENT_W }],
+  border: { bottom: { style: BorderStyle.SINGLE, size: 4, color: LINE, space: 4 } },
+  children: [new TextRun({ text: 'Translation Handbook', font: LATIN, size: 16, color: GREY, italics: true }), new TextRun({ children: [new Tab()], font: LATIN, size: 16 }),
+    new SimpleField('STYLEREF "Heading 1"'),
+  ] })] });
 
 const doc = new Document({
   creator: 'Guild Translation Team', title: 'Translation Handbook', features: { updateFields: true },
@@ -205,10 +218,13 @@ const doc = new Document({
     { reference: 'bul', levels: [{ level: 0, format: LevelFormat.BULLET, text: '•', alignment: AlignmentType.LEFT, style: { paragraph: { indent: { left: 454, hanging: 340 } } } }] },
     { reference: 'box', levels: [{ level: 0, format: LevelFormat.BULLET, text: '□', alignment: AlignmentType.LEFT, style: { run: { font: 'Arial' }, paragraph: { indent: { left: 454, hanging: 340 } } } }] },
   ] },
-  sections: [{
-    properties: { page: { size: { width: PAGE_W, height: mm(250) }, margin: { top: MARGIN, bottom: MARGIN, left: MARGIN, right: MARGIN, footer: mm(9) } } },
-    footers: { default: new Footer({ children: [new Paragraph({ alignment: AlignmentType.CENTER, children: [new TextRun({ children: [PageNumber.CURRENT], font: LATIN, size: 17, color: GREY })] })] }) },
-    children: body,
-  }],
+  sections: [
+    coverSection('art/cover-front.jpg'),
+    { properties: { page: { size: pageSize, margin: margins, pageNumbers: { start: 1, formatType: NumberFormat.LOWER_ROMAN } } },
+      headers: { default: new Header({ children: [new Paragraph({ children: [] })] }) }, footers: { default: pageNum }, children: body.slice(0, mainStart) },
+    { properties: { page: { size: pageSize, margin: margins, pageNumbers: { start: 1, formatType: NumberFormat.DECIMAL } } },
+      headers: { default: runningHead }, footers: { default: pageNum }, children: body.slice(mainStart) },
+    coverSection('art/cover-back.jpg'),
+  ],
 });
 Packer.toBuffer(doc).then(buf => { fs.writeFileSync(PDF ? 'Translation-Handbook-pdf.docx' : 'Translation-Handbook.docx', buf); console.log('written; glossary terms:', seen.size); });
