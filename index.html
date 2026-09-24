@@ -494,7 +494,9 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
     font-family: inherit; color: var(--lilac-dim);
     -webkit-tap-highlight-color: transparent;
   }
-  #bottom-nav .bn-i { font-size: 1.02rem; line-height: 1; }
+  #bottom-nav .bn-i { width: 22px; height: 22px; display: block;
+    fill: none; stroke: currentColor; stroke-width: 1.7;
+    stroke-linecap: round; stroke-linejoin: round; }
   #bottom-nav .bn-t { font-size: .6rem; letter-spacing: .07em; text-transform: uppercase; }
   #bottom-nav button[aria-current="page"] { color: var(--white); background: rgba(167,38,208,.18); }
   #bottom-nav button[aria-current="page"] .bn-i { color: var(--magenta); }
@@ -698,6 +700,66 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 /* the Arabic name sitting beside an English heading */
 .card-top h3 .ar { font-family: var(--f-ar); font-size: .78em; font-weight: 400;
   color: var(--lilac); margin-inline-start: .5rem; unicode-bidi: isolate; }
+/* ═══════════ LIGHT THEME ═══════════
+   Same Guild, lit from the other side. Only the tokens change, so every
+   component follows without being touched. The violet stays the accent; it
+   simply has to earn its contrast against paper instead of against night. */
+:root[data-theme="light"] {
+  --void: #f6f2fb; --void-2: #ede5f7; --void-3: #e2d5f2;
+  --lilac: #4a3363; --lilac-dim: #6f5c88; --white: #1a0f2b;
+  --magenta: #8218c7; --violet: #650fd0;
+  --grad-soft: linear-gradient(180deg, rgba(167,38,208,.10), rgba(101,15,208,.10));
+  --hair: 1px solid rgba(74,51,99,.20);
+  --hair-lit: 1px solid rgba(74,51,99,.34);
+  --shadow: 0 18px 44px -20px rgba(60,20,100,.32);
+  --glow: 0 0 30px -12px rgba(167,38,208,.34);
+  color-scheme: light;
+}
+:root[data-theme="light"] body {
+  background:
+    radial-gradient(68rem 46rem at 78% -14%, rgba(167,38,208,.16), transparent 62%),
+    radial-gradient(52rem 40rem at 6% 104%, rgba(101,15,208,.13), transparent 60%),
+    var(--void);
+}
+:root[data-theme="light"] .panel,
+:root[data-theme="light"] .commission,
+:root[data-theme="light"] .card,
+:root[data-theme="light"] .rec-row,
+:root[data-theme="light"] .pair,
+:root[data-theme="light"] .block,
+:root[data-theme="light"] .j-tile {
+  background: rgba(255,255,255,.72);
+}
+:root[data-theme="light"] .field input,
+:root[data-theme="light"] .typing textarea,
+:root[data-theme="light"] .typing input { background: #fff; color: var(--white); }
+:root[data-theme="light"] #bottom-nav { background: rgba(246,242,251,.92); }
+/* the spine is painted with a literal night colour, so it has to be told */
+:root[data-theme="light"] #spine {
+  background: linear-gradient(180deg, rgba(246,242,251,.94), rgba(246,242,251,.6) 70%, transparent); }
+:root[data-theme="light"] #unlock,
+:root[data-theme="light"] #finale { background: rgba(246,242,251,.94); }
+:root[data-theme="light"] .strip-card { background: rgba(255,255,255,.74); }
+:root[data-theme="light"] .rank-box .r-en {
+  background: linear-gradient(200deg,#4a1470,#8218c7 60%,#a726d0); }
+
+/* the switch itself, in the spine */
+.theme-btn {
+  margin-inline-start: 1rem; width: 34px; height: 34px; padding: 0;
+  display: grid; place-items: center; cursor: pointer;
+  border-radius: 50%; border: var(--hair); background: transparent;
+  color: var(--lilac-dim);
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.theme-btn:hover { color: var(--white); border-color: rgba(214,191,234,.4); }
+.theme-btn:focus-visible { outline: 2px solid var(--magenta); outline-offset: 2px; }
+.theme-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor;
+  stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+.theme-btn .th-sun { display: none; }
+:root[data-theme="light"] .theme-btn .th-sun  { display: block; }
+:root[data-theme="light"] .theme-btn .th-moon { display: none; }
+@media (max-width: 560px) { .theme-btn { margin-inline-start: .5rem; width: 30px; height: 30px; } }
+
 /* the precise subject line: what this actually is, and where the handbook
    treats it. Quiet enough not to compete with the title, plain enough to
    be looked up. */
@@ -1048,6 +1110,11 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   <span class="act" data-act="1"><span class="a-n">I</span><span class="a-bar"><i></i></span><span class="a-lab">Enrolment</span></span>
   <span class="act" data-act="2"><span class="a-n">II</span><span class="a-bar"><i></i></span><span class="a-lab">Theory &amp; Method</span></span>
   <span class="act" data-act="3"><span class="a-n">III</span><span class="a-bar"><i></i></span><span class="a-lab">Practice &amp; Assessment</span></span>
+  <button type="button" id="theme-btn" class="theme-btn" aria-pressed="false"
+          aria-label="Switch to light theme" title="Switch to light theme">
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="th-moon"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+    <svg viewBox="0 0 24 24" aria-hidden="true" class="th-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
+  </button>
 </nav>
 
 <main id="app">
@@ -1146,7 +1213,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 15 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 16 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1331,21 +1398,26 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
      This bar is the primary navigation on a small screen and is not
      rendered at all on a large one, where the hall's own headings do the
      job. It appears only once somebody is through the gate. -->
-<nav id="bottom-nav" aria-label="Guild sections" hidden>
+<nav id="bottom-nav" aria-label="Sections" hidden>
   <button type="button" data-go="home" aria-current="page">
-    <span class="bn-i" aria-hidden="true">&#9737;</span><span class="bn-t">Home</span>
+    <svg class="bn-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.5 20v-6h5v6"/></svg>
+    <span class="bn-t">Home</span>
   </button>
-  <button type="button" data-go="chambers">
-    <span class="bn-i" aria-hidden="true">&#9671;</span><span class="bn-t">Chambers</span>
+  <button type="button" data-go="learn">
+    <svg class="bn-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5A1.5 1.5 0 0 1 5.5 4H11v16H5.5A1.5 1.5 0 0 1 4 18.5z"/><path d="M20 5.5A1.5 1.5 0 0 0 18.5 4H13v16h5.5a1.5 1.5 0 0 0 1.5-1.5z"/></svg>
+    <span class="bn-t">Learn</span>
   </button>
-  <button type="button" data-go="trials">
-    <span class="bn-i" aria-hidden="true">&#10022;</span><span class="bn-t">Trials</span>
+  <button type="button" data-go="practice">
+    <svg class="bn-i" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
+    <span class="bn-t">Practice</span>
   </button>
   <button type="button" data-go="interpret">
-    <span class="bn-i" aria-hidden="true">&#9673;</span><span class="bn-t">Interpret</span>
+    <svg class="bn-i" viewBox="0 0 24 24" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0"/><path d="M12 18v3"/></svg>
+    <span class="bn-t">Interpreting</span>
   </button>
-  <button type="button" data-go="seal">
-    <span class="bn-i" aria-hidden="true">&#9733;</span><span class="bn-t">Seal</span>
+  <button type="button" data-go="profile">
+    <svg class="bn-i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M4.8 20a7.2 7.2 0 0 1 14.4 0"/></svg>
+    <span class="bn-t">Profile</span>
   </button>
 </nav>
 
@@ -2487,18 +2559,18 @@ const ROOTS = [
    depictions rather than likenesses, and the card says so.
    ═══════════════════════════════════════════════════════════ */
 const LINEAGE = [
-  { id: "hunayn", mono: "H", name: "Hunayn ibn Ishaq", life: "809 - 873", place: "Baghdad",
-    wiki: "Hunayn ibn Ishaq", img: "",
-    pair: "Greek & Syriac to Arabic",
-    line: "Sense before words - eleven centuries before anyone gave it that name.",
-    what: "He ran the translation bureau of the House of Wisdom and turned the whole Greek medical corpus - Galen, Hippocrates, Dioscorides - into Arabic.",
-    why: "He refused to work word for word. He hunted down every manuscript of a text he could find, collated them into one reliable original, and only then carried the <b>sense</b> across. That is still the method. His Galen kept medicine alive for seven hundred years, and when Europe wanted Greek medicine back it had to translate his Arabic to get it.",
+  { id: "jerome", mono: "J", name: "Jerome", life: "c. 347 - 420", place: "Bethlehem",
+    wiki: "Jerome", img: "",
+    pair: "Hebrew & Greek to Latin",
+    line: "Not word for word, but sense for sense.",
+    what: "He produced the Vulgate, the Latin Bible that Western Europe read for more than a thousand years.",
+    why: "In his letter to Pammachius he wrote that he translates <i>not word for word but sense for sense</i> - the sentence the whole profession still quotes at itself. He also insisted on going back to the Hebrew rather than working from the Greek. He is the patron saint of translators, and his feast day is International Translation Day.",
     ex: {
-      lab: "Building the vocabulary as he went",
-      srcLab: "Greek", src: "χυμός <i>(chymos)</i> &mdash; \"juice, sap\"", srcDir: "ltr",
-      litLab: "Word for word", lit: "\"juice\" &mdash; or the Greek sound carried straight over, which told an Arabic physician nothing",
-      outLab: "What he wrote", out: "خِلْط <i>(khilṭ)</i> &mdash; \"a mixture\"", outDir: "rtl",
-      note: "Arabic had no word for a bodily humour. Instead of importing the Greek sound he took an ordinary Arabic word for a <i>mixture</i> and made it the technical term &mdash; <b>أخلاط</b> is still the Arabic for the four humours. Translating Galen meant building the language that could hold Galen, and a great deal of Arabic medical vocabulary is his." } },
+      lab: "One root, chosen wrong, for a thousand years",
+      srcLab: "Hebrew (Exodus 34:29)", src: "קָרַן <i>(q-r-n)</i>", srcDir: "rtl",
+      litLab: "The other reading", lit: "the same three consonants also spell <i>qeren</i>, \"horn\" &mdash; and that is the one he took",
+      outLab: "What he wrote", out: "<i>cornuta esset facies sua</i> &mdash; \"his face was horned\", where the sense is that it sent out rays of light", outDir: "ltr",
+      note: "The consonants carry both <i>shone</i> and <i>horn</i>, and the vowels that would separate them are not written. His choice put horns on Moses in European art for a thousand years, Michelangelo's included. The man who wrote <i>not word for word but sense for sense</i> is also the standing proof of how far one root-choice travels." } },
 
   { id: "muqaffa", mono: "IM", name: "Ibn al-Muqaffa", life: "c. 724 - 759", place: "Basra",
     wiki: "Ibn al-Muqaffa'", img: "",
@@ -2526,19 +2598,18 @@ const LINEAGE = [
       outLab: "What does not", out: "the ṭawīl metre, the rhyme, the archaic diction &mdash; every part of it that was doing the work", outDir: "ltr",
       note: "Al-Jahiz translated nothing; this is his argument worked out, not his rendering. In the <i>Book of Animals</i> he held that poetry <b>cannot</b> cross, because metre, sound-shape and rhetorical figure are not decoration on the meaning &mdash; they are part of it, so all that arrives is the report. He also insisted a translator must be equally strong in both tongues, or he will damage both." } },
 
-  { id: "ishaq", mono: "IH", name: "Ishaq ibn Hunayn", life: "c. 830 - 910", place: "Baghdad",
-    wiki: "", img: "",
+  { id: "hunayn", mono: "H", name: "Hunayn ibn Ishaq", life: "809 - 873", place: "Baghdad",
+    wiki: "Hunayn ibn Ishaq", img: "",
     pair: "Greek & Syriac to Arabic",
-    line: "The second generation - carrying a method, not just a post.",
-    what: "He translated Greek philosophy and science into Arabic - works of Aristotle, Euclid's <i>Elements</i>, and a version of Ptolemy's <i>Almagest</i> - and practised as a physician at the Abbasid court, as his father had before him.",
-    why: "A method only survives if someone inherits it. He worked the way Hunayn worked: gather every manuscript, settle what the text actually says, and only then carry the sense across. The Arabic Aristotle that later philosophers argued over, and that Europe eventually read through Latin, came in large part through the translations of his generation." },
-
-  { id: "thabit", mono: "TQ", name: "Thabit ibn Qurra", life: "c. 826 - 901", place: "Harran, then Baghdad",
-    wiki: "", img: "",
-    pair: "Greek & Syriac to Arabic",
-    line: "He corrected translations because he could do the mathematics.",
-    what: "A mathematician and astronomer from Harran who translated Greek scientific works into Arabic and revised translations already in circulation, among them Euclid and Ptolemy, alongside his own work in mathematics and astronomy.",
-    why: "He is the argument against treating translation and subject knowledge as separate trades. Revising a mathematical text means being able to follow the proof; where he changed a rendering, he changed it because he knew what the mathematics had to say." },
+    line: "Sense before words - eleven centuries before anyone gave it that name.",
+    what: "He ran the translation bureau of the House of Wisdom and turned the whole Greek medical corpus - Galen, Hippocrates, Dioscorides - into Arabic.",
+    why: "He refused to work word for word. He hunted down every manuscript of a text he could find, collated them into one reliable original, and only then carried the <b>sense</b> across. That is still the method. His Galen kept medicine alive for seven hundred years, and when Europe wanted Greek medicine back it had to translate his Arabic to get it.",
+    ex: {
+      lab: "Building the vocabulary as he went",
+      srcLab: "Greek", src: "χυμός <i>(chymos)</i> &mdash; \"juice, sap\"", srcDir: "ltr",
+      litLab: "Word for word", lit: "\"juice\" &mdash; or the Greek sound carried straight over, which told an Arabic physician nothing",
+      outLab: "What he wrote", out: "خِلْط <i>(khilṭ)</i> &mdash; \"a mixture\"", outDir: "rtl",
+      note: "Arabic had no word for a bodily humour. Instead of importing the Greek sound he took an ordinary Arabic word for a <i>mixture</i> and made it the technical term &mdash; <b>أخلاط</b> is still the Arabic for the four humours. Translating Galen meant building the language that could hold Galen, and a great deal of Arabic medical vocabulary is his." } },
 
   { id: "qusta", mono: "QL", name: "Qusta ibn Luqa", life: "c. 820 - 912", place: "Baalbek, then Baghdad",
     wiki: "", img: "",
@@ -2547,38 +2618,26 @@ const LINEAGE = [
     what: "A physician and scientist from Baalbek who worked in Greek, Syriac and Arabic. He translated Greek mathematical and mechanical works into Arabic and wrote his own treatises on medicine and the sciences.",
     why: "He belongs to the generation that had to build a technical Arabic while using it. Translating mechanics or medicine meant deciding what a term would mean in Arabic from then on, and then writing original work in the vocabulary he had just settled." },
 
-  { id: "tahtawi", mono: "RT", name: "Rifaa al-Tahtawi", life: "1801 - 1873", place: "Tahta, Paris, Cairo",
+  { id: "thabit", mono: "TQ", name: "Thabit ibn Qurra", life: "c. 826 - 901", place: "Harran, then Baghdad",
     wiki: "", img: "",
-    pair: "French to Arabic",
-    line: "He did not translate a shelf of books. He built the school that did.",
-    what: "Sent to Paris in 1826 as imam to an Egyptian student mission, he learned French, translated, and wrote an account of the city and its institutions, <i>Takhlis al-Ibriz fi Talkhis Bariz</i>. Back in Cairo he led the School of Languages, Madrasat al-Alsun, which trained translators and produced translations across law, geography, history and the sciences.",
-    why: "Institutions outlast individuals. The school turned translation in Egypt into a trained profession rather than a personal gift, and a great deal of modern Arabic technical vocabulary was settled by the work that came out of it." },
+    pair: "Greek & Syriac to Arabic",
+    line: "He corrected translations because he could do the mathematics.",
+    what: "A mathematician and astronomer from Harran who translated Greek scientific works into Arabic and revised translations already in circulation, among them Euclid and Ptolemy, alongside his own work in mathematics and astronomy.",
+    why: "He is the argument against treating translation and subject knowledge as separate trades. Revising a mathematical text means being able to follow the proof; where he changed a rendering, he changed it because he knew what the mathematics had to say." },
 
-  { id: "jayyusi", mono: "SJ", name: "Salma Khadra Jayyusi", life: "1926 - 2023", place: "Palestine & the US",
-    wiki: "Salma Khadra Jayyusi", img: "",
-    pair: "Arabic to English",
-    line: "She built the shelf that modern Arabic literature stands on in English.",
-    what: "A poet and scholar who founded PROTA, the project that translated modern Arabic literature into English at scale - more than thirty volumes of it.",
-    why: "Before her an English reader could barely find modern Arabic poetry or fiction; after her there was a library. She also proved something about the job: she commissioned, edited and argued the work into existence, because <b>translation at that scale is institution-building</b>, not only writing.",
-    ex: {
-      lab: "Two hands on every poem",
-      srcLab: "Stage one", src: "a close, literal draft by a translator who has the Arabic", srcDir: "ltr",
-      litLab: "Left there", lit: "accurate, and not a poem in English &mdash; information about a poem",
-      outLab: "Stage two", out: "an English-language poet works that draft until it is poetry in English, with her editing between them", outDir: "ltr",
-      note: "This was PROTA's house method, and she treated the second stage as non-optional &mdash; which is why she kept co-translating with poets rather than publishing the literal drafts. Her other lesson is the unglamorous one: she commissioned, edited, funded and argued more than thirty volumes into print, because <b>at that scale translation is institution-building</b>." } },
+  { id: "ishaq", mono: "IH", name: "Ishaq ibn Hunayn", life: "c. 830 - 910", place: "Baghdad",
+    wiki: "", img: "",
+    pair: "Greek & Syriac to Arabic",
+    line: "The second generation - carrying a method, not just a post.",
+    what: "He translated Greek philosophy and science into Arabic - works of Aristotle, Euclid's <i>Elements</i>, and a version of Ptolemy's <i>Almagest</i> - and practised as a physician at the Abbasid court, as his father had before him.",
+    why: "A method only survives if someone inherits it. He worked the way Hunayn worked: gather every manuscript, settle what the text actually says, and only then carry the sense across. The Arabic Aristotle that later philosophers argued over, and that Europe eventually read through Latin, came in large part through the translations of his generation." },
 
-  { id: "jerome", mono: "J", name: "Jerome", life: "c. 347 - 420", place: "Bethlehem",
-    wiki: "Jerome", img: "",
-    pair: "Hebrew & Greek to Latin",
-    line: "Not word for word, but sense for sense.",
-    what: "He produced the Vulgate, the Latin Bible that Western Europe read for more than a thousand years.",
-    why: "In his letter to Pammachius he wrote that he translates <i>not word for word but sense for sense</i> - the sentence the whole profession still quotes at itself. He also insisted on going back to the Hebrew rather than working from the Greek. He is the patron saint of translators, and his feast day is International Translation Day.",
-    ex: {
-      lab: "One root, chosen wrong, for a thousand years",
-      srcLab: "Hebrew (Exodus 34:29)", src: "קָרַן <i>(q-r-n)</i>", srcDir: "rtl",
-      litLab: "The other reading", lit: "the same three consonants also spell <i>qeren</i>, \"horn\" &mdash; and that is the one he took",
-      outLab: "What he wrote", out: "<i>cornuta esset facies sua</i> &mdash; \"his face was horned\", where the sense is that it sent out rays of light", outDir: "ltr",
-      note: "The consonants carry both <i>shone</i> and <i>horn</i>, and the vowels that would separate them are not written. His choice put horns on Moses in European art for a thousand years, Michelangelo's included. The man who wrote <i>not word for word but sense for sense</i> is also the standing proof of how far one root-choice travels." } },
+  { id: "luther", mono: "ML", name: "Martin Luther", life: "1483 - 1546", place: "Wittenberg",
+    wiki: "", img: "",
+    pair: "Greek, Hebrew & Latin to German",
+    line: "He translated for people who had never been asked what German sounded like.",
+    what: "He translated the New Testament into German in 1522 and the complete Bible by 1534, and in 1530 wrote an open letter on translating that defended the choices he had made against critics who wanted the Latin followed word by word.",
+    why: "He argued that the test of a rendering was whether ordinary German speakers recognised their own language in it - so he listened to how people actually spoke and wrote that, rather than tracking the Latin. The result carried far beyond religion: it is one of the texts that shaped written German itself." },
 
   { id: "tyndale", mono: "T", name: "William Tyndale", life: "c. 1494 - 1536", place: "Antwerp",
     wiki: "William Tyndale", img: "",
@@ -2593,12 +2652,12 @@ const LINEAGE = [
       outLab: "What he wrote", out: "\"congregation\" &middot; \"elder\" &middot; \"love\"", outDir: "ltr",
       note: "Not a matter of taste. Each choice removed a word that held up an institution and put a plain English one where it stood, which is a large part of why the books were burned and then so was he. Where English had nothing he made it: <b>Passover</b>, <b>scapegoat</b>, <b>atonement</b>, <b>mercy seat</b> are his coinages, and roughly four fifths of the King James New Testament is his wording untouched." } },
 
-  { id: "luther", mono: "ML", name: "Martin Luther", life: "1483 - 1546", place: "Wittenberg",
+  { id: "dryden", mono: "JD", name: "John Dryden", life: "1631 - 1700", place: "London",
     wiki: "", img: "",
-    pair: "Greek, Hebrew & Latin to German",
-    line: "He translated for people who had never been asked what German sounded like.",
-    what: "He translated the New Testament into German in 1522 and the complete Bible by 1534, and in 1530 wrote an open letter on translating that defended the choices he had made against critics who wanted the Latin followed word by word.",
-    why: "He argued that the test of a rendering was whether ordinary German speakers recognised their own language in it - so he listened to how people actually spoke and wrote that, rather than tracking the Latin. The result carried far beyond religion: it is one of the texts that shaped written German itself." },
+    pair: "Latin & Greek to English",
+    line: "Three ways to carry a poem across, and a warning about two of them.",
+    what: "A poet and critic who translated Virgil, Ovid and others into English, and who in his preface to <i>Ovid's Epistles</i> in 1680 named three ways of doing it: metaphrase, word by word; paraphrase, sense for sense with the author kept in view; and imitation, where the translator departs from the original at will.",
+    why: "Naming the three made it possible to argue about which one a given text deserved. He preferred the middle way and distrusted the extremes - and translators have been arguing along that same line ever since, usually without knowing whose terms they are using." },
 
   { id: "schleiermacher", mono: "FS", name: "Friedrich Schleiermacher", life: "1768 - 1834", place: "Berlin",
     wiki: "", img: "",
@@ -2607,12 +2666,12 @@ const LINEAGE = [
     what: "A philosopher and theologian who translated Plato into German, and who in an 1813 lecture on the different methods of translating set out the choice a translator cannot avoid: leave the writer in place and move the reader toward him, or leave the reader in place and move the writer toward him.",
     why: "Almost every later theory argues with that lecture. It is often flattened into the pair <b>foreignization and domestication</b> - terms that came later, from Venuti - and the flattening loses the point, which was not that one path is right and the other wrong, but that a translator must choose one and stay with it." },
 
-  { id: "dryden", mono: "JD", name: "John Dryden", life: "1631 - 1700", place: "London",
+  { id: "tahtawi", mono: "RT", name: "Rifaa al-Tahtawi", life: "1801 - 1873", place: "Tahta, Paris, Cairo",
     wiki: "", img: "",
-    pair: "Latin & Greek to English",
-    line: "Three ways to carry a poem across, and a warning about two of them.",
-    what: "A poet and critic who translated Virgil, Ovid and others into English, and who in his preface to <i>Ovid's Epistles</i> in 1680 named three ways of doing it: metaphrase, word by word; paraphrase, sense for sense with the author kept in view; and imitation, where the translator departs from the original at will.",
-    why: "Naming the three made it possible to argue about which one a given text deserved. He preferred the middle way and distrusted the extremes - and translators have been arguing along that same line ever since, usually without knowing whose terms they are using." },
+    pair: "French to Arabic",
+    line: "He did not translate a shelf of books. He built the school that did.",
+    what: "Sent to Paris in 1826 as imam to an Egyptian student mission, he learned French, translated, and wrote an account of the city and its institutions, <i>Takhlis al-Ibriz fi Talkhis Bariz</i>. Back in Cairo he led the School of Languages, Madrasat al-Alsun, which trained translators and produced translations across law, geography, history and the sciences.",
+    why: "Institutions outlast individuals. The school turned translation in Egypt into a trained profession rather than a personal gift, and a great deal of modern Arabic technical vocabulary was settled by the work that came out of it." },
 
   { id: "nida", mono: "EN", name: "Eugene A. Nida", life: "1914 - 2011", place: "United States",
     wiki: "", img: "",
@@ -2633,6 +2692,19 @@ const LINEAGE = [
       litLab: "Word for word", lit: "&hellip; that distant afternoon when his father took him to <b>know</b> ice.",
       outLab: "What he wrote", out: "&hellip; that distant afternoon when his father took him to <b>discover</b> ice.", outDir: "ltr",
       note: "<i>Conocer</i> is to know, to meet, to be acquainted with. \"Know\" is dead on the page in English and \"see\" throws the wonder away; <b>discover</b> is a child meeting the thing for the first time, which is what the Spanish actually does. García Márquez waited three years for him and then said the English was better than the Spanish." } },
+
+  { id: "jayyusi", mono: "SJ", name: "Salma Khadra Jayyusi", life: "1926 - 2023", place: "Palestine & the US",
+    wiki: "Salma Khadra Jayyusi", img: "",
+    pair: "Arabic to English",
+    line: "She built the shelf that modern Arabic literature stands on in English.",
+    what: "A poet and scholar who founded PROTA, the project that translated modern Arabic literature into English at scale - more than thirty volumes of it.",
+    why: "Before her an English reader could barely find modern Arabic poetry or fiction; after her there was a library. She also proved something about the job: she commissioned, edited and argued the work into existence, because <b>translation at that scale is institution-building</b>, not only writing.",
+    ex: {
+      lab: "Two hands on every poem",
+      srcLab: "Stage one", src: "a close, literal draft by a translator who has the Arabic", srcDir: "ltr",
+      litLab: "Left there", lit: "accurate, and not a poem in English &mdash; information about a poem",
+      outLab: "Stage two", out: "an English-language poet works that draft until it is poetry in English, with her editing between them", outDir: "ltr",
+      note: "This was PROTA's house method, and she treated the second stage as non-optional &mdash; which is why she kept co-translating with poets rather than publishing the literal drafts. Her other lesson is the unglamorous one: she commissioned, edited, funded and argued more than thirty volumes into print, because <b>at that scale translation is institution-building</b>." } },
 
   { id: "venuti", mono: "LV", name: "Lawrence Venuti", life: "born 1953", place: "United States",
     wiki: "", img: "",
@@ -3244,7 +3316,7 @@ function show(name) {
   /* the bar belongs to the Guild, not to the gate */
   if (typeof showNav === "function") showNav(name !== "gate");
   if (typeof paintNav === "function") {
-    paintNav(name === "seal" ? "seal" : name === "hall" ? "home" : "");
+    paintNav(name === "seal" ? "profile" : name === "hall" ? "home" : "");
   }
 }
 
@@ -4158,6 +4230,45 @@ document.getElementById("seal-back").addEventListener("click", () => {
   renderHall(); show("hall");
 });
 
+/* ═══════════ LIGHT AND DARK ═══════════
+   The Guild is dark by default, because that is its face. A member who
+   prefers paper says so once and the choice is remembered on this device.
+   Someone who has never chosen follows whatever their system asks for, so
+   a phone in light mode is not ambushed at night. */
+const THEME_KEY = "guild.theme";
+
+function storedTheme() {
+  try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
+}
+function applyTheme(mode) {
+  document.documentElement.setAttribute("data-theme", mode);
+  const b = document.getElementById("theme-btn");
+  if (b) {
+    const toLight = mode !== "light";
+    b.setAttribute("aria-pressed", String(mode === "light"));
+    const label = toLight ? "Switch to light theme" : "Switch to dark theme";
+    b.setAttribute("aria-label", label);
+    b.setAttribute("title", label);
+  }
+}
+function setTheme(mode, remember) {
+  applyTheme(mode);
+  if (remember) { try { localStorage.setItem(THEME_KEY, mode); } catch (e) {} }
+}
+
+(function initTheme() {
+  /* Dark is the Guild's own face, so it is what a first visit shows
+     whatever the device prefers. Light is there for anyone who wants it,
+     and once chosen it is remembered on this device. */
+  const saved = storedTheme();
+  applyTheme(saved === "light" ? "light" : "dark");
+  const b = document.getElementById("theme-btn");
+  if (b) b.addEventListener("click", () => {
+    const now = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
+    setTheme(now, true);
+  });
+})();
+
 /* ═══════════ BOTTOM NAVIGATION ═══════════
    Five destinations, each one a real place rather than a label: the hall,
    the chambers, the trials, the interpreting trial, and the seal. It is
@@ -4167,17 +4278,24 @@ const navBar = document.getElementById("bottom-nav");
 
 function navTo(where) {
   const jump = id => {
+    /* Coming from another screen, the outgoing view is still in the document
+       for the length of its transition, so scrolling immediately measures a
+       layout that is about to change and lands in the wrong place. Wait for
+       the swap when there is one; scroll at once when there is not. */
+    const changing = curView !== "hall";
     renderHall();
-    if (curView !== "hall") show("hall");
-    requestAnimationFrame(() => {
+    if (changing) show("hall");
+    const go = () => {
       const t = document.getElementById(id);
       if (t) t.scrollIntoView({ behavior: prefersStill() ? "auto" : "smooth", block: "start" });
-    });
+    };
+    if (changing) setTimeout(go, 500);
+    else requestAnimationFrame(go);
   };
   if (where === "home")      { renderHall(); show("hall"); window.scrollTo({ top: 0, behavior: prefersStill() ? "auto" : "smooth" }); }
-  if (where === "chambers")  jump("block-chambers");
-  if (where === "trials")    jump("block-trials");
-  if (where === "seal")      { renderSeal(); show("seal"); }
+  if (where === "practice")  jump("block-trials");
+  if (where === "learn")     jump("block-method");
+  if (where === "profile")   { renderSeal(); show("seal"); }
   if (where === "interpret") {
     /* The Booth is a Trial, not a Chamber, and it is the interpreting one. */
     const booth = ITEMS.find(t => t.id === "booth");
