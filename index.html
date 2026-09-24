@@ -767,6 +767,108 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 :root[data-theme="light"] .theme-btn .th-moon { display: none; }
 @media (max-width: 560px) { .theme-btn { margin-inline-start: .5rem; width: 30px; height: 30px; } }
 
+/* ═══════════ THE PHONE ═══════════
+   Everything above was sized with a laptop in view, and on a 390px screen
+   it read as a magnified version of a desktop page: headings the width of
+   the glass, cards that held two lines, labels overflowing their boxes.
+   This block sizes the Guild for the device it is actually opened on.
+   It comes last so it wins, and it touches nothing above 700px. */
+@media (max-width: 700px) {
+  /* The act spine described a single scrolling page. Navigation is tabs
+     now, so on a phone it costs sixty pixels of glass to repeat what the
+     bar at the bottom already shows. It stays on larger screens, where
+     there is room for it. */
+  #spine { display: none; }
+  main { padding-top: 1rem; }
+  #block-method, #block-trials, #block-chambers { scroll-margin-top: 1rem; }
+
+  /* type comes down a step across the board */
+  .hall-head h1 { font-size: 1.72rem; line-height: 1.12; }
+  .hall-sub { font-size: .94rem; }
+  .screen-head h1, #hall .strip-head h2, .sec-head h2 { font-size: 1.28rem; }
+  .card-top h3 { font-size: 1.2rem; }
+  .c-en { font-size: 1rem; }
+  .c-blurb { font-size: .84rem; line-height: 1.5; }
+  .c-subject, .trial-subject { font-size: .62rem; letter-spacing: .07em; }
+  .note, .lede { font-size: .88rem; }
+  .lede { line-height: 1.55; }
+  #trial-en { font-size: 1.32rem; }
+
+  /* screens get a consistent, tighter rhythm */
+  #hall, #learn, #practice, #seal, #trial { gap: 1.35rem; }
+  .view { padding-inline: 0; }
+  .panel { padding: 1rem 1.05rem; border-radius: 20px; }
+  .commission { padding: .95rem 1rem; gap: .5rem; border-radius: 18px; }
+  .ledger { gap: .6rem; grid-template-columns: minmax(0,1fr); }
+  .card { padding: 1.05rem 1.1rem; }
+  .screen-head { margin-bottom: -.35rem; }
+
+  /* the member card */
+  .profile-card { padding: 1rem; gap: .75rem 1rem; }
+  .avatar { width: 50px; height: 50px; font-size: 1.1rem; }
+  .hall-id h1 { font-size: 1.3rem; }
+  .chip-tag { font-size: .66rem; padding: .24rem .6rem; }
+
+  /* the progress panel */
+  .j-head h2 { font-size: 1.05rem; }
+  .j-stats { gap: .45rem; }
+  .j-tile { padding: .7rem .4rem; }
+  .j-tile b { font-size: 1.25rem; }
+  .j-tile span { font-size: .6rem; }
+
+  /* the Lineage strip: cards a thumb can flick, names that fit */
+  .strip { gap: .55rem; }
+  .strip-card { width: 8.6rem; padding: .8rem .55rem; }
+  .strip-card .s-name { font-size: .82rem; line-height: 1.25; }
+  .strip-card .s-ar { font-size: .78rem; }
+  .strip-card .s-role, .strip-card .s-life { font-size: .66rem; }
+
+  /* the quote sits quietly at the foot of Home */
+  .hall-quote blockquote { font-size: .92rem; }
+
+  .record { gap: .45rem; }
+  .rec-row { padding: .6rem .75rem; gap: .6rem; }
+  .rec-name { font-size: .88rem; }
+  .rec-detail { font-size: .72rem; }
+  .pair { padding: .7rem .8rem; }
+  .chips { gap: .4rem; }
+  .chip { font-size: .74rem; padding: .5rem .8rem; }
+}
+
+/* ── the Climb, which was the worst of it ──
+   Five stations across 390px gave each one 70px, so "Advanced Beginner"
+   broke over two lines and pushed its mark count out of the card. On a
+   phone it becomes a list, which is what it always wanted to be. */
+@media (max-width: 700px) {
+  #climb .track { overflow: visible; }
+  #climb .rail { display: none; }
+  #climb .stations {
+    display: grid; grid-template-columns: minmax(0,1fr);
+    gap: 0; margin: 0;
+  }
+  #climb .station {
+    display: grid; grid-template-columns: auto 1fr auto;
+    align-items: center; gap: .7rem;
+    padding: .62rem .1rem; text-align: start;
+    border-bottom: 1px solid rgba(214,191,234,.10);
+  }
+  #climb .station:last-child { border-bottom: 0; }
+  #climb .station .dot {
+    position: static; width: 1.5rem; height: 1.5rem; margin: 0;
+    display: grid; place-items: center; font-size: .72rem;
+  }
+  #climb .station .s-en {
+    font-size: .92rem; white-space: normal; margin: 0;
+    overflow: visible; text-overflow: clip;
+    text-align: start; justify-self: start;
+  }
+  #climb .station .s-n { font-size: .68rem; white-space: nowrap; margin: 0; }
+  #climb .station.current .s-en { font-weight: 600; }
+  #climb .climb-top { gap: .4rem; }
+  #climb .ct-next { text-align: start; font-size: .84rem; }
+  #climb .climb-foot { flex-direction: column; align-items: flex-start; gap: .5rem; }
+}
+
 /* the profile card: who you are, at a glance */
 .profile-card { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(.9rem,3vw,1.4rem);
   align-items: center; padding: clamp(1.1rem,3vw,1.5rem); }
@@ -785,8 +887,14 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
     flex-direction: row; display: flex; align-items: center; gap: .6rem; }
 }
 
+.screen-head { display: grid; gap: .3rem; padding-top: .2rem; }
+.screen-head h1 { font-family: var(--f-serif); font-size: clamp(1.5rem,5vw,2.1rem);
+  font-weight: 600; color: var(--white); margin: 0; line-height: 1.12; }
+#learn, #practice { max-width: 64rem; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0,1fr); gap: 1.8rem; }
+
 /* the three appearance choices */
-.pick-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-top: .9rem; }
+.pick-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: .5rem; margin-top: .9rem; }
 .pick { display: grid; gap: .4rem; justify-items: center; padding: .85rem .4rem;
   border-radius: var(--r-md); border: var(--hair); background: rgba(255,255,255,.03);
   color: var(--lilac-dim); font-family: inherit; font-size: .8rem; cursor: pointer;
@@ -1245,7 +1353,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 19 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 20 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1294,16 +1402,15 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     </div>
   </section>
 
-  <!-- ══════════════ THE HALL ══════════════ -->
+  <!-- ══════════════ HOME ══════════════
+       Each tab is its own screen, as in an application: tapping one
+       replaces what is on the glass rather than scrolling the same long
+       page to a new place. Only Home is meant to be scrolled. -->
   <section id="hall" class="view" hidden>
     <header class="hall-head">
       <p class="seal-eyebrow">The Guild Hall</p>
       <h1 id="hall-welcome">Welcome.</h1>
       <p class="hall-sub">Your translation journey continues.</p>
-      <figure class="hall-quote">
-        <blockquote>Words travel worlds. Translators do the driving.</blockquote>
-        <figcaption>Anna Rusconi</figcaption>
-      </figure>
     </header>
 
     <div class="panel seal-journey" id="seal-journey"></div>
@@ -1311,23 +1418,39 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div>
       <div class="strip-head">
         <h2>The Lineage</h2>
-        <span class="note">Translators in history &mdash; sixteen figures, tap any one</span>
+        <span class="note">Translators in history &mdash; tap any one</span>
       </div>
       <div class="strip" id="strip"></div>
     </div>
 
-    <div id="block-method">
-      <div class="sec-head">
-        <h2>Theory &amp; Method</h2>
-        <span class="note" style="margin-inline-start:auto">Guides &middot; not assessed &middot; read these first, the trials assume them</span>
-      </div>
-      <div class="ledger" id="sec-method"></div>
-    </div>
+    <figure class="hall-quote">
+      <blockquote>Words travel worlds. Translators do the driving.</blockquote>
+      <figcaption>Anna Rusconi</figcaption>
+    </figure>
+
+    <p class="credit">Shaikha Alkhaldi</p>
+  </section>
+
+  <!-- ══════════════ LEARN ══════════════ -->
+  <section id="learn" class="view" hidden>
+    <header class="screen-head">
+      <h1>Theory &amp; Method</h1>
+      <p class="note">Guides &middot; not assessed &middot; read these first, the trials assume them</p>
+    </header>
+    <div id="block-method"><div class="ledger" id="sec-method"></div></div>
+  </section>
+
+  <!-- ══════════════ PRACTICE ══════════════ -->
+  <section id="practice" class="view" hidden>
+    <header class="screen-head">
+      <h1>Practice</h1>
+      <p class="note">Ten trials earn marks. The chambers earn none and never run out.</p>
+    </header>
 
     <div id="block-trials">
       <div class="sec-head">
         <h2>The Trials</h2>
-        <span class="note" style="margin-inline-start:auto">Assessed exercises &middot; each one earns a mark</span>
+        <span class="note">Assessed &middot; each earns a mark</span>
       </div>
       <div class="ledger" id="sec-trials"></div>
     </div>
@@ -1335,20 +1458,10 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div id="block-chambers">
       <div class="sec-head">
         <h2>The Chambers</h2>
-        <span class="note" style="margin-inline-start:auto">Open practice &middot; not assessed &middot; wander freely</span>
+        <span class="note">Open practice &middot; not assessed</span>
       </div>
       <div class="ledger" id="sec-chambers"></div>
     </div>
-
-    <div class="hall-foot">
-      <button class="ghost" id="seal-btn-open">Member's Seal</button>
-      <button class="ghost" id="admin-btn" hidden>Content Admin</button>
-      <button class="ghost" id="signout-btn">Log Out</button>
-      <p class="note" id="store-note" style="flex:1 1 20rem"></p>
-    </div>
-
-    <p class="credit">Shaikha Alkhaldi</p>
-
   </section>
 
   <!-- ══════════════ THE MEMBER'S SEAL ══════════════
@@ -1376,16 +1489,13 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <!-- Appearance, as a settings group rather than a switch in the header -->
     <div class="panel">
       <div class="j-head"><h2>Appearance</h2><span class="j-next" id="appearance-now">System</span></div>
-      <div class="pick-row" role="radiogroup" aria-label="Theme">
-        <button type="button" class="pick" data-theme-pick="system" role="radio" aria-checked="true">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor" stroke="none"/></svg>
-          <span>System</span></button>
+      <div class="pick-row two" role="radiogroup" aria-label="Theme">
+        <button type="button" class="pick" data-theme-pick="dark" role="radio" aria-checked="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+          <span>Dark</span></button>
         <button type="button" class="pick" data-theme-pick="light" role="radio" aria-checked="false">
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7"/></svg>
           <span>Light</span></button>
-        <button type="button" class="pick" data-theme-pick="dark" role="radio" aria-checked="false">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
-          <span>Dark</span></button>
       </div>
     </div>
 
@@ -1396,8 +1506,12 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div class="panel" id="seal-later"></div>
 
     <div class="hall-foot">
-      <button class="ghost" id="seal-back">← Back to the hall</button>
-      <button class="ghost" id="reset-btn">Melt the marks</button>
+      <button class="ghost" id="admin-btn" hidden>Content Admin</button>
+      <button class="ghost" id="reset-btn">Reset my marks</button>
+      <button class="ghost" id="signout-btn">Log Out</button>
+      <p class="note" id="store-note" style="flex:1 1 100%"></p>
+      <button class="ghost" id="seal-back" hidden>Back</button>
+      <button class="ghost" id="seal-btn-open" hidden>Profile</button>
     </div>
   </section>
 
@@ -3516,11 +3630,17 @@ function xferBlock(x) {
 const views = {
   gate:     document.getElementById("gate"),
   hall:     document.getElementById("hall"),
+  learn:    document.getElementById("learn"),
+  practice: document.getElementById("practice"),
   seal:     document.getElementById("seal"),
   trial:    document.getElementById("trial"),
   admin:    document.getElementById("admin")
 };
-const DEPTH = { gate: 0, hall: 1, seal: 2, trial: 2, admin: 2 };
+/* The five tabs sit at the same depth, so moving between them slides
+   sideways rather than pretending one is inside another. Anything opened
+   from a tab is deeper than it. */
+const DEPTH = { gate: 0, hall: 1, learn: 1, practice: 1, seal: 1, trial: 2, admin: 2 };
+const TABS = { hall: "home", learn: "learn", practice: "practice", seal: "profile" };
 let curView = null;
 
 function show(name) {
@@ -3552,9 +3672,7 @@ function show(name) {
 
   /* the bar belongs to the Guild, not to the gate */
   if (typeof showNav === "function") showNav(name !== "gate");
-  if (typeof paintNav === "function") {
-    paintNav(name === "seal" ? "profile" : name === "hall" ? "home" : "");
-  }
+  if (typeof paintNav === "function") paintNav(TABS[name] || "");
 }
 
 /* ═══════════ THE ACT SPINE ═══════════ */
@@ -4395,31 +4513,10 @@ function renderSeal() {
     '</ul>';
 }
 
+/* Home: who you are, what to do next, and the Lineage. Nothing that
+   belongs to another tab is drawn here. */
 function renderHall() {
   paintSeal();
-
-  ["method", "trials", "chambers"].forEach(sec => {
-    const box = document.getElementById("sec-" + sec);
-    box.innerHTML = "";
-    ITEMS.filter(t => t.section === sec).forEach((t, i) => {
-      const b = el("button", "commission");
-      b.style.animationDelay = (i * 55) + "ms";
-      const pip = t.kind === "guide" ? "" :
-        '<span class="seal-pip' + (state.marks[t.id] ? " earned" : "") + '">✦</span>';
-      b.innerHTML =
-        '<span class="c-top">' +
-          '<span class="cnum">' + String(ITEMS.indexOf(t) + 1).padStart(2, "0") + '</span>' +
-          '<span class="c-meta"><span class="kind ' + t.kind + '">' + t.kind + '</span>' + pip + '</span>' +
-        '</span>' +
-        '<span class="ctitles">' +
-          '<span class="c-en">' + t.en + '</span>' +
-          (t.subject ? '<span class="c-subject">' + t.subject + '</span>' : '') +
-          '<span class="c-blurb">' + t.blurb + '</span>' +
-        '</span>';
-      b.addEventListener("click", () => openItem(t));
-      box.appendChild(b);
-    });
-  });
 
   const strip = document.getElementById("strip");
   strip.innerHTML = "";
@@ -4439,6 +4536,35 @@ function renderHall() {
   paintStore();
   checkLevelUp();
 }
+
+/* One ledger of cards, used by both the Learn and Practice screens. */
+function fillLedger(sectionId, section) {
+  const box = document.getElementById(sectionId);
+  if (!box) return;
+  box.innerHTML = "";
+  ITEMS.filter(t => t.section === section).forEach((t, i) => {
+    const b = el("button", "commission");
+    b.style.animationDelay = (i * 45) + "ms";
+    const pip = t.kind === "guide" ? "" :
+      '<span class="seal-pip' + (state.marks[t.id] ? " earned" : "") + '">✦</span>';
+    b.innerHTML =
+      '<span class="c-top">' +
+        '<span class="cnum">' + String(i + 1).padStart(2, "0") + '</span>' +
+        '<span class="c-meta"><span class="kind ' + t.kind + '">' + t.kind + '</span>' + pip + '</span>' +
+      '</span>' +
+      '<span class="ctitles">' +
+        '<span class="c-en">' + t.en + '</span>' +
+        (t.subject ? '<span class="c-subject">' + t.subject + '</span>' : '') +
+        '<span class="c-blurb">' + t.blurb + '</span>' +
+      '</span>';
+    b.addEventListener("click", () => openItem(t));
+    box.appendChild(b);
+  });
+}
+
+function renderLearn()    { fillLedger("sec-method", "method"); }
+function renderPractice() { fillLedger("sec-trials", "trials"); fillLedger("sec-chambers", "chambers"); }
+
 
 document.getElementById("signout-btn").addEventListener("click", async () => {
   const b = document.getElementById("signout-btn");
@@ -4480,52 +4606,38 @@ document.getElementById("seal-back").addEventListener("click", () => {
 });
 
 /* ═══════════ APPEARANCE ═══════════
-   Three choices rather than a switch, because "follow my phone" is a real
-   preference and a two-way toggle cannot express it. System is the
-   default: a member who has said nothing gets whatever their device asks
-   for, and the Guild stops guessing. */
-const THEME_KEY = "guild.theme";          /* "system" | "light" | "dark" */
+   Two states, not three. Dark is the Guild's own face and is what every
+   visit opens on; light is a choice, and once made it is remembered on
+   that device. Following the phone was offered briefly and taken out
+   again: it meant the site could open in a skin the owner had never seen,
+   which is not what a house with a face of its own should do. */
+const THEME_KEY = "guild.theme";
 
-function systemIsLight() {
-  return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
-}
 function themeChoice() {
-  try { const v = localStorage.getItem(THEME_KEY); return v === "light" || v === "dark" ? v : "system"; }
-  catch (e) { return "system"; }
-}
-function effectiveTheme(choice) {
-  const c = choice || themeChoice();
-  if (c === "light" || c === "dark") return c;
-  return systemIsLight() ? "light" : "dark";
+  try { return localStorage.getItem(THEME_KEY) === "light" ? "light" : "dark"; }
+  catch (e) { return "dark"; }
 }
 function paintTheme() {
   const choice = themeChoice();
-  document.documentElement.setAttribute("data-theme", effectiveTheme(choice));
+  document.documentElement.setAttribute("data-theme", choice);
   document.querySelectorAll("[data-theme-pick]").forEach(b => {
     const on = b.dataset.themePick === choice;
     b.classList.toggle("on", on);
     b.setAttribute("aria-checked", String(on));
   });
   const sub = document.getElementById("appearance-now");
-  if (sub) sub.textContent = choice === "system" ? "System" : choice === "light" ? "Light" : "Dark";
+  if (sub) sub.textContent = choice === "light" ? "Light" : "Dark";
 }
 function setThemeChoice(choice) {
   try {
-    if (choice === "system") localStorage.removeItem(THEME_KEY);
-    else localStorage.setItem(THEME_KEY, choice);
+    if (choice === "light") localStorage.setItem(THEME_KEY, "light");
+    else localStorage.removeItem(THEME_KEY);
   } catch (e) {}
   paintTheme();
 }
 
 (function initTheme() {
   paintTheme();
-  /* while the member is on System, follow the device as it changes */
-  if (window.matchMedia) {
-    const mq = window.matchMedia("(prefers-color-scheme: light)");
-    const onChange = () => { if (themeChoice() === "system") paintTheme(); };
-    if (mq.addEventListener) mq.addEventListener("change", onChange);
-    else if (mq.addListener) mq.addListener(onChange);
-  }
   document.addEventListener("click", e => {
     const b = e.target.closest("[data-theme-pick]");
     if (b) setThemeChoice(b.dataset.themePick);
@@ -4540,27 +4652,12 @@ function setThemeChoice(choice) {
 const navBar = document.getElementById("bottom-nav");
 
 function navTo(where) {
-  const jump = id => {
-    /* Coming from another screen, the outgoing view is still in the document
-       for the length of its transition, so scrolling immediately measures a
-       layout that is about to change and lands in the wrong place. Wait for
-       the swap when there is one; scroll at once when there is not. */
-    const changing = curView !== "hall";
-    renderHall();
-    if (changing) show("hall");
-    const go = () => {
-      const t = document.getElementById(id);
-      if (t) t.scrollIntoView({ behavior: prefersStill() ? "auto" : "smooth", block: "start" });
-    };
-    if (changing) setTimeout(go, 500);
-    else requestAnimationFrame(go);
-  };
-  if (where === "home")      { renderHall(); show("hall"); window.scrollTo({ top: 0, behavior: prefersStill() ? "auto" : "smooth" }); }
-  if (where === "practice")  jump("block-trials");
-  if (where === "learn")     jump("block-method");
-  if (where === "profile")   { renderSeal(); show("seal"); }
+  if (where === "home")      { renderHall();  show("hall"); }
+  if (where === "learn")     { renderLearn(); show("learn"); }
+  if (where === "practice")  { renderPractice(); show("practice"); }
+  if (where === "profile")   { renderSeal();  show("seal"); }
   if (where === "interpret") {
-    /* The Booth is a Trial, not a Chamber, and it is the interpreting one. */
+    /* The Booth is the interpreting trial; the tab opens the work itself. */
     const booth = ITEMS.find(t => t.id === "booth");
     if (booth) openItem(booth);
   }
