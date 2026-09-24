@@ -4,7 +4,9 @@ const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, Level
   TableOfContents, Table, TableRow, TableCell, WidthType, ShadingType, BorderStyle, Tab, TabStopType } = require('docx');
 
 const INK = '1F1A2E', ACCENT = '3D1591', GREY = '6B6680', LINE = 'CFC9DE';
-const LATIN = 'Calibri', ARABIC = 'Arial', SERIF = 'Georgia', BOX = 'ECE9F7';
+// PDF=1 builds a copy with fonts installed on the build machine, for the PDF export only.
+const PDF = !!process.env.PDF;
+const LATIN = PDF ? 'Carlito' : 'Calibri', ARABIC = PDF ? 'Noto Naskh Arabic' : 'Arial', SERIF = PDF ? 'Noto Serif' : 'Georgia', BOX = 'ECE9F7';
 const mm = x => Math.round(x * 56.7);
 const PAGE_W = mm(176), MARGIN = mm(20), CONTENT_W = PAGE_W - 2 * MARGIN;
 
@@ -123,7 +125,7 @@ small('ISBN: [if required].');
 // ---------- contents ----------
 body.push(new Paragraph({ pageBreakBefore: true, spacing: { after: 240 }, children: [new TextRun({ text: 'Contents', font: LATIN, size: 36, bold: true, color: ACCENT })] }));
 body.push(new TableOfContents('Contents', { hyperlink: true, headingStyleRange: '1-2' }));
-body.push(new Paragraph({ spacing: { before: 200 }, children: [new TextRun({ text: 'If the page numbers are missing, right-click the list and choose “Update Field”.', font: LATIN, size: 17, italics: true, color: GREY })] }));
+if (!PDF) body.push(new Paragraph({ spacing: { before: 200 }, children: [new TextRun({ text: 'If the page numbers are missing, right-click the list and choose “Update Field”.', font: LATIN, size: 17, italics: true, color: GREY })] }));
 
 require('./c2a.js').forEach(block);
 body.splice(body.length, 0); // (front matter and Parts 1–4)
@@ -213,4 +215,4 @@ const doc = new Document({
     children: body,
   }],
 });
-Packer.toBuffer(doc).then(buf => { fs.writeFileSync('Translation-Handbook.docx', buf); console.log('written; glossary terms:', seen.size); });
+Packer.toBuffer(doc).then(buf => { fs.writeFileSync(PDF ? 'Translation-Handbook-pdf.docx' : 'Translation-Handbook.docx', buf); console.log('written; glossary terms:', seen.size); });
