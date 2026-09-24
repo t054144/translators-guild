@@ -2,7 +2,7 @@
 import qrcode, cv2, numpy as np
 from PIL import Image, ImageDraw
 URL = 'https://translators-guild.vercel.app/'
-LOGO = '/root/.claude/uploads/7d117e07-7e64-5e6c-8e91-83d6b6c25330/a45c8764-image.png'
+LOGO = 'qr/badge.png'   # built by qr/badge.py
 q = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H, border=0); q.add_data(URL); q.make(fit=True)
 M = q.get_matrix(); n = len(M)
 S, B = 64, 4                        # pixels per module, quiet-zone modules
