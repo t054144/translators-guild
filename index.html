@@ -740,6 +740,13 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 :root[data-theme="light"] #unlock,
 :root[data-theme="light"] #finale { background: rgba(246,242,251,.94); }
 :root[data-theme="light"] .strip-card { background: rgba(255,255,255,.74); }
+:root[data-theme="light"] .station:not(.reached) .s-en,
+:root[data-theme="light"] .station .s-n,
+:root[data-theme="light"] .ct-next { color: #5b4a75; }
+:root[data-theme="light"] .station:not(.reached) .dot { color: #8d7aa8; }
+:root[data-theme="light"] .note,
+:root[data-theme="light"] .c-subject,
+:root[data-theme="light"] .trial-subject { color: #5b4a75; }
 :root[data-theme="light"] .rank-box .r-en {
   background: linear-gradient(200deg,#4a1470,#8218c7 60%,#a726d0); }
 
@@ -759,6 +766,36 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 :root[data-theme="light"] .theme-btn .th-sun  { display: block; }
 :root[data-theme="light"] .theme-btn .th-moon { display: none; }
 @media (max-width: 560px) { .theme-btn { margin-inline-start: .5rem; width: 30px; height: 30px; } }
+
+/* the profile card: who you are, at a glance */
+.profile-card { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(.9rem,3vw,1.4rem);
+  align-items: center; padding: clamp(1.1rem,3vw,1.5rem); }
+.avatar { width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--grad-soft); border: var(--hair-lit);
+  font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; color: var(--white);
+  letter-spacing: .02em; }
+.chips-row { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0 0; }
+.chip-tag { font-size: .7rem; letter-spacing: .06em; padding: .28rem .7rem; border-radius: 999px;
+  border: var(--hair-lit); color: var(--lilac); white-space: nowrap; }
+.chip-tag.solid { background: var(--grad); border-color: transparent; color: #fff; }
+.profile-card .rank-box { justify-items: center; text-align: center; gap: .3rem; }
+@media (max-width: 560px) {
+  .profile-card { grid-template-columns: auto 1fr; }
+  .profile-card .rank-box { grid-column: 1 / -1; justify-items: start; text-align: start;
+    flex-direction: row; display: flex; align-items: center; gap: .6rem; }
+}
+
+/* the three appearance choices */
+.pick-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; margin-top: .9rem; }
+.pick { display: grid; gap: .4rem; justify-items: center; padding: .85rem .4rem;
+  border-radius: var(--r-md); border: var(--hair); background: rgba(255,255,255,.03);
+  color: var(--lilac-dim); font-family: inherit; font-size: .8rem; cursor: pointer;
+  transition: border-color .18s var(--ease), color .18s var(--ease), background .18s var(--ease); }
+.pick svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.7;
+  stroke-linecap: round; stroke-linejoin: round; }
+.pick:hover { color: var(--white); }
+.pick.on { color: var(--white); border-color: rgba(167,38,208,.6); background: rgba(167,38,208,.14); }
+.pick:focus-visible { outline: 2px solid var(--magenta); outline-offset: 2px; }
 
 /* the precise subject line: what this actually is, and where the handbook
    treats it. Quiet enough not to compete with the title, plain enough to
@@ -1110,11 +1147,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   <span class="act" data-act="1"><span class="a-n">I</span><span class="a-bar"><i></i></span><span class="a-lab">Enrolment</span></span>
   <span class="act" data-act="2"><span class="a-n">II</span><span class="a-bar"><i></i></span><span class="a-lab">Theory &amp; Method</span></span>
   <span class="act" data-act="3"><span class="a-n">III</span><span class="a-bar"><i></i></span><span class="a-lab">Practice &amp; Assessment</span></span>
-  <button type="button" id="theme-btn" class="theme-btn" aria-pressed="false"
-          aria-label="Switch to light theme" title="Switch to light theme">
-    <svg viewBox="0 0 24 24" aria-hidden="true" class="th-moon"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
-    <svg viewBox="0 0 24 24" aria-hidden="true" class="th-sun"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8"/></svg>
-  </button>
 </nav>
 
 <main id="app">
@@ -1213,7 +1245,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 16 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 17 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1324,20 +1356,36 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
        as a translator, and what have I done?". They are two screens, not
        two halves of one. -->
   <section id="seal" class="view" hidden>
-    <div class="panel seal-head">
-      <div class="hall-mark">
-        <svg class="ring" id="hall-ring" viewBox="0 0 100 100" aria-hidden="true"></svg>
-        <span class="face" role="img" aria-label="Guild"></span>
-      </div>
+    <div class="panel profile-card">
+      <span class="avatar" id="seal-initials" aria-hidden="true"></span>
       <div class="hall-id">
-        <p class="seal-eyebrow">Member's Seal</p>
         <h1 id="seal-name">Member</h1>
         <p class="note" id="hall-who" hidden></p>
+        <p class="chips-row">
+          <span class="chip-tag" id="chip-rank">Initiate</span>
+          <span class="chip-tag solid">Translation Team</span>
+        </p>
       </div>
       <div class="rank-box">
-        <span class="r-n">Rank</span>
-        <p class="r-en" id="rank-en">Initiate</p>
         <span class="r-n" id="rank-n">0 marks</span>
+        <svg class="ring" id="hall-ring" viewBox="0 0 100 100" aria-hidden="true" hidden></svg>
+        <span class="r-n" hidden id="rank-en">Initiate</span>
+      </div>
+    </div>
+
+    <!-- Appearance, as a settings group rather than a switch in the header -->
+    <div class="panel">
+      <div class="j-head"><h2>Appearance</h2><span class="j-next" id="appearance-now">System</span></div>
+      <div class="pick-row" role="radiogroup" aria-label="Theme">
+        <button type="button" class="pick" data-theme-pick="system" role="radio" aria-checked="true">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 3.5v17a8.5 8.5 0 0 0 0-17z" fill="currentColor" stroke="none"/></svg>
+          <span>System</span></button>
+        <button type="button" class="pick" data-theme-pick="light" role="radio" aria-checked="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7"/></svg>
+          <span>Light</span></button>
+        <button type="button" class="pick" data-theme-pick="dark" role="radio" aria-checked="false">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+          <span>Dark</span></button>
       </div>
     </div>
 
@@ -4081,8 +4129,20 @@ function renderSeal() {
   const n = markCount(), rank = currentRank(), tm = totalMarks();
 
   paintRing(document.getElementById("hall-ring"), n);
+  const who = memberName() || "Member";
   const nameEl = document.getElementById("seal-name");
-  if (nameEl) nameEl.textContent = memberName() || "Member";
+  if (nameEl) nameEl.textContent = who;
+
+  /* Initials rather than a picture: the Guild holds no photographs, and two
+     letters identify an account at a glance without asking for one. */
+  const init = document.getElementById("seal-initials");
+  if (init) {
+    const letters = who.split(/\s+/).filter(Boolean).slice(0, 2)
+      .map(w => w[0].toUpperCase()).join("");
+    init.textContent = letters || "?";
+  }
+  const chip = document.getElementById("chip-rank");
+  if (chip) chip.textContent = rank.en;
   document.getElementById("rank-en").textContent = rank.en;
   document.getElementById("rank-n").textContent =
     n + " of " + tm + " mark" + (tm === 1 ? "" : "s");
@@ -4230,42 +4290,56 @@ document.getElementById("seal-back").addEventListener("click", () => {
   renderHall(); show("hall");
 });
 
-/* ═══════════ LIGHT AND DARK ═══════════
-   The Guild is dark by default, because that is its face. A member who
-   prefers paper says so once and the choice is remembered on this device.
-   Someone who has never chosen follows whatever their system asks for, so
-   a phone in light mode is not ambushed at night. */
-const THEME_KEY = "guild.theme";
+/* ═══════════ APPEARANCE ═══════════
+   Three choices rather than a switch, because "follow my phone" is a real
+   preference and a two-way toggle cannot express it. System is the
+   default: a member who has said nothing gets whatever their device asks
+   for, and the Guild stops guessing. */
+const THEME_KEY = "guild.theme";          /* "system" | "light" | "dark" */
 
-function storedTheme() {
-  try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
+function systemIsLight() {
+  return !!(window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches);
 }
-function applyTheme(mode) {
-  document.documentElement.setAttribute("data-theme", mode);
-  const b = document.getElementById("theme-btn");
-  if (b) {
-    const toLight = mode !== "light";
-    b.setAttribute("aria-pressed", String(mode === "light"));
-    const label = toLight ? "Switch to light theme" : "Switch to dark theme";
-    b.setAttribute("aria-label", label);
-    b.setAttribute("title", label);
-  }
+function themeChoice() {
+  try { const v = localStorage.getItem(THEME_KEY); return v === "light" || v === "dark" ? v : "system"; }
+  catch (e) { return "system"; }
 }
-function setTheme(mode, remember) {
-  applyTheme(mode);
-  if (remember) { try { localStorage.setItem(THEME_KEY, mode); } catch (e) {} }
+function effectiveTheme(choice) {
+  const c = choice || themeChoice();
+  if (c === "light" || c === "dark") return c;
+  return systemIsLight() ? "light" : "dark";
+}
+function paintTheme() {
+  const choice = themeChoice();
+  document.documentElement.setAttribute("data-theme", effectiveTheme(choice));
+  document.querySelectorAll("[data-theme-pick]").forEach(b => {
+    const on = b.dataset.themePick === choice;
+    b.classList.toggle("on", on);
+    b.setAttribute("aria-checked", String(on));
+  });
+  const sub = document.getElementById("appearance-now");
+  if (sub) sub.textContent = choice === "system" ? "System" : choice === "light" ? "Light" : "Dark";
+}
+function setThemeChoice(choice) {
+  try {
+    if (choice === "system") localStorage.removeItem(THEME_KEY);
+    else localStorage.setItem(THEME_KEY, choice);
+  } catch (e) {}
+  paintTheme();
 }
 
 (function initTheme() {
-  /* Dark is the Guild's own face, so it is what a first visit shows
-     whatever the device prefers. Light is there for anyone who wants it,
-     and once chosen it is remembered on this device. */
-  const saved = storedTheme();
-  applyTheme(saved === "light" ? "light" : "dark");
-  const b = document.getElementById("theme-btn");
-  if (b) b.addEventListener("click", () => {
-    const now = document.documentElement.getAttribute("data-theme") === "light" ? "dark" : "light";
-    setTheme(now, true);
+  paintTheme();
+  /* while the member is on System, follow the device as it changes */
+  if (window.matchMedia) {
+    const mq = window.matchMedia("(prefers-color-scheme: light)");
+    const onChange = () => { if (themeChoice() === "system") paintTheme(); };
+    if (mq.addEventListener) mq.addEventListener("change", onChange);
+    else if (mq.addListener) mq.addListener(onChange);
+  }
+  document.addEventListener("click", e => {
+    const b = e.target.closest("[data-theme-pick]");
+    if (b) setThemeChoice(b.dataset.themePick);
   });
 })();
 
