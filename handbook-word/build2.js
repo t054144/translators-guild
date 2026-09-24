@@ -4,7 +4,7 @@ const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, Level
   TableOfContents, Table, TableRow, TableCell, WidthType, ShadingType, BorderStyle, Tab, TabStopType } = require('docx');
 
 const INK = '1F1A2E', ACCENT = '3D1591', GREY = '6B6680', LINE = 'CFC9DE';
-const LATIN = 'Calibri', ARABIC = 'Arial';
+const LATIN = 'Calibri', ARABIC = 'Arial', SERIF = 'Georgia', BOX = 'ECE9F7';
 const mm = x => Math.round(x * 56.7);
 const PAGE_W = mm(176), MARGIN = mm(20), CONTENT_W = PAGE_W - 2 * MARGIN;
 
@@ -31,8 +31,9 @@ function ar(t, o = {}) {
 let inst = 0, afterPart = false, chapter = null;
 const body = [], glossary = [];
 const P = (children, opts = {}) => body.push(new Paragraph({ children, spacing: { after: 120, line: 290 }, ...opts }));
+const shade = { type: ShadingType.CLEAR, color: 'auto', fill: BOX };
 const list = (items, ref, opts = {}) => { const k = ref === 'num' ? ++inst : undefined;
-  items.forEach(t => P(runs(t, opts.run), { numbering: { reference: ref, level: 0, ...(k ? { instance: k } : {}) }, spacing: { after: 70, line: 290 } }));
+  items.forEach(t => P(runs(t, opts.run), { numbering: { reference: ref, level: 0, ...(k ? { instance: k } : {}) }, spacing: { after: opts.box ? 0 : 70, line: 290 }, ...(opts.box ? { shading: shade } : {}) }));
   body.push(new Paragraph({ spacing: { after: 40 }, children: [] })); };
 const H = (lvl, t, extra = {}) => body.push(new Paragraph({ heading: lvl, children: [new TextRun({ text: t })], ...extra }));
 const border = { style: BorderStyle.SINGLE, size: 4, color: LINE };
@@ -49,6 +50,10 @@ function table(head, rows, pct) {
   body.push(new Paragraph({ spacing: { after: 120 }, children: [] }));
 }
 
+// a lavender box, like the text boxes in Guild posts: a shaded title line, shaded items and a shaded closing line
+function boxTitle(t) { body.push(new Paragraph({ keepNext: true, shading: shade, spacing: { before: 240, after: 0, line: 290 },
+  children: [new TextRun({ text: t.toUpperCase(), bold: true, color: ACCENT, font: LATIN, size: 17, characterSpacing: 30 })] })); }
+function boxEnd() { body.push(new Paragraph({ shading: shade, spacing: { after: 160, line: 120 }, children: [] })); }
 function block(b) {
   const [kind, a, c, d] = b;
   switch (kind) {
@@ -64,10 +69,10 @@ function block(b) {
     case 'h': H(HeadingLevel.HEADING_3, a); break;
     case 'intro': P([new TextRun({ text: 'In this chapter. ', bold: true, color: ACCENT, font: LATIN }), ...runs(a)], { spacing: { after: 160, line: 290 } }); break;
     case 'terms':
-      H(HeadingLevel.HEADING_3, 'Key terms');
+      boxTitle('Key terms');
       a.forEach(([t, arab, def]) => { if (chapter) glossary.push([t, arab, def, chapter]);
-        P([...runs(`**${t}**`), new TextRun({ text: ' (', font: LATIN }), ar(arab), new TextRun({ text: '): ', font: LATIN }), ...runs(def)], { numbering: { reference: 'bul', level: 0 }, spacing: { after: 70, line: 290 } }); });
-      body.push(new Paragraph({ spacing: { after: 40 }, children: [] })); break;
+        P([...runs(`**${t}**`), new TextRun({ text: ' (', font: LATIN }), ar(arab), new TextRun({ text: '): ', font: LATIN }), ...runs(def)], { numbering: { reference: 'bul', level: 0 }, spacing: { after: 0, line: 290 }, shading: shade }); });
+      boxEnd(); break;
     case 'p': P(runs(a)); break;
     case 'ex': P(runs(a), { indent: { left: 567 } }); break;
     case 'ar': body.push(new Paragraph({ bidirectional: true, indent: { left: 567 }, spacing: { after: 140, line: 300 }, children: [ar(a)] })); break;
@@ -84,15 +89,22 @@ function block(b) {
       list(c, 'num', { run: { color: GREY } });
       break;
     }
-    case 'summary': H(HeadingLevel.HEADING_3, 'Remember'); list(a, 'bul'); break;
+    case 'summary': boxTitle('Remember'); list(a, 'bul', { box: true }); body.pop(); boxEnd(); break;
     default: throw new Error('unknown block ' + kind);
   }
 }
 
 // ---------- title page ----------
 const center = (children, spacing) => body.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing, children }));
-center([new TextRun({ text: 'GUILD · TRANSLATION TEAM · PROFESSIONAL CLUB', font: LATIN, size: 18, color: GREY })], { before: 1800, after: 1400 });
-center([new TextRun({ text: 'Translation Handbook', font: LATIN, size: 60, bold: true, color: ACCENT })], { after: 200 });
+const wordmark = (size, spacingBefore) => {
+  const dot = c => new TextRun({ text: '●', font: 'Arial', size: Math.round(size / 1.7), color: c });
+  center([new TextRun({ text: 'Guild ', font: SERIF, size, bold: true, color: ACCENT }), dot('8756C0'), dot('867EF6'), dot('CCCDFB')], { before: spacingBefore, after: 0 });
+  center([new TextRun({ text: 'Translation Team', font: SERIF, size: Math.round(size / 2.6), bold: true, color: ACCENT })], { after: 40 });
+  center([new TextRun({ text: 'Professional Club', font: LATIN, size: Math.round(size / 4.6), color: GREY, characterSpacing: 60 })], { after: 0 });
+};
+wordmark(72, 900);
+body.push(new Paragraph({ spacing: { after: 1200 }, children: [] }));
+center([new TextRun({ text: 'Translation Handbook', font: SERIF, size: 56, bold: true, color: INK })], { after: 200 });
 center([new TextRun({ text: 'A beginner’s guide to translating between English and Arabic', font: LATIN, size: 26, italics: true, color: INK })], { after: 500 });
 body.push(new Paragraph({ bidirectional: true, alignment: AlignmentType.CENTER, spacing: { after: 120 }, children: [ar('دليل الترجمة', { size: 44, bold: true, color: ACCENT })] }));
 body.push(new Paragraph({ bidirectional: true, alignment: AlignmentType.CENTER, spacing: { after: 2400 }, children: [ar('مرشدٌ للمبتدئين في الترجمة بين العربية والإنجليزية', { size: 26, color: INK })] }));
@@ -164,20 +176,39 @@ const R = [
   'United Nations. (n.d.). _UNTERM: The United Nations terminology database_. https://unterm.un.org',
   'Venuti, L. (1995). _The translator’s invisibility: A history of translation_. Routledge.',
   'Vinay, J.-P., & Darbelnet, J. (1995). _Comparative stylistics of French and English: A methodology for translation_ (J. C. Sager & M.-J. Hamel, Trans.). John Benjamins. (Original work published 1958)',
+  'Díaz Cintas, J., & Remael, A. (2007). _Audiovisual translation: Subtitling_. St. Jerome.',
+  'Díaz Cintas, J., & Remael, A. (2021). _Subtitling: Concepts and practices_. Routledge.',
+  'Even-Zohar, I. (1990). Polysystem studies [Special issue]. _Poetics Today, 11_(1).',
+  'Gambier, Y. (2003). Introduction: Screen transadaptation: Perception and reception. _The Translator, 9_(2), 171–189.',
+  'International Organization for Standardization. (2022). _Terminology work: Principles and methods_ (ISO Standard No. 704:2022).',
+  'Nida, E. A. (1964). _Toward a science of translating: With special reference to principles and procedures involved in Bible translating_. E. J. Brill.',
+  'O’Hagan, M. (2007). Impact of DVD on translation: Language options as an essential add-on feature. _Convergence, 13_(2), 157–168.',
+  'Pedersen, J. (2011). _Subtitling norms for television: An exploration focussing on extralinguistic cultural references_. John Benjamins.',
+  'Pérez-González, L. (2014). _Audiovisual translation: Theories, methods and issues_. Routledge.',
+  'Reiss, K., & Vermeer, H. J. (1984). _Grundlegung einer allgemeinen Translationstheorie_ [Groundwork for a general theory of translation]. Niemeyer.',
+  'Toury, G. (1995). _Descriptive translation studies and beyond_. John Benjamins.',
   'Wehr, H. (1994). _A dictionary of modern written Arabic_ (J. M. Cowan, Ed.; 4th ed.). Spoken Language Services.',
 ];
+const refKey = r => r.replace(/^_/, '').replace(/^al-/, '').normalize('NFD').replace(/[\u0300-\u036f’ʿ]/g, '').toLowerCase();
+R.sort((x, y) => refKey(x).localeCompare(refKey(y)));
 block(['part', 'References', 'All sources cited in this handbook, in APA style.']);
 R.forEach(r => P(runs(r), { indent: { left: 567, hanging: 567 }, spacing: { after: 100, line: 280 } }));
 block(['h', 'To be added by the Translation Team']);
 block(['ul', ['[Full reference for the 180 textbook.]', '[Full reference for the 182 course book.]', '[Full reference for the 386 course texts, if they are used.]', '[Author and publication details for {{الترجمة: ماهيتها}}. The professor’s notes attribute this text to Dr Yusuf; please confirm.]']]);
+
+// ---------- back cover ----------
+body.push(new Paragraph({ pageBreakBefore: true, spacing: { before: 2400, after: 200 }, alignment: AlignmentType.CENTER, children: [new TextRun({ text: '“Translate the meaning, not the words.”', font: SERIF, italics: true, size: 30, color: INK })] }));
+body.push(new Paragraph({ bidirectional: true, alignment: AlignmentType.CENTER, spacing: { after: 600 }, children: [ar('ترجِمِ المعنى، لا الكلمات.', { size: 28, color: GREY })] }));
+body.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 1600, line: 300 }, children: runs('A step-by-step guide for beginners who want to translate between English and Arabic: from preparing a text to checking and explaining the result, with examples in both languages, exercises and answers.', { color: GREY, size: 20 }) }));
+wordmark(48, 0);
 
 const doc = new Document({
   creator: 'Guild Translation Team', title: 'Translation Handbook', features: { updateFields: true },
   styles: {
     default: { document: { run: { font: LATIN, size: 21, color: INK } } },
     paragraphStyles: [
-      { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 40, bold: true, color: ACCENT }, paragraph: { spacing: { before: 600, after: 200 }, outlineLevel: 0 } },
-      { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 30, bold: true, color: ACCENT }, paragraph: { spacing: { before: 240, after: 200 }, outlineLevel: 1, keepNext: true } },
+      { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 40, bold: true, color: ACCENT }, paragraph: { spacing: { before: 600, after: 200 }, outlineLevel: 0 } },
+      { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 30, bold: true, color: ACCENT }, paragraph: { spacing: { before: 240, after: 200 }, outlineLevel: 1, keepNext: true } },
       { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 23, bold: true, color: INK }, paragraph: { spacing: { before: 260, after: 100 }, outlineLevel: 2, keepNext: true } },
     ],
   },
