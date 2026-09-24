@@ -10,7 +10,7 @@ module.exports = [
 ['h2', '2.1 The finished handbook'],
 ['ul', [
   'A handbook for complete beginners on translating between English and Arabic. The text is in English and every example is given in both languages.',
-  '92 pages, B5 page size (176 × 250 mm), with 9 parts and 27 chapters, followed by practice texts at three levels with an answer key, four checklists, a note on future editions, a glossary of 102 terms and a list of 39 references.',
+  '94 pages including the covers, B5 page size (176 × 250 mm), with 9 parts and 27 chapters, followed by practice texts at three levels with an answer key, four checklists, a note on future editions, a glossary of 102 terms, a list of 39 references and a page with the QR code of the team’s website.',
   'Two editions, which are identical inside and differ only in the cover design: the Midnight edition (dark indigo cover) and the Light edition (pale lavender cover). Each edition is available as an editable Word file and as a PDF.',
 ]],
 ['h2', '2.2 The main editorial decisions'],
@@ -112,7 +112,7 @@ module.exports = [
   ['Part 7: Tools and resources (Chapters 20–22)', 'Dictionaries; terminology; machine translation and AI.', 'Tools are more useful once the reader can judge a translation.'],
   ['Part 8: Checking and explaining (Chapters 23–25)', 'Revision and common mistakes; risk assessment; commentary.', 'The last stage of every translation.'],
   ['Part 9: Audiovisual translation (Chapters 26–27)', 'Introduction to audiovisual translation; subtitling.', 'The most specialised topic, so it comes last.'],
-  ['Back matter', 'Practice (three levels and answer key), four checklists, future editions, glossary, references.', 'Exercises and reference material that draw on the whole book.']],
+  ['Back matter', 'Practice (three levels and answer key), four checklists, future editions, glossary, references, and a final page with the QR code of the team’s website.', 'Exercises and reference material that draw on the whole book.']],
  [26, 42, 32]],
 ['p', 'Main text pages are numbered from 1, starting at Part 1. Each page carries a running head with the title of the book and the current part.'],
 ['h2', '6.2 The pattern of every chapter'],
@@ -219,7 +219,7 @@ module.exports = [
   '**Midnight edition:** a dark indigo cover with three stripes in the logo’s colours along the spine edge and the logo in white.',
   '**Light edition:** a pale lavender cover with three large circles in the logo’s colours and the titles in dark purple.',
 ]],
-['p', 'Both front covers show only the English title “Translation Handbook”, the Arabic title {{دليل الترجمة}}, the logo, and “First edition 2026”. Both back covers carry the quotation “Words travel worlds. Translators do the driving.” by the translator Anna Rusconi, a one-sentence description, three key features and the logo. The middle of the back cover carries a QR code that links to the Translation Team’s website (translators-guild.vercel.app), with the address also printed in full for readers who cannot scan it.'],
+['p', 'Both front covers show only the English title “Translation Handbook”, the Arabic title {{دليل الترجمة}}, the logo, and “First edition 2026”. Both back covers carry the quotation “Words travel worlds. Translators do the driving.” by the translator Anna Rusconi, a one-sentence description, three key features and the logo. The lower middle of the back cover carries a QR code that links to the Translation Team’s website (translators-guild.vercel.app), printed directly on the cover in a contrasting colour (light lavender on the Midnight edition, deep indigo on the Light edition), with the address also printed in full for readers who cannot scan it. The same code appears on the last page inside the book. A blank page before the back cover keeps the page count even for printing.'],
 ['p', 'The QR code was supplied by the team at low resolution and with an older logo. It was rebuilt at high resolution in the Guild colours, with the current logo in the centre and the highest level of error correction, so that it still scans with the logo covering part of it. It was tested with two scanning programs at full size, at small print sizes and on the final PDFs.'],
 ['h2', '10.4 Production'],
 ['ul', [

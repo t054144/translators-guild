@@ -184,6 +184,13 @@ R.sort((x, y) => refKey(x).localeCompare(refKey(y)));
 block(['part', 'References', 'All sources cited in this handbook, in APA style.']);
 R.forEach(r => P(runs(r), { indent: { left: 567, hanging: 567 }, spacing: { after: 100, line: 280 } }));
 
+// ---------- website page, the last page inside the book ----------
+body.push(new Paragraph({ pageBreakBefore: true, spacing: { after: 2600 }, children: [] }));
+center([new TextRun({ text: 'Visit the Translation Team’s website', font: SERIF, size: 36, bold: true, color: ACCENT })], { after: 360 });
+center([img('art/qr/website-qr.png', 250, 250)], { after: 300 });
+center([new TextRun({ text: 'Scan the code, or type the address:', font: LATIN, size: 21, color: INK })], { after: 80 });
+center([new TextRun({ text: 'translators-guild.vercel.app', font: LATIN, size: 23, bold: true, color: ACCENT })], { after: 0 });
+
 // ---------- covers ----------
 const pageSize = { width: PAGE_W, height: mm(250) };
 const coverSection = file => ({
@@ -226,6 +233,10 @@ const doc = new Document({
       headers: { default: new Header({ children: [new Paragraph({ children: [] })] }) }, footers: { default: pageNum }, children: body.slice(0, mainStart) },
     { properties: { page: { size: pageSize, margin: margins, pageNumbers: { start: 1, formatType: NumberFormat.DECIMAL } } },
       headers: { default: runningHead }, footers: { default: pageNum }, children: body.slice(mainStart) },
+    // blank left-hand page so that the back cover falls on an even page when printed
+    { properties: { page: { size: pageSize, margin: margins } },
+      headers: { default: new Header({ children: [new Paragraph({ children: [] })] }) }, footers: { default: new Footer({ children: [new Paragraph({ children: [] })] }) },
+      children: [new Paragraph({ children: [] })] },
     coverSection(`art/cover-back-${COVER}.jpg`),
   ],
 });
