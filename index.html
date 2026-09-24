@@ -1398,7 +1398,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 21 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 22 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1964,8 +1964,10 @@ function runLineage(startAt) {
       "Nobody here invented a language. They moved things between two of them, and the world on the " +
       "other side was different afterwards: medicine survived, scripture was read at home, a continent " +
       "got its science back, a novel found more readers in translation than in the original. " +
-      "<b>Four from the Arabic tradition, four from the Western one</b> &mdash; and they hand things to " +
-      "each other across the centuries more than any of them knew."));
+      "<b>Eight from the Arabic tradition, eight from the Western one</b>, in the order they lived &mdash; " +
+      "and they hand things to each other across the centuries more than any of them knew. " +
+      "Every one of them is here with a piece of the actual translating, so you can see the decision " +
+      "being made and not only hear it described."));
 
     if (cur !== null) {
       const f = LINEAGE[cur];
@@ -2789,8 +2791,8 @@ const LINEAGE = [
     ex: {
       lab: "One root, chosen wrong, for a thousand years",
       srcLab: "Hebrew (Exodus 34:29)", src: "קָרַן <i>(q-r-n)</i>", srcDir: "rtl",
-      litLab: "The other reading", lit: "the same three consonants also spell <i>qeren</i>, \"horn\" &mdash; and that is the one he took",
-      outLab: "What he wrote", out: "<i>cornuta esset facies sua</i> &mdash; \"his face was horned\", where the sense is that it sent out rays of light", outDir: "ltr",
+      litLab: "The other reading", lit: "the same three consonants also spell <i>qeren</i>, &ldquo;horn&rdquo; &mdash; and that is the one he took",
+      outLab: "What he wrote", out: "<i>cornuta esset facies sua</i> &mdash; &ldquo;his face was horned&rdquo;, where the sense is that it sent out rays of light", outDir: "ltr",
       note: "The consonants carry both <i>shone</i> and <i>horn</i>, and the vowels that would separate them are not written. His choice put horns on Moses in European art for a thousand years, Michelangelo's included. The man who wrote <i>not word for word but sense for sense</i> is also the standing proof of how far one root-choice travels." } },
 
   { id: "muqaffa", mono: "IM", name: "Ibn al-Muqaffa", life: "c. 724 - 759", place: "Basra",
@@ -2815,7 +2817,7 @@ const LINEAGE = [
     ex: {
       lab: "His claim, demonstrated",
       srcLab: "Arabic (Imru' al-Qays, before Islam)", src: "وَلَيْلٍ كَمَوْجِ البَحْرِ أَرْخَى سُدُولَهُ", srcDir: "rtl",
-      litLab: "What crosses", lit: "\"And a night like the sea's waves let down its curtains over me\"",
+      litLab: "What crosses", lit: "&ldquo;And a night like the sea's waves let down its curtains over me&rdquo;",
       outLab: "What does not", out: "the ṭawīl metre, the rhyme, the archaic diction &mdash; every part of it that was doing the work", outDir: "ltr",
       note: "Al-Jahiz translated nothing; this is his argument worked out, not his rendering. In the <i>Book of Animals</i> he held that poetry <b>cannot</b> cross, because metre, sound-shape and rhetorical figure are not decoration on the meaning &mdash; they are part of it, so all that arrives is the report. He also insisted a translator must be equally strong in both tongues, or he will damage both." } },
 
@@ -2827,9 +2829,9 @@ const LINEAGE = [
     why: "He refused to work word for word. He hunted down every manuscript of a text he could find, collated them into one reliable original, and only then carried the <b>sense</b> across. That is still the method. His Galen kept medicine alive for seven hundred years, and when Europe wanted Greek medicine back it had to translate his Arabic to get it.",
     ex: {
       lab: "Building the vocabulary as he went",
-      srcLab: "Greek", src: "χυμός <i>(chymos)</i> &mdash; \"juice, sap\"", srcDir: "ltr",
-      litLab: "Word for word", lit: "\"juice\" &mdash; or the Greek sound carried straight over, which told an Arabic physician nothing",
-      outLab: "What he wrote", out: "خِلْط <i>(khilṭ)</i> &mdash; \"a mixture\"", outDir: "rtl",
+      srcLab: "Greek", src: "χυμός <i>(chymos)</i> &mdash; &ldquo;juice, sap&rdquo;", srcDir: "ltr",
+      litLab: "Word for word", lit: "&ldquo;juice&rdquo; &mdash; or the Greek sound carried straight over, which told an Arabic physician nothing",
+      outLab: "What he wrote", out: "خِلْط <i>(khilṭ)</i> &mdash; &ldquo;a mixture&rdquo;", outDir: "rtl",
       note: "Arabic had no word for a bodily humour. Instead of importing the Greek sound he took an ordinary Arabic word for a <i>mixture</i> and made it the technical term &mdash; <b>أخلاط</b> is still the Arabic for the four humours. Translating Galen meant building the language that could hold Galen, and a great deal of Arabic medical vocabulary is his." } },
 
   { id: "qusta", mono: "QL", name: "Qusta ibn Luqa", life: "c. 820 - 912", place: "Baalbek, then Baghdad",
@@ -2837,28 +2839,52 @@ const LINEAGE = [
     pair: "Greek to Arabic",
     line: "Three languages, and the sciences in all of them.",
     what: "A physician and scientist from Baalbek who worked in Greek, Syriac and Arabic. He translated Greek mathematical and mechanical works into Arabic and wrote his own treatises on medicine and the sciences.",
-    why: "He belongs to the generation that had to build a technical Arabic while using it. Translating mechanics or medicine meant deciding what a term would mean in Arabic from then on, and then writing original work in the vocabulary he had just settled." },
+    why: "He belongs to the generation that had to build a technical Arabic while using it. Translating mechanics or medicine meant deciding what a term would mean in Arabic from then on, and then writing original work in the vocabulary he had just settled.",
+    ex: {
+      lab: "When the translation becomes the original",
+      srcLab: "The Greek", src: "Hero of Alexandria, <i>Mechanics</i>, and four books of Diophantus&rsquo; <i>Arithmetica</i>", srcDir: "ltr",
+      litLab: "What survives of it", lit: "nothing &mdash; the Greek of both is lost",
+      outLab: "What we read instead", out: "his Arabic, <i>Fī raf&lsquo; al-ashyā&rsquo; al-thaqīla</i> and the Arabic <i>Arithmetica</i>, which are now the text", outDir: "ltr",
+      note: "Hero&rsquo;s <i>Mechanics</i> reaches us only through Qusta&rsquo;s Arabic, and four books of Diophantus known from no Greek manuscript survive in an Arabic version transmitted under his name. Every modern edition and every translation into a European language is made <b>from the translation</b>. It is the plainest answer to anyone who calls the work secondary: where the source is gone, the translator&rsquo;s sentences are all the evidence there is." } },
 
   { id: "thabit", mono: "TQ", name: "Thabit ibn Qurra", life: "c. 826 - 901", place: "Harran, then Baghdad",
     wiki: "", img: "",
     pair: "Greek & Syriac to Arabic",
     line: "He corrected translations because he could do the mathematics.",
     what: "A mathematician and astronomer from Harran who translated Greek scientific works into Arabic and revised translations already in circulation, among them Euclid and Ptolemy, alongside his own work in mathematics and astronomy.",
-    why: "He is the argument against treating translation and subject knowledge as separate trades. Revising a mathematical text means being able to follow the proof; where he changed a rendering, he changed it because he knew what the mathematics had to say." },
+    why: "He is the argument against treating translation and subject knowledge as separate trades. Revising a mathematical text means being able to follow the proof; where he changed a rendering, he changed it because he knew what the mathematics had to say.",
+    ex: {
+      lab: "The only revision with its reviser&rsquo;s name on the spine",
+      srcLab: "What he was handed", src: "the Arabic <i>Elements</i> of Euclid as Ishaq ibn Hunayn had rendered it", srcDir: "ltr",
+      litLab: "The usual fate of a reviser", lit: "corrections absorbed into someone else&rsquo;s text, and the reviser forgotten",
+      outLab: "What the manuscripts call it", out: "the <b>Ishaq&ndash;Thabit</b> version &mdash; the standard name scholars still use for that Euclid", outDir: "ltr",
+      note: "The Arabic Euclid that circulated for centuries is catalogued as Ishaq&rsquo;s translation <i>in Thabit&rsquo;s revision</i>, and he worked over the <i>Almagest</i> the same way. Revision is a stage of the job, not a favour done at the end of it; here it is a stage recorded in the title, because the person doing it could follow the proof." } },
 
   { id: "ishaq", mono: "IH", name: "Ishaq ibn Hunayn", life: "c. 830 - 910", place: "Baghdad",
     wiki: "", img: "",
     pair: "Greek & Syriac to Arabic",
     line: "The second generation - carrying a method, not just a post.",
     what: "He translated Greek philosophy and science into Arabic - works of Aristotle, Euclid's <i>Elements</i>, and a version of Ptolemy's <i>Almagest</i> - and practised as a physician at the Abbasid court, as his father had before him.",
-    why: "A method only survives if someone inherits it. He worked the way Hunayn worked: gather every manuscript, settle what the text actually says, and only then carry the sense across. The Arabic Aristotle that later philosophers argued over, and that Europe eventually read through Latin, came in large part through the translations of his generation." },
+    why: "A method only survives if someone inherits it. He worked the way Hunayn worked: gather every manuscript, settle what the text actually says, and only then carry the sense across. The Arabic Aristotle that later philosophers argued over, and that Europe eventually read through Latin, came in large part through the translations of his generation.",
+    ex: {
+      lab: "Two Greek words, two opposite decisions",
+      srcLab: "Greek (Aristotle)", src: "ὕλη <i>(hylē)</i> &middot; εἶδος <i>(eidos)</i> &mdash; matter and form", srcDir: "ltr",
+      litLab: "One route", lit: "carry the Greek sound over and let the reader learn a new word",
+      outLab: "What the Arabic settled on", out: "هَيُولَى &mdash; the Greek sound kept &middot; صُورة &mdash; an ordinary Arabic word given a technical job", outDir: "ltr",
+      note: "Two terms from the same sentence of the same philosopher, handled in opposite ways, and both choices stuck: <b>هيولى</b> is still the Arabic for Aristotelian matter and <b>صورة</b> still its form. Borrow or build is decided term by term, not once for the whole book &mdash; and whatever this generation decided, later Arabic philosophy had to argue inside it." } },
 
   { id: "luther", mono: "ML", name: "Martin Luther", life: "1483 - 1546", place: "Wittenberg",
     wiki: "", img: "",
     pair: "Greek, Hebrew & Latin to German",
     line: "He translated for people who had never been asked what German sounded like.",
     what: "He translated the New Testament into German in 1522 and the complete Bible by 1534, and in 1530 wrote an open letter on translating that defended the choices he had made against critics who wanted the Latin followed word by word.",
-    why: "He argued that the test of a rendering was whether ordinary German speakers recognised their own language in it - so he listened to how people actually spoke and wrote that, rather than tracking the Latin. The result carried far beyond religion: it is one of the texts that shaped written German itself." },
+    why: "He argued that the test of a rendering was whether ordinary German speakers recognised their own language in it - so he listened to how people actually spoke and wrote that, rather than tracking the Latin. The result carried far beyond religion: it is one of the texts that shaped written German itself.",
+    ex: {
+      lab: "One word that is not in the original",
+      srcLab: "Latin (Romans 3:28)", src: "<i>arbitramur hominem iustificari fide absque operibus legis</i>", srcDir: "ltr",
+      litLab: "Word for word", lit: "&ldquo;we hold that a man is justified by faith without the works of the law&rdquo; &mdash; and there is no <i>alone</i> anywhere in it",
+      outLab: "What he wrote", out: "<i>durch den Glauben <b>allein</b></i> &mdash; &ldquo;by faith <b>alone</b>&rdquo;", outDir: "ltr",
+      note: "His critics counted the words and found one too many. In the <i>Sendbrief vom Dolmetschen</i> of 1530 he answered that German puts <i>allein</i> in when a denial is followed by what replaces it &mdash; <i>nicht dies, sondern allein das</i> &mdash; and that a translator who leaves it out has written Latin in German letters. The test he set there is the famous one: go and listen to <b>the mother in the house, the children in the street, the common man in the market</b>, and translate so they know you are speaking to them. The word was also doing theological work, and he knew it: this is where a translator&rsquo;s idiom and a translator&rsquo;s conviction are hardest to tell apart." } },
 
   { id: "tyndale", mono: "T", name: "William Tyndale", life: "c. 1494 - 1536", place: "Antwerp",
     wiki: "William Tyndale", img: "",
@@ -2869,8 +2895,8 @@ const LINEAGE = [
     ex: {
       lab: "Three words he refused to use",
       srcLab: "Greek", src: "ἐκκλησία &middot; πρεσβύτερος &middot; ἀγάπη", srcDir: "ltr",
-      litLab: "What was expected", lit: "\"church\" &middot; \"priest\" &middot; \"charity\" &mdash; the Latin-descended words already in place",
-      outLab: "What he wrote", out: "\"congregation\" &middot; \"elder\" &middot; \"love\"", outDir: "ltr",
+      litLab: "What was expected", lit: "&ldquo;church&rdquo; &middot; &ldquo;priest&rdquo; &middot; &ldquo;charity&rdquo; &mdash; the Latin-descended words already in place",
+      outLab: "What he wrote", out: "&ldquo;congregation&rdquo; &middot; &ldquo;elder&rdquo; &middot; &ldquo;love&rdquo;", outDir: "ltr",
       note: "Not a matter of taste. Each choice removed a word that held up an institution and put a plain English one where it stood, which is a large part of why the books were burned and then so was he. Where English had nothing he made it: <b>Passover</b>, <b>scapegoat</b>, <b>atonement</b>, <b>mercy seat</b> are his coinages, and roughly four fifths of the King James New Testament is his wording untouched." } },
 
   { id: "dryden", mono: "JD", name: "John Dryden", life: "1631 - 1700", place: "London",
@@ -2878,28 +2904,52 @@ const LINEAGE = [
     pair: "Latin & Greek to English",
     line: "Three ways to carry a poem across, and a warning about two of them.",
     what: "A poet and critic who translated Virgil, Ovid and others into English, and who in his preface to <i>Ovid's Epistles</i> in 1680 named three ways of doing it: metaphrase, word by word; paraphrase, sense for sense with the author kept in view; and imitation, where the translator departs from the original at will.",
-    why: "Naming the three made it possible to argue about which one a given text deserved. He preferred the middle way and distrusted the extremes - and translators have been arguing along that same line ever since, usually without knowing whose terms they are using." },
+    why: "Naming the three made it possible to argue about which one a given text deserved. He preferred the middle way and distrusted the extremes - and translators have been arguing along that same line ever since, usually without knowing whose terms they are using.",
+    ex: {
+      lab: "His own middle way, caught in the act",
+      srcLab: "Latin (Virgil, <i>Aeneid</i> I.1&ndash;4)", src: "<i>Arma virumque cano, Troiae qui primus ab oris &hellip; saevae memorem Iunonis ob iram</i>", srcDir: "ltr",
+      litLab: "Metaphrase &mdash; word by word", lit: "&ldquo;Arms and the man I sing, who first from the shores of Troy &hellip; on account of the mindful anger of cruel Juno&rdquo;",
+      outLab: "Paraphrase &mdash; what he published in 1697", out: "&ldquo;Arms, and the man I sing, who, forc&rsquo;d by Fate, / And haughty <i>Juno&rsquo;s</i> unrelenting hate, / Expell&rsquo;d and exil&rsquo;d, left the <i>Trojan</i> shore.&rdquo;", outDir: "ltr",
+      note: "Juno&rsquo;s anger is Virgil&rsquo;s, three lines later; Dryden pulls it forward into the opening sentence and gives it an English couplet to live in. Nothing is invented and nothing is tracked word for word &mdash; which is exactly the middle term he had named seventeen years earlier in the preface to <i>Ovid&rsquo;s Epistles</i>. There he warned against both ends: metaphrase is &ldquo;dancing on ropes with fettered legs&rdquo;, and imitation, which he allowed Cowley in the Pindaric odes, is <b>the greatest wrong to the memory of the dead</b>." } },
 
   { id: "schleiermacher", mono: "FS", name: "Friedrich Schleiermacher", life: "1768 - 1834", place: "Berlin",
     wiki: "", img: "",
     pair: "Greek to German",
     line: "Move the reader toward the writer, or the writer toward the reader.",
     what: "A philosopher and theologian who translated Plato into German, and who in an 1813 lecture on the different methods of translating set out the choice a translator cannot avoid: leave the writer in place and move the reader toward him, or leave the reader in place and move the writer toward him.",
-    why: "Almost every later theory argues with that lecture. It is often flattened into the pair <b>foreignization and domestication</b> - terms that came later, from Venuti - and the flattening loses the point, which was not that one path is right and the other wrong, but that a translator must choose one and stay with it." },
+    why: "Almost every later theory argues with that lecture. It is often flattened into the pair <b>foreignization and domestication</b> - terms that came later, from Venuti - and the flattening loses the point, which was not that one path is right and the other wrong, but that a translator must choose one and stay with it.",
+    ex: {
+      lab: "The fork he says you cannot stand in the middle of",
+      srcLab: "Arabic", src: "إن شاء الله", srcDir: "rtl",
+      litLab: "Move the reader toward the writer", lit: "&ldquo;God willing&rdquo; &mdash; or <i>in shā&rsquo; Allāh</i> left standing in the English, so the reader knows whose sentence this is",
+      outLab: "Move the writer toward the reader", out: "&ldquo;all being well&rdquo; &mdash; what an English speaker would have said in that spot, with the origin gone", outDir: "ltr",
+      note: "Schleiermacher translated Plato, not Arabic; the pairing above is his argument applied to a phrase this site actually has to translate. His 1813 lecture puts it as two roads and no third: <i>either the translator leaves the writer in peace as much as possible and moves the reader toward him, or he leaves the reader in peace and moves the writer toward him</i>. Mixing them, he warns, leaves writer and reader who <b>never meet at all</b>. He also separated <i>Dolmetschen</i>, the interpreting of business, from <i>&Uuml;bersetzen</i>, the translation of art and scholarship &mdash; a distinction the profession still runs on." } },
 
   { id: "tahtawi", mono: "RT", name: "Rifaa al-Tahtawi", life: "1801 - 1873", place: "Tahta, Paris, Cairo",
     wiki: "", img: "",
     pair: "French to Arabic",
     line: "He did not translate a shelf of books. He built the school that did.",
     what: "Sent to Paris in 1826 as imam to an Egyptian student mission, he learned French, translated, and wrote an account of the city and its institutions, <i>Takhlis al-Ibriz fi Talkhis Bariz</i>. Back in Cairo he led the School of Languages, Madrasat al-Alsun, which trained translators and produced translations across law, geography, history and the sciences.",
-    why: "Institutions outlast individuals. The school turned translation in Egypt into a trained profession rather than a personal gift, and a great deal of modern Arabic technical vocabulary was settled by the work that came out of it." },
+    why: "Institutions outlast individuals. The school turned translation in Egypt into a trained profession rather than a personal gift, and a great deal of modern Arabic technical vocabulary was settled by the work that came out of it.",
+    ex: {
+      lab: "A word with no Arabic to land in",
+      srcLab: "French (the Charter of 1814, which he set out in Arabic)", src: "<i>libert&eacute;</i>", srcDir: "ltr",
+      litLab: "The Arabic word that was there", lit: "حُرِّيَّة &mdash; at that time the opposite of slavery, a condition of persons, with no political sense attached to it",
+      outLab: "How he made it carry the new sense", out: "he told his readers that what the French call <i>libert&eacute;</i> is what we mean by justice and equity, <b>العدل والإنصاف</b>, because it means every man standing equal before the law", outDir: "ltr",
+      note: "This is from <i>Takhlīṣ al-Ibrīz fī Talkhīṣ Bārīz</i>, his account of Paris. Confronted with a term Arabic had no political use for, he did not coin a word and he did not transliterate: he explained the foreign concept through a value his readers already held, and let the old word grow into the new job. <b>حرية</b> in its modern political sense comes down through that generation&rsquo;s work. Later translators would call this an explanatory equivalent; he was inventing the manoeuvre because a whole vocabulary of politics, law and science had to be brought across, and he then built Madrasat al-Alsun so it would not depend on one man&rsquo;s judgement." } },
 
   { id: "nida", mono: "EN", name: "Eugene A. Nida", life: "1914 - 2011", place: "United States",
     wiki: "", img: "",
     pair: "Translation theory · Bible translation",
     line: "He tried to make translation something you could study, not only practise.",
     what: "A linguist who spent his career on Bible translation across many languages, and wrote the books that turned translating into an object of systematic study - among them <i>Toward a Science of Translating</i> and, with Charles Taber, <i>The Theory and Practice of Translation</i>.",
-    why: "He set formal correspondence, which follows the shape of the original, against what he called dynamic or functional equivalence, which aims for an effect on the reader like the effect the original had on its own. The pair is often reduced to <b>equivalence means natural-sounding</b>, which is not what he argued: his framework is about the whole relationship between text, receptor and context." },
+    why: "He set formal correspondence, which follows the shape of the original, against what he called dynamic or functional equivalence, which aims for an effect on the reader like the effect the original had on its own. The pair is often reduced to <b>equivalence means natural-sounding</b>, which is not what he argued: his framework is about the whole relationship between text, receptor and context.",
+    ex: {
+      lab: "The same verse under each of his two settings",
+      srcLab: "Greek (Romans 16:16)", src: "ἀσπάσασθε ἀλλήλους ἐν φιλήματι ἁγίῳ", srcDir: "ltr",
+      litLab: "Formal correspondence", lit: "&ldquo;greet one another with a holy kiss&rdquo; &mdash; the shape of the original kept, and a gesture most readers have never performed",
+      outLab: "Dynamic equivalence", out: "&ldquo;give one another a hearty handshake all around&rdquo; &mdash; the reading Nida&rsquo;s own project put into the Good News Bible", outDir: "ltr",
+      note: "His argument is not that the second is nicer English. It is that the first reproduces the <i>form</i> and the second reproduces the <b>effect on the receptor</b> &mdash; a greeting that lands as a greeting &mdash; and that a translator must know which of the two the job calls for. Notice the cost as well: the handshake has quietly deleted a first-century practice from the text. Venuti, last in this lineage, uses this very rendering as his example of what domestication does." } },
 
   { id: "rabassa", mono: "R", name: "Gregory Rabassa", life: "1922 - 2016", place: "New York",
     wiki: "Gregory Rabassa", img: "",
@@ -2912,7 +2962,7 @@ const LINEAGE = [
       srcLab: "Spanish", src: "&hellip; aquella tarde remota en que su padre lo llevó a <b>conocer</b> el hielo.", srcDir: "ltr",
       litLab: "Word for word", lit: "&hellip; that distant afternoon when his father took him to <b>know</b> ice.",
       outLab: "What he wrote", out: "&hellip; that distant afternoon when his father took him to <b>discover</b> ice.", outDir: "ltr",
-      note: "<i>Conocer</i> is to know, to meet, to be acquainted with. \"Know\" is dead on the page in English and \"see\" throws the wonder away; <b>discover</b> is a child meeting the thing for the first time, which is what the Spanish actually does. García Márquez waited three years for him and then said the English was better than the Spanish." } },
+      note: "<i>Conocer</i> is to know, to meet, to be acquainted with. &ldquo;Know&rdquo; is dead on the page in English and &ldquo;see&rdquo; throws the wonder away; <b>discover</b> is a child meeting the thing for the first time, which is what the Spanish actually does. García Márquez waited three years for him and then said the English was better than the Spanish." } },
 
   { id: "jayyusi", mono: "SJ", name: "Salma Khadra Jayyusi", life: "1926 - 2023", place: "Palestine & the US",
     wiki: "Salma Khadra Jayyusi", img: "",
@@ -2932,7 +2982,13 @@ const LINEAGE = [
     pair: "Italian to English · theory",
     line: "Whose voice disappears when a translation reads smoothly?",
     what: "A translator from Italian and a theorist who argued that English-language publishing prizes translations that read as though they were never translated, leaving the translator invisible - and who set out the case in <i>The Translator's Invisibility</i> and <i>The Scandals of Translation</i>.",
-    why: "He gave the argument its current vocabulary: <b>domestication</b>, which smooths a text into the target culture, and <b>foreignization</b>, which keeps the reader aware that they are reading from elsewhere. Neither is simply the good one. They are choices with consequences - for the writer, for the reader, and for whose literature gets to sound like itself." },
+    why: "He gave the argument its current vocabulary: <b>domestication</b>, which smooths a text into the target culture, and <b>foreignization</b>, which keeps the reader aware that they are reading from elsewhere. Neither is simply the good one. They are choices with consequences - for the writer, for the reader, and for whose literature gets to sound like itself.",
+    ex: {
+      lab: "The compliment that proves his point",
+      srcLab: "What reviewers praise", src: "&ldquo;fluent&rdquo; &middot; &ldquo;seamless&rdquo; &middot; &ldquo;reads as though it had been written in English&rdquo;", srcDir: "ltr",
+      litLab: "What is being praised", lit: "that no reader can feel the other language under the page &mdash; the translator has succeeded by leaving no trace of having been there",
+      outLab: "What he asks instead", out: "a translation you can <b>see</b>: the strangeness left where it was, and a name on the cover that belongs to somebody", outDir: "ltr",
+      note: "<i>The Translator&rsquo;s Invisibility</i> builds the case out of the reviews themselves, where fluency is the only thing consistently praised and the translator is usually not named. His objection runs past style to the contract and the copyright page, and past those to the traffic: English publishes very little in translation and expects what it does publish to sound like English, so the smoothing is also a direction of travel. Nida&rsquo;s &ldquo;hearty handshake&rdquo; is one of his examples &mdash; domestication, he argues, is not neutral service to the reader but an <b>ethnocentric reduction</b> of the foreign text. He does not claim foreignizing is always right; he claims the choice is never innocent, and the reader should be told it was made." } },
 ];
 
 /* ═══════════ COLLOCATION · Chapter 7 ═══════════
