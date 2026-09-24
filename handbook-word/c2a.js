@@ -4,7 +4,7 @@ module.exports = [
 
 // ================= FRONT MATTER =================
 ['front', 'Preface'],
-['p', 'This handbook was prepared by the Translation Team of the Guild Professional Club for students who are taking their first steps in translation between English and Arabic. It will be used in the team’s workshops during the Guild Season, and it is written so that it can also be read on its own.'],
+['p', 'This handbook was prepared by the Translation Team of the Guild Professional Club for students who are taking their first steps in translation between English and Arabic. It can be used in workshops or read on its own.'],
 ['p', 'The handbook brings together the team’s course materials, organises them into a clear order, and adds the chapters, examples and exercises that a beginner needs. Its aims are simple. By the end of it, you should:'],
 ['ul', [
   'know the basic rules and principles of translation;',

@@ -113,7 +113,7 @@ center([new TextRun({ text: 'First edition, 2026', font: LATIN, size: 20, color:
 // ---------- copyright page ----------
 const small = (t, extra = {}) => P(runs(t, { size: 18, color: GREY }), { spacing: { after: 140, line: 270 }, ...extra });
 small('**Translation Handbook: A Beginner’s Guide to Translating between English and Arabic**', { pageBreakBefore: true, spacing: { before: 3600, after: 140, line: 270 } });
-small('First edition, 2026. Prepared by the Translation Team, Guild Professional Club, for use in the Guild Season workshops.');
+small('First edition, 2026. Prepared by the Translation Team, Guild Professional Club.');
 small('© 2026 Guild Professional Club, Translation Team. All rights reserved. No part of this handbook may be reproduced without permission, except for short quotations with acknowledgement.');
 small('Quotations from published works are used for teaching purposes and are fully acknowledged in the References. Unless another source is given, examples come from the Translation Team’s course materials or were written for this handbook.');
 small('AI assistance: parts of this handbook were organised, drafted and edited with the help of an AI tool (Claude, by Anthropic) and reviewed by the Translation Team.');
