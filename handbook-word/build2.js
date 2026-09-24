@@ -7,6 +7,8 @@ const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, Level
 const INK = '1F1A2E', ACCENT = '3D1591', GREY = '6B6680', LINE = 'CFC9DE';
 // PDF=1 builds a copy with fonts installed on the build machine, for the PDF export only.
 const PDF = !!process.env.PDF;
+// COVER=midnight or COVER=light picks the cover design; each gets its own output files.
+const COVER = process.env.COVER || 'midnight', NAME = 'Translation-Handbook-' + COVER[0].toUpperCase() + COVER.slice(1);
 const LATIN = PDF ? 'Carlito' : 'Calibri', ARABIC = PDF ? 'Noto Naskh Arabic' : 'Arial', SERIF = PDF ? 'Noto Serif' : 'Georgia', BOX = 'ECE9F7';
 const mm = x => Math.round(x * 56.7);
 const PAGE_W = mm(176), MARGIN = mm(20), CONTENT_W = PAGE_W - 2 * MARGIN;
@@ -219,12 +221,12 @@ const doc = new Document({
     { reference: 'box', levels: [{ level: 0, format: LevelFormat.BULLET, text: '□', alignment: AlignmentType.LEFT, style: { run: { font: 'Arial' }, paragraph: { indent: { left: 454, hanging: 340 } } } }] },
   ] },
   sections: [
-    coverSection('art/cover-front.jpg'),
+    coverSection(`art/cover-front-${COVER}.jpg`),
     { properties: { page: { size: pageSize, margin: margins, pageNumbers: { start: 1, formatType: NumberFormat.LOWER_ROMAN } } },
       headers: { default: new Header({ children: [new Paragraph({ children: [] })] }) }, footers: { default: pageNum }, children: body.slice(0, mainStart) },
     { properties: { page: { size: pageSize, margin: margins, pageNumbers: { start: 1, formatType: NumberFormat.DECIMAL } } },
       headers: { default: runningHead }, footers: { default: pageNum }, children: body.slice(mainStart) },
-    coverSection('art/cover-back.jpg'),
+    coverSection(`art/cover-back-${COVER}.jpg`),
   ],
 });
-Packer.toBuffer(doc).then(buf => { fs.writeFileSync(PDF ? 'Translation-Handbook-pdf.docx' : 'Translation-Handbook.docx', buf); console.log('written; glossary terms:', seen.size); });
+Packer.toBuffer(doc).then(buf => { fs.writeFileSync(NAME + (PDF ? '-pdf.docx' : '.docx'), buf); console.log('written; glossary terms:', seen.size); });
