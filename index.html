@@ -1245,7 +1245,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 18 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 19 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1513,14 +1513,14 @@ const RANKS = [
 
      Mirrored in the ranks table in the database, which is what the server
      actually awards from. */
-  { at: 0, en: "Novice",            ar: "مُبتدِئ" },
-  { at: 2, en: "Advanced Beginner", ar: "مُبتدِئ مُتقدِّم" },
-  { at: 4, en: "Competent",         ar: "كَفء" },
-  { at: 6, en: "Proficient",        ar: "مُتقِن" },
-  /* Expert sits at the number of published trials, not above it: at 8 with
-     7 trials published it could never be reached by anyone. When the
-     curriculum grows, this and the ranks table move together. */
-  { at: 7, en: "Expert",            ar: "خَبير" }
+  { at: 0,  en: "Novice",            ar: "مُبتدِئ" },
+  { at: 2,  en: "Advanced Beginner", ar: "مُبتدِئ مُتقدِّم" },
+  { at: 5,  en: "Competent",         ar: "كَفء" },
+  { at: 8,  en: "Proficient",        ar: "مُتقِن" },
+  /* Expert sits at the number of published trials, never above it, or the
+     top rank cannot be reached by anyone. Ten trials, ten marks. This line
+     and the ranks table move together whenever the curriculum grows. */
+  { at: 10, en: "Expert",            ar: "خَبير" }
 ];
 
 /* ═══════════ PORTRAITS ═══════════
@@ -2776,6 +2776,166 @@ const LINEAGE = [
     why: "He gave the argument its current vocabulary: <b>domestication</b>, which smooths a text into the target culture, and <b>foreignization</b>, which keeps the reader aware that they are reading from elsewhere. Neither is simply the good one. They are choices with consequences - for the writer, for the reader, and for whose literature gets to sound like itself." },
 ];
 
+/* ═══════════ COLLOCATION · Chapter 7 ═══════════
+   Every pair below is one the handbook gives. "The company a word keeps"
+   is the course materials' own definition, after Firth. */
+const COLLOC = [
+  { src: "pay attention", srcEn: true, lit: '"pay" is not always يدفع',
+    opts: [
+      { t: "يدفع الانتباه", tag: "word for word — and not Arabic" },
+      { t: "يَنتبِه", tag: "the natural partner", ok: true },
+      { t: "يشتري الانتباه", tag: "worse: a second guess at the wrong verb" }
+    ],
+    why: "The basic sense of <b>pay</b> is to give money, and its partners change it completely: <i>pay a visit</i> is <b>يقوم بزيارة</b>, not يدفع زيارة. Learn the word with its company. (Chapter 7)" },
+
+  { src: "heavy rain", srcEn: true,
+    opts: [
+      { t: "مطر ثقيل", tag: "the English adjective, carried over" },
+      { t: "مطر غزير", tag: "the natural partner", ok: true },
+      { t: "مطر قوي", tag: "plausible, still not what Arabic says" }
+    ],
+    why: "English weighs its rain; Arabic makes it <b>abundant</b>. Neither language is being logical &mdash; each simply has a partner already chosen. (Chapter 7)" },
+
+  { src: "strong tea", srcEn: true,
+    opts: [
+      { t: "شاي ثقيل", tag: "the natural partner", ok: true },
+      { t: "شاي قوي", tag: "the English adjective, carried over" },
+      { t: "شاي مركّز", tag: "correct meaning, wrong register for a kitchen" }
+    ],
+    why: "Now it runs the other way: English calls tea <b>strong</b>, Arabic calls it <b>heavy</b> &mdash; the very adjective it refused for rain. There is no rule to derive, only the company each word keeps. (Chapter 7)" },
+
+  { src: "break the law", srcEn: true,
+    opts: [
+      { t: "يكسر القانون", tag: "understood, but not how Arabic says it" },
+      { t: "يخالف القانون", tag: "the natural partner", ok: true },
+      { t: "يهدم القانون", tag: "a different claim: destroying it, not breaking it" }
+    ],
+    why: "English breaks a law as it breaks a plate. Arabic <b>contravenes</b> it. The first option would be understood and would still mark the text as translated. (Chapter 7)" },
+
+  { src: "عقد اجتماعاً",
+    opts: [
+      { t: "He knotted a meeting.", tag: "the verb's other sense — nonsense here" },
+      { t: "He held a meeting.", tag: "the natural partner", ok: true },
+      { t: "He made a meeting.", tag: "the wrong English partner" }
+    ],
+    why: "<b>عقد</b> ties knots and holds meetings. English <i>holds</i> them and does not <i>make</i> them. Both languages chose a partner; neither chose the same one. (Chapter 7)" },
+
+  { src: "قدّم استقالته",
+    opts: [
+      { t: "He submitted his resignation.", tag: "close, and sometimes right", },
+      { t: "He resigned.", tag: "what an English speaker says", ok: true },
+      { t: "He presented his resignation.", tag: "word for word — stiff" }
+    ],
+    why: "Arabic needs two words where English has one. <i>Submitted his resignation</i> is not wrong and belongs in a formal report; in ordinary prose English simply says <b>he resigned</b>. (Chapter 7)" }
+];
+
+/* ═══════════ CONTEXT · Chapter 6 ═══════════
+   One word, several meanings, and only the situation decides. Every item
+   is from the handbook's own list. */
+const CONTEXT_Q = [
+  { src: "The doctor examined the case.", srcEn: true,
+    opts: [
+      { t: "فحص الطبيب القضية.", tag: "the court sense — wrong room" },
+      { t: "فحص الطبيب الحالة.", tag: "context decides", ok: true },
+      { t: "فحص الطبيب العلبة.", tag: "the container sense" }
+    ],
+    why: "<b>case</b> is three unrelated words wearing one spelling: <b>حالة</b>, <b>قضية</b>, <b>علبة</b>. One word in the sentence &mdash; <i>doctor</i> &mdash; settles it. That is micro context doing its work. (Chapter 6)" },
+
+  { src: "شربنا من عين ماء باردة.",
+    opts: [
+      { t: "We drank from a cold eye of water.", tag: "the first dictionary sense" },
+      { t: "We drank from a cold water spring.", tag: "context decides", ok: true },
+      { t: "We drank from a cold spy.", tag: "the third sense — and a reminder to read" }
+    ],
+    why: "<b>عين</b> is an eye, a spring, and a spy. <i>ماء</i> standing beside it decides which. A translator who reaches for the first dictionary sense produces the first option. (Chapter 6)" },
+
+  { src: "He sat on the bank and watched the water.", srcEn: true,
+    opts: [
+      { t: "جلس على المصرف وراقب الماء.", tag: "the money sense" },
+      { t: "جلس على ضفّة النهر وراقب الماء.", tag: "context decides", ok: true },
+      { t: "جلس على البنك وراقب الماء.", tag: "the borrowed word — same error, newer clothes" }
+    ],
+    why: "Two unrelated meanings under one spelling: <b>homonymy</b> (المشترك اللفظي). <i>Water</i> settles it. Note that borrowing the English word does not escape the problem &mdash; it only hides it. (Chapter 6)" },
+
+  { src: "تطهير الجرح",
+    opts: [
+      { t: "purifying the wound from sin", tag: "the religious sense" },
+      { t: "cleaning the wound", tag: "context decides", ok: true },
+      { t: "cleansing the wound of impurity", tag: "reads the religious sense into a clinic" }
+    ],
+    why: "Here the senses are <b>related</b>, not unrelated &mdash; cleaning and purifying share a root idea. That is <b>polysemy</b> (تعدّد المعنى), and it is more dangerous than homonymy, because the wrong reading still almost makes sense. (Chapter 6)" },
+
+  { src: "احتجاز الرهائن",
+    opts: [
+      { t: "holding hostages", tag: "context decides", ok: true },
+      { t: "detaining the hostages", tag: "close, but detention is lawful custody" },
+      { t: "storing the hostages", tag: "the water sense, applied to people" }
+    ],
+    why: "The same verb holds back water (<b>احتجاز المياه</b>) and holds people. The object decides, and the English verb changes with it. (Chapter 6)" },
+
+  { src: "a report on the situation in the region, written in 1975",
+    srcEn: true,
+    opts: [
+      { t: "Translate the words; the date is not your business.", tag: "ignores the macro context" },
+      { t: "Find out what was happening in 1975 before choosing terms.", tag: "the whole situation, not just the words", ok: true },
+      { t: "Update the terms to today's usage so the reader understands.", tag: "rewrites history" }
+    ],
+    why: "This one is not about a word at all. <b>Macro context</b> (السياق الخارجي) is the author, the audience, the time and the place. Names of parties, borders and offices all moved between 1975 and now, and a translator who does not know which year they are in will pick the wrong ones. (Chapter 6)" }
+];
+
+/* ═══════════ REVISION · Chapter 23 ═══════════
+   The handbook's own list of the mistakes that actually recur. Every
+   source sentence here is one it corrects. */
+const REVISE = [
+  { src: "قام المدير بتوقيع العقد.",
+    opts: [
+      { t: "وقّع المديرُ العقد.", tag: "the verb does its own work", ok: true },
+      { t: "المدير قام بتوقيع العقد.", tag: "same padding, now with the subject first too" },
+      { t: "تمّ توقيع العقد من قِبَل المدير.", tag: "swaps one borrowed structure for another" }
+    ],
+    why: "<b>قام بـ</b> before a verb that can simply be used is the commonest padding in translated Arabic. The handbook lists it among the mistakes to look for on the second reading. (Chapter 23)" },
+
+  { src: "الحكومة أعلنت عن إجراءات جديدة.",
+    opts: [
+      { t: "الحكومة قامت بإعلان إجراءات جديدة.", tag: "adds the padding as well" },
+      { t: "أعلنت الحكومة عن إجراءات جديدة.", tag: "the verbal sentence Arabic prefers", ok: true },
+      { t: "تمّ إعلان إجراءات جديدة.", tag: "correct Arabic, but the government has vanished" }
+    ],
+    why: "English puts the subject first and Arabic news prose does not. Starting with <b>الحكومة</b> is not ungrammatical &mdash; it is the shape of the English showing through. (Chapter 3, Chapter 23)" },
+
+  { src: "تمّ افتتاح المعرض من قِبَل الوزير.",
+    opts: [
+      { t: "افتتح الوزيرُ المعرض.", tag: "an actor, doing something", ok: true },
+      { t: "المعرض تمّ افتتاحه من قِبَل الوزير.", tag: "the same passive, reordered" },
+      { t: "قام الوزير بافتتاح المعرض.", tag: "trades the passive for the padding" }
+    ],
+    why: "<b>من قِبَل</b> is the English passive wearing Arabic clothes. Arabic has an active sentence ready and an actor to put in it. (Chapter 23)" },
+
+  { src: "He is a brave and daring officer.", srcEn: true,
+    opts: [
+      { t: "ضابط شجاع ومِغوار", tag: "natural in Arabic — but this is going the other way" },
+      { t: "a very brave officer", tag: "one word for the pair", ok: true },
+      { t: "a brave and daring officer", tag: "keeps a doubling English does not use" }
+    ],
+    why: "Arabic pairs near-synonyms for weight and it reads as eloquence. English repeats them and it reads as padding. <b>Omission</b> (الحذف) is the strategy, and it is commonest in this direction. (Chapter 13, Chapter 23)" },
+
+  { src: "The life is beautiful in this city.", srcEn: true,
+    opts: [
+      { t: "The life is beautiful in this city.", tag: "the Arabic article, carried across" },
+      { t: "Life is beautiful in this city.", tag: "English drops it", ok: true },
+      { t: "A life is beautiful in this city.", tag: "a different error" }
+    ],
+    why: "<b>الحياة</b> carries its article; English <i>life</i> in the general sense takes none. A small word, and one of the surest signs of a translated text. (Chapter 23)" },
+
+  { src: "He married from her last year.", srcEn: true,
+    opts: [
+      { t: "He married with her last year.", tag: "a different wrong preposition" },
+      { t: "He married her last year.", tag: "English takes no preposition here", ok: true },
+      { t: "He got married from her last year.", tag: "keeps the borrowed preposition" }
+    ],
+    why: "<b>تزوّج من</b> has a preposition and English <i>marry</i> does not. Prepositions almost never map between the two languages; they have to be learned verb by verb. (Chapter 23)" }
+];
+
 /* ═══════════ REGISTRY ═══════════ */
 const ITEMS = [
   { id: "lineage", ar: "", en: "The Lineage", kind: "guide", section: "method",
@@ -2825,6 +2985,21 @@ const ITEMS = [
     subject: "Interpreting الترجمة الشفهية · Chapter 1",
     blurb: "Sixty seconds. Phrases arrive faster than you can think. Type the equivalent and move.",
     run: runBooth },
+  { id: "colloc", ar: "التَّلازُم اللَّفظيّ", en: "The Company a Word Keeps", kind: "trial", section: "trials",
+    subject: "Collocation التلازم اللفظي · Chapter 7",
+    direction: "both",
+    blurb: "English pays attention and Arabic notices it; English has strong tea and Arabic has heavy tea. Six pairings where the partner is already chosen and no rule will tell you which.",
+    run: () => runChoice(COLLOC, "Which partner does the other language use?") },
+  { id: "context", ar: "السِّياق", en: "One Word, Several Meanings", kind: "trial", section: "trials",
+    subject: "Context, homonymy and polysemy · Chapter 6",
+    direction: "both",
+    blurb: "A bank, a case, an عين. The same spelling holds meanings that have nothing to do with each other — and one word nearby decides which you are looking at.",
+    run: () => runChoice(CONTEXT_Q, "Which reading does the context give you?") },
+  { id: "revise", ar: "المُراجَعة", en: "The Reviser's Eye", kind: "trial", section: "trials",
+    subject: "Revision and common mistakes · Chapter 23",
+    direction: "both",
+    blurb: "Six sentences that are grammatical and still announce themselves as translations. Find what the source language left behind.",
+    run: () => runChoice(REVISE, "Which version would a reviser keep?") },
 
   { id: "phraseology", ar: "اللُّغة والتَّعبير", en: "Language & Phraseology", kind: "exhibit", section: "chambers",
     subject: "Collocation and idiom · Chapters 7–8",
