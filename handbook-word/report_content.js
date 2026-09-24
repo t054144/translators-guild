@@ -219,7 +219,8 @@ module.exports = [
   '**Midnight edition:** a dark indigo cover with three stripes in the logo’s colours along the spine edge and the logo in white.',
   '**Light edition:** a pale lavender cover with three large circles in the logo’s colours and the titles in dark purple.',
 ]],
-['p', 'Both front covers show only the English title “Translation Handbook”, the Arabic title {{دليل الترجمة}}, the logo, and “First edition 2026”. Both back covers carry the quotation “Words travel worlds. Translators do the driving.” by the translator Anna Rusconi, a one-sentence description, three key features and the logo. The middle of the back cover is left free for the QR code of the team’s website.'],
+['p', 'Both front covers show only the English title “Translation Handbook”, the Arabic title {{دليل الترجمة}}, the logo, and “First edition 2026”. Both back covers carry the quotation “Words travel worlds. Translators do the driving.” by the translator Anna Rusconi, a one-sentence description, three key features and the logo. The middle of the back cover carries a QR code that links to the Translation Team’s website (translators-guild.vercel.app), with the address also printed in full for readers who cannot scan it.'],
+['p', 'The QR code was supplied by the team at low resolution and with an older logo. It was rebuilt at high resolution in the Guild colours, with the current logo in the centre and the highest level of error correction, so that it still scans with the logo covering part of it. It was tested with two scanning programs at full size, at small print sizes and on the final PDFs.'],
 ['h2', '10.4 Production'],
 ['ul', [
   'The handbook was organised, drafted, edited and laid out with the help of an AI tool (Claude, by Anthropic), under the direction of the Translation Team, and reviewed by the team. This is stated on the copyright page.',
@@ -262,7 +263,7 @@ module.exports = [
   'Confirm the sources of the draft’s own examples. The notes say that the material was collected from more than one source. The examples are credited to the team’s course materials; if any come from a published book, such as the 180 or 182 books, that book must be credited instead.',
   'Confirm the copyright line (© 2026 Guild Professional Club, Translation Team) and the club’s official name.',
   'Confirm that the statement on AI assistance on the copyright page meets the university’s and the publisher’s rules.',
-  'Add the QR code of the team’s website to the back cover of the chosen edition or editions.',
+  'Scan the QR code on a printed proof with several phones before the full print run.',
   'Open the Word file in Microsoft Word, update the contents page, and check the layout before printing.',
 ]],
 ['h2', '12.2 Decisions for the team'],

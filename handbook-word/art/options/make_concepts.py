@@ -2,6 +2,12 @@
 import subprocess
 from PIL import Image, ImageDraw, ImageFont
 FS = lambda fonts: ''.join(f'<link rel="stylesheet" href="fs/{f}.css">' for f in fonts)
+QRCSS = '''
+.qr { left:50%; transform:translateX(-50%); top:478px; width:244px; background:#fff; border-radius:14px; padding:14px 14px 10px; text-align:center; }
+.qr img { width:182px; height:182px; display:block; margin:0 auto; }
+.qr .l { font-size:12px; white-space:nowrap; color:#3A2B69; margin-top:6px; font-weight:700; }
+.qr .u { font-size:11px; color:#3A2B69; margin-top:2px; letter-spacing:.2px; }'''
+QR = '<div class="abs qr"><img src="website-qr.png"><div class="l">Visit the Translation Team’s website</div><div class="u">translators-guild.vercel.app</div></div>'
 BASE = '''* { margin:0; padding:0; box-sizing:border-box; } html,body { width:665px; height:945px; overflow:hidden; }
 body { position:relative; font-family:'Carlito',sans-serif; }
 .abs { position:absolute; } .rtl { direction:rtl; }
@@ -50,7 +56,7 @@ body { background:linear-gradient(170deg,#3A2B69 0%,#2A1F55 60%,#1F173F 100%); c
 .bb { left:56px; right:110px; top:268px; font-size:16.5px; line-height:1.5; color:#EDEBFA; } .bb ul { margin-top:16px; font-size:15.5px; }
 .blogo { left:56px; bottom:58px; height:92px; }''',
  front=f'<div class="abs stripes"><i class="s1"></i><i class="s2"></i><i class="s3"></i></div><div class="abs t"><div class="en">{EN}</div><div class="hr"></div><div class="ar rtl">{AR}</div></div><img class="abs logo" src="logo-white.png"><div class="abs ed">First edition<br>2026</div>',
- back=f'<div class="abs stripes bs"><i class="s3"></i><i class="s2"></i><i class="s1"></i></div><div class="abs bq">{Q}</div><div class="abs bw">{WHO}</div><div class="abs bb">{BLURB}{LIS}</div><img class="abs blogo" src="logo-white.png">')
+ back=f'<div class="abs stripes bs"><i class="s3"></i><i class="s2"></i><i class="s1"></i></div><div class="abs bq">{Q}</div><div class="abs bw">{WHO}</div><div class="abs bb">{BLURB}{LIS}</div><img class="abs blogo" src="logo-white.png">' + QR)
 
 # 3 Light edition: pale lavender page, oversized brand dots, purple type
 C[3] = dict(name='Light edition', fonts=['cormorant-garamond/700','cormorant-garamond/600-italic','amiri/arabic-700'], css='''
@@ -67,7 +73,7 @@ body { background:#F6F4FD; color:#3A2B69; }
 .bw { left:56px; top:208px; font-size:13px; letter-spacing:3px; text-transform:uppercase; }
 .bb { left:56px; right:120px; top:268px; font-size:16.5px; line-height:1.5; } .bb ul { margin-top:16px; font-size:15.5px; }''',
  front=f'<div class="abs dots"><i class="d1"></i><i class="d2"></i><i class="d3"></i></div><div class="abs t"><div class="en">{EN}</div><div class="ar rtl">{AR}</div></div><div class="abs foot"><img src="logo-dark.png"><div>First edition<br>2026</div></div>',
- back=f'<div class="abs bq">{Q}</div><div class="abs bw">{WHO}</div><div class="abs bb">{BLURB}{LIS}</div><div class="abs foot"><img src="logo-dark.png"><div>First edition<br>2026</div></div>')
+ back=f'<div class="abs bq">{Q}</div><div class="abs bw">{WHO}</div><div class="abs bb">{BLURB}{LIS}</div><div class="abs foot"><img src="logo-dark.png"><div>First edition<br>2026</div></div>' + QR)
 
 # 4 Letters: faint English and Arabic letters across the purple, titles on a white panel
 LET = ' '.join(['A','ع','T','ت','B','ب','R','ر','M','م','N','ن','L','ل','S','س','K','ك','H','ه']*4)
@@ -127,7 +133,7 @@ body {{ background:#fff; color:#fff; }}
 CH = '/opt/pw-browsers/chromium-1194/chrome-linux/chrome'
 for k, c in C.items():
     for side in ('front', 'back'):
-        html = f'<!doctype html><html><head><meta charset="utf-8">{FS(c["fonts"])}<style>{BASE}{c["css"]}</style></head><body>{c[side]}</body></html>'
+        html = f'<!doctype html><html><head><meta charset="utf-8">{FS(c["fonts"])}<style>{BASE}{QRCSS}{c["css"]}</style></head><body>{c[side]}</body></html>'
         fn = f'concept{k}-{side}'; open(fn + '.html', 'w').write(html)
         subprocess.run([CH, '--headless', '--no-sandbox', '--disable-gpu', '--hide-scrollbars', '--allow-file-access-from-files', '--force-device-scale-factor=3.125',
                         '--window-size=665,1100', '--virtual-time-budget=3000', f'--screenshot=/tmp/claude-0/-home-user-translators-guild/7d117e07-7e64-5e6c-8e91-83d6b6c25330/scratchpad/raw.png', 'file://' + __import__('os').path.abspath(fn + '.html')], capture_output=True)
