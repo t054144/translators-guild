@@ -767,6 +767,51 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 :root[data-theme="light"] .theme-btn .th-moon { display: none; }
 @media (max-width: 560px) { .theme-btn { margin-inline-start: .5rem; width: 30px; height: 30px; } }
 
+/* ═══════════ TYPOGRAPHIC RESTRAINT ═══════════
+   The Guild read as a children's app: display type used for ordinary
+   headings, capitals tracked wide enough to become decoration, corners
+   rounded until cards looked like toys. Nothing here changes the palette
+   or the atmosphere — only the confidence with which type is set. A
+   serious publication lets its content be the loud thing.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Headings come down and tighten. The serif stays, at a size that reads
+   as editorial rather than as a poster. */
+.hall-head h1 { font-size: clamp(1.75rem, 4.6vw, 2.4rem); letter-spacing: -.015em; }
+.screen-head h1 { font-size: clamp(1.4rem, 3.6vw, 1.85rem); letter-spacing: -.012em; }
+.sec-head h2, .strip-head h2 { font-size: clamp(1.1rem, 2.4vw, 1.3rem); letter-spacing: -.005em; }
+.j-head h2 { font-size: clamp(1rem, 2.2vw, 1.12rem); letter-spacing: -.004em; }
+.card-top h3 { font-size: clamp(1.15rem, 2.8vw, 1.45rem); letter-spacing: -.008em; }
+#trial-en { font-size: clamp(1.25rem, 3.2vw, 1.6rem); letter-spacing: -.01em; }
+.c-en { font-size: clamp(.98rem, 2.1vw, 1.06rem); letter-spacing: -.003em; font-weight: 600; }
+
+/* Tracked capitals are a label, not an ornament: smaller, and tracked less
+   far. They were reading louder than the titles they sat under. */
+.seal-eyebrow, .c-subject, .trial-subject, .j-tile span, .rank-box .r-n,
+.rec-state, .b-lab, .num-badge, .kind {
+  letter-spacing: .1em; font-size: .64rem;
+}
+.seal-eyebrow { font-size: .6rem; }
+.hall-sub { font-size: clamp(.95rem, 2vw, 1.02rem); }
+
+/* Body text gets a measure and a line height meant for reading. */
+.lede { font-size: clamp(.92rem, 1.9vw, 1rem); line-height: 1.62; max-width: 62ch; }
+.c-blurb { font-size: .86rem; line-height: 1.55; }
+.note { font-size: .82rem; line-height: 1.55; }
+.block p, .block li { font-size: .88rem; line-height: 1.58; }
+
+/* Corners: still soft, no longer toy-like. */
+:root { --r-xl: 22px; --r-lg: 18px; --r-md: 12px; --r-sm: 8px; }
+.panel { border-radius: var(--r-lg); }
+.commission { border-radius: var(--r-md); }
+.card { border-radius: var(--r-lg); }
+.strip-card { border-radius: var(--r-md); }
+.chip-tag, .chip { border-radius: 999px; }
+
+/* The card number was set in display type at the size of a title and
+   competed with it. It is a reference mark. */
+.cnum { font-size: .78rem; letter-spacing: .04em; opacity: .5; font-weight: 500; }
+
 /* ═══════════ THE PHONE ═══════════
    Everything above was sized with a laptop in view, and on a 390px screen
    it read as a magnified version of a desktop page: headings the width of
@@ -1353,7 +1398,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 20 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 21 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -3052,16 +3097,16 @@ const REVISE = [
 
 /* ═══════════ REGISTRY ═══════════ */
 const ITEMS = [
-  { id: "lineage", ar: "", en: "The Lineage", kind: "guide", section: "method",
-    subject: "Translators in history",
+  { id: "lineage", ar: "", en: "Translators in History", kind: "guide", section: "method",
+    subject: "The tradition, from the fourth century to our own",
     blurb: "Sixteen translators, from the fourth century to our own, whose work changed what the world could read &mdash; eight from the Arabic tradition, eight from the Western one.",
     run: runLineage },
   { id: "procedures", ar: "الإجراءات السَّبعة", en: "The Seven Procedures", kind: "guide", section: "method",
-    subject: "Translation procedures · Chapter 12",
+    subject: "Vinay &amp; Darbelnet · Chapter 12",
     blurb: "The foundational framework of the field — borrowing, calque, literal, transposition, modulation, equivalence, adaptation — each worked in Arabic and English. One framework among several, and the one the others answer.",
     run: runProcedures },
-  { id: "toolkit", ar: "عُدّة المُترجِم", en: "The Translator's Toolkit", kind: "guide", section: "method",
-    subject: "Method, procedure and strategy · Chapters 12–13",
+  { id: "toolkit", ar: "عُدّة المُترجِم", en: "Method, Procedure and Strategy", kind: "guide", section: "method",
+    subject: "Chapters 12–13",
     blurb: "Method, procedure, strategy and shift are four different things. The twelve strategies of Chapter 13, each with its Arabic name and a worked example — and what to call what you actually did.",
     run: runToolkit },
   /* The id stays "texttypes" so nobody's stored progress is orphaned by the
@@ -3071,61 +3116,61 @@ const ITEMS = [
     blurb: "Ten worlds a translation can land in — journalistic, political and diplomatic, legal, technical, medical, literary, transcreation, localization, audiovisual, academic — and why they are not all the same kind of category.",
     run: runTextTypes },
 
-  { id: "nameproc", ar: "ما هذا الإجراء؟", en: "Name the Procedure", kind: "trial", section: "trials",
-    subject: "Translation procedures · Chapter 12",
+  { id: "nameproc", ar: "ما هذا الإجراء؟", en: "Translation Procedures", kind: "trial", section: "trials",
+    subject: "إجراء الترجمة · Chapter 12",
     blurb: "A source and its rendering. Which of the seven procedures was used to get there?",
     run: () => runChoice(NAME_PROC, "Which procedure produced this?") },
-  { id: "human", ar: "أيّ من الخيارات تُطابِق المعنى؟", en: "The Best Equivalent", kind: "trial", section: "trials",
-    subject: "Equivalence · Chapter 9",
+  { id: "human", ar: "أيّ من الخيارات تُطابِق المعنى؟", en: "Equivalence", kind: "trial", section: "trials",
+    subject: "التكافؤ · Chapter 9",
     blurb: "One Arabic line, three English renderings. Only one carries the meaning the way an English speaker actually would.",
     run: () => runChoice(HUMAN, "Which option matches the meaning?") },
-  { id: "proverb", ar: "مَثَلٌ بِمَثَل", en: "Proverb for Proverb", kind: "trial", section: "trials",
-    subject: "Idioms and proverbs · Chapter 8",
+  { id: "proverb", ar: "مَثَلٌ بِمَثَل", en: "Idioms and Proverbs", kind: "trial", section: "trials",
+    subject: "التعبير الاصطلاحي · Chapter 8",
     blurb: "Match the Arabic proverb to the English proverb that means the same thing — not the one that says the same words.",
     run: () => runChoice(PROVERBS, "Which English proverb does the same work?") },
-  { id: "courtesy", ar: "خِزانة المُجامَلات", en: "The Courtesy Cabinet", kind: "trial", section: "trials",
-    subject: "Speech acts and courtesy formulas · Chapter 5",
+  { id: "courtesy", ar: "خِزانة المُجامَلات", en: "Speech Acts", kind: "trial", section: "trials",
+    subject: "الأفعال الكلامية · Chapter 5",
     blurb: "Gulf politeness formulas with no English words but exact English functions. One of them has no equivalent at all.",
     run: () => runChoice(COURTESY, "What would an English speaker actually say?") },
   { id: "cultural", ar: "الاِستِبدال الثَّقافيّ", en: "Cultural Substitution", kind: "trial", section: "trials",
-    subject: "Cultural substitution الإبدال الثقافي · Chapter 13",
+    subject: "الإبدال الثقافي · Chapter 13",
     blurb: "English idioms bound to their culture. Swap the object, keep the meaning — or notice when Arabic already agrees.",
     run: () => runChoice(CULTURAL, "How does this cross into Arabic?") },
-  { id: "subtitle", ar: "قَيد الشّاشة", en: "Subtitle Squeeze", kind: "trial", section: "trials",
-    subject: "Subtitling and linguistic compression · Chapter 27",
+  { id: "subtitle", ar: "قَيد الشّاشة", en: "Subtitling", kind: "trial", section: "trials",
+    subject: "السترجة · Chapter 27",
     blurb: "A real subtitler's constraint: a hard character limit and a line that will not fit. Cut the words, keep the meaning.",
     run: runSubtitle },
-  { id: "booth", ar: "المَقصورة", en: "The Booth", kind: "trial", section: "trials",
-    subject: "Interpreting الترجمة الشفهية · Chapter 1",
+  { id: "booth", ar: "المَقصورة", en: "Interpreting", kind: "trial", section: "trials",
+    subject: "الترجمة الشفهية · Chapter 1",
     blurb: "Sixty seconds. Phrases arrive faster than you can think. Type the equivalent and move.",
     run: runBooth },
-  { id: "colloc", ar: "التَّلازُم اللَّفظيّ", en: "The Company a Word Keeps", kind: "trial", section: "trials",
-    subject: "Collocation التلازم اللفظي · Chapter 7",
+  { id: "colloc", ar: "التَّلازُم اللَّفظيّ", en: "Collocation", kind: "trial", section: "trials",
+    subject: "التلازم اللفظي · Chapter 7",
     direction: "both",
     blurb: "English pays attention and Arabic notices it; English has strong tea and Arabic has heavy tea. Six pairings where the partner is already chosen and no rule will tell you which.",
     run: () => runChoice(COLLOC, "Which partner does the other language use?") },
-  { id: "context", ar: "السِّياق", en: "One Word, Several Meanings", kind: "trial", section: "trials",
-    subject: "Context, homonymy and polysemy · Chapter 6",
+  { id: "context", ar: "السِّياق", en: "Context and Ambiguity", kind: "trial", section: "trials",
+    subject: "السياق · Chapter 6",
     direction: "both",
     blurb: "A bank, a case, an عين. The same spelling holds meanings that have nothing to do with each other — and one word nearby decides which you are looking at.",
     run: () => runChoice(CONTEXT_Q, "Which reading does the context give you?") },
-  { id: "revise", ar: "المُراجَعة", en: "The Reviser's Eye", kind: "trial", section: "trials",
-    subject: "Revision and common mistakes · Chapter 23",
+  { id: "revise", ar: "المُراجَعة", en: "Revision", kind: "trial", section: "trials",
+    subject: "المراجعة · Chapter 23",
     direction: "both",
     blurb: "Six sentences that are grammatical and still announce themselves as translations. Find what the source language left behind.",
     run: () => runChoice(REVISE, "Which version would a reviser keep?") },
 
-  { id: "phraseology", ar: "اللُّغة والتَّعبير", en: "Language & Phraseology", kind: "exhibit", section: "chambers",
-    subject: "Collocation and idiom · Chapters 7–8",
+  { id: "phraseology", ar: "اللُّغة والتَّعبير", en: "Phraseology", kind: "exhibit", section: "chambers",
+    subject: "المتلازمات والتعابير · Chapters 7–8",
     direction: "both",
     blurb: "Collocations, connectors, courtesy formulas and speech acts — the chunks a language has already assembled. Both directions, because what English splits Arabic may join.",
     run: runPhraseology },
-  { id: "register", ar: "مؤشِّر المُستوى اللُّغَويّ", en: "The Register Dial", kind: "exhibit", section: "chambers",
-    subject: "Register المستوى اللغوي · Chapter 3",
+  { id: "register", ar: "مؤشِّر المُستوى اللُّغَويّ", en: "Register", kind: "exhibit", section: "chambers",
+    subject: "المستوى اللغوي · Chapter 3",
     blurb: "One meaning, four levels — from Kuwaiti street to classical Arabic — and what each one does to the English.",
     run: runRegister },
-  { id: "roots", ar: "حُجرة الجَذر", en: "The Root Chamber", kind: "exhibit", section: "chambers",
-    subject: "Roots, patterns and derivation · Chapter 3",
+  { id: "roots", ar: "حُجرة الجَذر", en: "Roots and Patterns", kind: "exhibit", section: "chambers",
+    subject: "الجذر والوزن · Chapter 3",
     blurb: "Three consonants hold a whole family of words. Open a root and watch it bloom — starting with ت ر ج م itself.",
     run: runRoots }
 ];
