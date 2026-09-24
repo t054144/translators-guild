@@ -1245,7 +1245,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 17 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 18 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1362,14 +1362,14 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <h1 id="seal-name">Member</h1>
         <p class="note" id="hall-who" hidden></p>
         <p class="chips-row">
-          <span class="chip-tag" id="chip-rank">Initiate</span>
+          <span class="chip-tag" id="chip-rank">Novice</span>
           <span class="chip-tag solid">Translation Team</span>
         </p>
       </div>
       <div class="rank-box">
         <span class="r-n" id="rank-n">0 marks</span>
         <svg class="ring" id="hall-ring" viewBox="0 0 100 100" aria-hidden="true" hidden></svg>
-        <span class="r-n" hidden id="rank-en">Initiate</span>
+        <span class="r-n" hidden id="rank-en">Novice</span>
       </div>
     </div>
 
@@ -1502,11 +1502,25 @@ function paintRing(svg, earned) {
    mirrored in the ranks table in the database, where they can be retuned
    without touching this file. */
 const RANKS = [
-  { at: 0, en: "Initiate",          ar: "مُنتسِب" },
-  { at: 2, en: "Apprentice",        ar: "مُبتَدِئ" },
-  { at: 4, en: "Scribe",            ar: "ناسِخ" },
-  { at: 6, en: "Translator",        ar: "مُترجِم" },
-  { at: 8, en: "Master Translator", ar: "مُترجِم أوّل" }
+  /* The Dreyfus model of skill acquisition (Dreyfus & Dreyfus, 1980), which
+     is the progression translator-training research borrows. It was chosen
+     over a professional ladder — NAATI's Certified Translator, CIOL's MCIL —
+     because those are credentials awarded after examination by a body with
+     the standing to award them. The Guild teaches; it certifies nothing, and
+     naming its stages after those tiers would claim an authority it has not
+     got. Dreyfus describes learning, which is the thing actually happening
+     here, and it can be cited.
+
+     Mirrored in the ranks table in the database, which is what the server
+     actually awards from. */
+  { at: 0, en: "Novice",            ar: "مُبتدِئ" },
+  { at: 2, en: "Advanced Beginner", ar: "مُبتدِئ مُتقدِّم" },
+  { at: 4, en: "Competent",         ar: "كَفء" },
+  { at: 6, en: "Proficient",        ar: "مُتقِن" },
+  /* Expert sits at the number of published trials, not above it: at 8 with
+     7 trials published it could never be reached by anyone. When the
+     curriculum grows, this and the ranks table move together. */
+  { at: 7, en: "Expert",            ar: "خَبير" }
 ];
 
 /* ═══════════ PORTRAITS ═══════════
@@ -4013,7 +4027,7 @@ function renderClimb() {
       '<span class="beacon' + (BACKENDS[backend].live ? " live" : "") + '"><i></i>' +
         BACKENDS[backend].label + '</span>' +
       '<p class="note">' + n + ' of ' + tm + ' mark' + (tm === 1 ? '' : 's') + ' · ' +
-        Math.round(n / Math.max(tm, 1) * 100) + '% of the way to Master Translator</p>' +
+        Math.round(n / Math.max(tm, 1) * 100) + '% of the way to ' + RANKS[RANKS.length - 1].en + '</p>' +
     '</div>';
 
   requestAnimationFrame(() => {
