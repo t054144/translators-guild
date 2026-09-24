@@ -1,0 +1,426 @@
+[
+ {
+  "file": "c2b.js",
+  "find": "['Terminology', 'علم المصطلح', 'The study, collection and management of specialised terms.'],",
+  "replace": "['Terminology', 'علم المصطلح (المصطلحية)', 'The study, collection and management of specialised terms; also the set of terms used in one field.'],",
+  "category": "concept",
+  "severity": "low",
+  "reason": "‘Terminology’ also names the set of terms of a field, a sense the handbook uses later (e.g. ‘legal terminology’), and المصطلحية is the other standard Arabic name for the discipline."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Terminologist', 'المصطلحي', 'A specialist who creates and standardises terms, usually in one language.'],",
+  "replace": "['Terminologist', 'المصطلحي (خبير المصطلحات)', 'A specialist who collects, describes and records the terms of a field, and sometimes standardises them, in one or more languages.'],",
+  "category": "concept",
+  "severity": "high",
+  "reason": "Terminologists mainly collect, describe and record terms, and translation-oriented terminology work (UNTERM, IATE, Arabterm) is bilingual or multilingual, so ‘creates … usually in one language’ misdescribes the job."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'A **terminologist** usually works in one language and creates and standardises terms.',",
+  "replace": "'A **terminologist** studies the terms of a field rather than whole texts: he or she collects, records and sometimes standardises them, in one or more languages.',",
+  "category": "concept",
+  "severity": "high",
+  "reason": "Same misdescription as the key term: terminologists work on terms, not texts, often across languages, and standardisation is only part of their work."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'When no dictionary has the term, think like a terminologist and create an accurate one (Chapter 16).',",
+  "replace": "'When no dictionary or termbase has the term, think like a terminologist and create an accurate one (Chapter 16).',",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Chapter 16 and the steps below say to search termbases and academies before creating a term, so a dictionary alone is not enough."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Termbase', 'قاعدة بيانات المصطلحات', 'A database of terms and information about them.'],",
+  "replace": "['Termbase', 'قاعدة بيانات المصطلحات (بنك المصطلحات)', 'A database of terms and information about them.'],",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "بنك المصطلحات (term bank) is the widespread Arabic name for large termbases such as UNTERM and should be given so readers recognise it."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Clipping**: the first part of a word: _super_ (superintendent).',",
+  "replace": "'**Clipping**: a word cut short, often keeping its first part: _super_ (superintendent).',",
+  "category": "concept",
+  "severity": "low",
+  "reason": "Clipping can also keep the end or middle of a word (phone, flu), so ‘the first part’ is too narrow."
+ },
+ {
+  "file": "c2b.js",
+  "find": "for example in Cairo, Baghdad and Amman, create and approve Arabic terms (Translation Team, n.d.).",
+  "replace": "for example in Damascus, Cairo, Baghdad and Amman, create and approve Arabic terms (Translation Team, n.d.). The Coordination Bureau of Arabization in Rabat ({{مكتب تنسيق التعريب}}) helps to unify them across the Arab world.",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The list omits Damascus, the oldest academy (1919), and the Rabat Coordination Bureau of Arabization, the main body that standardises academy terms across Arab countries."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Also {{القانون المطبَّق}}; not {{القانون الحاكم}}'",
+  "replace": "'Also {{القانون المطبَّق}}; {{القانون الحاكم}} is a common calque'",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "القانون الحاكم is widely used in Arab contract practice, so ‘not’ is too prescriptive for expert readers; calling it a calque keeps the advice."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Technical dictionary**: the approved terms of one subject.',",
+  "replace": "'**Specialised dictionary** (Chapter 20): the terms of one field.',",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "Chapter 20 and the risk matrix say ‘specialised dictionary’, and dictionaries record terms but do not necessarily hold ‘approved’ ones."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['A translator works across two languages; a terminologist creates and standardises terms, usually in one.',",
+  "replace": "['A translator translates whole texts; a terminologist collects, records and sometimes standardises the terms of a field.',",
+  "category": "concept",
+  "severity": "high",
+  "reason": "The model answer repeats the incorrect ‘usually in one language’ description of a terminologist."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Post-editing', 'التحرير اللاحق', 'A human correcting and improving machine translation.'],",
+  "replace": "['Post-editing', 'التحرير اللاحق', 'A human correcting and improving machine translation output, lightly or fully.'],",
+  "category": "concept",
+  "severity": "low",
+  "reason": "The key term should prepare for the light/full distinction, which is basic to post-editing."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Hallucination', 'الهلوسة', 'Information produced by an AI tool that is not in the source text.'],",
+  "replace": "['Hallucination', 'الهلوسة', 'Invented or false content produced by an AI tool, such as facts that are not in the source text.'],",
+  "category": "concept",
+  "severity": "low",
+  "reason": "As written, the definition would also cover a translator’s justified additions; a hallucination is invented or false content."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_The doctor said she…_ → {{قال الطبيب…}}: the machine guessed a man. Correct: {{قالت الطبيبة…}}.',",
+  "replace": "'_The doctor finished her shift._ → {{أنهى الطبيب نوبته}}: the machine guessed a man. Correct: {{أنهت الطبيبة نوبتها}}.',",
+  "category": "example",
+  "severity": "medium",
+  "reason": "In ‘The doctor said she…’ the pronoun may refer to someone else (e.g. the patient), so the machine’s masculine choice is not clearly wrong; ‘her shift’ removes the ambiguity."
+ },
+ {
+  "file": "c2b.js",
+  "find": "Compare the machine output with the source sentence by sentence, then read it again as a normal text.'],",
+  "replace": "**Light** post-editing ({{التحرير اللاحق الخفيف}}) makes the text accurate and understandable; **full** post-editing ({{التحرير اللاحق الكامل}}) also makes it natural and ready to publish. Compare the machine output with the source sentence by sentence, then read it again as a normal text.'],",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The chapter never mentions the basic light vs full post-editing distinction, which clients use to set the level of work and the price."
+ },
+ {
+  "file": "c2b.js",
+  "find": "the new direction for translators worldwide.",
+  "replace": "the new direction for translators worldwide (Translation Team, n.d.).",
+  "category": "citation",
+  "severity": "low",
+  "reason": "Other claims from the course materials carry the citation (Translation Team, n.d.), as the front matter says."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'May you paste a client’s confidential contract into a free AI tool?'",
+  "replace": "'Should you paste a client’s confidential contract into a free AI tool?'",
+  "category": "english",
+  "severity": "low",
+  "reason": "‘May you…?’ is not idiomatic English for a permission question."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Starting with the subject: {{الحكومة أعلنت…}} → {{أعلنت الحكومة…}}',",
+  "replace": "'Starting every sentence with the subject (correct, but it sounds translated): {{الحكومة أعلنت…}} → {{أعلنت الحكومة…}}',",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "A nominal sentence such as الحكومة أعلنت is grammatical MSA, so for expert readers it must be presented as a style problem, not an error."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'English punctuation: {{نعم, شكراً?}} → {{نعم، شكراً؟}}',",
+  "replace": "'English punctuation: {{نعم, سأحضر. هل ستحضر أنت?}} → {{نعم، سأحضر. هل ستحضر أنت؟}}',",
+  "category": "example",
+  "severity": "low",
+  "reason": "The ‘correct’ نعم، شكراً؟ is an odd sentence as a question; the example needs a real question for the question mark."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Missing capital letters: _the minister of health_ → _the Minister of Health_',",
+  "replace": "'Missing capital letters in a title before a name: _minister of health Ahmad Ali_ → _Minister of Health Ahmad Ali_',",
+  "category": "english",
+  "severity": "low",
+  "reason": "Many British style guides accept lower case in ‘the minister of health’, so that ‘wrong’ example is not really wrong; a title placed before a name always takes capitals."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'Every translator makes mistakes in a draft, even experts; revision is where you find them (Mossop, 2014).'],",
+  "replace": "['p', 'Every translator makes mistakes in a draft, even experts; revision is where you find them. Checking your own draft is called **self-revision** (Mossop, 2014).'],",
+  "category": "concept",
+  "severity": "low",
+  "reason": "Mossop separates self-revision (checking your own draft) from revision of another translator’s work, and this chapter describes self-revision."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['intro', 'A simple risk matrix that shows where to check hardest in English–Arabic translation.'],",
+  "replace": "['intro', 'A simple risk matrix that shows where to check most carefully in English–Arabic translation.'],",
+  "category": "english",
+  "severity": "low",
+  "reason": "‘Check hardest’ is unidiomatic."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Legal verbs', '_shall_ → {{سوف}}',",
+  "replace": "['Legal verbs', '_shall_ → {{سوف}} ✗',",
+  "category": "example",
+  "severity": "medium",
+  "reason": "The Example column mixes correct and wrong renderings without marking them, so a beginner could copy the wrong سوف; the handbook’s ✗ sign fixes this."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Cultural images', '_warmed my heart_ → {{أدفأ قلبي}}',",
+  "replace": "['Cultural images', '_warmed my heart_ → {{أدفأ قلبي}} ✗',",
+  "category": "example",
+  "severity": "medium",
+  "reason": "أدفأ قلبي is the wrong rendering (Chapter 14 gives أثلج صدري), but nothing in the table marks it as wrong."
+ },
+ {
+  "file": "c2b.js",
+  "find": "“This was omitted due to its irrelevance to the target audience.”",
+  "replace": "“This was omitted because it is irrelevant to the target audience.”",
+  "category": "english",
+  "severity": "low",
+  "reason": "A plainer model sentence suits beginners and avoids the heavy ‘due to its irrelevance’."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Audio description', 'الوصف الصوتي', 'A spoken description of what happens on screen, for blind viewers.'],",
+  "replace": "['Audio description', 'الوصف الصوتي', 'A spoken description of what happens on screen, for blind and partially sighted viewers.'],",
+  "category": "sensitivity",
+  "severity": "low",
+  "reason": "Audio description serves blind and partially sighted audiences; the accepted accessibility wording names both."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'It depends completely on technology.',",
+  "replace": "'It depends heavily on technology.',",
+  "category": "english",
+  "severity": "low",
+  "reason": "‘Completely’ overstates the point; translation decisions in AVT are still human."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Free commentary**: a freer version with additions, as in sports and children’s programmes.',",
+  "replace": "'**Free commentary**: a freer version with additions and omissions, as in documentaries and children’s programmes.',",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "Gambier (2003) describes free commentary as an adaptation for children’s programmes, documentaries and corporate videos; sports commentary is original commentary, not a type of translation."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Audio description**: a spoken description of the action, for blind viewers.',",
+  "replace": "'**Audio description**: a spoken description of the action, for blind and partially sighted viewers.',",
+  "category": "sensitivity",
+  "severity": "low",
+  "reason": "Match the corrected key-term wording and include partially sighted viewers."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Audio subtitling**: subtitles read aloud, for blind viewers.',",
+  "replace": "'**Audio subtitling**: subtitles read aloud, for blind and partially sighted viewers.',",
+  "category": "sensitivity",
+  "severity": "low",
+  "reason": "Audio subtitles also serve partially sighted viewers and others who cannot read subtitles."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**In-vision signing**: sign language on screen, for deaf viewers.',",
+  "replace": "'**In-vision signing**: a sign-language interpreter shown on screen, for deaf viewers who use sign language.',",
+  "category": "concept",
+  "severity": "low",
+  "reason": "In-vision signing means an interpreter shown in the picture, and it serves deaf sign-language users, not all deaf viewers."
+ },
+ {
+  "file": "c2b.js",
+  "find": "AVT lacks clear definition and institutional support",
+  "replace": "AVT lacks a clear definition and institutional support",
+  "category": "english",
+  "severity": "low",
+  "reason": "The article is missing."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Missed chances**:",
+  "replace": "'**Missed opportunities**:",
+  "category": "english",
+  "severity": "low",
+  "reason": "‘Missed opportunities’ is the idiomatic phrase."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Subtitling', 'السترجة / الترجمة المرئية', 'Showing a written translation of the dialogue at the bottom of the screen.'],",
+  "replace": "['Subtitling', 'السترجة / الترجمة المرئية', 'Showing a written version of the dialogue, usually at the bottom of the screen, together with important on-screen text and song lyrics.'],",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The definition leaves out intralingual subtitles (listed below) and the on-screen text and songs that subtitles also render (Díaz Cintas & Remael)."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Culture-bound term', 'مصطلح ذو خصوصية ثقافية', 'A reference to something from one culture, such as a food or a holiday.'],",
+  "replace": "['Culture-bound term', 'مصطلح ذو خصوصية ثقافية', 'A reference to something from one culture, such as a food or a holiday. Also called a culture-specific item (Chapter 14).'],",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Chapter 14 names the same concept ‘culture-specific item’ (عنصر ثقافي خاص), so the two terms should be linked."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'A subtitle has at most two lines. Each line traditionally holds about 37 to 39 characters; streaming platforms now allow up to 42 (Díaz Cintas & Remael, 2021). Always follow the client’s guidelines.'],",
+  "replace": "['p', 'A subtitle normally has one or two lines. Each line traditionally holds about 37 to 39 characters; streaming platforms now allow up to 42. It must stay on screen long enough to be read, usually from about one to six or seven seconds, and appear and disappear with the speech (**spotting**) (Díaz Cintas & Remael, 2021). Always follow the client’s guidelines.'],",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The chapter gives only the space limit and leaves out time (reading speed, display time, spotting), the other main subtitling norm that Chapter 26 refers to (‘limits of space and time’)."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Intralingual**: the same language as the dialogue, for example for deaf viewers.',",
+  "replace": "'**Intralingual**: the same language as the dialogue, for example subtitles for the deaf and hard of hearing (**SDH**), which also describe important sounds, or subtitles for language learners.',",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The standard term SDH is missing, and SDH also serves hard-of-hearing viewers and describes sounds as well as dialogue."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Also: **surtitles** in theatres,",
+  "replace": "'Also: **surtitles**, shown above the stage in theatres and opera houses,",
+  "category": "concept",
+  "severity": "low",
+  "reason": "Surtitles are defined by their position above the stage, mainly in opera, and this is what separates them from subtitles."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Viewers hear the original and read your translation, so they notice mistakes.',",
+  "replace": "'Viewers who know some of the source language hear the original and read your translation, so they notice mistakes.',",
+  "category": "concept",
+  "severity": "low",
+  "reason": "This exposure only matters for viewers who understand some of the source language."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'Films use **taboo language**, such as swearing, for realism, character or humour. Subtitlers often soften it because of **censorship** by broadcasters or authorities, or self-censorship. Follow the client’s guidelines, and keep the emotion of the scene where you can.'],",
+  "replace": "['p', 'Films use **taboo language**, such as swearing, for realism, character or humour. Subtitlers often soften it, for several reasons: swear words look stronger in writing than in speech; audiences have different norms; and broadcasters or authorities may require it (**censorship**), or subtitlers may choose it themselves (self-censorship). Follow the client’s guidelines, and keep the emotion of the scene where you can.'],",
+  "category": "sensitivity",
+  "severity": "medium",
+  "reason": "Blaming softening only on censorship is one-sided and ignores audience norms and the written-medium effect (Díaz Cintas & Remael, 2007); a neutral list of reasons is fairer to Arab broadcasters and audiences."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Because they can hear the original and read the translation at the same time.']],",
+  "replace": "'Because they hear the original and read the translation at the same time, and many understand some of the original.']],",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Brings the model answer into line with the corrected text."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'A subtitle has at most two short lines and works with images and sound.'",
+  "replace": "'A subtitle normally has no more than two short lines, stays on screen long enough to be read, and works with images and sound.'",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "The summary should match the text’s ‘normally’ and the added time limit."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Choose a strategy for each cultural reference, within the space and time.'",
+  "replace": "'Choose a strategy for each cultural reference, within the limits of space and time.'",
+  "category": "english",
+  "severity": "low",
+  "reason": "‘Within the space and time’ is incomplete."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'{{قدّم الوزير استقالته أمس.}} (Chapter 3)'",
+  "replace": "'{{قدّم الوزير استقالته أمس.}} (Chapters 3 and 7)'",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "The answer relies on the collocation قدّم استقالته, which is taught in Chapter 7."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['h', 'Level 1'],\n['ol', [\n",
+  "replace": "['h', 'Level 1'],\n['p', '**A. Translate into Arabic**'],\n['ol', [\n",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "The questions are in three lists (A, B, C) of five items each, but the key numbers its answers 1 to 15 in one list, so a beginner cannot easily match them."
+ },
+ {
+  "file": "c2b.js",
+  "find": "The Home Office is the UK interior ministry.',\n",
+  "replace": "The Home Office is the UK interior ministry.',\n]],\n['p', '**B. Translate into English**'],\n['ol', [\n",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "Starts a separate B list so the answers match the question numbering."
+ },
+ {
+  "file": "c2b.js",
+  "find": "{{قدّم استقالته}} means “resigned”.',\n",
+  "replace": "{{قدّم استقالته}} means “resigned”.',\n]],\n['p', '**C. Find the mistake**'],\n['ol', [\n",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "Starts a separate C list so the answers match the question numbering."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'{{أعلنت الحكومة إجراءاتٍ جديدة.}} Start with the verb.',",
+  "replace": "'{{أعلنت الحكومة إجراءاتٍ جديدة.}} Start with the verb: the original is grammatical, but Arabic news normally begins with the verb.',",
+  "category": "concept",
+  "severity": "low",
+  "reason": "الحكومة أعلنت is not ungrammatical, and the key should say so, as Chapter 23 now does."
+ },
+ {
+  "file": "c2b.js",
+  "find": "_steed_ and _parchment_ would sound more classical.",
+  "replace": "_steeds_ and _parchment_ would sound more classical.",
+  "category": "english",
+  "severity": "low",
+  "reason": "الخيل is plural (collective), so the classical alternative must be ‘steeds’."
+ },
+ {
+  "file": "c2b.js",
+  "find": "Spring gives Arab readers the pleasant feeling that summer gives English readers (cultural approximation).'],",
+  "replace": "Spring gives Arab readers the pleasant feeling that summer gives English readers (cultural approximation). Arabic must choose a gender for “thee”: Sonnet 18 belongs to the sonnets usually read as addressed to a young man, so {{أأشبّهكَ}} is also possible; explain your choice in the commentary.'],",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The model silently makes the addressee feminine, but Sonnet 18 is in the ‘Fair Youth’ sequence; experts will notice, and this is a good example of Arabic forcing a gender choice (Jakobson, Chapter 3)."
+ },
+ {
+  "file": "c2b.js",
+  "find": "at an evening attended by writers and academics.",
+  "replace": "at an event attended by writers and academics.",
+  "category": "english",
+  "severity": "low",
+  "reason": "‘At an evening attended by’ is awkward English; ‘event’ is the natural rendering of أمسية here."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'{{زارت جدّتها.}} “Pay a visit” is a collocation meaning “visit”.',",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "Chapters 7 and 10 (c2a.js) give يقوم بزيارة as the correct rendering of ‘pay a visit’, but Chapter 23 lists overuse of قام بـ as a mistake; the key (زارت) agrees with Chapter 23, so c2a should be brought into line or the key should mention قامت بزيارة."
+ },
+ {
+  "file": "c2b.js",
+  "find": "an Arabic version of the handbook (Translation Team, n.d.);",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "Citing the course materials for a plan for future editions is odd; check whether the citation belongs here or should be removed."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Risk', 'الخطر',",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "In risk-management Arabic, ‘risk’ is usually المخاطرة (or المخاطر), while الخطر often means ‘hazard/danger’; consider {{المخاطرة}} to match إدارة المخاطر and مصفوفة تقييم المخاطر."
+ }
+]

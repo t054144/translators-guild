@@ -53,7 +53,7 @@ function block([kind, a, b, c]) {
 
 // title page
 const tp = (t, size, opts = {}) => body.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 160 }, ...opts, children: runs(t, { size, bold: opts.bold }) }));
-tp('Editorial Report', 44, { bold: true, spacing: { before: 3200, after: 300 } });
+tp(process.env.TITLE || 'Editorial Report', 44, { bold: true, spacing: { before: 3200, after: 300 } });
 tp('Translation Handbook ({{دليل الترجمة}})', 30, { spacing: { after: 120 } });
 tp('First edition', 24, { spacing: { after: 1600 } });
 tp('Prepared for the supervisor of the Translation Team', 22);
@@ -65,7 +65,8 @@ body.push(new Paragraph({ pageBreakBefore: true, spacing: { after: 240 }, childr
 body.push(new TableOfContents('Contents', { hyperlink: true, headingStyleRange: '1-2' }));
 body.push(new Paragraph({ pageBreakBefore: true, children: [] }));
 
-require('./report_content.js').forEach(block);
+// CONTENT, TITLE and OUT let the same layout build the correction log as well
+require(process.env.CONTENT || './report_content.js').forEach(block);
 
 const doc = new Document({
   creator: 'Guild Translation Team', title: 'Editorial Report: Translation Handbook', features: { updateFields: true },
@@ -87,4 +88,5 @@ const doc = new Document({
     children: body,
   }],
 });
-Packer.toBuffer(doc).then(buf => { fs.writeFileSync(PDF ? 'Handbook-Editorial-Report-pdf.docx' : 'Handbook-Editorial-Report.docx', buf); console.log('written'); });
+Packer.toBuffer(doc).then(buf => { const OUT = process.env.OUT || 'Handbook-Editorial-Report';
+  fs.writeFileSync(OUT + (PDF ? '-pdf.docx' : '.docx'), buf); console.log('written'); });

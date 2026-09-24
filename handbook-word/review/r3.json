@@ -1,0 +1,386 @@
+[
+ {
+  "file": "c2b.js",
+  "find": "'How to bring cultural meaning, the hardest kind of approximation, close to your reader.'",
+  "replace": "'How to bring cultural meaning close to your reader. This is the hardest kind of approximation.'",
+  "category": "english",
+  "severity": "low",
+  "reason": "As written, “cultural meaning” is in apposition to “the hardest kind of approximation”, so meaning is equated with a process."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Culture-specific item', 'عنصر ثقافي خاص',",
+  "replace": "['Culture-specific item', 'عنصر ذو خصوصية ثقافية',",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "{{عنصر ثقافي خاص}} reads as “a special cultural element”; the established rendering is {{عنصر ذو خصوصية ثقافية}}, which also matches {{مصطلح ذو خصوصية ثقافية}} in Chapter 27."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'It needs knowledge of both cultures. When an image",
+  "replace": "['p', 'Cultural approximation needs a good knowledge of both cultures. When an image",
+  "category": "english",
+  "severity": "low",
+  "reason": "The heading asks “What is cultural approximation?” but the paragraph opens with an unclear “It”."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_I have got the test in the bag._ → {{الامتحان في جيبي}} (it is guaranteed)'",
+  "replace": "'_I have got the test in the bag._ → {{الامتحان في جيبي}} (informal: it is guaranteed)'",
+  "category": "example",
+  "severity": "low",
+  "reason": "{{في جيبي}} in this sense is informal/spoken usage and should be labelled, as the chapter labels other colloquial forms."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_Like mother, like daughter._ → {{اقلب الجرّة على فمها تطلع البنت لأمّها}}'",
+  "replace": "'_Like mother, like daughter._ → {{اقلب الجرّة على فمها تطلع البنت لأمّها}} (a colloquial proverb)'",
+  "category": "example",
+  "severity": "medium",
+  "reason": "The proverb is colloquial (e.g. {{تطلع}}), not MSA, and the handbook elsewhere requires colloquial forms to be labelled (Chapter 3)."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_as busy as a bee_ → {{مشغول جداً}}; colloquial speakers may say {{زي أم العروس}}'",
+  "replace": "'_as busy as a bee_ → {{نشيطٌ كالنحلة}}'",
+  "category": "example",
+  "severity": "high",
+  "reason": "{{زي أم العروس}} (from {{زي أم العروس فاضية ومشغولة}}) describes someone who fusses without achieving much, the opposite of industrious “busy as a bee”; and {{مشغول جداً}} is a plain paraphrase, not a cultural equivalent as the heading promises."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_a scapegoat_ → {{كبش الفداء}}'",
+  "replace": "'_a scapegoat_ → {{كبش فداء}}'",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "The English is indefinite (“a scapegoat”) and the fixed Arabic expression is normally indefinite ({{جعلوه كبشَ فداء}})."
+ },
+ {
+  "file": "c2b.js",
+  "find": "may choose spring for Arab readers: {{أأشبّهكِ بيومٍ ربيعيّ؟}}'",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "Sonnet 18 belongs to the “Fair Youth” sequence, so the feminine {{أأشبّهكِ}} (here and in the Answer key 2c) is an interpretive choice that specialist readers will notice; consider a note or {{أأشبّهك}} without a vowel, and align the wording with Answer key 2c ({{بيومٍ من أيام الربيع}})."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_sheriff_ (US) → {{مأمور الشرطة}}'",
+  "replace": "'_sheriff_ (US) → {{رئيس شرطة المقاطعة}}'",
+  "category": "example",
+  "severity": "medium",
+  "reason": "{{مأمور الشرطة}} is an Egyptian police-station rank, whereas a US sheriff is the elected chief law officer of a county, so the shown equivalent does not translate “the job”."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_product cannibalisation_ (a new product takes sales from another product of the same company) → {{منتج يزاحم منتجاً آخر للشركة نفسها}}'",
+  "replace": "'_product cannibalisation_ (a new product takes sales from another product of the same company) → {{مزاحمةُ منتجٍ جديد لمنتجٍ آخر للشركة نفسها}}'",
+  "category": "example",
+  "severity": "low",
+  "reason": "The English is a noun (a process) but the Arabic is a clause about a product ({{منتج يزاحم}}); a verbal noun keeps the same word class."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Paraphrasing a source expression by describing its meaning. Also called explanatory translation.'",
+  "replace": "'Paraphrasing a source expression by describing its meaning. Also called explanatory translation ({{الترجمة الشرحية}}, Chapter 13).'",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Chapter 13 gives “Explanatory translation” the Arabic {{الترجمة الشرحية}}, so the glossary shows two Arabic terms for one concept without linking them."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Concept', 'المفهوم', 'A complex meaning or idea.'],",
+  "replace": "['Concept', 'المفهوم', 'An idea that a word or term stands for.'],",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "A concept need not be “complex”; the definition should match Chapter 21, where a term “names a concept”."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'Use it as the last option, because it makes the text longer. It suits cultural words and dense technical terms.'],",
+  "replace": "['p', 'When readers do not need the source word, give the description alone, as in the last example below. Use descriptive translation as the last option, because it makes the text longer. It suits cultural words and complex technical terms.'],",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The steps present transliteration as obligatory, but descriptive translation is paraphrase and can stand alone, as the chapter’s own _sectioned_ example shows; “dense technical terms” is also unclear."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'{{الزكاة}} → _zakat_ (compulsory charity in Islam, paid when certain income conditions are met)'",
+  "replace": "'{{الزكاة}} → _zakat_ (obligatory annual alms in Islam: a fixed share of savings and wealth above a minimum amount, given to those in need)'",
+  "category": "concept",
+  "severity": "high",
+  "reason": "Zakat is levied on wealth held above the nisab for a lunar year (and on certain produce and livestock), not on income, so the gloss is factually wrong."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'{{التيمّم}} → _tayammum_ (ritual washing with clean earth when water is scarce or missing)'",
+  "replace": "'{{التيمّم}} → _tayammum_ (dry ritual purification: wiping the face and hands with clean earth when water is missing or cannot be used)'",
+  "category": "concept",
+  "severity": "high",
+  "reason": "Tayammum is wiping, not washing, and applies also when water cannot be used (e.g. illness), so “ritual washing” misdescribes it."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'{{الحوقلة}} → _the hawqala_ (saying “There is no power and no strength except with God”)'",
+  "replace": "'{{الحوقلة}} → _the hawqala_ (saying “There is no might and no power except by God”)'",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "{{لا حول ولا قوة إلا بالله}} is conventionally rendered “no might nor power except by God”; {{حول}} is closer to “might/ability to change” than to “power”, which renders {{قوة}}."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Lexical creation', 'النحت المعجمي',",
+  "replace": "['Lexical creation', 'التوليد المعجمي',",
+  "category": "arabic",
+  "severity": "high",
+  "reason": "{{النحت}} is specifically blending two words into one (e.g. {{البسملة}}, {{برمائي}}); lexical creation in general is {{التوليد المعجمي}}."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Neologism', 'اللفظ المستحدث', 'A completely new word.'],",
+  "replace": "['Neologism', 'اللفظ المستحدث', 'A new word, or an existing word given a new meaning.'],",
+  "category": "concept",
+  "severity": "high",
+  "reason": "The chapter’s own example ({{مدوّنة}} for _blog_) is an existing Arabic word given a new sense, not a “completely new word”; neologisms standardly include new senses."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Loan translation (calque)', 'الترجمة المستعارة',",
+  "replace": "['Loan translation (calque)', 'النسخ',",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "Chapter 12 gives calque as {{النسخ}}; two different Arabic terms for the same concept will confuse readers and the glossary."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Neologism**: inventing a new word. _blog_ → {{مدوّنة}}'",
+  "replace": "'**Neologism**: a new word, often derived from an Arabic root ({{الاشتقاق}}), or an old word with a new meaning. _blog_ → {{مدوّنة}} (from {{دوّن}}, “to write down”)'",
+  "category": "concept",
+  "severity": "high",
+  "reason": "{{مدوّنة}} was not invented but derived from the root {{د و ن}} and extended in meaning; derivation, the main Arabic coinage method, is otherwise missing."
+ },
+ {
+  "file": "c2b.js",
+  "find": "; _Valentine’s Day_ → {{عيد الحب}}",
+  "replace": "",
+  "category": "example",
+  "severity": "high",
+  "reason": "{{عيد الحب}} (“the feast of love”) is not a loan translation of _Valentine’s Day_ (a calque would be {{عيد القديس فالنتاين}}); it is a descriptive/functional rendering, so it is a wrong example of calque."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Transliteration** with a short definition: {{الوقف}} → _waqf_; {{الصكوك}} → _sukuk_ (Islamic financial certificates); _radio_ → {{الراديو}}'",
+  "replace": "'**Transliteration** (borrowing), with a short definition the first time: {{الوقف}} → _waqf_ (a charitable endowment); {{الصكوك}} → _sukuk_ (Islamic investment certificates). Into Arabic, this is called arabicisation ({{التعريب}}): _radio_ → {{الراديو}}'",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The item promises “a short definition” but gives none for _waqf_ or _radio_, and it omits the standard Arabic term {{التعريب}} for borrowing into Arabic."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Hybrid form**: _cybersecurity_ → {{الأمن السيبراني}}',",
+  "replace": "'**Hybrid form**: part translated, part borrowed. _cybersecurity_ → {{الأمن السيبراني}}',",
+  "category": "english",
+  "severity": "low",
+  "reason": "A beginner is not told what “hybrid” means; the example ({{الأمن}} translated + {{السيبراني}} borrowed) needs one short explanation."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['h', 'Search before you create'],",
+  "replace": "['p', 'Arabic also coins words by blending two words into one, called {{النحت}}: _amphibious_ → {{برمائي}} ({{برّ}} + {{ماء}}).'],\n['h', 'Search before you create'],",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "Blending ({{النحت}}), a classic Arabic coinage method (cf. {{البسملة}} and {{الحوقلة}} in Chapter 15), is absent, which specialist readers will notice now that the key-term Arabic no longer misuses the word."
+ },
+ {
+  "file": "c2b.js",
+  "find": "A new word that becomes official is lexicalised ({{التعجيم}}).",
+  "replace": "A new word that becomes widely accepted and enters the dictionary is lexicalised ({{المَعْجَمة}}).",
+  "category": "arabic",
+  "severity": "high",
+  "reason": "{{التعجيم}} is not the Arabic term for lexicalisation (it evokes {{الإعجام}}, dotting letters, or making foreign); the usual term is {{المَعْجَمة}}, and lexicalisation means entering general use, not becoming “official”."
+ },
+ {
+  "file": "c2b.js",
+  "find": "_cancel culture_ → {{ثقافة الإلغاء}}.'",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "The sentence implies that the academies, UNTERM or Arabterm record _cancel culture_ → {{ثقافة الإلغاء}}; this is a media coinage and should be checked in those sources or presented as “widely used”."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Text', 'النص', 'Anything written: a word, a sentence, a paragraph or more.'],",
+  "replace": "['Text', 'النص', 'Any piece of language, written or spoken, that forms a complete message: from a one-word sign to a whole book.'],",
+  "category": "concept",
+  "severity": "high",
+  "reason": "Text linguists do not limit text to writing, and a random word or sentence is not a text unless it forms a meaningful whole (e.g. a sign saying “Exit”)."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Genre', 'الجنس النصّي', 'The type of text, such as a news report, a contract or a poem.'],",
+  "replace": "['Genre', 'الجنس النصّي', 'A kind of text with its own rules, such as a news report, a contract or a poem.'],",
+  "category": "consistency",
+  "severity": "high",
+  "reason": "Calling genre “the type of text” contradicts Chapter 18, which separates text type (function) from genre; the glossary keeps this first definition, so it must match Chapter 18."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'You identify the field, both audiences, the time, purpose, tone and genre.'",
+  "replace": "'You identify the field, the source and target audiences, the time, purpose, tone and genre.'",
+  "category": "english",
+  "severity": "low",
+  "reason": "“Both audiences” is unclear for a beginner."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'You form a mental draft of the translation (Nord, 2005).'",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "“Mental draft” does not appear to be Nord’s term (her 2005 model is about source-text analysis factors); check that the citation supports this exact point or move it to a point Nord makes."
+ },
+ {
+  "file": "c2b.js",
+  "find": "from a ‘translator’s’ point of view” (Newmark, 1988, Chapter 2).'",
+  "replace": null,
+  "category": "query",
+  "severity": "medium",
+  "reason": "A direct quotation needs a page number in APA; this passage is on p. 11 of Newmark (1988) in the Prentice Hall edition, so verify and replace “Chapter 2” with the page."
+ },
+ {
+  "file": "c2b.js",
+  "find": "**Field**: politics. **Tone**: straightforward. **Publisher**: KUNA.",
+  "replace": "**Field**: politics. **Genre and purpose**: news report, to inform. **Tone**: neutral and straightforward. **Publisher**: KUNA.",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "The worked example skips checklist item 4 (genre and purpose), and Chapter 2 describes the same KUNA report as “formal and neutral”."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Text type', 'نوع النص', 'Texts that share one main function: to inform, to express or to persuade.'],",
+  "replace": "['Text type', 'نمط النص', 'A group of texts that share one main function: to inform, to express or to persuade.'],",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "A text type is a category, not “texts”; and {{نمط النص}} is the usual Arabic term that keeps it distinct from genre ({{الجنس النصّي}}), whereas {{نوع النص}} blurs the two."
+ },
+ {
+  "file": "c2b.js",
+  "find": "**expressive** texts express feelings and creativity, and **operative** texts persuade.",
+  "replace": "**expressive** texts are creative and focus on form, as in literature, and **operative** texts persuade.",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "For Reiss the expressive type is form-focused artistic composition (the author’s creative use of language), not simply texts that “express feelings”."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Legal**: exact words; _shall_ expresses an obligation.",
+  "replace": "'**Legal**: exact words; _shall_ expresses an obligation or a legal rule.",
+  "category": "concept",
+  "severity": "low",
+  "reason": "In the example, _shall be governed_ states a rule of legal effect rather than an obligation on a party, so “obligation” alone does not fit the example."
+ },
+ {
+  "file": "c2b.js",
+  "find": "{{الخيلُ والليلُ والبيداءُ تعرفني}} (al-Mutanabbi, n.d.) → _The horses, the night and the desert know me._'",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "The same line is Practice text 2b, so giving its translation here pre-empts the exercise; consider another short poetic example."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'How to notice words that show a point of view, using three questions from Fairclough’s model.'",
+  "replace": "'How to notice words that show a point of view, using three questions based on Fairclough’s model.'",
+  "category": "citation",
+  "severity": "medium",
+  "reason": "Fairclough (1992) presents a three-dimensional model (text, discourse practice, social practice), not three questions; the questions are the handbook’s adaptation."
+ },
+ {
+  "file": "c2b.js",
+  "find": "His model gives three questions:",
+  "replace": "His model has three levels, which give us three questions:",
+  "category": "citation",
+  "severity": "medium",
+  "reason": "Attributes the three questions directly to Fairclough, whereas they are a simplified adaptation of his three dimensions."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['h', 'No word is neutral'],\n['p', 'Each word choice shows a point of view,",
+  "replace": "['h', 'Words are rarely neutral'],\n['p', 'Many word choices show a point of view,",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The absolute claim that no word is neutral is overstated for a linguist readership (function words, most technical terms)."
+ },
+ {
+  "file": "c2b.js",
+  "find": "Follow the client’s policy on sensitive words (Chapter 1).",
+  "replace": "Follow the client’s policy on sensitive words (Chapter 2).",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "Chapter 1 does not discuss clients’ rules; Chapter 2 (“Clients have their own style and rules”, the brief) does."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_A suicide bomber killed ten people._ {{انتحاري}} or {{استشهادي}},",
+  "replace": "'_A suicide bomber killed ten people._ → {{انتحاري}} or {{استشهادي}},",
+  "category": "english",
+  "severity": "low",
+  "reason": "The arrow used in every other example is missing, so the Arabic appears to run on from the English sentence."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_regime_ or _government_ ({{نظام}} or {{حكومة}}): “regime” is negative.'",
+  "replace": "'_regime_ or _government_ ({{نظام}} or {{حكومة}}): in political texts, “regime” is negative.'",
+  "category": "concept",
+  "severity": "low",
+  "reason": "“Regime” is neutral in other senses (_tax regime_, _a training regime_), so the claim needs a context."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'Checklist 3 turns these questions into a checklist.'],",
+  "replace": "['p', 'Checklist 3 turns these questions into points to tick.'],",
+  "category": "english",
+  "severity": "low",
+  "reason": "“Checklist … into a checklist” is circular."
+ },
+ {
+  "file": "c2b.js",
+  "find": "Never take the first meaning. Use the three-check rule:",
+  "replace": "Do not simply take the first meaning. Use the three-check rule:",
+  "category": "concept",
+  "severity": "low",
+  "reason": "The first meaning is often correct; the point is to check it, not to reject it."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Printed dictionaries**: edited by experts, with full entries and examples, but slower and may lack new words.'",
+  "replace": "'**Printed dictionaries**: edited by experts, with full entries and examples, but slower to use, and they may lack new words.'",
+  "category": "english",
+  "severity": "low",
+  "reason": "The list “but slower and may lack” mixes an adjective and a verb phrase without a subject."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_Al-Mawrid_ (Baalbaki, n.d.): English–Arabic and Arabic–English, for everyday words.'",
+  "replace": "'_Al-Mawrid_ (Baalbaki, n.d.): English–Arabic, for general words.'",
+  "category": "citation",
+  "severity": "high",
+  "reason": "The cited work (Munir Baalbaki) is English–Arabic only; the Arabic–English _Al-Mawrid_ is by Rohi Baalbaki and is not in the References, so the item misattributes it."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_A Dictionary of Modern Written Arabic_ (Wehr, 1994): Arabic words listed by root.'",
+  "replace": "'_A Dictionary of Modern Written Arabic_ (Wehr, 1994): Arabic–English, with words listed by root.'",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "A beginner is not told that Wehr is a bilingual Arabic–English dictionary, which is its main use for AR → EN work."
+ },
+ {
+  "file": "c2b.js",
+  "find": "(Academy of the Arabic Language, n.d.): Arabic meanings.'",
+  "replace": "(Academy of the Arabic Language, n.d.): a monolingual Arabic dictionary from the Academy in Cairo.'",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "There are several Arabic language academies (Chapter 21 names three); _al-Muʿjam al-Wasīṭ_ is the Cairo academy’s, and “Arabic meanings” does not say it is monolingual (needed for step 2 of the three-check rule). The reference entry should also name Cairo."
+ }
+]

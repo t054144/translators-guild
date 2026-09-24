@@ -140,7 +140,7 @@ glossary.forEach(g => { const k = g[0].toLowerCase(); if (!seen.has(k)) seen.set
 
 // ---------- references (APA 7) ----------
 const R = [
-  'Academy of the Arabic Language. (n.d.). _Al-muʿjam al-wasīṭ_ [The intermediate dictionary].',
+  'Academy of the Arabic Language in Cairo. (n.d.). _Al-muʿjam al-wasīṭ_ [The intermediate dictionary].',
   'ALECSO & GIZ. (n.d.). _Arabterm_ [Online technical dictionary]. https://arabterm.org',
   'al-Jāḥiẓ. (1965). _Kitāb al-ḥayawān_ [The book of animals] (ʿA. M. Hārūn, Ed.; 2nd ed., Vol. 1). Muṣṭafā al-Bābī al-Ḥalabī. (Original work written 9th century CE)',
   'al-Mutanabbi. (n.d.). _Dīwān al-Mutanabbī_ [The collected poems of al-Mutanabbi]. (Original work written 10th century CE)',

@@ -1,0 +1,466 @@
+[
+ {
+  "file": "c2a.js",
+  "find": "Each part builds on the one before it, so read it in order:",
+  "replace": "Each part builds on the one before it, so read the parts in order:",
+  "category": "english",
+  "severity": "low",
+  "reason": "“read it in order” has no clear antecedent; the reader should read the parts in order."
+ },
+ {
+  "file": "c2a.js",
+  "find": "  '**AR → EN**: from Arabic into English',\n",
+  "replace": "  '**AR → EN**: from Arabic into English',\n  '**AVT**: audiovisual translation ({{الترجمة السمعية البصرية}})',\n",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "AVT is used 11 times in the handbook (first in “How to use this handbook”) but is missing from the Abbreviations list."
+ },
+ {
+  "file": "c2a.js",
+  "find": "**SLC**: source language culture'",
+  "replace": "**SLC**: source language culture ({{ثقافة اللغة المصدر}})'",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Every other abbreviation has its Arabic equivalent; SLC does not."
+ },
+ {
+  "file": "c2a.js",
+  "find": "**TLC**: target language culture'",
+  "replace": "**TLC**: target language culture ({{ثقافة اللغة الهدف}})'",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Every other abbreviation has its Arabic equivalent; TLC does not."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'**TS**: Translation Studies ({{دراسات الترجمة}})',",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "SL, TL, SLC, TLC and TS appear only in the Abbreviations list and nowhere in the text; either use them or remove them from the list."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['Translation', 'الترجمة التحريرية', 'Transferring the meaning of a written text from one language into another.'],",
+  "replace": "['Translation', 'الترجمة', 'Transferring meaning from one language into another. In a narrow sense, written translation ({{الترجمة التحريرية}}), as opposed to interpreting.'],",
+  "category": "concept",
+  "severity": "high",
+  "reason": "The key term glosses the general word “translation” as written translation only, but the chapter treats translation as the umbrella term (interpreting, sight translation and AVT are listed as “Types of translation”, and both quoted definitions are general)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Bringing the meaning of the source text as close as possible to the target language.'",
+  "replace": "'Rendering the meaning of the source text as closely as possible in the target language, knowing that an exact match is impossible.'",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "Meaning is not brought “close to the target language”; approximation means getting as close as possible to the source meaning, which is the point of the Eco example."
+ },
+ {
+  "file": "c2a.js",
+  "find": "English speakers say _Break a leg!_ to wish someone good luck:",
+  "replace": "English speakers say _Break a leg!_ to wish someone good luck, especially before a performance:",
+  "category": "concept",
+  "severity": "low",
+  "reason": "“Break a leg” is specifically a theatre/performance wish, not a general good-luck formula."
+ },
+ {
+  "file": "c2a.js",
+  "find": "The course materials name two main characteristics: **bilingual knowledge**, and equal **cultural knowledge**. A good translator also:",
+  "replace": "The course materials name two main characteristics: **bilingual knowledge** and, equally important, **cultural knowledge**. In practice, a good translator:",
+  "category": "redundancy",
+  "severity": "low",
+  "reason": "“equal cultural knowledge” is unclear, and “also” is wrong because the first two bullets (fluent in both languages, bicultural) repeat these two characteristics rather than adding to them."
+ },
+ {
+  "file": "c2a.js",
+  "find": "More than a thousand years ago, the Arab writer al-Jāḥiẓ said the same",
+  "replace": "More than a thousand years ago, the Abbasid writer al-Jāḥiẓ said the same",
+  "category": "sensitivity",
+  "severity": "low",
+  "reason": "al-Jāḥiẓ was of East African descent; “Abbasid writer” (or “Arabic writer”) is accurate and avoids an ethnic label."
+ },
+ {
+  "file": "c2a.js",
+  "find": "a translator must know both languages equally well (al-Jāḥiẓ, 1965):",
+  "replace": "a translator must know both languages equally well (al-Jāḥiẓ, 1965). He also doubted that any translator could fully reach this ideal:",
+  "category": "concept",
+  "severity": "low",
+  "reason": "In the same passage al-Jāḥiẓ goes on to argue that knowing two languages means each harms the other, so presenting him as simply agreeing with the modern ideal oversimplifies his view."
+ },
+ {
+  "file": "c2a.js",
+  "find": "(al-Jāḥiẓ, 1965)",
+  "replace": null,
+  "category": "citation",
+  "severity": "low",
+  "reason": "A direct quotation needs a page number; in Hārūn’s edition this passage is in Vol. 1, around p. 76 – please verify against the edition before adding it."
+ },
+ {
+  "file": "c2a.js",
+  "find": "حتى يكونَ فيهما سواءً وغاية.",
+  "replace": "حتى يكونَ فيهما سواءً وغايةً.",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "Inconsistent vowelling: سواءً has tanwin but the coordinated وغاية does not; both are accusative predicates of يكون."
+ },
+ {
+  "file": "c2a.js",
+  "find": "and follows that person’s brief and requirements (Chapter 2).",
+  "replace": "and follows the client’s brief and requirements (Chapter 2).",
+  "category": "english",
+  "severity": "low",
+  "reason": "“that person” does not fit when the requester is an agency or employer, and “client” matches the term used in Chapter 2."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Because no two languages match perfectly, so the translator can only bring the meaning as close as possible.'",
+  "replace": "'Because no two languages match perfectly, so the translator can only come as close as possible to the original meaning.'",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "“as close as possible” needs a reference point; it should match the corrected key-term definition (close to the source meaning)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Translation carries **meaning** from one language to another, not words.'",
+  "replace": "'Translation carries **meaning**, not words, from one language to another.'",
+  "category": "english",
+  "severity": "low",
+  "reason": "The misplaced “not words” makes the sentence awkward and slightly ambiguous."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['Translation brief', 'موجز الترجمة', 'The information you need before you start: client, purpose and audience.'],",
+  "replace": "['Translation brief', 'موجز الترجمة', 'The client’s instructions for a translation: who it is for, what it is for and any other requirements.'],",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "In Nord’s functionalist sense the brief is the set of instructions from the client (commissioner), not just any information the translator gathers; the text itself says “If nobody gives you one, ask the client.”"
+ },
+ {
+  "file": "c2a.js",
+  "find": "explains that the purpose of a translation decides how it should be translated (Nord, 1997). So before",
+  "replace": "explains that the purpose of a translation decides how it should be translated (Nord, 1997). This idea is called **skopos theory** (Chapter 26). So before",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Chapter 26 introduces skopos theory as a new idea although Chapter 2 already teaches it without naming it; a cross-reference links the two."
+ },
+ {
+  "file": "c2a.js",
+  "find": "For example, a short news report for KUNA, the Kuwait News Agency, informs English readers interested in Kuwait.",
+  "replace": "For example, a short news report translated for KUNA, the Kuwait News Agency, informs English readers interested in Kuwait.",
+  "category": "english",
+  "severity": "low",
+  "reason": "As written it is unclear that this is a translation task; the report is written in Arabic and translated for English readers."
+ },
+ {
+  "file": "c2a.js",
+  "find": "do not add or remove meaning. Aim to be faithful, accurate and acceptable to the reader.",
+  "replace": "do not add or remove meaning. Aim to be accurate and acceptable to the reader.",
+  "category": "redundancy",
+  "severity": "low",
+  "reason": "“Be faithful … Aim to be faithful” repeats the same word in two consecutive sentences."
+ },
+ {
+  "file": "c2a.js",
+  "find": "the result must read as if it had been written in the target language.",
+  "replace": "the result should usually read as if it had been written in the target language.",
+  "category": "concept",
+  "severity": "low",
+  "reason": "“must” is too absolute: Chapter 13 presents foreignisation, which deliberately keeps a foreign flavour, as a legitimate choice."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'**Prose is stricter than poetry**: poetry gives you more freedom to be creative.',",
+  "replace": "'**Informative texts are stricter than poetry**: poetry often needs more creative freedom.',",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "“Prose” includes literary prose (novels, stories), which is not stricter than poetry; the contrast that holds is between informative texts and poetry, and Chapter 4 itself notes that poetic form is part of the message."
+ },
+ {
+  "file": "c2a.js",
+  "find": "because a word-for-word version would make no sense to Arab readers.",
+  "replace": "because a word-for-word version would make no sense to Arabic-speaking readers.",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "The audience defined in step 1 is Arabic-speaking parents, not an ethnic group; the handbook elsewhere uses language-based terms."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'English usually puts the subject first (Subject–Verb–Object). Arabic usually starts with the verb (Verb–Subject–Object). So when you translate into Arabic, start with the verb:'",
+  "replace": "'English usually puts the subject first (Subject–Verb–Object). Formal Arabic often starts with the verb (Verb–Subject–Object), although starting with the subject is also correct. So when you translate into Arabic, a verbal sentence often sounds more natural:'",
+  "category": "concept",
+  "severity": "high",
+  "reason": "It is a false generalisation that Arabic “usually” starts with the verb: the nominal sentence (جملة اسمية) with SVO order is fully grammatical and very common in MSA; VSO is only the preferred unmarked order in formal writing."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_Sam ate the cake._ → {{سام أكل الكعكة}}  ✗   {{أكلَ سامٌ الكعكةَ}}  ✓'",
+  "replace": "'_Sam ate the cake._ → {{سامٌ أكلَ الكعكةَ}} (correct, but less usual)   {{أكلَ سامٌ الكعكةَ}}  ✓'",
+  "category": "example",
+  "severity": "high",
+  "reason": "{{سام أكل الكعكة}} is a grammatical Arabic nominal sentence (it puts the focus on Sam), so marking it ✗ (“a poor translation”) teaches beginners that correct Arabic is wrong."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'English prefers short sentences. Arabic often joins",
+  "replace": "'English writing often prefers shorter sentences. Arabic often joins",
+  "category": "concept",
+  "severity": "low",
+  "reason": "“English prefers short sentences” is an overgeneralisation (academic and legal English use long sentences); it is a tendency, not a rule."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Arabic often places two synonyms side by side for emphasis; English rarely does.",
+  "replace": "Arabic often places two synonyms side by side for emphasis; English does this much less often.",
+  "category": "concept",
+  "severity": "low",
+  "reason": "English does use synonym pairs (null and void, safe and sound, each and every), so “rarely” is too strong."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'English always writes _is_ and _are_; Arabic often leaves them out. When _is_ is the main verb, Arabic can use {{يُعدّ}} or {{تُعدّ}}: _Translation is a fascinating field_ → {{تُعدّ الترجمة مجالاً شائقاً}}. Into English, add the verb:",
+  "replace": "'In the present tense, English needs _is_ and _are_; Arabic normally leaves them out: _Translation is a fascinating field_ → {{الترجمةُ مجالٌ شائق}}. In formal writing, {{تُعدّ}} (“is considered”) is also possible when the sentence gives an opinion: {{تُعدّ الترجمة مجالاً شائقاً}}. Into English, add the verb:",
+  "category": "concept",
+  "severity": "high",
+  "reason": "It presents {{يُعدّ/تُعدّ}} (“is considered”) as the Arabic equivalent of “is”, which adds a meaning and encourages a well-known translationese habit; the normal Arabic equivalent is a nominal sentence without a verb. “When is is the main verb” is also unclear."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'English _you_ is {{أنتَ}} (a man) or {{أنتِ}} (a woman). As Roman Jakobson observed,",
+  "replace": "'English _you_ can be {{أنتَ}} (one man), {{أنتِ}} (one woman), {{أنتما}} (two people), {{أنتم}} (men or a mixed group) or {{أنتنّ}} (women). Arabic must show gender and number; English need not. As Roman Jakobson observed,",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "English “you” also covers the Arabic dual and plural forms, and the Jakobson quotation needs a sentence linking it to the example (Arabic must convey what English may leave out)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "the number takes the opposite gender to the noun:",
+  "replace": "the number takes the opposite gender to the singular noun:",
+  "category": "concept",
+  "severity": "low",
+  "reason": "The rule depends on the gender of the singular (طالب in {{ثلاثةُ طلاب}}), which matters with broken plurals and with plurals such as سنوات."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_He is in bed._ → {{إنه نائم}} (not {{في السرير}})',",
+  "replace": "'_He is in bed._ → {{إنه في فراشه}} or, depending on context, {{إنه نائم}} (rather than {{إنه في السرير}})',",
+  "category": "example",
+  "severity": "medium",
+  "reason": "“In bed” does not always mean asleep (he may be ill or resting); {{في فراشه}} is the natural idiom and {{نائم}} is only right in some contexts."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['{{حضر الطلابُ المحاضرة.}}', '_The student is in the library._', '{{إنه نائم.}}']",
+  "replace": "['{{حضر الطلابُ المحاضرة.}}', '_The student is in the library._', '{{إنه في فراشه.}} or, if the context shows he is asleep, {{إنه نائم.}}']",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "The answer must match the corrected example: “in bed” is not always “asleep”."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Rewrite in natural Arabic: {{الطلاب حضروا المحاضرة.}}'",
+  "replace": "'Rewrite as a verbal sentence: {{الطلاب حضروا المحاضرة.}}'",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "{{الطلاب حضروا المحاضرة}} is already correct Arabic, so “rewrite in natural Arabic” implies it is wrong; asking for a verbal sentence uses the key term and tests the point taught."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_As an officer, I…_ → {{بصفتي ضابطاً…}}; _As the manager of the company…_ → {{بصفتي مدير الشركة…}}",
+  "replace": "'_As an officer, I…_ → {{بصفتي ضابطاً…}}; _As the manager of the company, I…_ → {{بصفتي مديرَ الشركة…}}",
+  "category": "example",
+  "severity": "low",
+  "reason": "The Arabic {{بصفتي}} is first person, but the English example has no “I”, so the pair does not match."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_Shops stay open._ → {{تظلّ المحلات التجارية مفتوحة}}',",
+  "replace": "'_Shops stay open._ → {{تظلّ المحالّ التجارية مفتوحة}} (_stay_ means “remain”, not “live”)',",
+  "category": "example",
+  "severity": "low",
+  "reason": "The example does not say what the trap is, and the standard plural of {{محلّ}} is {{محالّ}} ({{محلات}} is widely used but criticised in edited MSA)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_Eventually_ → {{في نهاية المطاف}}',",
+  "replace": "'_Eventually_ → {{في نهاية المطاف}} (it means “in the end”, not “possibly”)',",
+  "category": "example",
+  "severity": "low",
+  "reason": "The example does not show what the trap is, so a beginner cannot learn from it."
+ },
+ {
+  "file": "c2a.js",
+  "find": "**word choice** ({{الدلالة}})",
+  "replace": "**word choice** ({{اختيار المفردات}})",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "{{الدلالة}} means “meaning/semantics”, not “word choice”; the Arabic label does not match the English category."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Most problems fall into four groups: **grammar**",
+  "replace": null,
+  "category": "query",
+  "severity": "medium",
+  "reason": "The four groups do not match Ghazala (2008), cited in this chapter’s introduction, whose four problem areas are grammatical, lexical, stylistic and phonological; “general or technical texts” is a text category, not a problem type. Check the course materials and align or attribute."
+ },
+ {
+  "file": "c2a.js",
+  "find": "**punctuation and style** (including when to be formal and when to use dialect)",
+  "replace": "**punctuation and style** (including **register**: how formal the language should be)",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "“Register” is a key term of this chapter but is never used or explained in the text; also, choosing MSA or dialect is a choice of variety, not of formality alone."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'**Dialects** ({{اللهجات العامية}}): everyday spoken Arabic. Use one only if the client asks, for example in film subtitles.'",
+  "replace": "'**Dialects** ({{اللهجات العامية}}): everyday spoken Arabic. Use one only if the client asks, for example in dubbing a cartoon or a series.'",
+  "category": "example",
+  "severity": "medium",
+  "reason": "Arabic subtitling is conventionally done in MSA even for dialect films; dubbing is the usual case where dialect is used, so the example is misleading."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'**EN → AR**: start with the verb, join short sentences, use Arabic punctuation.'",
+  "replace": "'**EN → AR**: prefer a verbal sentence, join short sentences, use Arabic punctuation.'",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "The summary should match the corrected rule: VSO is preferred, not compulsory."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['Form', 'البناء', 'The structure of language: a word, phrase, clause, sentence or text.'],",
+  "replace": "['Form', 'الشكل', 'The structure of language: a word, phrase, clause, sentence or text.'],",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "The established Arabic term for “form” in the form/meaning distinction (Nida, Newmark) is {{الشكل}} ({{الشكل والمضمون}}, {{الشكل والمعنى}}); {{البناء}} means “structure/construction”."
+ },
+ {
+  "file": "c2a.js",
+  "find": "({{المعنى أهم من البناء}})",
+  "replace": "({{المعنى أهمّ من الشكل}})",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "Must match the corrected key term {{الشكل}}."
+ },
+ {
+  "file": "c2a.js",
+  "find": "unless the form itself is part of the message, as in a poem’s rhyme.'",
+  "replace": null,
+  "category": "citation",
+  "severity": "low",
+  "reason": "This paraphrase of Nida and Taber (1969) is close to a quotation (“unless the form is an essential element of the message”); consider adding the page number (p. 4 in the 1969 edition – please verify)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "For example, an adjective or a noun can become a verb:",
+  "replace": "For example, a noun can become a verb:",
+  "category": "example",
+  "severity": "medium",
+  "reason": "In both examples it is the noun that becomes a verb (smoker → {{يدخّن}}, arrival → {{وصل}}); no adjective becomes a verb."
+ },
+ {
+  "file": "c2a.js",
+  "find": "(the adjective _heavy_ becomes a verb phrase)",
+  "replace": "(the noun _smoker_ becomes the verb {{يدخّن}}, and the adjective _heavy_ becomes {{بشراهة}})",
+  "category": "example",
+  "severity": "high",
+  "reason": "The explanation is wrong: _heavy_ becomes the adverbial phrase {{بشراهة}}; it is _smoker_ that becomes a verb."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Words can share the same **denotation** but carry a different **connotation** (Baker, 2018).",
+  "replace": null,
+  "category": "citation",
+  "severity": "low",
+  "reason": "Baker (2018) frames this as propositional versus expressive meaning rather than denotation/connotation; check that the citation supports the terms used or say “what Baker calls expressive meaning”."
+ },
+ {
+  "file": "c2a.js",
+  "find": "_pass away_ ({{توفّي}}) is polite",
+  "replace": "_pass away_ ({{تُوُفِّي}}) is polite",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "Without vowels {{توفّي}} is easily read as the active {{تَوَفّى}} (“took the soul”), a classic error; the verb is passive {{تُوُفِّي}}, which a textbook should vowel."
+ },
+ {
+  "file": "c2a.js",
+  "find": "which is better: {{مات}} or {{توفّي}}?",
+  "replace": "which is better: {{مات}} or {{تُوُفِّي}}?",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "Same passive vowelling as in the chapter text, for consistency."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['{{توفّي}}, because it is respectful.'",
+  "replace": "['{{تُوُفِّي}}, because it is respectful.'",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "Same passive vowelling as in the chapter text, for consistency."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_kill_ ({{قتل}}) is general; _assassinate_ ({{اغتال}}) means killing for political reasons.',",
+  "replace": "'_slim_ ({{رشيق}}) is positive; _skinny_ ({{هزيل}}) is negative.',",
+  "category": "example",
+  "severity": "medium",
+  "reason": "kill/assassinate differ in denotation (assassinate means killing an important person for political reasons), so the pair does not illustrate “same denotation, different connotation”."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['Context', 'السياق', 'Any background information that helps us understand a text.'],",
+  "replace": "['Context', 'السياق', 'Everything around a word or text that helps us understand it: the surrounding words and the wider situation.'],",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "Defining context as “background information” contradicts the chapter, which counts the surrounding words (micro context) as context."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['Micro context (co-text)', 'السياق الداخلي',",
+  "replace": "['Micro context (co-text)', 'السياق اللغوي (الداخلي)',",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "The established Arabic term for co-text/linguistic context is {{السياق اللغوي}}; keeping {{الداخلي}} in brackets preserves the handbook’s wording."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['Macro context', 'السياق الخارجي',",
+  "replace": "['Macro context', 'سياق الموقف (الخارجي)',",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "The established Arabic term for situational context is {{سياق الموقف}} (or {{السياق المقامي}}), which also links to the saying {{لكلّ مقامٍ مقال}} used in this chapter."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Picture a triangle. The **author** and the **audience** are at two corners, and the **text** passes between them. The **translator** stands in the middle and must know both sides.'",
+  "replace": "'Picture a triangle with the **author**, the **text** and the **audience** at its three corners. The **translator** stands in the middle and must know all three.'",
+  "category": "english",
+  "severity": "low",
+  "reason": "The image is confusing: only two corners are named, and something that “passes between” two points is not a triangle."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_case_: {{حالة}} (a situation), {{قضية}} (an issue or a court case) or {{علبة}} (a container, such as a phone case).',",
+  "replace": "'_case_: {{حالة}} (a situation), {{قضية}} (an issue or a court case) or {{علبة}} (a container, such as a phone case). The first two meanings are related; the third is not.',",
+  "category": "example",
+  "severity": "low",
+  "reason": "The list labels only some examples as related or unrelated, so beginners cannot tell which category _case_ illustrates."
+ },
+ {
+  "file": "c2a.js",
+  "find": "purifying from sins ({{تطهير الذنوب}})",
+  "replace": "purifying from sins ({{التطهير من الذنوب}})",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "{{تطهير الذنوب}} literally means “purifying the sins”; one is purified from sins, so the collocation is {{التطهير من الذنوب}}."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_We drank from a cold water spring._'",
+  "replace": "'_We drank from a cold spring._'",
+  "category": "english",
+  "severity": "low",
+  "reason": "“a cold water spring” is ambiguous (a cold-water spring); “a cold spring” is the natural English."
+ }
+]
