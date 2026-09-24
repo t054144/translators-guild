@@ -11,7 +11,7 @@ const PDF = !!process.env.PDF;
 const COVER = process.env.COVER || 'midnight', NAME = 'Translation-Handbook-' + COVER[0].toUpperCase() + COVER.slice(1);
 const LATIN = PDF ? 'Carlito' : 'Calibri', ARABIC = PDF ? 'Noto Naskh Arabic' : 'Arial', SERIF = PDF ? 'Noto Serif' : 'Georgia', BOX = 'ECE9F7';
 const mm = x => Math.round(x * 56.7);
-const PAGE_W = mm(176), MARGIN = mm(20), CONTENT_W = PAGE_W - 2 * MARGIN;
+const PAGE_W = mm(176), MARGIN = mm(22), CONTENT_W = PAGE_W - 2 * MARGIN;
 
 // ---------- inline text: **bold**, _italic_, {{Arabic}} ----------
 function runs(text, base = {}) {
@@ -35,10 +35,11 @@ function ar(t, o = {}) {
 // ---------- blocks ----------
 let inst = 0, afterPart = false, chapter = null, mainStart = null;
 const body = [], glossary = [];
-const P = (children, opts = {}) => body.push(new Paragraph({ children, spacing: { after: 120, line: 290 }, ...opts }));
+// generous spacing so that pages are light for beginners
+const P = (children, opts = {}) => body.push(new Paragraph({ children, spacing: { after: 200, line: 330 }, ...opts }));
 const shade = { type: ShadingType.CLEAR, color: 'auto', fill: BOX };
 const list = (items, ref, opts = {}) => { const k = ref === 'num' ? ++inst : undefined;
-  items.forEach(t => P(runs(t, opts.run), { numbering: { reference: ref, level: 0, ...(k ? { instance: k } : {}) }, spacing: { after: opts.box ? 0 : 70, line: 290 }, ...(opts.box ? { shading: shade } : {}) }));
+  items.forEach(t => P(runs(t, opts.run), { numbering: { reference: ref, level: 0, ...(k ? { instance: k } : {}) }, spacing: { after: opts.box ? 0 : 110, line: opts.box ? 300 : 320 }, ...(opts.box ? { shading: shade } : {}) }));
   body.push(new Paragraph({ spacing: { after: 40 }, children: [] })); };
 const H = (lvl, t, extra = {}) => body.push(new Paragraph({ heading: lvl, children: [new TextRun({ text: t })], ...extra }));
 const border = { style: BorderStyle.SINGLE, size: 4, color: LINE };
@@ -73,15 +74,15 @@ function block(b) {
       const m = /^Chapter (\d+)/.exec(a); chapter = m ? +m[1] : null; break;
     }
     case 'h': H(HeadingLevel.HEADING_3, a); break;
-    case 'intro': P([new TextRun({ text: 'In this chapter. ', bold: true, color: ACCENT, font: LATIN }), ...runs(a)], { spacing: { after: 160, line: 290 } }); break;
+    case 'intro': P([new TextRun({ text: 'In this chapter. ', bold: true, color: ACCENT, font: LATIN }), ...runs(a)], { spacing: { after: 280, line: 320 } }); break;
     case 'terms':
       boxTitle('Key terms');
       a.forEach(([t, arab, def]) => { if (chapter) glossary.push([t, arab, def, chapter]);
-        P([...runs(`**${t}**`), new TextRun({ text: ' (', font: LATIN }), ar(arab), new TextRun({ text: '): ', font: LATIN }), ...runs(def)], { numbering: { reference: 'bul', level: 0 }, spacing: { after: 0, line: 290 }, shading: shade }); });
+        P([...runs(`**${t}**`), new TextRun({ text: ' (', font: LATIN }), ar(arab), new TextRun({ text: '): ', font: LATIN }), ...runs(def)], { numbering: { reference: 'bul', level: 0 }, spacing: { after: 40, line: 300 }, shading: shade }); });
       boxEnd(); break;
     case 'p': P(runs(a)); break;
     case 'ex': P(runs(a), { indent: { left: 567 } }); break;
-    case 'ar': body.push(new Paragraph({ bidirectional: true, indent: { left: 567 }, spacing: { after: 140, line: 300 }, children: [ar(a)] })); break;
+    case 'ar': body.push(new Paragraph({ bidirectional: true, indent: { left: 567 }, spacing: { after: 200, line: 320 }, children: [ar(a)] })); break;
     case 'ol': list(a, 'num'); break;
     case 'ul': list(a, 'bul'); break;
     case 'check': list(a, 'box'); break;
@@ -215,11 +216,11 @@ const runningHead = new Header({ children: [new Paragraph({
 const doc = new Document({
   creator: 'Guild Translation Team', title: 'Translation Handbook', features: { updateFields: true },
   styles: {
-    default: { document: { run: { font: LATIN, size: 21, color: INK } } },
+    default: { document: { run: { font: LATIN, size: 22, color: INK } } },
     paragraphStyles: [
       { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 40, bold: true, color: ACCENT }, paragraph: { spacing: { before: 600, after: 200 }, outlineLevel: 0 } },
       { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 30, bold: true, color: ACCENT }, paragraph: { spacing: { before: 240, after: 200 }, outlineLevel: 1, keepNext: true } },
-      { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 23, bold: true, color: INK }, paragraph: { spacing: { before: 260, after: 100 }, outlineLevel: 2, keepNext: true } },
+      { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 23, bold: true, color: INK }, paragraph: { spacing: { before: 380, after: 140 }, outlineLevel: 2, keepNext: true } },
     ],
   },
   numbering: { config: [
@@ -233,10 +234,10 @@ const doc = new Document({
       headers: { default: new Header({ children: [new Paragraph({ children: [] })] }) }, footers: { default: pageNum }, children: body.slice(0, mainStart) },
     { properties: { page: { size: pageSize, margin: margins, pageNumbers: { start: 1, formatType: NumberFormat.DECIMAL } } },
       headers: { default: runningHead }, footers: { default: pageNum }, children: body.slice(mainStart) },
-    // blank left-hand page so that the back cover falls on an even page when printed
-    { properties: { page: { size: pageSize, margin: margins } },
+    // blank left-hand page so that the back cover falls on an even page when printed (NOBLANK=1 leaves it out)
+    ...(process.env.NOBLANK ? [] : [{ properties: { page: { size: pageSize, margin: margins } },
       headers: { default: new Header({ children: [new Paragraph({ children: [] })] }) }, footers: { default: new Footer({ children: [new Paragraph({ children: [] })] }) },
-      children: [new Paragraph({ children: [] })] },
+      children: [new Paragraph({ children: [] })] }]),
     coverSection(`art/cover-back-${COVER}.jpg`),
   ],
 });

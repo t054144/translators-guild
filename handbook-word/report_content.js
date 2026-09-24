@@ -10,7 +10,7 @@ module.exports = [
 ['h2', '2.1 The finished handbook'],
 ['ul', [
   'A handbook for complete beginners on translating between English and Arabic. The text is in English and every example is given in both languages.',
-  '94 pages including the covers, B5 page size (176 × 250 mm), with 9 parts and 27 chapters, followed by practice texts at three levels with an answer key, four checklists, a note on future editions, a glossary of 102 terms, a list of 39 references and a page with the QR code of the team’s website.',
+  '98 pages including the covers, B5 page size (176 × 250 mm), with 9 parts and 27 chapters, followed by practice texts at three levels with an answer key, four checklists, a note on future editions, a glossary of 102 terms, a list of 39 references and a page with the QR code of the team’s website.',
   'Two editions, which are identical inside and differ only in the cover design: the Midnight edition (dark indigo cover) and the Light edition (pale lavender cover). Each edition is available as an editable Word file and as a PDF.',
 ]],
 ['h2', '2.2 The main editorial decisions'],
@@ -180,7 +180,17 @@ module.exports = [
   'The two overlapping lists of subtitling strategies (Díaz Cintas and Remael; Pedersen). They were merged into one list of eight strategies.',
   'Key terms that a beginner does not need, and ten references that were no longer cited after these changes.',
 ]],
-['h2', '8.3 Removed before publication'],
+['h2', '8.3 Removed to make the pages lighter'],
+['p', 'After the team found the pages too dense for beginners, the running text was reduced by about a third, without removing any example, key term, practice text, checklist item or citation:'],
+['ul', [
+  'The italic descriptions under each part heading were removed. The part title is followed directly by its first chapter.',
+  'Each chapter introduction was reduced to one short line saying what the chapter covers.',
+  'Sentences that repeated a heading, a key-term definition, an example or another paragraph were removed, and long paragraphs were shortened to one to three sentences.',
+  'Long key-term definitions and long answers to the “Try it” questions were shortened.',
+  'The page layout was given more space: slightly larger text, more space between lines and paragraphs, and wider margins.',
+]],
+['p', 'A check after the revision confirmed that all 313 Arabic examples and all 39 cited sources are still in the handbook.'],
+['h2', '8.4 Removed before publication'],
 ['ul', [
   'All placeholders in square brackets: the copyright holder, editors, ISBN, the empty checklist for Dr Abdullah’s framework, the list of references still to be added, and the notes asking for confirmation in the references and the practice texts. The acknowledgements were written in full.',
   'The names of the supervisor and Dr Amin from the acknowledgements. The notes mention them only as future reviewers, so they are not thanked for feedback they have not yet given.',
@@ -206,7 +216,7 @@ module.exports = [
 ['h1', '10. Design and production'],
 ['h2', '10.1 Layout inside the book'],
 ['ul', [
-  'White pages with dark text. Headings are in a serif typeface and the body text in a sans-serif typeface. Arabic is set right to left in an Arabic typeface.',
+  'White pages with dark text, generous line spacing and wide margins, so that each page carries a moderate amount of text. Headings are in a serif typeface and the body text in a sans-serif typeface. Arabic is set right to left in an Arabic typeface.',
   'One shaded box style is used, for key terms and for chapter summaries. There are no images inside the book.',
   'The layout follows the conventions of academic coursebooks: roman page numbers for the front matter, arabic numbers from Part 1, a running head on every main page, and each chapter starting on a new page.',
   'The contents page is generated automatically from the headings and updates in Word.',
@@ -219,7 +229,7 @@ module.exports = [
   '**Midnight edition:** a dark indigo cover with three stripes in the logo’s colours along the spine edge and the logo in white.',
   '**Light edition:** a pale lavender cover with three large circles in the logo’s colours and the titles in dark purple.',
 ]],
-['p', 'Both front covers show only the English title “Translation Handbook”, the Arabic title {{دليل الترجمة}}, the logo, and “First edition 2026”. Both back covers carry the quotation “Words travel worlds. Translators do the driving.” by the translator Anna Rusconi, a one-sentence description, three key features and the logo. The lower middle of the back cover carries a QR code that links to the Translation Team’s website (translators-guild.vercel.app), printed directly on the cover in a contrasting colour (light lavender on the Midnight edition, deep indigo on the Light edition), with the address also printed in full for readers who cannot scan it. The same code appears on the last page inside the book. A blank page before the back cover keeps the page count even for printing.'],
+['p', 'Both front covers show only the English title “Translation Handbook”, the Arabic title {{دليل الترجمة}}, the logo, and “First edition 2026”. Both back covers carry the quotation “Words travel worlds. Translators do the driving.” by the translator Anna Rusconi, a one-sentence description, three key features and the logo. The lower middle of the back cover carries a QR code that links to the Translation Team’s website (translators-guild.vercel.app), printed directly on the cover in a contrasting colour (light lavender on the Midnight edition, deep indigo on the Light edition), with the address also printed in full for readers who cannot scan it. The same code appears on the last page inside the book. When needed, a blank page is added before the back cover so that the page count is even for printing.'],
 ['p', 'The QR code was supplied by the team at low resolution and with an older logo. It was rebuilt at high resolution in the Guild colours, with the current logo in the centre and the highest level of error correction, so that it still scans with the logo covering part of it. It was tested with two scanning programs at full size, at small print sizes and on the final PDFs.'],
 ['h2', '10.4 Production'],
 ['ul', [
