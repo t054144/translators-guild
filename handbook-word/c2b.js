@@ -533,10 +533,10 @@ module.exports = [
 ['ol', ['Analyse the text with the analysis checklist (Chapter 17).', 'Translate it.', 'Revise it with the risk matrix and the checklists (Chapters 23 and 24).', 'Write a commentary of about 150 words (Chapter 25).']],
 ['h', 'Text 3a: news (EN → AR)'],
 ['ex', '_Health officials have urged residents to stay indoors between 11 a.m. and 4 p.m. as temperatures are expected to top 50°C this week. “Heatstroke is not something to take lightly,” a Ministry of Health spokesperson said, advising people to drink plenty of water and to check on elderly neighbours. Meanwhile, shopping malls are expected to be packed as families seek relief from the heat._'],
-['p', 'Practice text written for this handbook. [To be replaced with an authentic news text and its source.]'],
+['p', 'Practice text written for this handbook.'],
 ['h', 'Text 3b: cultural news (AR → EN)'],
 ['ar', 'احتفلت الجمعية الثقافية مساءَ أمس بتكريم نخبةٍ من المترجمين الشباب، وذلك في أمسيةٍ حضرها لفيفٌ من الأدباء والأكاديميين. وأكّد رئيس الجمعية في كلمته أنّ الترجمة جسرٌ يصل الشعوب بعضها ببعض، مشيراً إلى أنّ العناية بالمترجمين الشباب واجبٌ لا ترف. واختُتمت الأمسية بقراءاتٍ شعريةٍ مترجمة، وسط أجواءٍ سادها الودّ والتقدير.'],
-['p', 'Practice text written for this handbook. [To be replaced with an authentic news text and its source.]'],
+['p', 'Practice text written for this handbook.'],
 
 ['ch', 'Answer key'],
 ['p', 'These are suggested answers. There is often more than one good translation: any version that is accurate, natural and right for the reader is acceptable.'],
@@ -567,7 +567,7 @@ module.exports = [
 ['p', '**3b.** A possible opening: _Last night, the Cultural Society honoured a group of outstanding young translators at an evening attended by writers and academics._ Split the long Arabic sentence, keep the image of translation as a bridge, and translate {{الودّ والتقدير}} as _a warm, appreciative atmosphere_.'],
 
 // ================= CHECKLISTS =================
-['part', 'Checklists', 'Use these practical checklists with every translation. Tick each point as you go. Checklist 4, based on Dr Abdullah’s framework, will be completed by the Translation Team.'],
+['part', 'Checklists', 'Use these practical checklists with every translation. Tick each point as you go.'],
 ['ch', 'Checklist 1: The translation process'],
 ['h', 'Before you translate'],
 ['check', ['I know the client, the purpose and the audience.', 'I have read the whole text at least twice.', 'I have completed the analysis worksheet.', 'I have listed and checked the key terms.', 'I have my dictionaries and resources ready.']],
@@ -586,12 +586,11 @@ module.exports = [
 ['check', ['I know who wrote the text and who published it.', 'I know which readers it was written for.', 'I know my client’s policy on sensitive words and names.']],
 ['h', 'The purpose'],
 ['check', ['I have considered whose interests the text serves.', 'I have explained my sensitive choices in the commentary.']],
-['ch', 'Checklist 4: Based on Dr Abdullah’s framework'],
-['p', '[To be completed by the Translation Team, based on Dr Abdullah’s PhD research and framework.]'],
-['ch', 'Checklist 5: Your commentary'],
+['ch', 'Checklist 4: Your commentary'],
 ['check', ['Part one reflects on my analysis; part two reflects on my translation.', 'For each problem: problem, solution, procedure or strategy, resource, justification.', 'I quote examples from the source and the translation.', 'I write in the third person.', 'I mention the dictionaries and resources I used.']],
 
 // ================= FUTURE EDITIONS =================
 ['part', 'Future editions', 'This first edition covers the basics for beginners. The Translation Team plans to develop the handbook further.'],
-['p', 'An Arabic version of the handbook is planned for future use (Translation Team, n.d.). [The team to confirm the audiences and materials planned for future editions. Suggestions: authentic news texts for practice; examples from the 180, 182 and 386 course texts; a completed checklist based on Dr Abdullah’s framework; subtitling exercises with film clips; and chapters on interpreting, and on legal and medical translation, for more advanced readers.]'],
+['p', 'Future editions are planned to include:'],
+['ul', ['an Arabic version of the handbook (Translation Team, n.d.);', 'more authentic news texts for practice;', 'subtitling exercises with film clips;', 'chapters on interpreting, and on legal and medical translation, for more advanced readers.']],
 ];

@@ -17,7 +17,7 @@ module.exports = [
 ['p', '_The Translation Team_'],
 
 ['front', 'Acknowledgements'],
-['p', '[To be completed by the Translation Team: thanks to the supervisor, to Dr Amin, and to every team member who collected material, examples and practice texts for this handbook.]'],
+['p', 'The Translation Team thanks its supervisor and Dr Amin for their guidance and feedback, and every team member who collected material, examples and practice texts for this handbook.'],
 
 ['front', 'How to use this handbook'],
 ['h', 'From easy to hard'],

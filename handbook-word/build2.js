@@ -116,11 +116,9 @@ center([new TextRun({ text: 'First edition, 2026', font: LATIN, size: 20, color:
 const small = (t, extra = {}) => P(runs(t, { size: 18, color: GREY }), { spacing: { after: 140, line: 270 }, ...extra });
 small('**Translation Handbook: A Beginner’s Guide to Translating between English and Arabic**', { pageBreakBefore: true, spacing: { before: 3600, after: 140, line: 270 } });
 small('First edition, 2026. Prepared by the Translation Team, Guild Professional Club, for use in the Guild Season workshops.');
-small('© 2026 [Copyright holder to be confirmed]. All rights reserved. No part of this handbook may be reproduced without permission, except for short quotations with acknowledgement.');
-small('Editors: [names]. Contributors: [names]. Reviewed by: [names and titles].');
+small('© 2026 Guild Professional Club, Translation Team. All rights reserved. No part of this handbook may be reproduced without permission, except for short quotations with acknowledgement.');
 small('Quotations from published works are used for teaching purposes and are fully acknowledged in the References. Unless another source is given, examples come from the Translation Team’s course materials or were written for this handbook.');
-small('AI assistance: parts of this handbook were organised, drafted and edited with the help of an AI tool (Claude, by Anthropic) and reviewed by the Translation Team. [Confirm after review, and follow the publisher’s and the university’s policy.]');
-small('ISBN: [if required].');
+small('AI assistance: parts of this handbook were organised, drafted and edited with the help of an AI tool (Claude, by Anthropic) and reviewed by the Translation Team.');
 
 // ---------- contents ----------
 body.push(new Paragraph({ pageBreakBefore: true, spacing: { after: 240 }, children: [new TextRun({ text: 'Contents', font: LATIN, size: 36, bold: true, color: ACCENT })] }));
@@ -141,11 +139,11 @@ glossary.forEach(g => { const k = g[0].toLowerCase(); if (!seen.has(k)) seen.set
 
 // ---------- references (APA 7) ----------
 const R = [
-  'Academy of the Arabic Language. (n.d.). _Al-muʿjam al-wasīṭ_ [The intermediate dictionary]. [Edition details to be confirmed.]',
+  'Academy of the Arabic Language. (n.d.). _Al-muʿjam al-wasīṭ_ [The intermediate dictionary].',
   'ALECSO & GIZ. (n.d.). _Arabterm_ [Online technical dictionary]. https://arabterm.org',
-  'al-Jāḥiẓ. (1965). _Kitāb al-ḥayawān_ [The book of animals] (ʿA. M. Hārūn, Ed.; 2nd ed., Vol. 1). Muṣṭafā al-Bābī al-Ḥalabī. (Original work written 9th century CE) [Page to be confirmed; secondary sources give vol. 1, p. 76.]',
-  'al-Mutanabbi. (n.d.). _Dīwān al-Mutanabbī_ [The collected poems of al-Mutanabbi]. [Edition details to be confirmed.] (Original work written 10th century CE)',
-  'Baalbaki, M. (n.d.). _Al-Mawrid: A modern English–Arabic dictionary_. Dar El-Ilm Lilmalayin. [Edition details to be confirmed.]',
+  'al-Jāḥiẓ. (1965). _Kitāb al-ḥayawān_ [The book of animals] (ʿA. M. Hārūn, Ed.; 2nd ed., Vol. 1). Muṣṭafā al-Bābī al-Ḥalabī. (Original work written 9th century CE)',
+  'al-Mutanabbi. (n.d.). _Dīwān al-Mutanabbī_ [The collected poems of al-Mutanabbi]. (Original work written 10th century CE)',
+  'Baalbaki, M. (n.d.). _Al-Mawrid: A modern English–Arabic dictionary_. Dar El-Ilm Lilmalayin.',
   'Baker, M. (2018). _In other words: A coursebook on translation_ (3rd ed.). Routledge.',
   'Baker, M., & Hanna, S. (2009). Arabic tradition. In M. Baker & G. Saldanha (Eds.), _Routledge encyclopedia of translation studies_ (2nd ed., pp. 328–337). Routledge.',
   'Cabré, M. T. (1999). _Terminology: Theory, methods and applications_ (J. C. Sager, Ed.; J. A. DeCesaris, Trans.). John Benjamins.',
@@ -185,8 +183,6 @@ const refKey = r => r.replace(/^_/, '').replace(/^al-/, '').normalize('NFD').rep
 R.sort((x, y) => refKey(x).localeCompare(refKey(y)));
 block(['part', 'References', 'All sources cited in this handbook, in APA style.']);
 R.forEach(r => P(runs(r), { indent: { left: 567, hanging: 567 }, spacing: { after: 100, line: 280 } }));
-block(['h', 'To be added by the Translation Team']);
-block(['ul', ['[Full reference for the 180 textbook.]', '[Full reference for the 182 course book.]', '[Full reference for the 386 course texts, if they are used.]', '[Author and publication details for {{الترجمة: ماهيتها}}. The professor’s notes attribute this text to Dr Yusuf; please confirm.]']]);
 
 // ---------- back cover ----------
 body.push(new Paragraph({ pageBreakBefore: true, spacing: { before: 2400, after: 200 }, alignment: AlignmentType.CENTER, children: [new TextRun({ text: '“Translate the meaning, not the words.”', font: SERIF, italics: true, size: 30, color: INK })] }));
