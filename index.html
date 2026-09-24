@@ -1123,7 +1123,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 13 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 14 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -2154,58 +2154,87 @@ const HUMAN = [
 ];
 
 const PROVERBS = [
-  { src: "يد واحدة لا تصفّق.",
+  /* Every pair below is one the Translation Handbook itself gives in
+     Chapter 8, so what a member meets here is what they read in the book.
+     Two pairs that used to sit in this trial have been retired, because
+     both crossed the language and came out facing the wrong way:
+
+       القرد في عين أمّه غزال → "a face only a mother could love"
+         The Arabic is tender: a mother sees beauty in her child. The
+         English is a joke about how ugly somebody is. Same subject,
+         opposite feeling.
+
+       تحت السواهي دواهي → "still waters run deep"
+         The Arabic is a warning: the one who seems heedless is scheming.
+         The English is usually a compliment about hidden depths.
+
+     They are the exact trap this trial exists to teach, so they will
+     return as wrong answers once they can be written up properly. */
+
+  { src: "كالمُستجير من الرَّمضاء بالنَّار.",
     opts: [
-      { t: "One hand does not clap.", tag: "literal — not an English proverb" },
-      { t: "It takes two to tango.", tag: "the working equivalent", ok: true },
-      { t: "Many hands make light work.", tag: "real proverb, wrong meaning" }
+      { t: "Out of the frying pan into the fire.", tag: "the working equivalent", ok: true },
+      { t: "Like one seeking shelter from hot sand in fire.", tag: "literal — no such English proverb" },
+      { t: "Better the devil you know.", tag: "real proverb, opposite advice" }
     ],
-    why: "Both proverbs say: this needs two people. <b>Many hands make light work</b> is about efficiency, a different claim entirely." },
-  { src: "تحت السواهي دواهي.",
+    why: "Both say the escape was worse than the danger. <b>Better the devil you know</b> advises staying put, which is the opposite counsel &mdash; a distractor worth recognising. (Chapter 8)" },
+
+  { src: "رجع بخُفَّي حُنين.",
     opts: [
-      { t: "Still waters run deep.", tag: "the working equivalent", ok: true },
-      { t: "Beneath the inattentive lie calamities.", tag: "literal — meaningless in English" },
-      { t: "Let sleeping dogs lie.", tag: "real proverb, wrong meaning" }
+      { t: "He returned with Hunayn's slippers.", tag: "literal — the story is lost on the reader" },
+      { t: "He came back empty-handed.", tag: "the working equivalent", ok: true },
+      { t: "He returned a broken man.", tag: "overstates it — this is loss, not ruin" }
     ],
-    why: "The Arabic warns that a quiet person is hiding something. English already has that proverb made — use it rather than building a new one." },
-  { src: "اللي فات مات.",
+    why: "The Arabic carries a whole folk tale in four words. English has no proverb for it, so the handbook gives the <b>meaning in plain words</b> &mdash; which is the rule when no equivalent exists. (Chapter 8)" },
+
+  { src: "عُصفورٌ في اليد خيرٌ من عشرةٍ على الشَّجرة.",
     opts: [
-      { t: "That which has passed has died.", tag: "literal" },
-      { t: "Time heals all wounds.", tag: "real proverb, wrong meaning" },
-      { t: "Let bygones be bygones.", tag: "the working equivalent", ok: true }
+      { t: "A sparrow in the hand is better than ten on the tree.", tag: "literal — and the English already exists" },
+      { t: "A bird in the hand is worth two in the bush.", tag: "the working equivalent", ok: true },
+      { t: "Don't count your chickens before they hatch.", tag: "close — but about hoping too early" }
     ],
-    why: "The Arabic is an instruction: stop bringing it up. <b>Time heals all wounds</b> is a consolation, not an instruction." },
-  { src: "على قدّ لحافك مِدّ رجولك.",
+    why: "Notice the numbers change: Arabic counts <b>ten on the tree</b>, English <b>two in the bush</b>. You take the target language's proverb whole, arithmetic and all &mdash; you do not correct it. (Chapter 8)" },
+
+  { src: "Boys will be boys.",
+    srcEn: true,
+    opts: [
+      { t: "الأولاد سيكونون أولاداً.", tag: "literal — says nothing in Arabic" },
+      { t: "الوَلَد وَلَد ولو صار قاضي بلد.", tag: "the working equivalent", ok: true },
+      { t: "هكذا هم الشباب.", tag: "correct meaning, but the proverb is gone" }
+    ],
+    why: "English into Arabic this time. The Arabic proverb says the same thing and rhymes while doing it &mdash; <b>وَلَد / بلد</b>. When the target language has the proverb made, use it. (Chapter 8)" },
+
+  { src: "Business is business.",
+    srcEn: true,
+    opts: [
+      { t: "العَمَل عَمَل.", tag: "the working equivalent", ok: true },
+      { t: "التِّجارة تِجارة.", tag: "plausible, but not the fixed expression" },
+      { t: "لا مجال للعواطف في العمل.", tag: "explains it — and loses the bluntness" }
+    ],
+    why: "Some proverbs cross almost untouched. The third option is a correct <b>explanation</b>, and explanation is the last resort, not the first. (Chapter 8, Chapter 13)" },
+
+  { src: "على قَدِّ لِحافك مُدَّ رِجليك.",
     opts: [
       { t: "Cut your coat according to your cloth.", tag: "the working equivalent", ok: true },
       { t: "Extend your legs as far as your blanket.", tag: "literal" },
       { t: "Don't bite off more than you can chew.", tag: "close — but about ambition, not means" }
     ],
-    why: "Both are about living inside your means, and both reach for cloth to say it — a rare gift. Take it when the target language offers one." },
-  { src: "ضربة مُعَلِّم.",
-    opts: [
-      { t: "A teacher's hit.", tag: "literal — nonsense" },
-      { t: "A masterstroke.", tag: "the working equivalent", ok: true },
-      { t: "Beginner's luck.", tag: "the opposite meaning" }
-    ],
-    why: "مُعَلِّم here is a master craftsman, not a schoolteacher. Get that one word wrong and the whole proverb inverts." },
-  { src: "القرد في عين أمّه غزال.",
-    opts: [
-      { t: "The monkey is a gazelle in his mother's eye.", tag: "literal" },
-      { t: "A face only a mother could love.", tag: "the working equivalent", ok: true },
-      { t: "Like mother, like son.", tag: "real proverb, wrong meaning" }
-    ],
-    why: "English keeps the mother and drops the animals. The shared idea — a mother sees no ugliness — survives the swap intact." }
+    why: "Both are about living inside your means, and both reach for cloth to say it &mdash; a rare gift. Take it when the target language offers one." }
 ];
 
+
 const COURTESY = [
-  { src: "بالعافية", lit: '"with health"',
+  /* This one used to read "بالعافية = Enjoy your meal" as though that were
+     settled, which is exactly the single stored equivalence the Language &
+     Phraseology chamber warns against. The situation is now part of the
+     question, because without it the expression has no translation at all. */
+  { src: "بالعافية &mdash; said to someone who is eating", lit: '"with health"',
     opts: [
       { t: "With strength.", tag: "literal" },
-      { t: "Enjoy your meal.", tag: "natural", ok: true },
-      { t: "Get well soon.", tag: "wrong situation entirely" }
+      { t: "Enjoy your meal.", tag: "natural — for this situation", ok: true },
+      { t: "Get well soon.", tag: "a different situation for the same words" }
     ],
-    why: "Said to someone eating. English reaches for the French, or simply for <b>enjoy</b> — either way food, not health." },
+    why: "Read the second option and the third together: both are real translations of <b>بالعافية</b>, and the one that is right is decided entirely by <b>who is saying it and when</b>. Said over food it is a table courtesy; said to someone who has been ill it is a wish for recovery; said to someone working hard it is encouragement; and said to someone who has just bathed, English has <b>nothing at all</b>. The chamber on Language &amp; Phraseology walks all four." },
   { src: "اللّه يعطيك العافية", lit: '"may God give you health"',
     opts: [
       { t: "Thanks for your hard work.", tag: "natural", ok: true },
