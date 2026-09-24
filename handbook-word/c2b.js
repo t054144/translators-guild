@@ -354,7 +354,7 @@ module.exports = [
 ['p', 'Some mistakes are small; others can cause real harm, such as a wrong dose in a medicine leaflet or a missing “not” in a contract. Anthony Pym describes translating as risk management: the more serious the possible harm, the more care a text needs (Pym, 2015).'],
 ['h', 'The interlingual risk matrix'],
 ['table', ['Risk area', 'Example', 'Risk level', 'What to do'],
- [['Terms', '_governing law_ → {{القانون الحاكم}}', 'High in legal texts', 'Check a specialised dictionary and the term list'],
+ [['Terms', '_governing law_ → {{القانون الواجب التطبيق}}', 'High in legal texts', 'Check a specialised dictionary and the term list'],
   ['Negatives', 'A lost “not” reverses the meaning', 'High', 'Compare sentence by sentence'],
   ['Numbers and dates', 'A wrong dose; Hijri or Gregorian date', 'High', 'Check every figure twice'],
   ['Legal verbs', '_shall_ → {{سوف}}', 'High in contracts', 'Use the Arabic present tense for obligations'],
