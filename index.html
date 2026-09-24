@@ -7,11 +7,25 @@
      else, and the page may only talk to its own database, so a widget or
      tracker added later cannot run here or carry a member's session away. -->
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://bldqausimrsusdzfbubk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'">
-<title>The Translators' Guild</title>
-<meta name="description" content="A guide to Arabic-English translation by functional equivalence: eight translators who changed the world, the seven procedures, nine text types, and seven trials.">
+<title>The Translators' Guild — Learn Arabic–English Translation</title>
+<!-- What a search engine and a shared link will show. It describes what the
+     site actually contains now, and names its companion book, because the two
+     are meant to be used together. -->
+<meta name="description" content="A bilingual course in Arabic–English translation: procedures, strategies, equivalence, collocation, idiom, register, text types, subtitling and interpreting — in both directions.">
 <meta name="author" content="Shaikha Alkhaldi">
-<meta property="og:title" content="The Translators' Guild">
-<meta property="og:description" content="Meaning first, words second.">
+<meta name="keywords" content="Arabic English translation, translation studies, translation procedures, translation strategies, equivalence, collocation, idioms, register, subtitling, interpreting, Kuwait">
+<link rel="canonical" href="https://translators-guild.vercel.app/">
+<meta name="theme-color" content="#110620">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Translators' Guild">
+<meta property="og:url" content="https://translators-guild.vercel.app/">
+<meta property="og:locale" content="en">
+<meta property="og:locale:alternate" content="ar_KW">
+<meta property="og:title" content="The Translators' Guild — Learn Arabic–English Translation">
+<meta property="og:description" content="Procedures, strategies and equivalence; collocation, idiom and register; subtitling and interpreting. Both directions, with assessed trials and open practice.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Translators' Guild">
+<meta name="twitter:description" content="A bilingual course in Arabic–English translation.">
 <style>
   :root { color-scheme: dark; }
   html, body { margin: 0; padding: 0; }
@@ -684,6 +698,15 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 /* the Arabic name sitting beside an English heading */
 .card-top h3 .ar { font-family: var(--f-ar); font-size: .78em; font-weight: 400;
   color: var(--lilac); margin-inline-start: .5rem; unicode-bidi: isolate; }
+/* the precise subject line: what this actually is, and where the handbook
+   treats it. Quiet enough not to compete with the title, plain enough to
+   be looked up. */
+.c-subject, .trial-subject {
+  font-size: .68rem; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--lilac-dim); line-height: 1.5; }
+.c-subject { display: block; margin: -.35rem 0 .1rem; }
+.trial-subject { margin: .3rem 0 0; }
+
 /* the phraseology pairs: source, arrow, target, and why */
 .pairs { display: grid; gap: .6rem; }
 .pair { display: grid; gap: .35rem .7rem; padding: .85rem 1rem;
@@ -1022,9 +1045,9 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 <div class="dotfield" aria-hidden="true"></div>
 
 <nav id="spine" aria-label="Where you are">
-  <span class="act" data-act="1"><span class="a-n">I</span><span class="a-bar"><i></i></span><span class="a-lab">The Threshold</span></span>
-  <span class="act" data-act="2"><span class="a-n">II</span><span class="a-bar"><i></i></span><span class="a-lab">The Method</span></span>
-  <span class="act" data-act="3"><span class="a-n">III</span><span class="a-bar"><i></i></span><span class="a-lab">The Trials</span></span>
+  <span class="act" data-act="1"><span class="a-n">I</span><span class="a-bar"><i></i></span><span class="a-lab">Enrolment</span></span>
+  <span class="act" data-act="2"><span class="a-n">II</span><span class="a-bar"><i></i></span><span class="a-lab">Theory &amp; Method</span></span>
+  <span class="act" data-act="3"><span class="a-n">III</span><span class="a-bar"><i></i></span><span class="a-lab">Practice &amp; Assessment</span></span>
 </nav>
 
 <main id="app">
@@ -1123,7 +1146,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 14 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 15 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1189,15 +1212,15 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div>
       <div class="strip-head">
         <h2>The Lineage</h2>
-        <span class="note">Translators who changed what the world could read &mdash; tap any one</span>
+        <span class="note">Translators in history &mdash; sixteen figures, tap any one</span>
       </div>
       <div class="strip" id="strip"></div>
     </div>
 
     <div id="block-method">
       <div class="sec-head">
-        <h2>The Method</h2>
-        <span class="note" style="margin-inline-start:auto">Read these first — the trials assume them</span>
+        <h2>Theory &amp; Method</h2>
+        <span class="note" style="margin-inline-start:auto">Guides &middot; not assessed &middot; read these first, the trials assume them</span>
       </div>
       <div class="ledger" id="sec-method"></div>
     </div>
@@ -1205,7 +1228,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div id="block-trials">
       <div class="sec-head">
         <h2>The Trials</h2>
-        <span class="note" style="margin-inline-start:auto">Scored · each one earns a guild mark</span>
+        <span class="note" style="margin-inline-start:auto">Assessed exercises &middot; each one earns a mark</span>
       </div>
       <div class="ledger" id="sec-trials"></div>
     </div>
@@ -1213,7 +1236,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div id="block-chambers">
       <div class="sec-head">
         <h2>The Chambers</h2>
-        <span class="note" style="margin-inline-start:auto">Free to wander · no score</span>
+        <span class="note" style="margin-inline-start:auto">Open practice &middot; not assessed &middot; wander freely</span>
       </div>
       <div class="ledger" id="sec-chambers"></div>
     </div>
@@ -1268,6 +1291,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div class="trial-head">
       <div>
         <h2 id="trial-en"></h2>
+        <p class="trial-subject" id="trial-subject" hidden></p>
       </div>
       <div class="t-right">
         <span class="t-count" id="trial-count"></span>
@@ -2621,50 +2645,64 @@ const LINEAGE = [
 /* ═══════════ REGISTRY ═══════════ */
 const ITEMS = [
   { id: "lineage", ar: "", en: "The Lineage", kind: "guide", section: "method",
+    subject: "Translators in history",
     blurb: "Sixteen translators, from the fourth century to our own, whose work changed what the world could read &mdash; eight from the Arabic tradition, eight from the Western one.",
     run: runLineage },
   { id: "procedures", ar: "الإجراءات السَّبعة", en: "The Seven Procedures", kind: "guide", section: "method",
+    subject: "Translation procedures · Chapter 12",
     blurb: "The foundational framework of the field — borrowing, calque, literal, transposition, modulation, equivalence, adaptation — each worked in Arabic and English. One framework among several, and the one the others answer.",
     run: runProcedures },
   { id: "toolkit", ar: "عُدّة المُترجِم", en: "The Translator's Toolkit", kind: "guide", section: "method",
+    subject: "Method, procedure and strategy · Chapters 12–13",
     blurb: "Method, procedure, strategy and shift are four different things. The twelve strategies of Chapter 13, each with its Arabic name and a worked example — and what to call what you actually did.",
     run: runToolkit },
   /* The id stays "texttypes" so nobody's stored progress is orphaned by the
      rename; only what a learner sees has changed. */
-  { id: "texttypes", ar: "عوالِم النُّصوص", en: "The Text Worlds", kind: "guide", section: "method",
+  { id: "texttypes", ar: "عوالِم النُّصوص", en: "Text Types and Genres", kind: "guide", section: "method",
+    subject: "Text typology · Chapter 18",
     blurb: "Ten worlds a translation can land in — journalistic, political and diplomatic, legal, technical, medical, literary, transcreation, localization, audiovisual, academic — and why they are not all the same kind of category.",
     run: runTextTypes },
 
   { id: "nameproc", ar: "ما هذا الإجراء؟", en: "Name the Procedure", kind: "trial", section: "trials",
+    subject: "Translation procedures · Chapter 12",
     blurb: "A source and its rendering. Which of the seven procedures was used to get there?",
     run: () => runChoice(NAME_PROC, "Which procedure produced this?") },
   { id: "human", ar: "أيّ من الخيارات تُطابِق المعنى؟", en: "The Best Equivalent", kind: "trial", section: "trials",
+    subject: "Equivalence · Chapter 9",
     blurb: "One Arabic line, three English renderings. Only one carries the meaning the way an English speaker actually would.",
     run: () => runChoice(HUMAN, "Which option matches the meaning?") },
   { id: "proverb", ar: "مَثَلٌ بِمَثَل", en: "Proverb for Proverb", kind: "trial", section: "trials",
+    subject: "Idioms and proverbs · Chapter 8",
     blurb: "Match the Arabic proverb to the English proverb that means the same thing — not the one that says the same words.",
     run: () => runChoice(PROVERBS, "Which English proverb does the same work?") },
   { id: "courtesy", ar: "خِزانة المُجامَلات", en: "The Courtesy Cabinet", kind: "trial", section: "trials",
+    subject: "Speech acts and courtesy formulas · Chapter 5",
     blurb: "Gulf politeness formulas with no English words but exact English functions. One of them has no equivalent at all.",
     run: () => runChoice(COURTESY, "What would an English speaker actually say?") },
-  { id: "cultural", ar: "الاِستِبدال الثَّقافيّ", en: "Cultural Swap", kind: "trial", section: "trials",
+  { id: "cultural", ar: "الاِستِبدال الثَّقافيّ", en: "Cultural Substitution", kind: "trial", section: "trials",
+    subject: "Cultural substitution الإبدال الثقافي · Chapter 13",
     blurb: "English idioms bound to their culture. Swap the object, keep the meaning — or notice when Arabic already agrees.",
     run: () => runChoice(CULTURAL, "How does this cross into Arabic?") },
   { id: "subtitle", ar: "قَيد الشّاشة", en: "Subtitle Squeeze", kind: "trial", section: "trials",
+    subject: "Subtitling and linguistic compression · Chapter 27",
     blurb: "A real subtitler's constraint: a hard character limit and a line that will not fit. Cut the words, keep the meaning.",
     run: runSubtitle },
   { id: "booth", ar: "المَقصورة", en: "The Booth", kind: "trial", section: "trials",
+    subject: "Interpreting الترجمة الشفهية · Chapter 1",
     blurb: "Sixty seconds. Phrases arrive faster than you can think. Type the equivalent and move.",
     run: runBooth },
 
   { id: "phraseology", ar: "اللُّغة والتَّعبير", en: "Language & Phraseology", kind: "exhibit", section: "chambers",
+    subject: "Collocation and idiom · Chapters 7–8",
     direction: "both",
     blurb: "Collocations, connectors, courtesy formulas and speech acts — the chunks a language has already assembled. Both directions, because what English splits Arabic may join.",
     run: runPhraseology },
   { id: "register", ar: "مؤشِّر المُستوى اللُّغَويّ", en: "The Register Dial", kind: "exhibit", section: "chambers",
+    subject: "Register المستوى اللغوي · Chapter 3",
     blurb: "One meaning, four levels — from Kuwaiti street to classical Arabic — and what each one does to the English.",
     run: runRegister },
   { id: "roots", ar: "حُجرة الجَذر", en: "The Root Chamber", kind: "exhibit", section: "chambers",
+    subject: "Roots, patterns and derivation · Chapter 3",
     blurb: "Three consonants hold a whole family of words. Open a root and watch it bloom — starting with ت ر ج م itself.",
     run: runRoots }
 ];
@@ -4054,6 +4092,7 @@ function renderHall() {
         '</span>' +
         '<span class="ctitles">' +
           '<span class="c-en">' + t.en + '</span>' +
+          (t.subject ? '<span class="c-subject">' + t.subject + '</span>' : '') +
           '<span class="c-blurb">' + t.blurb + '</span>' +
         '</span>';
       b.addEventListener("click", () => openItem(t));
@@ -4182,6 +4221,10 @@ function openItem(t, arg) {
   active = t;
   setAct(t.section === "method" ? 2 : 3);
   document.getElementById("trial-en").textContent = t.en;
+  /* the precise subject, so a member can find the same material in the
+     Translation Handbook by chapter rather than by guesswork */
+  const subj = document.getElementById("trial-subject");
+  if (subj) { subj.textContent = t.subject || ""; subj.hidden = !t.subject; }
   document.getElementById("trial-count").textContent = "";
   document.getElementById("trial-dots").innerHTML = "";
   stage.innerHTML = "";
