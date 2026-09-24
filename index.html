@@ -1123,7 +1123,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 12 &middot; 21 Sep</p>
+        <p class="build-mark">Guild build 13 &middot; 24 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1768,7 +1768,7 @@ const PROCEDURES = [
       { s: "زادَ الطَّلَبُ زِيادةً كبيرة.", b: "The demand increased a large increase.", g: "Demand rose sharply.", w: "Arabic's absolute object (المفعول المطلق) has no English form — it becomes an adverb." }
     ] },
 
-  { n: "V", en: "Modulation", ar: "التَّطويع",
+  { n: "V", en: "Modulation", ar: "التَّحوير",
     what: "Change the point of view — say the same thing from the other side.",
     when: ["The literal is correct but reads oddly", "Negation in one language is affirmation in the other", "Cause and effect swap places"],
     trap: "Modulating when nothing required it. This procedure is for when the direct route produces awkward target text, not a licence to rewrite.",
@@ -2045,7 +2045,7 @@ const TEXT_WORLDS = [
         w: "Progress bars, carousels, sliders, breadcrumbs and back arrows all reverse in a right-to-left interface, because they encode direction of travel. Right-aligning Arabic inside a left-to-right layout leaves an interface that reads correctly and <b>behaves backwards</b>." }
     ] },
 
-  { key: "audiovisual", en: "Audiovisual Translation", ar: "سَمعيّ بَصَريّ",
+  { key: "audiovisual", en: "Audiovisual Translation", ar: "التَّرجَمة السَّمعيّة البَصَريّة",
     intro: "Subtitling is translation with a ruler and a stopwatch. You have roughly 37 to 42 characters per line, two lines at most, and a viewer who reads about 17 characters a second <b>while also watching the picture</b>. Most of the work is deciding what to leave out, because the image and the actor's voice have already delivered half the meaning before your words arrive.",
     introAr: "الترجمة السمعيّة البصريّة ترجمة بمسطرة وساعة. لديك نحو ٣٧ إلى ٤٢ حرفاً في السطر، وسطران على الأكثر، ومشاهدٌ يقرأ نحو ١٧ حرفاً في الثانية وهو يتابع الصورة. وأكثر عملك أن تقرّر ما تحذفه، لأنّ الصورة ونبرة الممثّل أدّتا نصف المعنى قبل أن تصل كلماتك.",
     how: ["Watch the scene before writing. The picture decides what you are allowed to cut.",
@@ -2292,14 +2292,14 @@ const NAME_PROC = [
     why: "Sky + scraper became سحاب + ناطحة. The pieces were translated and reassembled — a calque, and one of the successful ones." },
   { src: "after his return → بعد أن عاد", srcEn: true,
     opts: [
-      { t: "Modulation · التَّطويع", tag: "the point of view did not change" },
+      { t: "Modulation · التَّحوير", tag: "the point of view did not change" },
       { t: "Transposition · الإبدال", tag: "a noun became a verb", ok: true },
       { t: "Literal translation · الحَرفيّة", tag: "that would have given بعد عودته" }
     ],
     why: "The English noun <i>return</i> becomes an Arabic verb عاد. Same viewpoint, different part of speech — transposition, and the commonest of all AR↔EN moves." },
   { src: "It is not difficult. → إنّه سَهل.", srcEn: true,
     opts: [
-      { t: "Modulation · التَّطويع", tag: "negative became affirmative — the viewpoint flipped", ok: true },
+      { t: "Modulation · التَّحوير", tag: "negative became affirmative — the viewpoint flipped", ok: true },
       { t: "Equivalence · التَّكافُؤ", tag: "no fixed expression was swapped" },
       { t: "Borrowing · الاِقتِراض", tag: "nothing was borrowed" }
     ],
@@ -2322,7 +2322,7 @@ const NAME_PROC = [
     opts: [
       { t: "Calque · النَّسْخ", tag: "nothing was translated piece by piece" },
       { t: "Borrowing · الاِقتِراض", tag: "the word crossed over intact", ok: true },
-      { t: "Modulation · التَّطويع", tag: "no viewpoint changed" }
+      { t: "Modulation · التَّحوير", tag: "no viewpoint changed" }
     ],
     why: "English took the Arabic word whole and let it naturalise. Borrowing runs in both directions, and English is full of Arabic loans." }
 ];
@@ -2598,7 +2598,7 @@ const ITEMS = [
     blurb: "The foundational framework of the field — borrowing, calque, literal, transposition, modulation, equivalence, adaptation — each worked in Arabic and English. One framework among several, and the one the others answer.",
     run: runProcedures },
   { id: "toolkit", ar: "عُدّة المُترجِم", en: "The Translator's Toolkit", kind: "guide", section: "method",
-    blurb: "Method, strategy, technique and shift are four different things, and eighteen named techniques sit under them. What you actually did to a phrase, and what to call it.",
+    blurb: "Method, procedure, strategy and shift are four different things. The twelve strategies of Chapter 13, each with its Arabic name and a worked example — and what to call what you actually did.",
     run: runToolkit },
   /* The id stays "texttypes" so nobody's stored progress is orphaned by the
      rename; only what a learner sees has changed. */
@@ -4355,114 +4355,101 @@ function runTextTypes() {
    "Translation Techniques Revisited", Meta 47(4). Their
    definitions are summarised here, not quoted.
    ═══════════════════════════════════════════════════════════ */
+/* The three levels, defined as the Translation Handbook defines them, so a
+   member reads the same words here and in Chapter 12 and Chapter 13. */
 const LEVELS = [
   { en: "Method", ar: "طَريقة", scope: "The whole text",
-    what: "A decision taken once, before you start, that governs everything after: what kind of translation is this going to be? Literal or free; foreign-sounding or domesticated; philological, communicative, or adapted. It follows from the brief — who commissioned it, for which reader, to do what job.",
-    ex: "\"This user manual will be communicative: the reader must be able to operate the machine without noticing the translation.\"" },
-  { en: "Strategy", ar: "استراتيجيّة", scope: "The translator, working",
-    what: "How you go about solving a problem — a process, not a product. Reading the whole text first; searching parallel texts in the target language; paraphrasing to get past a block; leaving a gap and returning; checking a term against an authority; deciding to consult the client. Strategies are largely invisible in the finished text.",
-    ex: "\"I cannot place this term. I will read three target-language contracts of the same type and see what they call it.\"" },
-  { en: "Technique", ar: "تِقنيّة", scope: "This phrase, this line",
-    what: "What you actually did to a specific segment, visible by comparing it with the source. Techniques are countable, nameable and affect small units. The eighteen below are the standard set.",
-    ex: "\"I rendered the noun phrase with a verb: transposition.\"" },
-  { en: "Shift", ar: "تَحَوُّل", scope: "The two texts, compared",
-    what: "A descriptive term, not a choice: a difference between source and target that shows up when the two are laid side by side. Catford's category. A shift is the evidence; the technique is the act that produced it.",
-    ex: "\"The source has a passive, the target an active. That is a shift; the technique was transposition.\"" }
+    what: "One decision, taken before you start, that governs everything after: what kind of translation is this going to be? Literal or free, foreign-sounding or domesticated. It follows from the brief \u2014 who asked for it, for which reader, to do what job.",
+    ex: "\u201cThis manual will be communicative: the reader must be able to work the machine without noticing the translation.\u201d" },
+  { en: "Procedure", ar: "\u0625\u062c\u0631\u0627\u0621 \u0627\u0644\u062a\u0631\u062c\u0645\u0629", scope: "This word, this phrase",
+    what: "A technique for translating a word, phrase or sentence. There are seven of them, named by Vinay and Darbelnet, and they are the subject of the guide next door. Procedures 1\u20133 are <b>direct</b>; 4\u20137 are <b>oblique</b>.",
+    ex: "\u201cI turned the noun phrase into a verb: transposition.\u201d (Chapter 12)" },
+  { en: "Strategy", ar: "\u0627\u0633\u062a\u0631\u0627\u062a\u064a\u062c\u064a\u0629 \u0627\u0644\u062a\u0631\u062c\u0645\u0629", scope: "This problem",
+    what: "A <b>planned solution to a translation problem</b>. Where a procedure names the move, a strategy answers the harder question: this expression has no equivalent, so what will I do about it? Choose a strategy for each problem, not one strategy for the whole text.",
+    ex: "\u201cThere is no English for \u0627\u0644\u0639\u0650\u062f\u0651\u0629, so I will explain it: explanatory translation.\u201d (Chapter 13)" },
+  { en: "Shift", ar: "\u062a\u064e\u062d\u064e\u0648\u0651\u064f\u0644", scope: "The two texts, compared",
+    what: "Not a choice but an observation: a difference between source and target that shows up when you lay them side by side. A shift is the evidence; the procedure is the act that produced it.",
+    ex: "\u201cThe source has a passive, the target an active.\u201d" }
 ];
 
+/* Chapter 13, as the handbook sets it out, with its own Arabic and its own
+   worked examples. These are the strategy names a member will meet in the
+   book, so they are the names used here. */
 const TECHNIQUES = [
-  { en: "Adaptation", ar: "التَّكييف",
-    what: "Replace a cultural element of the source with one belonging to the target culture.",
-    ex: "A Christmas dinner in an advertisement becomes an <b>إفطار</b> table in Ramadan." },
-  { en: "Amplification", ar: "التَّوسيع",
-    what: "Introduce detail not formulated in the source, to make it usable for the new reader.",
-    ex: "<b>رمضان</b> becomes \"Ramadan, the Muslim month of fasting\" for a reader who would not otherwise know." },
-  { en: "Borrowing", ar: "الاِقتِراض",
-    what: "Take the word straight from the source language — bare, or naturalised into the target's spelling and sound.",
-    ex: "<i>bank</i> &rarr; <b>بنك</b> (naturalised); <i>lobby</i> &rarr; <b>لوبي</b>." },
-  { en: "Calque", ar: "النَّسخ",
-    what: "Translate a foreign word or phrase literally, element by element, so the target gains a new construction built on the source's pattern.",
-    ex: "<i>skyscraper</i> &rarr; <b>ناطِحة سَحاب</b>; <i>Security Council</i> &rarr; <b>مَجلِس الأمن</b>." },
-  { en: "Compensation", ar: "التَّعويض",
-    what: "Something is lost at one point, so an equivalent effect is introduced at another point where the target language allows it.",
-    ex: "A pun that cannot survive in line two is replaced by a different pun in line four, so the page keeps its wit." },
-  { en: "Description", ar: "الوَصف",
-    what: "Replace a term with a description of its form or function, when no equivalent exists.",
-    ex: "<b>مَجلِس</b> &rarr; \"a formal reception room where a household receives guests\"." },
-  { en: "Discursive creation", ar: "الإبداع الخِطابيّ",
-    what: "Establish a temporary equivalence that is unpredictable out of context — it works only for this text.",
-    ex: "A film titled <i>Jaws</i> released in Arabic under a title that shares none of its words." },
-  { en: "Established equivalent", ar: "المُكافِئ المُتعارَف عليه",
-    what: "Use the term or expression already recognised in the target language as <b>the</b> equivalent, whether by dictionary, institution or usage.",
-    ex: "<i>human rights</i> &rarr; <b>حُقوق الإنسان</b>. Not a creative choice; using anything else is an error." },
-  { en: "Generalization", ar: "التَّعميم",
-    what: "Use a more general, more neutral term than the source's.",
-    ex: "<b>عَباءة</b> &rarr; \"robe\", where the specific garment is not the point." },
-  { en: "Linguistic amplification", ar: "التَّوسيع اللُّغَويّ",
-    what: "Add linguistic elements — typical of interpreting and dubbing, where the line must fill a space.",
-    ex: "<i>No way</i> &rarr; <b>لا سَبيل إلى ذلك أبدًا</b>." },
-  { en: "Linguistic compression", ar: "الضَّغط اللُّغَويّ",
-    what: "Synthesise the source into fewer elements. The subtitler's daily technique, imposed by the character limit.",
-    ex: "<i>Are you going to have dinner with us?</i> &rarr; <b>أستَعشَّى معنا؟</b>" },
-  { en: "Literal translation", ar: "التَّرجَمة الحَرفيّة",
-    what: "Render word for word where the target language permits it without distortion. A legitimate technique, not a failure — when it works.",
-    ex: "<i>the Ministry of Foreign Affairs</i> &rarr; <b>وِزارة الخارِجيّة</b>." },
-  { en: "Modulation", ar: "التَّطويع",
-    what: "Change the point of view, the focus, or the cognitive category — say the same thing from a different angle.",
-    ex: "<i>It is not difficult</i> &rarr; <b>إنّه سَهل</b>: a negation becomes an affirmation." },
-  { en: "Particularization", ar: "التَّخصيص",
-    what: "Use a more precise, more concrete term than the source's. The mirror of generalization.",
-    ex: "<i>the vehicle</i> &rarr; <b>الشّاحِنة</b>, when the context has established it is a lorry." },
-  { en: "Reduction", ar: "الحَذف",
-    what: "Suppress an element of the source that the target reader does not need or the target language will not carry.",
-    ex: "An honorific chain before a name, dropped in an English news report that has no slot for it." },
-  { en: "Substitution", ar: "الاِستِبدال",
-    what: "Exchange a linguistic element for a paralinguistic one, or the reverse. Chiefly an interpreter's technique.",
-    ex: "A hand placed on the heart in greeting, rendered in speech as \"thank you\"." },
-  { en: "Transposition", ar: "الإبدال النَّحويّ",
-    what: "Change the grammatical category without changing the meaning.",
-    ex: "<i>He is a fast reader</i> &rarr; <b>يَقرَأ بِسُرعة</b>: adjective plus noun becomes verb plus adverbial." },
-  { en: "Variation", ar: "التَّنويع",
-    what: "Change elements that carry variation — dialect, tone, social register, the style of a character's speech.",
-    ex: "A character's Kuwaiti speech rendered in an English register that marks them as local and informal, rather than as neutral." }
+  { en: "Functional translation", ar: "\u0627\u0644\u062a\u0631\u062c\u0645\u0629 \u0627\u0644\u0648\u0638\u064a\u0641\u064a\u0629",
+    what: "Use a target-language expression that does the same job, whatever its shape. The first thing to reach for with an idiom.",
+    ex: "<i>spill the beans</i> &rarr; <b>\u064a\u064f\u0641\u0634\u064a \u0627\u0644\u0633\u0631\u0651</b> &middot; <i>mark my words</i> &rarr; <b>\u062a\u0630\u0643\u0651\u0631 \u0643\u0644\u0627\u0645\u064a</b>" },
+  { en: "Cultural substitution", ar: "\u0627\u0644\u0625\u0628\u062f\u0627\u0644 \u0627\u0644\u062b\u0642\u0627\u0641\u064a",
+    what: "Replace a cultural reference with one the target reader already knows.",
+    ex: "<i>They are like Romeo and Juliet.</i> &rarr; <b>\u0647\u0645\u0627 \u0643\u0642\u064a\u0633 \u0648\u0644\u064a\u0644\u0649</b>" },
+  { en: "Addition", ar: "\u0627\u0644\u0625\u0636\u0627\u0641\u0629",
+    what: "Add what the new reader needs but the old one did not. Common from English into Arabic, because Arabic is a language of elaboration (\u0644\u063a\u0629 \u0625\u0633\u0647\u0627\u0628).",
+    ex: "<i>the Fed</i> &rarr; <b>\u0645\u062c\u0644\u0633 \u0627\u0644\u0627\u062d\u062a\u064a\u0627\u0637\u064a \u0627\u0644\u0641\u064a\u062f\u0631\u0627\u0644\u064a \u0627\u0644\u0623\u0645\u0631\u064a\u0643\u064a</b>" },
+  { en: "Omission", ar: "\u0627\u0644\u062d\u0630\u0641",
+    what: "Leave out what the target language does not need. Common from Arabic into English, where repeated synonyms sound laboured. Also used for politeness.",
+    ex: "<b>\u0634\u062c\u0627\u0639\u064c \u0648\u0645\u0650\u063a\u0648\u0627\u0631</b> &rarr; <i>very brave</i>" },
+  { en: "Explanatory translation", ar: "\u0627\u0644\u062a\u0631\u062c\u0645\u0629 \u0627\u0644\u0634\u0631\u062d\u064a\u0629",
+    what: "Explain an expression that has no equivalent. <b>The last option</b>, not the first \u2014 used for cultural and technical words.",
+    ex: "<b>\u0627\u0644\u0632\u0643\u0627\u0629</b>, <b>\u0627\u0644\u0635\u062f\u0642\u0629</b>, <b>\u0627\u0644\u0639\u0650\u062f\u0651\u0629</b>" },
+  { en: "Compensation", ar: "\u0627\u0644\u062a\u0639\u0648\u064a\u0636",
+    what: "Something is lost here, so make an equal effect somewhere else.",
+    ex: "A pun that dies in line two is replaced by a different pun in line four, so the page keeps its wit." },
+  { en: "Domestication", ar: "\u0627\u0644\u062a\u0648\u0637\u064a\u0646",
+    what: "Make the translation feel local to the target reader.",
+    ex: "The brief decides between this and its opposite. Neither is right in general." },
+  { en: "Foreignisation", ar: "\u0627\u0644\u062a\u063a\u0631\u064a\u0628",
+    what: "Keep the foreign flavour of the source, so the reader knows they are reading a translation.",
+    ex: "Venuti argued for this; a tourist brochure usually argues against it." },
+  { en: "A more general word", ar: "\u0627\u0644\u062a\u0639\u0645\u064a\u0645",
+    what: "When the target language has no exact word, go one step up.",
+    ex: "<i>prawns and shrimps</i> &rarr; <b>\u0631\u0648\u0628\u064a\u0627\u0646</b>" },
+  { en: "A more neutral word", ar: "\u0627\u0644\u062a\u062d\u064a\u064a\u062f",
+    what: "When the source word carries a feeling that would land wrongly in the target text.",
+    ex: "A word that is merely blunt in one language can read as an insult in the other." },
+  { en: "Paraphrase", ar: "\u0625\u0639\u0627\u062f\u0629 \u0627\u0644\u0635\u064a\u0627\u063a\u0629",
+    what: "Say the meaning in other words when no single word will carry it.",
+    ex: "<i>jet lag</i> &rarr; <b>\u0625\u0631\u0647\u0627\u0642 \u0627\u0644\u0633\u0641\u0631</b>" },
+  { en: "Loan word plus explanation", ar: "\u0627\u0644\u0627\u0642\u062a\u0631\u0627\u0636 \u0645\u0639 \u0627\u0644\u0634\u0631\u062d",
+    what: "Keep the word and gloss it once, so the reader gains the term and its meaning together.",
+    ex: "<i>waqf</i> (a charitable endowment in Islam)" }
 ];
 
+/* Habits of working rather than named strategies. They are kept apart from
+   Chapter 13 on purpose: none of these is a term a member will be asked to
+   name in a commentary. */
 const STRATEGIES = [
   { en: "Read the whole text before translating any of it",
-    what: "Genre, purpose, audience and the argument's shape all decide sentence-level choices. Deciding them from sentence one means revising from sentence two." },
+    what: "Genre, purpose and audience decide sentence-level choices. Settling them at sentence one means revising from sentence two." },
   { en: "Work from the brief, not from the sentence",
-    what: "Who commissioned this, for which reader, to do what? A brief that is never asked for is a brief you have invented yourself." },
+    what: "Who asked for this, for which reader, to do what? A brief you never asked for is a brief you invented." },
   { en: "Search parallel texts, not dictionaries",
-    what: "For a contract, a leaflet, a press release: find three real ones written natively in the target language and see what they actually say. A dictionary gives you a word; a parallel text gives you the convention." },
+    what: "For a contract or a leaflet, find three real ones written natively in the target language. A dictionary gives a word; a parallel text gives the convention." },
   { en: "Name the problem before solving it",
-    what: "Is this a terminology problem, a cultural one, a register one, a pragmatic one? Each has different solutions, and misdiagnosing it wastes the search." },
+    what: "Lexical, cultural, register, pragmatic? Each has different solutions, and misdiagnosing it wastes the search." },
   { en: "Leave a marker and move on",
-    what: "A hard segment solved under pressure is usually solved badly. Flag it, keep the momentum, and return with the rest of the text in your head." },
-  { en: "Verify, do not infer, an official equivalent",
-    what: "Institutional names, legal terms, drug names and treaty titles have fixed forms. Inventing a plausible one is the error that is hardest to see and most damaging to find." },
-  { en: "Revise against the source, then against the target alone",
-    what: "Two passes with different questions. The first asks whether anything was lost or added; the second asks whether this reads as something written in this language." },
-  { en: "Consult the client — and say why",
-    what: "An ambiguity in the source, a factual error, a term with no settled equivalent: these are the client's decisions, not the translator's. Raising them is professional practice, not weakness." }
+    what: "A hard segment solved under pressure is usually solved badly. Flag it, keep moving, return with the whole text in your head." },
+  { en: "Verify an official equivalent; never infer one",
+    what: "Institutions, laws, drugs and treaties have fixed forms. Inventing a plausible one is the error hardest to see and most damaging to find." },
+  { en: "Revise twice, with different questions",
+    what: "First against the source: was anything lost or added? Then against the target alone: does this read as something written in this language?" },
+  { en: "Ask the client, and say why",
+    what: "An ambiguity, a factual error, a term with no settled equivalent: these are the client's decisions. Raising them is professional practice, not weakness." }
 ];
 
-/* ═══════════════════════════════════════════════════════════
-   GUIDE 3 · THE TOOLKIT
-   ═══════════════════════════════════════════════════════════ */
 function runToolkit() {
   let tab = 0;                       /* 0 levels · 1 techniques · 2 strategies */
-  const TABS = ["The four levels", "Eighteen techniques", "Working strategies"];
-  setCount("A guide · method, technique, strategy");
+  const TABS = ["The four levels", "The strategies", "How to work"];
+  setCount("A guide · procedure, strategy, method");
 
   function render() {
     stage.innerHTML = "";
     setDots(TABS.length, tab, tab);
 
     stage.appendChild(el("p", "lede",
-      "Translators argue about <b>method</b>, <b>strategy</b>, <b>technique</b> and <b>shift</b> as though they were " +
+      "Translators argue about <b>method</b>, <b>procedure</b>, <b>strategy</b> and <b>shift</b> as though they were " +
       "four words for the same thing. They are not, and keeping them apart is what lets you say precisely what you did " +
-      "and why. The Seven Procedures live at the technique level; they are the foundational list, and the eighteen " +
-      "techniques here are the finer-grained set the field has settled on since."));
+      "and why — which is exactly what a translation commentary asks of you. The names and definitions here are the " +
+      "ones in the Translation Handbook, so the word you learn in Chapter 12 is the word you meet in the trials."));
 
     const chips = el("div", "chips");
     TABS.forEach((label, k) => {
@@ -4486,17 +4473,18 @@ function runToolkit() {
       const v = el("div", "verdict");
       v.appendChild(el("span", "vh", "Why it matters in practice"));
       v.appendChild(el("p", "vb",
-        "A reviewer who writes \"too literal\" is talking about method. A reviewer who writes \"wrong term\" is talking " +
-        "about technique. If you cannot tell which you are being asked to change, you will fix the wrong thing. " +
-        "The Decision Lab in the trials runs on exactly this: <b>problem &rarr; decision &rarr; reason &rarr; technique " +
-        "&rarr; genre rule &rarr; reference</b>."));
+        "A reviewer who writes \"too literal\" is talking about <b>method</b>. One who writes \"wrong term\" is talking " +
+        "about a <b>procedure</b>. If you cannot tell which you are being asked to change, you will fix the wrong thing. " +
+        "This is also the backbone of a commentary (Chapter 25): name the <b>problem</b>, state the <b>decision</b>, give " +
+        "the <b>reason</b>, name the <b>procedure or strategy</b>, and cite the <b>source</b>."));
       stage.appendChild(v);
     }
 
     if (tab === 1) {
       stage.appendChild(el("p", "note",
-        "Molina and Hurtado Albir, <i>Translation Techniques Revisited</i> (Meta 47:4, 2002). Summarised, not quoted. " +
-        "Several overlap with the Seven Procedures by design &mdash; this taxonomy was built to refine them, not replace them."));
+        "Translation Handbook, <b>Chapter 13: Translation strategies</b>. A strategy is a <b>planned solution to a " +
+        "translation problem</b> &mdash; it answers <i>what shall I do about this?</i>, where a procedure names the move " +
+        "you made. Choose one for each problem, not one for the whole text, and keep explanatory translation for last."));
       const grid = el("div", "ledger");
       TECHNIQUES.forEach(t => {
         const card = el("div", "card tech");
@@ -4511,7 +4499,8 @@ function runToolkit() {
 
     if (tab === 2) {
       stage.appendChild(el("p", "note",
-        "A strategy is how you work, not what appears in the file. These are the ones that change a translation most."));
+        "Habits, not terms. None of these has an Arabic name to learn or a place in a commentary &mdash; they are " +
+        "simply the working practices that change a translation most."));
       const grid = el("div", "ledger");
       STRATEGIES.forEach(sg => {
         const card = el("div", "card tech");
@@ -4883,7 +4872,7 @@ const PHRASE_SETS = [
 
   /* ── COLLOCATIONS, EN → AR ── */
   { key: "coll_en_ar",
-    en: "Collocations", ar: "المُتلازِمات اللَّفظيّة",
+    en: "Collocations", ar: "التَّلازُم اللَّفظيّ",
     dir: "en_ar", dirLabel: "English → Arabic",
     lede: "A collocation is a pairing the language has already made for you. " +
           "<b>Agreement</b> takes a different Arabic verb depending on which verb stands beside it in English, " +
@@ -4907,7 +4896,7 @@ const PHRASE_SETS = [
 
   /* ── COLLOCATIONS, AR → EN ── */
   { key: "coll_ar_en",
-    en: "Collocations", ar: "المُتلازِمات اللَّفظيّة",
+    en: "Collocations", ar: "التَّلازُم اللَّفظيّ",
     dir: "ar_en", dirLabel: "Arabic → English",
     lede: "The same problem, running the other way. Arabic <b>اتخذ</b> covers a range that English splits between " +
           "<i>make</i>, <i>take</i> and <i>adopt</i>, and no rule predicts which. The object chooses the verb.",
