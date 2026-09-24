@@ -2,7 +2,7 @@
 import qrcode, cv2, numpy as np
 from PIL import Image, ImageDraw
 URL = 'https://translators-guild.vercel.app/'
-LOGO = 'qr/badge.png'   # built by qr/badge.py
+LOGO = '/root/.claude/uploads/7d117e07-7e64-5e6c-8e91-83d6b6c25330/a45c8764-image.png'   # the club's full logo
 q = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H, border=0); q.add_data(URL); q.make(fit=True)
 M = q.get_matrix(); n = len(M)
 S, B = 64, 4                        # pixels per module, quiet-zone modules
@@ -23,7 +23,7 @@ for r0, c0 in [(0, 0), (0, n - 7), (n - 7, 0)]:     # finder patterns: rounded r
     d.rounded_rectangle([x + S, y + S, x + 6 * S, y + 6 * S], radius=S * 1.1, fill='white')
     d.rounded_rectangle([x + 2 * S, y + 2 * S, x + 5 * S, y + 5 * S], radius=S * 0.8, fill=col(y + 3 * S))
 # logo in the centre on a white pad, about 22% of the code's width
-L = int(n * S * 0.20); pad = int(S * 0.6)
+L = int(n * S * 0.27); pad = int(S * 0.6)
 logo = Image.open(LOGO).convert('RGBA').resize((L, L), Image.LANCZOS)
 mask = Image.new('L', (L, L), 0); ImageDraw.Draw(mask).rounded_rectangle([0, 0, L, L], radius=int(L * 0.22), fill=255)
 cx = W // 2

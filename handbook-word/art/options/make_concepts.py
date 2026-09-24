@@ -3,8 +3,8 @@ import subprocess
 from PIL import Image, ImageDraw, ImageFont
 FS = lambda fonts: ''.join(f'<link rel="stylesheet" href="fs/{f}.css">' for f in fonts)
 QRCSS = '''
-.qr { left:50%; transform:translateX(-50%); top:478px; width:244px; background:#fff; border-radius:14px; padding:14px 14px 10px; text-align:center; }
-.qr img { width:182px; height:182px; display:block; margin:0 auto; }
+.qr { left:50%; transform:translateX(-50%); top:452px; width:262px; background:#fff; border-radius:14px; padding:14px 14px 10px; text-align:center; }
+.qr img { width:226px; height:226px; display:block; margin:0 auto; }
 .qr .l { font-size:12px; white-space:nowrap; color:#3A2B69; margin-top:6px; font-weight:700; }
 .qr .u { font-size:11px; color:#3A2B69; margin-top:2px; letter-spacing:.2px; }'''
 QR = '<div class="abs qr"><img src="website-qr.png"><div class="l">Visit the Translation Team’s website</div><div class="u">translators-guild.vercel.app</div></div>'
