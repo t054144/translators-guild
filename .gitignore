@@ -1,0 +1,7 @@
+# Build and tooling downloads. These were committed by accident once —
+# 17MB of Python wheels shipped to production with the site — and this is
+# here so it cannot happen again.
+*.whl
+__pycache__/
+*.pyc
+.DS_Store
