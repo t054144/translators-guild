@@ -1549,7 +1549,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 31 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 32 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -3667,7 +3667,7 @@ const GLOSSARY = [
   { en: "Ideational equivalence", ar: "التكافؤ الفكري", def: "Giving only the basic idea, in plain words.", ch: "9" },
   { en: "Ideology", ar: "الأيديولوجيا", def: "A set of beliefs that shapes how people describe events.", ch: "19" },
   { en: "Idiom", ar: "التعبير الاصطلاحي", def: "A fixed expression whose meaning is not the sum of the meanings of its words.", ch: "8" },
-  { en: "Interpreting", ar: "الترجمة الشفوية", def: "Transferring spoken language into another language &mdash; the term that covers the whole activity, as against الترجمة التحريرية, written translation. It is the name the United Nations gives its own service, <i>دائرة الترجمة الشفوية</i>. Its modes are <b>الترجمة الفورية</b>, rendered while the speaker is still speaking; <b>الترجمة التتابعية</b>, rendered from notes once the speaker pauses; <b>الترجمة المنظورة</b>, a written text read out in the other language; and <b>الترجمة الهمسية</b>, whispered to one or two listeners.", ch: "1" },
+  { en: "Interpreting", ar: "الترجمة الشفهية", def: "Transferring spoken language into another language &mdash; the term that covers the whole activity, as against الترجمة التحريرية, written translation. Its modes are <b>الترجمة الفورية</b>, rendered while the speaker is still speaking; <b>الترجمة التتابعية</b>, rendered from notes once the speaker pauses; <b>الترجمة المنظورة</b>, a written text read out in the other language; and <b>الترجمة الهمسية</b>, whispered to one or two listeners. The spelling الشفوية is also current &mdash; both restore a different dropped letter from شفة &mdash; and you will meet it in UN usage.", ch: "1" },
   { en: "Justification", ar: "التبرير", def: "The reason why a translation choice is right.", ch: "25" },
   { en: "Lexical creation", ar: "التوليد المعجمي", def: "Coining new target-language words for items with no direct equivalent.", ch: "16" },
   { en: "Literal translation", ar: "الترجمة الحرفية", def: "Keeping the original words, changing only what grammar requires; also called modified literal translation (الترجمة الحرفية المعدّلة).", ch: "10" },
@@ -3957,7 +3957,7 @@ const ITEMS = [
     blurb: "A real subtitler's constraint: a hard character limit and a line that will not fit. Cut the words, keep the meaning.",
     run: runSubtitle },
   { id: "booth", ar: "المَقصورة", en: "Interpreting", kind: "trial", section: "trials",
-    subject: "الترجمة الشفوية · Chapter 1",
+    subject: "الترجمة الشفهية · Chapter 1",
     blurb: "Choose your setting — diplomatic, legal, media, medical, conference or community — then climb from single terms to a full turn of speech, against a clock. Nothing repeats.",
     run: runBooth },
   { id: "colloc", ar: "التَّلازُم اللَّفظيّ", en: "Collocation", kind: "trial", section: "trials",
@@ -7014,10 +7014,9 @@ function chooseGenre() {
   const modes = el("div", "verdict");
   modes.appendChild(el("span", "vh", "The word for the work, and the word for this mode"));
   modes.appendChild(el("p", "vb",
-    "The whole activity is <b>الترجمة الشفوية</b> &mdash; spoken translation, as against " +
-    "<b>الترجمة التحريرية</b>, written translation. That is the term the United Nations uses for its own " +
-    "service, <i>دائرة الترجمة الشفوية</i>, and the one Arab institutes name their interpreting courses " +
-    "with. It is the umbrella, not a mode."));
+    "The whole activity is <b>الترجمة الشفهية</b> &mdash; spoken translation, as against " +
+    "<b>الترجمة التحريرية</b>, written translation. It is the umbrella the field sits under, not a mode " +
+    "within it."));
   modes.appendChild(el("ul", "how",
     '<li><span><b>الترجمة الفورية</b> &mdash; simultaneous. Rendered while the speaker is still ' +
       'speaking. <b>This is what the booth trains</b>, because the booth runs against a clock.</span></li>' +
@@ -7030,7 +7029,7 @@ function chooseGenre() {
   modes.appendChild(el("p", "vb",
     "In everyday speech <i>الترجمة الفورية</i> is often used for interpreting in general, and an " +
     "interpreter is commonly <i>مترجم فوري</i>. That usage is real and worth knowing &mdash; but in a " +
-    "commentary or an exam, <b>الفورية names one mode and الشفوية names the field</b>."));
+    "commentary or an exam, <b>الفورية names one mode and الشفهية names the field</b>."));
   stage.appendChild(modes);
 
   stage.appendChild(backFoot());
