@@ -780,6 +780,14 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .alpha .a-hand, .lh-fig {
   background: radial-gradient(circle at 50% 47%,
     rgba(214,191,234,.20) 0 36%, rgba(214,191,234,.07) 56%, transparent 71%); }
+/* A cut-out with no shadow reads as pasted on. drop-shadow follows the
+   alpha rather than the box, so the shadow is the hand's own — and it is
+   violet rather than black, so it belongs to this page. */
+.alpha .a-hand img, .lh-fig img {
+  filter: drop-shadow(0 6px 14px rgba(38,12,58,.55)) drop-shadow(0 1px 2px rgba(38,12,58,.4)); }
+:root[data-theme="light"] .alpha .a-hand img,
+:root[data-theme="light"] .lh-fig img {
+  filter: drop-shadow(0 6px 14px rgba(90,58,124,.28)) drop-shadow(0 1px 2px rgba(90,58,124,.22)); }
 /* Some of these are one handshape twice over, told apart only by the way
    the hand travels. The mark says so on the tile; the line says how on
    the letter's own page. */
