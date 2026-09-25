@@ -3068,7 +3068,7 @@ module.exports = [
 ],
 [
 "p",
-"Only the first page and the start of the second page (of four) were seen, in a screenshot."
+"All four pages were seen, in screenshots."
 ],
 [
 "table",
@@ -3081,33 +3081,93 @@ module.exports = [
 [
 [
 "Three-step process: analysis of the source text, translation, post-translation activity",
-"used and edited",
-"Ch 17, Step 1",
-"Matches the three phases already in the chapter (analysis, translation and commentary); no change needed."
+"used as written",
+"Ch 17, Step 1; Ch 25",
+"Matches the three phases already in the handbook (analysis, translation and commentary)."
 ],
 [
 "Model based on Fairclough’s relational model (Fairclough, 2003)",
 "used and edited",
 "Ch 17, Step 3; References",
-"Fairclough (2003) added to the References and cited with the course materials. Reason: the model names it as its basis."
+"Fairclough (2003) added to the References and cited with the course materials."
 ],
 [
 "Two components: linguistic level and external level",
 "used and edited",
 "Ch 17, Step 3",
-"Written as “look at two levels”, in plain English."
+"Written as “look at two levels”."
 ],
 [
-"Micro level: lexical, syntactic and semantic aspects, with their lists",
+"1.1.1 Lexical aspects",
 "used and edited",
 "Ch 17, Step 3",
-"Shortened into words, grammar and meaning, with the main items of each list; types of meaning linked to Ch 5."
+"Given as “Words”, with the full list."
 ],
 [
-"Rest of the model (pages 2–4)",
+"1.1.2 Syntactical aspects",
+"used and edited",
+"Ch 17, Step 3",
+"Given as “Grammar”; “cohesion” explained as how sentences are linked."
+],
+[
+"1.1.3 Semantic level",
+"used and edited",
+"Ch 17, Step 3",
+"Given as “Meaning”; speaker’s, sentence and figurative meaning left out to keep the list short; linked to Chapters 5 to 8."
+],
+[
+"1.1.4 Morphological level",
+"used and edited",
+"Ch 17, Step 3",
+"Given as “Word forms”. Reason for cuts: infixation, blending and clippings are too technical for beginners."
+],
+[
+"1.1.5 Phonological level",
+"used and edited",
+"Ch 17, Step 3",
+"Given as “Sound”, with where it matters most (poems, slogans, adverts)."
+],
+[
+"1.2.1 Textual level",
+"used and edited",
+"Ch 17, Step 3",
+"Given as “The text”; texture and coherence left out; linked to Chapter 18."
+],
+[
+"1.2.2 Intertextual level",
+"used and edited",
+"Ch 17, Step 3",
+"Given as “Other texts” (quotations and allusions). Frame-modification, re-modelling and Al-ta’reed not used: too advanced."
+],
+[
+"1.2.3 Political/ideological level",
+"used and edited",
+"Ch 17, Step 3",
+"Given as “Point of view”, linked to Chapter 19."
+],
+[
+"2. The external level",
+"used and edited",
+"Ch 17, Step 3",
+"Given as three questions: background event, author, target culture and audience."
+],
+[
+"3. Post-translation activity: experience and commentary",
+"used and edited",
+"Ch 25, Step 2",
+"Added: consult the analysis while writing the commentary. Monitoring, intrinsic and extrinsic managing not used: too advanced."
+],
+[
+"Translation quality assessment",
+"used and edited",
+"Ch 17, Step 5",
+"One sentence added: the model can also be used to judge a translation (Chapter 23)."
+],
+[
+"Sample analyses (News, Speech, Climate change) and course notes",
 "not used",
 "–",
-"Not seen. The external level is described only in general terms (author, publisher, audience, purpose, situation), from the chapter’s existing checklist."
+"Not received."
 ]
 ],
 [
