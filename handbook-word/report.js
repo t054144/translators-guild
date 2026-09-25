@@ -8,14 +8,15 @@ const FONT = PDF ? 'Liberation Sans' : 'Arial', ARABIC = PDF ? 'Noto Naskh Arabi
 const mm = x => Math.round(x * 56.7);
 const PAGE_W = mm(210), MARGIN = mm(25), CONTENT_W = PAGE_W - 2 * MARGIN;
 
-// inline text: **bold**, {{Arabic}}
+// inline text: **bold**, _italic_, {{Arabic}}
 function runs(text, base = {}) {
-  const out = []; const re = /(\*\*[^*]+\*\*|\{\{[^}]+\}\})/g; let last = 0, m;
+  const out = []; const re = /(\*\*[^*]+\*\*|\{\{[^}]+\}\}|(?<![A-Za-z0-9])_[^_]+_(?![A-Za-z0-9]))/g; let last = 0, m;
   const plain = t => { if (t) out.push(new TextRun({ text: t, font: FONT, ...base })); };
   while ((m = re.exec(text))) {
     plain(text.slice(last, m.index));
     const tok = m[0];
     if (tok.startsWith('**')) out.push(...runs(tok.slice(2, -2), { ...base, bold: true }));
+    else if (tok.startsWith('_')) out.push(...runs(tok.slice(1, -1), { ...base, italics: true }));
     else out.push(new TextRun({ text: tok.slice(2, -2), rightToLeft: true, font: { ascii: ARABIC, hAnsi: ARABIC, cs: ARABIC }, size: base.size, sizeComplexScript: base.size ? base.size + 1 : 23, bold: base.bold, boldComplexScript: base.bold }));
     last = m.index + tok.length;
   }
@@ -36,6 +37,10 @@ function block([kind, a, b, c]) {
     case 'ul': case 'ol': {
       const k = kind === 'ol' ? ++inst : undefined;
       a.forEach(t => P(runs(t), { numbering: { reference: kind, level: 0, ...(k ? { instance: k } : {}) }, spacing: { after: 80, line: 290 } }));
+      body.push(new Paragraph({ spacing: { after: 60 }, children: [] })); break;
+    }
+    case 'redul': {   // items the team must still verify, in red
+      a.forEach(t => P(runs(t, { color: 'C00000' }), { numbering: { reference: 'ul', level: 0 }, spacing: { after: 80, line: 290 } }));
       body.push(new Paragraph({ spacing: { after: 60 }, children: [] })); break;
     }
     case 'table': {
