@@ -7,7 +7,7 @@ module.exports = [
   ['Samiuallah Mohammad', 'First draft; plan and recommendations; 180 course notes; Translation 1 notes; notes on Farghal & Shunnaq; Text Analysis Model; {{الترجمة: ماهيتها وكيفيتها}}; terminology selection (with Masooma)', 'Most chapters, the chapter order, Chapters 17 and 25', 'Draft: 156 of 175 points. Plan: 21 of 38 requests done, 7 in part, 4 done and later removed, 6 not done. Model: used in full, in simpler form.'],
   ['Masooma Almesri', 'Terminology slides (182) and the chapter selected from them with Samiuallah; the idea of an opening chapter of tips', 'Chapter 21', '25 of 43 points'],
   ['Loulwah Bin Saeed', 'Audiovisual translation notes (Intro to AVT, AVT 2)', 'Chapters 26 and 27', '43 of 62 points'],
-  ['Shaikhah Alkhaledi', 'My study notes; structure, editing, covers, layout, website', '12 chapters (see Section 6)', 'All'],
+  ['Shaikhah Alkhaledi', 'My study notes; my terminology class notes; structure, editing, covers, layout, website', '12 chapters, and Chapter 21 (see Section 6)', 'Used selectively, to keep the book at beginner level'],
 ], [18, 30, 22, 30]],
 
 ['h1', '2. How I decided what to keep'],
@@ -45,6 +45,7 @@ module.exports = [
 
 ['h1', '6. My own part'],
 ['p', 'I planned the structure (9 parts, 27 chapters), rewrote every chapter as a guided lesson, wrote the opening section for complete beginners, and proofread the whole book twice. My study notes went into Chapters 1, 3, 5, 6, 7, 8, 13, 16, 18, 21, 22 and 26, for example the three kinds of translation, the verbs _be_, _do_ and _have_, problems with single words, idioms, news headlines, CAT tools, localisation and the Arabic dubbing of _The Simpsons_. Where the team’s material had gaps, I added sections from published sources, among them the seven procedures, communicative translation, explicitation and implicitation, genres, dictionaries, common mistakes and the risk matrix. I also designed the two covers, the layout, the QR code and the team’s website.'],
+['p', 'I also went through the slides of the terminology course I took and extracted the practical steps a beginner needs, which now guide Chapter 21: a term can be several words (_network security_); read a short introduction to a new field, and ask the client or a specialist when the meaning is unclear; do not trust a term’s parts alone (_blackboard_); confirm an equivalent in a text written in Arabic, not in a translation; write a one-sentence definition (_thermometer_); and choose one of two accepted names (_aerial_ / _antenna_). I left out the theory, the history of the field and the detailed record formats, which a beginner does not need.'],
 
 ['h1', '7. What I removed, and why'],
 ['table', ['Removed', 'Reason'], [

@@ -309,7 +309,7 @@ module.exports = [
   'Check the quotations against the printed books, especially the two items without page numbers (al-Jāḥiẓ and Gambier) and the paraphrases in Section 11.',
   'Confirm the sources of the draft’s own examples. The notes say that the material was collected from more than one source. The examples are credited to the team’s course materials; if any come from a published book, such as the 180 or 182 books, that book must be credited instead.',
   'Confirm the copyright line (© 2026 Guild Professional Club, Translation Team) and the club’s official name.',
-  'Confirm that the statement on AI assistance on the copyright page meets the university’s and the publisher’s rules.',
+  'Confirm the copyright line and the statement on AI assistance on the copyright page.',
   'Scan the QR code on a printed proof with several phones before the full print run.',
   'Open the Word file in Microsoft Word, update the contents page, and check the layout before printing.',
 ]],
