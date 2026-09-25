@@ -1081,6 +1081,34 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .how li b { color: var(--white); font-weight: 500; }
 .how li i { color: var(--white); font-style: italic; }
 
+/* ---------- choosing a direction for the booth ---------- */
+.dir-pick { display: grid; gap: .5rem; }
+.dir-lab { font-size: .62rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--lilac-dim); }
+.dir-row { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.dir-btn {
+  display: grid; gap: .3rem; justify-items: center; text-align: center;
+  padding: .85rem .6rem; border-radius: var(--r-lg); border: var(--hair-lit);
+  background: rgba(255,255,255,.04); box-shadow: none; min-width: 0;
+}
+.dir-btn:hover { background: rgba(214,191,234,.1); transform: none; box-shadow: none; }
+.dir-btn.on { background: var(--grad-soft); border-color: rgba(167,38,208,.7); box-shadow: var(--glow); }
+.d-pair { display: flex; align-items: center; gap: .4rem; }
+.d-from, .d-to { font-family: var(--f-serif); font-size: 1.15rem; font-weight: 700;
+  color: var(--lilac-dim); line-height: 1; }
+.d-arrow { font-size: .95rem; color: var(--lilac-dim); line-height: 1; }
+.dir-btn.on .d-from, .dir-btn.on .d-arrow { color: var(--lilac); }
+.dir-btn.on .d-to { color: var(--magenta); }
+.d-en { font-size: .7rem; font-weight: 500; letter-spacing: .02em; color: var(--ink-soft); }
+.dir-btn.on .d-en { color: var(--white); }
+.dir-say { margin: .1rem 0 0; font-size: .82rem; font-weight: 300; line-height: 1.6; color: var(--ink-soft); }
+
+/* Typing into Arabic: the field runs right to left in the Arabic face. */
+.typing input.ar-in { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.15rem; }
+.ar-say { font-family: var(--f-ar-text); direction: rtl; unicode-bidi: isolate; color: var(--white); }
+.rev-row .q-ans.is-ar b { font-family: var(--f-ar-text); direction: rtl; unicode-bidi: isolate; }
+.prompt .src-en.long { font-size: clamp(1.02rem,3.2vw,1.3rem); font-style: normal; line-height: 1.65; max-width: 44ch; }
+
 /* ---------- choosing a setting for the booth ---------- */
 .genre-grid { display: grid; gap: .6rem; }
 .genre {
@@ -1516,7 +1544,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 28 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 29 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -6586,11 +6614,66 @@ function buildRound(genre) {
   return out;
 }
 
+/* ── which way the booth runs ──
+   An interpreter is booked to work INTO one language and stays there
+   for the assignment. The Guild does the same: you choose the direction
+   once, at the top, and the whole round runs that way. */
+const BOOTH_DIRS = [
+  { id: "ar-en", en: "Arabic → English", ar: "من العربية إلى الإنجليزية",
+    say: "You hear Arabic and render English. The prompt is Arabic; you type English." },
+  { id: "en-ar", en: "English → Arabic", ar: "من الإنجليزية إلى العربية",
+    say: "You hear English and render Arabic. The prompt is English; you type Arabic." }
+];
+function boothDir() {
+  const d = state.boothDir;
+  return BOOTH_DIRS.some(x => x.id === d) ? d : "ar-en";
+}
+
+/* Arabic normalised for comparison: the vowel marks and the elongation
+   dash carry no information here, and a learner typing in a hurry will
+   not distinguish أ from ا or ة from ه. None of that should cost a
+   mark. */
+function arNorm(s) {
+  return String(s || "")
+    .replace(/[ً-ٰٟـ]/g, "")
+    .replace(/[أإآٱ]/g, "ا")
+    .replace(/ى/g, "ي")
+    .replace(/ة/g, "ه")
+    .replace(/ؤ/g, "و")
+    .replace(/ئ/g, "ي")
+    .replace(/[^ء-ي\s]/g, " ")
+    .replace(/\s+/g, " ").trim();
+}
+/* Particles and pronouns carry no content, so they are not asked for. */
+const AR_STOP = new Set(arNorm(
+  "و في من إلى على عن أن إن التي الذي الذين ما لا لم لن قد هذا هذه ذلك تلك مع هو هي هم " +
+  "كل بين عند بعد قبل أو ثم لكن حتى كما به بها له لها أنه أنها كان كانت يكون لدى إلا أي " +
+  "الى هناك هنا نحن أنت أنا قال قالت وقد وقال"
+).split(" "));
+function arBare(w) { return w.indexOf("ال") === 0 ? w.slice(2) : w; }
+function arTokens(s) {
+  return arNorm(s).split(" ")
+    .filter(w => w.length > 1 && !AR_STOP.has(w) && !AR_STOP.has(arBare(w)));
+}
+
 /* A long item is never marked on an exact match — nobody produces one
    under a clock, and an interpreter is not judged on wording. It carries
-   the content it must get across, and most of it through is a pass. */
-function boothHit(item, input) {
-  if (item.keys && item.keys.length) {
+   the content it must get across, and most of it through is a pass.
+   Working into Arabic, the content is taken from the Arabic itself,
+   with the article and the vowel marks forgiven. */
+function boothHit(item, input, dir) {
+  const long = !!(item.keys && item.keys.length);
+  if ((dir || "ar-en") === "en-ar") {
+    const a = arNorm(input);
+    if (a.length < 2) return false;
+    const t = arNorm(item.ar);
+    if (!long) return a === t || a.indexOf(t) >= 0 || (t.length > 5 && t.indexOf(a) >= 0);
+    const want = arTokens(item.ar);
+    if (!want.length) return false;
+    const got = want.filter(w => a.indexOf(w) >= 0 || a.indexOf(arBare(w)) >= 0).length;
+    return got >= Math.ceil(want.length * 0.6);
+  }
+  if (long) {
     const a = norm(input);
     if (a.length < 4) return false;
     const got = item.keys.filter(k => a.indexOf(norm(k)) >= 0).length;
@@ -6609,9 +6692,35 @@ function chooseGenre() {
 
   stage.appendChild(el("p", "lede",
     "Nobody interprets in general, and nobody is hired to render one noun at a time. Choose the " +
-    "<b>setting</b> you are sitting in &mdash; it decides the vocabulary &mdash; and the booth climbs " +
-    "from single terms to a full turn of speech. Nothing repeats inside a round, and what you were " +
-    "given last time is not what you are given first this time."));
+    "<b>direction</b> you are working in and the <b>setting</b> you are sitting in &mdash; between " +
+    "them they decide the vocabulary &mdash; and the booth climbs from single terms to a full turn " +
+    "of speech. Nothing repeats inside a round, and what you were given last time is not what you " +
+    "are given first this time."));
+
+  /* Direction first, because it governs everything below it. */
+  const dirWrap = el("div", "dir-pick");
+  dirWrap.appendChild(el("span", "dir-lab", "Working into"));
+  const dirRow = el("div", "dir-row");
+  BOOTH_DIRS.forEach(d => {
+    const on = boothDir() === d.id;
+    const b = el("button", "dir-btn" + (on ? " on" : ""));
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+    b.innerHTML =
+      '<span class="d-pair">' +
+        '<span class="d-from">' + (d.id === "ar-en" ? "AR" : "EN") + '</span>' +
+        '<span class="d-arrow" aria-hidden="true">&rarr;</span>' +
+        '<span class="d-to">' + (d.id === "ar-en" ? "EN" : "AR") + '</span>' +
+      '</span>' +
+      '<span class="d-en">' + d.en + '</span>';
+    b.addEventListener("click", () => { state.boothDir = d.id; save(); chooseGenre(); });
+    dirRow.appendChild(b);
+  });
+  dirWrap.appendChild(dirRow);
+  dirWrap.appendChild(el("p", "dir-say",
+    BOOTH_DIRS.find(d => d.id === boothDir()).say +
+    " An interpreter is booked to work into one language and stays there for the assignment; " +
+    "the booth does not mix the two inside a round."));
+  stage.appendChild(dirWrap);
 
   const last = lastGenre();
   const grid = el("div", "genre-grid");
@@ -6655,6 +6764,14 @@ function boothRound(genre) {
   const queue = buildRound(genre);
   if (!queue.length) { chooseGenre(); return; }
 
+  /* The direction is fixed for the whole round, the way an assignment
+     is. It decides which side is the prompt and which side is the
+     answer, and nothing below it has to ask again. */
+  const dir = boothDir();
+  const into = dir === "en-ar" ? "ar" : "en";
+  const prompt = q => into === "ar" ? q.ok[0] : q.ar;
+  const model  = q => into === "ar" ? q.ar : q.ok[0];
+
   /* The clock is built from what is actually being asked: a term is not
      a sentence, and a sentence is not a full turn. */
   const DUR = queue.reduce((t, q) => t + q.level.secs, 0);
@@ -6664,7 +6781,7 @@ function boothRound(genre) {
   rememberServed(genre.id, queue);
 
   stage.innerHTML = "";
-  setCount(genre.en + " · " + queue.length + " to render");
+  setCount(genre.en + " · " + (into === "ar" ? "EN → AR" : "AR → EN"));
   setDots(queue.length, 0, 0);
 
   const back = el("button", "link", "← Another setting");
@@ -6680,8 +6797,13 @@ function boothRound(genre) {
 
   const typing = el("div", "typing");
   const inp = document.createElement("input");
-  inp.type = "text"; inp.autocomplete = "off"; inp.spellcheck = false; inp.placeholder = "…";
+  inp.type = "text"; inp.autocomplete = "off"; inp.spellcheck = false;
   inp.setAttribute("aria-label", "Your rendering");
+  /* You type in the language you are working into, so the field itself
+     runs that way — right to left, in the Arabic face, when that is the
+     target. */
+  if (into === "ar") { inp.dir = "rtl"; inp.lang = "ar"; inp.className = "ar-in"; inp.placeholder = "ترجمتك"; }
+  else { inp.placeholder = "…"; }
   typing.appendChild(inp);
 
   const gauge = el("div", "gauge");
@@ -6706,8 +6828,8 @@ function boothRound(genre) {
     step.innerHTML = (idx + 1) + ' of ' + queue.length +
       ' · Level ' + (BOOTH_LEVELS.indexOf(q.level) + 1) + ' · ' + q.level.en +
       ' <span class="ar-inline" dir="rtl" lang="ar">' + q.level.ar + '</span>';
-    phrase.className = "src" + (long ? " long" : "");
-    phrase.textContent = q.ar;
+    phrase.className = (into === "ar" ? "src-en" : "src") + (long ? " long" : "");
+    phrase.textContent = prompt(q);
     void phrase.offsetWidth;
     setDots(queue.length, idx, idx);
     inp.value = "";
@@ -6731,12 +6853,19 @@ function boothRound(genre) {
     if (idx >= queue.length) { end(); return; }
     paint();
   }
+  /* The answer shown back is in the language being worked into, so the
+     feedback is the thing that was being asked for. */
+  function shown(q) {
+    return into === "ar"
+      ? '<span dir="rtl" lang="ar" class="ar-say">' + model(q) + '</span>'
+      : model(q);
+  }
   function send() {
     const q = queue[idx];
-    const hit = boothHit(q, inp.value);
-    if (hit) { hits++; feed.innerHTML = '<b style="color:var(--mint)">✦ through</b> &mdash; ' + q.ok[0]; }
-    else { feed.innerHTML = '<b style="color:var(--coral)">✧ missed</b> &mdash; one good rendering: <b style="color:var(--white)">' + q.ok[0] + '</b>'; }
-    log.push({ src: q.ar, hit: hit, best: q.ok[0], level: q.level.en });
+    const hit = boothHit(q, inp.value, dir);
+    if (hit) { hits++; feed.innerHTML = '<b style="color:var(--mint)">✦ through</b> &mdash; ' + shown(q); }
+    else { feed.innerHTML = '<b style="color:var(--coral)">✧ missed</b> &mdash; one good rendering: ' + shown(q); }
+    log.push({ src: prompt(q), hit: hit, best: model(q), level: q.level.en });
     tally.textContent = hits + " through";
     advance();
   }
@@ -6747,7 +6876,7 @@ function boothRound(genre) {
     if (e.key === "Tab") {
       e.preventDefault(); begin();
       const q = queue[idx];
-      log.push({ src: q.ar, hit: false, best: q.ok[0], level: q.level.en, passed: true });
+      log.push({ src: prompt(q), hit: false, best: model(q), level: q.level.en, passed: true });
       advance();
     }
   });
@@ -6760,7 +6889,8 @@ function boothRound(genre) {
     stage.innerHTML = "";
     setCount("Time");
     const sc = el("div", "score");
-    sc.appendChild(el("p", "tracked mag", genre.en + " · terms to full turns"));
+    sc.appendChild(el("p", "tracked mag",
+      genre.en + " · " + (into === "ar" ? "English into Arabic" : "Arabic into English")));
     sc.appendChild(el("p", "tally", hits + '<small> of ' + queue.length + '</small>'));
     sc.appendChild(el("p", "say", pass
       ? "You kept up, and not only on the single words. That is the whole job of the booth."
@@ -6773,8 +6903,8 @@ function boothRound(genre) {
       log.forEach(r => rev.appendChild(el("div", "rev-row " + (r.hit ? "hit" : "miss"),
         '<span class="g">' + (r.hit ? "✦" : "✧") + '</span><span class="q">' +
         '<span class="q-lev">' + r.level + (r.passed ? " · passed" : "") + '</span>' +
-        '<span class="q-src">' + r.src + '</span>' +
-        '<span class="q-ans">natural: <b>' + r.best + '</b></span></span>')));
+        '<span class="q-src' + (into === "ar" ? " is-en" : "") + '">' + r.src + '</span>' +
+        '<span class="q-ans' + (into === "ar" ? " is-ar" : "") + '">natural: <b>' + r.best + '</b></span></span>')));
       sc.appendChild(rev);
     }
 
