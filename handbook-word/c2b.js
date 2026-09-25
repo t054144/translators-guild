@@ -303,7 +303,7 @@ module.exports = [// ================= PART 5 =================
 ]],
 ['h', 'Step 1: meet the tools'],
 ['ul', [
-  '**Machine translation**: early systems used rules, then statistics; today most use neural networks. Neural systems are much more fluent, but they can still be wrong.',
+  '**Machine translation**: early systems used rules, later ones statistics, and newer ones neural networks and AI. Each generation sounds more fluent, but every one can still be wrong.',
   '**Translation memory**: stores your past translations sentence by sentence and suggests them when a similar sentence appears. It saves time and keeps your work consistent.',
   '**Termbases**: help you keep one term for one idea across a project (Chapter 21).',
   '**CAT tools** combine these, for example Trados, memoQ, and the free OmegaT and Matecat.',
@@ -323,7 +323,7 @@ module.exports = [// ================= PART 5 =================
   'Machine output: {{فرعنا الجديد يفتح يوم الاثنين. لا تفوّت الخروج!}} ✗ (_miss out_ was read as “going out”)',
   'Corrected: {{يُفتتح فرعنا الجديد يوم الاثنين. لا تفوّتوا الفرصة!}} ✓',
 ]],
-['p', 'Correcting a machine translation like this is called **post-editing**. The course materials call it the new direction for translators worldwide (Translation Team, n.d.). **Light** post-editing ({{التحرير اللاحق الخفيف}}) makes the text accurate and understandable; **full** post-editing ({{التحرير اللاحق الكامل}}) also makes it natural and ready to publish.'],
+['p', 'Correcting a machine translation like this is called **post-editing**. It has become a regular part of translators’ work (Translation Team, n.d.). **Light** post-editing ({{التحرير اللاحق الخفيف}}) makes the text accurate and understandable; **full** post-editing ({{التحرير اللاحق الكامل}}) also makes it natural and ready to publish.'],
 ['p', 'To post-edit, first compare the output with the source sentence by sentence. Then read it again as a normal text.'],
 ['h', 'Step 5: use AI tools well, and adapt the whole product'],
 ['ul', [
@@ -493,7 +493,7 @@ module.exports = [// ================= PART 5 =================
   ['Censorship', 'الرقابة', 'Removing or changing content that is considered unacceptable.'],
 ]],
 ['h', 'Step 1: learn the limits of a subtitle'],
-['p', 'Viewers read while they watch, so a subtitle normally has one or two lines. Each line traditionally holds about 37 to 39 characters; streaming platforms now allow up to 42. It must stay on screen long enough to be read, usually from about one to six or seven seconds. It must also appear and disappear with the speech: marking these in and out times is called **spotting** (Díaz Cintas & Remael, 2021). Always follow the client’s guidelines.'],
+['p', 'Viewers read while they watch, so a subtitle normally has one or two lines. Each line traditionally holds about 37 to 39 characters; some streaming platforms allow up to 42. It must stay on screen long enough to be read, usually from about one to six or seven seconds. It must also appear and disappear with the speech: marking these in and out times is called **spotting** (Díaz Cintas & Remael, 2021). Always follow the client’s guidelines.'],
 ['p', 'There are several kinds:'],
 ['ul', [
   '**Intralingual**: the same language as the dialogue, for example subtitles for the deaf and hard of hearing (**SDH**), which also describe important sounds, or subtitles for language learners.',
