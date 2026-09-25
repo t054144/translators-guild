@@ -5645,6 +5645,512 @@ const ENGL182 = [
   }
 ];
 
+/* ═══════════ 284 · TRANSLATION AND CULTURE ═══════════
+   Eleven units in the order the course material runs them.
+
+   The course's own examples are kept where it has them — the Newmark and
+   Nida framing, the fast/quick collocation table, the idiom set, Hatim of
+   Tayy, the Kanafani passages in Kilpatrick's translation, the ideology
+   cases. The Arabic side is written here, and so is every Kuwaiti and
+   Gulf example: the diwaniyya, the Gergean, the Amiri titles, the
+   teknonyms, the National Day dates. Ideas are credited to the people who
+   had them; the compiler of the material is not named. */
+const ENGL284 = [
+  {
+    n: 1, key: "what", en: "What translation is", ar: "ما الترجمة؟",
+    line: "Three things decide your strategy before you translate a word.",
+    blocks: [
+      { t: "lede", html:
+        "Translation is the interpretation of a source text's meaning and the production of an equivalent " +
+        "meaning in another language. <b>Newmark</b> (1981) puts it as an attempt to replace a written " +
+        "message in one language with the same message in another." },
+      { t: "list", h: "Nida's three factors", intro:
+        "<b>Nida</b> (1964) adds that three things beyond the meaning itself determine how the process " +
+        "runs:", items: [
+        "<b>The nature of the message</b> — which is to say the text type.",
+        "<b>The purpose of the author</b>, and by extension of the translator.",
+        "<b>The type of audience.</b>"
+      ] },
+      { t: "card", h: "Text type decides the strategy", html:
+        "Translation is a <b>text-based activity</b>, and the type of the source text sets the approach " +
+        "before you make a single choice." +
+        "<p>Religious and legal texts pull translators towards the <b>literal</b>, because the form is part " +
+        "of what is binding. Film dialogue, conference speech and official meetings pull them towards the " +
+        "<b>communicative</b>, because the effect on the hearer is what has to survive.</p>" },
+      { t: "card", h: "And the audience decides the register", html:
+        "A story for children is translated in simple, polite language. A medical paper for specialists is " +
+        "translated in the technical register its readers expect and can read." +
+        "<p>Same skill, opposite surface. Getting this wrong is not a vocabulary failure &mdash; it is " +
+        "having failed to ask who is going to read the thing.</p>" },
+      { t: "split", h: "And the distinction to keep straight",
+        a: { lab: "Translator", ar: "مترجم تحريري",
+             say: "Written text into written text. Time to stop, research, revise." },
+        b: { lab: "Interpreter", ar: "مترجم شفوي",
+             say: "Spoken passages, in real time. Both need deep cultural and linguistic understanding, expert subject knowledge, and the ability to communicate clearly and appropriately." } }
+    ],
+    ex: { lab: "One event, two text types, two right translations",
+      srcLab: "Arabic (a news item)", src: "استقبل سمو أمير البلاد رئيس مجلس الوزراء صباح اليوم بقصر بيان.", srcDir: "rtl",
+      litLab: "For a Kuwaiti readership", lit: "Titles, palace and protocol all kept — because the form is part of the information",
+      outLab: "For a foreign wire service", out: "The Amir of Kuwait received the Prime Minister at Bayan Palace this morning.", outDir: "ltr",
+      note: "Nothing was mistranslated in either. The second drops honorifics an English reader does not " +
+        "parse and would read as flattery &mdash; a decision made on <b>audience</b>, which is Nida's third " +
+        "factor doing real work." },
+    practice: { h: "Do this before the next unit",
+      html: "Take one Kuwaiti news item and translate it twice: once for KUNA's English service, once for a " +
+        "British paper." +
+        "<p>List every difference. Then say, for each, which of Nida's three factors caused it. If a " +
+        "difference answers to none of the three, you made it for no reason, and it should come out.</p>" }
+  },
+
+  {
+    n: 2, key: "literal", en: "Literal translation", ar: "الترجمة الحرفية",
+    line: "It works more often than people admit — and fails in a way you can predict.",
+    blocks: [
+      { t: "lede", html:
+        "Literal &mdash; also called direct or formal &mdash; translation takes the content and renders it " +
+        "word for word. It is what most automatic systems do, and it is <b>not automatically wrong</b>." },
+      { t: "card", h: "When it works", html:
+        "When there is no difference between the two languages in <b>manner of expression</b> and in " +
+        "<b>cultural meaning or association</b>." +
+        "<p>These all cross intact: <i>to give the green light</i>, <i>to fish in troubled waters</i>, " +
+        "<i>from a different angle</i>, <i>the calm before the storm</i>. The image exists in both " +
+        "cultures, so the words can carry it.</p>" },
+      { t: "list", h: "When it fails: structure", intro:
+        "Between distant languages like Arabic and English, the structures do not line up, and the " +
+        "translator has to modify:", items: [
+        "<b>English says <i>It is sunny</i></b> with a dummy subject and an adjective. Arabic says it with a noun — <span class='ar-inline' dir='rtl' lang='ar'>الجو مشمس</span>. Neither language can borrow the other's shape.",
+        "<b>Number.</b> An English singular can require an Arabic plural or dual, and the form of the word has to change with it.",
+        "<b>Definiteness, word order and the copula</b> all behave differently, and a literal rendering carries English grammar into Arabic where it is simply not grammar."
+      ] },
+      { t: "card", h: "When it fails: idiom and proverb", html:
+        "This is the larger failure, and the one with cultural content. An idiom translated word for word " +
+        "produces a grammatical sentence that means nothing, or means something else." +
+        "<p>Arabic proverbs render literally into English as <i>You are rabbit</i>, <i>What passed died</i>, " +
+        "<i>A day for you, a day against you</i>, <i>It increased the clay moistness</i>. Each is a real " +
+        "proverb with a real meaning, and none of those meanings is in the English.</p>" },
+      { t: "card", h: "Which is why the next unit exists", html:
+        "When the two cultures do not share the image, the literal route is closed and you need a method " +
+        "that translates the <b>effect</b> instead. That method is communicative translation." }
+    ],
+    ex: { lab: "A Kuwaiti expression, literally",
+      srcLab: "Arabic", src: "زاد الطين بلة", srcDir: "rtl",
+      litLab: "Word for word", lit: "<i>It increased the clay moistness</i> — every word correct, and no English speaker can recover the meaning",
+      outLab: "The meaning", out: "It made matters worse. / It added fuel to the fire.", outDir: "ltr",
+      note: "The literal version is not a bad translation of the words. It is a good translation of the " +
+        "words and a failed translation of the proverb &mdash; which is the distinction this course is " +
+        "about." },
+    practice: { h: "Do this before the next unit",
+      html: "Collect six Arabic expressions you use daily. Translate each one literally into English, on " +
+        "purpose." +
+        "<p>Then sort them: which literal versions would an English reader actually understand, and which " +
+        "are nonsense? The ones that survive share an image with English. Write down what that image is " +
+        "&mdash; that is the thing literal translation is carrying.</p>" }
+  },
+
+  {
+    n: 3, key: "communicative", en: "Communicative translation", ar: "الترجمة التواصلية",
+    line: "Translate the effect, not the wording — and know what you are giving up.",
+    blocks: [
+      { t: "lede", html:
+        "Communicative translation attempts to produce on its readers an effect as close as possible to " +
+        "that produced on the readers of the original (<b>Newmark</b>, 1981). It has a <b>target-language " +
+        "bias</b>: it is free, it is idiomatic, and it prefers the force of the message to its literal " +
+        "form." },
+      { t: "list", h: "Proverbs that have to be replaced, not rendered", intro:
+        "For each of these, the target language has its own saying, and the translator's job is to find it " +
+        "rather than to describe the source one:", items: [
+        "<i>Let bygones be bygones</i> — <span class='ar-inline' dir='rtl' lang='ar'>عفا الله عما سلف</span>",
+        "<i>You win some, you lose some</i> — <span class='ar-inline' dir='rtl' lang='ar'>يوم لك ويوم عليك</span>",
+        "<i>Like father, like son</i> — <span class='ar-inline' dir='rtl' lang='ar'>هذا الشبل من ذاك الأسد</span>",
+        "<i>Man proposes and God disposes</i> — <span class='ar-inline' dir='rtl' lang='ar'>العبد في التفكير والرب في التدبير</span>",
+        "<i>A Jack of all trades is a master of none</i> — <span class='ar-inline' dir='rtl' lang='ar'>صاحب بالين كذاب</span>",
+        "<i>It is not my cup of tea</i> — <span class='ar-inline' dir='rtl' lang='ar'>ليس من اهتماماتي</span>"
+      ] },
+      { t: "card", h: "It also fixes the wording nobody notices", html:
+        "Standard English is <b>riot police</b> &mdash; not <i>anti-riot police</i>, not <i>riot combat " +
+        "police</i>, both of which are what the Arabic structure would give you." +
+        "<p>Communicative translation is not only for the dramatic cases. Most of it is knowing what the " +
+        "target language actually says.</p>" },
+      { t: "card", h: "The religious formula, and why context decides it", html:
+        "<span class='ar-inline' dir='rtl' lang='ar'>إن شاء الله</span> has no single English equivalent, " +
+        "because it is doing a different job each time." +
+        "<p>It can mean <i>I hope so</i>, <i>I promise</i>, <i>I am not sure</i> &mdash; or it can be a " +
+        "polite refusal, or a way of expressing dislike without saying so. The translation depends entirely " +
+        "on what it is doing in <b>that</b> situation, and a translator who always renders it <i>God " +
+        "willing</i> has translated the words and missed the act every time but one.</p>" }
+    ],
+    ex: { lab: "The same two words, two different acts",
+      srcLab: "A promise", src: "— بتخلص الشغل بكرة؟  — إن شاء الله.", srcDir: "rtl",
+      litLab: "Always the same rendering", lit: "<i>God willing</i> — which tells an English reader nothing about whether the work will be done",
+      outLab: "What each one is doing", out: "As a promise: <i>Yes, it'll be ready tomorrow.</i> · As a soft refusal: <i>We'll see.</i> · As genuine uncertainty: <i>I hope so.</i>", outDir: "ltr",
+      note: "A Kuwaiti hearer reads which of these is meant from tone, situation and who is speaking. The " +
+        "English reader has none of that, so the translator has to choose &mdash; and choosing is not " +
+        "taking a liberty here, it is the only way to be accurate." },
+    practice: { h: "Do this before the next unit",
+      html: "Listen for <span class='ar-inline' dir='rtl' lang='ar'>إن شاء الله</span> five times in one " +
+        "day and write down, each time, which act it was performing." +
+        "<p>Then write the English you would use for each. You should end with five different renderings. " +
+        "If you end with one, you were not listening to the situation.</p>" }
+  },
+
+  {
+    n: 4, key: "machine", en: "Machine translation", ar: "الترجمة الآلية",
+    line: "Mechanical substitution, and exactly where it breaks.",
+    blocks: [
+      { t: "lede", html:
+        "Machine translation is a sub-field of computational linguistics using software to translate text " +
+        "or speech. At a basic level it performs <b>mechanical substitution</b> of words in one language " +
+        "for words in another &mdash; and that alone rarely produces a good translation, because what is " +
+        "needed is recognition of <b>whole phrases</b> and their closest counterparts in the target " +
+        "language." },
+      { t: "card", h: "The characteristic failure", html:
+        "A machine fed <span class='ar-inline' dir='rtl' lang='ar'>نشرت غسيلي قدام الناس</span> returns " +
+        "<i>I spread my laundry in front of people</i>. Every word is right. The expression means <b>I aired " +
+        "private business in public</b>, and English already has a phrase for that: <i>I let the cat out of " +
+        "the bag</i>." +
+        "<p>The system did not mistranslate a word. It failed to see that the words were a unit.</p>" },
+      { t: "card", h: "Where it is genuinely useful", html:
+        "As a <b>draft</b>, and for getting the gist of a document you would otherwise not read at all." +
+        "<p>What it cannot do is know the subject or read the culture. Which means someone has to be able " +
+        "to tell when the output is wrong &mdash; and that takes more knowledge than producing the " +
+        "translation yourself, not less.</p>" },
+      { t: "card", h: "The Gulf case it will always fail", html:
+        "Machine systems are trained overwhelmingly on Modern Standard Arabic and on Levantine and Egyptian " +
+        "dialect. Kuwaiti and Gulf usage is thinly represented, and culture-specific items barely at all." +
+        "<p>Feed a machine <span class='ar-inline' dir='rtl' lang='ar'>القرقيعان</span> or " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>الديوانية</span> and you will get a transliteration or " +
+        "a guess. Neither tells a foreign reader what happened.</p>" }
+    ],
+    ex: { lab: "A Kuwaiti sentence, by machine and by hand",
+      srcLab: "Arabic", src: "أهل الديرة يعزمونك على الديوانية كل خميس.", srcDir: "rtl",
+      litLab: "Machine", lit: "<i>The people of the country invite you to the diwaniyya every Thursday</i> — <span class='ar-inline' dir='rtl' lang='ar'>الديرة</span> flattened to <i>the country</i>, <span class='ar-inline' dir='rtl' lang='ar'>الديوانية</span> transliterated and unexplained",
+      outLab: "Human", out: "People here will invite you to the family <i>diwaniyya</i> — the regular evening gathering a Kuwaiti household holds — every Thursday.", outDir: "ltr",
+      note: "Two separate failures. <span class='ar-inline' dir='rtl' lang='ar'>الديرة</span> is the local " +
+        "place, one's own town, not a nation. And the loan word needed a gloss the first time. Neither is a " +
+        "vocabulary gap &mdash; both are cultural knowledge the system does not have." },
+    practice: { h: "Do this before the next unit",
+      html: "Put five Kuwaiti sentences through a machine translator &mdash; ones with local vocabulary, " +
+        "not standard news prose." +
+        "<p>Mark every error and label it: <b>wrong word</b>, <b>missed phrase</b>, or <b>missing " +
+        "culture</b>. You will find the third is most of them, and it is the one no amount of better " +
+        "software has yet fixed.</p>" }
+  },
+
+  {
+    n: 5, key: "cohesion", en: "Cohesion and coherence", ar: "السبك والحبك",
+    line: "Arabic joins its sentences aloud. English joins them silently.",
+    blocks: [
+      { t: "lede", html:
+        "A stylistic difference that runs through every text in this language pair: <b>English prefers " +
+        "coherence</b> &mdash; implicit connectedness &mdash; while <b>Arabic prefers cohesion</b> " +
+        "&mdash; connectedness made explicit with conjunctions and coordinators." },
+      { t: "card", h: "What that means at the desk", html:
+        "Translating <b>into English</b>, you do not need the conjunctions as often as Arabic uses them. " +
+        "Keep them all and the English reads like a chain of clauses with no shape." +
+        "<p>Translating <b>into Arabic</b>, you may need more of them than the English has. Leave them out " +
+        "and the Arabic reads as a series of disconnected statements &mdash; grammatical, and somehow not " +
+        "joined up.</p>" },
+      { t: "card", h: "English splitting where Arabic joined", html:
+        "<i>All requests for leave without pay must be in writing. They must be submitted to the human " +
+        "resources office.</i>" +
+        "<p>Two English sentences, no connector, and the relation between them is left for the reader to " +
+        "see. Arabic will normally join these with " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>و</span> or " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>كما</span> and would read oddly without one.</p>" },
+      { t: "card", h: "And the reverse", html:
+        "An Arabic paragraph built on <span class='ar-inline' dir='rtl' lang='ar'>و</span> after " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>و</span> &mdash; the maths teacher had an accident, " +
+        "<b>and</b> he was taken to hospital, <b>and</b> he will not be giving us lectures, <b>and</b> we " +
+        "will go home early &mdash; becomes, in English, four sentences with the <i>and</i>s removed and " +
+        "the logic carried by the sequence itself." +
+        "<p>Nothing is lost. The connection has moved from the words to the arrangement, which is where " +
+        "English keeps it.</p>" }
+    ],
+    ex: { lab: "One event, two ways of joining it up",
+      srcLab: "Arabic", src: "تعرّض مدرّس الرياضيات لحادث هذا الصباح، ونُقل إلى المستشفى، ولن يعطينا محاضرات اليوم، وسنعود إلى البيت مبكّرين.", srcDir: "rtl",
+      litLab: "Every connector kept", lit: "<i>The maths teacher had an accident this morning, and he was sent to hospital, and he is not going to give us lectures today, and we will go home early.</i> — childish in English, and the original is not",
+      outLab: "English coherence", out: "The maths teacher had an accident this morning. He has been taken to hospital. He will not be teaching today, so we are going home early.", outDir: "ltr",
+      note: "One <i>so</i> survives, because it carries a causal relation the sequence alone would not. " +
+        "The rest of the joining is done by the full stops &mdash; which is what implicit connectedness " +
+        "means in practice." },
+    practice: { h: "Do this before the next unit",
+      html: "Take an Arabic paragraph and count its coordinators. Translate it into English and count them " +
+        "again." +
+        "<p>The second number should be much lower. Then read your English aloud: if it still sounds like a " +
+        "list, you moved the words and kept the Arabic joinery.</p>" }
+  },
+
+  {
+    n: 6, key: "explicitation", en: "Explicitation", ar: "التصريح والشرح الثقافي",
+    line: "Saying out loud what the source left for readers who already knew.",
+    blocks: [
+      { t: "lede", html:
+        "Where the source and target readers do not share a cultural presupposition, the translator makes " +
+        "<b>what is implicit in the source explicit in the target</b> &mdash; by explanation, substitution, " +
+        "functional equivalent or paraphrase &mdash; to keep the text both appropriate and accessible " +
+        "(<b>Blum-Kulka</b>, 2000)." },
+      { t: "card", h: "The classic case: a name that carries an argument", html:
+        "In Kanafani's <i>Men in the Sun</i>, a passage rests on the name <b>Hatim</b>." +
+        "<p>Kilpatrick's translation keeps the name and adds a footnote: <i>Hatim, of the bedouin tribe of " +
+        "Tayy, is proverbial among the Arabs for his limitless generosity and hospitality.</i> Without it " +
+        "the sentence still parses and the point vanishes &mdash; the reader has no idea why this name " +
+        "settles anything.</p>" },
+      { t: "list", h: "The forms explicitation takes", items: [
+        "<b>A footnote</b> — for literature, where the reader accepts an apparatus and the name is worth keeping.",
+        "<b>An in-text gloss</b> — for news and non-fiction, where a footnote will not be read: <i>Rayya and Sakina, the notorious Alexandria murderers</i>.",
+        "<b>A functional substitute</b> — replacing the reference with one the target reader has.",
+        "<b>Expansion of a title</b> — a news headline that assumes the local reader's whole context has to be unpacked for a foreign one."
+      ] },
+      { t: "card", h: "The cost, and the limit", html:
+        "Explicitation eases comprehensibility and readability &mdash; and it makes the translation longer, " +
+        "flatter, and more explanatory than the original ever was." +
+        "<p>Explain a joke and it is no longer a joke. The judgement is how much the reader needs in order " +
+        "to get what the source reader got &mdash; and then stopping.</p>" }
+    ],
+    ex: { lab: "A Kuwaiti reference that means nothing abroad",
+      srcLab: "Arabic", src: "اجتمعوا في الديوانية ليلة القرقيعان.", srcDir: "rtl",
+      litLab: "Kept as it stands", lit: "<i>They gathered in the diwaniyya on Gergean night</i> — two loan words and a reader who now knows neither what the room is nor what the night is",
+      outLab: "With explicitation", out: "They gathered at the <i>diwaniyya</i>, the household's regular evening reception room, on the night of <i>Gergean</i> — the mid-Ramadan celebration when children go from house to house collecting sweets.", outDir: "ltr",
+      note: "Twice the length, and the only version that works. Note what was <b>not</b> done: neither term " +
+        "was replaced with a Western near-equivalent. <i>Halloween</i> would be shorter, familiar, and " +
+        "wrong about the occasion, the month and the meaning." },
+    practice: { h: "Do this before the next unit",
+      html: "Find a Kuwaiti news item containing at least three references a foreign reader would not have " +
+        "&mdash; a place, an institution, an occasion." +
+        "<p>Translate it twice: once with footnotes, once with everything glossed in the text. Compare the " +
+        "lengths and decide which you would publish and for whom. Then mark the one reference you would " +
+        "leave unexplained, and say why the reader can live without it.</p>" }
+  },
+
+  {
+    n: 7, key: "collocation", en: "Collocations and idioms", ar: "المتلازمات والتعابير",
+    line: "Both languages are clear, both are correct, and only one of them is what people say.",
+    blocks: [
+      { t: "lede", html:
+        "A collocation is two or more words that habitually go together, and the pairing is <b>culturally " +
+        "bound</b> &mdash; it does not carry across languages. Neither do idioms, which mean something " +
+        "their words do not." },
+      { t: "split", h: "Natural and unnatural English",
+        a: { lab: "Natural", ar: "المألوف",
+             say: "the <b>fast</b> train · <b>fast</b> food · a <b>quick</b> shower · a <b>quick</b> meal" },
+        b: { lab: "Unnatural", ar: "غير المألوف",
+             say: "the <i>quick</i> train · <i>quick</i> food · a <i>fast</i> shower · a <i>fast</i> meal" } },
+      { t: "card", h: "Nothing in the meanings explains it", html:
+        "<i>Fast</i> and <i>quick</i> are near-synonyms, and each takes its own company. You <b>catch</b> a " +
+        "bus; you do not take hold of one." +
+        "<p>There is no rule to derive. The translator's obligation is to know what the target language " +
+        "says &mdash; which is why the target language should be the one you know best.</p>" },
+      { t: "list", h: "Idioms that must go communicatively", intro:
+        "A literal rendering of any of these makes no sense in Arabic, so each needs its Arabic " +
+        "counterpart:", items: [
+        "<i>to break the ice</i> · <i>he looks blue</i> · <i>he is in the clouds</i> · <i>strong tea</i>",
+        "<i>to carry coals to Newcastle</i> · <i>to kick the bucket</i> · <i>a smoking gun</i> · <i>when pigs fly</i>",
+        "<i>He is a black sheep</i> — rendered literally, an Arabic reader gets a sheep. The meaning is <span class='ar-inline' dir='rtl' lang='ar'>الشاة الجرباء</span> or, plainly, <span class='ar-inline' dir='rtl' lang='ar'>شاذّ عن أهله</span>.",
+        "And a whole register of them — <i>Bloody hell!</i>, <i>How cute!</i>, <i>What a dead loss you are!</i>, <i>sweat like a pig</i> — where the difficulty is tone as much as sense."
+      ] },
+      { t: "card", h: "Replacing an idiom with a different one entirely", html:
+        "In <i>Men in the Sun</i>, Kilpatrick renders an Arabic idiom with a verse from the Bible &mdash; " +
+        "<i>Let the dead bury their dead</i> &mdash; because it carries the same meaning for an English " +
+        "reader." +
+        "<p>That is a real choice with a real cost: the target reader now hears a scriptural register the " +
+        "Arabic did not have. Sometimes that is the best available trade. It should be a decision, not an " +
+        "accident.</p>" }
+    ],
+    ex: { lab: "A Gulf collocation with no English partner",
+      srcLab: "Arabic", src: "الحمد لله على السلامة", srcDir: "rtl",
+      litLab: "Word for word", lit: "<i>Praise be to God for the safety</i> — pious, odd, and not what is being done",
+      outLab: "What the act is", out: "Said to someone back from travel or out of hospital: <i>Welcome back</i> · <i>Glad you're back safely</i> · <i>Thank God you're all right</i>", outDir: "ltr",
+      note: "English has no fixed formula for this moment, so there is no counterpart to find &mdash; only " +
+        "a choice about which part to keep: the welcome, the relief, or the thanks. Whichever you pick, " +
+        "something in the Arabic is not going with it." },
+    practice: { h: "Do this before the next unit",
+      html: "List ten Kuwaiti social formulae &mdash; for a new purchase, a haircut, a safe return, a " +
+        "death, an exam result, a new baby." +
+        "<p>For each, ask whether English has a <b>fixed</b> phrase for that moment. Where it does, use it. " +
+        "Where it does not, write what you would say instead and what the Arabic loses. Expect more than " +
+        "half to have no English formula at all &mdash; that gap is the subject of this whole course.</p>" }
+  },
+
+  {
+    n: 8, key: "associations", en: "Cultural associations", ar: "الإيحاءات الثقافية",
+    line: "The word is right. What it makes the reader feel is wrong.",
+    blocks: [
+      { t: "lede", html:
+        "Language and culture cannot be separated; language marks cultural identity, so translating a " +
+        "language means translating a culture. And culture is a fuzzy set of attitudes, conventions, " +
+        "assumptions and values shared by a group &mdash; which means <b>connotation does not travel with " +
+        "denotation</b>." },
+      { t: "card", h: "The same animal, opposite meanings", html:
+        "The <b>owl</b> is perceived negatively across most Arab and Muslim communities &mdash; a bird of " +
+        "ill omen and ruin. To many Western readers it is positive or neutral: wisdom, learning, a " +
+        "university crest." +
+        "<p>Translate <span class='ar-inline' dir='rtl' lang='ar'>بومة</span> as <i>owl</i> and every word " +
+        "is correct while the sentence now means the opposite of what it meant.</p>" },
+      { t: "list", h: "Where this bites hardest", items: [
+        "<b>Words with a positive charge in one culture and a negative one in the other.</b> A term of praise in Arabic may need to become <i>brave</i> or <i>strong</i> in English rather than its dictionary equivalent.",
+        "<b>Religiously loaded history.</b> <i>Crusade campaigns</i> carries a neutral or heroic charge in English usage and a very different one in Arabic — the Arabic term names them as <span class='ar-inline' dir='rtl' lang='ar'>الحروب الصليبية</span>, and the association comes with it.",
+        "<b>Behaviour that is ordinary in one culture and not in the other.</b> <i>A drink after work</i> translated straight into Arabic imports alcohol into a sentence that was about unwinding. Coffee or juice keeps the act and drops what does not belong.",
+        "<b>Political vocabulary.</b> Kilpatrick renders Kanafani's <span class='ar-inline' dir='rtl' lang='ar'>فدائيين</span> as <i>Freedom Fighters</i> and <i>the commandos in Al-Tira</i>, precisely to avoid the negative associations the obvious English word would import."
+      ] },
+      { t: "card", h: "What you are actually deciding", html:
+        "Whether to protect the reader's response or the source's wording. Both are defensible; only one " +
+        "can be had." +
+        "<p>What is not defensible is not noticing &mdash; carrying a word across and leaving the reader to " +
+        "receive a charge the author never sent.</p>" }
+    ],
+    ex: { lab: "A compliment that arrives as an accusation",
+      srcLab: "Arabic", src: "فلان جِمَل", srcDir: "rtl",
+      litLab: "Literally", lit: "<i>He is a camel</i> — in English an insult, or at best a joke",
+      outLab: "What it says in the Gulf", out: "He has enormous endurance — he carries what others cannot.", outDir: "ltr",
+      note: "The camel is the Gulf's emblem of patience and endurance, and the comparison is praise. The " +
+        "English animal vocabulary carries no such association, so the image has to be dropped and the " +
+        "quality named &mdash; the same move the course makes with the owl, in the other direction." },
+    practice: { h: "Do this before the next unit",
+      html: "Take five animals and five colours. For each, write what it connotes in Kuwait and what it " +
+        "connotes in English." +
+        "<p>Mark every pair that disagrees. Then find one real sentence containing one of them and translate " +
+        "it &mdash; and say in a line whether you kept the image or the effect, and why that was the right " +
+        "trade in that text.</p>" }
+  },
+
+  {
+    n: 9, key: "politeness", en: "Politeness and address", ar: "المجاملة وألقاب المخاطبة",
+    line: "What is polite in one language is strange, cold or rude in the other.",
+    blocks: [
+      { t: "lede", html:
+        "Translation shifts the audience, so it also shifts the politeness standard. Discourse markers, " +
+        "address terms and titles all have to be altered to meet the expectations of the target culture " +
+        "&mdash; and the alterations run in both directions." },
+      { t: "card", h: "English into Arabic: what comes out", html:
+        "Vulgar and taboo expressions are routinely deleted, because <b>Arabic publishing culture values " +
+        "politeness above literal fidelity</b>." +
+        "<p>A line from <i>Wuthering Heights</i> &mdash; <i>he cursed and defied: execrated God and man</i> " +
+        "&mdash; is softened or cut in Arabic translations. You may think that is wrong. It is what the " +
+        "target culture's norms produce, and knowing it is the difference between choosing and " +
+        "drifting.</p>" },
+      { t: "card", h: "Arabic into English: what comes out", html:
+        "Arabic honorifics and politeness formulae that English has no use for get dropped, or the text " +
+        "reads as fawning." +
+        "<p>The BBC renders a Kuwaiti court item as <i>The Amir of Kuwait received the Prime Minister at " +
+        "the palace this morning</i>. The Arabic carries " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>سمو</span>, " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>حضرة صاحب السمو</span>, the full name and lineage. " +
+        "English keeps the title and the fact, and lets the rest go.</p>" },
+      { t: "card", h: "The Gulf case English cannot do at all", html:
+        "<b>Teknonymy</b> &mdash; addressing someone as " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>أبو أحمد</span> or " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>أم أحمد</span>, father or mother of their eldest son." +
+        "<p>It is warm, respectful, and slightly formal all at once, and it is the ordinary way adults " +
+        "address each other. English has no equivalent register. <i>Abu Ahmad</i> means nothing to the " +
+        "reader; <i>Mr Al-Otaibi</i> is correct and colder; the first name is accurate and loses the " +
+        "respect. There is no right answer, only a choice and a reason.</p>" }
+    ],
+    ex: { lab: "Court protocol, two readerships",
+      srcLab: "Arabic (KUNA)", src: "استقبل حضرة صاحب السمو أمير البلاد الشيخ مشعل الأحمد الجابر الصباح، صباح اليوم بقصر بيان، سمو رئيس مجلس الوزراء.", srcDir: "rtl",
+      litLab: "Every honorific carried over", lit: "<i>His Highness the Possessor of Highness the Amir of the Country Sheikh… received His Highness the Head of the Council of Ministers</i> — accurate, and unreadable",
+      outLab: "For an English wire", out: "The Amir of Kuwait, Sheikh Mishal Al-Ahmad Al-Jaber Al-Sabah, received the Prime Minister at Bayan Palace this morning.", outDir: "ltr",
+      note: "The title is kept once because it is information; the stacked honorifics go because in English " +
+        "they read as deference rather than protocol. A Kuwaiti outlet publishing in English may keep " +
+        "<b>His Highness</b> deliberately &mdash; and that is an editorial decision about who the paper " +
+        "speaks for, not a translation error." },
+    practice: { h: "Do this before the next unit",
+      html: "Take one Amiri Diwan statement in Arabic and translate it for three readerships: KUNA English, " +
+        "a British paper, and a Kuwaiti English-language paper." +
+        "<p>The three will differ mainly in how much honorific survives. Write one line for each explaining " +
+        "who the reader is and what that reader needs &mdash; which is the whole of this unit.</p>" }
+  },
+
+  {
+    n: 10, key: "ideology", en: "Ideology in translation", ar: "الأيديولوجيا في الترجمة",
+    line: "Six places where beliefs, not language, decide what the translation says.",
+    blocks: [
+      { t: "lede", html:
+        "Ideology in translation is the influence of beliefs, values, politics and worldview on how a text " +
+        "is interpreted and represented in another language. It shapes how translators handle power, " +
+        "religion, gender, colonialism and identity &mdash; and it is present whether or not anyone " +
+        "intends it." },
+      { t: "list", h: "Six kinds", items: [
+        "<b>Religious.</b> A statement that Jesus is the son of God contradicts Islamic doctrine, which holds him a prophet. An Arabic translation for a Muslim readership typically reframes it or footnotes it: <i>Jesus, who is believed in Christianity to be the son of God</i>.",
+        "<b>Gender.</b> Feminist or gender-neutral English may be toned down where prevailing social ideology is more traditional — rephrased cautiously, or avoided.",
+        "<b>Colonial and postcolonial.</b> <i>Britain brought civilisation to the East</i> is ideologically offensive to an Arab readership. A translator may add critical framing — <i>The British claimed they brought civilisation to the East</i> — which is a real intervention in the text.",
+        "<b>Political.</b> <i>Freedom of speech is guaranteed</i> is neutral in English and sensitive where speech is regulated. It may appear as <i>guaranteed within the limits of the law</i>.",
+        "<b>Media framing.</b> One killing, two translations: <i>Three Palestinians were killed in clashes with Israeli forces</i> against <i>Israeli occupation forces killed three Palestinian protesters</i>. Same event. The grammar alone — who acts, who is acted upon — carries the position.",
+        "<b>Secular against religious.</b> Texts on atheism, evolution or criticism of religion may be softened or reframed to avoid offending religious norms."
+      ] },
+      { t: "card", h: "Why this is on a translation syllabus", html:
+        "Because the choices above are made with grammar: active or passive, who is named as agent, which " +
+        "verb, what gets a qualifier." +
+        "<p>That is your equipment. Ideology is not a topic beside translation technique; it is what " +
+        "technique does when the subject is contested.</p>" }
+    ],
+    ex: { lab: "One event, and where the ideology sits",
+      srcLab: "The grammar", src: "Three Palestinians were killed in clashes.", srcDir: "ltr",
+      litLab: "What the passive does", lit: "No agent. The deaths happen; nobody performs them. <i>Clashes</i> makes it mutual.",
+      outLab: "The active", out: "Israeli forces killed three Palestinian protesters.", outDir: "ltr",
+      note: "Neither sentence contains a false word. The difference is <b>voice</b> and <b>naming</b> " +
+        "&mdash; two ordinary grammatical choices, doing the entire political work of the sentence. This is " +
+        "why a translator cannot be neutral by translating carefully; the careful choices are the political " +
+        "ones." },
+    practice: { h: "Do this before the next unit",
+      html: "Find one story reported by two outlets with opposing positions, in English and in Arabic." +
+        "<p>Compare the two on four points only: <b>active or passive</b>, <b>who is named as agent</b>, " +
+        "<b>the verb chosen for the killing or the action</b>, and <b>what each calls the parties</b>. " +
+        "Write the four differences down. You have just done ideological analysis with nothing but " +
+        "grammar.</p>" }
+  },
+
+  {
+    n: 11, key: "selfcensorship", en: "Self-censorship", ar: "الرقابة الذاتية",
+    line: "The changes nobody asked for — and the hardest thing to see in your own work.",
+    blocks: [
+      { t: "lede", html:
+        "Ideological <b>self-censorship</b> is when translators alter, omit or soften content to align with " +
+        "the politics, religion or culture of the target audience &mdash; <b>without having been instructed " +
+        "to</b>. It is internalised: the translator anticipates what would be thought inappropriate and " +
+        "adapts pre-emptively." },
+      { t: "list", h: "Four documented patterns", items: [
+        "<b>Theology.</b> <i>God is just a concept created by man</i> becomes <i>there are multiple concepts of God that vary from person to person</i>. The claim has been replaced by a survey of opinion.",
+        "<b>Gender.</b> A feminist line about a woman's independence is softened to <i>a woman is an independent being who can rely on herself in certain matters</i>. The qualifier is doing all the work.",
+        "<b>Politics.</b> <i>The regime was corrupt and brutally suppressed opposition</i> becomes <i>the regime faced accusations related to corruption and its treatment of the opposition</i> — statement turned into allegation, often out of real fear of consequences.",
+        "<b>Social norms.</b> <i>She poured a glass of wine and lit a cigarette</i> becomes <i>she poured herself a drink and sat quietly</i>. Two culturally disapproved acts removed from a sentence that was characterising someone."
+      ] },
+      { t: "card", h: "Notice what these have in common", html:
+        "Every one is <b>fluent, plausible and defensible in isolation</b>. None reads as censorship. That " +
+        "is exactly what makes it hard to catch in your own work &mdash; you do not experience it as " +
+        "changing the text, you experience it as finding the natural phrasing." +
+        "<p>And the fourth example shows the cost most clearly: the wine and the cigarette were " +
+        "<b>characterisation</b>. Remove them and a specific woman becomes a generic one.</p>" },
+      { t: "card", h: "This is not an instruction to translate provocatively", html:
+        "Real constraints exist. Publishers have policies, countries have laws, and some adaptations are " +
+        "the condition of the book appearing at all." +
+        "<p>The professional standard is not <i>never soften</i>. It is <b>know that you did</b>, be able " +
+        "to say which constraint you were answering, and tell whoever commissioned the work. A softening " +
+        "you can name is an editorial decision. A softening you cannot see is a loss of control over your " +
+        "own translation.</p>" },
+      { t: "card", h: "Where this course ends", html:
+        "Every unit here has been one version of a single question: <b>what did you change, and can you say " +
+        "why?</b>" +
+        "<p>Literal against communicative, explicitation, the owl, the honorifics, the passive voice, the " +
+        "wine. None of them has a rule that decides it. All of them have an answer you should be able to " +
+        "give out loud &mdash; and that answer is what a commentary is, and what the rest of the minor will " +
+        "ask you for.</p>" }
+    ],
+    ex: { lab: "A softening you could defend, and the line to put in the file",
+      srcLab: "English source", src: "She poured a glass of wine and lit a cigarette.", srcDir: "ltr",
+      litLab: "Self-censored", lit: "سكبت لنفسها شراباً وجلست بهدوء — fluent, publishable, and a different woman",
+      outLab: "The honest options", out: "Translate it as written, or soften it and <b>record the change</b>: “Alcohol and smoking neutralised at the publisher's request; characterisation affected.”", outDir: "ltr",
+      note: "The second option is not a worse translation than the first. It is the same translation with " +
+        "the decision made visible &mdash; which is the only thing that separates a professional adaptation " +
+        "from an invisible one." },
+    practice: { h: "The last one",
+      html: "Take a page you have already translated and read it against the source hunting only for " +
+        "softenings &mdash; a qualifier added, an accusation turned into a report, a detail quietly gone." +
+        "<p>For each, write one line: what you changed, and which constraint you were answering. If you " +
+        "cannot name a constraint, you did not adapt it &mdash; you flinched, and the text is now saying " +
+        "something you never decided to say.</p>" }
+  }
+];
+
 const KU_MINOR = {
   en: "Translation Minor", ar: "مساند الترجمة",
   credits: "24 credits", creditsAr: "٢٤ وحدة دراسية",
@@ -5759,7 +6265,8 @@ const KU_MINOR = {
           },
           settings: ["Literature", "Subtitling", "Advertising", "Diplomacy", "News"],
           asks: "A decision you can defend — and the honesty to notice when you smoothed something away.",
-          meets: ["cultural", "proverb", "lineage"]
+          meets: ["cultural", "proverb", "lineage"],
+          units: ENGL284
         },
         {
           code: "285", en: "Translation for Special Purposes", ar: "الترجمة لأغراض خاصة", pre: "180",
