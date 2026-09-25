@@ -1081,6 +1081,11 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .how li b { color: var(--white); font-weight: 500; }
 .how li i { color: var(--white); font-style: italic; }
 
+/* ---------- the modes of interpreting ---------- */
+.card.mode .ct-alt { font-size: .82em; color: var(--lilac-dim); }
+.card.mode.unsettled { border-color: rgba(255,196,107,.4); }
+.card-top .num-badge.warn { color: var(--amber); }
+
 /* ---------- the Kuwait University minor ---------- */
 .minor-head { display: grid; gap: .3rem; padding: 1rem 1.1rem; border-radius: var(--r-lg);
   border: var(--hair-lit); background: var(--grad-soft); }
@@ -1590,7 +1595,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 33 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 34 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -3708,6 +3713,12 @@ const GLOSSARY = [
   { en: "Ideational equivalence", ar: "التكافؤ الفكري", def: "Giving only the basic idea, in plain words.", ch: "9" },
   { en: "Ideology", ar: "الأيديولوجيا", def: "A set of beliefs that shapes how people describe events.", ch: "19" },
   { en: "Idiom", ar: "التعبير الاصطلاحي", def: "A fixed expression whose meaning is not the sum of the meanings of its words.", ch: "8" },
+  { en: "Simultaneous interpreting", ar: "الترجمة الفورية", def: "Rendered while the speaker is still speaking, from a booth. One mode of الترجمة الشفهية, not another name for it. The lag behind the speaker is called the décalage.", ch: "1" },
+  { en: "Consecutive interpreting", ar: "الترجمة التتابعية", def: "Rendered after the speaker pauses, from notes and memory. Also written التتبعية and التعاقبية. The notes carry structure, numbers, names and links &mdash; not words.", ch: "1" },
+  { en: "Sight translation", ar: "الترجمة المنظورة", def: "A written text read out in the other language on the spot. Also الترجمة بالنظر. Written input, spoken output, which is why it belongs to interpreting rather than translation.", ch: "1" },
+  { en: "Whispered interpreting", ar: "الترجمة الهمسية", def: "Simultaneous interpreting delivered in a low voice beside one or two listeners, with no booth and no equipment. Known in the profession by its French name, chuchotage.", ch: "1" },
+  { en: "Relay interpreting", ar: "الترجمة المرحلية", def: "Interpreting through a third language, when no interpreter has both of the ones needed. The middle booth is the pivot, and every error in it is inherited by everyone downstream.", ch: "1" },
+  { en: "Remote interpreting", ar: "الترجمة الفورية عن بُعد", def: "Interpreting delivered over a platform, by video or telephone, with the interpreter not in the room. A working arrangement rather than a mode, and it shortens the handover intervals.", ch: "1" },
   { en: "Interpreting", ar: "الترجمة الشفهية", def: "Transferring spoken language into another language &mdash; the term that covers the whole activity, as against الترجمة التحريرية, written translation. Its modes are <b>الترجمة الفورية</b>, rendered while the speaker is still speaking; <b>الترجمة التتابعية</b>, rendered from notes once the speaker pauses; <b>الترجمة المنظورة</b>, a written text read out in the other language; and <b>الترجمة الهمسية</b>, whispered to one or two listeners. The spelling الشفوية is also current &mdash; both restore a different dropped letter from شفة &mdash; and you will meet it in UN usage.", ch: "1" },
   { en: "Justification", ar: "التبرير", def: "The reason why a translation choice is right.", ch: "25" },
   { en: "Lexical creation", ar: "التوليد المعجمي", def: "Coining new target-language words for items with no direct equivalent.", ch: "16" },
@@ -3940,6 +3951,90 @@ const FACETS = {
   revise:    "Revision and mechanics"
 };
 
+/* ═══════════ THE MODES OF INTERPRETING ═══════════
+   الترجمة الشفهية is the field. These are the modes within it — how the
+   rendering is actually delivered, which is a different question from
+   where the interpreter is sitting.
+
+   The first four are settled terminology and are stated plainly. Relay
+   and remote are well attested and named as such. The Arabic for
+   liaison work is not settled, and the card says so rather than
+   inventing one.
+   ══════════════════════════════════════════════════════════════════ */
+const INTERP_MODES = [
+  {
+    id: "fawriyya", ar: "الترجمة الفورية", en: "Simultaneous",
+    alt: "", altEn: "simultaneous interpreting",
+    line: "Rendered while the speaker is still speaking.",
+    what: "The interpreter works in a soundproof booth, hears the speaker through headphones and speaks into a microphone at the same time. The audience hears the rendering a few seconds behind the original, and the two voices run together throughout.",
+    where: "Conferences, international organisations, summits, live broadcast. Where a meeting has more than two working languages, this is the only mode that keeps it to time.",
+    demands: "Splitting attention between listening, holding, rendering and monitoring your own output &mdash; all at once, for spells of twenty to thirty minutes before handing over to a colleague.",
+    wrong: "The <b>décalage</b> &mdash; the lag behind the speaker &mdash; is the whole craft. Too short and you commit to a verb before the sentence has told you which one; too long and the tail of the sentence is gone. Between Arabic and English this is sharper than in most pairs: Arabic news prose opens with the verb and English opens with the subject, so an interpreter working into English is often holding a verb with nowhere yet to put it.",
+    site: "booth"
+  },
+  {
+    id: "tatabuiyya", ar: "الترجمة التتابعية", en: "Consecutive",
+    alt: "التتبعية · التعاقبية", altEn: "consecutive interpreting",
+    line: "Rendered after the speaker pauses, from notes and memory.",
+    what: "The interpreter sits near the speaker, listens through a passage &mdash; which may run several minutes &mdash; taking notes of the main ideas, and delivers the whole of it once the speaker stops.",
+    where: "Bilateral meetings, press conferences, court, medical appointments, training sessions, site visits. Anywhere there is no booth, or where the record matters more than the clock.",
+    demands: "A note system of your own, and the memory to work from it. It also demands public speaking: you are the only voice in the room for a minute at a time, and you are looked at.",
+    wrong: "Notes that try to be a transcript. Consecutive notes are for <b>structure, numbers, names and links</b> &mdash; what follows from what, what was negated, what was conceded. A page of words is a page you then have to read rather than speak, and it takes twice as long as the original.",
+    site: ""
+  },
+  {
+    id: "manzura", ar: "الترجمة المنظورة", en: "Sight translation",
+    alt: "الترجمة بالنظر", altEn: "sight translation",
+    line: "A written text, read out in the other language, on the spot.",
+    what: "The interpreter is handed a document and speaks it in the other language immediately, without a written draft. Written input, spoken output &mdash; which is why it sits inside interpreting rather than translation.",
+    where: "Courtrooms and police stations, where a statement or a charge has to be put to someone now; hospitals, with a consent form; meetings, where a paper is tabled that nobody else in the room can read.",
+    demands: "Reading ahead of your own voice, the way a musician reads ahead of their hands, and a delivery steady enough that the listener forgets you are reading at all.",
+    wrong: "Beginning a sentence before you know how it ends. You cannot un-say it. The habit that fixes it is scanning a whole clause &mdash; in Arabic often the whole sentence, because the verb comes first and the negation can come late &mdash; before opening your mouth.",
+    site: ""
+  },
+  {
+    id: "hamsiyya", ar: "الترجمة الهمسية", en: "Whispered",
+    alt: "", altEn: "chuchotage",
+    line: "Simultaneous, whispered to one or two listeners, with no equipment.",
+    what: "The interpreter sits or stands beside the listener and renders simultaneously in a low voice. Technically the same mode as الفورية, stripped of the booth, the headphones and the microphone.",
+    where: "A delegate in a meeting held in a language they do not work in; a defendant in a courtroom; a guest at a dinner. It is the mode of the one person in the room who needs it.",
+    demands: "Everything simultaneous demands, without the isolation that makes it possible: you hear the speaker, the room and your own voice together, and you have to stay quiet enough not to be the reason nobody else can hear.",
+    wrong: "Using it for a group. It does not scale &mdash; past two listeners it becomes audible to the room and useless to everyone. It is also the most tiring mode there is, and the one most often asked for by people who assume it is the easy option.",
+    site: ""
+  },
+  {
+    id: "marhaliyya", ar: "الترجمة المرحلية", en: "Relay",
+    alt: "الترجمة عن طريق التتابع", altEn: "relay interpreting",
+    line: "Through a third language, when no interpreter has both.",
+    what: "A speech in Arabic is rendered into English by one interpreter, and the other booths work from that English rather than from the Arabic. The English booth becomes the <b>pivot</b>, and everyone downstream is listening to a translation of a translation.",
+    where: "Large multilingual meetings &mdash; the United Nations among them &mdash; where the language combinations needed do not exist in one head.",
+    demands: "From the pivot: unusual clarity and completeness, because several colleagues are now depending on the output rather than the original. From the others: the discipline of not second-guessing a colleague mid-sentence.",
+    wrong: "Every error in the pivot is inherited and then multiplied. An omission that one audience would have survived becomes an omission for four audiences, and the further down the chain, the further from what was actually said.",
+    site: ""
+  },
+  {
+    id: "buud", ar: "الترجمة الفورية عن بُعد", en: "Remote",
+    alt: "", altEn: "remote simultaneous interpreting, RSI",
+    line: "The same modes, with the interpreter not in the room.",
+    what: "Simultaneous or consecutive delivered over a platform, by video or by telephone. A working arrangement rather than a mode of its own, and it changes the work enough to be taught separately.",
+    where: "Hearings, medical appointments, board meetings, conferences. It became ordinary after 2020 and has not gone back.",
+    demands: "Everything the mode demands, plus tolerance of what the connection does to it, and the self-management of working alone.",
+    wrong: "Sound, and sight. Compressed audio strips out the frequencies an interpreter uses to hear a consonant clearly; a speaker off-camera takes away the face, the gesture and the document being pointed at. Fatigue sets in measurably faster, which is why the handover intervals are shorter than in a booth.",
+    site: ""
+  }
+];
+
+/* Named but not settled in Arabic: liaison, escort and bilateral work
+   are one thing in English practice and several competing renderings in
+   Arabic. It is listed so that nobody thinks it does not exist, and it
+   is marked so that nobody quotes a term the field has not agreed. */
+const INTERP_UNSETTLED = {
+  en: "Liaison, escort and bilateral interpreting",
+  ar: "ترجمة المرافقة · الترجمة الثنائية",
+  what: "Short two-way exchanges between a small number of people, rendered in both directions by one interpreter who is part of the conversation rather than behind glass: a business visit, a hospital reception, a factory tour, an official accompanying a delegation. In practice it is consecutive in very short turns.",
+  note: "The English names are settled; <b>the Arabic is not</b>. <i>ترجمة المرافقة</i>, <i>الترجمة الثنائية</i> and <i>الترجمة الحوارية</i> are all in use for overlapping senses, and no single form has become standard. Treat it as <b>needing editorial verification</b> before you put it in a commentary &mdash; cite the source you take it from, or give the English with your Arabic in brackets."
+};
+
 /* ═══════════ KUWAIT UNIVERSITY · THE TRANSLATION MINOR ═══════════
    The ten courses of the minor, with the titles the programme itself
    gives them in both languages and the codes it numbers them by. The
@@ -4072,8 +4167,12 @@ const ITEMS = [
     subject: "مساند التَّرجمة · جامعة الكويت",
     blurb: "The ten courses of the minor, each with the title the programme gives it in both languages — what the subject is, where it is used, what it asks of you, and what the Guild already holds that belongs to it.",
     run: runMinor },
+  { id: "modes", ar: "أنماط التَّرجمة الشَّفهية", en: "The Modes of Interpreting", kind: "guide", section: "method",
+    subject: "الترجمة الشفهية · Chapter 1",
+    blurb: "Simultaneous, consecutive, sight, whispered, relay and remote — what each one is, where it is used, what it demands, and where it goes wrong. The field is الشفهية; الفورية is one mode inside it.",
+    run: runModes },
   { id: "glossary", ar: "مَسرَد المُصطلَحات", en: "Glossary of the Field", kind: "guide", section: "method",
-    subject: "103 terms · Chapters 1–27",
+    subject: "مَسرَد المُصطلَحات · every key term, both languages",
     blurb: "Every key term the handbook defines, searchable in Arabic or English, each with the chapter that explains it. Keep the ones you want and they stay on your Seal.",
     run: runGlossary },
   { id: "errors", ar: "المُراجَعة والأخطاء الشّائعة", en: "Revision and Common Errors", kind: "guide", section: "method",
@@ -6247,7 +6346,10 @@ function runGlossary() {
     });
     stage.appendChild(chips);
 
-    const hits = GLOSSARY.filter(matches);
+    /* The array is grouped by where each term was added; the page is
+       alphabetical because that is how a glossary is used. */
+    const hits = GLOSSARY.filter(matches)
+      .slice().sort((x, y) => x.en.toLowerCase() < y.en.toLowerCase() ? -1 : 1);
     stage.appendChild(el("p", "note",
       hits.length ? hits.length + " of " + GLOSSARY.length + " terms" :
       (mine ? "Nothing kept yet. Tap the star beside a term to keep it." : "No term matches that.")));
@@ -6716,6 +6818,101 @@ function runSubtitle() {
     next.focus();
   }
   question();
+}
+
+/* ═══════════ THE MODES OF INTERPRETING ═══════════
+   One card per mode, in the order a student meets them: the two that
+   carry most of the work, then the two that sit beside them, then the
+   two working arrangements. The last entry is the one the field has not
+   settled in Arabic, and it says so. */
+function runModes() {
+  setCount("الترجمة الشفهية · six modes");
+
+  function render() {
+    stage.innerHTML = "";
+    setDots(0, 0, 0);
+
+    stage.appendChild(el("p", "lede",
+      "<b>الترجمة الشفهية</b> is the field &mdash; spoken translation, as against " +
+      "<b>الترجمة التحريرية</b>, written translation. What follows are its <b>modes</b>: how the " +
+      "rendering is delivered, which is a different question from <i>where</i> the interpreter is " +
+      "sitting. A courtroom is a setting; consecutive is a mode; the same interpreter may use two " +
+      "modes in one afternoon."));
+
+    const v = el("div", "verdict");
+    v.appendChild(el("span", "vh", "The distinction worth keeping"));
+    v.appendChild(el("p", "vb",
+      "In everyday speech <i>الترجمة الفورية</i> is used for interpreting in general, and an " +
+      "interpreter is <i>مترجم فوري</i>. That usage is real and you will hear it daily. But in a " +
+      "commentary, an exam or a contract, <b>الفورية names one mode and الشفهية names the field</b> " +
+      "&mdash; and a client who asks for الفورية and is given التتابعية has been given something " +
+      "that takes twice as long."));
+    stage.appendChild(v);
+
+    INTERP_MODES.forEach((m, i) => {
+      const card = el("div", "card mode");
+      card.appendChild(el("div", "card-top",
+        '<span class="num-badge">Mode ' + (i + 1) + '</span>' +
+        '<h3>' + m.en + '</h3>' +
+        '<span class="ct-ar" dir="rtl" lang="ar">' + m.ar +
+          (m.alt ? ' <span class="ct-alt">· ' + m.alt + '</span>' : '') + '</span>'));
+      card.appendChild(el("p", "pull", m.line));
+      const blocks = el("div", "blocks");
+      blocks.appendChild(el("div", "block", '<span class="b-lab">What it is</span><p>' + m.what + '</p>'));
+      blocks.appendChild(el("div", "block demand", '<span class="b-lab">Where it is used</span><p>' + m.where + '</p>'));
+      blocks.appendChild(el("div", "block", '<span class="b-lab">What it demands</span><p>' + m.demands + '</p>'));
+      blocks.appendChild(el("div", "block trap", '<span class="b-lab">Where it goes wrong</span><p>' + m.wrong + '</p>'));
+      card.appendChild(blocks);
+      if (m.site) {
+        const t = ITEMS.find(x => x.id === m.site);
+        if (t) {
+          const row = el("div", "m-links");
+          const b = el("button", "ghost", "Practise this — " + t.en + " →");
+          b.addEventListener("click", () => openItem(t));
+          row.appendChild(b);
+          card.appendChild(row);
+        }
+      }
+      stage.appendChild(card);
+    });
+
+    /* The one the field has not agreed on, kept visible and kept honest. */
+    const u = el("div", "card mode unsettled");
+    u.appendChild(el("div", "card-top",
+      '<span class="num-badge warn">Not settled</span>' +
+      '<h3>' + INTERP_UNSETTLED.en + '</h3>' +
+      '<span class="ct-ar" dir="rtl" lang="ar">' + INTERP_UNSETTLED.ar + '</span>'));
+    u.appendChild(el("div", "block", '<span class="b-lab">What it is</span><p>' + INTERP_UNSETTLED.what + '</p>'));
+    u.appendChild(el("div", "block trap",
+      '<span class="b-lab">Needs editorial verification</span><p>' + INTERP_UNSETTLED.note + '</p>'));
+    stage.appendChild(u);
+
+    const foot = el("div", "verdict");
+    foot.appendChild(el("span", "vh", "What the Guild practises"));
+    foot.appendChild(el("p", "vb",
+      "The Booth runs against a clock, so what it trains is <b>الترجمة الفورية</b>. The other modes are " +
+      "taught here and not yet practised here &mdash; consecutive needs a note system and a pause, sight " +
+      "translation needs a document in front of you, and neither fits a sixty-second drill. Naming them " +
+      "is the first half of learning them."));
+    const row = el("div", "m-links");
+    const booth = ITEMS.find(t => t.id === "booth");
+    if (booth) {
+      const b = el("button", "ghost", "To the Booth →");
+      b.addEventListener("click", () => openItem(booth));
+      row.appendChild(b);
+    }
+    const gl = ITEMS.find(t => t.id === "glossary");
+    if (gl) {
+      const b = el("button", "ghost", "These terms in the Glossary →");
+      b.addEventListener("click", () => openItem(gl));
+      row.appendChild(b);
+    }
+    foot.appendChild(row);
+    stage.appendChild(foot);
+
+    stage.appendChild(backFoot());
+  }
+  render();
 }
 
 /* ═══════════ THE MINOR ═══════════
@@ -7294,25 +7491,23 @@ function chooseGenre() {
     "not strictness for its own sake &mdash; it is the part of the job that has consequences."));
   stage.appendChild(marking);
 
+  /* The modes are taught in their own chamber; here the booth says only
+     which one it is and where the rest of them live. */
   const modes = el("div", "verdict");
-  modes.appendChild(el("span", "vh", "The word for the work, and the word for this mode"));
+  modes.appendChild(el("span", "vh", "Which mode this is"));
   modes.appendChild(el("p", "vb",
-    "The whole activity is <b>الترجمة الشفهية</b> &mdash; spoken translation, as against " +
-    "<b>الترجمة التحريرية</b>, written translation. It is the umbrella the field sits under, not a mode " +
-    "within it."));
-  modes.appendChild(el("ul", "how",
-    '<li><span><b>الترجمة الفورية</b> &mdash; simultaneous. Rendered while the speaker is still ' +
-      'speaking. <b>This is what the booth trains</b>, because the booth runs against a clock.</span></li>' +
-    '<li><span><b>الترجمة التتابعية</b> &mdash; consecutive. The speaker pauses; the interpreter works ' +
-      'from notes and memory. Also written التتبعية.</span></li>' +
-    '<li><span><b>الترجمة المنظورة</b> &mdash; sight translation. A written text read out in the other ' +
-      'language, on the spot.</span></li>' +
-    '<li><span><b>الترجمة الهمسية</b> &mdash; whispered, to one or two listeners, with no booth and no ' +
-      'equipment.</span></li>'));
-  modes.appendChild(el("p", "vb",
-    "In everyday speech <i>الترجمة الفورية</i> is often used for interpreting in general, and an " +
-    "interpreter is commonly <i>مترجم فوري</i>. That usage is real and worth knowing &mdash; but in a " +
-    "commentary or an exam, <b>الفورية names one mode and الشفهية names the field</b>."));
+    "The field is <b>الترجمة الشفهية</b>. The booth runs against a clock, so what it trains is one mode " +
+    "of it &mdash; <b>الترجمة الفورية</b>, simultaneous, rendered while the speaker is still speaking. " +
+    "Beside it stand <b>التتابعية</b> from notes, <b>المنظورة</b> from a page, <b>الهمسية</b> at " +
+    "someone's shoulder, and the working arrangements <b>المرحلية</b> and <b>عن بُعد</b>."));
+  const mrow = el("div", "m-links");
+  const mguide = ITEMS.find(t => t.id === "modes");
+  if (mguide) {
+    const mb = el("button", "ghost", "All six modes, explained →");
+    mb.addEventListener("click", () => openItem(mguide));
+    mrow.appendChild(mb);
+  }
+  modes.appendChild(mrow);
   stage.appendChild(modes);
 
   stage.appendChild(backFoot());
