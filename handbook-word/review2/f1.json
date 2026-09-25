@@ -1,0 +1,258 @@
+[
+ {
+  "file": "c2a.js",
+  "find": "'**Understand.** Read the text until you know exactly what it means.',\n  '**Plan.** Ask who will read your translation and why.',",
+  "replace": "'**Plan.** Ask who will read your translation and why.',\n  '**Understand.** Read the text until you know exactly what it means.',",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "Chapter 2 (both its structure and its worked example) puts Plan before Understand, so the four steps in Start here should be in the same order."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Imagine a friend who reads only Arabic asks what an English sign says. You would not read out the words one by one; you would say what the sign **means**, in good Arabic. That is translation.",
+  "replace": "Remember the sign in the park (Start here): you did not read out the words one by one; you said what the sign **means**, in good Arabic. That is translation.",
+  "category": "english",
+  "severity": "low",
+  "reason": "This repeats the Start here park scenario almost word for word; referring back to it avoids the repetition and keeps the guided flow."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Translation has been described as “saying almost the same thing” (Eco, 2003).",
+  "replace": "Umberto Eco called translation “saying almost the same thing”, the title of one of his books (Eco, 2003).",
+  "category": "citation",
+  "severity": "low",
+  "reason": "The quoted phrase is the (translated) title of Eco’s Italian book in the References, so it should be presented as a title rather than as a quotation from an English text."
+ },
+ {
+  "file": "c2a.js",
+  "find": "And your translation has one test: your reader must understand it.",
+  "replace": "And your translation must pass a basic test: your reader must understand it.",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "Saying understanding is the only test contradicts the faithfulness and accuracy required in Chapter 2; it is a necessary test, not the only one."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'**Sight translation**: reading a written text aloud in another language.',",
+  "replace": "'**Sight translation**: reading a text written in one language and saying it aloud in another.',",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "As written, a beginner may think the text is already in the other language; the new wording makes the change of language explicit."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Freelance and in-house translators both do commissioned work,",
+  "replace": "Freelance translators (who work for many clients) and in-house translators (who work for one employer) both do commissioned work,",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "‘Freelance’ and ‘in-house’ are used without explanation in a book for complete beginners."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Commissioned translators follow the brief; self-initiated translators choose their own texts.'",
+  "replace": "'Commissioned translators follow the client’s instructions; self-initiated translators choose their own texts.'",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "The term ‘brief’ is only introduced in Chapter 2; Chapter 1’s body speaks of ‘their instructions’."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'**Be faithful** ({{الأمانة}}): do not add or remove meaning. Aim to be faithful, accurate and acceptable to the reader.',",
+  "replace": "'**Be faithful** ({{الأمانة}}): do not add or remove meaning. Aim to be accurate and acceptable to the reader as well.',",
+  "category": "english",
+  "severity": "low",
+  "reason": "‘Be faithful … Aim to be faithful’ repeats the same word in consecutive sentences."
+ },
+ {
+  "file": "c2a.js",
+  "find": "_She takes her pills on time_ → {{تتناول دواءها في موعده}}",
+  "replace": "_She had lunch_ → {{تناولت الغداء}}",
+  "category": "example",
+  "severity": "high",
+  "reason": "The example meant to show the meanings of _have_ contains the verb _takes_, not _have_, so it does not illustrate the point."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Do not translate _is_, _am_ or _are_ with {{يكون}}:",
+  "replace": "'Do not translate a simple _is_, _am_ or _are_ with {{يكون}}:",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "{{يكون}} is correct in many present contexts (habitual truths, after {{أن}}, future), so the absolute ban is inaccurate; ‘a simple’ limits it to the case shown."
+ },
+ {
+  "file": "c2a.js",
+  "find": "never translate _is_ with {{يكون}}",
+  "replace": "do not translate a simple _is_ with {{يكون}}",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The summary repeats the over-absolute ban on {{يكون}}; it should match the corrected body text."
+ },
+ {
+  "file": "c2a.js",
+  "find": "{{أنتم}} (men or a mixed group) or {{أنتنّ}} (women)",
+  "replace": "{{أنتم}} (three or more men, or a mixed group) or {{أنتنّ}} (three or more women)",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "Since {{أنتما}} covers two people, a beginner needs to know that {{أنتم}} and {{أنتنّ}} are for three or more."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Some short English words must not be translated with their first dictionary meaning:",
+  "replace": "Some common English words must not be translated with their first dictionary meaning:",
+  "category": "english",
+  "severity": "low",
+  "reason": "_Eventually_ and phrases such as _to see the Roman ruins_ are not ‘short words’, so ‘common’ describes the list accurately."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'**Modern Standard Arabic**: the Arabic of newspapers,",
+  "replace": "'**Modern Standard Arabic** ({{الفصحى المعاصرة}}): the Arabic of newspapers,",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "The other two bullets give the Arabic term; MSA should too, using the term already given in the chapter’s key terms."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Most problems fall into four groups:",
+  "replace": "Most translation problems between English and Arabic fall into four groups:",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "‘Most problems’ is vague for a beginner; the sentence should say which problems are meant."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['{{حضر الطلابُ المحاضرة.}}',",
+  "replace": "['{{حضر الطلابُ المحاضرة.}} (When the verb comes first, it stays singular: {{حضر}}, not {{حضروا}}.)',",
+  "category": "clarity",
+  "severity": "medium",
+  "reason": "The key agreement change (plural verb becomes singular in verb-first order) is never explained, so a beginner cannot see why the answer is {{حضر}}."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'**AR → EN**: start with the subject, split long sentences, keep one of two synonyms, add “is”.'",
+  "replace": "'**AR → EN**: start with the subject, split long sentences, turn a pair of synonyms into one expression, add “is”.'",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "The body renders {{شجاعٌ مِغوار}} as _very brave_ (an intensified single idea), not by keeping one of the two words."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Translate what the speaker means, in a way that sounds natural in the target language.",
+  "replace": "Translate so that your reader understands what the speaker means. If the indirect sentence works the same way in the target language, keep it indirect.",
+  "category": "concept",
+  "severity": "high",
+  "reason": "As written, beginners may turn an indirect remark into an explicit request (e.g. ‘Please close the window’), which changes the text; the translator should convey the intended meaning, usually by keeping the indirectness where it works."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Translate what the speaker means, not only what the sentence says.'",
+  "replace": "'Make sure your reader understands what the speaker means, not only what the sentence says.'",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The summary must match the corrected Step 2, so it does not tell beginners to replace indirect speech with an explicit version."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Use a familiar measure: _about 20 centimetres_.",
+  "replace": "Use a familiar measure: _about 23 centimetres_.",
+  "category": "concept",
+  "severity": "low",
+  "reason": "A span is conventionally nine inches (about 22–23 cm), so ‘about 20 centimetres’ is inaccurate (settles the writers’ note)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "A word can mean several things (Chapter 5).",
+  "replace": "Chapter 5 showed that meaning has layers. Many words also have several meanings.",
+  "category": "crossref",
+  "severity": "medium",
+  "reason": "Chapter 5 deals with denotation, connotation and speaker meaning, not with words that have several meanings, so the reference points to the wrong content."
+ },
+ {
+  "file": "c2a.js",
+  "find": "(a container, such as a phone case)",
+  "replace": "(a container, such as a glasses case)",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "A phone case is {{غطاء}} or {{جراب}} in Arabic, not {{علبة}}; a glasses case is naturally {{علبة النظارة}}."
+ },
+ {
+  "file": "c2a.js",
+  "find": "The course materials define collocation as “the company a word keeps”.",
+  "replace": "It has been defined as “the company a word keeps” (Translation Team, n.d.).",
+  "category": "citation",
+  "severity": "medium",
+  "reason": "‘The course materials’ are unknown to readers of the handbook; citing them as (Translation Team, n.d.), as Chapters 1, 21 and 22 do, points to the References entry (settles the writers’ note)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['Translate: _heavy rain_', 'Translate: _a close friend_', 'Translate: {{اتّخذ قراراً}}'],\n        ['{{مطر غزير}} (not {{مطر ثقيل}}).', '{{صديق مقرّب}}.', '_He made a decision._']],",
+  "replace": "['Translate: _heavy rain_', 'Translate: _deliver a lecture_', 'Translate: {{عقد مؤتمراً صحفياً}}'],\n        ['{{مطر غزير}} (not {{مطر ثقيل}}).', '{{يلقي محاضرة}} (like _deliver a speech_).', '_He held a press conference._']],",
+  "category": "example",
+  "severity": "low",
+  "reason": "Two of the three questions repeat items from the lists word for word, so they test memory rather than the skill; the new ones apply the same patterns to new partners."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Its words are frozen: you cannot change their order or replace one of them.",
+  "replace": "Its words are frozen: you usually cannot change their order or replace one of them.",
+  "category": "concept",
+  "severity": "low",
+  "reason": "Many idioms allow some variation (_a real piece of cake_; Baker, 2018, speaks of little or no variation), so ‘usually’ is more accurate."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['p', 'Try them in this order (Baker, 2018):'],",
+  "replace": "['p', 'Here are five common ways (Baker, 2018). As a rule, try them in this order, but let the context decide:'],",
+  "category": "citation",
+  "severity": "medium",
+  "reason": "Baker describes these strategies but does not prescribe a fixed order; the order is the handbook’s own advice and should not be attributed to her."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'An idiom with the same meaning and the same form, if one exists.',",
+  "replace": "'An idiom with the same meaning and the same form, if one exists: _to play with fire_ → {{يلعب بالنار}}.',",
+  "category": "example",
+  "severity": "low",
+  "reason": "The first strategy is the only one without an example, and beginners need to see that such matches exist."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_to pull one’s socks up_ → {{شمّر عن ساعديه}}',",
+  "replace": "'_to roll up one’s sleeves_ → {{شمّر عن ساعديه}}',",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "{{شمّر عن ساعديه}} means ‘get ready to work hard’, which matches _roll up one’s sleeves_, whereas _pull one’s socks up_ means ‘improve one’s effort or behaviour’ (settles the writers’ note)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_Boys will be boys._ → {{الولد ولد ولو صار قاضي بلد}}',",
+  "replace": "'_Boys will be boys._ → {{الولد ولد ولو صار قاضي بلد}} (a colloquial proverb)',",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "The proverb is colloquial ({{قاضي}} for MSA {{قاضيَ}}); Chapter 3 tells readers to use MSA, so it should be labelled (settles the writers’ note)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "ولا بدَّ للتَّرجُمانِ من أن يكونَ",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "The al-Jāḥiẓ quotation is cited as (al-Jāḥiẓ, 1965) without volume and page; please check it against the printed Hārūn edition (Vol. 1) and add the page."
+ },
+ {
+  "file": "c2a.js",
+  "find": "(Translation Team, n.d.), or “rendering",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "A definition from the team’s own unpublished course notes is introduced as what ‘experts’ say; please confirm the wording against the manuscript, or consider ‘Our course materials describe translation as…’."
+ },
+ {
+  "file": "c2a.js",
+  "find": "as in a poem’s rhyme (Nida & Taber, 1969)",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "The Nida and Taber principle is paraphrased without a page number (usually cited as p. 4); please check the printed edition, and note that the rhyme example is the handbook’s addition."
+ }
+]

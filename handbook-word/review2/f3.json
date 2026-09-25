@@ -1,0 +1,218 @@
+[
+ {
+  "file": "c2b.js",
+  "find": "(a colloquial proverb)'",
+  "replace": "(a colloquial proverb; in a formal text, give the meaning: {{البنتُ تُشبه أمَّها}})'",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "The only Arabic option is Levantine/Egyptian colloquial, so a beginner has nothing to use in formal writing; giving the plain meaning follows the book's own proverb rule in Chapter 8."
+ },
+ {
+  "file": "c2b.js",
+  "find": "In a hot climate, relief feels cold.",
+  "replace": "In a hot climate, relief and joy are linked with coolness.",
+  "category": "english",
+  "severity": "low",
+  "reason": "\"Relief feels cold\" is odd English and does not match the Try it answer (\"relief is linked with coolness\")."
+ },
+ {
+  "file": "c2b.js",
+  "find": "{{أأشبّهكِ بيومٍ ربيعيّ؟}}",
+  "replace": "{{أأشبّهك بيومٍ ربيعيّ؟}}",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "Sonnet 18 is traditionally read as addressed to a young man, so the kasra (feminine you) adds a gender the source does not state; leaving the pronoun unvowelled keeps it open."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'Each country names its offices in its own way. Translate the job, not the words:'],",
+  "replace": "['p', 'Titles and offices are **culture-specific items**: each country names them in its own way. Translate the job, not the words:'],",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "The key term \"culture-specific item\" is listed in the terms box (and cited from Chapters 24 and 27) but never used in the chapter body."
+ },
+ {
+  "file": "c2b.js",
+  "find": "Why does _warmed my heart_ become {{أثلج صدري}}?",
+  "replace": "Why does _warmed my heart_ become {{أثلجَ صدري}}?",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "Aligns the diacritics with the body example {{أثلجَ الخبرُ صدري}}."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'English has no word for {{الزكاة}}, and no identical custom.",
+  "replace": "['p', 'English has no exact word for {{الزكاة}}, and no identical custom.",
+  "category": "concept",
+  "severity": "low",
+  "reason": "English does have approximate words (alms, almsgiving), so \"no word\" overstates the gap; \"no exact word\" is accurate."
+ },
+ {
+  "file": "c2b.js",
+  "find": "{{أُدخل عليٌّ مستشفى للأمراض النفسية بموجب القانون}}",
+  "replace": "{{أُودِع عليٌّ مستشفى للأمراض النفسية بموجب القانون}}",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "\"Sectioned\" means compulsorily detained; {{أُودِع}} is the idiomatic Arabic verb for committal, whereas {{أُدخل}} only means \"admitted\" and loses the compulsion."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['intro', 'Sometimes an explanation (Chapter 15) is not enough, and the language needs a new word.",
+  "replace": "['intro', 'When a word is needed again and again, a long explanation (Chapter 15) is not practical, and the language needs a new word.",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "Chapters 13 and 15 call explanation the last option, so saying it is sometimes \"not enough\" contradicts them; the real reason for coining is repeated need."
+ },
+ {
+  "file": "c2b.js",
+  "find": "{{الوقف}} → _waqf_ (a charitable endowment); ",
+  "replace": "",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "The waqf example already appears in Chapter 13 and as the Chapter 15 Try it answer; {{الصكوك}} alone illustrates the method."
+ },
+ {
+  "file": "c2b.js",
+  "find": "this is called arabicisation",
+  "replace": "this is called Arabicisation",
+  "category": "english",
+  "severity": "low",
+  "reason": "Derived from the proper noun Arabic, the word is normally capitalised in British English."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Explanation**: _greenwashing_ → {{التضليل البيئي}} (when companies falsely claim that their products are environmentally friendly)',",
+  "replace": "'**Explanation**: a term that explains the idea instead of copying the parts (“green” + “washing”): _greenwashing_ → {{التضليل البيئي}} (companies falsely claiming that their products are environmentally friendly)',",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "As written, only the English gloss looks like the \"explanation\", so {{التضليل البيئي}} reads as a calque; saying the Arabic term itself explains the idea (unlike a part-by-part copy) settles the writers' doubt."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Tone', 'النبرة', 'The writer’s attitude: neutral, critical, friendly, straightforward.'],",
+  "replace": "['Tone', 'النبرة', 'The writer’s attitude, for example neutral, critical or friendly.'],",
+  "category": "english",
+  "severity": "low",
+  "reason": "The list lacks a conjunction and \"straightforward\" describes style rather than attitude."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'Studying a text before translating it is called **text analysis**. It is",
+  "replace": "['p', 'Studying a text before translating it is called **text analysis** (Nord, 2005). It is",
+  "category": "citation",
+  "severity": "medium",
+  "reason": "Nord (2005) is a model of translation-oriented text analysis, so the citation belongs to the concept (as in the earlier draft), not to the \"mental draft\" bullet; apply together with the next item."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'You form a mental draft of the translation (Nord, 2005).',",
+  "replace": "'You form a mental draft of the translation.',",
+  "category": "citation",
+  "severity": "medium",
+  "reason": "\"Mental draft\" is not a Nord concept (Chapter 2 presents it without citation); the citation moves to the definition of text analysis in the previous item."
+ },
+ {
+  "file": "c2b.js",
+  "find": "(Newmark, 1988, Chapter 2)",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "A direct quotation needs a page number in author-date style (the book elsewhere gives Newmark, 1988, p. 5); please check the page in the printed edition."
+ },
+ {
+  "file": "c2b.js",
+  "find": "three phases: analysis, translation and commentary.",
+  "replace": "three phases: analysis, translation and commentary (Chapter 25).",
+  "category": "crossref",
+  "severity": "low",
+  "reason": "Beginners meet \"commentary\" here for the first time; a pointer to the chapter that teaches it helps."
+ },
+ {
+  "file": "c2b.js",
+  "find": "about relations with Australia.",
+  "replace": "about relations between Kuwait and Australia.",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "\"Relations with Australia\" leaves the other party unstated for a reader who has not seen the text."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['ul', ['keeps training his or her analytical skills;', 'builds his or her own model of analysis;',",
+  "replace": "['ul', ['keeps training their analytical skills;', 'builds a personal model of analysis;',",
+  "category": "english",
+  "severity": "low",
+  "reason": "Settles the writers' note: \"his or her\" is heavy and out of line with the rest of the book; singular \"they\" is standard in British academic English."
+ },
+ {
+  "file": "c2b.js",
+  "find": "(Reiss, 2000)",
+  "replace": "(Reiss, 1971/2000)",
+  "category": "citation",
+  "severity": "medium",
+  "reason": "The reference list marks Reiss (2000) as a translation of a 1971 original, and the book uses the double date elsewhere (Vinay & Darbelnet, 1958/1995; Jerome, 395/2012; Johnson, 1784/1897)."
+ },
+ {
+  "file": "c2b.js",
+  "find": "{{أجرى الجانبان محادثاتٍ صريحةً وبنّاءة.}}",
+  "replace": "{{أجرى الجانبان محادثاتٍ صريحةً وبنّاءةً.}}",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "The second adjective lacks the tanwin given to the first, so the partial vowelling is inconsistent."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'Many word choices show a point of view, and your translation",
+  "replace": "['p', 'Many word choices show a point of view, shaped by the writer’s **ideology**, and your translation",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "\"Ideology\" is a key term of the chapter (and Chapter 24 cites it) but never appears in the body."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'_A suicide bomber killed ten people._ → {{انتحاري}} or {{استشهادي}}, depending on the client’s policy: the same person seen from opposite points of view.',",
+  "replace": "'_A suicide bomber killed ten people._ → {{انتحاري}} matches the English; {{استشهادي}} adds praise. The same person is seen from opposite points of view, so follow the client’s policy.',",
+  "category": "sensitivity",
+  "severity": "high",
+  "reason": "Presenting the two words as equal choices hides the fact that {{استشهادي}} adds a positive judgement absent from the English, which conflicts with the book's rule not to add meaning (Chapter 2); stating what each word does keeps the example neutral."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Follow the client’s policy, and explain sensitive choices in your commentary.'",
+  "replace": "'Follow the client’s policy, and explain sensitive choices in your commentary (Chapter 25).'",
+  "category": "crossref",
+  "severity": "low",
+  "reason": "Commentary is taught later, so the summary should point to Chapter 25."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Collocations dictionary', 'معجم المتلازمات',",
+  "replace": "['Collocations dictionary', 'معجم المتلازمات اللفظية',",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Chapter 7 uses {{التلازم اللفظي}} for collocation, so the fuller form keeps the terminology consistent."
+ },
+ {
+  "file": "c2b.js",
+  "find": "A famous saying goes: “Dictionaries",
+  "replace": "Samuel Johnson, the author of a famous English dictionary, wrote: “Dictionaries",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "The reference list gives this as Johnson's own letter, so \"a famous saying\" hides who said it and why his view matters."
+ },
+ {
+  "file": "c2b.js",
+  "find": "(Johnson, 1784/1897)",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "Please check that the reference entry (Johnsonian miscellanies, Vol. 2, p. 309) is the right edition and page for the 1784 letter to Sastres; an earlier draft cited Piozzi (1786)."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'UNTERM (United Nations, n.d.) and Arabterm (ALECSO & GIZ, n.d.): official and technical terms.',\n]],\n['try', ['Which dictionary do you use to confirm a meaning?'",
+  "replace": "'UNTERM (United Nations, n.d.) and Arabterm (ALECSO & GIZ, n.d.): official and technical terms. For one field, such as law or medicine, add a **specialised dictionary**.',\n]],\n['try', ['Which dictionary do you use to confirm a meaning?'",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "\"Specialised dictionary\" is a key term here and Chapter 21 cites it from Chapter 20, but the body never mentions it."
+ }
+]

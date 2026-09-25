@@ -1,0 +1,162 @@
+[
+ {
+  "file": "c2a.js",
+  "find": "but Arab readers will not understand the image.",
+  "replace": "but many Arab readers will not recognise the image.",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "{{حرفاً ميتاً}} does occur in some Arabic legal and press writing (via French lettre morte), so an absolute 'will not understand' is overstated; the point is that it is unfamiliar to most readers."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_It has been a long day._ → {{لقد كان يوماً طويلاً}}  ✗  ({{لقد كان يوماً شاقّاً}})',",
+  "replace": "'_It has been a long day._ → {{لقد كان يوماً طويلاً}}  ✗  ({{لقد كان يوماً شاقّاً}}: in English, a _long_ day is a tiring one)',",
+  "category": "clarity",
+  "severity": "medium",
+  "reason": "The Arabic is grammatical, so a beginner cannot see why it is marked wrong unless the text says that English 'long day' means a tiring day (settles the writer's note)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "{{يجب أن يتمّ تعيين الموظفين الجدد",
+  "replace": "{{يجب تعيين الموظفين الجدد",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "{{يجب أن يتمّ + مصدر}} is a widely criticised calque of the English passive; {{يجب تعيين}} is the natural MSA form and suits a book warning against literal translation."
+ },
+ {
+  "file": "c2a.js",
+  "find": "and the great Abbasid translators followed it too (Baker & Hanna, 2009)",
+  "replace": "and some of the great Abbasid translators, such as Hunayn ibn Ishaq, followed it too (Baker & Hanna, 2009)",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "Baker & Hanna describe two Abbasid schools, one word-for-word (e.g. Ibn al-Batriq) and one sense-for-sense (Hunayn ibn Ishaq), so 'the great Abbasid translators' as a whole overgeneralises the cited source."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['intro', 'Word-for-word translation (Chapter 10) often fails with images.",
+  "replace": "['intro', 'Literal translation (Chapter 10) often fails with images.",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Chapter 10 names and defines 'literal translation', not 'word-for-word translation', so the back-reference should use the term the beginner has just learnt."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['p', 'Comparing things to create a picture is **figurative language**.",
+  "replace": "['p', 'Comparing things to create a picture is one kind of **figurative language**.",
+  "category": "concept",
+  "severity": "low",
+  "reason": "Figurative language is wider than comparison (the key term itself defines it as any non-literal use), so the Step 1 sentence should not equate the two."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['{{تبخّرت آمالي.}}', '{{هذا غيضٌ من فيض.}} or {{وما خفي كان أعظم.}}']",
+  "replace": "['{{تبخّرت آمالي.}}', '{{وما خفي كان أعظم.}} or {{هذا غيضٌ من فيض.}}']",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Step 3 says {{وما خفي كان أعظم}} is the choice 'when something bad is hidden', and the question is about a scandal, so that answer should come first."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['intro', 'Chapters 9 to 11 dealt with whole expressions.",
+  "replace": "['intro', 'Chapters 9 to 11 dealt with whole texts and expressions.",
+  "category": "crossref",
+  "severity": "low",
+  "reason": "Chapter 10 is about methods for whole texts (as Step 1 of this chapter itself says), so 'whole expressions' misdescribes Chapters 9 to 11."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Describing the same situation with a completely different expression, often an idiom or a proverb.'",
+  "replace": "'Describing the same situation with a completely different expression, often an idiom or a proverb; narrower than equivalence in general (Chapter 9).'",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "{{التكافؤ}} names both the general idea (Chapter 9) and this single procedure; the definition must tell beginners they are different (settles the writer's note)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Replacing a cultural situation with a familiar one.'",
+  "replace": "'Replacing a cultural situation with a familiar one; smaller in scale than adaptation as a method (Chapter 10).'",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "{{التكييف}} names both the whole-text method of Chapter 10 and this procedure, so the definition should separate them (settles the writer's note)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'_Sheraton_ → {{شيراتون}}: borrowing'",
+  "replace": "'_Sheraton_ → {{فندق شيراتون}}: borrowing, plus the added word {{فندق}} (addition, Chapter 13)'",
+  "category": "example",
+  "severity": "medium",
+  "reason": "The Arabic adds {{فندق}}, which is not in _at the Sheraton_; the analysis should show it, and the added word is an addition, not part of the borrowing (settles the writer's note)."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['intro', 'Some problems need a wider plan than the procedures of Chapter 12. Here you will learn the main ones.'],",
+  "replace": "['intro', 'Some problems need a wider plan than the procedures of Chapter 12. Here you will learn the main strategies.'],",
+  "category": "english",
+  "severity": "low",
+  "reason": "'the main ones' can be read as 'the main problems'; naming 'strategies' removes the ambiguity."
+ },
+ {
+  "file": "c2a.js",
+  "find": "(Chapter 9). When there is no matching expression, give the plain meaning: _spill the beans_ → {{يُفشي السرّ}};",
+  "replace": "When there is no matching expression, give the plain meaning, as in ideational equivalence (Chapter 9): _spill the beans_ → {{أفشى السرّ}};",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "Chapter 9 calls giving the plain meaning ideational, not functional, equivalence, so the text must say so; {{أفشى}} also matches the form used for the same idiom in Chapter 8."
+ },
+ {
+  "file": "c2a.js",
+  "find": "→ {{هما كقيس وليلى}}. Times and measures also follow the reader’s culture: {{الثامنة إلا ثلثاً}} → _7:40_; {{الثالثة فجراً}} → _3 a.m._',",
+  "replace": "→ {{هما كقيسٍ وليلى}}. Measures can also follow the reader’s culture: _5 miles_ → {{نحو 8 كيلومترات}}.',",
+  "category": "example",
+  "severity": "medium",
+  "reason": "The time examples are changes of format (English also says 'twenty to eight'), not cultural substitution; a unit conversion illustrates the point, and {{قيسٍ}} takes tanwīn (a fully declinable name, unlike {{ليلى}}) as in Chapter 12."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'**Explanatory translation**: the last option, used for",
+  "replace": "'**Explanatory translation**: use it only when nothing shorter works, because it makes the text longer. It suits",
+  "category": "consistency",
+  "severity": "high",
+  "reason": "'The last option' clashes with Chapter 9 (give the idea last), Chapter 11 (plain meaning last) and Step 3 of this chapter, which offers further strategies after it; 'when nothing shorter works' reconciles them and matches Chapter 15's reason."
+ },
+ {
+  "file": "c2a.js",
+  "find": "['p', 'Translators also use these strategies (Baker, 2018):'],",
+  "replace": "['p', 'Translators also use these strategies; the first four come from Baker (2018):'],",
+  "category": "citation",
+  "severity": "low",
+  "reason": "Compensation is not in Baker's list of word-level strategies and carries its own citation (Dickins et al., 2016), so the Baker citation should not cover all five items."
+ },
+ {
+  "file": "c2a.js",
+  "find": "Many Arabic words entered English this way: _algebra_, _algorithm_, _hijab_.",
+  "replace": "English has also borrowed many Arabic words: _algebra_, _algorithm_, _hijab_.",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "_algebra_ and _algorithm_ entered English through medieval Latin, not through a translator's loan-word-plus-explanation strategy, so 'this way' is factually wrong."
+ },
+ {
+  "file": "c2a.js",
+  "find": "'Explanatory translation is the last option.',",
+  "replace": "'Use explanatory translation only when nothing shorter works.',",
+  "category": "consistency",
+  "severity": "high",
+  "reason": "The summary must match the reconciled wording in Step 2 so that it no longer contradicts the 'last choice' advice in Chapters 9 and 11."
+ },
+ {
+  "file": "c2a.js",
+  "find": "(Translation Team, n.d.; Baker, 2018)",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "'Translation Team, n.d.' is an unusual corporate author; check that it matches an entry in the reference list and that the definition is really theirs."
+ },
+ {
+  "file": "c2a.js",
+  "find": "_prawns_ and _shrimps_ → {{روبيان}}",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "The example sits under a Baker (2018) citation but is not attributed; check whether it comes from Baker or the course materials."
+ }
+]

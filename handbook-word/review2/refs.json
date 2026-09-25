@@ -1,0 +1,128 @@
+[
+ {
+  "file": "c2b.js",
+  "find": "(Academy of the Arabic Language, n.d.)",
+  "replace": "(Academy of the Arabic Language in Cairo, n.d.)",
+  "severity": "medium",
+  "reason": "In-text author does not match the reference-list author 'Academy of the Arabic Language in Cairo' (APA requires the same group name); see https://archive.org/details/04_20200414_20200414"
+ },
+ {
+  "file": "c2b.js",
+  "find": "(Newmark, 1988, Chapter 2)",
+  "replace": "(Newmark, 1988, p. 11)",
+  "severity": "medium",
+  "reason": "The quoted sentence ('You begin the job by reading the original for two purposes...') is in Chapter 2, 'Reading the text', on p. 11, and APA 7 needs a page number for a direct quotation; https://archive.org/stream/ATextbookOfTranslationByPeterNewmark/a%20textbook%20of%20translation%20by%20peter%20newmark_djvu.txt"
+ },
+ {
+  "file": "c2b.js",
+  "find": "(Reiss, 2000)",
+  "replace": "(Reiss, 1971/2000)",
+  "severity": "low",
+  "reason": "The reference is a 2000 translation of a 1971 original, so APA 7 cites both dates (as the handbook already does for Vinay & Darbelnet, 1958/1995); https://www.researchgate.net/publication/271176123"
+ },
+ {
+  "file": "c2b.js",
+  "find": "(Johnson, 1784/1897)",
+  "replace": "(Johnson, 1784/1897, p. 309)",
+  "severity": "low",
+  "reason": "The citation is a direct quotation, so APA 7 needs the page; the reference gives Johnsonian Miscellanies vol. 2 p. 309 (medium confidence: search snippets place p. 309 in 'Anecdotes by William Seward'); https://archive.org/details/johnsonianmiscel02hill"
+ },
+ {
+  "file": "c2a.js",
+  "find": "(Jerome, 395/2012)",
+  "replace": null,
+  "severity": "low",
+  "reason": "A direct quotation needs a page number in APA 7; the letter is on pp. 21–30 of the Reader but the exact page of 'not word for word but sense for sense' could not be confirmed; https://www.taylorfrancis.com/chapters/edit/10.4324/9780429280641-5/letter-pammachius-jerome-kathleen-davis"
+ },
+ {
+  "file": "build2.js",
+  "find": "_The translation studies reader_ (3rd ed.). Routledge.",
+  "replace": "_The translation studies reader_ (3rd ed., pp. 21–30). Routledge.",
+  "severity": "medium",
+  "reason": "APA 7 requires the page range for a chapter in an edited book; Jerome's 'Letter to Pammachius' (trans. K. Davis) is on pp. 21–30 of the 3rd edition; https://www.taylorfrancis.com/chapters/edit/10.4324/9780429280641-5/letter-pammachius-jerome-kathleen-davis"
+ },
+ {
+  "file": "build2.js",
+  "find": "Letter to Francesco Sastres, 21 August 1784. In G. B. Hill",
+  "replace": null,
+  "severity": "low",
+  "reason": "Search evidence puts p. 309 of vol. 2 in the section 'Anecdotes by William Seward, F.R.S.', which quotes the letter, so the chapter element may need to name that section; the scan could not be opened to confirm; https://archive.org/details/johnsonianmiscel02hill"
+ },
+ {
+  "file": "build2.js",
+  "find": "_Machine translation for everyone: Empowering users in the age of artificial intelligence_. Language Science Press.",
+  "replace": "_Machine translation for everyone: Empowering users in the age of artificial intelligence_. Language Science Press. https://doi.org/10.5281/zenodo.6653406",
+  "severity": "low",
+  "reason": "APA 7 includes a DOI when one exists; this open-access book has DOI 10.5281/zenodo.6653406; https://zenodo.org/records/6653406"
+ },
+ {
+  "file": "build2.js",
+  "find": "_The Translator, 9_(2), 171–189.",
+  "replace": "_The Translator, 9_(2), 171–189. https://doi.org/10.1080/13556509.2003.10799152",
+  "severity": "low",
+  "reason": "APA 7 includes a DOI when one exists; Gambier (2003) has DOI 10.1080/13556509.2003.10799152; https://www.tandfonline.com/doi/abs/10.1080/13556509.2003.10799152"
+ },
+ {
+  "file": "build2.js",
+  "find": "(J. C. Sager & M.-J. Hamel, Trans.)",
+  "replace": "(J. C. Sager & M.-J. Hamel, Eds. & Trans.)",
+  "severity": "low",
+  "reason": "The English edition was 'translated and edited by' Juan C. Sager and Marie-Josée Hamel, which APA 7 writes as 'Eds. & Trans.'; https://www.benjamins.com/catalog/btl.11"
+ },
+ {
+  "file": "build2.js",
+  "find": "In _Shakespeare’s sonnets_. Thomas Thorpe.",
+  "replace": "In _Shake-speares sonnets: Never before imprinted_. Thomas Thorpe.",
+  "severity": "low",
+  "reason": "The 1609 Thorpe quarto is titled 'Shake-speares Sonnets. Never before Imprinted'; 'Shakespeare's sonnets' is a modern title (or cite a modern edition instead); https://en.wikipedia.org/wiki/Shakespeare%27s_sonnets"
+ },
+ {
+  "file": "build2.js",
+  "find": "Guild, Translation Team, Professional Club.",
+  "replace": "Guild Professional Club.",
+  "severity": "low",
+  "reason": "The publisher name is garbled; the handbook's own imprint line names the body as 'Guild Professional Club, Translation Team' (internal evidence, build2.js title page)."
+ },
+ {
+  "file": "build2.js",
+  "find": "_Al-muʿjam al-wasīṭ_ [The intermediate dictionary].",
+  "replace": null,
+  "severity": "low",
+  "reason": "The entry has no year, edition or publisher, but dated editions exist (e.g., 4th ed., 2004, Maktabat al-Shurūq al-Dawliyya); state the edition used, and change the n.d. citation to match; https://archive.org/details/04_20200414_20200414"
+ },
+ {
+  "file": "build2.js",
+  "find": "Baalbaki, M. (n.d.).",
+  "replace": null,
+  "severity": "low",
+  "reason": "Al-Mawrid appears in dated editions (1967 onward, Dar El-Ilm Lilmalayin), so the year of the edition used should replace n.d. here and in the citation; https://en.wikipedia.org/wiki/Munir_Baalbaki"
+ },
+ {
+  "file": "build2.js",
+  "find": "'al-Mutanabbi. (n.d.). _Dīwān al-Mutanabbī_ [The collected poems of al-Mutanabbi]. (Original work written 10th century CE)',",
+  "replace": null,
+  "severity": "low",
+  "reason": "The entry has no editor, publisher or year, so a reader cannot find the edition; name the edition used (e.g., a Dār Ṣādir or al-Barqūqī edition). The quoted line الخيل والليل والبيداء تعرفني is confirmed as al-Mutanabbi's; https://www.aldiwan.net/poem20938.html"
+ },
+ {
+  "file": "build2.js",
+  "find": "'_Oxford collocations dictionary for students of English_ (2nd ed.). (2009). Oxford University Press.',",
+  "replace": null,
+  "severity": "low",
+  "reason": "The 2nd edition names an editor (Colin McIntosh, with Ben Francis and Richard Poole), and APA 7 puts the editor first: McIntosh, C. (Ed.). (2009). _Oxford collocations dictionary for students of English_ (2nd ed.). Oxford University Press. The in-text form would change to McIntosh (2009); https://www.amazon.com/Oxford-Collocations-Dictionary-Students-English/dp/3068013062"
+ },
+ {
+  "file": "build2.js",
+  "find": "ALECSO & GIZ. (n.d.).",
+  "replace": null,
+  "severity": "low",
+  "reason": "Arabterm describes itself as a joint publication of ALECSO and the German BMZ, with GIZ running the project, so consider 'ALECSO & BMZ' or keep GIZ on purpose; https://arabterm.org/index.php?L=1&id=66"
+ },
+ {
+  "file": "build2.js",
+  "find": "'**Dickins, Hervey and Higgins (2016)**, ",
+  "replace": "'**Dickins et al. (2016)**, ",
+  "severity": "low",
+  "reason": "APA 7 shortens a three-author narrative citation to 'et al.', as the body text already does (Dickins et al., 2016); https://www.routledge.com/Thinking-Arabic-Translation-A-Course-in-Translation-Method-Arabic-to-English/Dickins-Hervey-Higgins/p/book/9780415705639"
+ }
+]

@@ -1,4 +1,4 @@
-// Correction log from the expert review; generated from review/r1-r4.json.
+// Correction log from both expert reviews; generated from review/ and review2/.
 module.exports = [
 [
 "h1",
@@ -9,54 +9,26 @@ module.exports = [
 "This log records every correction made to the Translation Handbook during the expert review carried out before publication. The review was prompted by an error found on the first page of Chapter 1. The whole book was then reviewed, in both languages, for errors of concept and fact, Arabic language and terminology, examples, consistency, repetition, English, neutrality and citations. The practice section, answer key and checklists were later removed to shorten the handbook, so the corrections listed for them (Level 1, Answer key, Checklists) no longer apply."
 ],
 [
+"p",
+"After the first review, the handbook was rewritten as a step-by-step guide for complete beginners and then reviewed a second time, in both languages, together with a check of every reference and quotation. This log records both reviews."
+],
+[
 "h1",
 "2. Summary"
 ],
 [
 "ul",
 [
-"**192 corrections** were made: 23 of high importance, 76 of medium importance and 93 minor.",
-"By type: Concept or fact 58; Consistency 43; Example 28; English 26; Arabic 24; Neutrality and sensitivity 6; Citation 5; Repetition 2.",
-"Three proposed changes were rejected because they would have introduced a new inaccuracy or removed draft material; they are not listed.",
-"**18 points** could not be settled without the printed sources and are listed in Section 4 for the team to check.",
-"After the corrections, all Arabic examples and all 39 cited sources were checked again and are still in the handbook."
-]
-],
-[
-"h2",
-"2.1 The most important corrections"
-],
-[
-"ol",
-[
-"A freelancer was given as an example of a commissioned translator, and the exercise repeated this; the difference is now explained as who chooses the text, and the exercise was rewritten. (Chapter 1)",
-"The key term glosses the general word “translation” as written translation only, but the chapter treats translation as the umbrella term (interpreting, sight translation and AVT are listed as “Types of translation”, and both quoted definitions are general). (Chapter 1)",
-"It is a false generalisation that Arabic “usually” starts with the verb: the nominal sentence (جملة اسمية) with SVO order is fully grammatical and very common in MSA; VSO is only the preferred unmarked order in formal writing. (Chapter 3)",
-"{{سام أكل الكعكة}} is a grammatical Arabic nominal sentence (it puts the focus on Sam), so marking it ✗ (“a poor translation”) teaches beginners that correct Arabic is wrong. (Chapter 3)",
-"It presents {{يُعدّ/تُعدّ}} (“is considered”) as the Arabic equivalent of “is”, which adds a meaning and encourages a well-known translationese habit; the normal Arabic equivalent is a nominal sentence without a verb. “When is is the main verb” is also unclear. (Chapter 3)",
-"The explanation is wrong: _heavy_ becomes the adverbial phrase {{بشراهة}}; it is _smoker_ that becomes a verb. (Chapter 4)",
-"By the chapter's own definitions a plain non-idiomatic rendering is ideational, not functional; the Arabic also dropped the modal _should_. (Chapter 9)",
-"In English _see the light_ means 'to understand or be converted'; 'be published' is _see the light of day_, so the example of a shared metaphor is an Arabism. {{المقبل}} is also the preferred form for 'next'. (Chapter 11)",
-"{{كلمة مفتاحية}} is itself a literal translation of _key word_, so it cannot illustrate that 'literal translation often fails'; the definition also ignores the literal half of the label. (Chapter 13)",
-"{{زي أم العروس}} (from {{زي أم العروس فاضية ومشغولة}}) describes someone who fusses without achieving much, the opposite of industrious “busy as a bee”; and {{مشغول جداً}} is a plain paraphrase, not a cultural equivalent as the heading promises. (Chapter 14)",
-"Zakat is levied on wealth held above the nisab for a lunar year (and on certain produce and livestock), not on income, so the gloss is factually wrong. (Chapter 15)",
-"Tayammum is wiping, not washing, and applies also when water cannot be used (e.g. illness), so “ritual washing” misdescribes it. (Chapter 15)",
-"{{النحت}} is specifically blending two words into one (e.g. {{البسملة}}, {{برمائي}}); lexical creation in general is {{التوليد المعجمي}}. (Chapter 16)",
-"The chapter’s own example ({{مدوّنة}} for _blog_) is an existing Arabic word given a new sense, not a “completely new word”; neologisms standardly include new senses. (Chapter 16)",
-"{{مدوّنة}} was not invented but derived from the root {{د و ن}} and extended in meaning; derivation, the main Arabic coinage method, is otherwise missing. (Chapter 16)",
-"{{عيد الحب}} (“the feast of love”) is not a loan translation of _Valentine’s Day_ (a calque would be {{عيد القديس فالنتاين}}); it is a descriptive/functional rendering, so it is a wrong example of calque. (Chapter 16)",
-"{{التعجيم}} is not the Arabic term for lexicalisation (it evokes {{الإعجام}}, dotting letters, or making foreign); the usual term is {{المَعْجَمة}}, and lexicalisation means entering general use, not becoming “official”. (Chapter 16)",
-"Text linguists do not limit text to writing, and a random word or sentence is not a text unless it forms a meaningful whole (e.g. a sign saying “Exit”). (Chapter 17)",
-"Calling genre “the type of text” contradicts Chapter 18, which separates text type (function) from genre; the glossary keeps this first definition, so it must match Chapter 18. (Chapter 17)",
-"The cited work (Munir Baalbaki) is English–Arabic only; the Arabic–English _Al-Mawrid_ is by Rohi Baalbaki and is not in the References, so the item misattributes it. (Chapter 20)",
-"Terminologists mainly collect, describe and record terms, and translation-oriented terminology work (UNTERM, IATE, Arabterm) is bilingual or multilingual, so ‘creates … usually in one language’ misdescribes the job. (Chapter 21)",
-"Same misdescription as the key term: terminologists work on terms, not texts, often across languages, and standardisation is only part of their work. (Chapter 21)",
-"The model answer repeats the incorrect ‘usually in one language’ description of a terminologist. (Chapter 21)"
+"**First review:** 192 corrections (see Section 3).",
+"**Final review, after the guided rewrite:** 102 corrections: 5 of high importance, 37 of medium importance and 60 minor (see Section 4). This includes the check of all 38 references and every direct quotation against published information.",
+"Proposed changes that would have put scholars’ names back into the running text, or removed material from the team’s draft, were rejected and are not listed.",
+"**30 points** could not be settled without the printed sources; they are listed in Section 5.",
+"After each review, every Arabic example and every citation was checked again. All citations match the References, and all references are cited."
 ]
 ],
 [
 "h1",
-"3. All corrections, by chapter"
+"3. First review: corrections by chapter"
 ],
 [
 "table",
@@ -1229,11 +1201,644 @@ module.exports = [
 ],
 [
 "h1",
-"4. Points to check against the printed sources"
+"4. Final review: corrections by chapter"
+],
+[
+"table",
+[
+"Where",
+"Type",
+"Importance",
+"What was wrong and what was done"
+],
+[
+[
+"Start here",
+"Consistency",
+"Medium",
+"Chapter 2 (both its structure and its worked example) puts Plan before Understand, so the four steps in Start here should be in the same order."
+],
+[
+"Chapter 1",
+"English",
+"Low",
+"This repeats the Start here park scenario almost word for word; referring back to it avoids the repetition and keeps the guided flow."
+],
+[
+"Chapter 1",
+"Concept or fact",
+"Medium",
+"Saying understanding is the only test contradicts the faithfulness and accuracy required in Chapter 2; it is a necessary test, not the only one."
+],
+[
+"Chapter 1",
+"Clarity for beginners",
+"Low",
+"As written, a beginner may think the text is already in the other language; the new wording makes the change of language explicit."
+],
+[
+"Chapter 1",
+"Clarity for beginners",
+"Low",
+"‘Freelance’ and ‘in-house’ are used without explanation in a book for complete beginners."
+],
+[
+"Chapter 1",
+"Consistency",
+"Low",
+"The term ‘brief’ is only introduced in Chapter 2; Chapter 1’s body speaks of ‘their instructions’."
+],
+[
+"Chapter 3",
+"Example",
+"High",
+"The example meant to show the meanings of _have_ contains the verb _takes_, not _have_, so it does not illustrate the point."
+],
+[
+"Chapter 3",
+"Concept or fact",
+"Medium",
+"{{يكون}} is correct in many present contexts (habitual truths, after {{أن}}, future), so the absolute ban is inaccurate; ‘a simple’ limits it to the case shown."
+],
+[
+"Chapter 3",
+"Concept or fact",
+"Medium",
+"The summary repeats the over-absolute ban on {{يكون}}; it should match the corrected body text."
+],
+[
+"Chapter 3",
+"Clarity for beginners",
+"Low",
+"Since {{أنتما}} covers two people, a beginner needs to know that {{أنتم}} and {{أنتنّ}} are for three or more."
+],
+[
+"Chapter 3",
+"English",
+"Low",
+"_Eventually_ and phrases such as _to see the Roman ruins_ are not ‘short words’, so ‘common’ describes the list accurately."
+],
+[
+"Chapter 3",
+"Consistency",
+"Low",
+"The other two bullets give the Arabic term; MSA should too, using the term already given in the chapter’s key terms."
+],
+[
+"Chapter 3",
+"Clarity for beginners",
+"Low",
+"‘Most problems’ is vague for a beginner; the sentence should say which problems are meant."
+],
+[
+"Chapter 3",
+"Clarity for beginners",
+"Medium",
+"The key agreement change (plural verb becomes singular in verb-first order) is never explained, so a beginner cannot see why the answer is {{حضر}}."
+],
+[
+"Chapter 3",
+"Consistency",
+"Low",
+"The body renders {{شجاعٌ مِغوار}} as _very brave_ (an intensified single idea), not by keeping one of the two words."
+],
+[
+"Chapter 5",
+"Concept or fact",
+"High",
+"As written, beginners may turn an indirect remark into an explicit request (e.g. ‘Please close the window’), which changes the text; the translator should convey the intended meaning, usually by keeping the indirectness where it works."
+],
+[
+"Chapter 5",
+"Concept or fact",
+"Medium",
+"The summary must match the corrected Step 2, so it does not tell beginners to replace indirect speech with an explicit version."
+],
+[
+"Chapter 5",
+"Concept or fact",
+"Low",
+"A span is conventionally nine inches (about 22–23 cm), so ‘about 20 centimetres’ is inaccurate (settles the writers’ note)."
+],
+[
+"Chapter 6",
+"Cross-reference",
+"Medium",
+"Chapter 5 deals with denotation, connotation and speaker meaning, not with words that have several meanings, so the reference points to the wrong content."
+],
+[
+"Chapter 6",
+"Arabic",
+"Low",
+"A phone case is {{غطاء}} or {{جراب}} in Arabic, not {{علبة}}; a glasses case is naturally {{علبة النظارة}}."
+],
+[
+"Chapter 7",
+"Citation",
+"Medium",
+"‘The course materials’ are unknown to readers of the handbook; citing them as (Translation Team, n.d.), as Chapters 1, 21 and 22 do, points to the References entry (settles the writers’ note)."
+],
+[
+"Chapter 7",
+"Example",
+"Low",
+"Two of the three questions repeat items from the lists word for word, so they test memory rather than the skill; the new ones apply the same patterns to new partners."
+],
+[
+"Chapter 8",
+"Concept or fact",
+"Low",
+"Many idioms allow some variation (_a real piece of cake_; Baker, 2018, speaks of little or no variation), so ‘usually’ is more accurate."
+],
+[
+"Chapter 8",
+"Citation",
+"Medium",
+"Baker describes these strategies but does not prescribe a fixed order; the order is the handbook’s own advice and should not be attributed to her."
+],
+[
+"Chapter 8",
+"Example",
+"Low",
+"The first strategy is the only one without an example, and beginners need to see that such matches exist."
+],
+[
+"Chapter 8",
+"Arabic",
+"Medium",
+"{{شمّر عن ساعديه}} means ‘get ready to work hard’, which matches _roll up one’s sleeves_, whereas _pull one’s socks up_ means ‘improve one’s effort or behaviour’ (settles the writers’ note)."
+],
+[
+"Chapter 8",
+"Arabic",
+"Low",
+"The proverb is colloquial ({{قاضي}} for MSA {{قاضيَ}}); Chapter 3 tells readers to use MSA, so it should be labelled (settles the writers’ note)."
+],
+[
+"Chapter 9",
+"Concept or fact",
+"Medium",
+"{{حرفاً ميتاً}} does occur in some Arabic legal and press writing (via French lettre morte), so an absolute 'will not understand' is overstated; the point is that it is unfamiliar to most readers."
+],
+[
+"Chapter 10",
+"Clarity for beginners",
+"Medium",
+"The Arabic is grammatical, so a beginner cannot see why it is marked wrong unless the text says that English 'long day' means a tiring day (settles the writer's note)."
+],
+[
+"Chapter 10",
+"Arabic",
+"Low",
+"{{يجب أن يتمّ + مصدر}} is a widely criticised calque of the English passive; {{يجب تعيين}} is the natural MSA form and suits a book warning against literal translation."
+],
+[
+"Chapter 10",
+"Concept or fact",
+"Medium",
+"Baker & Hanna describe two Abbasid schools, one word-for-word (e.g. Ibn al-Batriq) and one sense-for-sense (Hunayn ibn Ishaq), so 'the great Abbasid translators' as a whole overgeneralises the cited source."
+],
+[
+"Chapter 11",
+"Consistency",
+"Low",
+"Chapter 10 names and defines 'literal translation', not 'word-for-word translation', so the back-reference should use the term the beginner has just learnt."
+],
+[
+"Chapter 11",
+"Concept or fact",
+"Low",
+"Figurative language is wider than comparison (the key term itself defines it as any non-literal use), so the Step 1 sentence should not equate the two."
+],
+[
+"Chapter 11",
+"Consistency",
+"Low",
+"Step 3 says {{وما خفي كان أعظم}} is the choice 'when something bad is hidden', and the question is about a scandal, so that answer should come first."
+],
+[
+"Chapter 12",
+"Cross-reference",
+"Low",
+"Chapter 10 is about methods for whole texts (as Step 1 of this chapter itself says), so 'whole expressions' misdescribes Chapters 9 to 11."
+],
+[
+"Chapter 12",
+"Consistency",
+"Medium",
+"{{التكافؤ}} names both the general idea (Chapter 9) and this single procedure; the definition must tell beginners they are different (settles the writer's note)."
+],
+[
+"Chapter 12",
+"Consistency",
+"Medium",
+"{{التكييف}} names both the whole-text method of Chapter 10 and this procedure, so the definition should separate them (settles the writer's note)."
+],
+[
+"Chapter 12",
+"Example",
+"Medium",
+"The Arabic adds {{فندق}}, which is not in _at the Sheraton_; the analysis should show it, and the added word is an addition, not part of the borrowing (settles the writer's note)."
+],
+[
+"Chapter 13",
+"English",
+"Low",
+"'the main ones' can be read as 'the main problems'; naming 'strategies' removes the ambiguity."
+],
+[
+"Chapter 13",
+"Consistency",
+"Medium",
+"Chapter 9 calls giving the plain meaning ideational, not functional, equivalence, so the text must say so; {{أفشى}} also matches the form used for the same idiom in Chapter 8."
+],
+[
+"Chapter 13",
+"Example",
+"Medium",
+"The time examples are changes of format (English also says 'twenty to eight'), not cultural substitution; a unit conversion illustrates the point, and {{قيسٍ}} takes tanwīn (a fully declinable name, unlike {{ليلى}}) as in Chapter 12."
+],
+[
+"Chapter 13",
+"Consistency",
+"High",
+"'The last option' clashes with Chapter 9 (give the idea last), Chapter 11 (plain meaning last) and Step 3 of this chapter, which offers further strategies after it; 'when nothing shorter works' reconciles them and matches Chapter 15's reason."
+],
+[
+"Chapter 13",
+"Citation",
+"Low",
+"Compensation is not in Baker's list of word-level strategies and carries its own citation (Dickins et al., 2016), so the Baker citation should not cover all five items."
+],
+[
+"Chapter 13",
+"Concept or fact",
+"Medium",
+"_algebra_ and _algorithm_ entered English through medieval Latin, not through a translator's loan-word-plus-explanation strategy, so 'this way' is factually wrong."
+],
+[
+"Chapter 13",
+"Consistency",
+"High",
+"The summary must match the reconciled wording in Step 2 so that it no longer contradicts the 'last choice' advice in Chapters 9 and 11."
+],
+[
+"Chapter 14",
+"Arabic",
+"Medium",
+"The only Arabic option is Levantine/Egyptian colloquial, so a beginner has nothing to use in formal writing; giving the plain meaning follows the book's own proverb rule in Chapter 8."
+],
+[
+"Chapter 14",
+"English",
+"Low",
+"\"Relief feels cold\" is odd English and does not match the Try it answer (\"relief is linked with coolness\")."
+],
+[
+"Chapter 14",
+"Concept or fact",
+"Medium",
+"Sonnet 18 is traditionally read as addressed to a young man, so the kasra (feminine you) adds a gender the source does not state; leaving the pronoun unvowelled keeps it open."
+],
+[
+"Chapter 14",
+"Consistency",
+"Low",
+"The key term \"culture-specific item\" is listed in the terms box (and cited from Chapters 24 and 27) but never used in the chapter body."
+],
+[
+"Chapter 14",
+"Arabic",
+"Low",
+"Aligns the diacritics with the body example {{أثلجَ الخبرُ صدري}}."
+],
+[
+"Chapter 15",
+"Concept or fact",
+"Low",
+"English does have approximate words (alms, almsgiving), so \"no word\" overstates the gap; \"no exact word\" is accurate."
+],
+[
+"Chapter 15",
+"Arabic",
+"Medium",
+"\"Sectioned\" means compulsorily detained; {{أُودِع}} is the idiomatic Arabic verb for committal, whereas {{أُدخل}} only means \"admitted\" and loses the compulsion."
+],
+[
+"Chapter 16",
+"Concept or fact",
+"Medium",
+"Chapters 13 and 15 call explanation the last option, so saying it is sometimes \"not enough\" contradicts them; the real reason for coining is repeated need."
+],
+[
+"Chapter 16",
+"Consistency",
+"Low",
+"The waqf example already appears in Chapter 13 and as the Chapter 15 Try it answer; {{الصكوك}} alone illustrates the method."
+],
+[
+"Chapter 16",
+"English",
+"Low",
+"Derived from the proper noun Arabic, the word is normally capitalised in British English."
+],
+[
+"Chapter 16",
+"Concept or fact",
+"Medium",
+"As written, only the English gloss looks like the \"explanation\", so {{التضليل البيئي}} reads as a calque; saying the Arabic term itself explains the idea (unlike a part-by-part copy) settles the writers' doubt."
+],
+[
+"Chapter 17",
+"English",
+"Low",
+"The list lacks a conjunction and \"straightforward\" describes style rather than attitude."
+],
+[
+"Chapter 17",
+"Citation",
+"Medium",
+"Nord (2005) is a model of translation-oriented text analysis, so the citation belongs to the concept (as in the earlier draft), not to the \"mental draft\" bullet; apply together with the next item."
+],
+[
+"Chapter 17",
+"Citation",
+"Medium",
+"\"Mental draft\" is not a Nord concept (Chapter 2 presents it without citation); the citation moves to the definition of text analysis in the previous item."
+],
+[
+"Chapter 17",
+"Cross-reference",
+"Low",
+"Beginners meet \"commentary\" here for the first time; a pointer to the chapter that teaches it helps."
+],
+[
+"Chapter 17",
+"Clarity for beginners",
+"Low",
+"\"Relations with Australia\" leaves the other party unstated for a reader who has not seen the text."
+],
+[
+"Chapter 17",
+"English",
+"Low",
+"Settles the writers' note: \"his or her\" is heavy and out of line with the rest of the book; singular \"they\" is standard in British academic English."
+],
+[
+"Chapter 17",
+"Reference",
+"Medium",
+"The quoted sentence ('You begin the job by reading the original for two purposes...') is in Chapter 2, 'Reading the text', on p. 11, and APA 7 needs a page number for a direct quotation"
+],
+[
+"Chapter 18",
+"Arabic",
+"Low",
+"The second adjective lacks the tanwin given to the first, so the partial vowelling is inconsistent."
+],
+[
+"Chapter 18",
+"Reference",
+"Low",
+"The reference is a 2000 translation of a 1971 original, so APA 7 cites both dates (as the handbook already does for Vinay & Darbelnet, 1958/1995)"
+],
+[
+"Chapter 19",
+"Consistency",
+"Low",
+"\"Ideology\" is a key term of the chapter (and Chapter 24 cites it) but never appears in the body."
+],
+[
+"Chapter 19",
+"Neutrality and sensitivity",
+"High",
+"Presenting the two words as equal choices hides the fact that {{استشهادي}} adds a positive judgement absent from the English, which conflicts with the book's rule not to add meaning (Chapter 2); stating what each word does keeps the example neutral."
+],
+[
+"Chapter 19",
+"Cross-reference",
+"Low",
+"Commentary is taught later, so the summary should point to Chapter 25."
+],
+[
+"Chapter 20",
+"Consistency",
+"Low",
+"Chapter 7 uses {{التلازم اللفظي}} for collocation, so the fuller form keeps the terminology consistent."
+],
+[
+"Chapter 20",
+"Consistency",
+"Low",
+"\"Specialised dictionary\" is a key term here and Chapter 21 cites it from Chapter 20, but the body never mentions it."
+],
+[
+"Chapter 20",
+"Reference",
+"Medium",
+"In-text author does not match the reference-list author 'Academy of the Arabic Language in Cairo' (APA requires the same group name)"
+],
+[
+"Chapter 20",
+"Reference",
+"Low",
+"The citation is a direct quotation, so APA 7 needs the page; the reference gives Johnsonian Miscellanies vol. 2 p. 309 (medium confidence: search snippets place p. 309 in 'Anecdotes by William Seward')"
+],
+[
+"Chapter 21",
+"Arabic",
+"Low",
+"Settles the writer query: keep the standard medical term but tell beginners that the far more common {{تحسّسي}} is not wrong, only less technical."
+],
+[
+"Chapter 21",
+"Arabic",
+"Low",
+"The usual Arabic spelling of eczema is {{إكزيما}} with hamza under the alif."
+],
+[
+"Chapter 21",
+"Concept or fact",
+"Medium",
+"The client’s approved terms override general sources (Step 4 says “follow it”), so the guide should come first, and a beginner cannot search “the academies” themselves, only their term lists."
+],
+[
+"Chapter 21",
+"English",
+"Low",
+"Makes the list grammatically parallel (adjectives, then two verb phrases)."
+],
+[
+"Chapter 21",
+"Clarity for beginners",
+"Low",
+"The table appears with no lead-in, so a beginner does not know that it is an example of the term list the chapter asks them to keep."
+],
+[
+"Chapter 21",
+"Concept or fact",
+"Low",
+"Inconsistent terms reduce translation-memory matches but do not make reuse impossible."
+],
+[
+"Chapter 21",
+"Consistency",
+"Medium",
+"The answer skipped the search step that Step 3 and the chapter summary (“Search … before you create a term”) require, so it contradicts the chapter."
+],
+[
+"Chapter 22",
+"Clarity for beginners",
+"Low",
+"The abbreviation CAT is never expanded in English anywhere in the book, and this definition also feeds the glossary."
+],
+[
+"Chapter 22",
+"Clarity for beginners",
+"Low",
+"“They” could refer to all systems, including the early rule-based ones."
+],
+[
+"Chapter 22",
+"Clarity for beginners",
+"Low",
+"A termbase is a tool that helps; it does not keep terms consistent by itself, so the wording supports the “You are responsible” rule."
+],
+[
+"Chapter 22",
+"Example",
+"Medium",
+"The English sentence gives the gender (“her”), so the machine did not have to guess; it ignored the pronoun, which is the real lesson."
+],
+[
+"Chapter 23",
+"Consistency",
+"Low",
+"Self-revision is the bolded key idea of Step 1 but is missing from Words to remember and from the glossary."
+],
+[
+"Chapter 24",
+"Arabic",
+"Medium",
+"Settles the writer query: “taught” is {{عَلَّمَ}}, not the natural reading of unvocalised {{علم}}; showing the vowelled forms lets a beginner see why the word is ambiguous."
+],
+[
+"Chapter 24",
+"Concept or fact",
+"Low",
+"Chapters 8 and 22 present word-for-word idioms as a typical and serious error that can distort the message, so ranking them lowest in the matrix sends a mixed message."
+],
+[
+"Chapter 26",
+"Citation",
+"Medium",
+"The Arabic dubbing of The Simpsons was given without a source; it is now credited to the team’s course materials, where the example appears."
+],
+[
+"Chapter 27",
+"Concept or fact",
+"Medium",
+"Spotting is the task of marking the in and out times (as Step 2 says), not the synchrony itself."
+],
+[
+"Chapter 27",
+"Arabic",
+"Low",
+"Splitting a construct phrase (iḍāfa) across two lines is the most typical Arabic line-break error and is not covered."
+],
+[
+"Chapter 27",
+"Concept or fact",
+"Low",
+"Subtitles do not normally explain unclear pictures; the norm is that they must stay consistent with what is shown."
+],
+[
+"Chapter 27",
+"Consistency",
+"Medium",
+"The previous bullet tells the subtitler to use MSA even for dialect speakers, so “Try to keep this” seems to contradict it without saying how."
+],
+[
+"Chapter 27",
+"Consistency",
+"Medium",
+"“Culture-bound term” is in Words to remember but never appears in the chapter body, so the reader cannot link the key term to Step 4."
+],
+[
+"Abbreviations",
+"Consistency",
+"Low",
+"CAT is used in Chapter 22 but missing from the Abbreviations list."
+],
+[
+"Abbreviations",
+"Consistency",
+"Low",
+"SDH is used in Chapter 27 but missing from the Abbreviations list (SL, SLC, TL, TLC and TS are listed but never used in the text; keep them only if wanted for wider reading)."
+],
+[
+"Back matter",
+"English",
+"Low",
+"“Subtitling: a practical guide to subtitling” repeats the title word."
+],
+[
+"Back matter",
+"Reference",
+"Medium",
+"APA 7 requires the page range for a chapter in an edited book; Jerome's 'Letter to Pammachius' (trans. K. Davis) is on pp. 21–30 of the 3rd edition"
+],
+[
+"Back matter",
+"Reference",
+"Low",
+"APA 7 includes a DOI when one exists; this open-access book has DOI 10.5281/zenodo.6653406"
+],
+[
+"Back matter",
+"Reference",
+"Low",
+"APA 7 includes a DOI when one exists; Gambier (2003) has DOI 10.1080/13556509.2003.10799152"
+],
+[
+"Back matter",
+"Reference",
+"Low",
+"The English edition was 'translated and edited by' Juan C. Sager and Marie-Josée Hamel, which APA 7 writes as 'Eds. & Trans.'"
+],
+[
+"Back matter",
+"Reference",
+"Low",
+"The 1609 Thorpe quarto is titled 'Shake-speares Sonnets. Never before Imprinted'; 'Shakespeare's sonnets' is a modern title (or cite a modern edition instead)"
+],
+[
+"Back matter",
+"Reference",
+"Low",
+"The publisher name is garbled; the handbook's own imprint line names the body as 'Guild Professional Club, Translation Team' (internal evidence, build2.js title page)."
+],
+[
+"Back matter",
+"Reference",
+"Low",
+"APA 7 shortens a three-author narrative citation to 'et al.', as the body text already does (Dickins et al., 2016)"
+]
+],
+[
+16,
+16,
+12,
+56
+]
+],
+[
+"h1",
+"5. Points to check against the printed sources"
 ],
 [
 "p",
-"These points were not changed, because the reviewer could not confirm them without the original books or the team’s course materials."
+"These points were not changed, because they need the original books, the edition used, or the team’s own materials."
 ],
 [
 "table",
@@ -1263,10 +1868,6 @@ module.exports = [
 "Baker (2018) frames this as propositional versus expressive meaning rather than denotation/connotation; check that the citation supports the terms used or say “what Baker calls expressive meaning”."
 ],
 [
-"Chapter 7",
-"{{يساورني القلق}} means 'I am worried/uneasy'; 'growing' adds a nuance not in the Arabic (the Answer key in c2b.js repeats it), so consider _I am worried_ or _I feel uneasy_."
-],
-[
 "Chapter 8",
 "The title promises fixed expressions, but the chapter never defines or discusses them (no key term, no example labelled as such); either add one line or shorten the title."
 ],
@@ -1283,24 +1884,8 @@ module.exports = [
 "In TS 'functional translation' usually means Nord's whole-text functionalist approach (cited in Chapter 2); using the same label for idiom-for-idiom rendering may confuse specialists. Consider a note or another label if the course materials allow."
 ],
 [
-"Chapter 14",
-"Sonnet 18 belongs to the “Fair Youth” sequence, so the feminine {{أأشبّهكِ}} (here and in the Answer key 2c) is an interpretive choice that specialist readers will notice; consider a note or {{أأشبّهك}} without a vowel, and align the wording with Answer key 2c ({{بيومٍ من أيام الربيع}})."
-],
-[
 "Chapter 16",
 "The sentence implies that the academies, UNTERM or Arabterm record _cancel culture_ → {{ثقافة الإلغاء}}; this is a media coinage and should be checked in those sources or presented as “widely used”."
-],
-[
-"Chapter 17",
-"“Mental draft” does not appear to be Nord’s term (her 2005 model is about source-text analysis factors); check that the citation supports this exact point or move it to a point Nord makes."
-],
-[
-"Chapter 17",
-"A direct quotation needs a page number in APA; this passage is on p. 11 of Newmark (1988) in the Prentice Hall edition, so verify and replace “Chapter 2” with the page."
-],
-[
-"Chapter 18",
-"The same line is Practice text 2b, so giving its translation here pre-empts the exercise; consider another short poetic example."
 ],
 [
 "Answer key",
@@ -1313,6 +1898,74 @@ module.exports = [
 [
 "Chapter 24",
 "In risk-management Arabic, ‘risk’ is usually المخاطرة (or المخاطر), while الخطر often means ‘hazard/danger’; consider {{المخاطرة}} to match إدارة المخاطر and مصفوفة تقييم المخاطر."
+],
+[
+"Chapter 1",
+"The al-Jāḥiẓ quotation is cited as (al-Jāḥiẓ, 1965) without volume and page; please check it against the printed Hārūn edition (Vol. 1) and add the page."
+],
+[
+"Chapter 1",
+"A definition from the team’s own unpublished course notes is introduced as what ‘experts’ say; please confirm the wording against the manuscript, or consider ‘Our course materials describe translation as…’."
+],
+[
+"Chapter 4",
+"The Nida and Taber principle is paraphrased without a page number (usually cited as p. 4); please check the printed edition, and note that the rhyme example is the handbook’s addition."
+],
+[
+"Chapter 13",
+"'Translation Team, n.d.' is an unusual corporate author; check that it matches an entry in the reference list and that the definition is really theirs."
+],
+[
+"Chapter 13",
+"The example sits under a Baker (2018) citation but is not attributed; check whether it comes from Baker or the course materials."
+],
+[
+"Chapter 17",
+"A direct quotation needs a page number in author-date style (the book elsewhere gives Newmark, 1988, p. 5); please check the page in the printed edition."
+],
+[
+"Chapter 20",
+"Please check that the reference entry (Johnsonian miscellanies, Vol. 2, p. 309) is the right edition and page for the 1784 letter to Sastres; an earlier draft cited Piozzi (1786)."
+],
+[
+"Chapter 26",
+"The Arabic dub (MBC, 2005, Egyptian Arabic) did replace Homer’s beer with a soft drink, so the fact is correct, but it is a real-world claim with no citation, while the copyright page says uncited examples come from the course materials or were written for the handbook; add a printed or press source or mark it as widely reported."
+],
+[
+"Chapter 27",
+"Chapter 27 cites both the 2007 and the 2021 editions of Díaz Cintas & Remael (both are in the References, and Further reading recommends 2021); check that the classification and the strategy list are in the 2007 edition as cited, or cite one edition throughout."
+],
+[
+"Back matter",
+"The body’s name is given three ways (“Translation Team, Guild Professional Club” here, “Guild Professional Club, Translation Team” in the © line, and “Guild, Translation Team, Professional Club” in the Translation Team reference entry); confirm the official name and make them match."
+],
+[
+"Chapter 10",
+"A direct quotation needs a page number in APA 7; the letter is on pp. 21–30 of the Reader but the exact page of 'not word for word but sense for sense' could not be confirmed"
+],
+[
+"Back matter",
+"Search evidence puts p. 309 of vol. 2 in the section 'Anecdotes by William Seward, F.R.S.', which quotes the letter, so the chapter element may need to name that section; the scan could not be opened to confirm"
+],
+[
+"Back matter",
+"The entry has no year, edition or publisher, but dated editions exist (e.g., 4th ed., 2004, Maktabat al-Shurūq al-Dawliyya); state the edition used, and change the n.d. citation to match"
+],
+[
+"Back matter",
+"Al-Mawrid appears in dated editions (1967 onward, Dar El-Ilm Lilmalayin), so the year of the edition used should replace n.d. here and in the citation"
+],
+[
+"Back matter",
+"The entry has no editor, publisher or year, so a reader cannot find the edition; name the edition used (e.g., a Dār Ṣādir or al-Barqūqī edition). The quoted line الخيل والليل والبيداء تعرفني is confirmed as al-Mutanabbi's"
+],
+[
+"Back matter",
+"The 2nd edition names an editor (Colin McIntosh, with Ben Francis and Richard Poole), and APA 7 puts the editor first: McIntosh, C. (Ed.). (2009). _Oxford collocations dictionary for students of English_ (2nd ed.). Oxford University Press. The in-text form would change to McIntosh (2009)"
+],
+[
+"Back matter",
+"Arabterm describes itself as a joint publication of ALECSO and the German BMZ, with GIZ running the project, so consider 'ALECSO & BMZ' or keep GIZ on purpose"
 ]
 ],
 [

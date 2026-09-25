@@ -140,6 +140,15 @@ require('./c2b.js').forEach(block);
 
 // acknowledgements go after the preface
 // ---------- glossary (built from every Key terms list) ----------
+// ---------- further reading: five books from the references, for readers who want to go further ----------
+block(['part', 'Further reading', 'If you want to go further, start with these books. Full details are in the References.']);
+block(['ul', [
+  '**Baker (2018)**, _In other words_: the classic coursebook, with problems and strategies at word, grammar and text level.',
+  '**Ghazala (2008)**, _Translation as problems and solutions_: English–Arabic examples of common problems, each with its solutions.',
+  '**Dickins et al. (2016)**, _Thinking Arabic translation_: a practical course in translating from Arabic into English.',
+  '**Newmark (1988)**, _A textbook of translation_: methods and procedures, with many examples.',
+  '**Díaz Cintas and Remael (2021)**, _Subtitling_: a practical guide to the subtitler’s work, with many examples.',
+]]);
 block(['part', 'Glossary', 'All the key terms defined in this handbook, in alphabetical order, with the chapter where each one is explained.']);
 const seen = new Map();
 glossary.forEach(g => { const k = g[0].toLowerCase(); if (!seen.has(k)) seen.set(k, g); });
@@ -163,9 +172,9 @@ const R = [
   'Firth, J. R. (1957). A synopsis of linguistic theory, 1930–1955. In _Studies in linguistic analysis_ (pp. 1–32). Blackwell.',
   'Ghazala, H. (2008). _Translation as problems and solutions: A textbook for university students and trainee translators_ (Special ed.). Dar El-Ilm Lilmalayin.',
   'Jakobson, R. (1959). On linguistic aspects of translation. In R. A. Brower (Ed.), _On translation_ (pp. 232–239). Harvard University Press.',
-  'Jerome. (2012). Letter to Pammachius (K. Davis, Trans.). In L. Venuti (Ed.), _The translation studies reader_ (3rd ed.). Routledge. (Original work written 395 CE)',
+  'Jerome. (2012). Letter to Pammachius (K. Davis, Trans.). In L. Venuti (Ed.), _The translation studies reader_ (3rd ed., pp. 21–30). Routledge. (Original work written 395 CE)',
   'Johnson, S. (1897). Letter to Francesco Sastres, 21 August 1784. In G. B. Hill (Ed.), _Johnsonian miscellanies_ (Vol. 2, p. 309). Clarendon Press. (Original work written 1784)',
-  'Kenny, D. (Ed.). (2022). _Machine translation for everyone: Empowering users in the age of artificial intelligence_. Language Science Press.',
+  'Kenny, D. (Ed.). (2022). _Machine translation for everyone: Empowering users in the age of artificial intelligence_. Language Science Press. https://doi.org/10.5281/zenodo.6653406',
   'Mossop, B. (2014). _Revising and editing for translators_ (3rd ed.). Routledge.',
   'Newmark, P. (1988). _A textbook of translation_. Prentice Hall.',
   'Nida, E. A., & Taber, C. R. (1969). _The theory and practice of translation_. E. J. Brill.',
@@ -174,14 +183,14 @@ const R = [
   '_Oxford collocations dictionary for students of English_ (2nd ed.). (2009). Oxford University Press.',
   'Pym, A. (2015). Translating as risk management. _Journal of Pragmatics, 85_, 67–80. https://doi.org/10.1016/j.pragma.2015.06.010',
   'Reiss, K. (2000). _Translation criticism: The potentials and limitations. Categories and criteria for translation quality assessment_ (E. F. Rhodes, Trans.). St. Jerome. (Original work published 1971)',
-  'Shakespeare, W. (1609). Sonnet 18. In _Shakespeare’s sonnets_. Thomas Thorpe.',
-  'Translation Team. (n.d.). _Translation handbook: Course materials and notes_ [Unpublished manuscript]. Guild, Translation Team, Professional Club.',
+  'Shakespeare, W. (1609). Sonnet 18. In _Shake-speares sonnets: Never before imprinted_. Thomas Thorpe.',
+  'Translation Team. (n.d.). _Translation handbook: Course materials and notes_ [Unpublished manuscript]. Guild Professional Club.',
   'United Nations. (n.d.). _UNTERM: The United Nations terminology database_. https://unterm.un.org',
   'Venuti, L. (1995). _The translator’s invisibility: A history of translation_. Routledge.',
-  'Vinay, J.-P., & Darbelnet, J. (1995). _Comparative stylistics of French and English: A methodology for translation_ (J. C. Sager & M.-J. Hamel, Trans.). John Benjamins. (Original work published 1958)',
+  'Vinay, J.-P., & Darbelnet, J. (1995). _Comparative stylistics of French and English: A methodology for translation_ (J. C. Sager & M.-J. Hamel, Eds. & Trans.). John Benjamins. (Original work published 1958)',
   'Díaz Cintas, J., & Remael, A. (2007). _Audiovisual translation: Subtitling_. St. Jerome.',
   'Díaz Cintas, J., & Remael, A. (2021). _Subtitling: Concepts and practices_. Routledge.',
-  'Gambier, Y. (2003). Introduction: Screen transadaptation: Perception and reception. _The Translator, 9_(2), 171–189.',
+  'Gambier, Y. (2003). Introduction: Screen transadaptation: Perception and reception. _The Translator, 9_(2), 171–189. https://doi.org/10.1080/13556509.2003.10799152',
   'Pedersen, J. (2011). _Subtitling norms for television: An exploration focussing on extralinguistic cultural references_. John Benjamins.',
   'Pérez-González, L. (2014). _Audiovisual translation: Theories, methods and issues_. Routledge.',
   'Reiss, K., & Vermeer, H. J. (1984). _Grundlegung einer allgemeinen Translationstheorie_ [Groundwork for a general theory of translation]. Niemeyer.',

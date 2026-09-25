@@ -1,0 +1,202 @@
+[
+ {
+  "file": "c2b.js",
+  "find": "In a medical text, _allergic_ is {{أرَجيّ}},",
+  "replace": "In a medical text, _allergic_ is {{أرَجيّ}} (everyday Arabic often says {{تحسّسي}}),",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "Settles the writer query: keep the standard medical term but tell beginners that the far more common {{تحسّسي}} is not wrong, only less technical."
+ },
+ {
+  "file": "c2b.js",
+  "find": "_contact eczema_ is {{أكزيما التماس}}",
+  "replace": "_contact eczema_ is {{إكزيما التماس}}",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "The usual Arabic spelling of eczema is {{إكزيما}} with hamza under the alif."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Find the equivalent** in the academies, UNTERM, Arabterm or the client’s guide.',",
+  "replace": "'**Find the equivalent**: check the client’s guide first, then the academies’ term lists, UNTERM and Arabterm.',",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "The client’s approved terms override general sources (Step 4 says “follow it”), so the guide should come first, and a beginner cannot search “the academies” themselves, only their term lists."
+ },
+ {
+  "file": "c2b.js",
+  "find": "A good term is clear, short, has one meaning and follows the language’s normal rules for making words.",
+  "replace": "A good term is clear and short, has one meaning, and follows the language’s normal rules for making words.",
+  "category": "english",
+  "severity": "low",
+  "reason": "Makes the list grammatically parallel (adjectives, then two verb phrases)."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['h', 'Step 4: record your terms'],",
+  "replace": "['h', 'Step 4: record your terms'],\n['p', 'Here is part of a simple term list:'],",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "The table appears with no lead-in, so a beginner does not know that it is an example of the term list the chapter asks them to keep."
+ },
+ {
+  "file": "c2b.js",
+  "find": "Readers get confused, and earlier translations cannot be reused.",
+  "replace": "Readers get confused, and earlier translations are harder to reuse.",
+  "category": "concept",
+  "severity": "low",
+  "reason": "Inconsistent terms reduce translation-memory matches but do not make reuse impossible."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'Think like a terminologist: create an accurate equivalent and record it.'",
+  "replace": "'Search the client’s guide, UNTERM and Arabterm; if there is still no term, think like a terminologist: create an accurate equivalent and record it.'",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "The answer skipped the search step that Step 3 and the chapter summary (“Search … before you create a term”) require, so it contradicts the chapter."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['CAT tool', 'أداة الترجمة بمساعدة الحاسوب', 'Software that helps",
+  "replace": "['CAT tool', 'أداة الترجمة بمساعدة الحاسوب', 'Computer-assisted translation software that helps",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "The abbreviation CAT is never expanded in English anywhere in the book, and this definition also feeds the glossary."
+ },
+ {
+  "file": "c2b.js",
+  "find": "today most use neural networks. They are much more fluent,",
+  "replace": "today most use neural networks. Neural systems are much more fluent,",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "“They” could refer to all systems, including the early rule-based ones."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**Termbases**: keep one term for one idea",
+  "replace": "'**Termbases**: help you keep one term for one idea",
+  "category": "clarity",
+  "severity": "low",
+  "reason": "A termbase is a tool that helps; it does not keep terms consistent by itself, so the wording supports the “You are responsible” rule."
+ },
+ {
+  "file": "c2b.js",
+  "find": "{{أنهى الطبيب نوبته}}: the machine guessed a man.",
+  "replace": "{{أنهى الطبيب نوبته}}: the machine made the doctor a man, although the English says _her_.",
+  "category": "example",
+  "severity": "medium",
+  "reason": "The English sentence gives the gender (“her”), so the machine did not have to guess; it ignored the pronoun, which is the real lesson."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['Revision', 'المراجعة', 'Checking a translation against the source and correcting it.'],",
+  "replace": "['Revision', 'المراجعة', 'Checking a translation against the source and correcting it.'],\n  ['Self-revision', 'المراجعة الذاتية', 'Revising your own translation.'],",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "Self-revision is the bolded key idea of Step 1 but is missing from Words to remember and from the glossary."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'{{علم}}: flag, knowledge or “taught”?'",
+  "replace": "'{{علم}}: {{عَلَم}} (flag), {{عِلْم}} (knowledge) or {{عَلِمَ}} (knew)?'",
+  "category": "arabic",
+  "severity": "medium",
+  "reason": "Settles the writer query: “taught” is {{عَلَّمَ}}, not the natural reading of unvocalised {{علم}}; showing the vowelled forms lets a beginner see why the word is ambiguous."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'An idiom translated word by word', 'Low to medium',",
+  "replace": "'An idiom translated word by word', 'Medium',",
+  "category": "concept",
+  "severity": "low",
+  "reason": "Chapters 8 and 22 present word-for-word idioms as a typical and serious error that can distort the message, so ranking them lowest in the matrix sends a mixed message."
+ },
+ {
+  "file": "c2b.js",
+  "find": "When the cartoon _The Simpsons_ was dubbed into Arabic as {{آل شمشون}}, the family’s habits were adapted for Arab family viewers: Homer’s beer, for example, became a soft drink.",
+  "replace": null,
+  "category": "query",
+  "severity": "medium",
+  "reason": "The Arabic dub (MBC, 2005, Egyptian Arabic) did replace Homer’s beer with a soft drink, so the fact is correct, but it is a real-world claim with no citation, while the copyright page says uncited examples come from the course materials or were written for the handbook; add a printed or press source or mark it as widely reported."
+ },
+ {
+  "file": "c2b.js",
+  "find": "It must also appear and disappear with the speech, which is called **spotting** (Díaz Cintas & Remael, 2021).",
+  "replace": "It must also appear and disappear with the speech: marking these in and out times is called **spotting** (Díaz Cintas & Remael, 2021).",
+  "category": "concept",
+  "severity": "medium",
+  "reason": "Spotting is the task of marking the in and out times (as Step 2 says), not the synchrony itself."
+ },
+ {
+  "file": "c2b.js",
+  "find": "keep a noun with its adjective, and a preposition with its noun.",
+  "replace": "keep a noun with its adjective, a preposition with its noun, and pairs such as {{مدير المدرسة}} together.",
+  "category": "arabic",
+  "severity": "low",
+  "reason": "Splitting a construct phrase (iḍāfa) across two lines is the most typical Arabic line-break error and is not covered."
+ },
+ {
+  "file": "c2b.js",
+  "find": "If the picture is unclear, the subtitle can explain it.",
+  "replace": "If the words refer to something on screen, make sure the subtitle still matches it.",
+  "category": "concept",
+  "severity": "low",
+  "reason": "Subtitles do not normally explain unclear pictures; the norm is that they must stay consistent with what is shown."
+ },
+ {
+  "file": "c2b.js",
+  "find": "**idiolect** (personal habits). Try to keep this.",
+  "replace": "**idiolect** (personal habits). Even in MSA, try to keep some of this through your choice of words.",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "The previous bullet tells the subtitler to use MSA even for dialect speakers, so “Try to keep this” seems to contradict it without saying how."
+ },
+ {
+  "file": "c2b.js",
+  "find": "['p', 'Cultural references may be **geographical**",
+  "replace": "['p', 'Cultural references, or **culture-bound terms**, may be **geographical**",
+  "category": "consistency",
+  "severity": "medium",
+  "reason": "“Culture-bound term” is in Words to remember but never appears in the chapter body, so the reader cannot link the key term to Step 4."
+ },
+ {
+  "file": "c2b.js",
+  "find": "socio-political** (government, institutions) (Díaz Cintas & Remael, 2007).",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "Chapter 27 cites both the 2007 and the 2021 editions of Díaz Cintas & Remael (both are in the References, and Further reading recommends 2021); check that the classification and the strategy list are in the 2007 edition as cited, or cite one edition throughout."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**AVT**: audiovisual translation ({{الترجمة السمعية البصرية}})',",
+  "replace": "'**AVT**: audiovisual translation ({{الترجمة السمعية البصرية}})',\n  '**CAT**: computer-assisted translation ({{الترجمة بمساعدة الحاسوب}})',",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "CAT is used in Chapter 22 but missing from the Abbreviations list."
+ },
+ {
+  "file": "c2b.js",
+  "find": "'**SL**: source language",
+  "replace": "'**SDH**: subtitles for the deaf and hard of hearing',\n  '**SL**: source language",
+  "category": "consistency",
+  "severity": "low",
+  "reason": "SDH is used in Chapter 27 but missing from the Abbreviations list (SL, SLC, TL, TLC and TS are listed but never used in the text; keep them only if wanted for wider reading)."
+ },
+ {
+  "file": "build2.js",
+  "find": "'**Díaz Cintas and Remael (2021)**, _Subtitling_: a practical guide to subtitling.',",
+  "replace": "'**Díaz Cintas and Remael (2021)**, _Subtitling_: a practical guide to the subtitler’s work, with many examples.',",
+  "category": "english",
+  "severity": "low",
+  "reason": "“Subtitling: a practical guide to subtitling” repeats the title word."
+ },
+ {
+  "file": "build2.js",
+  "find": "small('First edition, 2026. Prepared by the Translation Team, Guild Professional Club.');",
+  "replace": null,
+  "category": "query",
+  "severity": "low",
+  "reason": "The body’s name is given three ways (“Translation Team, Guild Professional Club” here, “Guild Professional Club, Translation Team” in the © line, and “Guild, Translation Team, Professional Club” in the Translation Team reference entry); confirm the official name and make them match."
+ }
+]
