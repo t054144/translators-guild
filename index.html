@@ -765,18 +765,24 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 
 /* The alphabet. Twenty-eight tiles, the letter large enough to read at
    a glance and the name under it. */
-/* The letters run the way Arabic runs: alif in the top right. */
-.alpha-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; direction: rtl; }
-.alpha { display: grid; gap: .1rem; place-items: center; padding: .85rem .3rem .7rem;
-  border-radius: var(--r-md); background: rgba(255,255,255,.04); border: var(--hair);
+/* The letters run the way Arabic runs: alif in the top right. Two to a
+   row on a phone, because a hand any smaller than this cannot be read —
+   which was the whole complaint. */
+.alpha-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: .6rem; direction: rtl; }
+.alpha { display: grid; gap: .3rem; place-items: center; padding: .7rem .4rem .6rem;
+  border-radius: var(--r-lg); background: rgba(255,255,255,.045); border: var(--hair);
   box-shadow: none; }
+.alpha .a-hand { width: 100%; aspect-ratio: 1; display: block; }
+.alpha .a-hand img { width: 100%; height: 100%; object-fit: contain; display: block;
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.4)); }
+.alpha .a-txt { display: flex; align-items: baseline; gap: .45rem; }
 .ksl-credit { margin: 0; font-size: .78rem; font-weight: 300; line-height: 1.55;
   color: var(--ink-soft); max-width: var(--measure); }
 .ksl-credit b, .ss-note b { color: var(--lilac); font-weight: 600; }
 .alpha:hover { background: rgba(214,191,234,.12); border-color: rgba(214,191,234,.32);
   transform: none; box-shadow: none; }
-.alpha .a-l { font-family: var(--f-ar); font-size: 2.1rem; line-height: 1.05; color: var(--white); }
-.alpha .a-n { font-family: var(--f-ar); font-size: .78rem; color: var(--ink-soft); }
+.alpha .a-l { font-family: var(--f-ar); font-size: 1.7rem; line-height: 1; color: var(--white); }
+.alpha .a-n { font-family: var(--f-ar); font-size: .8rem; color: var(--ink-soft); }
 
 /* The hand at a size worth studying, the letter beside it. */
 .letter-hero { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem;
@@ -851,10 +857,14 @@ a.ks-s-en:hover { color: var(--white); }
 .ks-s-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .84rem; color: var(--lilac-dim); }
 .ks-s-say { font-size: .82rem; font-weight: 300; line-height: 1.55; color: var(--ink-soft); }
 
-@media (min-width: 620px) {
+.ksl-more { justify-self: start; }
+
+@media (min-width: 520px) { .alpha-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (min-width: 760px) {
   .ksl-split { grid-template-columns: 1fr 1fr; }
-  .alpha-grid { grid-template-columns: repeat(7, 1fr); }
+  .alpha-grid { grid-template-columns: repeat(4, 1fr); }
 }
+@media (min-width: 1100px) { .alpha-grid { grid-template-columns: repeat(6, 1fr); } }
 
 /* ═══════════ THE GUIDES ═══════════ */
 .lede { font-size: clamp(1.05rem,2.6vw,1.22rem); font-weight: 300; line-height: 1.72;
@@ -1815,7 +1825,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 48 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 49 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -4564,16 +4574,6 @@ const KSL_ALPHA = [
 const KSL_CREDIT = "Handshapes from the Kuwaiti manual alphabet published by <b>@ksl_dictionary</b>, " +
   "credited here while their permission is sought. They come down the day they ask.";
 
-/* Where the real signs are. Linked, never copied. */
-const KSL_DICT = [
-  { en: "The Kuwaiti dictionary, by subject", ar: "القاموس الكويتي — حسب الموضوع",
-    say: "Family, countries, religion, education, health, food, work, animals, numbers, colours, transport, sport. Every entry plays as video.",
-    url: "http://sldictionary.appspot.com/kuwait_subjects_en.html" },
-  { en: "All four dictionaries · KISR", ar: "القواميس الأربعة — معهد الكويت للأبحاث العلمية",
-    say: "The Kuwaiti dictionary alongside the unified, scout and preschool ones. Make sure you are in the Kuwaiti one.",
-    url: "https://ssdd.kisr.edu.kw/ada/sldictionary/index_en.html" }
-];
-
 /* What a sign is assembled from — a checklist for watching a video. */
 const KSL_PARAMS = [
   { en: "Handshape",    ar: "شكل اليد",            say: "Which fingers are out, bent or closed, and where the thumb sits." },
@@ -4693,22 +4693,6 @@ const KSL_LESSONS = [
 ];
 
 /* Still to come. A short list, not eight large cards. */
-const KSL_SOON = [
-  { en: "First signs", ar: "الإشارات الأولى", say: "Greetings, and what an exchange opens with." },
-  { en: "Vocabulary by subject", ar: "بناء المفردات", say: "Family, education, food, places, numbers, colours, work." },
-  { en: "Camera practice", ar: "التدريب بالكاميرا", say: "Your hand beside the model, checked in the browser, nothing uploaded." },
-  { en: "Communicate", ar: "التواصل", say: "Questions, answers, introductions, short exchanges." },
-  { en: "The Kuwaiti context", ar: "السياق الكويتي", say: "Places, institutions and occasions that are ours." },
-  { en: "Specialised KSL", ar: "المجالات المتخصصة", say: "Medical, legal, academic, political, journalistic." },
-  { en: "KSL interpreting", ar: "الترجمة إلى لغة الإشارة", say: "Practice against a qualified interpreter's rendering." }
-];
-
-const KSL_NEVER = [
-  "Show a sign no Kuwaiti Deaf signer has confirmed, or use an AI avatar as the model.",
-  "Pass a unified Arab Sign Language sign off as Kuwaiti.",
-  "Use anyone's material without crediting it in plain sight, or keep it up once its owner asks us not to.",
-  "Tell you that you are fluent, or that anything here makes you a professional interpreter."
-];
 
 const ITEMS = [
   { id: "minor", ar: "مساند التَّرجمة · جامعة الكويت", en: "Kuwait University · Translation Minor", kind: "guide", section: "method",
@@ -7657,6 +7641,8 @@ function handFig(L) {
   im.alt = "The handshape for " + L.n;
   im.width = 680; im.height = 680;
   im.decoding = "async";
+  /* no lazy loading in the grid: the hands are the page, and a tile that
+     is still blank when it is scrolled past is the whole complaint */
   return im;
 }
 
@@ -7666,49 +7652,53 @@ function handFig(L) {
    is the first thing anybody noticed about it. */
 function runKsl() {
 
+  /* One screen, one thing on it: the alphabet, with every hand visible.
+     Everything that used to crowd this page — the outbound dictionary
+     links, the roadmap, the sourcing notes — is gone or moved. A learner
+     opens this to see signs, so signs are what is here. */
   function home() {
     stage.innerHTML = "";
-    setCount("28 letters · four lessons");
+    setCount("الهجاء الإصبعي · 28");
     setDots(0, 0, 0);
 
     stage.appendChild(el("p", "lede",
-      "The third language the Guild works in, and the only one with no writing. " +
-      "<b>Kuwait's own dictionary is online, free, and filmed</b> &mdash; start there:"));
-    stage.appendChild(panel({ t: "dict" }));
-
-    /* The alphabet, on the first screen, because it is the thing a
-       beginner comes looking for. */
-    const ah = el("div", "ksl-head");
-    ah.innerHTML =
-      '<h3>The manual alphabet</h3>' +
-      '<span class="kh-ar" dir="rtl" lang="ar">الهجاء الإصبعي</span>' +
-      '<p>Twenty-eight letters, each with its handshape. ' +
-      'Used for names, for a word with no established sign yet, and for a term the first time it ' +
-      'comes up &mdash; not for ordinary conversation.</p>';
-    stage.appendChild(ah);
+      "The manual alphabet: one handshape per letter. It spells names, and words KSL has no " +
+      "established sign for yet &mdash; it is not how ordinary conversation runs. " +
+      "<b>Tap any letter to see the hand large.</b>"));
 
     const grid = el("div", "alpha-grid");
     KSL_ALPHA.forEach((L, i) => {
-      /* The letter leads. The hand is one tap away at a size worth
-         looking at, rather than thirty-one thumbnails at once. */
       const b = el("button", "alpha");
       b.innerHTML =
-        '<span class="a-l" dir="rtl" lang="ar">' + L.l + '</span>' +
-        '<span class="a-n" dir="rtl" lang="ar">' + L.n + '</span>';
+        '<span class="a-hand"></span>' +
+        '<span class="a-txt">' +
+          '<span class="a-l" dir="rtl" lang="ar">' + L.l + '</span>' +
+          '<span class="a-n" dir="rtl" lang="ar">' + L.n + '</span>' +
+        '</span>';
+      b.querySelector(".a-hand").appendChild(handFig(L));
       b.addEventListener("click", () => { pushTrail("Kuwaiti Sign Language", () => home()); letter(i); });
       grid.appendChild(b);
     });
     stage.appendChild(grid);
 
-    const cred = el("p", "ksl-credit", KSL_CREDIT);
-    stage.appendChild(cred);
+    stage.appendChild(el("p", "ksl-credit", KSL_CREDIT));
 
-    /* The four lessons, flat. */
-    const lh = el("div", "ksl-head");
-    lh.innerHTML = '<h3>The language itself</h3>' +
-      '<span class="kh-ar" dir="rtl" lang="ar">اللغة نفسها</span>' +
-      '<p>Four short ones. The first is what to look for while you watch.</p>';
-    stage.appendChild(lh);
+    /* The reading, behind one door rather than spread down the page. */
+    const more = el("button", "ghost ksl-more", "About the language \u2192");
+    more.addEventListener("click", () => { pushTrail("Kuwaiti Sign Language", () => home()); lessons(); });
+    stage.appendChild(more);
+
+    stage.appendChild(backFoot());
+  }
+
+  /* ── the four lessons, on their own screen ── */
+  function lessons() {
+    stage.innerHTML = "";
+    setCount("Four lessons");
+    setDots(0, 0, 0);
+
+    stage.appendChild(el("p", "lede",
+      "What the language is, who uses it, and what to look for when you watch someone sign."));
 
     const list = el("div", "m-list");
     KSL_LESSONS.forEach((L, i) => {
@@ -7720,31 +7710,20 @@ function runKsl() {
           '<span class="m-arname" dir="rtl" lang="ar">' + L.ar + '</span>' +
           '<span class="m-line">' + L.line + '</span>' +
         '</span>';
-      b.addEventListener("click", () => { pushTrail("Kuwaiti Sign Language", () => home()); lesson(i); });
+      b.addEventListener("click", () => { pushTrail("About the language", () => lessons()); lesson(i); });
       list.appendChild(b);
     });
     stage.appendChild(list);
 
-    const soon = el("div", "verdict");
-    soon.appendChild(el("span", "vh", "Still to come"));
-    soon.appendChild(el("p", "vb",
-      "All of it waits on verified signs, and none of it will be filled with guesses in the meantime."));
-    soon.appendChild(el("ul", "how", KSL_SOON.map(x =>
-      '<li><span><b>' + x.en + '</b> <span class="ar-inline" dir="rtl" lang="ar">' + x.ar + '</span> &mdash; ' +
-      x.say + '</span></li>').join("")));
-    stage.appendChild(soon);
-
     const v = el("div", "verdict");
-    v.appendChild(el("span", "vh", "How this section is sourced"));
+    v.appendChild(el("span", "vh", "Vocabulary is not here yet"));
     v.appendChild(el("p", "vb",
-      "Kuwaiti institutions and the Kuwaiti Deaf community first &mdash; the Ministry of Education and " +
-      "KISR, then Deaf-community organisations, KSL instructors and qualified interpreters. Academic work " +
-      "next. <b>Anything a machine produced comes last, and never appears here as a sign at all.</b>"));
-    v.appendChild(el("ul", "how ks-never",
-      KSL_NEVER.map(x => '<li><span>' + x + '</span></li>').join("")));
+      "The alphabet spells; it does not speak. Words and sentences need a Kuwaiti Deaf signer or a " +
+      "qualified KSL interpreter to film them, and until that happens this section will not invent " +
+      "them. <b>That is the one thing still missing, and it is the only thing that matters.</b>"));
     stage.appendChild(v);
 
-    stage.appendChild(backFoot());
+    stage.appendChild(footNav({ backLabel: "The alphabet", back: () => { home(); scrollTop(); } }));
   }
 
   /* ── one letter ── */
@@ -7803,8 +7782,8 @@ function runKsl() {
     L.panels.forEach(pl => stage.appendChild(panel(pl)));
 
     stage.appendChild(footNav({
-      back: i > 0 ? () => { lesson(i - 1); scrollTop(); } : null,
-      backLabel: i > 0 ? KSL_LESSONS[i - 1].en : null,
+      back: i > 0 ? () => { lesson(i - 1); scrollTop(); } : () => { lessons(); scrollTop(); },
+      backLabel: i > 0 ? KSL_LESSONS[i - 1].en : "Four lessons",
       next: i < KSL_LESSONS.length - 1 ? () => { lesson(i + 1); scrollTop(); } : null,
       nextLabel: i < KSL_LESSONS.length - 1 ? KSL_LESSONS[i + 1].en : null
     }));
@@ -7860,30 +7839,6 @@ function runKsl() {
       });
       v.appendChild(g);
       return v;
-    }
-
-    if (p.t === "dict") {
-      const g = el("div", "ksl-dict");
-      KSL_DICT.forEach(d => {
-        const a = document.createElement("a");
-        a.className = "ks-door";
-        a.href = d.url; a.target = "_blank"; a.rel = "noopener noreferrer";
-        a.innerHTML =
-          '<span class="ks-d-play" aria-hidden="true"><svg viewBox="0 0 24 24">' +
-            '<path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span>' +
-          '<span class="ks-d-txt">' +
-            '<span class="ks-d-en">' + d.en + '</span>' +
-            '<span class="ks-d-ar" dir="rtl" lang="ar">' + d.ar + '</span>' +
-            '<span class="ks-d-say">' + d.say + '</span>' +
-          '</span>' +
-          '<span class="ks-d-go" aria-hidden="true">↗</span>';
-        g.appendChild(a);
-      });
-      const wrap = el("div", "ksl-dict-wrap");
-      wrap.appendChild(g);
-      wrap.appendChild(el("p", "ks-d-note",
-        "Opens the Kuwait Institute for Scientific Research dictionary in a new tab. Linked and cited, never copied."));
-      return wrap;
     }
 
     if (p.t === "links") {
