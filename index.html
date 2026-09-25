@@ -4539,12 +4539,12 @@ const ENGL180 = [
       ] }
     ],
     ex: { lab: "Same propositional meaning, different expressive meaning",
-      srcLab: "English", src: "The minister declined to comment.", srcDir: "ltr",
-      litLab: "Expressive value shifted", lit: "رفض الوزير التعليق &mdash; <i>refused</i>, which reads as obstruction",
-      outLab: "Expressive value held", out: "امتنع الوزير عن التعليق", outDir: "rtl",
-      note: "Both are true of the same event, so the propositional meaning survives either way. " +
-        "<b>Declined</b> is neutral and <b>refused</b> is not, and in a news report that difference is the " +
-        "difference between reporting and editorialising." },
+      srcLab: "English", src: "Don't complain. &middot; Don't whine.", srcDir: "ltr",
+      litLab: "What they share", lit: "Both point at the same act, so neither is truer than the other &mdash; the propositional meaning is identical",
+      outLab: "What only one has", out: "لا تشتكِ &middot; لا تتذمّر", outDir: "rtl",
+      note: "<b>Whine</b> carries the speaker's judgement that the complaining is irritating; " +
+        "<b>complain</b> carries none. Expressive meaning cannot be true or false, which is exactly why it " +
+        "disappears from a translation without anyone noticing it has gone." },
     practice: { h: "Do this before the next unit",
       html: "Take five words from a text you are working on and, for each, write down its propositional " +
         "meaning and then anything expressive, presupposed or evoked riding along with it." +
@@ -4590,18 +4590,496 @@ const ENGL180 = [
         "<p>What you may not do is choose silently. Naming the move is what lets you defend it &mdash; and " +
         "what the commentary in your later courses is assessed on.</p>" }
     ],
-    ex: { lab: "One item, three defensible strategies",
-      srcLab: "Arabic", src: "دِيوانيّة", srcDir: "rtl",
-      litLab: "Generalized", lit: "a gathering &mdash; true, and it loses everything that made it worth mentioning",
-      outLab: "Loan plus gloss", out: "a <i>diwaniyya</i>, the regular evening gathering held in a Kuwaiti household", outDir: "ltr",
-      note: "Substitution would give <i>a salon</i> or <i>an open house</i>: familiar to the reader, and " +
-        "quietly wrong about who attends and why. For a Kuwaiti text in English the loan with one gloss is " +
-        "almost always right &mdash; the word is the subject, so it should survive." },
+    ex: { lab: "The loan word, proved by history",
+      srcLab: "Arabic", src: "الكحول &middot; الجبر &middot; الخوارزمية", srcDir: "rtl",
+      litLab: "Paraphrased instead", lit: "<i>a distilled spirit</i>, <i>the reuniting of broken parts</i>, <i>a step-by-step procedure</i> &mdash; all accurate, and none of them survived",
+      outLab: "Borrowed", out: "alcohol &middot; algebra &middot; algorithm", outDir: "ltr",
+      note: "English took all three from Arabic as loan words, and more recently <i>hijab</i> and " +
+        "<i>jihad</i>. Borrowing is not a failure to translate: for a concept the target language does not " +
+        "yet have, it is often the only move that lets the concept itself arrive." },
     practice: { h: "Do this before the next unit",
       html: "Take four culture-specific items from Kuwaiti life &mdash; food, dress, an institution, an " +
         "occasion. Translate each one <b>four times</b>, once by each strategy." +
         "<p>Then decide, for each, which you would actually use and in what kind of text. Sixteen renderings, " +
         "four decisions, and a reason for each: that is the exercise, and it is also the job.</p>" }
+  },
+
+  {
+    n: 6, key: "collocation", en: "Collocation", ar: "المتلازمات اللفظية",
+    line: "Words keep company. Which company is arbitrary, and it is not the same company in Arabic.",
+    blocks: [
+      { t: "lede", html:
+        "Words almost never occur alone, and they are not strung together at random. Some of what governs " +
+        "the stringing is rule &mdash; a determiner cannot follow its noun, so <i>beautiful house the</i> is " +
+        "simply wrong. The rest is habit, and habit is where translation goes wrong." },
+      { t: "card", h: "Why builders do not produce buildings", html:
+        "Authors <i>invent</i> stories and plots, but they do not <i>invent</i> novels. Builders do not " +
+        "<i>produce</i> buildings. No dictionary definition forbids either." +
+        "<p>Bolinger and Sears gave the only honest reason: <b>we don't say it because we don't say it.</b> " +
+        "That is a collocation &mdash; the tendency of certain words to co-occur, semantically arbitrary and " +
+        "not derivable from meaning.</p>" },
+      { t: "list", h: "Near-synonyms do not share company", intro:
+        "This is why a thesaurus is dangerous. Each of these is idiomatic on the left and wrong on the right:", items: [
+        "<b>Break</b> rules &mdash; but not <i>break</i> regulations.",
+        "<b>Waste</b> time &mdash; but not <i>squander</i> time.",
+        "<b>Pay</b> a visit &mdash; but not <i>perform</i> a visit.",
+        "And in Arabic, laws are not broken at all: they are contradicted &mdash; <span class='ar-inline' dir='rtl' lang='ar'>يخالف القانون</span>."
+      ] },
+      { t: "card", h: "Collocational range", html:
+        "Every word tolerates a certain spread of company. <b>Shrug</b> has almost none &mdash; it takes " +
+        "<i>shoulders</i> and little else. <b>Run</b> has an enormous one: a company, a business, a show, a " +
+        "car, a nose." +
+        "<p>Two things widen the range. <b>Generality</b>: <i>bury</i> takes people, treasure, a head, a " +
+        "face, feelings, memories, while its hyponym <i>entomb</i> takes only people. And <b>number of " +
+        "senses</b>: each sense of a word attracts its own set of companions.</p>" },
+      { t: "card", h: "What this means at the desk", html:
+        "You do not translate the word. You translate the collocation, and you choose the target equivalent " +
+        "that fits <b>the whole unit</b>." +
+        "<p>A verb with a wide range in English will not have one wide-ranging counterpart in Arabic. It " +
+        "will have several, and picking between them is the work.</p>" }
+    ],
+    ex: { lab: "One English verb, four Arabic verbs",
+      srcLab: "English", src: "deliver a letter &middot; deliver a speech &middot; deliver news &middot; deliver a blow", srcDir: "ltr",
+      litLab: "One verb, held", lit: "<i>deliver</i> looks like a single word with a single equivalent. It is not.",
+      outLab: "What Arabic requires", out: "يسلّم خطاباً &middot; يلقي خطبةً &middot; ينقل أخباراً &middot; يوجّه ضربةً", outDir: "rtl",
+      note: "Four different verbs, because Arabic has no verb with <i>deliver</i>'s collocational range. " +
+        "Now try <b>deliver a verdict</b> yourself &mdash; and notice that you reached for the collocation, " +
+        "not the dictionary." },
+    practice: { h: "Do this before the next unit",
+      html: "Take one high-range English verb &mdash; <i>run</i>, <i>hold</i>, <i>make</i>, <i>take</i> " +
+        "&mdash; and collect eight of its collocations from real text." +
+        "<p>Translate all eight. Count how many distinct Arabic verbs you needed. That number is the gap " +
+        "between a word and a collocation, and it is why a bilingual dictionary alone cannot do this work.</p>" }
+  },
+
+  {
+    n: 7, key: "idioms", en: "Idioms and fixed expressions", ar: "التعابير الاصطلاحية",
+    line: "Frozen, often opaque, and the place a confident translator does the most damage.",
+    blocks: [
+      { t: "lede", html:
+        "Collocations are flexible: <i>deliver a letter</i>, <i>delivery of a letter</i>, <i>a letter has " +
+        "been delivered</i> are all fine. Idioms and fixed expressions sit at the far end of that scale " +
+        "&mdash; frozen in form, and often opaque in meaning." },
+      { t: "list", h: "What you may not do to an idiom", intro:
+        "<i>The long and the short of it</i> means the basic facts. Touch it anywhere and it breaks:", items: [
+        "<b>Reorder it</b> &mdash; not <i>the short and the long of it</i>.",
+        "<b>Delete from it</b> &mdash; not <i>spill beans</i>.",
+        "<b>Add to it</b> &mdash; not <i>face the classical music</i>.",
+        "<b>Swap a word</b> &mdash; not <i>the tall and the short of it</i>, not <i>bury a hatchet</i>.",
+        "<b>Change its grammar</b> &mdash; not <i>the music was faced</i>."
+      ] },
+      { t: "split", h: "Idiom or fixed expression?",
+        a: { lab: "Idiom", ar: "تعبير اصطلاحي",
+             say: "Frozen <b>and</b> opaque. <i>Bury the hatchet</i>, <i>pull a fast one</i>, <i>fill the bill</i>. You cannot reach the meaning from the words." },
+        b: { lab: "Fixed expression", ar: "تعبير ثابت",
+             say: "Frozen but usually transparent. <i>As a matter of fact</i>, <i>ladies and gentlemen</i>, <i>all the best</i>, and proverbs like <i>practice what you preach</i>. Still taken as one unit." } },
+      { t: "list", h: "How to notice one before you mistranslate it", intro:
+        "The first difficulty is not translating the idiom. It is realising there is one. Three signals:", items: [
+        "<b>It violates truth conditions</b> &mdash; <i>it is raining cats and dogs</i>, <i>food for thought</i>.",
+        "<b>It is ill-formed</b> &mdash; <i>by and large</i>, <i>the world and his wife</i>, <i>trip the light fantastic</i>.",
+        "<b>It opens with <i>like</i></b> &mdash; <i>like a bat out of hell</i>, <i>like two peas in a pod</i>.",
+        "And the general rule: the less sense an expression makes in its context, the more likely it is an idiom and not a failure of your vocabulary."
+      ] },
+      { t: "list", h: "Five strategies", intro:
+        "In descending order of how much of the original survives:", items: [
+        "An idiom of <b>similar meaning and similar form</b>.",
+        "An idiom of <b>similar meaning but dissimilar form</b> &mdash; usually the best available.",
+        "<b>Borrowing</b> the source idiom.",
+        "<b>Paraphrase</b> &mdash; the most common, and the one that loses the flavour.",
+        "<b>Omission</b> of the whole idiom &mdash; legitimate, and the one to be able to justify."
+      ] },
+      { t: "card", h: "Why this is the case for translating into your own language", html:
+        "Competence in a foreign language almost never reaches the point where you can feel when an idiom " +
+        "may be bent and when it may not. That sensitivity is a native one, and it is the usual argument for " +
+        "translating <b>into</b> your first language rather than out of it." +
+        "<p>Even then two problems remain: recognising the idiom, and carrying its meaning across when the " +
+        "target language has no counterpart &mdash; because idioms are culturally specific, and even a " +
+        "counterpart that exists may be used in a different register or context.</p>" }
+    ],
+    ex: { lab: "Five idioms to identify before translating",
+      srcLab: "English", src: "I urge you to <b>speak your mind</b> and not to <b>pull any punches</b>.", srcDir: "ltr",
+      litLab: "The trap", lit: "Word-for-word gives a speech about a mind and an instruction about hitting. Both are grammatical, and both are nonsense.",
+      outLab: "What is meant", out: "أدعوك إلى قول ما تعتقده بصراحة ودون مجاملة", outDir: "rtl",
+      note: "The other four on the slide are <i>driving like a bat out of hell</i>, <i>the world and his " +
+        "wife were there</i>, <i>in a nutshell</i>, and <i>spilled the beans</i>. Identify, then interpret, " +
+        "then translate &mdash; always that order." },
+    practice: { h: "Do this before the next unit",
+      html: "Take the five sentences above. For each: name the idiom, write its meaning in plain English, " +
+        "then translate the sentence into Arabic." +
+        "<p>Then say which of the five strategies you used, and why. Expect <b>paraphrase</b> most of the " +
+        "time &mdash; and notice what the paraphrase costs.</p>" }
+  },
+
+  {
+    n: 8, key: "grammar", en: "Grammatical equivalence", ar: "التكافؤ النحوي",
+    line: "Grammar forces you to say things the source never said — and to drop things it did.",
+    blocks: [
+      { t: "lede", html:
+        "Vocabulary is not the only thing that shapes what a language can report. Its <b>grammar</b> obliges " +
+        "speakers to mark certain distinctions every time they open their mouths &mdash; time, number, " +
+        "gender, person &mdash; and every language makes a different selection from that set." },
+      { t: "card", h: "Why grammar is harder to move than vocabulary", html:
+        "Grammar runs on two dimensions: <b>morphology</b>, the shape of words, and <b>syntax</b>, the order " +
+        "of the parts." +
+        "<p>A language will absorb a new word overnight. It will not absorb a new grammatical category. So " +
+        "where the two systems differ, the translator cannot borrow &mdash; something has to be <b>added</b> " +
+        "to the target text or <b>dropped</b> from it, and that changes the information content.</p>" },
+      { t: "list", h: "The five notions to check", items: [
+        "<b>Number.</b> Countability is universal; grammatical number is not. English has singular and plural; Arabic has singular, <b>dual</b> and plural; Chinese marks it lexically or not at all.",
+        "<b>Gender.</b> English marks it only in the third person. In Arabic the noun's gender also reshapes its verbs and adjectives, so a first-person sentence with no gender in English forces a choice in Arabic.",
+        "<b>Person.</b> Participant roles, through a closed set of pronouns. Many European languages add a politeness dimension English does not have.",
+        "<b>Tense and aspect.</b> Two different things: <i>tense</i> locates the event in time, <i>aspect</i> describes its distribution &mdash; finished or not, continuing or momentary.",
+        "<b>Voice.</b> The relation between verb and subject. Written English uses the passive heavily, and most languages have their own ways of building agentless clauses that do not map onto it."
+      ] },
+      { t: "card", h: "The gender problem, in one pair of sentences", html:
+        "<i>I am a student in the English department, and I specialize in Translation Studies.</i> Nothing " +
+        "there tells you the speaker's gender &mdash; but Arabic will not let you write the sentence without " +
+        "deciding." +
+        "<p>Add <i>&hellip;even though I am a father of four</i> and it is settled. Add <i>&hellip;even " +
+        "though I was nine months pregnant</i> and it is settled the other way. When the text gives you " +
+        "nothing: read the whole thing for gendered expressions, biological detail, relational nouns " +
+        "(husband, wife) or a title of address. If it still gives you nothing, you are making a decision, " +
+        "and you should know that you are.</p>" },
+      { t: "list", h: "The error your examiner will find first", intro:
+        "Literal renderings of <i>am / is / are / was / were</i> into " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>يكون</span>. Arabic does not need the copula:", items: [
+        "<i>She is kind</i> &mdash; not <span class='ar-inline' dir='rtl' lang='ar'>هي تكون طيبة</span>, but <span class='ar-inline' dir='rtl' lang='ar'>هي طيبة</span>.",
+        "<i>I am leaving now</i> &mdash; not <span class='ar-inline' dir='rtl' lang='ar'>أنا أكون مغادراً الآن</span>, but <span class='ar-inline' dir='rtl' lang='ar'>سأغادر الآن</span>.",
+        "<i>They are put in the same situation</i> &mdash; not <span class='ar-inline' dir='rtl' lang='ar'>هم يكونون موضوعين</span>, but <span class='ar-inline' dir='rtl' lang='ar'>يوضعون في الموقف نفسه</span>."
+      ] }
+    ],
+    ex: { lab: "The dual, and what English has to add",
+      srcLab: "Arabic", src: "ويختار المحكمان المعيَّنان على هذا النحو المحكَّم الثالث", srcDir: "rtl",
+      litLab: "What English lacks", lit: "There is no dual in English. <i>The arbitrators</i> alone would lose the count.",
+      outLab: "English, with the addition", out: "and the <b>two</b> arbitrators thus appointed select the third arbitrator", outDir: "ltr",
+      note: "The word <b>two</b> is not in the Arabic. It is carried by the form of " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>المحكمان</span> itself. English has to add a word to " +
+        "say what Arabic says with a suffix &mdash; and in an arbitration clause, failing to add it changes " +
+        "the legal meaning." },
+    practice: { h: "Do this before the next unit",
+      html: "Find an Arabic legal or administrative paragraph containing at least one dual and one passive. " +
+        "Translate it into English." +
+        "<p>Then mark your own output: every place you <b>added</b> information the Arabic did not state, " +
+        "and every place you <b>dropped</b> information it did. Both lists will be non-empty. That is not a " +
+        "failure &mdash; it is what grammatical difference costs, and naming it is the skill.</p>" }
+  },
+
+  {
+    n: 9, key: "texttypes", en: "Literary and technical texts", ar: "النصوص الأدبية والتقنية",
+    line: "Two kinds of writing that ask for two different kinds of faithfulness.",
+    blocks: [
+      { t: "lede", html:
+        "Before the genre units, the distinction they rest on. A literary text is written to convey ideas " +
+        "<b>and to produce a feeling</b>; a ghost story is meant to frighten you. It addresses the mind and " +
+        "the heart at once, and a translation that delivers only the first has failed at the job." },
+      { t: "list", h: "What literary writing is like", items: [
+        "<b>Imaginative</b>, and <b>subjective</b>.",
+        "Free, less formal, personal &mdash; it follows no standard format.",
+        "Tends to be long, and may be written in first, second or third person.",
+        "Its genres: prose fiction and non-fiction, novels, novellas, poetry, drama."
+      ] },
+      { t: "list", h: "The three hard problems", intro:
+        "Each returns in the units after this one:", items: [
+        "<b>Style.</b> In literature the manner is part of the content. Style is what tells one writer from another, so it gets the same attention as meaning &mdash; not less.",
+        "<b>Literal against free.</b> The ideal is to translate everything, no more and no less. No two languages have the same structure, so in practice you will sometimes expand and sometimes condense, and you should know which you are doing.",
+        "<b>Standard against dialect.</b> A novelist uses dialect on purpose &mdash; to place a character geographically, to mark identity, to characterise. Your job is to find how that purpose can survive, not to reproduce the dialect."
+      ] },
+      { t: "card", h: "And culture", html:
+        "Every group has its own way of living, eating, dressing and speaking, and the target readers may " +
+        "share none of it. Culture-bound terms are not decoration in a literary text; they are often what " +
+        "the passage is about." +
+        "<p>The four word-level strategies from unit 5 are the tools here. Which one you reach for depends " +
+        "on whether the item is the subject of the sentence or scenery in it.</p>" }
+    ],
+    ex: { lab: "The same fact, two kinds of text",
+      srcLab: "Technical", src: "Ambient temperature fell to 4&deg;C overnight.", srcDir: "ltr",
+      litLab: "Literary", lit: "<i>By morning the cold had got into everything.</i>",
+      outLab: "What each one has to keep", out: "The first must keep the number. The second must keep the feeling &mdash; and may change the number, or drop it.", outDir: "ltr",
+      note: "Both can be faithful. They are faithful to different things, and choosing which kind of " +
+        "faithfulness a text is asking for is the decision this whole course is training." },
+    practice: { h: "Do this before the next unit",
+      html: "Take one paragraph of a novel and one paragraph of a manual, both in English. Translate both " +
+        "into Arabic." +
+        "<p>Then write two sentences: what you protected in the first, and what you protected in the second. " +
+        "If the answers are the same, one of the two translations is wrong.</p>" }
+  },
+
+  {
+    n: 10, key: "literary", en: "Literary translation and style", ar: "الترجمة الأدبية والأسلوب",
+    line: "Style is not decoration on top of the meaning. It is a second thing to translate.",
+    blocks: [
+      { t: "lede", html:
+        "Style can mean the conventions of a genre &mdash; how business or medical writing goes &mdash; or " +
+        "it can mean one writer's own way of putting things. In literary translation the second sense is the " +
+        "one that matters: not what the author writes, but the manner of it. <b>The verbal identity of a " +
+        "writer.</b>" },
+      { t: "card", h: "Two definitions worth carrying", html:
+        "<b>Boase-Beier</b> (2006) treats style as the outcome of <b>choice</b> &mdash; and argues that the " +
+        "translator's own style will inevitably enter the target text. You do not have the option of not " +
+        "having a style." +
+        "<p><b>Baker</b> (2000) calls style <i>a thumb-print expressed in a range of linguistic and " +
+        "non-linguistic features</i>, and insists it is a matter of <b>patterning</b>: recurring habits " +
+        "across a text, not a single striking sentence.</p>" },
+      { t: "list", h: "Where to look for it", items: [
+        "Lexical choices", "Preferred syntax", "How ideas are ordered",
+        "Choice of verb tense", "Use of metaphor"
+      ] },
+      { t: "list", h: "Elements that cause trouble", intro:
+        "Each of these carries information about the character or the narrator, which is why flattening it " +
+        "loses more than it looks:", items: [
+        "<b>Diction, expansive or economical.</b> Tight and efficient, or elaborate and long-winded? When the author switches, ask why. It often marks a character's background.",
+        "<b>Vocabulary.</b> Simple or fancy; technical, flowery, colloquial, punning, obscure. It tells the reader what the character's education is without stating it.",
+        "<b>Sentence structure.</b> A run of short sentences reads as agitation; long ones read as composure. Interruptions and digressions say something about who gets to hold a conversation.",
+        "<b>Dialogue, tone, figures of speech, allusion and intertextuality.</b>"
+      ] },
+      { t: "card", h: "The two-sided risk", html:
+        "Stylistic features are language-specific. Following an Arabic word order closely into English " +
+        "produces something unnatural and hard to read &mdash; it will be taken as a bad translation, and " +
+        "the fault will be attributed to the author." +
+        "<p>But ironing the style out entirely gives target readers no sense of how the original reads, " +
+        "which is also a loss. There is no rule that resolves this. There is only the judgement, made " +
+        "consciously, and defended in the commentary.</p>" }
+    ],
+    ex: { lab: "Style as patterning, not a single sentence",
+      srcLab: "English", src: "He waited. The room was cold. Nobody came.", srcDir: "ltr",
+      litLab: "Smoothed out", lit: "انتظر في غرفة باردة دون أن يأتي أحد &mdash; accurate, and the three short sentences have become one composed one",
+      outLab: "Pattern kept", out: "انتظر. كانت الغرفة باردة. لم يأتِ أحد.", outDir: "rtl",
+      note: "Nothing in the first version is <i>wrong</i>. But the clipped rhythm was carrying the " +
+        "character's state, and joining the sentences deletes it without deleting a single word of meaning. " +
+        "That is precisely Baker's point about patterning." },
+    practice: { h: "Do this before the next unit",
+      html: "Take half a page from a novel you know. Before translating, write five lines on its style using " +
+        "the list above &mdash; diction, vocabulary, sentence structure, tone, figures of speech." +
+        "<p>Then translate, and check your translation against your own five lines. Anywhere they disagree, " +
+        "you changed the author's thumb-print. Decide whether you meant to.</p>" }
+  },
+
+  {
+    n: 11, key: "technical", en: "Technical translation", ar: "الترجمة التقنية",
+    line: "The largest field by volume, and the one where a wrong word has consequences.",
+    blocks: [
+      { t: "lede", html:
+        "Almost every technological advance reaches anybody outside the room it was invented in by being " +
+        "translated. Byrne puts it plainly: the inventions that changed ordinary life were <i>accompanied at " +
+        "almost every step by translation in its capacity as a vehicle for disseminating scientific and " +
+        "technical knowledge</i>." },
+      { t: "card", h: "What counts as technical", html:
+        "Wider than it sounds. The sciences &mdash; medicine, physics, astronomy, chemistry. Applied " +
+        "technology &mdash; computing, engineering. And subjects nobody calls scientific: geography, " +
+        "economics, architecture." +
+        "<p>If a field has terms of its own that outsiders use differently or not at all, translating it is " +
+        "technical translation.</p>" },
+      { t: "list", h: "How technical language behaves", items: [
+        "It is <b>specialized</b>, and becomes more so over time rather than less.",
+        "It is <b>economical</b> &mdash; it says things in as few linguistic means as it can.",
+        "It <b>avoids the associations of ordinary language</b> and defines its terms precisely, which is the opposite of what literary language does."
+      ] },
+      { t: "card", h: "The same word in three fields", html:
+        "<b>Depression</b> in psychology is an illness. In economics it is a prolonged contraction. In " +
+        "meteorology it is an area of low pressure." +
+        "<p>One term, three domains, and a different concept in each. Knowing which field you are in is not " +
+        "background knowledge here &mdash; it is the translation.</p>" },
+      { t: "list", h: "Two kinds of lexical trouble", intro:
+        "The problems fall neatly into two, and the second is the dangerous one:", items: [
+        "<b>Terms you do not know at all</b>, because they appear only in technical contexts. Unpleasant, but visible &mdash; you know to go and look them up.",
+        "<b>Terms you do know</b>, from ordinary contexts, being used in a specialized way. You feel no difficulty, translate confidently, and are wrong. Nothing warns you."
+      ] }
+    ],
+    ex: { lab: "Two ordinary-looking words in a medical text",
+      srcLab: "English", src: "These tests specify and diagnose the <b>allergenic</b> or harmful substances, as in the case of <b>contact</b> eczema.", srcDir: "ltr",
+      litLab: "The ordinary reading", lit: "<i>contact</i> read as everyday contact, and <i>allergenic</i> collapsed into <i>allergic</i> &mdash; two words that look harmless",
+      outLab: "The terms", out: "المواد المحسِّسة أو الضارة، كما الحال في أكزيما التماس", outDir: "rtl",
+      note: "<i>Allergic</i> describes the reaction; <i>allergenic</i> describes the substance that causes " +
+        "it. <span class='ar-inline' dir='rtl' lang='ar'>أكزيما التماس</span> is a named condition, not a " +
+        "description. Both are the second kind of trouble: familiar words, specialized use, no warning." },
+    practice: { h: "Do this before the next unit",
+      html: "Find a short technical paragraph in a field you do not work in. Before translating, list every " +
+        "word you are confident about." +
+        "<p>Now check five of them in a specialist source. At least one will not mean what you assumed. " +
+        "<b>That word is the whole lesson of this unit</b> &mdash; the danger is not the vocabulary you know " +
+        "you lack.</p>" }
+  },
+
+  {
+    n: 12, key: "headlines", en: "Journalistic texts: the headline", ar: "ترجمة العناوين الصحفية",
+    line: "Headlinese is not English. It has its own grammar, and Arabic does not share it.",
+    blocks: [
+      { t: "lede", html:
+        "A news text is built from three parts &mdash; <b>headline</b>, <b>lead paragraph</b>, <b>news " +
+        "story</b> &mdash; and the first of them is written in something that is barely the same language." },
+      { t: "card", h: "Headlinese", html:
+        "The headline is the most conspicuous thing on a newspaper page, and its difficulty is syntactic, " +
+        "lexical and stylistic at once. The standard description is <b>telegraphic and elliptical</b>: it " +
+        "leaves out everything it can get away with leaving out." +
+        "<p>English headlines are frequently <b>not complete sentences</b>. Some are nothing but a string of " +
+        "nouns.</p>" },
+      { t: "list", h: "What gets dropped, and what gets used", items: [
+        "Articles, the copula, and auxiliaries go first.",
+        "<b>Simple tenses</b> rather than continuous or perfect ones &mdash; <i>US launches air raids in Iraq</i>, not <i>has launched</i>.",
+        "Noun stacks stand in for whole clauses.",
+        "Which means the reader is expected to reconstruct the proposition &mdash; and so is the translator, before a word is rendered."
+      ] },
+      { t: "card", h: "Why the Arabic headline is usually longer", html:
+        "Arabic headlines do not work by the same compression. Rendering an English noun stack word-for-word " +
+        "produces something that is not a headline in Arabic and often not intelligible." +
+        "<p>So <b>addition</b> is standard practice here, not a liberty: you add what the target reader " +
+        "needs in order to recover what the English reader recovered for free.</p>" },
+      { t: "card", h: "Do this before you translate any headline", html:
+        "Write out the full proposition in plain English first. <i>Mustang Referral Customer Complaint</i> " +
+        "unpacks to: there is a complaint; the complaint concerns the Mustang customer referral programme." +
+        "<p>Only then translate. Headlines are the one place where translating before you have paraphrased " +
+        "is almost guaranteed to fail.</p>" }
+    ],
+    ex: { lab: "Four nouns, and what Arabic has to supply",
+      srcLab: "English headline", src: "Mustang Referral Customer Complaint", srcDir: "ltr",
+      litLab: "Word for word", lit: "a string of four nouns that names no event and forms no Arabic headline",
+      outLab: "Arabic, with additions", out: "شكوى زبون فورد موستنج من برنامج الإحالة", outDir: "rtl",
+      note: "Two things were added. <b>Ford</b>, because an Arabic reader may not know Mustang is a Ford. " +
+        "And <b>programme</b>, because <i>referral</i> alone does not say that a scheme is meant. Neither is " +
+        "in the English; both are needed to say the same thing." },
+    practice: { h: "Do this before the next unit",
+      html: "Take five English headlines from today. For each, write the full proposition in plain English, " +
+        "then translate into Arabic." +
+        "<p>Underline every word in your Arabic that has no counterpart in the English. Then justify each " +
+        "one in a few words. If you cannot justify it, it is not an addition &mdash; it is an invention.</p>" }
+  },
+
+  {
+    n: 13, key: "newsstructure", en: "Journalistic texts: story structure", ar: "بنية الخبر الصحفي",
+    line: "A news story is built to be cut from the bottom. Knowing that changes how you translate it.",
+    blocks: [
+      { t: "lede", html:
+        "Beyond the headline, a news story has a <b>shape</b>, and the shape is chosen by the kind of story " +
+        "it is. Three are standard: the inverted pyramid, the hourglass, and straight narrative." },
+      { t: "card", h: "The inverted pyramid", html:
+        "The most basic structure, and older than you would guess: it dates from a time when reporters filed " +
+        "by telegraph and the wire could be cut mid-transmission. Put the most important thing first, and " +
+        "descend from there." +
+        "<p>It <b>reverses</b> chronological order &mdash; the outcome comes first and the background last.</p>" },
+      { t: "list", h: "Why editors like it", items: [
+        "The reader gets the important elements at once and can decide whether to continue.",
+        "An editor can cut from the bottom to fit the space, and lose nothing significant.",
+        "Online, updates can be added without rebuilding the story.",
+        "It forces the reporter to rank the elements and write quickly, holding back minor detail."
+      ] },
+      { t: "list", h: "What it costs", items: [
+        "It gives the reader no reason to reach the end.",
+        "It discourages well-made endings, and treats the later paragraphs as expendable.",
+        "It can push the writer towards oversimplifying."
+      ] },
+      { t: "card", h: "The hourglass, and narrative", html:
+        "The <b>hourglass</b> is a compromise: the main facts first in descending importance, as in a " +
+        "pyramid, then a turn into chronological narrative with room for detail, dialogue and background. " +
+        "It suits police stories, disasters and trials &mdash; anything that has a sequence worth telling." +
+        "<p><b>Narrative</b> proper keeps the events in order from the start, and is the structure literary " +
+        "journalism borrows.</p>" },
+      { t: "card", h: "What this means for you", html:
+        "The structure is <b>information design</b>, not decoration, and it is a target-language decision as " +
+        "much as a source-language one." +
+        "<p>Translating a pyramid story faithfully means the Arabic must also survive being cut from the " +
+        "bottom. If your rendering buries the key fact in paragraph three because the Arabic sentence ran " +
+        "better that way, you have translated the words and broken the text.</p>" }
+    ],
+    ex: { lab: "Where the important fact sits",
+      srcLab: "Pyramid lead", src: "Twelve people were rescued yesterday after a fire broke out in a residential tower in Salmiya.", srcDir: "ltr",
+      litLab: "Reordered for flow", lit: "After a fire broke out in Salmiya, and after crews had worked through the night, twelve people were rescued &mdash; natural, and now uncuttable",
+      outLab: "Pyramid kept", out: "أُنقذ اثنا عشر شخصاً أمس إثر حريق شبّ في برج سكني بالسالمية.", outDir: "rtl",
+      note: "Both carry every fact. Only the second can lose its final paragraphs without losing the news. " +
+        "Sentence order in a news translation is not a stylistic preference &mdash; it is part of what the " +
+        "text is for." },
+    practice: { h: "Do this before the next unit",
+      html: "Take an English news story of six or more paragraphs. Identify its structure, then translate it." +
+        "<p>Now delete your last two paragraphs and read what remains. If it is still a complete, accurate " +
+        "story, you preserved the structure. If something essential has gone, you reorganised the text " +
+        "without noticing.</p>" }
+  },
+
+  {
+    n: 14, key: "terminology", en: "Terminology and translation technology", ar: "المصطلحات وتقنيات الترجمة",
+    line: "A discipline about concepts, and the tools that keep decisions from being made twice.",
+    blocks: [
+      { t: "lede", html:
+        "Terminology has no single agreed definition, partly because it borrowed from older fields " +
+        "&mdash; semantics, lexicology, lexicography. What forced it into existence is simpler: science and " +
+        "technology produced concepts faster than languages produced words for them." },
+      { t: "card", h: "Two senses of the word", html:
+        "Originally, <b>terminology</b> meant the technical terms used in an art, a science or a specialised " +
+        "subject &mdash; a sense still alive in English." +
+        "<p>Later it came to mean the <b>study</b> of those terms: the systematic identification of the " +
+        "terms belonging to a field, and of the concepts they stand for.</p>" },
+      { t: "card", h: "The working definition", html:
+        "A discipline that systematically <b>identifies</b> specialised terms in the context where they are " +
+        "used, <b>analyses</b> the concepts they represent in that context, and where necessary <b>creates " +
+        "and standardises</b> terms to meet a real need for expression." +
+        "<p>It is a linguistic discipline with theoretical guidelines and defined working methods, which is " +
+        "what separates it from collecting vocabulary.</p>" },
+      { t: "list", h: "The three tools", intro:
+        "Translation technology is the software around the process. Three things do most of the work:", items: [
+        "<b>Machine translation.</b> Software translating automatically. Early systems were rule-based, then statistical; neural systems are markedly better. Still not a match for a human on nuance or context &mdash; but genuinely faster and cheaper.",
+        "<b>Translation memory.</b> Stores what you have already translated so it can be reused. Its real value is <b>consistency</b> across a long document or a repeat client, not speed.",
+        "<b>Terminology management.</b> Glossaries and termbases, so that a term decided once is used the same way by everyone afterwards."
+      ] },
+      { t: "card", h: "The honest position on machines", html:
+        "Machine translation has made real progress and will keep making it. It still cannot match a human " +
+        "on nuance or on sensitivity to context." +
+        "<p>What follows from that is not that the tools are useless. It is that <b>someone has to be able " +
+        "to tell when the output is wrong</b> &mdash; which takes more knowledge than producing it, not " +
+        "less. That is the job the rest of this course is preparing you for.</p>" }
+    ],
+    ex: { lab: "Why a termbase exists",
+      srcLab: "English", src: "informed consent", srcDir: "ltr",
+      litLab: "The near-enough word", lit: "موافقة &mdash; consent, which is what a patient gives to anything at all",
+      outLab: "The term", out: "موافقة مستنيرة", outDir: "rtl",
+      note: "These are different things in law: one is agreement, the other is agreement after the risks " +
+        "have been explained and understood. A term decided once, recorded with its source, and reused is " +
+        "the entire argument for terminology management &mdash; so that the next translator inherits the " +
+        "decision instead of making it again, differently." },
+    practice: { h: "Do this before the next unit",
+      html: "Build a ten-term glossary for one field &mdash; banking, medicine, aviation, whatever you may " +
+        "translate in. For each: the English term, the Arabic term, a one-line definition, and <b>where you " +
+        "got it</b>." +
+        "<p>That last column is what makes it a termbase rather than a list. A term without a source is a " +
+        "guess, however confident it sounds.</p>" }
+  },
+
+  {
+    n: 15, key: "localization", en: "Localization", ar: "التوطين",
+    line: "Translation is one part of it. The rest is everything else the product assumes about you.",
+    blocks: [
+      { t: "lede", html:
+        "<b>Localization</b> is adapting a product, service or piece of content so that it is linguistically " +
+        "<b>and culturally</b> right for a particular market &mdash; software, websites, manuals, multimedia, " +
+        "games." },
+      { t: "card", h: "Locale", html:
+        "The technical term for what you are adapting to. A <b>locale</b> is the set of features of a user's " +
+        "environment that depend on language, country or region, and cultural convention." +
+        "<p>It settles sort order, keyboard layout, and the formats for date, time, number and currency. " +
+        "None of that is translation, and all of it is wrong if you ignore it.</p>" },
+      { t: "card", h: "Where translation sits", html:
+        "Translation is <b>the linguistic aspect of localization</b> &mdash; a subset of the activities, not " +
+        "the whole of it. Its goal within that process is the same as everywhere else in this course: " +
+        "equivalence of meaning, idiomatic, lexical and conceptual." +
+        "<p>The rest of localization is layout that survives right-to-left, images that make sense locally, " +
+        "forms that accept local addresses, and defaults that assume the right things.</p>" },
+      { t: "card", h: "The test", html:
+        "A localized product should not read as a translated one. The user should not be able to tell that " +
+        "it was made somewhere else &mdash; which is a higher standard than accuracy, and a different one." +
+        "<p>It is also the clearest case in the course of a translation being judged by its <b>effect on " +
+        "its reader</b> rather than by its correspondence to its source.</p>" }
+    ],
+    ex: { lab: "The same interface, two locales",
+      srcLab: "English build", src: "Payment due 03/04/2026 &middot; $1,250.00", srcDir: "ltr",
+      litLab: "Translated only", lit: "الدفعة مستحقة 03/04/2026 · $1,250.00 &mdash; every word rendered, and the date is now ambiguous and the currency foreign",
+      outLab: "Localized", out: "الدفعة مستحقة في ٣ أبريل ٢٠٢٦ &middot; ١٬٢٥٠٫٠٠ د.ك", outDir: "rtl",
+      note: "Nothing here is a translation problem. Date order, numeral form, decimal and thousands marks " +
+        "and currency are all <b>locale</b> conventions &mdash; and getting them wrong on an invoice is more " +
+        "consequential than any wording choice on the screen." },
+    practice: { h: "The last one",
+      html: "Take one screen of an app or website you use in English and localize it into Arabic &mdash; not " +
+        "just translate it." +
+        "<p>List everything you had to change that was <b>not</b> a word: direction, alignment, date and " +
+        "number formats, currency, icons, the example names in the form fields. That list is the difference " +
+        "between translation and localization, and it is the last thing this course has to teach you.</p>" }
   }
 ];
 
