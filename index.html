@@ -780,6 +780,19 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .alpha .a-hand, .lh-fig {
   background: radial-gradient(circle at 50% 47%,
     rgba(214,191,234,.20) 0 36%, rgba(214,191,234,.07) 56%, transparent 71%); }
+/* Some of these are one handshape twice over, told apart only by the way
+   the hand travels. The mark says so on the tile; the line says how on
+   the letter's own page. */
+.alpha .a-hand { position: relative; }
+.alpha .a-mv { position: absolute; top: .15rem; inset-inline-start: .15rem; z-index: 1;
+  font-size: .8rem; line-height: 1; padding: .2rem .3rem; border-radius: 999px;
+  color: var(--mag-ink); background: rgba(214,191,234,.14); }
+.lh-move { margin: .7rem 0 0; font-size: .9rem; font-weight: 300; line-height: 1.6;
+  color: var(--ink-soft); max-width: var(--measure); }
+.lh-move b { color: var(--lilac); font-family: var(--f-ar); font-size: 1.05rem;
+  font-weight: 600; }
+.lh-move-k { display: block; font-size: .7rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--mag-ink); font-weight: 600; margin-bottom: .15rem; }
 .alpha .a-txt { display: flex; align-items: baseline; gap: .45rem; }
 .ksl-credit { margin: 0; font-size: .78rem; font-weight: 300; line-height: 1.55;
   color: var(--ink-soft); max-width: var(--measure); }
@@ -4582,18 +4595,37 @@ const KSL_ALPHA = [
 ];
 
 /* Not letters of the alphabet, but part of the same fingerspelling set
-   and on the same chart. */
+   and on the same chart.
+
+   Several of these are the SAME handshape as a letter already above, and
+   differ only in how the hand moves — ا, أ and آ are one fist with the
+   thumb up; ب and ء are one fist with the index up. Without saying so the
+   grid looks like it is repeating itself, or like the photographs got
+   mixed up. `mv` is that difference, read off the arrows @ksl_dictionary
+   draw on the post. Where there is no arrow there is no `mv` — which is
+   not a claim that the sign is still, only that the source did not say. */
 const KSL_EXTRA = [
-  { l: "ة", n: "تاء مربوطة", t: "tāʾ marbūṭa", img: "ksl/tamarbuta.webp" },
-  { l: "أ", n: "ألف بهمزة فوقها", t: "ʾalif + hamza above", img: "ksl/alifhamza.webp" },
-  { l: "إ", n: "ألف بهمزة تحتها", t: "ʾalif + hamza below", img: "ksl/alifhamzabelow.webp" },
-  { l: "آ", n: "ألف ممدودة", t: "ʾalif madda", img: "ksl/alifmadda.webp" },
-  { l: "ؤ", n: "واو بهمزة", t: "wāw + hamza", img: "ksl/wawhamza.webp" },
-  { l: "ئ", n: "ياء بهمزة", t: "yāʾ + hamza", img: "ksl/yahamza.webp" },
-  { l: "ئـ", n: "ياء بهمزة — متّصلة", t: "yāʾ + hamza, joined", img: "ksl/yahamza2.webp" },
-  { l: "ء", n: "همزة", t: "hamza", img: "ksl/hamza.webp" },
-  { l: "ى", n: "ألف مقصورة", t: "ʾalif maqṣūra", img: "ksl/alifmaqsura.webp" },
+  { l: "ة", n: "تاء مربوطة", t: "tāʾ marbūṭa", img: "ksl/tamarbuta.webp",
+    mv: "Carried from side to side." },
+  { l: "أ", n: "ألف بهمزة فوقها", t: "ʾalif + hamza above", img: "ksl/alifhamza.webp",
+    mv: "The same fist as <b>ا</b>, thumb up &mdash; moved from side to side." },
+  { l: "إ", n: "ألف بهمزة تحتها", t: "ʾalif + hamza below", img: "ksl/alifhamzabelow.webp",
+    mv: "The fist of <b>ا</b> turned over, thumb down &mdash; moved from side to side." },
+  { l: "آ", n: "ألف ممدودة", t: "ʾalif madda", img: "ksl/alifmadda.webp",
+    mv: "The same fist as <b>ا</b>, thumb up &mdash; swept in an arc." },
+  { l: "ؤ", n: "واو بهمزة", t: "wāw + hamza", img: "ksl/wawhamza.webp",
+    mv: "The same pinch as <b>و</b> &mdash; it turns as it travels." },
+  { l: "ئ", n: "ياء بهمزة", t: "yāʾ + hamza", img: "ksl/yahamza.webp",
+    mv: "The same hand as <b>ي</b> &mdash; moved from side to side." },
+  { l: "ئـ", n: "ياء بهمزة — متّصلة", t: "yāʾ + hamza, joined", img: "ksl/yahamza2.webp",
+    mv: "Index out, pointing &mdash; it turns as it travels." },
+  { l: "ء", n: "همزة", t: "hamza", img: "ksl/hamza.webp",
+    mv: "The same fist as <b>ب</b>, index up &mdash; moved from side to side." },
+  { l: "ى", n: "ألف مقصورة", t: "ʾalif maqṣūra", img: "ksl/alifmaqsura.webp",
+    mv: "The same hand as <b>ي</b> &mdash; drawn downward." },
   { l: "لا", n: "لام ألف", t: "lām-ʾalif", img: "ksl/lamalif.webp" },
+  { l: "لأ", n: "لام ألف بهمزة", t: "lām-ʾalif + hamza", img: "ksl/lamalifhamza.webp",
+    mv: "The same hand as <b>لا</b> &mdash; moved from side to side." },
   { l: "ال", n: "أداة التعريف", t: "al-, the article", img: "ksl/al.webp" },
 ];
 function kslAll() { return KSL_ALPHA.concat(KSL_EXTRA); }
@@ -7692,7 +7724,7 @@ function runKsl() {
      opens this to see signs, so signs are what is here. */
   function home() {
     stage.innerHTML = "";
-    setCount("الهجاء الإصبعي · 39");
+    setCount("الهجاء الإصبعي · " + kslAll().length);
     setDots(0, 0, 0);
 
     stage.appendChild(el("p", "lede",
@@ -7704,11 +7736,16 @@ function runKsl() {
     kslAll().forEach((L, i) => {
       const b = el("button", "alpha");
       b.innerHTML =
-        '<span class="a-hand"></span>' +
+        '<span class="a-hand">' +
+          (L.mv ? '<span class="a-mv" aria-hidden="true">⇄</span>' : '') +
+        '</span>' +
         '<span class="a-txt">' +
           '<span class="a-l" dir="rtl" lang="ar">' + L.l + '</span>' +
           '<span class="a-n" dir="rtl" lang="ar">' + L.n + '</span>' +
         '</span>';
+      /* the mark says the hand moves, so two tiles showing the same fist
+         are not mistaken for the same picture twice */
+      if (L.mv) b.title = "This one moves";
       b.querySelector(".a-hand").appendChild(handFig(L, i < 6));
       b.addEventListener("click", () => { pushTrail("Kuwaiti Sign Language", () => home()); letter(i); });
       grid.appendChild(b);
@@ -7779,6 +7816,14 @@ function runKsl() {
       '</span>';
     hero.querySelector(".lh-fig").appendChild(handFig(L, true));
     stage.appendChild(hero);
+
+    /* A still photograph cannot show movement, and for these forms the
+       movement is the whole difference. */
+    if (L.mv) {
+      const m = el("p", "lh-move");
+      m.innerHTML = '<span class="lh-move-k">How it moves</span>' + L.mv;
+      stage.appendChild(m);
+    }
 
     stage.appendChild(el("p", "ksl-credit", KSL_CREDIT));
 
