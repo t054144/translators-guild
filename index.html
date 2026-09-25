@@ -5098,6 +5098,553 @@ const ENGL180 = [
   }
 ];
 
+/* ═══════════ 182 · INTRODUCTION TO TERMINOLOGY ═══════════
+   Eleven units in the order the course runs them, taken from the week
+   numbers on the material. Same shape as 180: one sitting each, a worked
+   example, and something to do at the end.
+
+   The examples are the course's own wherever it has one — fish, the
+   watch, street furniture, the television-production terms, charitable
+   institution, black out, herpetologist, the rational animal. The Arabic
+   side and the practice tasks are the Guild's. */
+const ENGL182 = [
+  {
+    n: 1, key: "what", en: "What terminology is", ar: "ما علم المصطلح؟",
+    line: "A discipline nobody quite agrees on, and why it had to exist.",
+    blocks: [
+      { t: "lede", html:
+        "There is no settled agreement on what terminology <i>is</i>, and the reason is historical: it " +
+        "borrowed from older fields &mdash; semantics, lexicology, lexicography &mdash; and each of them " +
+        "left a different idea of what the subject is for." },
+      { t: "card", h: "Why it appeared when it did", html:
+        "Two pressures, both recent. <b>Science and technology</b> pushed the frontier back in genetics, " +
+        "space, information science, telecommunications &mdash; and every new concept needs a name." +
+        "<p>And <b>contact between language communities</b>. The need for terms is real in one language; " +
+        "it multiplies when two or more are in contact, because for every concept named in one, an " +
+        "equivalent has to be found in the others.</p>" },
+      { t: "list", h: "Why practitioners disagree", intro:
+        "The disagreement is not academic point-scoring. Each position produces a different kind of work:", items: [
+        "Those who fear that a flood of new terms will <b>impede communication</b> see terminology as a means of standardizing.",
+        "Many linguists and lexicologists treat it as <b>technical lexicography</b> and nothing more.",
+        "Some schools set out to produce <b>exhaustive word lists</b> — without defining the terms or classifying the concepts."
+      ] },
+      { t: "split", h: "The word has two meanings, and they are not the same size",
+        a: { lab: "The terms themselves", ar: "المصطلحات",
+             say: "The technical terms and expressions used in an art, a science or a specialized subject. Still the ordinary English sense." },
+        b: { lab: "The study of them", ar: "علم المصطلح",
+             say: "The systematic research and identification of the terms specific to a subject field, and of the concepts they represent. The sense this course means." } },
+      { t: "card", h: "The definition to know", html:
+        "A discipline aimed at systematically <b>identifying</b> specialized terms in the context in which " +
+        "they are used, <b>analysing</b> the concepts they represent in that context, and <b>creating and " +
+        "standardizing</b> terms, if need be, to meet the user's need for means of expression." +
+        "<p>It is a linguistic discipline with theoretical guidelines and defined work methods. That is what " +
+        "separates it from collecting vocabulary.</p>" },
+      { t: "list", h: "The four work methods", intro:
+        "The whole course is these four, taken in turn:", items: [
+        "<b>Term identification</b> — finding the terms peculiar to a field: simple, complex and phrasal.",
+        "<b>Contextual analysis</b> — determining each term's meaning from the context it sits in.",
+        "<b>Term creation</b> — filling a genuine gap, and only after every source has been searched.",
+        "<b>Standardization</b> — settling which term may carry the concept, and recording it."
+      ] }
+    ],
+    ex: { lab: "The order matters: identify before you create",
+      srcLab: "The temptation", src: "No Arabic term comes to mind, so coin one.", srcDir: "ltr",
+      litLab: "What the discipline says", lit: "The terminologist's role is first and foremost to <b>identify existing terms, not to invent new ones</b>.",
+      outLab: "When coining is warranted", out: "Only when every available source has been researched and the evidence shows no term exists in the target language for that concept.", outDir: "ltr",
+      note: "This is the single most common error a beginner makes, and it is expensive: a coined term that " +
+        "duplicates an existing one splits the field's usage in two, and both halves then have to be " +
+        "reconciled by somebody later." },
+    practice: { h: "Do this before the next unit",
+      html: "Pick a field you know a little &mdash; banking, aviation, nursing. Write down ten of its terms " +
+        "in English." +
+        "<p>Now mark each one: is it a term <b>peculiar to that field</b>, or a general-language word you " +
+        "have assumed belongs to it? Most people find three or four of the ten are general words. Those " +
+        "four are not terminology, and knowing the difference is where this subject starts.</p>" }
+  },
+
+  {
+    n: 2, key: "specialized", en: "Specialized terms and the user", ar: "المصطلحات المتخصصة والمستفيد",
+    line: "Who the work is for, and why context decides everything.",
+    blocks: [
+      { t: "lede", html:
+        "Almost every field of human endeavour has its own special language &mdash; the arts, science, " +
+        "business, economics, law, medicine. The lexicon of a special language holds both general-language " +
+        "words and terms with special reference, and <b>terminology is concerned only with the second</b>." },
+      { t: "split", h: "Two kinds of context, two levels of difficulty",
+        a: { lab: "Situational", ar: "السياق الموقفي",
+             say: "The term is connected to the concrete thing it refers to. You can see the object. The meaning becomes clear." },
+        b: { lab: "Written", ar: "السياق النصي",
+             say: "Nothing to point at. You analyse the context, identify the semantic features it contains, and build the concept from those." } },
+      { t: "card", h: "Why this matters most in two languages", html:
+        "In bilingual and multilingual work you must find <b>enough information on the source term's " +
+        "meaning in context</b> to go and research its target-language equivalent in context." +
+        "<p>Equivalence of semantic features across the two contexts is called <b>textual correspondence</b>, " +
+        "and it is what establishes that two terms are equivalent. Not a dictionary line: matching features " +
+        "in matching contexts.</p>" },
+      { t: "card", h: "The user decides the job", html:
+        "Terminologists work to the user's communication needs, and those vary enormously &mdash; an " +
+        "advertiser's needs are not a scientist's." +
+        "<p>But every user, whoever they are and whatever language they speak, arrives with the same " +
+        "question: <b>what is this called, or what do I call this?</b> Everything else is method.</p>" },
+      { t: "list", h: "Where the findings go", intro:
+        "Research has to end somewhere it can be used and changed:", items: [
+        "<b>Records</b>, once on paper and now in computerized databases. Multiple access to the same information without reproducing it, huge capacity, very fast retrieval.",
+        "<b>Vocabularies</b> — for a wide audience or users unfamiliar with terminological method. Alphabetical: source entry, target equivalents, a concise definition, the subfield.",
+        "<b>Glossaries</b> — an alphabetical list of terms specific to a discipline with their target-language equivalents."
+      ] }
+    ],
+    ex: { lab: "Why usage, not correctness, is the test",
+      srcLab: "The rule", src: "Terminologists must be aware of current usage.", srcDir: "ltr",
+      litLab: "What happens if they are not", lit: "Their work would serve no purpose were they to give the user <b>depreciated or rare terminology</b>.",
+      outLab: "How usage is established", out: "By researching terms in context — not by preference, authority, or what the dictionary printed twenty years ago.", outDir: "ltr",
+      note: "A term that is defensible and unused is a failure. This is the point where terminology parts " +
+        "company with prescriptive grammar: the question is never what people <i>ought</i> to say, but what " +
+        "the field actually says now." },
+    practice: { h: "Do this before the next unit",
+      html: "Take one English term from a specialized field and find it in <b>three</b> different written " +
+        "contexts &mdash; not three dictionaries, three real texts." +
+        "<p>For each, list the semantic features the context supplies. Then compare your three lists. Where " +
+        "they agree you have the concept; where they differ you have either a second sense or a sloppy " +
+        "source, and telling those apart is the work.</p>" }
+  },
+
+  {
+    n: 3, key: "neighbours", en: "Semantics and lexicography", ar: "علم الدلالة وصناعة المعجم",
+    line: "The two disciplines terminology is mistaken for, and the direction that separates them.",
+    blocks: [
+      { t: "lede", html:
+        "Terminology is regularly confused with the other disciplines that deal with the lexicon. It is " +
+        "worth being able to say exactly how it differs, because the difference is not a matter of degree " +
+        "&mdash; it is a matter of which end you start from." },
+      { t: "card", h: "What the semanticist does", html:
+        "Semantics studies the relationship between the linguistic sign and the object it refers to " +
+        "&mdash; why a chair is called a chair. Two approaches:" +
+        "<p><b>Diachronic</b>, the historical one: <i>fish</i> from Old English <i>fisc</i> and Old Frisian " +
+        "<i>fisk</i>, and then how that first meaning branched &mdash; the flesh of the fish, a piece of " +
+        "hard wood strengthening a ship's mast, a cold person.</p>" +
+        "<p><b>Synchronic</b>, the descriptive one: meanings as a system, where one meaning can have several " +
+        "signs and one sign several meanings, and the dates are irrelevant because old and new survive side " +
+        "by side as polysemy.</p>" },
+      { t: "card", h: "What the terminologist does with the same word", html:
+        "Begins with the <b>context</b>, not the etymology. Researching in biology, the terminologist " +
+        "establishes that a cold-blooded aquatic vertebrate with gills is called a <b>fish</b>." +
+        "<p>That the word means other things in other fields is interesting and not the point. The " +
+        "semanticist wants the whole semantic range; the terminologist wants the features that fix one " +
+        "label to one concept <b>in one field</b>.</p>" },
+      { t: "split", h: "And the direction of travel",
+        a: { lab: "The lexicographer", ar: "صانع المعجم",
+             say: "Starts from the <b>sign</b> and investigates the concept or concepts it represents. Researches the entire lexicon. The reader is <b>decoding</b> — they met a word and need its meaning." },
+        b: { lab: "The terminologist", ar: "أخصائي المصطلح",
+             say: "Starts from the <b>concept</b> and researches its sign. Researches only the stock specific to a field. The user is <b>encoding</b> — they have a meaning and need the word for it." } },
+      { t: "list", h: "Three places that difference shows", items: [
+        "<b>Nomenclature.</b> The lexicographer takes every word and every meaning in every situation. The terminologist takes the terms of one subject within a stated framework — and takes all its means of expression: simple, complex and phrasal.",
+        "<b>Analysis.</b> Lexicographical analysis builds a word's complete semantic profile. Terminological analysis determines the characteristics of one concept, so the term can be linked to it and an equivalent found in another language.",
+        "<b>Definition.</b> A lexicographer's definition covers all accepted uses. A terminologist's condenses the semantic features of the term <b>as used in one real situation</b>."
+      ] }
+    ],
+    ex: { lab: "One word, two disciplines, two right answers",
+      srcLab: "The word", src: "fish", srcDir: "ltr",
+      litLab: "The semanticist's answer", lit: "Every meaning it has carried — the animal, the flesh, the mast timber, the cold person — literal and figurative, concrete and abstract, together making its semantic range in modern English.",
+      outLab: "The terminologist's answer, in biology", out: "سمكة — a cold-blooded aquatic vertebrate with gills. The rest exists and is not the question being asked.", outDir: "rtl",
+      note: "Neither is wrong. They are answers to different questions, and a translator who reaches for the " +
+        "wrong one brings back either far too much or the wrong sense entirely." },
+    practice: { h: "Do this before the next unit",
+      html: "Take a polysemous English word that also works as a term &mdash; <i>cell</i>, <i>bond</i>, " +
+        "<i>charge</i>, <i>current</i>." +
+        "<p>Write the lexicographer's entry: every sense you can find. Then pick one field and write the " +
+        "terminologist's: the single concept, its features, and the Arabic term for it. Notice that the " +
+        "second is shorter and much harder.</p>" }
+  },
+
+  {
+    n: 4, key: "termconcept", en: "Term and concept", ar: "المصطلح والمفهوم",
+    line: "What counts as a term, and what makes a concept that term's own.",
+    blocks: [
+      { t: "lede", html:
+        "Terminological inquiry has to make the relation between a term and its concept explicit &mdash; " +
+        "between the <b>signifier</b>, a word in the language, and the <b>signified</b>, the object in the " +
+        "world. They are joined through the concept in the mind, and it is the concept that terminology " +
+        "works on." },
+      { t: "list", h: "Three shapes a term can take", intro:
+        "A term designates a concept specific to a subject field. The examples below are all from " +
+        "television production:", items: [
+        "<b>Simple</b> — one word: a stem with or without affixes. <i>To coproduce</i>, <i>commentator</i>, <i>monochrome</i>. Still simple though they hold several morphemes, because <i>co-</i>, <i>-ator</i> and <i>mono-</i> cannot stand alone as terms.",
+        "<b>Complex</b> — two or more words in a grammatical relationship: <i>captive audience</i>, <i>laughmeter</i>, <i>director-producer</i>, <i>closeup</i>, <i>ultrawide-angle lens</i>, <i>to lip sync</i>.",
+        "<b>Phrasal</b> — a group of words with a higher syntactic function: <i>request for copyright clearance</i>, <i>to preempt a program</i>, <i>filmed on location</i>, <i>on the air</i>."
+      ] },
+      { t: "card", h: "One concept, whatever the shape", html:
+        "All three represent <b>a single concept</b> in the field. That is the test, not the word count." +
+        "<p>And it has a consequence: remove any one element of a complex term and the concept changes. " +
+        "<i>Ultrawide-angle lens</i> is not a long way of saying <i>lens</i>.</p>" },
+      { t: "card", h: "Essential characteristics", html:
+        "A concept is described by the sum of its essential characteristics. Take <b>watch</b>: having a " +
+        "face and hands, being used to tell time, having a movement driven in one of several ways." +
+        "<p>All true &mdash; and not enough, because they do not separate a watch from every other " +
+        "timepiece. Add <i>designed to be worn on a wristband, pin or chain</i> and now they do. The " +
+        "characteristics that are both <b>necessary and sufficient</b> to distinguish a concept from all " +
+        "others are its essential characteristics. They need not come in any particular order.</p>" },
+      { t: "card", h: "A term belongs to its field, not to the language", html:
+        "General-language words are constantly borrowed by disciplines to name new concepts. Their meaning " +
+        "is broadened, narrowed or otherwise changed &mdash; they take on a new semantic load." +
+        "<p><i>Furniture</i> in the urban-planning term <b>street furniture</b> does not mean what it means " +
+        "at home. <i>Highway</i> in <b>information highway</b> is not a road. Investigate the term in the " +
+        "field it belongs to, or you will translate the wrong concept confidently.</p>" }
+    ],
+    ex: { lab: "Borrowed word, new semantic load",
+      srcLab: "English term", src: "street furniture", srcDir: "ltr",
+      litLab: "The general-language reading", lit: "أثاث الشارع — furniture, outdoors. Grammatical, and not what an urban planner means.",
+      outLab: "The concept", out: "عناصر تأثيث الشارع — benches, bollards, lamp posts, shelters: the fixed public fittings of a street", outDir: "rtl",
+      note: "The English word was borrowed from the general language and given a new load. The Arabic has " +
+        "to carry <b>the concept</b>, not the borrowed word &mdash; which is why the equivalent is longer " +
+        "and why the literal version tells the reader nothing." },
+    practice: { h: "Do this before the next unit",
+      html: "Find five terms in one field and sort them: simple, complex, phrasal." +
+        "<p>Then take the complex ones and delete one element from each. Write what the remainder now means. " +
+        "In every case it should be a <b>different concept</b>, not a vaguer version of the same one &mdash; " +
+        "if it is only vaguer, what you had was probably not a term.</p>" }
+  },
+
+  {
+    n: 5, key: "subjectfield", en: "Subject-field research", ar: "البحث في مجال متخصص",
+    line: "The long kind: exhaustive, systematic, and six stages before you extract a single term.",
+    blocks: [
+      { t: "lede", html:
+        "Research carried out on the terms and concepts of a whole subject is <b>subject-field research</b>. " +
+        "It is relatively exhaustive, runs over a long period, and therefore demands a thorough and " +
+        "systematic approach &mdash; most of which happens before any term is written down." },
+      { t: "list", h: "Six stages, all preliminary", intro:
+        "Every one of these is completed <b>before</b> scanning for and extracting terms begins:", items: [
+        "Determining the research objectives",
+        "Estimating the necessary resources",
+        "Becoming familiar with the subject field",
+        "Selecting the documentation",
+        "Locating the documentation",
+        "Evaluating the documentation"
+      ] },
+      { t: "card", h: "1 · Objectives — settled with the client", html:
+        "Three things: <b>purpose</b>, <b>target audience</b>, <b>scope</b>." +
+        "<p>Purpose varies from filling a total gap to revising and enlarging what exists. Audience runs " +
+        "from layman to specialist &mdash; a company manager, a language professional, an enthusiast. And " +
+        "scope follows the need: the <b>basic</b> terminology of a field is a few hundred concepts; the " +
+        "<b>complete</b> terminology of a field or major subfield is a few thousand.</p>" },
+      { t: "list", h: "2 · Resources — also settled with the client", intro:
+        "Three kinds, and the questions to ask about each:", items: [
+        "<b>Human.</b> How many terminologists? Is there support staff to key in the data? Can one or more subject-field specialists take part?",
+        "<b>Documentary.</b> Are there original documents — not translations — in both languages? Vocabularies or glossaries in the field or related ones? Bibliographic databases? Does any term bank already hold material on it?",
+        "<b>Financial.</b> What is required, and is it available?"
+      ] },
+      { t: "card", h: "Why this front-loading is not bureaucracy", html:
+        "A few hundred concepts and a few thousand are not the same job with a different deadline; they are " +
+        "different jobs. Agreeing the scope after starting means discovering halfway that the work was " +
+        "aimed at the wrong audience, at the wrong depth, from documentation that cannot support it." +
+        "<p>And the documentary question does the most work: <b>original documents, not translations</b>. " +
+        "Research a term from a translated source and you may be researching the previous translator's " +
+        "guess.</p>" }
+    ],
+    ex: { lab: "The same field, two different assignments",
+      srcLab: "Client A", src: "“We need our staff to understand the basics of Islamic banking in English.”", srcDir: "ltr",
+      litLab: "What that is", lit: "A few hundred concepts. A vocabulary. Audience: non-specialist. Documentation: introductory and regulatory.",
+      outLab: "Client B", out: "“We are drafting contracts and need the complete terminology.” — a few thousand concepts, specialist audience, original contracts and standards as sources.", outDir: "ltr",
+      note: "Same subject field, same two languages, and almost nothing else in common. Determining the " +
+        "objective is not a formality before the work &mdash; it <b>is</b> the decision that shapes every " +
+        "stage after it." },
+    practice: { h: "Do this before the next unit",
+      html: "Choose a field and write a one-page research plan through all six stages: purpose, audience, " +
+        "scope in number of concepts, the three resource questions, and a named list of documentation." +
+        "<p>For the documentation, mark each source <b>original</b> or <b>translated</b>. If more than half " +
+        "your list is translated, the plan is not yet viable &mdash; and finding that out now is the point " +
+        "of writing it.</p>" }
+  },
+
+  {
+    n: 6, key: "termresearch", en: "Term research", ar: "البحث في مصطلح مفرد",
+    line: "The short kind: one term, one client, and often an answer needed today.",
+    blocks: [
+      { t: "lede", html:
+        "Research on <b>individual</b> terms or concepts is term research, and it is most of the " +
+        "terminological work done in private organizations and government agencies &mdash; answering the " +
+        "questions of everybody from the layman to the expert." },
+      { t: "card", h: "Why it exists at all", html:
+        "Ideally subject-field research would be done in every field. It would take time and money, both " +
+        "usually scarce &mdash; and even with both, it could never keep pace: there would always be new " +
+        "concepts to name, new problems, new users." +
+        "<p>Term research is what covers the gap, and it is not second-best. It is the form of the work " +
+        "most people actually encounter.</p>" },
+      { t: "list", h: "Six steps", items: [
+        "Discussion with the client",
+        "Checking the concept",
+        "Consulting a specialist",
+        "Researching the solution",
+        "Checking the solution",
+        "Presenting the solution"
+      ] },
+      { t: "card", h: "The best training there is", html:
+        "Clients ask about almost any topic and usually need an answer <b>within four to forty-eight " +
+        "hours</b>. That pressure is the training." +
+        "<p>You work directly with the user, so you learn what users actually need. You sharpen the habit of " +
+        "assimilating a subject fast. And you come to know your documentation so well that you develop a " +
+        "sense of <b>which source is likely to hold this particular answer</b> &mdash; which is a skill no " +
+        "reading list can give you.</p>" },
+      { t: "card", h: "Note the second step", html:
+        "<b>Checking the concept</b> comes before consulting anyone or researching anything." +
+        "<p>Clients ask for a word. What they have is a concept they cannot name, and it is frequently not " +
+        "the concept their question implies. Establish what they actually mean first, or the following four " +
+        "steps research the wrong thing efficiently.</p>" }
+    ],
+    ex: { lab: "The question asked, and the question meant",
+      srcLab: "The client asks", src: "“What is the English for تعثر?”", srcDir: "ltr",
+      litLab: "Answered straight", lit: "stumbling, faltering, default — three terms from three fields, offered blind",
+      outLab: "After checking the concept", out: "It is a loan agreement. The concept is a borrower failing to meet an obligation, so the term is <b>default</b> — and the file says so, with the context it came from.", outDir: "ltr",
+      note: "One question to the client turned three guesses into one sourced answer. That question is step " +
+        "two, and skipping it is the most common way a fast answer becomes a wrong one." },
+    practice: { h: "Do this before the next unit",
+      html: "Have somebody send you a real term question with no context &mdash; just a word and a language " +
+        "pair. Work all six steps, and hold yourself to <b>forty-eight hours</b>." +
+        "<p>Write down what you asked at step two and what the answer changed. Then present the solution " +
+        "properly: the term, the definition, the context, and the source. An answer without a source is not " +
+        "a solution; it is an opinion delivered promptly.</p>" }
+  },
+
+  {
+    n: 7, key: "analysis", en: "Terminological analysis", ar: "التحليل المصطلحي",
+    line: "Where a term begins and ends — and which words around it are actually part of it.",
+    blocks: [
+      { t: "lede", html:
+        "Analysis is the centre of subject-field research: identifying the terms of the field and analysing " +
+        "the contexts they appear in. The hard part is not finding candidates. It is deciding <b>how much " +
+        "of the phrase is the term</b>." },
+      { t: "split", h: "The two parts of a complex term",
+        a: { lab: "Determinatum", ar: "المُحدَّد",
+             say: "The base word being qualified — <i>advertising</i> in <b>subliminal advertising</b>, <i>editing</i> in <b>film editing</b>." },
+        b: { lab: "Determinant", ar: "المُحدِّد",
+             say: "The element qualifying it — <i>desktop</i> in <b>desktop publishing</b>. Only determinants that <b>fundamentally</b> modify the base are part of the term." } },
+      { t: "card", h: "Essential and inessential, and why the same word can be either", html:
+        "<b>Charitable institution</b> is a term: <i>charitable</i> changes what kind of institution this " +
+        "is. <b>Charitable man</b> is not: <i>charitable</i> merely describes a man." +
+        "<p>Same determinant, opposite verdicts. <i>Intricate</i> in <i>intricate technology product</i> " +
+        "only says the product is complex. <i>Initial</i> in <i>initial verification technique</i> only " +
+        "says it comes first in a series. Neither changes the concept, so neither belongs to the term.</p>" },
+      { t: "list", h: "Five things to weigh when identifying a unit", items: [
+        "The relationship between <b>determinant and determinatum</b>",
+        "<b>Degree of lexicalization</b> — how fixed the combination has become",
+        "<b>Classification of concepts</b> — where it sits in the field's structure",
+        "<b>Collocation</b> — the company it habitually keeps",
+        "<b>Typographic indications</b> — italics, capitals, quotation marks, bold: a field flagging its own terms"
+      ] },
+      { t: "card", h: "The practical test", html:
+        "Ask whether removing the determinant leaves you with a <b>different concept</b> or the same " +
+        "concept less precisely described." +
+        "<p>Different concept: the determinant is essential and the term is the whole phrase. Same concept: " +
+        "the determinant is a passing description, the term is the base word alone, and taking the phrase " +
+        "into a glossary would put a sentence fragment there for ever.</p>" }
+    ],
+    ex: { lab: "Same adjective, two verdicts",
+      srcLab: "A term", src: "charitable institution", srcDir: "ltr",
+      litLab: "Not a term", lit: "charitable man — <i>charitable</i> describes the man; remove it and you still have the same concept, a man",
+      outLab: "Why the first is one", out: "مؤسسة خيرية — remove <i>charitable</i> and you have <i>institution</i>, a different concept with a different legal standing", outDir: "rtl",
+      note: "This is the distinction that decides what goes on the record. Put <i>charitable man</i> in a " +
+        "termbase and you have recorded a description; the next terminologist will have to take it out, " +
+        "and will wonder what else in the file is not a term." },
+    practice: { h: "Do this before the next unit",
+      html: "Take a specialized page and mark every noun phrase of two or more words. For each, delete the " +
+        "first element and write what remains." +
+        "<p>Sort them into two piles: <b>different concept</b> and <b>same concept, vaguer</b>. Only the " +
+        "first pile is terminology. Expect the second pile to be larger than you assumed &mdash; that " +
+        "over-collection is the standard beginner's fault, and this exercise is the cure.</p>" }
+  },
+
+  {
+    n: 8, key: "comparative", en: "Comparative terminology", ar: "المصطلحية المقارنة",
+    line: "Two terms, two languages, and the question of whether they are really equivalent.",
+    blocks: [
+      { t: "lede", html:
+        "Every method so far applies to one language or several. In bilingual and multilingual work there " +
+        "is one further step: <b>compare the source and target terms and decide whether they are " +
+        "equivalent</b> &mdash; which they frequently are not, in ways a dictionary will not tell you." },
+      { t: "card", h: "Full equivalence", html:
+        "Two terms from different languages are fully equivalent when they have <b>the same meaning</b> and " +
+        "are <b>used in the same way</b> in a given subject field." +
+        "<p>They can be fully equivalent while representing the concept from a different point of view. " +
+        "English <b>black out</b> names the darkness; Arabic " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>انقطاع الكهرباء</span> names the interruption of " +
+        "supply. Different angle on the same concept, same use &mdash; fully equivalent.</p>" },
+      { t: "list", h: "Partial equivalence, and its two causes", intro:
+        "Language communities form and name concepts out of their own experience, so a source term often " +
+        "covers only part of what its supposed equivalent covers:", items: [
+        "<b>Discrepancies in meaning.</b> One term is generic and the other specific. Or one has shifted or acquired a new sense while the other has not moved.",
+        "<b>Discrepancies in usage.</b> Even where two terms cover exactly the same concept, they may differ in <b>register</b>, in <b>geographic area</b>, in <b>age</b>, or in <b>frequency of use</b>."
+      ] },
+      { t: "card", h: "What partial equivalence costs you", html:
+        "When two terms are only partly equivalent, the possibility of using one in exactly the same " +
+        "meaning and situation as the other is <b>limited</b> &mdash; and the limit is rarely visible in " +
+        "the sentence you are working on." +
+        "<p>Which is why the record notes it. A term marked <i>partial</i>, with the discrepancy named, " +
+        "warns the next user. A term filed as an equivalent with no qualification asserts something " +
+        "stronger than the research supports.</p>" }
+    ],
+    ex: { lab: "Different point of view, still fully equivalent",
+      srcLab: "English", src: "black out", srcDir: "ltr",
+      litLab: "What the words say", lit: "a going-dark — the term is built on the <i>effect</i>",
+      outLab: "Arabic", out: "انقطاع الكهرباء — a cutting-off of electricity: the term is built on the <i>cause</i>", outDir: "rtl",
+      note: "Two languages describing one concept from opposite ends, and equivalent all the same, because " +
+        "equivalence is tested on <b>meaning and use in the field</b> &mdash; not on whether the two terms " +
+        "are built the same way." },
+    practice: { h: "Do this before the next unit",
+      html: "Take eight English-Arabic term pairs from a glossary you trust. Judge each: <b>full</b> or " +
+        "<b>partial</b> equivalence." +
+        "<p>For every partial one, name the cause &mdash; generic against specific, a shift in one language, " +
+        "or a difference of register, region, age or frequency. Expect at least three of the eight to be " +
+        "partial and filed as though they were not. That is the normal state of most glossaries.</p>" }
+  },
+
+  {
+    n: 9, key: "records", en: "Terminological records", ar: "البطاقة المصطلحية",
+    line: "Where the research lives so that it can be changed.",
+    blocks: [
+      { t: "lede", html:
+        "Terminologists work with living language, and that is precisely the problem with vocabularies, " +
+        "glossaries and specialized dictionaries: <b>once published, what they contain is fixed and hard to " +
+        "modify</b>. A record is easy to file, change, update or replace, which is why the record &mdash; " +
+        "not the publication &mdash; is where terminological data is kept." },
+      { t: "card", h: "What a record is", html:
+        "An electronic document holding readily accessible information on <b>a term</b> specific to a " +
+        "subject field, on <b>the concept</b> it represents, and on <b>the source</b> in which it was " +
+        "found." +
+        "<p>Three things, and the third is not optional. A record without its source is an assertion; with " +
+        "it, it is evidence somebody else can check.</p>" },
+      { t: "split", h: "Two formats",
+        a: { lab: "Sequential", ar: "متتابع",
+             say: "Each field appears in turn, in a predetermined order. Used by some computerized management systems." },
+        b: { lab: "Condensed", ar: "مختصر",
+             say: "The whole record visible at a glance. The better format on paper, where records have to be consulted, filed and stored by hand." } },
+      { t: "list", h: "The eleven fields of a monolingual record", items: [
+        "<b>Entry</b> — the term itself",
+        "<b>Definition</b>",
+        "<b>Source</b>",
+        "<b>Date of publication</b>",
+        "<b>Volume, issue and page number</b>",
+        "<b>Grammatical labels</b>",
+        "<b>Usage and semantic labels</b>",
+        "<b>Context</b>",
+        "<b>Fields</b> — and subfields",
+        "<b>Authors and dates</b>"
+      ] },
+      { t: "card", h: "Read that list again", html:
+        "Four of the eleven fields &mdash; source, date, volume/issue/page, authors and dates &mdash; exist " +
+        "for one purpose: so that any entry can be <b>traced back and re-checked</b> years later by " +
+        "somebody who was not there." +
+        "<p>That is the whole difference between a termbase and a list of words somebody was once confident " +
+        "about.</p>" }
+    ],
+    ex: { lab: "The same term, recorded two ways",
+      srcLab: "A list entry", src: "informed consent &mdash; موافقة مستنيرة", srcDir: "ltr",
+      litLab: "What it does not say", lit: "Which field. Which definition. Who said so, where, and when. Whether the equivalence is full or partial.",
+      outLab: "A record", out: "Entry, definition, the context it was found in, the source with its date and page, the field and subfield, and who entered it when.", outDir: "ltr",
+      note: "The first can be produced in a minute and has to be re-researched by whoever inherits it. The " +
+        "second takes an hour and never has to be done again &mdash; which is the entire economics of " +
+        "terminology work." },
+    practice: { h: "Do this before the next unit",
+      html: "Build one complete monolingual record, all eleven fields, for a single term in a field you " +
+        "know." +
+        "<p>Then hand it to somebody else and ask them to <b>verify the entry from your record alone</b>. If " +
+        "they cannot reach your source and confirm your definition without asking you a question, a field " +
+        "is doing no work &mdash; find out which one.</p>" }
+  },
+
+  {
+    n: 10, key: "definitions", en: "Definitions", ar: "التعريف المصطلحي",
+    line: "Four rules that are easy to state and are broken constantly.",
+    blocks: [
+      { t: "lede", html:
+        "A terminological definition exists to give a clear understanding of a term <b>in a given subject " +
+        "field</b>, and it needs only the essential characteristics of that term as used there. That is " +
+        "narrower than a lexicographic or encyclopedic definition, which lists every meaning across every " +
+        "area of application." },
+      { t: "list", h: "The four rules", items: [
+        "<b>Not obscure.</b> Explaining the unknown with more unknown language fails the purpose. What is obscure to the layman but plain to the specialist is justifiably technical — the test is the intended reader, not simplicity for its own sake.",
+        "<b>Neither too broad nor too narrow.</b> It must not take in things the term does not apply to, nor leave out things it does. By the old rule of logic it should be able to <b>replace the term in any statement</b> without altering the meaning.",
+        "<b>Not circular.</b> It may not use the term or any grammatical variant of it. <i>One who studies or specializes in herpetology</i> defines <i>herpetologist</i> circularly, and tells a reader who did not already know precisely nothing.",
+        "<b>Not negative where it can be affirmative.</b> Say what a term means, not what it does not. Defining <i>chair</i> as <i>not a bed and not a couch</i> explains nothing."
+      ] },
+      { t: "card", h: "The exception to the fourth rule", html:
+        "Some terms are essentially negative in meaning and <b>require</b> a negative definition. " +
+        "<i>Undifferentiated</i> means <i>having no special structure or function</i>. <i>Achromatic</i> " +
+        "means <i>having no colour</i>." +
+        "<p>A negative definition of a negative term works, because its point of reference is an implied " +
+        "alternative &mdash; there is a differentiated state, there is colour. That is not the case for " +
+        "<i>chair</i>.</p>" },
+      { t: "split", h: "Two methods",
+        a: { lab: "Genus and difference", ar: "الجنس والفصل",
+             say: "Name the larger class the concept belongs to, then the characteristic separating it from everything else in that class. <i>Man</i> as <b>a rational animal</b>: the genus is animal, the difference is rationality. The oldest and best-known method, used in both lexicography and terminology." },
+        b: { lab: "Partition", ar: "التعريف بالتجزئة",
+             say: "Specify a whole by its parts. Used in addition to genus and difference when the object consists of several parts." } }
+    ],
+    ex: { lab: "One definition, four rules applied",
+      srcLab: "The term", src: "letter of credit", srcDir: "ltr",
+      litLab: "A definition that fails", lit: "“A credit given by letter.” — circular, obscure, and too broad all at once",
+      outLab: "Genus and difference", out: "خطاب اعتماد — a bank undertaking <b>(genus)</b> to pay a seller on presentation of specified documents <b>(difference)</b>", outDir: "rtl",
+      note: "Test it against rule two: put the definition in place of the term in any sentence and see " +
+        "whether the meaning survives. It does &mdash; which is the check that separates a definition from " +
+        "a description." },
+    practice: { h: "Do this before the next unit",
+      html: "Write terminological definitions for five terms in one field, by genus and difference." +
+        "<p>Then audit each against all four rules, in order, and write which rule it broke on the first " +
+        "attempt. Almost everyone breaks the second &mdash; too broad &mdash; and catching your own is " +
+        "faster once you have named the pattern.</p>" }
+  },
+
+  {
+    n: 11, key: "formation", en: "Term formation and standardization", ar: "توليد المصطلح وتوحيده",
+    line: "Where new terms come from — and it is almost never from nowhere.",
+    blocks: [
+      { t: "lede", html:
+        "Term formation is the creation of new designations in special languages. Neologisms that spring " +
+        "from an inventor's mind with no prior history are <b>rare</b>. Terms are made by adding new meaning " +
+        "to existing words, by changing the morphology or grammatical class of what is already there, and " +
+        "by borrowing." },
+      { t: "card", h: "It varies by field, and the variation is not random", html:
+        "In the <b>biological sciences</b>, where strict rules of nomenclature apply, classical derivation " +
+        "is favoured." +
+        "<p>In the <b>earth sciences</b> there is a lot of borrowing, because geologists, mineralogists and " +
+        "meteorologists tend to take a substance's term from the language of the place it commonly occurs.</p>" +
+        "<p>In <b>computer science</b> there is almost none, because the field developed almost entirely in " +
+        "English-speaking countries. Knowing which pattern a field follows tells you what its next term will " +
+        "probably look like.</p>" },
+      { t: "list", h: "Three characteristics of modern English term formation", items: [
+        "<b>Productive.</b> English has enriched its vocabulary by coining for centuries, in the general lexicon and in special languages alike — and the explosion in telecommunications, computer science, genetics and space exploration has made the need unprecedented.",
+        "<b>A preference for composition and metaphor.</b> Compounds and derived forms have been the chief source of new words for a thousand years and are first in numerical importance among new terms. They offer precision and <b>transparency</b> — a user can often read the meaning off the parts. Metaphor and analogy are economical and use suggestion to communicate.",
+        "<b>A tradition of borrowing.</b> Historically from Latin, Greek, French and German — the languages strongly represented in law, medicine, science and technology — and still from anywhere it makes contact with."
+      ] },
+      { t: "card", h: "Where the terminologist comes in", html:
+        "Semantic change &mdash; altering the meaning of an established word through analogy, metonymy and " +
+        "the like &mdash; is one of the two main ways new terms are formed." +
+        "<p>The terminologist's contribution is to help ensure new coinages <b>follow the time-honoured " +
+        "patterns</b> of that change. A term formed the way the field's terms have always been formed is " +
+        "guessable, memorable and likely to be adopted. One formed against the pattern has to be learned " +
+        "twice and is often quietly replaced.</p>" },
+      { t: "card", h: "And the rule from unit one still holds", html:
+        "Coining is the <b>last</b> resort, warranted only when every available source has been researched " +
+        "and the evidence shows no term exists for the concept." +
+        "<p>Standardization is the other end of the same work: settling which term carries the concept, and " +
+        "recording that decision where the next person will find it. The four work methods close where they " +
+        "started.</p>" }
+    ],
+    ex: { lab: "Transparency, and what it buys",
+      srcLab: "A compound", src: "laughmeter", srcDir: "ltr",
+      litLab: "Why it works", lit: "A user who has never met the term can read the concept off its parts — a device that measures laughter",
+      outLab: "The Arabic problem", out: "مقياس الضحك — transparent in the same way, because the compound was rebuilt rather than transliterated", outDir: "rtl",
+      note: "Had it been borrowed as <span class='ar-inline' dir='rtl' lang='ar'>لافميتر</span> the Arabic " +
+        "reader would have to be told what it means. Composition kept the transparency; borrowing would have " +
+        "spent it. That is the choice term formation is, every time." },
+    practice: { h: "The last one",
+      html: "Find five terms coined in English in the last twenty years. For each, identify the process: " +
+        "semantic change, composition, derivation, metaphor, or borrowing." +
+        "<p>Then propose an Arabic term for each, and say which process <b>you</b> used and why. Finally, " +
+        "check whether an Arabic term already exists. Where one does, you have just demonstrated unit one's " +
+        "rule to yourself: <b>identify before you create</b>.</p>" }
+  }
+];
+
 const KU_MINOR = {
   en: "Translation Minor", ar: "مساند الترجمة",
   credits: "24 credits", creditsAr: "٢٤ وحدة دراسية",
@@ -5140,7 +5687,8 @@ const KU_MINOR = {
           },
           settings: ["Ministries and courts", "Hospitals", "Standards bodies", "The UN", "Any termbase"],
           asks: "Precision, and a record. A term without a source is a guess, however confident it sounds.",
-          meets: ["glossary"]
+          meets: ["glossary"],
+          units: ENGL182
         },
         {
           code: "280", en: "Translation I", ar: "ترجمة ١", pre: "142",
