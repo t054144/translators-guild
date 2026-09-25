@@ -128,7 +128,13 @@ module.exports = [// ================= PART 5 =================
 ['p', 'Begin “by reading the original for two purposes: first, to understand what it is about; second, to analyse it from a ‘translator’s’ point of view” (Newmark, 1988, p. 11).'],
 ['h', 'Step 2: analyse, do not summarise'],
 ['p', 'A **summary** gives only the facts. An **analysis** looks at who wrote the text, for whom, why and how. When asked to analyse, do not summarise.'],
-['h', 'Step 3: use the checklist'],
+['h', 'Step 3: look at two levels'],
+['p', 'One useful model studies a text on two levels that complete each other (Translation Team, n.d.; Fairclough, 2003):'],
+['ul', [
+  '**The linguistic level**: what you can see in the text. Look at the **words** (vocabulary, terms, figurative language, official titles, cultural expressions), the **grammar** (sentence structure, tenses, pronouns, how sentences are linked) and the **meaning** (denotative, connotative, idiomatic and figurative meaning; Chapter 5).',
+  '**The external level**: what is not visible in the words but still affects the translation, such as the author, the publisher, the audience, the purpose and the situation.',
+]],
+['h', 'Step 4: use the checklist'],
 ['p', 'Answer these questions for every text:'],
 ['ol', [
   'Who is the author or speaker?',
@@ -141,7 +147,7 @@ module.exports = [// ================= PART 5 =================
   'Which strategies will you use?',
 ]],
 ['p', 'For example, take a short KUNA news report about relations between Kuwait and Australia. **Field**: politics. **Genre and purpose**: news report, to inform. **Tone**: neutral and straightforward. **Publisher**: KUNA. **Audience**: readers interested in Kuwait and the Middle East. **Style**: formal, with no short forms. **Strategy**: mostly literal, because the text has no metaphors.'],
-['h', 'Step 4: let the analysis guide you'],
+['h', 'Step 5: let the analysis guide you'],
 ['p', 'A good analyst:'],
 ['ul', ['keeps training their analytical skills;', 'builds a personal model of analysis;', 'makes the translation match the analysis: a formal tone means a formal translation;', 'notes the text’s problems, so the commentary can explain the solutions.']],
 ['try', ['What is the difference between an analysis and a summary?', 'Name the three phases of translation.'],

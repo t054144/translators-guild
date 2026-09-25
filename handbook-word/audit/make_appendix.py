@@ -78,6 +78,27 @@ C = [
  ['ul', [ar(x) for x in A['added_not_in_notes']]],
  ['h2', '6.4 Sources named in the audiovisual translation notes'],
  ['table', ['Source', 'In the References?', 'Status', 'Note'], [rrow(x) for x in A['references']], [26, 11, 20, 43]],
+ ['h1', '7. The Text Analysis Model and the Teams chat'],
+ ['h2', '7.1 Text Analysis Model (V2-2)'],
+ ['p', 'Only the first page and the start of the second page (of four) were seen, in a screenshot.'],
+ ['table', ['Section or point', 'Status', 'Now in the handbook', 'What changed, and why'], [
+  ['Three-step process: analysis of the source text, translation, post-translation activity', 'used and edited', 'Ch 17, Step 1', 'Matches the three phases already in the chapter (analysis, translation and commentary); no change needed.'],
+  ['Model based on Fairclough’s relational model (Fairclough, 2003)', 'used and edited', 'Ch 17, Step 3; References', 'Fairclough (2003) added to the References and cited with the course materials. Reason: the model names it as its basis.'],
+  ['Two components: linguistic level and external level', 'used and edited', 'Ch 17, Step 3', 'Written as “look at two levels”, in plain English.'],
+  ['Micro level: lexical, syntactic and semantic aspects, with their lists', 'used and edited', 'Ch 17, Step 3', 'Shortened into words, grammar and meaning, with the main items of each list; types of meaning linked to Ch 5.'],
+  ['Rest of the model (pages 2–4)', 'not used', '–', 'Not seen. The external level is described only in general terms (author, publisher, audience, purpose, situation), from the chapter’s existing checklist.'],
+ ], [24, 12, 18, 46]],
+ ['h2', '7.2 Requests in the Teams chat'],
+ ['table', ['Request', 'Status', 'Now in the handbook', 'Note'], [
+  ['Terminology material selected by Samiuallah and Masooma, to be added to or cut as needed', 'used and edited', 'Ch 21', 'See Section 5. Contributors are not named in the handbook; the acknowledgement thanks all team members.'],
+  ['Add the AVT notes to the audiovisual chapter and to other chapters', 'used and edited', 'Ch 26–27', 'See Section 6. The Skopos idea is also linked from Ch 2.'],
+  ['Loulwah to prepare the audiovisual chapter from her notes, with a background and introduction for beginners', 'used and edited', 'Ch 26, Steps 1–2', 'The AVT notes appear to be Loulwah’s (to be confirmed).'],
+  ['From the Principles of Translation notes: machine translation', 'used and edited', 'Ch 22', 'The notes were not received; the chapter uses the draft and published sources.'],
+  ['From the Principles of Translation notes: English–Arabic communicative translation strategy', 'added', 'Ch 10, Step 4', 'Written from Newmark (1988, p. 47; page to be confirmed). To be compared with the notes.'],
+  ['From the Principles of Translation notes: explicitation and implicitation', 'added', 'Ch 13, Step 3', 'Written from Vinay & Darbelnet (1958/1995, p. 342; page to be confirmed). Arabic terms {{التصريح}} and {{الإضمار}} to be confirmed.'],
+  ['The margin notes', 'not used', '–', 'Not received.'],
+  ['Examples for practice', 'removed', '–', 'The practice section was written, then removed at the team’s request; each chapter keeps its “Try it” questions.'],
+ ], [30, 12, 16, 42]],
 ]
 out = json.dumps(C, ensure_ascii=False, indent=0)
 left = re.findall(r'\.json|\b[rf][1-4]\s*#|\bs\.\s*\d', out)

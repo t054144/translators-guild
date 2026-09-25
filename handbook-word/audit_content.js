@@ -1131,12 +1131,12 @@ module.exports = [
 "Glossary (empty heading)",
 "Used and edited",
 "Glossary (back matter)",
-"Built automatically from every chapter's 'Words to remember' list: 110 terms with Arabic equivalents, definitions and chapter numbers. Reason: Notes paras 5, 12, 21, 53; Editorial Report, section 5."
+"Built automatically from every chapter's 'Words to remember' list: 113 terms with Arabic equivalents, definitions and chapter numbers. Reason: Notes paras 5, 12, 21, 53; Editorial Report, section 5."
 ],
 [
 "Further Reading or references or index (empty heading)",
 "Used and edited",
-"References (38 entries, APA 7) and Further reading (5 books)",
+"References (39 entries, APA 7) and Further reading (5 books)",
 "The draft cited no sources. A reference list of published works and the team's course materials was compiled; a five-book further-reading list was added. No index was made. Reason: Notes para. 64; Editorial Report, section 3.3 and 8.6."
 ]
 ],
@@ -1810,7 +1810,7 @@ module.exports = [
 "5, 12, 21, 53",
 "Partly done",
 "Glossary (back matter)",
-"The glossary has 110 terms, but it is built only from the 'Words to remember' boxes. Some terms explained in the text are not in it (e.g. sight translation, localisation, direct and oblique procedures, spotting, SDH, hard and soft news, initialism, acronym, sociolect, idiolect). Editorial Report, section 5 marks this Done."
+"The glossary has 113 terms, but it is built only from the 'Words to remember' boxes. Some terms explained in the text are not in it (e.g. sight translation, localisation, direct and oblique procedures, spotting, SDH, hard and soft news, initialism, acronym, sociolect, idiolect). Editorial Report, section 5 marks this Done."
 ],
 [
 "Chapter on machine translation and AI (Loulwah's notes may help)",
@@ -2026,7 +2026,7 @@ module.exports = [
 "Add references for the 180 book, the 182 course book and all other sources used",
 "64",
 "Partly done",
-"References (38 entries)",
+"References (39 entries)",
 "All published sources cited are listed in APA 7. The 180, 182 and 386 materials were not received and are not listed; the draft is credited as the Translation Team's course materials (n.d.)."
 ]
 ],
@@ -3056,6 +3056,134 @@ module.exports = [
 11,
 20,
 43
+]
+],
+[
+"h1",
+"7. The Text Analysis Model and the Teams chat"
+],
+[
+"h2",
+"7.1 Text Analysis Model (V2-2)"
+],
+[
+"p",
+"Only the first page and the start of the second page (of four) were seen, in a screenshot."
+],
+[
+"table",
+[
+"Section or point",
+"Status",
+"Now in the handbook",
+"What changed, and why"
+],
+[
+[
+"Three-step process: analysis of the source text, translation, post-translation activity",
+"used and edited",
+"Ch 17, Step 1",
+"Matches the three phases already in the chapter (analysis, translation and commentary); no change needed."
+],
+[
+"Model based on Fairclough’s relational model (Fairclough, 2003)",
+"used and edited",
+"Ch 17, Step 3; References",
+"Fairclough (2003) added to the References and cited with the course materials. Reason: the model names it as its basis."
+],
+[
+"Two components: linguistic level and external level",
+"used and edited",
+"Ch 17, Step 3",
+"Written as “look at two levels”, in plain English."
+],
+[
+"Micro level: lexical, syntactic and semantic aspects, with their lists",
+"used and edited",
+"Ch 17, Step 3",
+"Shortened into words, grammar and meaning, with the main items of each list; types of meaning linked to Ch 5."
+],
+[
+"Rest of the model (pages 2–4)",
+"not used",
+"–",
+"Not seen. The external level is described only in general terms (author, publisher, audience, purpose, situation), from the chapter’s existing checklist."
+]
+],
+[
+24,
+12,
+18,
+46
+]
+],
+[
+"h2",
+"7.2 Requests in the Teams chat"
+],
+[
+"table",
+[
+"Request",
+"Status",
+"Now in the handbook",
+"Note"
+],
+[
+[
+"Terminology material selected by Samiuallah and Masooma, to be added to or cut as needed",
+"used and edited",
+"Ch 21",
+"See Section 5. Contributors are not named in the handbook; the acknowledgement thanks all team members."
+],
+[
+"Add the AVT notes to the audiovisual chapter and to other chapters",
+"used and edited",
+"Ch 26–27",
+"See Section 6. The Skopos idea is also linked from Ch 2."
+],
+[
+"Loulwah to prepare the audiovisual chapter from her notes, with a background and introduction for beginners",
+"used and edited",
+"Ch 26, Steps 1–2",
+"The AVT notes appear to be Loulwah’s (to be confirmed)."
+],
+[
+"From the Principles of Translation notes: machine translation",
+"used and edited",
+"Ch 22",
+"The notes were not received; the chapter uses the draft and published sources."
+],
+[
+"From the Principles of Translation notes: English–Arabic communicative translation strategy",
+"added",
+"Ch 10, Step 4",
+"Written from Newmark (1988, p. 47; page to be confirmed). To be compared with the notes."
+],
+[
+"From the Principles of Translation notes: explicitation and implicitation",
+"added",
+"Ch 13, Step 3",
+"Written from Vinay & Darbelnet (1958/1995, p. 342; page to be confirmed). Arabic terms {{التصريح}} and {{الإضمار}} to be confirmed."
+],
+[
+"The margin notes",
+"not used",
+"–",
+"Not received."
+],
+[
+"Examples for practice",
+"removed",
+"–",
+"The practice section was written, then removed at the team’s request; each chapter keeps its “Try it” questions."
+]
+],
+[
+30,
+12,
+16,
+42
 ]
 ]
 ];

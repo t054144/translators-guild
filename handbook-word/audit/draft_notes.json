@@ -1215,13 +1215,13 @@
    "section": "Glossary (empty heading)",
    "status": "Used and edited",
    "where": "Glossary (back matter)",
-   "details": "Built automatically from every chapter's 'Words to remember' list: 110 terms with Arabic equivalents, definitions and chapter numbers.",
+   "details": "Built automatically from every chapter's 'Words to remember' list: 113 terms with Arabic equivalents, definitions and chapter numbers.",
    "reason": "Notes paras 5, 12, 21, 53; Report s. 5."
   },
   {
    "section": "Further Reading or references or index (empty heading)",
    "status": "Used and edited",
-   "where": "References (38 entries, APA 7) and Further reading (5 books)",
+   "where": "References (39 entries, APA 7) and Further reading (5 books)",
    "details": "The draft cited no sources. A reference list of published works and the team's course materials was compiled; a five-book further-reading list was added. No index was made.",
    "reason": "Notes para. 64; Report s. 3.3 and 8.6."
   }
@@ -1480,7 +1480,7 @@
    "paragraphs": "5, 12, 21, 53",
    "status": "Partly done",
    "where": "Glossary (back matter)",
-   "comment": "The glossary has 110 terms, but it is built only from the 'Words to remember' boxes. Some terms explained in the text are not in it (e.g. sight translation, localisation, direct and oblique procedures, spotting, SDH, hard and soft news, initialism, acronym, sociolect, idiolect). Report s. 5 marks this Done."
+   "comment": "The glossary has 113 terms, but it is built only from the 'Words to remember' boxes. Some terms explained in the text are not in it (e.g. sight translation, localisation, direct and oblique procedures, spotting, SDH, hard and soft news, initialism, acronym, sociolect, idiolect). Report s. 5 marks this Done."
   },
   {
    "request": "Chapter on machine translation and AI (Loulwah's notes may help)",
@@ -1696,7 +1696,7 @@
    "request": "Add references for the 180 book, the 182 course book and all other sources used",
    "paragraphs": "64",
    "status": "Partly done",
-   "where": "References (38 entries)",
+   "where": "References (39 entries)",
    "comment": "All published sources cited are listed in APA 7. The 180, 182 and 386 materials were not received and are not listed; the draft is credited as the Translation Team's course materials (n.d.)."
   }
  ],
