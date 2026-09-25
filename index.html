@@ -47,6 +47,10 @@
 :root {
   --void: #110620; --void-2: #1a0a2f; --void-3: #251040;
   --violet: #650fd0; --magenta: #a726d0; --lilac: #d6bfea; --lilac-dim: #9a86b4; --white: #fff;
+  /* --magenta is a brand colour and fails AA as small text on the dark
+     ground. --mag-ink is the same accent, lightened to the point where
+     it can be read; the brand colour stays for fills and borders. */
+  --mag-ink:   #cf7ae8;
   --mint: #2ed9a0; --coral: #ff5c7a; --amber: #ffc46b;
   --coral-soft: #ffb3c1; --mint-soft: #8fe8c9; --workshop-ink: #d79bf0;
   /* a recessed surface, and the sheet a modal lies under */
@@ -745,6 +749,84 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .quit-note { font-size: .7rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
   color: var(--ink-soft); }
 
+
+/* ═══════════ KUWAITI SIGN LANGUAGE ═══════════ */
+.m-line { font-size: .82rem; font-weight: 300; line-height: 1.5; color: var(--ink-soft); }
+
+.ksl-path { display: grid; gap: .6rem; }
+.ksl-stage { display: grid; grid-template-columns: auto 1fr; align-items: start; gap: .9rem;
+  text-align: left; padding: .95rem 1.05rem; border-radius: var(--r-lg);
+  background: rgba(255,255,255,.04); border: var(--hair); box-shadow: none; }
+.ksl-stage:hover { background: rgba(214,191,234,.1); transform: none; box-shadow: none;
+  border-color: rgba(214,191,234,.3); }
+.ksl-stage.is-wait { border-style: dashed; }
+.ks-n { font-family: var(--f-serif); font-size: 1.05rem; font-weight: 700; color: var(--mag-ink);
+  line-height: 1.5; }
+.ksl-stage.is-wait .ks-n { color: var(--ink-soft); }
+.ks-txt { display: grid; gap: .18rem; min-width: 0; }
+.ks-en { font-family: var(--f-serif); font-size: 1.02rem; font-weight: 600; color: var(--white); line-height: 1.25; }
+.ks-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .9rem; color: var(--lilac); }
+.ks-say { font-size: .82rem; font-weight: 300; line-height: 1.5; color: var(--ink-soft); }
+.ks-state { grid-column: 2; font-size: .64rem; font-weight: 600; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--ink-soft); margin-top: .18rem; }
+.ksl-stage.is-open .ks-state { color: var(--mint); }
+
+.ksl-split { display: grid; gap: .7rem; margin-top: .2rem; }
+.ks-side { padding: .85rem 1rem; border-radius: var(--r-md); border: var(--hair-lit);
+  background: rgba(255,255,255,.04); display: grid; gap: .28rem; }
+.ks-lab { font-family: var(--f-serif); font-size: 1rem; font-weight: 600; color: var(--white); }
+.ks-lab-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .92rem; color: var(--lilac); }
+.ks-side p { margin: 0; font-size: .88rem; font-weight: 300; line-height: 1.6; color: var(--ink); }
+.ks-side p b { color: var(--white); font-weight: 500; }
+
+.ksl-params { display: grid; gap: .55rem; margin-top: .2rem; }
+.ks-param { display: grid; gap: .16rem; padding: .75rem .9rem; border-radius: var(--r-md);
+  border-left: 2px solid rgba(214,191,234,.32); background: rgba(255,255,255,.035); }
+.ks-p-en { font-family: var(--f-serif); font-size: .98rem; font-weight: 600; color: var(--white); }
+.ks-p-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .88rem; color: var(--lilac); }
+.ks-p-say { font-size: .85rem; font-weight: 300; line-height: 1.55; color: var(--ink); }
+
+.ksl-tiers { display: grid; gap: .45rem; margin-top: .2rem; }
+.ks-tier { display: grid; grid-template-columns: auto 1fr; gap: .8rem; align-items: start;
+  padding: .7rem .85rem; border-radius: var(--r-md); background: rgba(255,255,255,.035);
+  border: var(--hair); }
+.ks-tier.is-last { border-color: rgba(255,92,122,.4); background: rgba(255,92,122,.07); }
+.ks-t-n { font-family: var(--f-serif); font-size: 1rem; font-weight: 700; color: var(--mag-ink); line-height: 1.4; }
+.ks-tier.is-last .ks-t-n { color: var(--coral); }
+.ks-t-txt { display: grid; gap: .14rem; min-width: 0; }
+.ks-t-en { font-size: .95rem; font-weight: 600; color: var(--white); line-height: 1.3; }
+.ks-t-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .86rem; color: var(--lilac); }
+.ks-t-say { font-size: .82rem; font-weight: 300; line-height: 1.55; color: var(--ink); }
+
+.ksl-labels { display: grid; gap: .5rem; margin-top: .2rem; }
+.ks-lbl { display: grid; gap: .22rem; padding: .7rem .85rem; border-radius: var(--r-md);
+  background: rgba(255,255,255,.035); border: var(--hair); justify-items: start; }
+.ks-badge { font-size: .64rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  padding: .24rem .7rem; border-radius: var(--r-pill); border: 1px solid; }
+.ks-badge.ok { color: var(--mint); border-color: rgba(46,217,160,.5); background: rgba(46,217,160,.1); }
+.ks-badge.mid { color: var(--amber); border-color: rgba(255,196,107,.5); background: rgba(255,196,107,.08); }
+.ks-badge.low { color: var(--ink-soft); border-color: rgba(214,191,234,.3); }
+.ks-l-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .86rem; color: var(--lilac); }
+.ks-l-say { font-size: .84rem; font-weight: 300; line-height: 1.55; color: var(--ink); }
+
+.how.ks-never li span { color: var(--ink); }
+
+.ksl-srcs { display: grid; gap: .55rem; margin-top: .2rem; }
+.ks-src { display: grid; gap: .2rem; padding: .8rem .9rem; border-radius: var(--r-md);
+  background: rgba(255,255,255,.035); border: var(--hair); }
+.ks-s-tier { font-size: .62rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--ink-soft); }
+.ks-s-en { font-family: var(--f-serif); font-size: .96rem; font-weight: 600; color: var(--white);
+  line-height: 1.3; }
+a.ks-s-en { color: var(--lilac); text-decoration: underline; text-underline-offset: 3px; }
+a.ks-s-en:hover { color: var(--white); }
+.ks-s-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .84rem; color: var(--lilac-dim); }
+.ks-s-say { font-size: .82rem; font-weight: 300; line-height: 1.55; color: var(--ink-soft); }
+
+@media (min-width: 620px) {
+  .ksl-split { grid-template-columns: 1fr 1fr; }
+}
+
 /* ═══════════ THE GUIDES ═══════════ */
 .lede { font-size: clamp(1.05rem,2.6vw,1.22rem); font-weight: 300; line-height: 1.72;
   color: var(--ink); margin: 0; max-width: var(--measure); }
@@ -783,6 +865,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   --void: #f6f2fb; --void-2: #ede5f7; --void-3: #e2d5f2;
   --lilac: #402b58; --lilac-dim: #61507a; --white: #1a0f2b;
   --magenta: #8218c7; --violet: #650fd0;
+  --mag-ink: #8218c7;
 
   /* The four reading steps, restated for paper. Each one is dark enough to
      hold its contrast against white rather than against night. */
@@ -1178,7 +1261,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   border: var(--hair); background: rgba(255,255,255,.035); box-shadow: none; min-width: 0; }
 .m-course:hover { background: rgba(214,191,234,.1); transform: none; box-shadow: none;
   border-color: rgba(167,38,208,.6); }
-.m-code { font-family: var(--f-serif); font-size: 1.05rem; font-weight: 700; color: var(--magenta);
+.m-code { font-family: var(--f-serif); font-size: 1.05rem; font-weight: 700; color: var(--mag-ink);
   font-variant-numeric: tabular-nums; min-width: 2.4rem; }
 .m-txt { display: grid; gap: .16rem; min-width: 0; }
 .m-en { font-family: var(--f-serif); font-size: 1.02rem; font-weight: 600; color: var(--white); line-height: 1.25; }
@@ -1187,7 +1270,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 /* ---------- a course page ---------- */
 .c-hero { display: grid; gap: .35rem; padding: 0 0 .2rem; }
 .c-badge { font-family: var(--f-serif); font-size: .72rem; font-weight: 700; letter-spacing: .22em;
-  color: var(--magenta); }
+  color: var(--mag-ink); }
 .c-title { margin: 0; font-family: var(--f-serif); font-size: clamp(1.5rem,5.6vw,2rem);
   font-weight: 600; color: var(--white); line-height: 1.15; }
 .c-ar { margin: 0; font-family: var(--f-ar); direction: rtl; text-align: left;
@@ -1703,7 +1786,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 38 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 39 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -4408,11 +4491,441 @@ const KU_MINOR = {
 };
 
 /* ═══════════ REGISTRY ═══════════ */
+
+/* ═══════════════════════════════════════════════════════════════════
+   لغة الإشارة الكويتية · KUWAITI SIGN LANGUAGE
+   ═══════════════════════════════════════════════════════════════════
+   Version 1 is the part that can be built honestly today: what the
+   language is, who uses it, how a sign is assembled, why fingerspelling
+   is not signing, and the rules this section holds itself to.
+
+   What is NOT here, and why: not one sign. Not one letter of the
+   alphabet. A sign is a video of a person signing, and the only people
+   who can produce that video are Kuwaiti Deaf signers, KSL instructors
+   and qualified KSL interpreters. Nothing on this site may invent one,
+   copy one out of the KISR dictionary, or quietly pass a unified Arab
+   Sign Language sign off as Kuwaiti. So the vocabulary stages are built
+   as frames that say exactly what they are waiting for, in the same way
+   the Kuwaiti proverbs room does.
+
+   Every factual claim below is attributed in KSL_SOURCES and worded to
+   the weakest form the sources support. Where published counts differ,
+   the page says they differ.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* The vocabulary database. Empty by design — see the note above. The
+   shape is fixed now so that verified entries can be dropped in without
+   the section being rebuilt around them.
+
+     { id, ar, en, gloss,              // gloss is a LABEL for a sign, never a translation of it
+       category, domain,                // "health" · "medical"
+       type,                            // one of KSL_SIGN_TYPES below
+       meaning, usage, exampleAr, exampleEn,
+       video, thumb, slowMo,            // the sign itself; nothing without it
+       handshape, movement, location, orientation, nonManual,
+       related: [ids],
+       source, sourceUrl, licence,      // where it came from and on what terms
+       verify,                          // one of KSL_VERIFY below
+       contributor, reviewedBy, reviewedOn }
+
+   Fields are left empty rather than guessed. An entry with no video is
+   not an entry. */
+const KSL_SIGNS = [];
+
+/* A visual form is not automatically "a sign". Keeping these apart stops
+   the database from flattening four different linguistic objects into
+   one row. */
+const KSL_SIGN_TYPES = [
+  { key: "lexical",     en: "Lexical sign",   ar: "إشارة معجمية",   say: "An established sign for a concept. The ordinary vocabulary of the language." },
+  { key: "fingerspell", en: "Fingerspelled",  ar: "هجاء إصبعي",     say: "A word spelled letter by letter in handshapes. A tool inside the language, not a sign." },
+  { key: "phrase",      en: "Phrase",         ar: "تعبير",          say: "A sign or short sequence fixed to one expression." },
+  { key: "name",        en: "Proper name",    ar: "اسم عَلَم",       say: "A person, place or institution, including name signs given within the community." },
+  { key: "variant",     en: "Variant",        ar: "صيغة بديلة",     say: "A documented alternative form. Recorded as a variant, never silently replacing the first." },
+  { key: "domain",      en: "Domain term",    ar: "مصطلح تخصصي",    say: "Medical, legal, academic, political, journalistic or business vocabulary." }
+];
+
+/* Every entry carries one of these, visibly, forever. An unlabelled
+   entry is the thing this whole section exists to prevent. */
+const KSL_VERIFY = [
+  { key: "verified",  en: "Verified",           ar: "موثَّقة",          cls: "ok",
+    say: "Reviewed by a qualified KSL contributor — a Kuwaiti Deaf signer, a KSL instructor or a qualified interpreter — who is named on the entry." },
+  { key: "sourced",   en: "Source documented",  ar: "مُوثَّقة بالمصدر",  cls: "mid",
+    say: "Supported by a Kuwaiti institutional or academic source and cited, but not independently reviewed for this site." },
+  { key: "community", en: "Community entry",    ar: "مساهمة مجتمعية",  cls: "mid",
+    say: "Submitted by a community contributor and waiting for review. Shown as a submission, never as settled." },
+  { key: "review",    en: "Under review",       ar: "قيد المراجعة",     cls: "low",
+    say: "Not yet verified. Visible so that the gap is visible." }
+];
+
+/* Which evidence beats which, written down so it cannot be argued with
+   later. The last line is the one that matters most. */
+const KSL_TIERS = [
+  { n: 1, en: "Kuwaiti institutional sources", ar: "المصادر المؤسسية الكويتية",
+    say: "The Ministry of Education and the Kuwait Institute for Scientific Research." },
+  { n: 2, en: "The Kuwaiti Deaf community and qualified KSL professionals", ar: "المجتمع الكويتي للصم والمختصون",
+    say: "Deaf-community organisations, KSL instructors, qualified interpreters. On what a sign is and how it is used, this tier and the one above it are the authority." },
+  { n: 3, en: "Academic publication", ar: "البحث الأكاديمي",
+    say: "Peer-reviewed research and university material on KSL and on sign linguistics." },
+  { n: 4, en: "Established educational resources", ar: "المصادر التعليمية المعتمدة",
+    say: "Teaching material with a named author and a traceable source." },
+  { n: 5, en: "Community submissions", ar: "مساهمات المستخدمين",
+    say: "Useful, and held as submissions until someone qualified has looked at them." },
+  { n: 6, en: "Anything generated by a machine", ar: "ما يولِّده الذكاء الاصطناعي",
+    say: "Bottom. It never outranks a single line above it, and on this site it never appears as a sign at all." }
+];
+
+const KSL_SOURCES = [
+  { tier: 1, name: "Kuwait Institute for Scientific Research — Arabic Sign Language Dictionaries",
+    ar: "معهد الكويت للأبحاث العلمية — قواميس لغة الإشارة",
+    note: "Hosts the Kuwaiti dictionary alongside the unified, scout and preschool dictionaries, browsable by subject and alphabetically, with search. The starting point for research into Kuwaiti vocabulary.",
+    url: "https://ssdd.kisr.edu.kw/ada/sldictionary/index_en.html" },
+  { tier: 1, name: "Kuwait Ministry of Education — Special Education",
+    ar: "وزارة التربية — التربية الخاصة",
+    note: "Documents لغة الإشارة الوصفية الكويتية and a dictionary built from more than 2,000 signs collected from Kuwaiti Deaf signers, and states that sign vocabulary is shaped by the culture and environment of each country.",
+    url: "https://www.moe.edu.kw/" },
+  { tier: 3, name: "Almubayei, D. (2024). Sign language choice and policy among the signing community in Kuwait",
+    ar: "دراسة ميدانية في اختيار لغة الإشارة والسياسة اللغوية في الكويت",
+    note: "Digest of Middle East Studies, 33(2). Field research with Kuwaiti Deaf signers and with sign language interpreters and teachers on whether KSL, unified ArSL, or both, best serve the community.",
+    url: "https://doi.org/10.1111/dome.12316" },
+  { tier: 3, name: "Gulf University for Science and Technology — Kuwaiti Sign Language",
+    ar: "جامعة الخليج للعلوم والتكنولوجيا — لغة الإشارة الكويتية",
+    note: "A GUST Library educational poster explaining KSL through the features a sign is built from, including handshape, movement and location.",
+    url: "" },
+  { tier: 4, name: "Google AI Edge — MediaPipe Hand Landmarker",
+    ar: "أداة تتبّع معالم اليد",
+    note: "The technical reference for the camera practice planned in Stage 3: twenty-one hand landmarks per hand from live video, in the browser. A measuring instrument, not a linguist.",
+    url: "https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker" }
+];
+
+/* Promises to the person using the site, so they are checkable. */
+const KSL_NEVER = [
+  "Invent a sign, or show one that no Kuwaiti Deaf signer has confirmed.",
+  "Put a unified Arab Sign Language sign on the page and call it Kuwaiti.",
+  "Use an AI-generated avatar as the model for a sign.",
+  "Copy the KISR dictionary's videos, images or database without documented permission.",
+  "Teach that ordinary signing means spelling every Arabic word letter by letter.",
+  "Say that sign languages are universal, or that every deaf person signs.",
+  "Treat being Deaf as a condition to be described medically.",
+  "Tell you a sign you produced was correct unless the recognition behind that claim has been properly validated.",
+  "Give you a fluency percentage. There is no honest number.",
+  "Suggest that finishing anything here makes you a professional interpreter."
+];
+
+/* ── THE PATH ──────────────────────────────────────────────────────
+   Eight stages. One is open; the other seven exist as frames that say
+   what they will hold and what has to arrive first. Showing the whole
+   ladder from the start is the point: a learner should be able to see
+   where this goes, and see honestly how far along it actually is. */
+const KSL_PATH = [
+  {
+    n: 1, key: "discover", en: "Discover KSL", ar: "التعرّف على لغة الإشارة الكويتية",
+    say: "What the language is, who uses it, how a sign is built, and the rules this section holds itself to.",
+    state: "open",
+    lessons: [
+      {
+        key: "what", en: "What Kuwaiti Sign Language is", ar: "ما لغة الإشارة الكويتية؟",
+        line: "A language of its own, and local on purpose.",
+        panels: [
+          { t: "lede", html:
+            "Kuwaiti Sign Language is the language of Kuwait's Deaf community. It is not Arabic performed " +
+            "with the hands. It is not a set of gestures agreed on for convenience. It is not the same " +
+            "language as the sign language of Egypt, or Jordan, or the United States. It is a language, " +
+            "with its own vocabulary and its own grammar &mdash; and the first thing worth understanding " +
+            "about it is that it is <b>local on purpose</b>." },
+          { t: "card", h: "What Kuwait itself documents", html:
+            "The Ministry of Education's special education service documents " +
+            "<span class='ar-inline' dir='rtl' lang='ar'>لغة الإشارة الوصفية الكويتية</span> and a " +
+            "dictionary built from <b>more than 2,000 signs</b> collected from Kuwaiti Deaf signers. " +
+            "The Ministry gives the reason for a local dictionary plainly: sign vocabulary is shaped by " +
+            "the culture and the environment it grows in, so signs used in Kuwait can differ from signs " +
+            "used elsewhere in the Arab world." +
+            "<p>The Kuwait Institute for Scientific Research hosts the dictionary online, with a Kuwaiti " +
+            "dictionary alongside the unified, scout and preschool dictionaries, browsable by subject and " +
+            "alphabetically.</p>" +
+            "<p>Published figures differ &mdash; you will find <i>more than 2,000</i> and you will find " +
+            "<i>more than 2,200</i>. The defensible statement is <b>more than two thousand documented " +
+            "Kuwaiti signs</b>. Anyone who hands you an exact number is quoting one source without " +
+            "saying which.</p>" },
+          { t: "card", h: "There is no world sign language", html:
+            "Sign languages are not a single international code, and they are not invented committees of " +
+            "gesture. They arise the way spoken languages arise: in communities, over generations, among " +
+            "people using them with each other. Two countries whose hearing populations share a spoken " +
+            "language can have sign languages that are not mutually intelligible at all." +
+            "<p>So <b>Arabic and KSL are not the same language</b>, and knowing Arabic does not give you " +
+            "KSL any more than knowing English gives you Japanese.</p>" },
+          { t: "card", h: "KSL and the unified Arab sign language", html:
+            "A unified Arab Sign Language &mdash; ArSL &mdash; has been promoted across the region for " +
+            "decades, largely by hearing institutions. Whether it should stand in for national sign " +
+            "languages is a live question, and it is not one for outsiders to settle." +
+            "<p>Almubayei's 2024 field study put it to the people concerned: Kuwaiti Deaf signers, and " +
+            "sign language interpreters and teachers in Kuwait, were asked which would better serve the " +
+            "community &mdash; KSL, ArSL, or both. The finding was a preference for <b>KSL, or for KSL " +
+            "and ArSL together</b>. Not for ArSL alone.</p>" +
+            "<p>For a translator this is not a political footnote, it is a sourcing rule. Material " +
+            "labelled <i>Arabic sign language</i> is very often unified ArSL, which is a different thing " +
+            "from KSL. Do not take one for the other, and never put an ArSL sign on a Kuwaiti page.</p>" },
+          { t: "card", h: "What this section is, and is not", html:
+            "It is a learning section, built by a translation student from documented Kuwaiti sources and " +
+            "reviewed material. It is <b>not</b> a dictionary. It does <b>not</b> speak for the Kuwaiti " +
+            "Deaf community. It does <b>not</b> replace a KSL instructor or a qualified interpreter." +
+            "<p>And where it has no verified entry, it says so rather than filling the gap. That is why " +
+            "there is not a single sign anywhere in this section yet.</p>" }
+        ]
+      },
+      {
+        key: "culture", en: "Understanding Deaf culture", ar: "ثقافة الصم",
+        line: "Who uses this language, before you learn a word of it.",
+        panels: [
+          { t: "lede", html:
+            "A language belongs to the people who speak it, and you cannot learn this one usefully " +
+            "while thinking of its users as a medical category. So: who are you learning from." },
+          { t: "card", h: "deaf, Deaf, and hard of hearing", html:
+            "With a small <b>d</b>, <i>deaf</i> describes hearing &mdash; a fact about a person's ears. " +
+            "With a capital <b>D</b>, <i>Deaf</i> describes belonging &mdash; a person who uses a sign " +
+            "language and identifies with the community that uses it. <i>Hard of hearing</i> describes " +
+            "a range of partial hearing." +
+            "<p>These categories do not map onto each other. A deaf person may not be Deaf. A " +
+            "hard-of-hearing person may be. This is not a spelling quirk: it is the difference between " +
+            "a description of a body and a description of an identity, and choosing the wrong one in a " +
+            "translation states something about your subject that you did not mean to state.</p>" },
+          { t: "list", h: "There is no single deaf person", intro:
+            "Deaf and hard-of-hearing people are not one group with one profile. Among the things that " +
+            "differ from person to person:",
+            items: [
+              "How much they hear, and how that has changed over time.",
+              "When it began &mdash; deaf from birth, or deafened later, which shapes almost everything else.",
+              "Whether anyone in their family signs.",
+              "Where they were schooled, and in what language.",
+              "Whether they use hearing technology, and what they choose to do with it.",
+              "Whether they use spoken Arabic, and how much.",
+              "Whether they use KSL, unified ArSL, both, or another sign language entirely.",
+              "Whether they identify with the Deaf community at all."
+            ] },
+          { t: "card", h: "So do not assume the language", html:
+            "<b>Not every deaf or hard-of-hearing person in Kuwait uses KSL.</b> Assuming otherwise is " +
+            "the most common mistake a hearing person makes, and in a professional setting it is the " +
+            "one that does damage: an interpreter booked for the wrong language is worse than no " +
+            "interpreter, because everyone believes communication is happening." +
+            "<p>The professional habit is simple. You ask which language, and you use the one you are " +
+            "told.</p>" },
+          { t: "card", h: "A community, not a condition", html:
+            "A medical frame asks what is missing and how to correct it. A cultural and linguistic frame " +
+            "asks what language a community uses and what it has built with it. Both frames exist and " +
+            "real people hold both &mdash; but translation happens in the second one, because translation " +
+            "is between languages and languages have communities." +
+            "<p>What that community has is what any language community has: history, schools, argument, " +
+            "humour that does not survive translation, an art of its own, and words for things the " +
+            "surrounding language has no word for.</p>" },
+          { t: "card", h: "Where the interpreter stands", html:
+            "A sign language interpreter is not a carer, a helper, or a voice for someone who already " +
+            "has one. They are there so that two languages can meet &mdash; and the standards are the " +
+            "ones you already know from the interpreting chamber: fidelity, register, completeness, " +
+            "impartiality, and knowing the subject before you sit down." +
+            "<p>The word for it is the same word. <span class='ar-inline' dir='rtl' lang='ar'>الترجمة " +
+            "الشفهية</span> covers this too, and its modes &mdash; simultaneous, consecutive, sight " +
+            "&mdash; are the same modes.</p>" },
+          { t: "list", h: "How to be a decent beginner", intro:
+            "Small things, and all of them noticed:",
+            items: [
+              "Ask which language someone uses. Do not decide it for them.",
+              "Speak to the person, not to the interpreter. Look at the person.",
+              "Do not grab or hold someone's hands while they are signing. You are interrupting a sentence.",
+              "Get their attention the way the room does &mdash; a wave, a tap on the shoulder, the lights &mdash; rather than by shouting at someone who cannot hear you shouting.",
+              "<span class='ar-inline' dir='rtl' lang='ar'>الصمّ والبُكم</span> is still in wide circulation in Arabic. It is not a neutral description and it is not what people call themselves. Use <span class='ar-inline' dir='rtl' lang='ar'>الصمّ</span>.",
+              "Learn from Deaf people wherever you can. That is where the language actually is."
+            ] },
+          { t: "links", h: "The same craft, elsewhere on this site", ids: ["modes", "booth"] }
+        ]
+      },
+      {
+        key: "built", en: "How a sign is built", ar: "كيف تُبنى الإشارة",
+        line: "Not a gesture. An assembly — and every part of it carries meaning.",
+        panels: [
+          { t: "lede", html:
+            "<i>Sign language is just gestures</i> is the myth, and this is the answer to it. A sign is " +
+            "<b>assembled</b> out of parts, and changing one part gives you a different word &mdash; " +
+            "exactly the way changing one consonant in an Arabic root gives you a different word. Two " +
+            "signs can share everything but where the hand sits, and mean unrelated things." },
+          { t: "params", h: "What a sign is made of" },
+          { t: "card", h: "The face is not decoration", html:
+            "In sign languages the face carries <b>grammar</b>. Raised or lowered brows can mark a " +
+            "question and mark which kind of question. A head movement can carry negation across a whole " +
+            "clause. A held expression can mark a condition, or mark what the sentence is about before " +
+            "the sentence arrives." +
+            "<p>Strip the face out and you have not merely lost tone. You may have lost whether the " +
+            "sentence was a question at all &mdash; which is why hands-only video, and hands-only " +
+            "computer vision, is not the same thing as the language.</p>" },
+          { t: "card", h: "Space is grammar too", html:
+            "A signer can place a person or a thing at a point in the space in front of them, and then " +
+            "refer back to that point for as long as the conversation needs it. Reference works through " +
+            "<b>location</b>, and direction of movement between those locations can carry who did what " +
+            "to whom." +
+            "<p>There is no equivalent in a written gloss. This is the part that a list of vocabulary " +
+            "cannot teach you, and the reason the vocabulary stages of this section come after this " +
+            "one.</p>" },
+          { t: "card", h: "What this means for a translator", html:
+            "A <b>gloss</b> &mdash; a sign written down as an Arabic or English word, usually in capitals " +
+            "&mdash; is a <i>label</i> for a sign. It is not the sign and it is not a translation of it. " +
+            "Working from glosses alone you will build exactly the thing this whole section is built to " +
+            "avoid: a word list that looks like a language." +
+            "<p>So when this section does have vocabulary, every entry will carry the video, and the " +
+            "video will be the word. The Arabic and the English beside it are there to find it by.</p>" }
+        ]
+      },
+      {
+        key: "spell", en: "Fingerspelling is not signing", ar: "الهجاء الإصبعي ليس الإشارة",
+        line: "The distinction that has to be clear before you learn a single letter.",
+        panels: [
+          { t: "lede", html:
+            "This is the commonest misunderstanding about any sign language, and it is worth clearing " +
+            "before you learn anything at all &mdash; because getting it wrong shapes everything you " +
+            "build afterwards." },
+          { t: "split", h: "Two different things",
+            a: { lab: "Fingerspelling", ar: "الهجاء الإصبعي",
+                 say: "Letters, rendered as handshapes. A word spelled out one letter at a time. What you are producing is <b>Arabic or English, in the air</b>." },
+            b: { lab: "A lexical sign", ar: "الإشارة المعجمية",
+                 say: "A concept, rendered as an established sign. One sign, one word, belonging to the sign language itself. What you are producing is <b>KSL</b>." } },
+          { t: "list", h: "What fingerspelling is for", intro:
+            "It is a tool inside the language, with real and limited jobs:",
+            items: [
+              "Names of people, places and institutions.",
+              "A word that has no established sign, or none yet.",
+              "A technical or foreign term, often the first time it comes up before a sign is agreed.",
+              "Emphasis, or clearing up an ambiguity."
+            ] },
+          { t: "card", h: "The mistake this page exists to prevent", html:
+            "Believing that signing <i>is</i> Arabic spelled with the hands &mdash; that a signer in full " +
+            "flow is spelling out every word." +
+            "<p>They are not. Ordinary conversation runs on lexical signs, and a fluent exchange contains " +
+            "very little spelling. A system built on the opposite assumption &mdash; take Arabic, spell " +
+            "each word &mdash; produces something no Deaf person can follow at conversational speed, and " +
+            "whatever it is, it is not KSL.</p>" +
+            "<p>This is the same error the translation side of this site spends its whole time on: " +
+            "matching the <b>form</b> of the source and calling it a translation. Word-for-word in the " +
+            "hands is still word-for-word.</p>" }
+        ]
+      },
+      {
+        key: "rules", en: "Sources, verification and limits", ar: "المصادر والتوثيق والحدود",
+        line: "Where the material comes from, who checks it, and what this site will not do.",
+        panels: [
+          { t: "lede", html:
+            "A learning section about a minority language can do real harm by being confidently wrong. " +
+            "So the rules are written down here, in public, where they can be held against the site." },
+          { t: "tiers", h: "Which evidence outranks which" },
+          { t: "labels", h: "Every entry carries its status" },
+          { t: "card", h: "What KISR is for, and what it is not for", html:
+            "The KISR dictionary is where research into Kuwaiti vocabulary <b>starts</b>. It is not a " +
+            "content library to be emptied into another website. This section links to it and cites it; " +
+            "it does not reproduce its videos, its images or its database. If permission is ever " +
+            "obtained, the permission is recorded on the entry that relies on it." +
+            "<p>KISR also warns that its English interface is experimental and that many phrases were " +
+            "translated automatically and may be wrong. So the <b>Arabic entries are primary</b> here, " +
+            "and every English gloss is verified independently before it appears on a card.</p>" },
+          { t: "card", h: "What the machine does here", html:
+            "It organises vocabulary, builds exercises, explains terminology, remembers what you have " +
+            "practised and when you should see it again, and &mdash; once the camera work of Stage 3 " +
+            "exists &mdash; measures where your hand is." +
+            "<p>It does <b>not</b> decide what the correct KSL sign is, settle whether a variant is " +
+            "valid, judge whether you are fluent, or tell you that you are ready to interpret. Those " +
+            "belong to Kuwaiti Deaf signers, KSL instructors and qualified interpreters. A landmark " +
+            "detector can tell you where your thumb is. It cannot tell you that you have said " +
+            "something.</p>" },
+          { t: "never", h: "What this section will never do" },
+          { t: "sources", h: "The sources this section is built on" }
+        ]
+      }
+    ]
+  },
+  {
+    n: 2, key: "first", en: "First signs", ar: "الإشارات الأولى",
+    say: "Greetings, and the handful of signs an exchange actually opens with.",
+    state: "waiting",
+    needs: ["A verified model video for each sign, from a Kuwaiti Deaf signer, a KSL instructor or a qualified interpreter",
+            "A named contributor, credited on the card, with their permission to be credited",
+            "The Arabic and the English gloss checked independently of any machine translation"],
+    holds: ["Greeting and leave-taking", "Yes, no, and asking someone to repeat", "Your name and asking a name", "Please, thank you, sorry"] },
+  {
+    n: 3, key: "alphabet", en: "The alphabet and fingerspelling", ar: "الأبجدية والهجاء الإصبعي",
+    say: "Each letter as a handshape, then the camera practice that checks your hand against the model.",
+    state: "waiting",
+    needs: ["A verified handshape for every letter, with a model video and permission to publish it",
+            "A labelled practice set before any recognition claim is made about a learner's hand",
+            "Camera work built on hand-landmark detection in the browser, on the device, with nothing uploaded"],
+    holds: ["Every letter, watchable and slowable", "Your camera beside the model, with the landmark skeleton drawn on your hand",
+            "Practice feedback in the honest register — <i>your handshape matches the practice set</i>, never <i>correct KSL</i>",
+            "Spelling drills for names and for words with no established sign"] },
+  {
+    n: 4, key: "vocab", en: "Build your vocabulary", ar: "بناء المفردات",
+    say: "Subject by subject — family, education, food, places, numbers, colours, work, everyday life.",
+    state: "waiting",
+    needs: ["Verified entries with video, one subject at a time, rather than a thin spread across all of them",
+            "Subject categories mapped to those the Kuwaiti dictionary already uses, so a learner can move between the two",
+            "Spaced review built on what you have actually practised"],
+    holds: ["The sign card in full — video, slow motion, the parameters, the domain, related signs, source and verification",
+            "Search in Arabic or English", "Review that asks which sign fits a situation, not only what a sign means"] },
+  {
+    n: 5, key: "talk", en: "Communicate", ar: "التواصل",
+    say: "Questions, answers, introductions, requests — signs put together into an exchange.",
+    state: "waiting",
+    needs: ["Enough verified vocabulary for an exchange to be built out of real signs",
+            "Model dialogue filmed with Deaf signers, not assembled from single-sign clips"],
+    holds: ["Short dialogues you complete", "Choosing the sign a situation calls for", "Asking someone to slow down, repeat, or spell it"] },
+  {
+    n: 6, key: "kuwait", en: "The Kuwaiti context", ar: "السياق الكويتي",
+    say: "Places, institutions and situations that are ours — the part no imported material covers.",
+    state: "waiting",
+    needs: ["Signs for Kuwaiti places, institutions and occasions, confirmed as used in Kuwait rather than borrowed from elsewhere",
+            "Community review, because this is precisely the vocabulary that varies locally"],
+    holds: ["Kuwaiti places and institutions", "Ministries, hospitals, courts, universities by name",
+            "Occasions and everyday Kuwaiti situations"] },
+  {
+    n: 7, key: "domains", en: "Specialised KSL", ar: "المجالات المتخصصة",
+    say: "Medical, legal, academic, political, journalistic, business — the same six settings as the booth.",
+    state: "waiting",
+    needs: ["Domain vocabulary verified by people who interpret in that domain",
+            "Terminology cross-checked against the Guild's own glossary so the three languages line up"],
+    holds: ["A set per domain, matched to the settings already in the interpreting booth",
+            "Terminology drills in Arabic, English and KSL together",
+            "Situations rather than word lists"] },
+  {
+    n: 8, key: "interp", en: "KSL interpreting", ar: "الترجمة إلى لغة الإشارة",
+    say: "What a sign language interpreter does, and practice against a qualified model.",
+    state: "waiting",
+    needs: ["Everything above it, verified", "Model interpretations by qualified KSL interpreters",
+            "Human review, because automated scoring cannot assess an interpretation"],
+    holds: ["The modes, as they apply here — simultaneous, consecutive, sight",
+            "A source message, your rendering, and a qualified interpreter's beside it",
+            "Compared on meaning, terminology, register, omission, addition and timing — by a person"] }
+];
+
+/* The parameters a sign is assembled from. General sign linguistics,
+   and the frame the GUST material uses to explain KSL. Named here in
+   both languages because a translation student will meet both. */
+const KSL_PARAMS = [
+  { en: "Handshape",   ar: "شكل اليد",
+    say: "Which fingers are extended, bent, closed or spread, and how the thumb sits against them." },
+  { en: "Movement",    ar: "الحركة",
+    say: "The path and the manner: straight or arced, once or repeated, sharp or slow. Some signs are nothing without it." },
+  { en: "Location",    ar: "موضع الأداء",
+    say: "Where the sign is made — against the head, at the chest, or in the neutral space in front of the signer." },
+  { en: "Orientation", ar: "اتجاه الكف",
+    say: "Which way the palm and the fingers face. Two signs can differ in this alone." },
+  { en: "The two hands", ar: "تفاعل اليدين",
+    say: "One hand or two; whether they match; and whether one is a base that the other acts on." },
+  { en: "Non-manual features", ar: "المكوّنات غير اليدوية",
+    say: "Brows, eyes, mouth, head position, posture. Not expression added to a sign — part of it, and often the grammar of the sentence." }
+];
+
 const ITEMS = [
   { id: "minor", ar: "مساند التَّرجمة · جامعة الكويت", en: "Kuwait University · Translation Minor", kind: "guide", section: "method",
     subject: "مساند التَّرجمة · جامعة الكويت",
     blurb: "The ten courses of the minor, each with the title the programme gives it in both languages — what the subject is, where it is used, what it asks of you, and what the Guild already holds that belongs to it.",
     run: runMinor },
+  { id: "ksl", ar: "لغة الإشارة الكويتية", en: "Kuwaiti Sign Language", kind: "guide", section: "method",
+    subject: "لغة الإشارة الكويتية · KSL",
+    blurb: "The third language the Guild works in, and the only one with no writing. What KSL is, who uses it, how a sign is assembled, and why fingerspelling is not signing — with the sources, the verification rules, and the eight-stage path stated honestly, including how far along it is.",
+    run: runKsl },
   { id: "lineage", ar: "", en: "Translators in History", kind: "guide", section: "method",
     subject: "The tradition, from the fourth century to our own",
     blurb: "Sixteen translators, from the fourth century to our own, whose work changed what the world could read &mdash; eight from the Arabic tradition, eight from the Western one.",
@@ -7339,6 +7852,320 @@ function runModes() {
    material is written per course and arrives into the slot at the end. */
 function allMinorCourses() {
   return KU_MINOR.groups.reduce((a, g) => a.concat(g.courses.map(c => Object.assign({ group: g }, c))), []);
+}
+
+
+/* ═══════════ THE KSL SECTION ═══════════
+   Three screens: the path, a stage, a lesson. The same shape as the
+   Kuwait University minor, because a learner who has used one already
+   knows how to use the other. */
+function runKsl() {
+  let stageOpen = null;
+
+  /* ── the ladder ── */
+  function path() {
+    stageOpen = null;
+    stage.innerHTML = "";
+    const open = KSL_PATH.filter(s => s.state === "open").length;
+    setCount("Eight stages · " + open + " open");
+    setDots(0, 0, 0);
+
+    const head = el("div", "minor-head");
+    head.innerHTML =
+      '<span class="m-credits">لغة الإشارة الكويتية <span class="m-ar" dir="ltr">Kuwaiti Sign Language</span></span>' +
+      '<p class="m-entry">A learning section, not a dictionary. It does not speak for the Kuwaiti Deaf community and it does not replace a KSL instructor or a qualified interpreter.</p>' +
+      '<p class="m-entry is-ar" dir="rtl" lang="ar">قسمٌ تعليمي، لا قاموس. لا ينوب عن مجتمع الصمّ في الكويت، ولا يغني عن معلّم لغة إشارة أو مترجم مؤهَّل.</p>';
+    stage.appendChild(head);
+
+    stage.appendChild(el("p", "lede",
+      "The Guild teaches translation between two written languages. This is the third one &mdash; a " +
+      "language with no writing at all, used by a community in Kuwait, with its own vocabulary and its " +
+      "own grammar. The path below runs from what the language is to interpreting in it." +
+      "<p><b>One stage is open.</b> The rest are frames, and they say what they are waiting for. Not a " +
+      "single sign appears anywhere in this section yet, because a sign is a video of a person signing " +
+      "and the only people who can make that video are Kuwaiti Deaf signers, KSL instructors and " +
+      "qualified interpreters. Nothing here will be invented in the meantime.</p>"));
+
+    const ladder = el("div", "ksl-path");
+    KSL_PATH.forEach(s => {
+      const b = el("button", "ksl-stage " + (s.state === "open" ? "is-open" : "is-wait"));
+      b.innerHTML =
+        '<span class="ks-n">' + String(s.n).padStart(2, "0") + '</span>' +
+        '<span class="ks-txt">' +
+          '<span class="ks-en">' + s.en + '</span>' +
+          '<span class="ks-ar" dir="rtl" lang="ar">' + s.ar + '</span>' +
+          '<span class="ks-say">' + s.say + '</span>' +
+        '</span>' +
+        '<span class="ks-state">' + (s.state === "open"
+          ? (s.lessons.length + " lessons")
+          : "in preparation") + '</span>';
+      b.addEventListener("click", () => {
+        pushTrail("The KSL path", () => path());
+        stageOpen = s;
+        s.state === "open" ? stageScreen() : waitScreen();
+      });
+      ladder.appendChild(b);
+    });
+    stage.appendChild(ladder);
+
+    const v = el("div", "verdict");
+    v.appendChild(el("span", "vh", "Before anything else"));
+    v.appendChild(el("p", "vb",
+      "Stage 1 is deliberately about the community and the language before it is about vocabulary. " +
+      "Learning signs without it produces somebody who can name twenty things and cannot hold a " +
+      "conversation, and who has picked up, without noticing, the idea that KSL is Arabic with the " +
+      "hands. It is not."));
+    stage.appendChild(v);
+
+    stage.appendChild(footNav({
+      next: () => { pushTrail("The KSL path", () => path()); stageOpen = KSL_PATH[0]; stageScreen(); },
+      nextLabel: "Discover KSL",
+      note: "Sources in full at the end of Stage 1"
+    }));
+  }
+
+  /* ── one open stage, with its lessons ── */
+  function stageScreen() {
+    const s = stageOpen;
+    stage.innerHTML = "";
+    setCount("Stage " + s.n + " · " + s.lessons.length + " lessons");
+    setDots(KSL_PATH.length, s.n - 1, s.n - 1);
+
+    const hero = el("div", "c-hero");
+    hero.innerHTML =
+      '<span class="c-badge">Stage ' + s.n + '</span>' +
+      '<h2 class="c-title">' + s.en + '</h2>' +
+      '<p class="c-ar" dir="rtl" lang="ar">' + s.ar + '</p>' +
+      '<p class="c-line">' + s.say + '</p>';
+    stage.appendChild(hero);
+
+    const grid = el("div", "m-list");
+    s.lessons.forEach((L, i) => {
+      const b = el("button", "m-course");
+      b.innerHTML =
+        '<span class="m-code">' + (i + 1) + '</span>' +
+        '<span class="m-txt">' +
+          '<span class="m-en">' + L.en + '</span>' +
+          '<span class="m-arname" dir="rtl" lang="ar">' + L.ar + '</span>' +
+          '<span class="m-line">' + L.line + '</span>' +
+        '</span>';
+      b.addEventListener("click", () => {
+        pushTrail(s.en, () => stageScreen());
+        lesson(i);
+      });
+      grid.appendChild(b);
+    });
+    stage.appendChild(grid);
+
+    stage.appendChild(footNav({
+      next: () => { pushTrail(s.en, () => stageScreen()); lesson(0); },
+      nextLabel: s.lessons[0].en
+    }));
+  }
+
+  /* ── a stage that has not been built, saying so ── */
+  function waitScreen() {
+    const s = stageOpen;
+    stage.innerHTML = "";
+    setCount("Stage " + s.n + " · in preparation");
+    setDots(KSL_PATH.length, s.n - 1, s.n - 1);
+
+    const hero = el("div", "c-hero");
+    hero.innerHTML =
+      '<span class="c-badge">Stage ' + s.n + '</span>' +
+      '<h2 class="c-title">' + s.en + '</h2>' +
+      '<p class="c-ar" dir="rtl" lang="ar">' + s.ar + '</p>' +
+      '<p class="c-line">' + s.say + '</p>';
+    stage.appendChild(hero);
+
+    const w = el("div", "verdict");
+    w.appendChild(el("span", "vh", "Why this is not open"));
+    w.appendChild(el("p", "vb",
+      "Because it needs verified KSL material and that material does not exist on this site yet. " +
+      "It would take about an afternoon to fill this page with plausible-looking signs, and every one " +
+      "of them would be a guess presented to a beginner as a fact. That is the one thing a section " +
+      "about a minority language must not do."));
+    stage.appendChild(w);
+
+    const needs = el("div", "verdict");
+    needs.appendChild(el("span", "vh", "What has to arrive first"));
+    needs.appendChild(el("ul", "how", s.needs.map(x => '<li><span>' + x + '</span></li>').join("")));
+    stage.appendChild(needs);
+
+    const holds = el("div", "verdict");
+    holds.appendChild(el("span", "vh", "What it will hold"));
+    holds.appendChild(el("ul", "how", s.holds.map(x => '<li><span>' + x + '</span></li>').join("")));
+    stage.appendChild(holds);
+
+    const i = KSL_PATH.indexOf(s);
+    stage.appendChild(footNav({
+      next: i < KSL_PATH.length - 1
+        ? () => { stageOpen = KSL_PATH[i + 1]; stageOpen.state === "open" ? stageScreen() : waitScreen(); scrollTop(); }
+        : null,
+      nextLabel: i < KSL_PATH.length - 1 ? KSL_PATH[i + 1].en : null
+    }));
+  }
+
+  /* ── one lesson ── */
+  function lesson(i) {
+    const s = stageOpen;
+    const L = s.lessons[i];
+    stage.innerHTML = "";
+    setCount("Lesson " + (i + 1) + " of " + s.lessons.length);
+    setDots(s.lessons.length, i, i);
+
+    const hero = el("div", "c-hero");
+    hero.innerHTML =
+      '<span class="c-badge">' + (i + 1) + ' of ' + s.lessons.length + '</span>' +
+      '<h2 class="c-title">' + L.en + '</h2>' +
+      '<p class="c-ar" dir="rtl" lang="ar">' + L.ar + '</p>' +
+      '<p class="c-line">' + L.line + '</p>';
+    stage.appendChild(hero);
+
+    L.panels.forEach(pl => stage.appendChild(panel(pl)));
+
+    stage.appendChild(footNav({
+      next: i < s.lessons.length - 1 ? () => { lesson(i + 1); scrollTop(); } : null,
+      nextLabel: i < s.lessons.length - 1 ? s.lessons[i + 1].en : null,
+      backLabel: i > 0 ? s.lessons[i - 1].en : null,
+      back: i > 0 ? () => { lesson(i - 1); scrollTop(); } : null
+    }));
+  }
+
+  /* ── one block of a lesson ── */
+  function panel(p) {
+    if (p.t === "lede") return el("p", "lede", p.html);
+
+    if (p.t === "card") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", p.h));
+      v.appendChild(el("p", "vb", p.html));
+      return v;
+    }
+
+    if (p.t === "list") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", p.h));
+      if (p.intro) v.appendChild(el("p", "vb", p.intro));
+      v.appendChild(el("ul", "how", p.items.map(x => '<li><span>' + x + '</span></li>').join("")));
+      return v;
+    }
+
+    if (p.t === "split") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", p.h));
+      const row = el("div", "ksl-split");
+      [p.a, p.b].forEach(side => {
+        const c = el("div", "ks-side");
+        c.innerHTML =
+          '<span class="ks-lab">' + side.lab + '</span>' +
+          '<span class="ks-lab-ar" dir="rtl" lang="ar">' + side.ar + '</span>' +
+          '<p>' + side.say + '</p>';
+        row.appendChild(c);
+      });
+      v.appendChild(row);
+      return v;
+    }
+
+    if (p.t === "params") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", p.h));
+      const g = el("div", "ksl-params");
+      KSL_PARAMS.forEach(x => {
+        const c = el("div", "ks-param");
+        c.innerHTML =
+          '<span class="ks-p-en">' + x.en + '</span>' +
+          '<span class="ks-p-ar" dir="rtl" lang="ar">' + x.ar + '</span>' +
+          '<span class="ks-p-say">' + x.say + '</span>';
+        g.appendChild(c);
+      });
+      v.appendChild(g);
+      return v;
+    }
+
+    if (p.t === "tiers") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", p.h));
+      const g = el("div", "ksl-tiers");
+      KSL_TIERS.forEach(t => {
+        const c = el("div", "ks-tier" + (t.n === 6 ? " is-last" : ""));
+        c.innerHTML =
+          '<span class="ks-t-n">' + t.n + '</span>' +
+          '<span class="ks-t-txt"><span class="ks-t-en">' + t.en + '</span>' +
+          '<span class="ks-t-ar" dir="rtl" lang="ar">' + t.ar + '</span>' +
+          '<span class="ks-t-say">' + t.say + '</span></span>';
+        g.appendChild(c);
+      });
+      v.appendChild(g);
+      return v;
+    }
+
+    if (p.t === "labels") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", p.h));
+      v.appendChild(el("p", "vb",
+        "Four of them, and one is always shown. An entry with no label is a bug, not a shortcut."));
+      const g = el("div", "ksl-labels");
+      KSL_VERIFY.forEach(x => {
+        const c = el("div", "ks-lbl");
+        c.innerHTML =
+          '<span class="ks-badge ' + x.cls + '">' + x.en + '</span>' +
+          '<span class="ks-l-ar" dir="rtl" lang="ar">' + x.ar + '</span>' +
+          '<span class="ks-l-say">' + x.say + '</span>';
+        g.appendChild(c);
+      });
+      v.appendChild(g);
+      return v;
+    }
+
+    if (p.t === "never") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh lose", p.h));
+      v.appendChild(el("ul", "how ks-never",
+        KSL_NEVER.map(x => '<li><span>' + x + '</span></li>').join("")));
+      return v;
+    }
+
+    if (p.t === "sources") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", p.h));
+      v.appendChild(el("p", "vb",
+        "Linked, not copied. Follow them &mdash; they are better than this page, and they are the " +
+        "reason it can say anything at all."));
+      const g = el("div", "ksl-srcs");
+      KSL_SOURCES.forEach(sc => {
+        const c = el("div", "ks-src");
+        const title = sc.url
+          ? '<a class="ks-s-en" href="' + sc.url + '" target="_blank" rel="noopener noreferrer">' + sc.name + '</a>'
+          : '<span class="ks-s-en">' + sc.name + '</span>';
+        c.innerHTML =
+          '<span class="ks-s-tier">Tier ' + sc.tier + '</span>' +
+          title +
+          '<span class="ks-s-ar" dir="rtl" lang="ar">' + sc.ar + '</span>' +
+          '<span class="ks-s-say">' + sc.note + '</span>';
+        g.appendChild(c);
+      });
+      v.appendChild(g);
+      return v;
+    }
+
+    if (p.t === "links") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", p.h));
+      const row = el("div", "m-links");
+      p.ids.map(id => ITEMS.find(t => t.id === id)).filter(Boolean).forEach(t => {
+        const b = el("button", "ghost", t.en + " →");
+        b.addEventListener("click", () => openItem(t));
+        row.appendChild(b);
+      });
+      v.appendChild(row);
+      return v;
+    }
+
+    return document.createDocumentFragment();
+  }
+
+  path();
 }
 
 function runMinor() {
