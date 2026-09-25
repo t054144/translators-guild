@@ -1081,6 +1081,47 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .how li b { color: var(--white); font-weight: 500; }
 .how li i { color: var(--white); font-style: italic; }
 
+/* ---------- the Kuwait University minor ---------- */
+.minor-head { display: grid; gap: .3rem; padding: 1rem 1.1rem; border-radius: var(--r-lg);
+  border: var(--hair-lit); background: var(--grad-soft); }
+.m-credits { font-family: var(--f-serif); font-size: 1.25rem; font-weight: 700; color: var(--white);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; }
+.m-ar { font-family: var(--f-ar); direction: rtl; font-size: .8em; font-weight: 500;
+  color: var(--lilac); unicode-bidi: isolate; }
+.m-entry { margin: .2rem 0 0; font-size: .84rem; font-weight: 300; line-height: 1.6; color: var(--ink-soft); }
+.m-entry.is-ar { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: .95rem; }
+
+.m-group { display: grid; gap: .2rem; margin: 1.1rem 0 -.1rem; }
+.m-group h3 { margin: 0; font-family: var(--f-serif); font-size: 1.1rem; font-weight: 600;
+  color: var(--white); display: flex; flex-wrap: wrap; align-items: baseline; gap: .55rem; }
+.m-rule { font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--lilac-dim); }
+.m-rule.is-ar { font-family: var(--f-ar); direction: rtl; text-align: right; font-size: .78rem;
+  letter-spacing: 0; text-transform: none; }
+
+.m-list { display: grid; gap: .55rem; }
+.m-course { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: .9rem;
+  width: 100%; text-align: start; padding: .8rem 1rem; border-radius: var(--r-lg);
+  border: var(--hair); background: rgba(255,255,255,.035); box-shadow: none; min-width: 0; }
+.m-course:hover { background: rgba(214,191,234,.1); transform: none; box-shadow: none;
+  border-color: rgba(167,38,208,.6); }
+.m-code { font-family: var(--f-serif); font-size: 1.05rem; font-weight: 700; color: var(--magenta);
+  font-variant-numeric: tabular-nums; min-width: 2.4rem; }
+.m-txt { display: grid; gap: .16rem; min-width: 0; }
+.m-en { font-family: var(--f-serif); font-size: 1.02rem; font-weight: 600; color: var(--white); line-height: 1.25; }
+.m-arname { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .9rem; color: var(--lilac); }
+
+.m-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .3rem; }
+/* A long chamber name must wrap rather than push the panel wider than
+   the phone it is being read on. */
+.m-links button { font-size: .82rem; padding: .5rem .9rem; max-width: 100%;
+  white-space: normal; text-align: center; min-width: 0; }
+.m-slot { border-radius: var(--r-lg); border: 1px dashed rgba(214,191,234,.3);
+  background: rgba(255,255,255,.02); padding: 1rem 1.1rem; display: grid; gap: .4rem; }
+.m-slot .b-lab { font-size: .66rem; font-weight: 700; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--lilac-dim); }
+.m-slot p { margin: 0; font-size: .88rem; font-weight: 300; line-height: 1.65; color: var(--ink-soft); }
+
 /* ---------- choosing a direction for the booth ---------- */
 .dir-pick { display: grid; gap: .5rem; }
 .dir-lab { font-size: .62rem; font-weight: 700; letter-spacing: .22em;
@@ -1549,7 +1590,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 32 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 33 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -3899,6 +3940,114 @@ const FACETS = {
   revise:    "Revision and mechanics"
 };
 
+/* ═══════════ KUWAIT UNIVERSITY · THE TRANSLATION MINOR ═══════════
+   The ten courses of the minor, with the titles the programme itself
+   gives them in both languages and the codes it numbers them by. The
+   structure — four compulsory, two from each elective group, twenty-four
+   credits, 142 as the entry prerequisite — is the programme's own.
+
+   Each course carries what the subject is, where it is actually used,
+   what it asks of a student, and where the Guild already has something
+   that belongs to it. The practice material for each one is still to
+   come; the course pages are built to receive it.
+   ══════════════════════════════════════════════════════════════════ */
+const KU_MINOR = {
+  en: "Translation Minor", ar: "مساند الترجمة",
+  credits: "24 credits", creditsAr: "٢٤ وحدة دراسية",
+  entry: "Entry prerequisite 142 · take all four compulsory courses, and two from each elective group.",
+  entryAr: "المتطلب السابق: ١٤٢ — أربعة مقررات إجبارية، ومقرران من كل مجموعة اختيارية.",
+  groups: [
+    {
+      id: "core", en: "Compulsory", ar: "المقررات الإجبارية",
+      rule: "Take all four", ruleAr: "أربعة مقررات، ١٢ وحدة دراسية",
+      courses: [
+        {
+          code: "180", en: "Principles of Translation", ar: "مبادئ الترجمة",
+          what: "The foundation course, and the prerequisite for everything else in the minor. It sets out what translation actually is: the difference between <b>form</b> and <b>meaning</b>, the literal and the free, the procedures a translator has to choose between, and the brief that decides which one the job needs.",
+          where: "Under every other course on this list. Nothing above it can be done without it &mdash; a text cannot be analysed, a term cannot be settled and a subtitle cannot be cut by someone who is still translating word for word.",
+          asks: "That you stop translating <i>words</i> and start translating <i>messages</i> &mdash; and that you can name what you did afterwards, which is the whole basis of a commentary.",
+          meets: ["procedures", "toolkit"]
+        },
+        {
+          code: "182", en: "Introduction to Terminology", ar: "مقدمة في علم المصطلحات",
+          what: "Terminology as a discipline in its own right, not as vocabulary learning. The distinction between a <b>concept</b> and the <b>term</b> that names it, how a field's vocabulary is built and standardised, and how a termbase or a glossary is compiled and kept.",
+          where: "Anywhere a wrong word has consequences: ministries, courts, hospitals, standards bodies, the UN. It is also a job of its own &mdash; institutions employ terminologists, not only translators.",
+          asks: "Precision, and a record. A term without a source is a guess, however confident it sounds.",
+          meets: ["glossary"]
+        },
+        {
+          code: "280", en: "Translation I", ar: "ترجمة ١",
+          what: "The first practical course: general texts, in both directions, translated and then defended. Where the principles of 180 stop being a framework to recite and become decisions you have to make under your own name.",
+          where: "It is the everyday work &mdash; correspondence, journalism, general prose &mdash; and it is the ground every specialism is built on.",
+          asks: "Volume, and the habit of revision. The gap between a first draft and a finished rendering is the course.",
+          meets: ["commentary", "nameproc"]
+        },
+        {
+          code: "281", en: "Translation II", ar: "ترجمة ٢",
+          what: "Longer texts and harder genres, with revision treated as part of the work rather than as something done if time allows. The step from translating a passage to handling a whole document.",
+          where: "Any commission that arrives as a file rather than a paragraph: a report, an article, a contract, a chapter.",
+          asks: "Consistency across length &mdash; the same term rendered the same way on page nine as on page one &mdash; and the discipline of the three readings.",
+          meets: ["errors", "commentary"]
+        }
+      ]
+    },
+    {
+      id: "e1", en: "Elective group one", ar: "المجموعة الاختيارية الأولى",
+      rule: "Choose two · prerequisite 180", ruleAr: "يختار الطالب مقررين، المتطلب السابق ١٨٠",
+      courses: [
+        {
+          code: "283", en: "Text Analysis and Translation", ar: "تحليل النص والترجمة",
+          what: "Reading a text properly <b>before</b> translating a word of it: its field, its tone, its genre, who wrote it, who it was written for, and what it is trying to do. The analysis is the decision; the translating carries it out.",
+          where: "Every commission worth taking seriously, and especially the ones that look simple. A press release and a court judgment can share a sentence and need opposite treatment.",
+          asks: "Patience at the start. Most bad translations are not failures of vocabulary; they are failures to have read.",
+          meets: ["texttypes", "context"]
+        },
+        {
+          code: "284", en: "Translation and Culture", ar: "الترجمة والثقافة",
+          what: "What happens when the difficulty is not linguistic. Culture-specific items, proverbs and idioms, politeness and religion, and the choice between bringing the text to the reader and taking the reader to the text.",
+          where: "Literature, subtitling, advertising, diplomacy, and any text where a reference means something at home and nothing abroad.",
+          asks: "A decision you can defend. Neither smoothing nor preserving is automatically right, and the reader is entitled to know which one you chose.",
+          meets: ["cultural", "proverb", "lineage"]
+        },
+        {
+          code: "285", en: "Translation for Special Purposes", ar: "الترجمة لأغراض خاصة",
+          what: "Language for specific purposes: legal, medical, technical, commercial. Each field has its own terminology, its own register, its own conventions of form, and its own consequences when a rendering is wrong.",
+          where: "Most paid translation work is this. It is also where the risk lives &mdash; a mistranslated dose or clause is not a stylistic matter.",
+          asks: "That you know the subject well enough to know when you do not know it, and that you say so rather than guess.",
+          meets: ["register", "booth"]
+        }
+      ]
+    },
+    {
+      id: "e2", en: "Elective group two", ar: "المجموعة الاختيارية الثانية",
+      rule: "Choose two · prerequisite 180", ruleAr: "يختار الطالب مقررين، المتطلب السابق ١٨٠",
+      courses: [
+        {
+          code: "386", en: "Literary Translation", ar: "الترجمة الأدبية",
+          what: "Prose and poetry, where what is being carried across is not only information but voice, rhythm, register and effect. The course where the question of what <i>cannot</i> cross is asked most seriously.",
+          where: "Publishing, and the literary translation projects that decide which literatures the world gets to read at all.",
+          asks: "That you write well in the target language. A literary translator who is not a writer produces information about a book.",
+          meets: ["lineage", "commentary"]
+        },
+        {
+          code: "387", en: "Introduction to Audiovisual Translation", ar: "مقدمة في الترجمة السمعية البصرية",
+          what: "Translation for screen: subtitling, dubbing, voice-over, and audio description for viewers who cannot see. Its defining feature is <b>constraint</b> &mdash; characters per line, seconds on screen, lip movement, and a viewer who can hear the original while reading you.",
+          where: "Streaming, broadcast, film festivals, corporate video, and accessibility work, which is a legal requirement in a growing number of places.",
+          asks: "Ruthless compression without loss of sense, and the acceptance that your work will be checked in real time by an audience that half-understands the source.",
+          meets: ["subtitle"]
+        },
+        {
+          code: "388", en: "Introduction to Translation and Technology", ar: "مدخل إلى الترجمة والتكنولوجيا",
+          what: "The tools the profession actually runs on: computer-assisted translation, translation memory, terminology management, machine translation and post-editing, and now generative systems &mdash; including what they invent when they do not know.",
+          where: "Every agency and every institution. Translation memory and a termbase are not optional extras in professional work; they are how consistency and delivery dates are met.",
+          asks: "That you stay the editor. A tool that is faster than you is still not responsible for the output &mdash; you are.",
+          meets: ["glossary", "errors"]
+        }
+      ]
+    }
+  ]
+};
+
 /* ═══════════ REGISTRY ═══════════ */
 const ITEMS = [
   { id: "lineage", ar: "", en: "Translators in History", kind: "guide", section: "method",
@@ -3919,6 +4068,10 @@ const ITEMS = [
     subject: "Text typology · Chapter 18",
     blurb: "Ten worlds a translation can land in — journalistic, political and diplomatic, legal, technical, medical, literary, transcreation, localization, audiovisual, academic — and why they are not all the same kind of category.",
     run: runTextTypes },
+  { id: "minor", ar: "مساند التَّرجمة · جامعة الكويت", en: "Kuwait University · Translation Minor", kind: "guide", section: "method",
+    subject: "مساند التَّرجمة · جامعة الكويت",
+    blurb: "The ten courses of the minor, each with the title the programme gives it in both languages — what the subject is, where it is used, what it asks of you, and what the Guild already holds that belongs to it.",
+    run: runMinor },
   { id: "glossary", ar: "مَسرَد المُصطلَحات", en: "Glossary of the Field", kind: "guide", section: "method",
     subject: "103 terms · Chapters 1–27",
     blurb: "Every key term the handbook defines, searchable in Arabic or English, each with the chapter that explains it. Keep the ones you want and they stay on your Seal.",
@@ -6563,6 +6716,136 @@ function runSubtitle() {
     next.focus();
   }
   question();
+}
+
+/* ═══════════ THE MINOR ═══════════
+   The programme's own structure, then one page per course. Each page
+   answers the questions a student actually has before a course begins —
+   what is this, where is it used, what will it ask of me — and points at
+   whatever the Guild already holds that belongs to it. The practice
+   material is written per course and arrives into the slot at the end. */
+function allMinorCourses() {
+  return KU_MINOR.groups.reduce((a, g) => a.concat(g.courses.map(c => Object.assign({ group: g }, c))), []);
+}
+
+function runMinor() {
+  let open = null;
+  setCount("24 credits · ten courses");
+
+  function list() {
+    stage.innerHTML = "";
+    setDots(0, 0, 0);
+
+    const head = el("div", "minor-head");
+    head.innerHTML =
+      '<span class="m-credits">' + KU_MINOR.credits +
+        ' <span class="m-ar" dir="rtl" lang="ar">' + KU_MINOR.creditsAr + '</span></span>' +
+      '<p class="m-entry">' + KU_MINOR.entry + '</p>' +
+      '<p class="m-entry is-ar" dir="rtl" lang="ar">' + KU_MINOR.entryAr + '</p>';
+    stage.appendChild(head);
+
+    stage.appendChild(el("p", "lede",
+      "The ten courses of the translation minor at Kuwait University, with the titles the programme " +
+      "gives them in both languages and the codes it numbers them by. Each one opens on what the " +
+      "subject is, where it is actually used, what it will ask of you, and what the Guild already " +
+      "holds that belongs to it."));
+
+    KU_MINOR.groups.forEach(g => {
+      const gh = el("div", "m-group");
+      gh.innerHTML =
+        '<h3>' + g.en + ' <span class="m-ar" dir="rtl" lang="ar">' + g.ar + '</span></h3>' +
+        '<span class="m-rule">' + g.rule + '</span>' +
+        '<span class="m-rule is-ar" dir="rtl" lang="ar">' + g.ruleAr + '</span>';
+      stage.appendChild(gh);
+
+      const grid = el("div", "m-list");
+      g.courses.forEach(c => {
+        const b = el("button", "m-course");
+        b.innerHTML =
+          '<span class="m-code">' + c.code + '</span>' +
+          '<span class="m-txt">' +
+            '<span class="m-en">' + c.en + '</span>' +
+            '<span class="m-arname" dir="rtl" lang="ar">' + c.ar + '</span>' +
+          '</span>';
+        b.addEventListener("click", () => { open = Object.assign({ group: g }, c); course(); });
+        grid.appendChild(b);
+      });
+      stage.appendChild(grid);
+    });
+
+    stage.appendChild(backFoot());
+  }
+
+  function course() {
+    const c = open;
+    stage.innerHTML = "";
+    const all = allMinorCourses();
+    const i = all.findIndex(x => x.code === c.code);
+    setCount(c.code + " · " + c.group.en);
+    setDots(all.length, i, i);
+
+    const back = el("button", "link", "← All ten courses");
+    back.addEventListener("click", () => { open = null; list(); });
+    stage.appendChild(back);
+
+    const top = el("div", "card");
+    top.appendChild(el("div", "card-top",
+      '<span class="num-badge">' + c.code + '</span>' +
+      '<h3>' + c.en + '</h3>' +
+      '<span class="ct-ar" dir="rtl" lang="ar">' + c.ar + '</span>'));
+    top.appendChild(el("div", "block", '<span class="b-lab">What it is</span><p>' + c.what + '</p>'));
+    top.appendChild(el("div", "block demand", '<span class="b-lab">Where it is used</span><p>' + c.where + '</p>'));
+    top.appendChild(el("div", "block", '<span class="b-lab">What it asks of you</span><p>' + c.asks + '</p>'));
+    stage.appendChild(top);
+
+    /* Whatever the Guild already has that belongs to this course, as a
+       way in rather than as a list of names. */
+    const linked = (c.meets || []).map(id => ITEMS.find(t => t.id === id)).filter(Boolean);
+    if (linked.length) {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", "Where this meets the Guild"));
+      v.appendChild(el("p", "vb",
+        "Nothing here replaces the course. These are the parts of the site that practise the same thing, " +
+        "and they are open now."));
+      const row = el("div", "m-links");
+      linked.forEach(t => {
+        const b = el("button", "ghost", t.en + " →");
+        b.addEventListener("click", () => openItem(t));
+        row.appendChild(b);
+      });
+      v.appendChild(row);
+      stage.appendChild(v);
+    }
+
+    /* The slot the course's own material arrives into. Named honestly:
+       it is not built yet, and the page says which way to go meanwhile. */
+    const slot = el("div", "m-slot");
+    slot.innerHTML =
+      '<span class="b-lab">Practice material</span>' +
+      '<p>The material written for <b>' + c.code + ' ' + c.en + '</b> is still being prepared, and it ' +
+      'will appear here rather than being scattered through the rest of the site. Until it does, the ' +
+      'chambers above are the nearest thing the Guild has to this course.</p>';
+    stage.appendChild(slot);
+
+    const pager = el("div", "pager");
+    const foot = el("div", "foot");
+    if (i > 0) {
+      const prev = el("button", "ghost", "← " + all[i - 1].code);
+      prev.addEventListener("click", () => { open = all[i - 1]; course(); });
+      foot.appendChild(prev);
+    }
+    if (i < all.length - 1) {
+      const next = el("button", null, all[i + 1].code + " →");
+      next.addEventListener("click", () => { open = all[i + 1]; course(); });
+      foot.appendChild(next);
+    }
+    pager.appendChild(foot);
+    pager.appendChild(el("p", "note", c.group.en + " · " + c.group.rule));
+    stage.appendChild(pager);
+    stage.appendChild(backFoot());
+  }
+
+  list();
 }
 
 /* ═══════════ THE BOOTH ═══════════
