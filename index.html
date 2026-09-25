@@ -650,6 +650,13 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .prompt .ask { font-size: .74rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--lilac); margin: 0; }
 .prompt .src { font-family: var(--f-ar-text); direction: rtl; font-size: clamp(1.5rem,5vw,2.35rem);
   color: var(--white); line-height: 1.8; margin: 0; max-width: 30ch; }
+/* A sentence is not a term. Set at term size it overflows the card and
+   stops being readable, so the longer levels step the type down. */
+.prompt .src.long { font-size: clamp(1.12rem,3.6vw,1.45rem); line-height: 1.95; max-width: 42ch; }
+.prompt .ask .ar-inline { font-family: var(--f-ar); font-size: 1.05em; letter-spacing: 0;
+  text-transform: none; unicode-bidi: isolate; }
+.rev-row .q-lev { font-size: .58rem; font-weight: 700; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--lilac-dim); }
 .prompt .src-en { font-family: var(--f-serif); font-style: italic; font-size: clamp(1.3rem,4.5vw,2rem);
   color: var(--white); line-height: 1.4; margin: 0; max-width: 34ch; }
 .prompt .lit { font-size: .85rem; color: var(--lilac-dim); margin: 0; }
@@ -1509,7 +1516,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 27 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 28 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -2806,130 +2813,333 @@ const SUBTITLE = [
     why: "Two clauses, two short sentences. When the Arabic is already tight, resist the urge to expand it." }
 ];
 
-/* ═══════════ THE BOOTH · by genre ═══════════
-   An interpreter does not work in general; they work in a setting, and
-   the setting decides the vocabulary. These are the six an Arabic-English
-   interpreter actually sits in, each with the terms that recur in it.
+/* ═══════════ THE BOOTH · settings and levels ═══════════
+   Two things an interpreter is never asked to do: work in general, and
+   work in single words. So the Booth asks which setting first, and then
+   climbs — terms, phrases, whole sentences, a full turn of speech. You
+   would not be hired to render one noun at a time.
 
-   Every equivalent here is the established one for its field — the name
-   an institution goes by, the term a court or a hospital uses — not a
-   rendering invented for this site. Where a phrase has more than one
-   accepted English form, all of them are accepted.
+   Every English equivalent here is the established one for its field:
+   what an institution is called, what a court, a clinic or a newsroom
+   actually says. Nothing is invented for the site, and where more than
+   one rendering is accepted, all of them pass.
 
-   Community and liaison is where the courtesy formulas belong: they are
-   real interpreting problems in a clinic or an office, and nowhere else.
+   A long item is not marked on an exact match, which nobody achieves
+   under a clock. It carries the content words it must contain, and
+   getting most of them through is what a booth actually asks of you.
    ══════════════════════════════════════════════════════════════════ */
+const BOOTH_LEVELS = [
+  { key: "terms", en: "Terms", ar: "مصطلحات", take: 3, secs: 4,
+    say: "One term at a time. This is vocabulary, not yet interpreting." },
+  { key: "phrases", en: "Phrases", ar: "عبارات", take: 3, secs: 6,
+    say: "Chunks, the way they actually arrive — verb and object together." },
+  { key: "sentences", en: "Sentences", ar: "جُمَل", take: 3, secs: 10,
+    say: "A whole sentence. Get the meaning through; the words are yours." },
+  { key: "turns", en: "Full turns", ar: "أدوار كاملة", take: 2, secs: 16,
+    say: "What a speaker really gives you before pausing. Hold it, then render it." }
+];
+
 const BOOTH_GENRES = [
   {
     id: "diplomatic", en: "Diplomatic and political", ar: "سياسي ودبلوماسي",
     hint: "Titles, institutions and the careful verbs of a communiqué.",
     icon: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15 0 18M12 3c-2.5 2.6-2.5 15 0 18"/>',
-    items: [
+    terms: [
       { ar: "مجلس الأمن", ok: ["the security council", "security council"] },
       { ar: "الأمين العام", ok: ["the secretary general", "secretary-general", "secretary general"] },
       { ar: "وقف إطلاق النار", ok: ["ceasefire", "a ceasefire", "cease-fire", "truce"] },
       { ar: "مذكّرة تفاهم", ok: ["memorandum of understanding", "mou", "a memorandum of understanding"] },
       { ar: "المجتمع الدولي", ok: ["the international community", "international community"] },
       { ar: "صاحب السموّ", ok: ["his highness", "highness"] },
-      { ar: "سعادة السفير", ok: ["his excellency the ambassador", "the ambassador", "his excellency"] },
-      { ar: "الجلسة الافتتاحية", ok: ["the opening session", "opening session", "the inaugural session"] },
-      { ar: "على هامش الاجتماعات", ok: ["on the sidelines of the meetings", "on the sidelines", "on the margins"] },
       { ar: "السيادة الوطنية", ok: ["national sovereignty", "sovereignty"] },
-      { ar: "العلاقات الثنائية", ok: ["bilateral relations", "bilateral ties"] },
+      { ar: "العلاقات الثنائية", ok: ["bilateral relations", "bilateral ties"] }
+    ],
+    phrases: [
+      { ar: "على هامش الاجتماعات", ok: ["on the sidelines of the meetings", "on the sidelines", "on the margins of the meetings"] },
+      { ar: "بحث سبل تعزيز التعاون", ok: ["discussed ways of strengthening cooperation", "discussed ways to strengthen cooperation", "reviewed ways of boosting cooperation"] },
+      { ar: "أعرب عن قلقه البالغ", ok: ["expressed his deep concern", "expressed deep concern", "voiced grave concern"] },
+      { ar: "دعا إلى ضبط النفس", ok: ["called for restraint", "called for self restraint", "urged restraint"] },
+      { ar: "رحّب بالوفد الزائر", ok: ["welcomed the visiting delegation", "welcomed the delegation"] },
       { ar: "التدخّل في الشؤون الداخلية", ok: ["interference in internal affairs", "interference in domestic affairs", "interference in the internal affairs"] }
+    ],
+    sentences: [
+      { ar: "رحّب بالوفد الزائر وأشاد بجهوده.", ok: ["He welcomed the visiting delegation and praised its efforts."],
+        keys: ["welcom", "delegation", "efforts"] },
+      { ar: "تدعم الكويت الجهود الرامية إلى تسوية النزاع.", ok: ["Kuwait supports efforts to settle the dispute."],
+        keys: ["kuwait", "support", "settle", "dispute"] },
+      { ar: "ندعو جميع الأطراف إلى ضبط النفس.", ok: ["We call on all parties to exercise restraint."],
+        keys: ["call", "all parties", "restraint"] },
+      { ar: "تمّ التوقيع على مذكّرة تفاهم بين البلدين.", ok: ["A memorandum of understanding was signed between the two countries."],
+        keys: ["memorandum", "signed", "two countries"] },
+      { ar: "تؤكّد الكويت دعمها الكامل للجهود الدولية.", ok: ["Kuwait affirms its full support for international efforts."],
+        keys: ["kuwait", "support", "international"] },
+      { ar: "شكر صاحب السموّ الوفود المشاركة.", ok: ["His Highness thanked the participating delegations."],
+        keys: ["highness", "thank", "delegation"] }
+    ],
+    turns: [
+      { ar: "وأعرب الجانبان عن ارتياحهما لمستوى التعاون القائم، واتفقا على مواصلة المشاورات.",
+        ok: ["The two sides expressed satisfaction with the level of cooperation and agreed to continue consultations."],
+        keys: ["two sides", "satisf", "cooperation", "continue", "consultation"] },
+      { ar: "ودعا المجتمع الدولي إلى تحمّل مسؤولياته وتقديم المساعدات العاجلة للمتضرّرين.",
+        ok: ["He called on the international community to shoulder its responsibilities and provide urgent aid to those affected."],
+        keys: ["international community", "responsibilit", "urgent", "aid", "affected"] },
+      { ar: "أكّد سموّه في كلمته أنّ بلاده تدعم الحلول السلمية، وتدعو إلى حوار جادّ بين جميع الأطراف.",
+        ok: ["In his address, His Highness affirmed that his country supports peaceful solutions and calls for serious dialogue between all parties."],
+        keys: ["highness", "address", "peaceful", "dialogue", "parties"] },
+      { ar: "وأشار إلى أنّ العلاقات بين البلدين تشهد تطوّراً ملحوظاً في مختلف المجالات.",
+        ok: ["He noted that relations between the two countries are developing markedly in various fields."],
+        keys: ["relations", "two countries", "develop", "fields"] }
     ]
   },
   {
     id: "legal", en: "Legal and court", ar: "قانوني وقضائي",
     hint: "Court Arabic, where an approximate word is a professional failure.",
     icon: '<path d="M12 4v16M7 20h10M5 8h14M7 8l-2.5 5a3 3 0 0 0 5 0L7 8zM17 8l-2.5 5a3 3 0 0 0 5 0L17 8z"/>',
-    items: [
+    terms: [
       { ar: "النيابة العامة", ok: ["the public prosecution", "public prosecution", "the prosecution", "the public prosecutor"] },
       { ar: "المدّعى عليه", ok: ["the defendant", "defendant", "the accused"] },
       { ar: "الشاهد", ok: ["the witness", "witness"] },
-      { ar: "الإفادة", ok: ["the statement", "statement", "testimony", "the testimony"] },
-      { ar: "حكم غيابي", ok: ["a judgment in absentia", "judgment in absentia", "judgement in absentia", "in absentia"] },
-      { ar: "البراءة", ok: ["acquittal", "an acquittal", "not guilty"] },
       { ar: "الاستئناف", ok: ["appeal", "an appeal", "the appeal"] },
-      { ar: "محكمة الاستئناف", ok: ["the court of appeal", "court of appeal", "the appeal court", "appellate court"] },
+      { ar: "البراءة", ok: ["acquittal", "an acquittal", "not guilty"] },
+      { ar: "حكم غيابي", ok: ["a judgment in absentia", "judgment in absentia", "judgement in absentia", "in absentia"] },
       { ar: "توكيل رسمي", ok: ["a power of attorney", "power of attorney"] },
-      { ar: "أداء اليمين", ok: ["taking the oath", "the oath", "to swear an oath", "swearing in"] },
-      { ar: "الحبس الاحتياطي", ok: ["pre trial detention", "pretrial detention", "remand in custody", "remand"] },
+      { ar: "الحبس الاحتياطي", ok: ["pre trial detention", "pretrial detention", "remand in custody", "remand"] }
+    ],
+    phrases: [
+      { ar: "أمام محكمة الاستئناف", ok: ["before the court of appeal", "before the appeal court", "in the court of appeal"] },
+      { ar: "بناءً على طلب الدفاع", ok: ["at the request of the defence", "at the request of the defense", "on the application of the defence"] },
+      { ar: "أداء اليمين القانونية", ok: ["taking the legal oath", "taking the oath", "swearing the oath"] },
+      { ar: "إخلاء سبيل بكفالة", ok: ["release on bail", "released on bail", "bail"] },
+      { ar: "صدر الحكم بالإجماع", ok: ["the judgment was issued unanimously", "the judgement was unanimous", "the verdict was unanimous"] },
       { ar: "عقد إيجار", ok: ["a lease", "lease", "a tenancy agreement", "rental contract"] }
+    ],
+    sentences: [
+      { ar: "أطلب من المحكمة إخلاء سبيل موكّلي بكفالة.", ok: ["I ask the court to release my client on bail."],
+        keys: ["court", "release", "client", "bail"] },
+      { ar: "رُفض الاستئناف لعدم كفاية الأدلة.", ok: ["The appeal was rejected for lack of evidence."],
+        keys: ["appeal", "reject", "evidence"] },
+      { ar: "من حقّك أن تستعين بمحامٍ.", ok: ["You have the right to a lawyer."],
+        keys: ["right", "lawyer"] },
+      { ar: "تؤجّل المحكمة الجلسة إلى الأسبوع القادم.", ok: ["The court adjourns the hearing until next week."],
+        keys: ["court", "adjourn", "next week"] },
+      { ar: "قرّرت المحكمة براءة المتّهم.", ok: ["The court found the defendant not guilty."],
+        keys: ["court", "not guilty", "defendant"] },
+      { ar: "هل تقسم أن تقول الحقّ وكلّ الحقّ؟", ok: ["Do you swear to tell the truth, the whole truth?"],
+        keys: ["swear", "truth", "whole truth"] }
+    ],
+    turns: [
+      { ar: "يرجى إبلاغ المتّهم بأنّ من حقّه التزام الصمت، وأنّ كلّ ما يقوله قد يُستخدم ضدّه.",
+        ok: ["Please inform the defendant that he has the right to remain silent, and that anything he says may be used against him."],
+        keys: ["defendant", "right", "silent", "used against"] },
+      { ar: "قرّرت المحكمة تأجيل النظر في الدعوى لحين ورود تقرير الخبير المنتدب.",
+        ok: ["The court decided to adjourn the case until the appointed expert's report is received."],
+        keys: ["court", "adjourn", "case", "expert", "report"] },
+      { ar: "أرجو من المترجم أن ينقل للشاهد أنّ عليه الإجابة بنعم أو لا فقط.",
+        ok: ["Please tell the witness through the interpreter that he must answer yes or no only."],
+        keys: ["witness", "interpreter", "answer", "yes or no"] },
+      { ar: "قضت المحكمة بحبس المتّهم سنةً مع إيقاف التنفيذ، وألزمته بدفع الرسوم.",
+        ok: ["The court sentenced the defendant to one year suspended and ordered him to pay the costs."],
+        keys: ["court", "sentenc", "one year", "suspended", "costs"] }
     ]
   },
   {
     id: "media", en: "Journalistic and media", ar: "إعلامي وصحفي",
     hint: "The register of a bulletin: attribution, hedging and speed.",
     icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h6M7 13h6M7 16h4M16 9h2M16 13h2"/>',
-    items: [
+    terms: [
       { ar: "مؤتمر صحفي", ok: ["a press conference", "press conference", "news conference"] },
       { ar: "بيان صحفي", ok: ["a press release", "press release", "a statement"] },
       { ar: "مصدر مسؤول", ok: ["an official source", "official source", "a senior source"] },
       { ar: "وكالة الأنباء", ok: ["the news agency", "news agency", "the press agency"] },
-      { ar: "أفادت مصادر", ok: ["sources said", "sources reported", "according to sources", "sources say"] },
-      { ar: "نفت الوزارة", ok: ["the ministry denied", "the ministry has denied", "denied"] },
       { ar: "عاجل", ok: ["breaking", "breaking news", "urgent"] },
       { ar: "تغطية حيّة", ok: ["live coverage", "live"] },
       { ar: "افتتاحية", ok: ["an editorial", "editorial", "a leader"] },
-      { ar: "تصريحات للصحفيين", ok: ["remarks to reporters", "comments to journalists", "speaking to reporters", "statements to the press"] },
       { ar: "حصيلة الضحايا", ok: ["the death toll", "death toll", "the casualty toll", "the toll"] }
+    ],
+    phrases: [
+      { ar: "أفادت مصادر مطّلعة", ok: ["well informed sources said", "informed sources said", "sources familiar with the matter said"] },
+      { ar: "نفت الوزارة هذه الأنباء", ok: ["the ministry denied these reports", "the ministry has denied the reports", "the ministry denied the news"] },
+      { ar: "في تصريح للصحفيين", ok: ["in remarks to reporters", "speaking to reporters", "in comments to journalists"] },
+      { ar: "نقلاً عن وكالة الأنباء", ok: ["citing the news agency", "quoting the news agency", "according to the news agency"] },
+      { ar: "لم يصدر تعليق رسمي بعد", ok: ["there has been no official comment yet", "no official comment has been issued", "there is no official comment so far"] }
+    ],
+    sentences: [
+      { ar: "لم يتسنَّ لنا التحقّق من صحّة هذه المعلومات.", ok: ["We have not been able to verify this information."],
+        keys: ["not", "verify", "information"] },
+      { ar: "سنوافيكم بالتفاصيل فور ورودها.", ok: ["We will bring you the details as soon as they come in."],
+        keys: ["details", "as soon as"] },
+      { ar: "سيعقد الوزير مؤتمراً صحفياً بعد قليل.", ok: ["The minister will hold a press conference shortly."],
+        keys: ["minister", "press conference", "shortly"] },
+      { ar: "أكّدت المصادر أنّ الاجتماع تأجّل إلى الغد.", ok: ["Sources confirmed that the meeting has been postponed until tomorrow."],
+        keys: ["sources", "meeting", "postpone", "tomorrow"] },
+      { ar: "ارتفعت حصيلة المصابين إلى عشرين شخصاً.", ok: ["The number of injured has risen to twenty."],
+        keys: ["injured", "risen", "twenty"] },
+      { ar: "ننقل لكم الآن تغطية حيّة من مكان الحدث.", ok: ["We bring you live coverage now from the scene."],
+        keys: ["live", "coverage", "scene"] }
+    ],
+    turns: [
+      { ar: "وقال المراسل إنّ الأوضاع في المنطقة لا تزال متوتّرة، وإنّ فرق الإنقاذ تواصل عملها منذ الصباح.",
+        ok: ["The correspondent said that the situation in the area remains tense and that rescue teams have been working since the morning."],
+        keys: ["correspondent", "situation", "tense", "rescue", "morning"] },
+      { ar: "ونقلت الصحيفة عن مسؤول لم تكشف عن هويته قوله إنّ القرار لم يُتّخذ بعد.",
+        ok: ["The newspaper quoted an unnamed official as saying that the decision has not yet been taken."],
+        keys: ["newspaper", "official", "decision", "not yet"] },
+      { ar: "وذكرت الوكالة نقلاً عن مصدر مسؤول أنّ المحادثات ستُستأنف الأسبوع المقبل دون تحديد موعد نهائي.",
+        ok: ["The agency, citing an official source, reported that the talks will resume next week without a final date being set."],
+        keys: ["agency", "official source", "talks", "resume", "next week"] },
+      { ar: "وأضاف المتحدّث أنّ الوزارة تتابع الوضع عن كثب وستصدر بياناً في وقت لاحق اليوم.",
+        ok: ["The spokesperson added that the ministry is following the situation closely and will issue a statement later today."],
+        keys: ["spokes", "ministry", "closely", "statement", "later today"] }
     ]
   },
   {
     id: "medical", en: "Medical", ar: "طبّي",
     hint: "A clinic, where a guessed word can change what a patient agrees to.",
     icon: '<path d="M4 12h3l2-5 3 10 2.5-6 1.5 3h4"/><rect x="2.5" y="4.5" width="19" height="15" rx="3"/>',
-    items: [
+    terms: [
       { ar: "ضغط الدم", ok: ["blood pressure"] },
       { ar: "التاريخ المرضي", ok: ["medical history", "the medical history", "patient history"] },
       { ar: "الأعراض", ok: ["the symptoms", "symptoms"] },
       { ar: "التشخيص", ok: ["the diagnosis", "diagnosis"] },
       { ar: "قسم الطوارئ", ok: ["the emergency department", "emergency department", "a and e", "the er", "casualty"] },
-      { ar: "عيادة خارجية", ok: ["outpatient clinic", "an outpatient clinic", "outpatients"] },
       { ar: "موافقة مستنيرة", ok: ["informed consent", "consent"] },
       { ar: "الجرعة", ok: ["the dose", "dose", "the dosage", "dosage"] },
-      { ar: "حساسية من الدواء", ok: ["a drug allergy", "drug allergy", "allergic to the medicine", "an allergy to the drug"] },
-      { ar: "تحاليل الدم", ok: ["blood tests", "blood test", "blood work"] },
-      { ar: "الصيام قبل التحليل", ok: ["fasting before the test", "fast before the test", "nil by mouth before the test"] },
       { ar: "الأعراض الجانبية", ok: ["side effects", "the side effects", "adverse effects"] }
+    ],
+    phrases: [
+      { ar: "على معدة فارغة", ok: ["on an empty stomach", "before food", "nil by mouth"] },
+      { ar: "مرّتين في اليوم بعد الأكل", ok: ["twice a day after food", "twice daily after meals", "two times a day after eating"] },
+      { ar: "هل لديك حساسية من أي دواء؟", ok: ["do you have any drug allergies", "are you allergic to any medication", "any allergies to medicines"] },
+      { ar: "سنجري بعض الفحوصات", ok: ["we will run some tests", "we are going to do some tests", "well do some tests"] },
+      { ar: "منذ متى وأنت تشعر بهذا؟", ok: ["how long have you been feeling this", "how long has this been going on", "how long have you had this"] }
+    ],
+    sentences: [
+      { ar: "سأقيس لك ضغط الدم الآن.", ok: ["I am going to take your blood pressure now."],
+        keys: ["blood pressure", "now"] },
+      { ar: "هل سبق أن أجريت عملية جراحية؟", ok: ["Have you ever had an operation?"],
+        keys: ["ever", "operation"] },
+      { ar: "أين يؤلمك بالضبط؟", ok: ["Where exactly does it hurt?"],
+        keys: ["where", "hurt"] },
+      { ar: "هل تتناول أي أدوية حالياً؟", ok: ["Are you taking any medication at the moment?"],
+        keys: ["taking", "medic"] },
+      { ar: "سنحتاج إلى موافقتك قبل إجراء العملية.", ok: ["We will need your consent before the operation."],
+        keys: ["consent", "before", "operation"] },
+      { ar: "ستظهر النتائج خلال يومين.", ok: ["The results will be ready within two days."],
+        keys: ["results", "two days"] }
+    ],
+    turns: [
+      { ar: "سيصف لك الطبيب مضادّاً حيوياً لمدة خمسة أيام، ويجب أن تكمل العلاج حتى لو تحسّنت.",
+        ok: ["The doctor will prescribe you an antibiotic for five days, and you must finish the course even if you feel better."],
+        keys: ["doctor", "antibiotic", "five days", "finish", "better"] },
+      { ar: "نحتاج إلى عيّنة دم وعيّنة بول، ويمكنك تناول الطعام بعد السحب مباشرة.",
+        ok: ["We need a blood sample and a urine sample, and you can eat straight after they are taken."],
+        keys: ["blood", "urine", "sample", "eat", "after"] },
+      { ar: "يريد الطبيب أن يوضّح لك أنّ العملية بسيطة، لكن لها بعض المخاطر، ولن نبدأ قبل أن توافق.",
+        ok: ["The doctor wants to explain that the operation is straightforward, but it carries some risks, and we will not begin until you consent."],
+        keys: ["doctor", "operation", "risk", "not begin", "consent"] },
+      { ar: "تقول المريضة إنّ الألم بدأ قبل ثلاثة أيام، ويزداد في الليل، ولم تأخذ أي دواء حتى الآن.",
+        ok: ["The patient says the pain started three days ago, gets worse at night, and she has not taken any medication so far."],
+        keys: ["pain", "three days", "worse at night", "not taken", "medic"] }
     ]
   },
   {
     id: "conference", en: "Conference and academic", ar: "مؤتمرات وأكاديمي",
     hint: "The furniture of a programme and a paper, which recurs everywhere.",
     icon: '<path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M7 10.5V15c0 1.5 2.5 3 5 3s5-1.5 5-3v-4.5M21 8v5"/>',
-    items: [
+    terms: [
       { ar: "جدول الأعمال", ok: ["the agenda", "agenda"] },
       { ar: "ورقة بحثية", ok: ["a research paper", "research paper", "a paper"] },
       { ar: "الملخّص", ok: ["the abstract", "abstract", "the summary"] },
       { ar: "المنهجية", ok: ["the methodology", "methodology", "the method"] },
-      { ar: "الجلسة النقاشية", ok: ["the panel", "the panel session", "panel discussion", "the discussion session"] },
-      { ar: "المتحدّث الرئيسي", ok: ["the keynote speaker", "keynote speaker", "the keynote"] },
-      { ar: "فترة الأسئلة", ok: ["the question and answer session", "q and a", "questions", "the q&a"] },
       { ar: "محضر الاجتماع", ok: ["the minutes", "minutes of the meeting", "the minutes of the meeting"] },
+      { ar: "مراجعة الأقران", ok: ["peer review", "peer reviewed", "peer-review"] },
       { ar: "عيّنة الدراسة", ok: ["the study sample", "the sample", "sample"] },
-      { ar: "النتائج والتوصيات", ok: ["findings and recommendations", "the findings and recommendations", "results and recommendations"] },
-      { ar: "مراجعة الأقران", ok: ["peer review", "peer reviewed", "peer-review"] }
+      { ar: "المتحدّث الرئيسي", ok: ["the keynote speaker", "keynote speaker", "the keynote"] }
+    ],
+    phrases: [
+      { ar: "ننتقل إلى البند التالي", ok: ["we move to the next item", "moving on to the next item", "we turn to the next item"] },
+      { ar: "نفتح باب الأسئلة", ok: ["we open the floor to questions", "we will take questions", "questions are now open"] },
+      { ar: "مع خالص الشكر للمنظّمين", ok: ["with sincere thanks to the organisers", "with sincere thanks to the organizers", "our thanks to the organisers"] },
+      { ar: "في الجلسة الصباحية", ok: ["in the morning session", "during the morning session"] },
+      { ar: "تهدف هذه الدراسة إلى", ok: ["this study aims to", "the aim of this study is to", "this study sets out to"] }
+    ],
+    sentences: [
+      { ar: "سنأخذ استراحة قصيرة لمدة خمس عشرة دقيقة.", ok: ["We will take a short break of fifteen minutes."],
+        keys: ["break", "fifteen"] },
+      { ar: "يُرجى تسليم الملخّصات قبل نهاية الشهر.", ok: ["Abstracts should be submitted before the end of the month."],
+        keys: ["abstract", "submit", "end of the month"] },
+      { ar: "يسعدني أن أرحّب بكم في افتتاح المؤتمر.", ok: ["I am pleased to welcome you to the opening of the conference."],
+        keys: ["pleased", "welcome", "opening", "conference"] },
+      { ar: "سيتحدّث المتحدّث الرئيسي لمدة عشرين دقيقة.", ok: ["The keynote speaker will speak for twenty minutes."],
+        keys: ["keynote", "twenty minutes"] },
+      { ar: "نرجو من الحضور إغلاق الهواتف المحمولة.", ok: ["We ask the audience to switch off their mobile phones."],
+        keys: ["audience", "switch off", "phones"] },
+      { ar: "ستُنشر الأوراق في عدد خاص من المجلة.", ok: ["The papers will be published in a special issue of the journal."],
+        keys: ["papers", "published", "special issue", "journal"] }
+    ],
+    turns: [
+      { ar: "اعتمدت الدراسة على منهج وصفي تحليلي، وقُسّمت العيّنة إلى مجموعتين متساويتين.",
+        ok: ["The study used a descriptive analytical method, and the sample was divided into two equal groups."],
+        keys: ["study", "descriptive", "method", "sample", "divided"] },
+      { ar: "أودّ أن أذكّر المتحدّثين بالالتزام بالوقت المحدّد، حتى نتمكّن من إتاحة فرصة كافية للنقاش.",
+        ok: ["I would like to remind speakers to keep to the time allotted, so that we can allow enough opportunity for discussion."],
+        keys: ["remind", "speakers", "time", "enough", "discussion"] },
+      { ar: "تناولت هذه الورقة أثر السياق الثقافي في اختيار المكافئ، واعتمدت على عيّنة من مئة نصّ مترجم.",
+        ok: ["This paper examined the effect of cultural context on the choice of equivalent, drawing on a sample of one hundred translated texts."],
+        keys: ["paper", "cultural context", "equivalent", "sample", "hundred"] },
+      { ar: "قبل أن نفتح باب الأسئلة، أودّ أن أشكر اللجنة المنظّمة وجميع الزملاء الذين راجعوا الأوراق.",
+        ok: ["Before we open the floor to questions, I would like to thank the organising committee and all the colleagues who reviewed the papers."],
+        keys: ["before", "questions", "thank", "committee", "review"] }
     ]
   },
   {
     id: "community", en: "Community and liaison", ar: "مجتمعي ومُرافِق",
     hint: "A clinic desk, a school, an office. Formulas with no English words and exact English functions.",
     icon: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9.5" r="2.4"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M15.5 19c.4-2 1.5-3.3 3-3.5"/>',
-    items: [
+    terms: [
       { ar: "صباح الخير", ok: ["good morning", "morning"] },
       { ar: "تفضّل", ok: ["here you go", "go ahead", "after you", "please", "help yourself", "here"] },
       { ar: "إن شاء اللّه", ok: ["hopefully", "god willing", "fingers crossed", "well see", "we'll see", "if all goes well"] },
       { ar: "يعطيك العافية", ok: ["thanks", "thank you", "well done", "nice work", "good work", "appreciate"] },
       { ar: "الحمد للّه", ok: ["thank god", "all good", "cant complain", "can't complain", "fine", "good", "not bad"] },
       { ar: "ولا يهمّك", ok: ["dont worry", "don't worry", "no worries", "no problem", "its fine", "it's fine", "all good"] },
-      { ar: "ما شاء اللّه", ok: ["wonderful", "lovely", "amazing", "beautiful", "how lovely", "god bless", "bless"] },
       { ar: "اللّه أعلم", ok: ["who knows", "no idea", "god knows", "your guess", "hard to say"] },
-      { ar: "بسيطة", ok: ["no big deal", "its fine", "it's fine", "easy", "no problem", "dont worry", "don't worry"] },
-      { ar: "خلاص", ok: ["enough", "thats it", "that's it", "done", "stop", "forget it", "finished", "ok"] },
-      { ar: "أبشِر", ok: ["you got it", "consider it done", "done", "right away", "will do", "on it", "sure"] },
       { ar: "مع السلامة", ok: ["goodbye", "bye", "take care", "see you"] }
+    ],
+    phrases: [
+      { ar: "لحظة من فضلك", ok: ["one moment please", "just a moment", "one second please", "hold on please"] },
+      { ar: "خذ رقماً وانتظر دورك", ok: ["take a number and wait your turn", "take a ticket and wait your turn", "take a number and wait"] },
+      { ar: "المكتب مغلق اليوم", ok: ["the office is closed today", "the office is shut today"] },
+      { ar: "تعال بكرة الصبح", ok: ["come back tomorrow morning", "come tomorrow morning", "come in tomorrow morning"] },
+      { ar: "ما عندي مانع", ok: ["i have no objection", "thats fine by me", "i dont mind", "i have no problem with that"] }
+    ],
+    sentences: [
+      { ar: "هل تفضّل أن نتحدّث بالعربية أم بالإنجليزية؟", ok: ["Would you rather we spoke in Arabic or in English?"],
+        keys: ["arabic", "english"] },
+      { ar: "أحضر معك الهوية وصورة عنها.", ok: ["Bring your ID and a copy of it with you."],
+        keys: ["bring", "id", "copy"] },
+      { ar: "هل تحتاج إلى مترجم؟", ok: ["Do you need an interpreter?"],
+        keys: ["need", "interpreter"] },
+      { ar: "من فضلك املأ هذه الاستمارة.", ok: ["Please fill in this form."],
+        keys: ["fill", "form"] },
+      { ar: "سأشرح لك الإجراءات خطوة بخطوة.", ok: ["I will explain the procedure to you step by step."],
+        keys: ["explain", "procedure", "step by step"] },
+      { ar: "لا تقلق، سنساعدك.", ok: ["Don't worry, we will help you."],
+        keys: ["worry", "help"] }
+    ],
+    turns: [
+      { ar: "يقول إنه انتظر ساعتين، ويرجو أن يُنظر في طلبه اليوم لأنه يسافر غداً.",
+        ok: ["He says he has waited two hours and asks for his application to be looked at today because he is travelling tomorrow."],
+        keys: ["waited", "two hours", "today", "travel", "tomorrow"] },
+      { ar: "أبلغيها من فضلك أنّ الموعد تغيّر إلى يوم الأحد الساعة التاسعة صباحاً، وأنّ عليها إحضار التقرير.",
+        ok: ["Please tell her that the appointment has changed to Sunday at nine in the morning, and that she must bring the report."],
+        keys: ["appointment", "changed", "sunday", "nine", "report"] },
+      { ar: "تقول إنها حضرت أمس ولم تجد أحداً في المكتب، وتريد أن تعرف متى يمكنها أن تعود.",
+        ok: ["She says she came yesterday and found nobody in the office, and she wants to know when she can come back."],
+        keys: ["yesterday", "nobody", "office", "when", "come back"] },
+      { ar: "يقول إنه لا يفهم الرسالة التي وصلته، ويطلب أن يشرحها له أحد باللغة العربية.",
+        ok: ["He says he does not understand the letter he received, and he is asking for someone to explain it to him in Arabic."],
+        keys: ["understand", "letter", "explain", "arabic"] }
     ]
   }
 ];
@@ -3715,7 +3925,7 @@ const ITEMS = [
     run: runSubtitle },
   { id: "booth", ar: "المَقصورة", en: "Interpreting", kind: "trial", section: "trials",
     subject: "الترجمة الفورية · Chapter 1",
-    blurb: "Choose your setting — diplomatic, legal, media, medical, conference or community — then sixty seconds of that field's language, arriving faster than you can think.",
+    blurb: "Choose your setting — diplomatic, legal, media, medical, conference or community — then climb from single terms to a full turn of speech, against a clock. Nothing repeats.",
     run: runBooth },
   { id: "colloc", ar: "التَّلازُم اللَّفظيّ", en: "Collocation", kind: "trial", section: "trials",
     subject: "التلازم اللفظي · Chapter 7",
@@ -6324,8 +6534,16 @@ function runSubtitle() {
 
 /* ═══════════ THE BOOTH ═══════════
    An interpreter is booked for a setting, not for a language, so the
-   Booth asks which setting before it starts the clock. The genre decides
-   the vocabulary, and the mark is the same whichever one you sit in. */
+   Booth asks which setting before it starts the clock — and then climbs
+   from terms to a full turn of speech, because nobody is hired to render
+   one noun at a time.
+
+   Two rules the old booth broke. Nothing repeats inside a round: when
+   the queue is finished the round is finished, rather than wrapping back
+   to the top and serving the same term twice. And nothing that was
+   served last time is served first this time, so a second round is a
+   different round.
+   ══════════════════════════════════════════════════════════════════ */
 let boothTimer = null;
 function stopBooth() { if (boothTimer) { clearInterval(boothTimer); boothTimer = null; } }
 
@@ -6335,26 +6553,70 @@ function lastGenre() {
   return BOOTH_GENRES.some(g => g.id === id) ? id : null;
 }
 
-function runBooth() {
-  stopBooth();
-  chooseGenre();
+/* What this member was given last time, per setting, so the next round
+   reaches for something else first. */
+function boothSeen(genreId) {
+  if (!state.boothSeen || typeof state.boothSeen !== "object") state.boothSeen = {};
+  if (!Array.isArray(state.boothSeen[genreId])) state.boothSeen[genreId] = [];
+  return state.boothSeen[genreId];
 }
+function rememberServed(genreId, list) {
+  const seen = boothSeen(genreId);
+  list.forEach(i => { if (seen.indexOf(i.ar) < 0) seen.push(i.ar); });
+  /* Once a setting has been worked right through, start the cycle again
+     rather than running out of material. */
+  const total = BOOTH_LEVELS.reduce((n, L) => n + (boothGenre(genreId)[L.key] || []).length, 0);
+  if (seen.length >= total) state.boothSeen[genreId] = list.map(i => i.ar);
+  save();
+}
+
+function shuffled(a) { return a.slice().sort(() => Math.random() - 0.5); }
+
+/* One round: a few of each level, in order, none of them repeated, and
+   the ones this member has not met yet taken first. */
+function buildRound(genre) {
+  const seen = boothSeen(genre.id);
+  const out = [];
+  BOOTH_LEVELS.forEach(L => {
+    const pool = genre[L.key] || [];
+    const fresh = shuffled(pool.filter(i => seen.indexOf(i.ar) < 0));
+    const rest = shuffled(pool.filter(i => seen.indexOf(i.ar) >= 0));
+    fresh.concat(rest).slice(0, L.take).forEach(i => out.push(Object.assign({ level: L }, i)));
+  });
+  return out;
+}
+
+/* A long item is never marked on an exact match — nobody produces one
+   under a clock, and an interpreter is not judged on wording. It carries
+   the content it must get across, and most of it through is a pass. */
+function boothHit(item, input) {
+  if (item.keys && item.keys.length) {
+    const a = norm(input);
+    if (a.length < 4) return false;
+    const got = item.keys.filter(k => a.indexOf(norm(k)) >= 0).length;
+    return got >= Math.ceil(item.keys.length * 0.7);
+  }
+  return loose(input, item.ok);
+}
+
+function runBooth() { stopBooth(); chooseGenre(); }
 
 function chooseGenre() {
   stopBooth();
   stage.innerHTML = "";
-  setCount("Six settings · sixty seconds");
+  setCount("Six settings · four levels");
   setDots(0, 0, 0);
 
   stage.appendChild(el("p", "lede",
-    "Nobody interprets in general. You are booked for a <b>setting</b>, and the setting decides the " +
-    "vocabulary: a word that serves in a clinic will not serve in a courtroom, and the terms that " +
-    "recur in a communiqué never come up at a hospital desk. Choose where you are sitting, and the " +
-    "booth gives you sixty seconds of that language."));
+    "Nobody interprets in general, and nobody is hired to render one noun at a time. Choose the " +
+    "<b>setting</b> you are sitting in &mdash; it decides the vocabulary &mdash; and the booth climbs " +
+    "from single terms to a full turn of speech. Nothing repeats inside a round, and what you were " +
+    "given last time is not what you are given first this time."));
 
   const last = lastGenre();
   const grid = el("div", "genre-grid");
   BOOTH_GENRES.forEach(g => {
+    const n = BOOTH_LEVELS.reduce((t, L) => t + (g[L.key] || []).length, 0);
     const b = el("button", "genre" + (last === g.id ? " last" : ""));
     b.innerHTML =
       '<span class="g-icon" aria-hidden="true"><svg viewBox="0 0 24 24">' + g.icon + '</svg></span>' +
@@ -6363,23 +6625,18 @@ function chooseGenre() {
         '<span class="g-ar" dir="rtl" lang="ar">' + g.ar + '</span>' +
         '<span class="g-hint">' + g.hint + '</span>' +
       '</span>' +
-      '<span class="g-n">' + g.items.length + ' terms</span>';
-    b.addEventListener("click", () => {
-      state.genre = g.id; save();
-      boothRound(g);
-    });
+      '<span class="g-n">' + n + ' items</span>';
+    b.addEventListener("click", () => { state.genre = g.id; save(); boothRound(g); });
     grid.appendChild(b);
   });
   stage.appendChild(grid);
 
-  stage.appendChild(el("p", "note",
-    "The mark is the same in every setting &mdash; six through in sixty seconds. " +
-    "Which one you sit in is a question of what you want to practise."));
+  const ladder = el("div", "verdict");
+  ladder.appendChild(el("span", "vh", "How a round climbs"));
+  ladder.appendChild(el("ul", "how", BOOTH_LEVELS.map(L =>
+    '<li><span><b>' + L.en + '</b> <i>' + L.ar + '</i> &mdash; ' + L.say + '</span></li>').join("")));
+  stage.appendChild(ladder);
 
-  /* The booth runs against a clock, which makes it simultaneous work.
-     Naming the modes here keeps the exercise honest about which one it
-     is training, and the two Arabic names are the ones the profession
-     uses. */
   const modes = el("div", "verdict");
   modes.appendChild(el("span", "vh", "Which mode this is"));
   modes.appendChild(el("p", "vb",
@@ -6395,22 +6652,29 @@ function chooseGenre() {
 
 function boothRound(genre) {
   stopBooth();
-  const DUR = 60, NEED = 6;
+  const queue = buildRound(genre);
+  if (!queue.length) { chooseGenre(); return; }
+
+  /* The clock is built from what is actually being asked: a term is not
+     a sentence, and a sentence is not a full turn. */
+  const DUR = queue.reduce((t, q) => t + q.level.secs, 0);
+  const NEED = Math.max(3, Math.round(queue.length * 0.55));
   let left = DUR, idx = 0, hits = 0, started = false;
-  const queue = genre.items.slice().sort(() => Math.random() - 0.5);
   const log = [];
+  rememberServed(genre.id, queue);
 
   stage.innerHTML = "";
-  setCount(genre.en + " · 60 seconds");
-  setDots(0, 0, 0);
+  setCount(genre.en + " · " + queue.length + " to render");
+  setDots(queue.length, 0, 0);
 
   const back = el("button", "link", "← Another setting");
   back.addEventListener("click", () => { stopBooth(); chooseGenre(); });
   stage.appendChild(back);
 
   const card = el("div", "prompt");
-  card.appendChild(el("p", "ask", "Type the natural English · Enter to send · Tab to pass"));
-  const phrase = el("p", "src", queue[0].ar);
+  const step = el("p", "ask", "");
+  card.appendChild(step);
+  const phrase = el("p", "src", "");
   card.appendChild(phrase);
   stage.appendChild(card);
 
@@ -6421,7 +6685,7 @@ function boothRound(genre) {
   typing.appendChild(inp);
 
   const gauge = el("div", "gauge");
-  const clock = el("span", "ok", "60s");
+  const clock = el("span", "ok", DUR + "s");
   const tally = el("span", null, "0 through");
   gauge.appendChild(clock); gauge.appendChild(tally);
   typing.appendChild(gauge);
@@ -6430,13 +6694,22 @@ function boothRound(genre) {
   typing.appendChild(bar);
   stage.appendChild(typing);
 
-  const feed = el("p", "note", "The clock starts the moment you type.");
+  const feed = el("p", "note", "The clock starts the moment you type. Enter to send, Tab to pass.");
   stage.appendChild(feed);
 
   function paint() {
-    const q = queue[idx % queue.length];
+    const q = queue[idx];
+    const long = q.level.key === "sentences" || q.level.key === "turns";
+    /* The Arabic sits last on the line. Put it in the middle and the
+       bidi algorithm pulls the number that follows it to the wrong
+       side of it. */
+    step.innerHTML = (idx + 1) + ' of ' + queue.length +
+      ' · Level ' + (BOOTH_LEVELS.indexOf(q.level) + 1) + ' · ' + q.level.en +
+      ' <span class="ar-inline" dir="rtl" lang="ar">' + q.level.ar + '</span>';
+    phrase.className = "src" + (long ? " long" : "");
     phrase.textContent = q.ar;
-    phrase.classList.remove("src"); void phrase.offsetWidth; phrase.classList.add("src");
+    void phrase.offsetWidth;
+    setDots(queue.length, idx, idx);
     inp.value = "";
   }
   function begin() {
@@ -6452,20 +6725,31 @@ function boothRound(genre) {
       if (left <= 0) end();
     }, 1000);
   }
+  function advance() {
+    idx++;
+    /* The queue does not wrap. When it is finished, so is the round. */
+    if (idx >= queue.length) { end(); return; }
+    paint();
+  }
   function send() {
-    const q = queue[idx % queue.length];
-    const hit = loose(inp.value, q.ok);
-    if (hit) { hits++; feed.innerHTML = '<b style="color:var(--mint)">✦ ' + q.ar + '</b> — through.'; }
-    else { feed.innerHTML = '<b style="color:var(--coral)">✧ ' + q.ar + '</b> — one good rendering: <b style="color:var(--white)">' + q.ok[0] + '</b>'; }
-    log.push({ src: q.ar, srcEn: false, hit: hit, best: q.ok[0] });
+    const q = queue[idx];
+    const hit = boothHit(q, inp.value);
+    if (hit) { hits++; feed.innerHTML = '<b style="color:var(--mint)">✦ through</b> &mdash; ' + q.ok[0]; }
+    else { feed.innerHTML = '<b style="color:var(--coral)">✧ missed</b> &mdash; one good rendering: <b style="color:var(--white)">' + q.ok[0] + '</b>'; }
+    log.push({ src: q.ar, hit: hit, best: q.ok[0], level: q.level.en });
     tally.textContent = hits + " through";
-    idx++; paint();
+    advance();
   }
 
   inp.addEventListener("input", begin);
   inp.addEventListener("keydown", e => {
     if (e.key === "Enter") { e.preventDefault(); begin(); send(); }
-    if (e.key === "Tab") { e.preventDefault(); begin(); idx++; paint(); }
+    if (e.key === "Tab") {
+      e.preventDefault(); begin();
+      const q = queue[idx];
+      log.push({ src: q.ar, hit: false, best: q.ok[0], level: q.level.en, passed: true });
+      advance();
+    }
   });
 
   function end() {
@@ -6476,11 +6760,11 @@ function boothRound(genre) {
     stage.innerHTML = "";
     setCount("Time");
     const sc = el("div", "score");
-    sc.appendChild(el("p", "tracked mag", "Sixty seconds · " + genre.en));
-    sc.appendChild(el("p", "tally", hits + '<small> through</small>'));
+    sc.appendChild(el("p", "tracked mag", genre.en + " · terms to full turns"));
+    sc.appendChild(el("p", "tally", hits + '<small> of ' + queue.length + '</small>'));
     sc.appendChild(el("p", "say", pass
-      ? "You kept up. That is the whole job of the booth."
-      : "The booth waits for nobody. Six through earns the mark."));
+      ? "You kept up, and not only on the single words. That is the whole job of the booth."
+      : "The booth waits for nobody. " + NEED + " through earns the mark."));
     if (pass) sc.appendChild(el("p", "earned", fresh ? "✦ Guild mark earned" : "✦ Mark already held"));
     else sc.appendChild(el("p", "note", hits + " through · " + NEED + " needed."));
 
@@ -6488,13 +6772,14 @@ function boothRound(genre) {
       const rev = el("div", "review");
       log.forEach(r => rev.appendChild(el("div", "rev-row " + (r.hit ? "hit" : "miss"),
         '<span class="g">' + (r.hit ? "✦" : "✧") + '</span><span class="q">' +
+        '<span class="q-lev">' + r.level + (r.passed ? " · passed" : "") + '</span>' +
         '<span class="q-src">' + r.src + '</span>' +
         '<span class="q-ans">natural: <b>' + r.best + '</b></span></span>')));
       sc.appendChild(rev);
     }
 
     const foot = el("div", "foot");
-    const again = el("button", "ghost", "Again, same setting");
+    const again = el("button", "ghost", "Again, new material");
     again.addEventListener("click", () => boothRound(genre));
     const other = el("button", "ghost", "Another setting");
     other.addEventListener("click", () => chooseGenre());
