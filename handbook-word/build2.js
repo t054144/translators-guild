@@ -169,7 +169,7 @@ const R = [
   'Eco, U. (2003). _Dire quasi la stessa cosa: Esperienze di traduzione_ [Saying almost the same thing: Experiences of translation]. Bompiani.',
   'Fairclough, N. (1992). _Discourse and social change_. Polity Press.',
   'Fairclough, N. (2003). _Analysing discourse: Textual analysis for social research_. Routledge.',
-  'Farghal, M., & Shunnaq, A. (1999). _Translation with reference to English and Arabic: A practical guide_. Dar Al-Hilal for Translation.',
+  'Farghal, M., & Shunnaq, A. T. (2011). _Translation with reference to English and Arabic: A practical guide_. Dar Al-Hilal for Translation. (Original work published 1999)',
   'Firth, J. R. (1957). A synopsis of linguistic theory, 1930–1955. In _Studies in linguistic analysis_ (pp. 1–32). Blackwell.',
   'Ghazala, H. (2008). _Translation as problems and solutions: A textbook for university students and trainee translators_ (Special ed.). Dar El-Ilm Lilmalayin.',
   'Jakobson, R. (1959). On linguistic aspects of translation. In R. A. Brower (Ed.), _On translation_ (pp. 232–239). Harvard University Press.',

@@ -20,7 +20,7 @@ module.exports = [
 
 ['h', 'Contributors'],
 ['p', '**Shaikhah Alkhaledi**, _editor and project coordinator_: planned and edited the handbook, contributed her study notes, designed the covers and the layout, and designed and developed the team’s website.'],
-['p', '**Loulwah Saeed**, _audiovisual translation_: provided the notes for Chapters 26 and 27.'],
+['p', '**Loulwah Bin Saeed**, _audiovisual translation_: provided the notes for Chapters 26 and 27.'],
 ['p', '**Masooma Almesri**, _terminology_: selected, with Samiuallah Mohammad, the material for Chapter 21.'],
 ['p', '**Samiuallah Mohammad**, _first draft and planning_: compiled the first draft, set out the plan, and provided the text analysis model (Chapter 17).'],
 
@@ -169,7 +169,7 @@ module.exports = [
 ['summary', ['Ask three questions first: **client, purpose, audience**.', 'Read the whole text at least twice before you translate.', 'Be faithful, write naturally, and always revise.']],
 
 ['ch', 'Chapter 3: English and Arabic: key differences'],
-['intro', 'You know how to prepare a translation. But English and Arabic work differently, and most beginners’ mistakes come from these differences. This chapter shows you the main ones, so you can avoid them (Farghal & Shunnaq, 1999; Ghazala, 2008).'],
+['intro', 'You know how to prepare a translation. But English and Arabic work differently, and most beginners’ mistakes come from these differences. This chapter shows you the main ones, so you can avoid them (Farghal & Shunnaq, 1999/2011; Ghazala, 2008).'],
 ['terms', [
   ['Word order', 'ترتيب الكلمات', 'The order of the subject, verb and object in a sentence.'],
   ['Verbal sentence', 'الجملة الفعلية', 'A sentence that starts with a verb.'],
@@ -337,7 +337,7 @@ module.exports = [
 ['p', '**EN → AR**'],
 ['ul', [
   '_close cooperation_ → {{تعاون وثيق}}; _a close friend_ → {{صديق مقرّب}}',
-  '_strong tea_ → {{شاي ثقيل}} (not {{شاي قوي}})',
+  '_strong tea_ → {{شاي ثقيل}} (not {{شاي قوي}}); _weak coffee_ → {{قهوة خفيفة}}; _a rough sea_ → {{بحر هائج}}',
   '_a fast colour_ → {{لون ثابت}}; _a fast friend_ → {{صديق وفيّ}}',
   '_break the law_ → {{يخالف القانون}} (more natural than {{يكسر القانون}})',
 ]],
@@ -386,6 +386,8 @@ module.exports = [
   '_It’s raining cats and dogs._ → {{تمطر بغزارة}}',
   '_to roll up one’s sleeves_ → {{شمّر عن ساعديه}}',
   '_over the moon_ → {{في قمّة السعادة}}',
+  '_He looks blue._ → {{يبدو حزيناً}}; _I will go bananas._ → {{سأفقد صوابي}}',
+  '_to be in the red_ → {{يعاني عجزاً مالياً}}',
   '_to spill the beans_ → {{أفشى السرّ}}',
   '_I’m all ears._ → {{كلّي آذانٌ صاغية}}',
   '_Break a leg!_ → {{بالتوفيق!}}',
@@ -421,7 +423,7 @@ module.exports = [
   ['Ideational equivalence', 'التكافؤ الفكري', 'Giving only the basic idea, in plain words.'],
 ]],
 ['h', 'Step 1: one sentence, three choices'],
-['p', '_The agreement has remained a dead letter since then._ A “dead letter” is an agreement that exists on paper but is never applied. You can translate it in three ways, the three types of **equivalence** (Farghal & Shunnaq, 1999):'],
+['p', '_The agreement has remained a dead letter since then._ A “dead letter” is an agreement that exists on paper but is never applied. You can translate it in three ways, the three types of **equivalence** (Farghal & Shunnaq, 1999/2011):'],
 ['ul', [
   '**Formal**: {{وقد بقيت الاتفاقية حرفاً ميتاً منذ ذلك الوقت}}. The words are correct, but many Arab readers will not recognise the image.',
   '**Functional**: {{بقيت الاتفاقية حبراً على ورق منذ ذلك الوقت}}. A familiar Arabic idiom: the best choice here.',
@@ -489,10 +491,10 @@ module.exports = [
 ['h', 'Step 2: how Arabic sees it'],
 ['p', 'Arabic rhetoric draws the line differently: {{هو أسد}} is a concise simile ({{تشبيه بليغ}}), because both sides of the comparison are named. A {{استعارة}} names only the image, as in {{رأيتُ أسداً يخطب}}.'],
 ['h', 'Step 3: translating a metaphor'],
-['p', 'Follow these steps in order, based on four of the seven standard procedures for translating metaphors (Newmark, 1988):'],
+['p', 'Follow these steps in order, based on four of the seven standard procedures for translating metaphors (Newmark, 1988; Farghal & Shunnaq, 1999/2011):'],
 ['ol', [
-  '**If the metaphor is shared** by both languages, translate it literally. _She is a snake._ → {{إنها أفعى}}. _My hopes evaporated._ → {{تبخّرت آمالي}}. _My paper will see the light of day next December._ → {{سترى ورقتي البحثية النور في ديسمبر المقبل}}.',
-  '**If it is not shared**, replace it with a target-language image with the same meaning. _This is the tip of the iceberg._ → {{هذا غيضٌ من فيض}}, or, when something bad is hidden, {{وما خفي كان أعظم}}.',
+  '**If the metaphor is shared** by both languages, translate it literally. _She is a snake._ → {{إنها أفعى}}. _My hopes evaporated._ → {{تبخّرت آمالي}}. _My paper will see the light of day next December._ → {{سترى ورقتي البحثية النور في ديسمبر المقبل}}. _a throbbing headache_ → {{صداع نابض}}.',
+  '**If it is not shared**, replace it with a target-language image with the same meaning. _This is the tip of the iceberg._ → {{هذا غيضٌ من فيض}}, or, when something bad is hidden, {{وما خفي كان أعظم}}. Even everyday words differ: the _hands_ of a clock are its “scorpions” in Arabic, {{عقارب الساعة}}.',
   '**Or turn it into a simile**: _He is a rock._ → {{إنه كالصخرة في ثباته}}.',
   '**If nothing works**, give the basic meaning. This is the last choice, because the image is lost. _The news raised a few eyebrows._ → {{أثار الخبر استغراب بعضهم}}.',
 ]],
