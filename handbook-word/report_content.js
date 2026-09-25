@@ -10,7 +10,7 @@ module.exports = [
 ['h2', '2.1 The finished handbook'],
 ['ul', [
   'A handbook for complete beginners on translating between English and Arabic. The text is in English and every example is given in both languages.',
-  '86 pages including the covers, B5 page size (176 × 250 mm), with 9 parts and 27 chapters, followed by a glossary of 103 terms, a list of 38 references and a page with the QR code of the team’s website.',
+  '92 pages including the covers, B5 page size (176 × 250 mm), with 9 parts and 27 chapters, followed by a glossary of 110 terms, a list of 38 references and a page with the QR code of the team’s website.',
   'Two editions, which are identical inside and differ only in the cover design: the Midnight edition (dark indigo cover) and the Light edition (pale lavender cover). Each edition is available as an editable Word file and as a PDF.',
 ]],
 ['h2', '2.2 The main editorial decisions'],
@@ -71,7 +71,7 @@ module.exports = [
   ['Add missing types of translation (2, 9, 18)', 'Done', 'Chapter 1; Chapter 26', 'Written translation, interpreting, sight translation, audiovisual translation and localisation. Chapter 26 describes the types of audiovisual translation.'],
   ['New chapter on the seven translation procedures (3, 10, 19, 44)', 'Done', 'Chapter 12', 'Vinay and Darbelnet’s direct and oblique procedures, each with an example, and one sentence that shows several procedures at work.'],
   ['Add material to the cultural approximation chapter (4, 11, 20)', 'Done', 'Chapter 14', 'Added sections on climate and meaning, titles and institutions, culture in the media and business, and social expressions.'],
-  ['Definitions of key concepts in every chapter, and all terms in the glossary (5, 12, 21, 53)', 'Done', 'Every chapter; Glossary', 'Every chapter opens with a list of key terms, each with its Arabic equivalent and a short definition. The glossary is compiled from these lists and has 103 terms, each with the chapter where it is explained.'],
+  ['Definitions of key concepts in every chapter, and all terms in the glossary (5, 12, 21, 53)', 'Done', 'Every chapter; Glossary', 'Every chapter opens with a list of key terms, each with its Arabic equivalent and a short definition. The glossary is compiled from these lists and has 110 terms, each with the chapter where it is explained.'],
   ['Chapter on machine translation and AI (6, 13, 22)', 'Done', 'Chapter 22', 'Uses the draft’s point that post-editing is the new direction of the profession. Loulwah’s notes were not received.'],
   ['Final exercises at three levels of length, applying the theories, the genres and the checklists (16)', 'Removed', '–', 'A practice section at three levels was written and then removed at the team’s request to keep the handbook short (Section 8.5). Every chapter still has a “Try it” exercise with answers.'],
   ['Use examples from “the book” (24)', 'Not done', '–', 'The book was not identified or supplied.'],
@@ -193,7 +193,7 @@ module.exports = [
 ['h2', '8.4 Expert review before publication'],
 ['p', 'An error found on the first page of Chapter 1 (a freelancer given as an example of a commissioned translator) led to a full expert review of the book in both languages. The review checked concepts and facts, Arabic language and terminology, examples, consistency, repetition, English, neutrality and citations. 192 corrections were made, 23 of them of high importance. Examples of the most important corrections: the rule on Arabic word order (both verb-first and subject-first sentences are correct), the Arabic equivalent of “is”, the explanations of zakat and tayammum, the Arabic terms for lexical creation, lexicalisation, form and modulation, the definition of a terminologist, and several examples that did not illustrate the point they were given for. Every correction and its reason is listed in a separate document, the Correction Log, together with 18 points that must be checked against the printed sources.'],
 ['h2', '8.5 Removed to shorten the handbook'],
-['p', 'At the team’s request, the handbook was shortened from 102 to 86 pages by removing material that a beginner does not need in order to use the book:'],
+['p', 'At the team’s request, the handbook was shortened from 102 to 86 pages (92 after the final additions in Section 9) by removing material that a beginner does not need in order to use the book:'],
 ['ul', [
   'The practice section (three levels of practice texts) and its answer key. Every chapter keeps its “Try it” exercise with answers.',
   'The four checklists at the end of the book.',
@@ -224,6 +224,20 @@ module.exports = [
   ['Glossary and references', 'Back matter', 'Requested in the notes.']],
  [30, 18, 52]],
 
+['h2', '9.1 Final additions'],
+['p', 'In the final revision, the chapters on grammar, meaning, word groups, text types, technology and audiovisual translation were made more practical, using general principles of translation taught at university level. The ideas come from published works already cited in the handbook, mainly Baker (2018) and Jakobson (1959), and every example was written or checked for the handbook:'],
+['ul', [
+  'Chapter 1: the three kinds of translation, the translator as a reader before a writer, and four common myths about translation.',
+  'Chapter 3: how to translate the English verbs _be_, _do_ and _have_, the Arabic dual, and how to find the gender of _I_ and _you_ from clues in the text.',
+  'Chapter 5: problems with single words: lexical gaps, false equivalents, rare words and words with several meanings.',
+  'Chapter 7: one English verb with several Arabic equivalents (_deliver_).',
+  'Chapter 8: fixed expressions, how to spot an idiom, and five ways to translate one.',
+  'Chapter 13: substitution for times and measures, and Arabic loan words in English.',
+  'Chapter 18: translating news headlines, the structure of news stories, and technical and literary texts.',
+  'Chapter 22: the tools translators use (translation memory, termbases and CAT tools), a worked post-editing example, advice on using AI tools, and localisation.',
+  'Chapter 26: a short list of the main types of audiovisual translation, a real dubbing example, and first steps for beginners, in place of the section on audiovisual translation in the Arab world.',
+  'Chapter 27: a step-by-step method for subtitling, a worked example of condensing a line, and rules for Arabic subtitles.',
+]],
 ['h1', '10. Design and production'],
 ['h2', '10.1 Layout inside the book'],
 ['ul', [
