@@ -4613,26 +4613,26 @@ const KSL_ALPHA = [
    draw on the post. Where there is no arrow there is no `mv` — which is
    not a claim that the sign is still, only that the source did not say. */
 const KSL_EXTRA = [
-  { l: "ة", n: "تاء مربوطة", t: "tāʾ marbūṭa", img: "ksl/tamarbuta.webp",
+  { l: "ة", n: "تاء مربوطة", t: "tāʾ marbūṭa", img: "ksl/tamarbuta.webp", mvk: "↔",
     mv: "Carried from side to side." },
-  { l: "أ", n: "ألف بهمزة فوقها", t: "ʾalif + hamza above", img: "ksl/alifhamza.webp",
+  { l: "أ", n: "ألف بهمزة فوقها", t: "ʾalif + hamza above", img: "ksl/alifhamza.webp", mvk: "↔",
     mv: "The same fist as <b>ا</b>, thumb up &mdash; moved from side to side." },
-  { l: "إ", n: "ألف بهمزة تحتها", t: "ʾalif + hamza below", img: "ksl/alifhamzabelow.webp",
+  { l: "إ", n: "ألف بهمزة تحتها", t: "ʾalif + hamza below", img: "ksl/alifhamzabelow.webp", mvk: "↔",
     mv: "The fist of <b>ا</b> turned over, thumb down &mdash; moved from side to side." },
-  { l: "آ", n: "ألف ممدودة", t: "ʾalif madda", img: "ksl/alifmadda.webp",
+  { l: "آ", n: "ألف ممدودة", t: "ʾalif madda", img: "ksl/alifmadda.webp", mvk: "↺",
     mv: "The same fist as <b>ا</b>, thumb up &mdash; swept in an arc." },
-  { l: "ؤ", n: "واو بهمزة", t: "wāw + hamza", img: "ksl/wawhamza.webp",
+  { l: "ؤ", n: "واو بهمزة", t: "wāw + hamza", img: "ksl/wawhamza.webp", mvk: "↺",
     mv: "The same pinch as <b>و</b> &mdash; it turns as it travels." },
-  { l: "ئ", n: "ياء بهمزة", t: "yāʾ + hamza", img: "ksl/yahamza.webp",
+  { l: "ئ", n: "ياء بهمزة", t: "yāʾ + hamza", img: "ksl/yahamza.webp", mvk: "↔",
     mv: "The same hand as <b>ي</b> &mdash; moved from side to side." },
-  { l: "ئـ", n: "ياء بهمزة — متّصلة", t: "yāʾ + hamza, joined", img: "ksl/yahamza2.webp",
+  { l: "ئـ", n: "ياء بهمزة — متّصلة", t: "yāʾ + hamza, joined", img: "ksl/yahamza2.webp", mvk: "↺",
     mv: "Index out, pointing &mdash; it turns as it travels." },
-  { l: "ء", n: "همزة", t: "hamza", img: "ksl/hamza.webp",
+  { l: "ء", n: "همزة", t: "hamza", img: "ksl/hamza.webp", mvk: "↔",
     mv: "The same fist as <b>ب</b>, index up &mdash; moved from side to side." },
-  { l: "ى", n: "ألف مقصورة", t: "ʾalif maqṣūra", img: "ksl/alifmaqsura.webp",
+  { l: "ى", n: "ألف مقصورة", t: "ʾalif maqṣūra", img: "ksl/alifmaqsura.webp", mvk: "↓",
     mv: "The same hand as <b>ي</b> &mdash; drawn downward." },
   { l: "لا", n: "لام ألف", t: "lām-ʾalif", img: "ksl/lamalif.webp" },
-  { l: "لأ", n: "لام ألف بهمزة", t: "lām-ʾalif + hamza", img: "ksl/lamalifhamza.webp",
+  { l: "لأ", n: "لام ألف بهمزة", t: "lām-ʾalif + hamza", img: "ksl/lamalifhamza.webp", mvk: "↔",
     mv: "The same hand as <b>لا</b> &mdash; moved from side to side." },
   { l: "ال", n: "أداة التعريف", t: "al-, the article", img: "ksl/al.webp" },
 ];
@@ -7745,7 +7745,7 @@ function runKsl() {
       const b = el("button", "alpha");
       b.innerHTML =
         '<span class="a-hand">' +
-          (L.mv ? '<span class="a-mv" aria-hidden="true">⇄</span>' : '') +
+          (L.mv ? '<span class="a-mv" aria-hidden="true">' + (L.mvk || "⇄") + '</span>' : '') +
         '</span>' +
         '<span class="a-txt">' +
           '<span class="a-l" dir="rtl" lang="ar">' + L.l + '</span>' +
@@ -7753,7 +7753,10 @@ function runKsl() {
         '</span>';
       /* the mark says the hand moves, so two tiles showing the same fist
          are not mistaken for the same picture twice */
-      if (L.mv) b.title = "This one moves";
+      /* the mark is the motion itself, not a generic "this moves" — أ and
+         آ are the same fist, and the difference between ↔ and ↺ is the
+         only thing on the tile that tells them apart */
+      if (L.mv) b.title = L.mv.replace(/<[^>]+>/g, "");
       b.querySelector(".a-hand").appendChild(handFig(L, i < 6));
       b.addEventListener("click", () => { pushTrail("Kuwaiti Sign Language", () => home()); letter(i); });
       grid.appendChild(b);
