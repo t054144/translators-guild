@@ -184,7 +184,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
    leaving away from you and brings the next one toward you through
    real perspective; going back reverses the move. ═══════════ */
 #app { position: relative; perspective: 1500px; perspective-origin: 50% 36%;
-  padding-top: clamp(3.6rem, 6vw, 4.6rem) !important;
+  padding-top: 1.1rem;
   /* the camera pushes views toward the viewer on +Z; clip that sideways so a
      transition never produces a horizontal scrollbar on a phone */
   overflow-x: clip; }
@@ -487,38 +487,76 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .rep-card .what { color: var(--white); font-size: .95rem; }
 #auth-lede { margin: 0; }
 
-/* ═══════════ BOTTOM NAVIGATION ═══════════
-   Phone-first: on a small screen this bar is how the Guild is navigated,
-   so it is always within thumb reach and every target is a full 56px. It
-   is not rendered above 760px, where the hall's own headings are visible
-   at a glance and a fixed bar would only steal room. */
-#bottom-nav { display: none; }
+/* ═══════════ THE NAVIGATION BAR ═══════════
+   The same five destinations at every size. It used to exist only below
+   760px, on the reasoning that a wide screen showed the hall's own
+   headings anyway — true of the single scrolling page this began as,
+   and false the moment the site became tabbed, which left a tablet and
+   a desktop with no way out of the hall at all.
+
+   Below 760px it sits at the bottom, in thumb reach, with 56px targets.
+   Above that it sits at the top, where a pointer lives, with the label
+   beside the icon instead of under it. One bar, two placements.
+   ══════════════════════════════════════════════════════════════ */
+#bottom-nav {
+  position: fixed; inset-inline: 0; z-index: 60;
+  background: var(--scrim);
+  -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+}
+#bottom-nav button {
+  background: none; border: 0; cursor: pointer; font-family: inherit;
+  color: var(--lilac-dim); box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: color 200ms var(--ease), background 200ms var(--ease);
+}
+#bottom-nav button:hover { color: var(--white); transform: none; box-shadow: none; }
+#bottom-nav .bn-i { display: block; fill: none; stroke: currentColor;
+  stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+#bottom-nav button[aria-current="page"] { color: var(--white); background: rgba(167,38,208,.18); }
+#bottom-nav button[aria-current="page"] .bn-i { color: var(--magenta); }
+#bottom-nav button:focus-visible { outline: 2px solid var(--magenta); outline-offset: -2px; }
+
+/* ── a phone: along the bottom, thumb-sized ── */
 @media (max-width: 760px) {
   #bottom-nav {
-    display: grid; grid-template-columns: repeat(5, 1fr);
-    position: fixed; inset-inline: 0; bottom: 0; z-index: 60;
+    display: grid; grid-template-columns: repeat(5, 1fr); bottom: 0;
     padding: .3rem .25rem calc(.3rem + env(safe-area-inset-bottom));
-    background: var(--scrim);
-    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
     border-top: 1px solid rgba(214,191,234,.16);
   }
   #bottom-nav button {
     display: grid; gap: .15rem; justify-items: center; align-content: center;
-    min-height: 56px; padding: .35rem .2rem;
-    background: none; border: 0; border-radius: 14px; cursor: pointer;
-    font-family: inherit; color: var(--lilac-dim);
-    -webkit-tap-highlight-color: transparent;
+    min-height: 56px; padding: .35rem .2rem; border-radius: 14px;
   }
-  #bottom-nav .bn-i { width: 22px; height: 22px; display: block;
-    fill: none; stroke: currentColor; stroke-width: 1.7;
-    stroke-linecap: round; stroke-linejoin: round; }
+  #bottom-nav .bn-i { width: 22px; height: 22px; }
   #bottom-nav .bn-t { font-size: .6rem; letter-spacing: .07em; text-transform: uppercase; }
-  #bottom-nav button[aria-current="page"] { color: var(--white); background: rgba(167,38,208,.18); }
-  #bottom-nav button[aria-current="page"] .bn-i { color: var(--magenta); }
-  #bottom-nav button:focus-visible { outline: 2px solid var(--magenta); outline-offset: -2px; }
   /* room so the bar never sits on top of the last card */
   body.has-nav main { padding-bottom: calc(5.5rem + env(safe-area-inset-bottom)); }
 }
+
+/* ── a tablet or a desktop: along the top, label beside icon ── */
+@media (min-width: 761px) {
+  /* the bar is fixed at the top, so the page starts below it */
+  body.has-nav #app { padding-top: 4.6rem; }
+  #bottom-nav {
+    display: flex; justify-content: center; align-items: center;
+    gap: .25rem; top: 0; padding: .5rem clamp(.75rem, 3vw, 1.5rem);
+    border-bottom: 1px solid rgba(214,191,234,.16);
+  }
+  #bottom-nav button {
+    display: inline-flex; align-items: center; gap: .55rem;
+    min-height: 44px; padding: .55rem clamp(.7rem, 1.6vw, 1.15rem);
+    border-radius: var(--r-pill); white-space: nowrap;
+  }
+  #bottom-nav .bn-i { width: 18px; height: 18px; }
+  #bottom-nav .bn-t { font-size: .72rem; font-weight: 600; letter-spacing: .14em;
+    text-transform: uppercase; }
+}
+
+/* The act spine described a single scrolling page: three acts you
+   scrolled through. The site is tabbed now, so the spine names a
+   structure that no longer exists and sat where the navigation belongs.
+   Retired at every width. */
+#spine { display: none !important; }
 
 /* ═══════════ THE HALL ═══════════ */
 #hall { max-width: 64rem; margin: 0 auto; display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.25rem; }
@@ -862,12 +900,6 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
    This block sizes the Guild for the device it is actually opened on.
    It comes last so it wins, and it touches nothing above 700px. */
 @media (max-width: 700px) {
-  /* The act spine described a single scrolling page. Navigation is tabs
-     now, so on a phone it costs sixty pixels of glass to repeat what the
-     bar at the bottom already shows. It stays on larger screens, where
-     there is room for it. */
-  #spine { display: none; }
-  main { padding-top: 1rem; }
   #block-method, #block-trials, #block-chambers { scroll-margin-top: 1rem; }
 
   /* type comes down a step across the board */
@@ -1010,7 +1042,8 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   animation: rise .5s var(--ease) both; }
 .pair .p-a, .pair .p-b { font-size: .98rem; color: var(--white); font-weight: 400; min-width: 0; }
 .pair .p-a.is-ar, .pair .p-b.is-ar { font-family: var(--f-ar); font-size: 1.08rem; }
-.pair .p-arrow { color: var(--magenta); align-self: center; font-size: .9rem; }
+.pair .p-arrow { color: var(--magenta); align-self: center; font-size: .9rem;
+  min-width: 1.2em; text-align: center; }
 .pair .p-w { grid-column: 1 / -1; font-size: .82rem; font-weight: 300;
   color: var(--ink); line-height: 1.5; border-top: var(--hair); padding-top: .45rem; }
 .pair .p-w b { color: var(--white); font-weight: 500; }
@@ -1303,18 +1336,23 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .bar > i.hot { background: linear-gradient(90deg,#ff5c7a,#a726d0); }
 
 /* the dial */
-.dial { display: grid; gap: 1.25rem; }
+.dial { display: grid; gap: 1.25rem; min-width: 0; }
+.dial > div { min-width: 0; }
+/* a range thumb is drawn a couple of pixels outside the input's own box,
+   so the track leaves it that room rather than overflowing the panel */
+.dial-track { padding-inline: 3px; }
 .dial-panel { border-radius: var(--r-xl); border: var(--hair-lit);
   background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
   padding: clamp(1.35rem,4vw,2.4rem); display: grid; gap: 1.35rem; }
 .dial-panel .reg-name { font-size: .72rem; font-weight: 600; letter-spacing: .24em;
   text-transform: uppercase; color: var(--lilac); text-align: center; margin: 0; }
-.pair { display: grid; grid-template-columns: 1fr 1px 1fr; gap: clamp(1rem,3vw,2.25rem); align-items: center; }
-.pair .hairline { align-self: stretch; background: linear-gradient(to bottom, transparent, rgba(214,191,234,.4), transparent); }
-.pair .p-en { font-family: var(--f-serif); font-style: italic; font-weight: 500;
+.dial-panel .pair { display: grid; grid-template-columns: minmax(0,1fr) 1px minmax(0,1fr);
+  gap: clamp(1rem,3vw,2.25rem); align-items: center; }
+.dial-panel .pair .hairline { align-self: stretch; background: linear-gradient(to bottom, transparent, rgba(214,191,234,.4), transparent); }
+.dial-panel .pair .p-en { font-family: var(--f-serif); font-style: italic; font-weight: 500;
   font-size: clamp(1.15rem,3.5vw,1.7rem); color: var(--white); margin: 0; line-height: 1.4;
   animation: swapIn 420ms var(--ease) both; }
-.pair .p-ar { font-family: var(--f-ar-text); direction: rtl; text-align: right;
+.dial-panel .pair .p-ar { font-family: var(--f-ar-text); direction: rtl; text-align: right;
   font-size: clamp(1.35rem,4vw,2rem); color: var(--white); margin: 0; line-height: 1.85;
   animation: swapIn 420ms var(--ease) both; }
 @media (max-width: 720px) {
@@ -1322,9 +1360,9 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   .pair .hairline { height: 1px; background: linear-gradient(to right, transparent, rgba(214,191,234,.4), transparent); }
 }
 .dial-panel .reg-note { font-size: .86rem; color: var(--ink-soft); text-align: center; margin: 0; }
-input[type="range"] { width: 100%; accent-color: var(--magenta); background: transparent; }
+input[type="range"] { width: 100%; max-width: 100%; accent-color: var(--magenta); background: transparent; }
 input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-offset: 5px; }
-.stops { display: grid; grid-template-columns: repeat(4,1fr); font-size: .66rem; font-weight: 600;
+.stops { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); min-width: 0; font-size: .66rem; font-weight: 600;
   letter-spacing: .14em; text-transform: uppercase; color: var(--lilac-dim); }
 .stops span { text-align: center; transition: color 260ms var(--ease); }
 .stops span:first-child { text-align: left; }
@@ -1651,7 +1689,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 36 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 37 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -8104,7 +8142,7 @@ function runRegister() {
     panel.appendChild(el("p", "reg-note", s.note));
     dial.appendChild(panel);
 
-    const track = el("div");
+    const track = el("div", "dial-track");
     const range = document.createElement("input");
     range.type = "range"; range.min = "0"; range.max = "3"; range.step = "1";
     range.value = String(stop);
@@ -8188,12 +8226,7 @@ function runRoots() {
     stage.appendChild(v);
 
     /* Unscored, like every Chamber. */
-    const foot = el("div", "foot");
-    foot.appendChild(el("p", "note", "A chamber · free to wander · nothing here is scored"));
-    const back = el("button", "ghost", "Back to the hall");
-    back.addEventListener("click", () => { renderHall(); show("hall"); });
-    foot.appendChild(back);
-    stage.appendChild(foot);
+    stage.appendChild(footNav({ note: "A chamber · free to wander · nothing here is scored" }));
   }
   render();
 }
