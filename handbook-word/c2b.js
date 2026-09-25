@@ -92,7 +92,7 @@ module.exports = [
 ['ol', [
   '**Neologism**: a new word, often derived from an Arabic root ({{الاشتقاق}}), or an old word with a new meaning. _blog_ → {{مدوّنة}} (from {{دوّن}}, “to write down”)',
   '**Loan translation (calque)**: _smartphone_ → {{الهاتف الذكي}}; _shadow government_ → {{حكومة الظل}}; _Thanksgiving_ → {{عيد الشكر}}',
-  '**Transliteration** (borrowing), with a short definition the first time: {{الوقف}} → _waqf_ (a charitable endowment); {{الصكوك}} → _sukuk_ (Islamic investment certificates). Into Arabic, this is called arabicisation ({{التعريب}}): _radio_ → {{الراديو}}',
+  '**Transliteration** (borrowing), with a short definition the first time: {{الوقف}} → _waqf_ (a charitable endowment); {{الصكوك}} → _sukuk_ (Islamic investment certificates). Into Arabic, this is called arabicisation ({{التعريب}}): _radio_ → {{الراديو}}; _strategy_ → {{استراتيجية}}; _technology_ → {{تكنولوجيا}}',
   '**Explanation**: _greenwashing_ → {{التضليل البيئي}} (when companies falsely claim that their products are environmentally friendly)',
   '**Hybrid form**: part translated, part borrowed. _cybersecurity_ → {{الأمن السيبراني}}',
 ]],
@@ -276,7 +276,7 @@ module.exports = [
 ['p', 'The Arabic language academies ({{مجامع اللغة العربية}}), for example in Damascus, Cairo, Baghdad and Amman, create and approve Arabic terms (Translation Team, n.d.). The Coordination Bureau of Arabization in Rabat ({{مكتب تنسيق التعريب}}) helps to unify them across the Arab world.'],
 ['h', 'How to translate a term'],
 ['ol', [
-  '**Understand** its exact meaning in its field.',
+  '**Understand** its exact meaning in its field. In a medical text, _allergic_ is {{أرَجيّ}}, an _allergen_ is {{مادة مُحسِّسة}}, and _contact eczema_ is {{أكزيما التماس}}.',
   '**Look at its origin**: its parts often explain it.',
   '**Find the equivalent** in the academies, UNTERM, Arabterm or the client’s guide. If none exists, create one (Chapter 16).',
   '**Record** it in your term list, and **share** the list with your team.',
@@ -308,7 +308,6 @@ module.exports = [
   ['Hallucination', 'الهلوسة', 'Invented or false content produced by an AI tool, such as facts that are not in the source text.'],
   ['Translation memory', 'ذاكرة الترجمة', 'A database of earlier translations that the translator can reuse.'],
   ['CAT tool', 'أداة الترجمة بمساعدة الحاسوب', 'Software that helps a human translator, usually with a translation memory and a termbase.'],
-  ['Localisation', 'الأقلمة', 'Adapting a whole product, such as a website, an app or a game, to a local market.'],
 ]],
 ['h', 'Tools translators use'],
 ['ul', [
@@ -341,7 +340,7 @@ module.exports = [
   'Check every name, number, date and term against a reliable source.',
 ]],
 ['h', 'Localisation'],
-['p', '**Localisation** adapts a whole product to a local market. Translation is one part of it. The rest includes dates, numbers, currencies and units, images and colours, and the direction of the page: an Arabic website reads from right to left.'],
+['p', 'In localisation (Chapter 1), translation is only one part. Also adapt dates, numbers, currencies and units, images and colours, and the direction of the page: an Arabic website reads from right to left.'],
 ['h', 'Four rules'],
 ['ol', ['You are responsible for every word.', 'Never put a client’s private text into a public AI tool.', 'Check terms, names, numbers, idioms and every “not”.', 'Tell the client if you used a machine or AI.']],
 ['try', ['Should you paste a client’s confidential contract into a free AI tool?', 'What is post-editing?'],
