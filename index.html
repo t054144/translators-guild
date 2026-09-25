@@ -1449,7 +1449,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 23 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 24 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1633,7 +1633,8 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       <div>
         <p class="seal-eyebrow">Curator</p>
         <h1>Content Admin</h1>
-        <p class="note">Nothing reaches a learner until it is marked Verified. Unchecked material stays hidden rather than being guessed at.</p>
+        <p class="note"><b>Only you can see this page.</b> The button that opens it is hidden from everyone else, and the database refuses to let anyone but an administrator read or write the library &mdash; the hiding is not what protects it.</p>
+        <p class="note">It is a store for material you write yourself, kept in the database rather than in the page, so it can be corrected without a developer. Nothing in it is shown to a learner until it is marked <b>Verified</b>.</p>
       </div>
       <button class="ghost" id="admin-back">← Back to the hall</button>
     </div>
@@ -6672,8 +6673,11 @@ function admRender() {
     box.appendChild(el("p", "adm-empty",
       admItems.length
         ? "Nothing with that status."
-        : "The library is empty. Everything the site teaches today is still written into the page itself; " +
-          "anything you add here is stored in the database instead, and can be corrected without a developer."));
+        : "<b>The library is empty, and nothing the site teaches comes from it yet.</b> " +
+          "Every proverb, collocation and passage a learner meets today is written into the page itself. " +
+          "Anything you add here is stored safely in the database and can be edited or corrected at any " +
+          "time &mdash; but the trials are not reading from it, so an item added now will not appear in " +
+          "them until that connection is built. Say the word and it will be."));
     return;
   }
 
