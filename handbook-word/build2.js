@@ -33,6 +33,11 @@ function ar(t, o = {}) {
 }
 
 // ---------- blocks ----------
+// every chapter's Remember box ends with the next step on the reader's path
+const TITLES = {}; let CLOSING = null;
+[...require('./c2a.js'), ...require('./c2b.js')].forEach(b => {
+  const m = b[0] === 'ch' && /^Chapter (\d+): (.*)$/.exec(b[1]); if (m) TITLES[+m[1]] = m[2];
+  if (b[0] === 'part' && b[2] === 'closing') CLOSING = b[1]; });
 let inst = 0, afterPart = false, chapter = null, mainStart = null, pendingTerms = null;
 const body = [], glossary = [];
 // generous spacing so that pages are light for beginners
@@ -67,7 +72,8 @@ function block(b) {
     case 'part':
       if (a.startsWith('Part 1:')) mainStart = body.length;
       H(HeadingLevel.HEADING_1, a, { pageBreakBefore: mainStart !== body.length });
-      if (c) P(runs(c, { italics: true, color: GREY }), { spacing: { after: 360, line: 290 } });
+      if (c && c !== 'closing') P(runs(c, { italics: true, color: GREY }), { spacing: { after: 360, line: 290 } });
+      if (c === 'closing') chapter = null;
       afterPart = true; break;
     case 'ch': {
       H(HeadingLevel.HEADING_2, a, { pageBreakBefore: !afterPart }); afterPart = false;
@@ -104,6 +110,13 @@ function block(b) {
           { numbering: { reference: 'bul', level: 0 }, spacing: { after: 40, line: 300 }, shading: shade, keepNext: true, keepLines: true }));
         pendingTerms = null;
       }
+      if (chapter) { const nx = TITLES[chapter + 1] ? `Chapter ${chapter + 1}: ${TITLES[chapter + 1]}` : CLOSING;
+        if (nx) body.push(new Paragraph({ shading: shade, spacing: { before: 120, after: 0, line: 290 },
+          children: [new TextRun({ text: 'NEXT  ', bold: true, color: ACCENT, font: LATIN, size: 17, characterSpacing: 30 }), new TextRun({ text: nx, italics: true, font: LATIN, size: 20 })] })); }
+      boxEnd(); break;
+    case 'fact':   // a short, well-documented fact that shows why translation matters
+      boxTitle('Did you know?');
+      body.push(new Paragraph({ shading: shade, keepLines: true, spacing: { after: 0, line: 300 }, children: runs(a) }));
       boxEnd(); break;
     default: throw new Error('unknown block ' + kind);
   }
@@ -236,8 +249,8 @@ const doc = new Document({
     default: { document: { run: { font: LATIN, size: 22, color: INK } } },
     paragraphStyles: [
       // contents entries: compact, so that the list fits on one page
-      { id: 'TOC1', name: 'toc 1', basedOn: 'Normal', next: 'Normal', run: { size: 20 }, paragraph: { spacing: { before: 36, after: 0, line: 240 } } },
-      { id: 'TOC2', name: 'toc 2', basedOn: 'Normal', next: 'Normal', run: { size: 20 }, paragraph: { spacing: { before: 0, after: 0, line: 240 }, indent: { left: 280 } } },
+      { id: 'TOC1', name: 'toc 1', basedOn: 'Normal', next: 'Normal', run: { size: 19 }, paragraph: { spacing: { before: 20, after: 0, line: 232 } } },
+      { id: 'TOC2', name: 'toc 2', basedOn: 'Normal', next: 'Normal', run: { size: 19 }, paragraph: { spacing: { before: 0, after: 0, line: 232 }, indent: { left: 280 } } },
       { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 40, bold: true, color: ACCENT }, paragraph: { spacing: { before: 600, after: 200 }, outlineLevel: 0 } },
       { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 30, bold: true, color: ACCENT }, paragraph: { spacing: { before: 240, after: 200 }, outlineLevel: 1, keepNext: true } },
       { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 23, bold: true, color: INK }, paragraph: { spacing: { before: 380, after: 140 }, outlineLevel: 2, keepNext: true } },

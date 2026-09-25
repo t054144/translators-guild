@@ -93,7 +93,7 @@ module.exports = [
 "Contents (draft table of contents, 25 headings)",
 "Used and edited",
 "Contents page; whole book (9 parts, 27 chapters)",
-"The draft's 25 headings were regrouped into 9 parts and 27 chapters ordered from easy to hard. Draft headings kept as chapters: Arabic vs English (Ch 3), Equivalence (Ch 9), Form vs meaning (Ch 4), Types of meaning and Sentence vs speaker meaning (merged into Ch 5), Collocation (Ch 7), Context and Homonymy vs polysemy (merged into Ch 6), Idioms (Ch 8), Literal and Free translation (merged into Ch 10), Metaphoric translation (Ch 11), the two 'Translation strategies' headings (merged into Ch 13, part of the second moved to Ch 16), Cultural approximation (Ch 14), Descriptive translation (Ch 15), Lexical creation (Ch 16), Analysing a text (Ch 17), Commentary (Ch 25), Terminology (Ch 21), AI and MT (Ch 22). New chapters were added for the notes' requests (Ch 2, 12, 18, 19, 20, 23, 24) and for the audiovisual notes (Ch 26, 27). Reason: The notes ask for a final structure and table of contents (para. 58) and for repeated material to be merged (paras 1, 8, 17); Editorial Report, section 6.1 gives the reason for each part's place."
+"The draft's 25 headings were regrouped into 9 parts and 27 chapters ordered from easy to hard. Draft headings kept as chapters: Arabic vs English (Ch 4), Equivalence (Ch 10), Form vs meaning (Ch 5), Types of meaning and Sentence vs speaker meaning (merged into Ch 6), Collocation (Ch 8), Context and Homonymy vs polysemy (merged into Ch 7), Idioms (Ch 9), Literal and Free translation (merged into Ch 11), Metaphoric translation (Ch 12), the two 'Translation strategies' headings (merged into Ch 14, part of the second moved to Ch 17), Cultural approximation (Ch 15), Descriptive translation (Ch 16), Lexical creation (Ch 17), Analysing a text (Ch 18), Commentary (Ch 25), Terminology (Ch 21), AI and MT (Ch 22). New chapters were added for the notes' requests (Ch 2, 13, 19, 20, 3, 23, 24) and for the audiovisual notes (Ch 26, 27). Reason: The notes ask for a final structure and table of contents (para. 58) and for repeated material to be merged (paras 1, 8, 17); Editorial Report, section 6.1 gives the reason for each part's place."
 ],
 [
 "HOW TO USE THIS BOOK (empty heading)",
@@ -104,7 +104,7 @@ module.exports = [
 [
 "Definitions and abbreviations (section as a whole)",
 "Used and edited",
-"Abbreviations list (back matter); key-term boxes of Ch 1, 4, 8, 10",
+"Abbreviations list (back matter); key-term boxes of Ch 1, 5, 9, 11",
 "The section was split up: the abbreviations moved to the back of the book, and each definition moved to the chapter where the idea is taught, as a 'Words to remember' entry. Reason: Editorial Report, section 8.5 and 8.6: the abbreviations page moved to the back; the notes ask for definitions in every chapter (paras 5, 12, 21)."
 ],
 [
@@ -128,25 +128,25 @@ module.exports = [
 [
 "Definitions – empty labels 'Interpretation', 'Form', 'Meaning', 'Intralingual', 'Interlingual'",
 "Used and edited",
-"Ch 1 (key term 'Interpreting'; Step 3), Ch 4 (key terms 'Form', 'Meaning'), Ch 27 Step 1 (intralingual / interlingual subtitles)",
+"Ch 1 (key term 'Interpreting'; Step 3), Ch 5 (key terms 'Form', 'Meaning'), Ch 27 Step 1 (intralingual / interlingual subtitles)",
 "The draft gave the labels with no definitions. Definitions were written: interpreting (spoken language, simultaneous or consecutive); form and meaning; the intralingual/interlingual distinction appears in Ch 1 (Jakobson, 1959, wider sense of translation) and in Ch 27 for subtitle types. Reason: The notes require every chapter to define its key concepts (paras 5, 12, 21)."
 ],
 [
 "Definitions – idiom definition ('more than one word… total meaning not the sum…, e.g. It's a piece of cake')",
 "Used and edited",
-"Ch 8, Step 1 and key term 'Idiom'",
+"Ch 9, Step 1 and key term 'Idiom'",
 "Same idea and example kept; merged with the two other copies of the definition in the Idioms section; 'frozen' form and ways to spot an idiom added. Reason: Editorial Report, section 5, row 1: repeated topics now appear once."
 ],
 [
 "Definitions – 'Literal Translation (Modified Literal Translation, {{ترجمة حرفية معدلة}})'",
 "Used and edited",
-"Ch 10, key term 'Literal translation'",
+"Ch 11, key term 'Literal translation'",
 "Kept as the key-term definition, with the Arabic corrected to {{الترجمة الحرفية المعدّلة}}; the duplicate under 'Types of Translation' merged. Reason: Repetition removed (notes paras 1, 8, 17)."
 ],
 [
 "Arabic vs English (section as a whole)",
 "Used and edited",
-"Ch 3 'English and Arabic: key differences' (Steps 1–5); some items in Ch 13 and Ch 23",
+"Ch 4 'English and Arabic: key differences' (Steps 1–5); some items in Ch 14 and Ch 23",
 "Kept as its own chapter and expanded (gender and number of 'you', numbers 3–10, the dual, be/do/have, linking words, Arabic punctuation). Several draft rules were corrected by the expert reviews. Reason: Editorial Report, section 9 and 9.1: added differences are common beginner problems; corrections in Editorial Report, section 7.1 and the Correction Log."
 ],
 [
@@ -158,85 +158,85 @@ module.exports = [
 [
 "Arabic vs English – 'we start with the verb' / English SVO, Arabic VSO",
 "Used and edited",
-"Ch 3, Step 1; summary; Ch 23 Step 2",
+"Ch 4, Step 1; summary; Ch 23 Step 2",
 "Rule softened: English usually SVO; formal Arabic often starts with the verb, but a subject-first (nominal) sentence is also correct. The term 'verbal sentence' was added. Reason: First expert review: 'Arabic usually starts with the verb' is a false generalisation – nominal sentences are grammatical and common in MSA."
 ],
 [
 "Arabic vs English – table example 'Sam ate the cake' (☒ {{سام اكل التفاحة}} / ☑ {{اكل سام التفاحة}})",
 "Used and edited",
-"Ch 3, Step 1",
+"Ch 4, Step 1",
 "Arabic corrected to match the English ('cake', not 'apple': {{أكلَ سامٌ الكعكةَ}}); the subject-first version is no longer marked ✗ but labelled 'correct, but less usual'. A second example (the government announced new measures) was added. Reason: First expert review: marking a grammatical nominal sentence ✗ teaches that correct Arabic is wrong; the draft's Arabic also said 'apple' for 'cake'."
 ],
 [
 "Arabic vs English – 'He is in bed → {{نائم}} (not {{في السرير}})'",
 "Used and edited",
-"Ch 3, Step 4; Try it 3",
+"Ch 4, Step 4; Try it 3",
 "Now {{إنه في فراشه}} or, depending on context, {{إنه نائم}}, rather than {{إنه في السرير}}. Reason: First expert review: 'in bed' does not always mean asleep; {{في فراشه}} is the natural idiom."
 ],
 [
 "Arabic vs English – 'As an officer / As a Manager of the Company → {{بصفتي}}'",
 "Used and edited",
-"Ch 3, Step 4",
+"Ch 4, Step 4",
 "Same idea; Arabic corrected to {{بصفتي ضابطاً}}… (case ending) and {{بصفتي مديرَ الشركة}}…; 'I' added to the English so the first person matches; note that 'as' means a role, not {{كـ}}. Reason: First expert review: {{بصفتي}} is first person but the English had no 'I'."
 ],
 [
 "Arabic vs English – note on nouns without a feminine ({{قاضي، نائب، ضابط}})",
 "Used and edited",
-"Ch 3, Step 3 (last bullet)",
+"Ch 4, Step 3 (last bullet)",
 "Kept for {{قاضية}} and {{نائبة}} with the reason (other meanings 'fatal', 'calamity'), and updated: these titles are widely used today for women judges and MPs. {{ضابط}} dropped. Reason: Editorial Report, section 8.1: updated rather than removed so that the handbook reflects current usage."
 ],
 [
 "Arabic vs English – 'Shops stay open → {{تظل أو تبقى محلات تجارية}}'",
 "Used and edited",
-"Ch 3, Step 4",
+"Ch 4, Step 4",
 "Arabic completed and made a full sentence: {{تظلّ المحلات التجارية مفتوحة}}; the trap is explained ('stay' means 'remain', not 'live'). Reason: First expert review: the example did not say what the trap is."
 ],
 [
 "Arabic vs English – 'Eventually → {{في نهاية المطاف}}'",
 "Used and edited",
-"Ch 3, Step 4",
+"Ch 4, Step 4",
 "Same equivalent; explanation added ('in the end', not 'possibly'). Reason: First expert review: a beginner could not see the trap."
 ],
 [
 "Arabic vs English – 'is → {{تعد}}' and note '{{تعد الترجمة تخصصاً}}… {{مثيراً للاهتمام}}'",
 "Used and edited",
-"Ch 3, Step 2",
+"Ch 4, Step 2",
 "Rule corrected: in the present tense Arabic normally leaves out 'is' ({{الترجمةُ مجالٌ شائق}}); {{تُعدّ}} is only an option in formal writing when the sentence gives an opinion. Added: do not translate a simple 'is' with {{يكون}}; use {{كان}} in the past; do and have. Reason: First expert review: presenting {{تُعدّ}} as the equivalent of 'is' adds meaning and encourages translationese; Final expert review limited the {{يكون}} ban to a simple 'is'."
 ],
 [
 "Arabic vs English – 'to see the Roman ruins → {{لمشاهدة}} / {{لزيارة}} / {{لرؤية}}'",
 "Used and edited",
-"Ch 3, Step 4",
+"Ch 4, Step 4",
 "One option kept: {{لزيارة الآثار الرومانية}} (Arabic prefers 'visit'). Reason: Three alternatives reduced to the most natural one, with the reason stated."
 ],
 [
 "Arabic vs English – Common challenges (grammar, semantics, punctuation and style, general vs technical text)",
 "Used and edited",
-"Ch 3, Step 5 (last paragraph)",
+"Ch 4, Step 5 (last paragraph)",
 "Kept as four groups; 'Semantics' relabelled 'word choice' ({{اختيار المفردات}}); formality now named as 'register' (key term). Reason: First expert review #38: {{الدلالة}} does not mean word choice; 'register' was a key term never used. the first expert review questioned the grouping against Ghazala (2008); it was kept and listed as a point to check (Correction Log, section 5)."
 ],
 [
 "Arabic vs English – differences table: sentence length",
 "Used and edited",
-"Ch 3, Step 1",
+"Ch 4, Step 1",
 "Kept as a tendency: English often prefers shorter sentences; Arabic joins ideas with {{و}}, {{ف}}, {{ثمّ}}; join or split accordingly. Reason: First expert review: 'English prefers short sentences' overgeneralises."
 ],
 [
 "Arabic vs English – differences table: language formality ('drama or dialogue is often informal')",
 "Used and edited",
-"Ch 3, Step 5 (types of Arabic, register); Ch 18 literary texts; Ch 27 Step 3",
+"Ch 4, Step 5 (types of Arabic, register); Ch 19 literary texts; Ch 27 Step 3",
 "Merged into the register point and into the advice on dialect (use it only if the client asks, e.g. dubbing) and on dialogue in literary texts and subtitles. Reason: First expert review: subtitling is normally in MSA; dubbing is the usual case for dialect."
 ],
 [
 "Arabic vs English – differences table: use of synonyms",
 "Used and edited",
-"Ch 3, Step 4; Ch 13 omission; Ch 23 Step 3",
+"Ch 4, Step 4; Ch 14 omission; Ch 23 Step 3",
 "Kept, softened ('English does this much less often'), with the example {{شجاعٌ مِغوار}} → 'very brave' taken from the draft's strategies section. Reason: First expert review: English does use synonym pairs (null and void), so 'rarely' was too strong."
 ],
 [
 "Arabic vs English – Types of Arabic (Classical, Standard, Dialectal)",
 "Used and edited",
-"Ch 3, Step 5; key terms 'Modern Standard Arabic', 'Dialect'",
+"Ch 4, Step 5; key terms 'Modern Standard Arabic', 'Dialect'",
 "Same three types; Arabic labels edited ({{العربية الفصحى التراثية}}, {{الفصحى المعاصرة}}, {{اللهجات العامية}}); advice added on which to use for written translation. Reason: Made practical for beginners; Final expert review added the Arabic term for MSA."
 ],
 [
@@ -248,8 +248,8 @@ module.exports = [
 [
 "Translation, Translator and how to translate (section as a whole)",
 "Used and edited",
-"Ch 1 'Translation and the translator'; Ch 2 'Tips, advice and preparation'; Ch 19",
-"Definitions, translator types and skills went to Ch 1; the process and the general tips went to Ch 2; the ideology example went to Ch 19. The communication model was removed. Reason: Notes para. 30 asks for a tips section at the beginning; Editorial Report, section 8.2 (beginner revision)."
+"Ch 1 'Translation and the translator'; Ch 2 'Tips, advice and preparation'; Ch 20",
+"Definitions, translator types and skills went to Ch 1; the process and the general tips went to Ch 2; the ideology example went to Ch 20. The communication model was removed. Reason: Notes para. 30 asks for a tips section at the beginning; Editorial Report, section 8.2 (beginner revision)."
 ],
 [
 "Translator – two characteristics (bilingual and cultural knowledge)",
@@ -267,7 +267,7 @@ module.exports = [
 "Translator – translation as approximation",
 "Used and edited",
 "Ch 1, Step 2; key term 'Approximation'",
-"Kept; supported with Eco (2003) 'saying almost the same thing'. The draft's link to cultural meaning is developed in Ch 14. Reason: First expert review: definition corrected – approximation means coming as close as possible to the source meaning."
+"Kept; supported with Eco (2003) 'saying almost the same thing'. The draft's link to cultural meaning is developed in Ch 15. Reason: First expert review: definition corrected – approximation means coming as close as possible to the source meaning."
 ],
 [
 "Translator – 'Translation also means to politicize ({{الدبلوماسية}})', asking your dad for money",
@@ -296,7 +296,7 @@ module.exports = [
 [
 "Translator – translation as establishing equivalence",
 "Used and edited",
-"Ch 9",
+"Ch 10",
 "Merged with the Equivalence section (the draft itself says 'we have a separate chapter for equivalence'). Reason: Repetition removed."
 ],
 [
@@ -308,7 +308,7 @@ module.exports = [
 [
 "Translator – client ideology example (suicide bomber; 'Islamic' vs 'UnIslamic' ideology; {{انتحاري}} / {{استشهادي}})",
 "Used and edited",
-"Ch 19, Step 1",
+"Ch 20, Step 1",
 "Rewritten neutrally: 'A suicide bomber killed ten people'; {{انتحاري}} matches the English, {{استشهادي}} adds praise; follow the client's policy. The nationality of the victims and the religious labels were removed. Reason: Editorial Report, section 7.1: the draft took a religious and political position; Final expert review: the two words are not equal choices."
 ],
 [
@@ -326,31 +326,31 @@ module.exports = [
 [
 "Equivalence (section as a whole, with its repeated lists)",
 "Used and edited",
-"Ch 9 'Equivalence'",
+"Ch 10 'Equivalence'",
 "The three repeated presentations of the three types (and the third copy of the dead-letter example in the 'Examples' section) merged into one chapter; credited to Farghal & Shunnaq (1999); order of use and Nida & Taber's 'closest natural equivalent' added. Reason: Editorial Report, section 5, row 1: equivalence was one of the topics repeated two or three times."
 ],
 [
 "Equivalence – 'The agreement remained dead letter since then' (formal / functional / ideational)",
 "Used and edited",
-"Ch 9, Step 1; Try it; Ch 13 Step 1; Ch 25 example",
+"Ch 10, Step 1; Try it; Ch 14 Step 1; Ch 25 example",
 "Same three versions. English corrected ('has remained a dead letter'); ideational Arabic corrected from {{المعاهدة}} to {{الاتفاقية}} to match 'agreement'; comment on each version added (formal: many Arab readers will not recognise the image). Reason: Consistency with the draft's own agreement/treaty table; Final expert review softened 'will not understand'."
 ],
 [
 "Equivalence – table: A treaty = {{معاهدة}}; An agreement = {{اتفاقية}}",
 "Used and edited",
-"Ch 9, Step 1 (note)",
+"Ch 10, Step 1 (note)",
 "Kept as a one-line note: keep the difference. Reason: Short, useful distinction."
 ],
 [
 "Equivalence – 'You should think outside the box'",
 "Used and edited",
-"Ch 9, Step 2",
+"Ch 10, Step 2",
 "Formal version kept with the modal ({{عليك أن تفكّر خارج الصندوق}}); the draft's 'functional' version ({{فكّر بتفكير خلاق}} / {{إبداعياً}}) is now labelled ideational ({{عليك أن تفكّر بطريقة إبداعية}}). Reason: First expert review: a plain, non-idiomatic rendering is ideational by the chapter's own definitions; the modal 'should' had been dropped."
 ],
 [
 "Equivalence – 'Ali is second to none in writing poetry'",
 "Used and edited",
-"Ch 9, Step 2; Try it; Ch 13",
+"Ch 10, Step 2; Try it; Ch 14",
 "Functional {{لا يُشقّ له غبار}} kept; ideational changed from {{متميّز}} to {{لا يُضاهى}}. Reason: First expert review: {{متميّز}} loses the superlative meaning."
 ],
 [
@@ -362,19 +362,19 @@ module.exports = [
 [
 "Translation Form Vs meaning",
 "Used and edited",
-"Ch 4 'Form and meaning'",
+"Ch 5 'Form and meaning'",
 "The rule (meaning over form; change the form, never the meaning) kept; repeated statements merged; Arabic term for form changed from {{البناء}} to {{الشكل}}; Nida & Taber (1969) principle added; new examples of changing form (heavy smoker; after his arrival). Reason: First expert review: {{الشكل}} is the established term; the first expert review corrected the explanation of the examples."
 ],
 [
 "Form vs meaning – 'a clearer example that form is more important than meaning'",
 "Used and edited",
-"Ch 4, Step 3",
+"Ch 5, Step 3",
 "The contradiction removed: the example now shows keeping the meaning and changing the form. Reason: Editorial Report, section 7.1: contradicts the draft's own rule that meaning comes first."
 ],
 [
 "Form vs meaning – 'Blair: Bush's puppy' ({{بلير}}: {{منقاد لبوش}} / {{تابع لبوش}} / {{حروف أو غنمة}})",
 "Used and edited",
-"Ch 4, Step 3",
+"Ch 5, Step 3",
 "'Puppy' corrected to 'poodle', with the meaning explained; {{تابعُ بوش}} and {{المنقاد لبوش}} kept; the alternatives '{{حروف أو غنمة}}' removed. Reason: Editorial Report, section 7.1: the British press used 'poodle'; the Arabic alternatives contained a typing error."
 ],
 [
@@ -386,37 +386,37 @@ module.exports = [
 [
 "Types of Meaning (denotation and connotation, with its second copy in 'Examples')",
 "Used and edited",
-"Ch 5 'Types of meaning', Step 1; key terms",
+"Ch 6 'Types of meaning', Step 1; key terms",
 "Two copies merged; definitions kept; Baker's (2018) terms (propositional and expressive meaning) added. Arabic labels changed from {{المعنى اللغوي}} / {{الحرفي}} and {{المعنى اصطلاحاً}} to {{المعنى المعجمي}} and {{المعنى الإيحائي}}. Reason: Repetition removed; the draft's label for connotation ({{المعنى اصطلاحاً}}, 'technical meaning') does not mean connotation."
 ],
 [
 "Types of meaning – 'Died = {{قتل}}' (denotation) and 'Died = {{استشهد}}' (connotation)",
 "Used and edited",
-"Ch 5, Step 1",
+"Ch 6, Step 1",
 "Corrected to {{مات}} (neutral) and {{تُوُفِّي}} (polite, vowelled as passive); {{استشهد}} not used. Reason: Editorial Report, section 7.1: 'died' was given with the verb for 'killed'; First expert review vowelled {{تُوُفِّي}}."
 ],
 [
 "Types of meaning – Die / Pass away / Kick the bucket",
 "Used and edited",
-"Ch 5, Step 1",
+"Ch 6, Step 1",
 "Kept; 'kick the bucket' now described as informal and humorous, not 'died in a bad way'. Reason: Editorial Report, section 7.1: the draft (in the strategies section) had given it an insulting Arabic phrase."
 ],
 [
 "Types of meaning – steed / horse / mule",
 "Used and edited",
-"Ch 5, Step 1",
+"Ch 6, Step 1",
 "Steed ({{جواد}}) and horse ({{حصان}}) kept; mule removed. Reason: Editorial Report, section 7.1: a mule is a different animal, not a negative synonym of horse."
 ],
 [
 "Types of meaning – Comrade ({{صديق}} / {{رفيق}})",
 "Used and edited",
-"Ch 5, Step 1",
+"Ch 6, Step 1",
 "Kept as friend ({{صديق}}, general) vs comrade ({{رفيق}}, same party or cause). Reason: Made a clear pair of English words."
 ],
 [
 "Types of meaning – Kill vs Assassinated",
 "Not used",
-"– (replaced by slim / skinny in Ch 5)",
+"– (replaced by slim / skinny in Ch 6)",
 "Pair removed during the first review. Reason: First expert review: the two words differ in denotation, so they do not illustrate 'same denotation, different connotation'."
 ],
 [
@@ -428,73 +428,73 @@ module.exports = [
 [
 "Sentence vs speaker meaning",
 "Used and edited",
-"Ch 5, Step 2; key terms 'Sentence meaning', 'Speaker meaning'",
+"Ch 6, Step 2; key terms 'Sentence meaning', 'Speaker meaning'",
 "Both Arabic examples kept ({{أشعرُ بالحرّ}}, {{أصبح الجوّ بارداً}}); an English example added; the Arabic labels ('{{الجملة الخبرية}}', '{{جملة خبرية تحمل أمراً}}') replaced with plain English definitions; advice added to keep an indirect remark indirect when it works the same way. Reason: Merged into Types of meaning (both are layers of meaning); Final expert review: do not turn an indirect remark into an explicit request."
 ],
 [
 "Collocation (with its second copy in 'Examples')",
 "Used and edited",
-"Ch 7 'Collocation'",
+"Ch 8 'Collocation'",
 "Two copies merged. Definition 'the company a word keeps' kept as a quotation from the course materials (Translation Team, n.d.) and linked to Firth (1957, p. 11). Extra material added: one verb with several partners (deliver), EN → AR and AR → EN lists. Reason: Repetition removed; Final expert review cited the course materials properly."
 ],
 [
 "Collocation – pay money / attention / respect / a visit",
 "Used and edited",
-"Ch 7, Step 1",
+"Ch 8, Step 1",
 "All four kept. Arabic corrected: {{إعرني}} / {{أعرني انتباهك}} → {{ينتبه}} or {{يُعير انتباهه}}; pay respect → {{يُبدي احتراماً}} (the second option dropped); pay a visit → {{يقوم بزيارة}}, with the wrong {{يدفع زيارة}} shown. Reason: First expert review: the imperative broke the citation form used for every other item."
 ],
 [
 "Collocation – Close cooperation / Close friend",
 "Used as written",
-"Ch 7, Step 3",
+"Ch 8, Step 3",
 "Same examples and Arabic ({{تعاون وثيق}}, {{صديق مقرّب}}). Reason: Accurate as written."
 ],
 [
 "Collocation – Arabic examples {{استل سيفه}} / {{يساورني القلق}}",
 "Used and edited",
-"Ch 7, Step 3 (AR → EN)",
+"Ch 8, Step 3 (AR → EN)",
 "English translations added ('he drew his sword', 'I am worried'), and three more AR → EN examples. Reason: First expert review: 'I am growing worried' adds a nuance; 'I am worried' used."
 ],
 [
 "Context (definition, micro vs macro table)",
 "Used and edited",
-"Ch 6 'Context', Steps 1–2; key terms",
+"Ch 7 'Context', Steps 1–2; key terms",
 "Definition widened to include surrounding words; the confusing two-column table (with 'Outside/Inside context' in the wrong columns) rewritten as 'near' (micro context, co-text) and 'far' (macro context); Arabic terms {{السياق اللغوي}} and {{سياق الموقف}} given. Reason: First expert review: 'background information' contradicts the chapter's own micro context; established Arabic terms."
 ],
 [
 "Context – authors as macro context ({{أحمد شوقي}} / {{نزار قباني}} / {{محمود درويش}})",
 "Used and edited",
-"Ch 6, Step 2",
+"Ch 7, Step 2",
 "Nizar Qabbani and Mahmoud Darwish kept; Ahmad Shawqi dropped. Reason: Shortened; no specific record."
 ],
 [
 "Context – 'Diagram Translation Triangle' (text, translator, audience, author)",
 "Used and edited",
-"Ch 6, Step 2 (described in words)",
+"Ch 7, Step 2 (described in words)",
 "No diagram: author, text and audience at the three corners, the translator in the middle (the draft put the text at the top and the translator in the middle). Reason: Editorial Report, section 10.1: no images inside the book; First expert review clarified the triangle."
 ],
 [
 "Context – 'Every communicative situation has its own context' / {{لكل مقام مقال}} (from the Idioms section)",
 "Used and edited",
-"Ch 6, Step 1",
+"Ch 7, Step 1",
 "Moved from the idioms section to the context chapter, where it belongs. Reason: Organisation of material by topic."
 ],
 [
 "Homonymy vs polysemy",
 "Used and edited",
-"Ch 6, Step 3; key terms",
+"Ch 7, Step 3; key terms",
 "Merged into the context chapter; definitions corrected in grammar; examples {{عين}}, {{تطهير}}, {{احتجاز}}, case and bank kept, with each labelled related or unrelated; {{خط}} added. Reason: Context decides between meanings, so the two topics were joined; First expert review."
 ],
 [
 "Homonymy vs polysemy – {{تطهير}} ({{تطهير الذنوب}} / {{تطهير الجرح}})",
 "Used and edited",
-"Ch 6, Step 3",
+"Ch 7, Step 3",
 "Arabic corrected to {{التطهير من الذنوب}}. Reason: First expert review: one is purified from sins."
 ],
 [
 "Homonymy vs polysemy – 'case: cover (of mobile)'",
 "Used and edited",
-"Ch 6, Step 3",
+"Ch 7, Step 3",
 "Changed to a glasses case ({{علبة}}). Reason: Final expert review: a phone case is {{غطاء}} or {{جراب}}, not {{علبة}}."
 ],
 [
@@ -506,121 +506,121 @@ module.exports = [
 [
 "Idiom and idiomatic expressions (with copies in Definitions and 'Examples')",
 "Used and edited",
-"Ch 8 'Idioms, proverbs and fixed expressions'",
+"Ch 9 'Idioms, proverbs and fixed expressions'",
 "Three copies merged. Rule 'cannot be translated denotationally' softened to 'usually'; fixed expressions, how to spot an idiom and Baker's (2018) five ways added; the draft's proverbs gathered in Step 4. Reason: First expert review: shared idioms can be kept; Final expert review."
 ],
 [
 "Idioms – raining cats and dogs; over the moon",
 "Used as written",
-"Ch 8, Step 3; Ch 2 worked example; Ch 22 MT example",
+"Ch 9, Step 3; Ch 2 worked example; Ch 22 MT example",
 "Same Arabic ({{تمطر بغزارة}}, {{في قمّة السعادة}}). Reason: Accurate as written."
 ],
 [
 "Idioms – 'To pull one's socks up: {{شمر عن ساعديه}}'",
 "Used and edited",
-"Ch 8, Step 3",
+"Ch 9, Step 3",
 "English changed to 'to roll up one's sleeves'; Arabic kept. Reason: Final expert review: {{شمّر عن ساعديه}} means getting ready to work hard, which matches 'roll up one's sleeves', not 'pull one's socks up'."
 ],
 [
 "Idioms – 'A piece of cake' (idiomatic {{سهل}} vs literal {{قطعة من الكعك}})",
 "Used and edited",
-"Ch 8, Steps 1–2; Try it",
+"Ch 9, Steps 1–2; Try it",
 "Kept, with context (a birthday party); Arabic corrected to {{قطعة من الكعكة}}. Reason: First expert review: {{الكعك}} means biscuits."
 ],
 [
 "Idioms – 'Idiom: more than two words… to pay a visit, strong tea, Article 12 Governing Law, note on Article ({{المادة}} / {{البند}})'",
 "Used and edited",
-"Ch 7 (pay a visit, strong tea); Ch 21 term list (governing law, Article/clause)",
-"Reclassified: the collocations went to Ch 7 and the legal term to the term list. Governing law now {{القانون الواجب التطبيق}}, with the draft's {{القانون المطبَّق}} as an alternative and {{القانون الحاكم}} described as a common calque (not 'incorrect'). Reason: Editorial Report, section 7.1: collocations and a legal term are not idioms; section 7.1 note and First expert review on the Arabic."
+"Ch 8 (pay a visit, strong tea); Ch 21 term list (governing law, Article/clause)",
+"Reclassified: the collocations went to Ch 8 and the legal term to the term list. Governing law now {{القانون الواجب التطبيق}}, with the draft's {{القانون المطبَّق}} as an alternative and {{القانون الحاكم}} described as a common calque (not 'incorrect'). Reason: Editorial Report, section 7.1: collocations and a legal term are not idioms; section 7.1 note and First expert review on the Arabic."
 ],
 [
 "Examples & Idioms – mocktail / cocktail",
 "Used and edited",
-"Ch 14, Step 3",
+"Ch 15, Step 3",
 "'Mocktail' kept with an Arabic equivalent ({{مشروب مُنعش بلا كحول}}); 'cocktail' dropped. Reason: Only the item that needs translation is kept; no separate record."
 ],
 [
 "Examples & Idioms – 'warmed my heart = {{اثلج صدري}}'",
 "Used and edited",
-"Ch 14, Step 2; Try it; Ch 24 risk matrix",
+"Ch 15, Step 2; Try it; Ch 24 risk matrix",
 "Kept as a full sentence ({{أثلجَ الخبرُ صدري}}); explanation reworded (in a hot climate, relief and joy are linked with coolness). Reason: Final expert review #4."
 ],
 [
 "Examples & Idioms – {{كالمستجير من الرمضاء بالنار}} = Out of the frying pan into the fire",
 "Used as written",
-"Ch 8, Step 4",
+"Ch 9, Step 4",
 "Same proverb pair. Reason: Accurate as written."
 ],
 [
 "Types of Translation – Literal Translation",
 "Used and edited",
-"Ch 10 'Literal and free translation', Step 1",
+"Ch 11 'Literal and free translation', Step 1",
 "Merged with Free translation; the quote on successful or destructive literal translation kept; play a role (successful) and pay a visit (destructive) kept. Reason: Editorial Report, section 6.1: the main methods are taught together."
 ],
 [
 "Literal – 'It has been a long day' ({{يوماً شاقاً}} ✓ / {{يوماً طويلاً}} ✗)",
 "Used and edited",
-"Ch 10, Step 1; Try it; Ch 18 literary example",
+"Ch 11, Step 1; Try it; Ch 19 literary example",
 "Same pair; reason added (in English a long day is a tiring one). Reason: Final expert review: the Arabic is grammatical, so the reason must be stated."
 ],
 [
 "Literal – 'What are you wearing on your biggest day?'",
 "Used and edited",
-"Ch 10, Step 1",
+"Ch 11, Step 1",
 "Context 'in a wedding advert' added; the literal version corrected from {{أهمّ}} to {{أكبر}}. Reason: First expert review: {{أهمّ}} is already an interpretation, and the correction only works with the context."
 ],
 [
 "Metaphoric Translation",
 "Used and edited",
-"Ch 11 'Metaphoric translation'",
+"Ch 12 'Metaphoric translation'",
 "Kept as its own chapter; two copies of the definition merged; the three techniques kept in order and linked to Newmark (1988), with a fourth (turn the metaphor into a simile) added; Arabic rhetoric's view ({{تشبيه بليغ}} / {{استعارة}}) added. Reason: First expert review."
 ],
 [
 "Metaphor – 'she is a moon' (metaphor) / 'she is beautiful like a moon' (simile)",
 "Used and edited",
-"Ch 11, Steps 1–2",
+"Ch 12, Steps 1–2",
 "Replaced by 'He is a lion' / 'He is as brave as a lion'. Reason: First expert review: 'She is a moon' is not natural English, and in Arabic rhetoric {{هي قمر}} is a {{تشبيه بليغ}}."
 ],
 [
 "Metaphor – 'she is a snake' used for all three techniques ({{إنها أفعى}} / {{إنها كالثعلب}} / {{إنها خطيرة}})",
 "Used and edited",
-"Ch 11, Step 3",
+"Ch 12, Step 3",
 "Kept only for the shared metaphor ({{إنها أفعى}}); the other two uses were replaced by 'the tip of the iceberg' and 'raised a few eyebrows'. Reason: Editorial Report, section 7.1: the draft had just said the same metaphor exists in Arabic; First expert review."
 ],
 [
 "Metaphor – 'This is the tip of the iceberg' ({{غيض من فيض}} / {{أول الغيث قطرة}} / {{وما خفي أعظم}})",
 "Used and edited",
-"Ch 11, Step 3; Try it",
+"Ch 12, Step 3; Try it",
 "{{هذا غيضٌ من فيض}} kept; {{أول الغيث قطرة}} removed; {{وما خفي أعظم}} corrected to {{وما خفي كان أعظم}} for something bad that is hidden. Reason: First expert review: {{أول الغيث قطرة}} means 'big things start small'; {{غيض من فيض}} is not limited to negative situations."
 ],
 [
 "Metaphor – 'raises the brows → {{تُصدم}}'",
 "Used and edited",
-"Ch 11, Step 3",
+"Ch 12, Step 3",
 "Corrected to 'The news raised a few eyebrows' → {{أثار الخبر استغراب بعضهم}}; now the example of giving the basic meaning. Reason: First expert review: the idiom means surprise with mild disapproval."
 ],
 [
 "Metaphor – 'My paper will see light next December'",
 "Used and edited",
-"Ch 11, Step 3",
+"Ch 12, Step 3",
 "English corrected to 'see the light of day'; {{القادم}} changed to {{المقبل}}. Reason: First expert review: 'see the light' means to understand; 'be published' is 'see the light of day'."
 ],
 [
 "Metaphor – 'My thoughts evaporate → {{تبخرت أفكاري}}'",
 "Used and edited",
-"Ch 11, Step 3; Try it",
+"Ch 12, Step 3; Try it",
 "Changed to 'My hopes evaporated' → {{تبخّرت آمالي}}. Reason: First expert review: 'thoughts evaporated' is not a usual English collocation."
 ],
 [
 "Metaphor – Figurative language and metaphor definitions (English and Arabic)",
 "Used and edited",
-"Ch 11 key terms and Step 1",
+"Ch 12 key terms and Step 1",
 "English definitions kept; the Arabic definition replaced with the Arabic-rhetoric distinction. Reason: First expert review."
 ],
 [
 "Metaphor – 'In poetry language is very expressive and impressive'",
 "Used and edited",
-"Ch 11, Step 1",
+"Ch 12, Step 1",
 "Now 'Poetry is especially rich in metaphors'. Reason: Shortened."
 ],
 [
@@ -632,37 +632,37 @@ module.exports = [
 [
 "Free Translation",
 "Used and edited",
-"Ch 10, Steps 2–3; key terms 'Free translation', 'Adaptation (method)'",
+"Ch 11, Steps 2–3; key terms 'Free translation', 'Adaptation (method)'",
 "Kept: free translation for all kinds of texts; 'loose translation' as another name; specialists who see adapted translation as a new text (now the key term 'adaptation'). All four examples kept; a warning added that the last three add ideas; Jerome and the Abbasid translators added. Reason: First expert review; Editorial Report, section 12.2 asks the team to confirm this presentation."
 ],
 [
 "Free – example 2 (equal opportunity → {{بعيداً عن المحسوبية والواسطة والمحاباة}}) and example 3 (heavy rainfall → {{موسم زراعي مبشر}})",
 "Used and edited",
-"Ch 10, Step 2",
+"Ch 11, Step 2",
 "Arabic made more natural: {{يجب تعيين الموظفين الجدد}}…; {{ينتظرنا هذا العام موسمٌ زراعيٌّ مبشّر بالخير}}. Reason: First expert review and Final expert review: noun-first order and {{سيكون لدينا}} / {{يجب أن يتمّ}} are English-style structures."
 ],
 [
 "Free – examples 1 (Going out can be risky – Covid) and 4 (parents not happy – {{عقوق الوالدين}})",
 "Used and edited",
-"Ch 10, Step 2",
+"Ch 11, Step 2",
 "Kept, but described in English rather than given in Arabic. Reason: Seg. 2 writer note: kept as they were; the religious-moral Arabic sentence was not reproduced."
 ],
 [
 "Translation strategies (first section: literal, functional, cultural substitution, addition, omission, explanatory)",
 "Used and edited",
-"Ch 13 'Translation strategies' (Steps 1–2); Ch 12 (adaptation)",
+"Ch 14 'Translation strategies' (Steps 1–2); Ch 13 (adaptation)",
 "All six strategies kept and defined; missing strategies added (more general word, more neutral word, paraphrase, loan word with explanation, compensation, domestication and foreignisation). Reason: Notes paras 2, 9, 18 ask for missing strategies; Editorial Report, section 5."
 ],
 [
 "Strategies – Literal: 'Key word = ☒ {{كلمات مفتاحية}} / ☑ {{كلمات دالة}}'",
 "Used and edited",
-"Ch 13, Step 1",
+"Ch 14, Step 1",
 "Kept, but now as 'check the field': either can be right depending on the field; 'Most of the time, literal translation fails' dropped. Reason: First expert review: {{كلمة مفتاحية}} is itself a literal translation, so it cannot show that literal translation fails."
 ],
 [
 "Strategies – 'Kick the bucket = {{يموت كالحقير}}'",
 "Used and edited",
-"Ch 5, Step 1",
+"Ch 6, Step 1",
 "The Arabic removed; the idiom described as informal and humorous. Reason: Editorial Report, section 7.1: the English is not insulting."
 ],
 [
@@ -674,55 +674,55 @@ module.exports = [
 [
 "Strategies – Functional: 'spill the beans = {{يفشي السر}}', 'mark my words = {{فل تتذكر وعدي}}\\ {{كلامي}}'",
 "Used and edited",
-"Ch 8, Step 3; Ch 13, Step 1",
-"Both kept but re-labelled as giving the plain meaning (ideational); functional examples now 'a dead letter' and 'second to none'. 'Mark my words' corrected to {{تذكّر كلامي}}. Reason: Editorial Report, section 7.1 (promise and typing error); First expert review and Final expert review: plain renderings are ideational by Ch 9's definitions."
+"Ch 9, Step 3; Ch 14, Step 1",
+"Both kept but re-labelled as giving the plain meaning (ideational); functional examples now 'a dead letter' and 'second to none'. 'Mark my words' corrected to {{تذكّر كلامي}}. Reason: Editorial Report, section 7.1 (promise and typing error); First expert review and Final expert review: plain renderings are ideational by Ch 10's definitions."
 ],
 [
 "Strategies – Cultural substitution: 'Romeo and Juliet = {{قيس وليلى}}'",
 "Used as written",
-"Ch 12 (adaptation) and Ch 13, Step 1",
+"Ch 13 (adaptation) and Ch 14, Step 1",
 "Same example, cross-referenced between the two chapters; a measures example added. Reason: First expert review: say it is the same technique as adaptation."
 ],
 [
 "Strategies – Addition: 'Arabic is a language of elaboration ({{اسهاب}})'",
 "Used and edited",
-"Ch 13, Step 2",
+"Ch 14, Step 2",
 "Reworded: Arabic style often favours fuller expression ({{الإطناب}}), and Arab readers may need information; example 'the Fed' added. Reason: First expert review: 'language of elaboration' ({{إسهاب}}, verbosity) is sweeping and mildly pejorative."
 ],
 [
 "Strategies – Omission (A → E, politeness, synonyms; {{شجاع ومغوار}} = brave or quite brave)",
 "Used and edited",
-"Ch 13, Step 2; Ch 3 Step 4; Ch 23",
+"Ch 14, Step 2; Ch 4 Step 4; Ch 23",
 "Kept; Arabic corrected to {{شجاعٌ مِغوار}} (no {{و}}); English 'very brave'; 'when we want to be polite' reworded as avoiding words that would offend; 'never omit real information' added. Reason: First expert review."
 ],
 [
 "Strategies – Explanatory translation ('last option'; {{الحرمان، العدة، الزكاة، الصدقة}})",
 "Used and edited",
-"Ch 13, Step 2; Ch 15",
-"'The last option' softened to 'use it only when nothing shorter works'; {{الزكاة}} and {{العِدّة}} kept; {{الصدقة}} and {{الحرمان}} dropped. The duplicate in Descriptive translation merged. Reason: Final expert review and #17 (high): 'last option' contradicted Ch 9 and Ch 11; First expert review: {{الصدقة}} has a ready equivalent (charity)."
+"Ch 14, Step 2; Ch 16",
+"'The last option' softened to 'use it only when nothing shorter works'; {{الزكاة}} and {{العِدّة}} kept; {{الصدقة}} and {{الحرمان}} dropped. The duplicate in Descriptive translation merged. Reason: Final expert review and #17 (high): 'last option' contradicted Ch 10 and Ch 12; First expert review: {{الصدقة}} has a ready equivalent (charity)."
 ],
 [
 "Translation strategies (second section: Arabicisation, terms, coining, exercises 24–27)",
 "Used and edited",
-"Ch 16 (Arabicisation, coining), Ch 21 (terms), Ch 7 and Ch 20 (fast colour); most exercise items not used",
+"Ch 17 (Arabicisation, coining), Ch 21 (terms), Ch 8 and Ch 3 (fast colour); most exercise items not used",
 "The theory lines were distributed by topic; most exercise items were left out. Reason: Editorial Report, section 8.1: unused exercise items could form an extra exercise set in a future edition."
 ],
 [
 "Strategies 2 – 'Arabicization is a form of naturalization'; Ex. 27 transliterated form (loan word): Radio → {{الراديو}}",
 "Used and edited",
-"Ch 16, Step 2 (transliteration)",
+"Ch 17, Step 2 (transliteration)",
 "Kept as 'Arabicisation ({{التعريب}})' with 'radio → {{الراديو}}' plus strategy and technology. Reason: First expert review: the standard term {{التعريب}} was missing."
 ],
 [
 "Strategies 2 – 'Terms = {{مصطلحات}}, convey complex meaning (concept)'; 'every branch has its own terms'; 'terms categorise the text'",
 "Used and edited",
-"Ch 21, Step 1 and key term 'Term'; Ch 15 key term 'Concept'; Ch 18 Step 4",
+"Ch 21, Step 1 and key term 'Term'; Ch 16 key term 'Concept'; Ch 19 Step 4",
 "Merged into the terminology chapter; 'concept' no longer defined as 'complex meaning'. Reason: First expert review: a concept need not be complex."
 ],
 [
 "Strategies 2 – 'Translator sometimes works as coiner'",
 "Used and edited",
-"Ch 16, Step 1; Ch 21 Step 3 ('think like a terminologist')",
+"Ch 17, Step 1; Ch 21 Step 3 ('think like a terminologist')",
 "Kept in plain words. Reason: Organisation by topic."
 ],
 [
@@ -734,43 +734,43 @@ module.exports = [
 [
 "Strategies 2 – Exercise 25: fast colour ({{لون ثابت}}), fast friend ({{صديق وفي}} / {{صديق العمر}})",
 "Used and edited",
-"Ch 7, Step 3; Ch 20, Step 1",
+"Ch 8, Step 3; Ch 3, Step 1",
 "Fast colour used twice (collocation and the dictionary three-check example); fast friend kept as {{صديق وفيّ}}. Reason: Useful collocation examples."
 ],
 [
 "Strategies 2 – breach / break the law ({{خرق}} / {{مخالفة}} / {{كسر القانون}}) and Ex. 16 'Break the rules'",
 "Used and edited",
-"Ch 7, Step 3; Ch 23, Step 2",
+"Ch 8, Step 3; Ch 23, Step 2",
 "Reduced to one point: 'break the law' → {{يخالف القانون}}, more natural than {{يكسر القانون}}. Reason: Same collocation point repeated; merged."
 ],
 [
 "Strategies 2 – 'In Arabic start with the Verb → {{جملة فعلية}}'",
 "Used and edited",
-"Ch 3, Step 1",
+"Ch 4, Step 1",
 "Merged with the word-order rule (and softened). Reason: Repetition; First expert review."
 ],
 [
 "Cultural Approximation (section as a whole, with exercises 28–29)",
 "Used and edited",
-"Ch 14 'Cultural approximation'",
+"Ch 15 'Cultural approximation'",
 "Definition and most examples kept; organised into four steps (feeling not picture; climate; titles and institutions, media and business; what people really say); Shakespeare example added. Reason: Notes paras 4, 11, 20 ask for material to be added to this chapter; Editorial Report, section 5."
 ],
 [
 "Cultural – 'I have got the test in the bag: {{الامتحان في جيبي}}'",
 "Used and edited",
-"Ch 14, Step 1",
+"Ch 15, Step 1",
 "Kept, labelled informal. Reason: First expert review."
 ],
 [
 "Cultural – 'As busy as a bee: {{زي أم العروس}}'",
 "Used and edited",
-"Ch 14, Step 1",
+"Ch 15, Step 1",
 "Arabic replaced by {{نشيطٌ كالنحلة}}. Reason: First expert review: {{زي أم العروس}} describes someone who fusses without achieving much – the opposite meaning."
 ],
 [
 "Cultural – 'Like mother, like daughter: {{اقلب الجرة على فمها تطلع البنت لأمها}}'",
 "Used and edited",
-"Ch 14, Step 1",
+"Ch 15, Step 1",
 "Kept, labelled colloquial, with a formal option ({{البنتُ تُشبه أمَّها}}). Reason: First expert review; Final expert review: a beginner needs a form usable in formal writing."
 ],
 [
@@ -782,19 +782,19 @@ module.exports = [
 [
 "Cultural – 'Jet lag: {{إعياء الطيران}}'",
 "Used and edited",
-"Ch 13, Step 3 (paraphrase)",
+"Ch 14, Step 3 (paraphrase)",
 "Moved to the strategies chapter; Arabic changed to {{الإرهاق الناتج عن فارق التوقيت}}. Reason: Editorial Report, section 7.1 note and First expert review: the time-difference idea was lost; the team may prefer the draft's form (Editorial Report, section 12.2)."
 ],
 [
 "Cultural – 'Ali and Ahmed are cut from the same cloth = {{اثنين من نفس الطينة}}'",
 "Used and edited",
-"Ch 14, Step 1; Try it",
+"Ch 15, Step 1; Try it",
 "Arabic corrected to {{عليّ وأحمد من طينةٍ واحدة}}. Reason: The draft's Arabic had a grammar error ({{اثنين}}) and a calqued structure."
 ],
 [
 "Cultural – UK/US offices (Home Office, Chancellor of the Exchequer, Secretary of the Treasury, Secretary of State) and Ex. 28 'The British Home Office'",
 "Used and edited",
-"Ch 14, Step 3; Try it",
+"Ch 15, Step 3; Try it",
 "Merged; Home Office corrected from 'minister' ({{وزير الداخلية}}) to 'ministry' ({{وزارة الداخلية البريطانية}}); Secretary of the Treasury corrected to {{وزير الخزانة الأمريكي}}; nationality added to each. Reason: Translate the job, not the words; 'Office' is a ministry."
 ],
 [
@@ -806,43 +806,43 @@ module.exports = [
 [
 "Cultural – 'Scapegoating = {{كبش الفداء}} / {{حطها برقبتي}} / {{حطها بوجعي}}'",
 "Used and edited",
-"Ch 14, Step 1",
+"Ch 15, Step 1",
 "Kept as 'a scapegoat' → {{كبش فداء}} (indefinite); the colloquial phrases dropped. Reason: First expert review."
 ],
 [
 "Cultural – sheriff ({{مأمور الشرطة أو عمدة الشرطة}})",
 "Used and edited",
-"Ch 14, Step 3",
+"Ch 15, Step 3",
 "Corrected to {{رئيس شرطة المقاطعة}}. Reason: First expert review: {{مأمور الشرطة}} is an Egyptian police rank."
 ],
 [
 "Cultural – watchdog press vs lapdog press",
 "Used and edited",
-"Ch 14, Step 3",
+"Ch 15, Step 3",
 "Arabic neutralised: {{الصحافة الرقابية}} / {{الصحافة الموالية}} (draft: opposing / supporting the government). Reason: Neutral wording (Editorial Report, section 4, 'Stay neutral')."
 ],
 [
 "Cultural – 'sleep like a log' (four Arabic options)",
 "Used and edited",
-"Ch 14, Step 1",
+"Ch 15, Step 1",
 "One option kept: {{نام كالقتيل}}. Reason: Shortened."
 ],
 [
 "Cultural – Ex. 29: God willing = {{إن شاء الله}}; We are well = {{الحمد لله}}",
 "Used and edited",
-"Ch 14, Step 4",
+"Ch 15, Step 4",
 "Kept; the second made fuller ({{الحمد لله، بخير}}). Reason: Accurate; lightly edited."
 ],
 [
 "Cultural – Ex. 29: condolences '{{تعيش انت، شعبان مات}}'",
 "Used and edited",
-"Ch 14, Step 4",
+"Ch 15, Step 4",
 "Replaced by {{عظّم الله أجركم}} (formal), with {{البقية في حياتك}} labelled Egyptian Arabic. Reason: Editorial Report, section 7.1: unsuitable register for a general handbook; colloquial forms are labelled."
 ],
 [
 "Cultural – Ex. 29: welcome '{{أهلاً أهلاً زارنا النبي}}'",
 "Used and edited",
-"Ch 14, Step 4",
+"Ch 15, Step 4",
 "Replaced by {{أهلاً وسهلاً، شرّفتمونا}}. Reason: Editorial Report, section 7.1: refers to the Prophet in a casual way."
 ],
 [
@@ -854,37 +854,37 @@ module.exports = [
 [
 "Cultural – product cannibalism (from 'Examples')",
 "Used and edited",
-"Ch 14, Step 3",
+"Ch 15, Step 3",
 "Term corrected to 'product cannibalisation'; Arabic made a verbal noun ({{مزاحمةُ منتجٍ جديد لمنتجٍ آخر للشركة نفسها}}); the literal-meaning note dropped. Reason: First expert review."
 ],
 [
 "Descriptive Translation (with its repeats in Lexical creation)",
 "Used and edited",
-"Ch 15 'Descriptive translation'",
+"Ch 16 'Descriptive translation'",
 "Definition kept; the two copies (here and under Lexical creation) merged; the method set out as steps (transliterate, describe, only the first time); 'give the description alone when readers do not need the source word' added. Reason: Repetition removed; First expert review."
 ],
 [
 "Descriptive – {{زكاة}} ('compulsory charity… when income conditions are met'; 'Islamic taxation system… annually')",
 "Used and edited",
-"Ch 15, Step 2",
+"Ch 16, Step 2",
 "Gloss corrected: obligatory annual alms on savings and wealth above a minimum, given to those in need. Reason: First expert review: zakat is levied on wealth held above the nisab, not on income."
 ],
 [
 "Descriptive – {{تيمم}} ('making ablutions with earth… when water is scarce or missing')",
 "Used and edited",
-"Ch 15, Step 2",
+"Ch 16, Step 2",
 "Corrected: dry ritual purification, wiping face and hands with clean earth when water is missing or cannot be used. Reason: First expert review: tayammum is wiping, not washing, and also applies when water cannot be used."
 ],
 [
 "Descriptive – {{الحوقلة، البسملة، التأريخ، القهقهة}}",
 "Used and edited",
-"Ch 15, Step 2",
+"Ch 16, Step 2",
 "{{البسملة}} and {{الحوقلة}} kept with descriptions (the hawqala wording corrected); {{التأريخ}} and {{القهقهة}} dropped. Reason: First expert review; the other two were given without a meaning in the draft."
 ],
 [
 "Descriptive – 'sectioning / Ali has been sectioned' (and repeat in Lexical creation)",
 "Used and edited",
-"Ch 15, Step 2",
+"Ch 16, Step 2",
 "Kept once; Arabic corrected to {{أُودِع عليٌّ مستشفى للأمراض النفسية بموجب القانون}}; draft spelling errors removed. Reason: Final expert review: 'sectioned' means compulsorily detained, so {{أُودِع}} is needed."
 ],
 [
@@ -896,31 +896,31 @@ module.exports = [
 [
 "Descriptive – 'written in brackets after the SL word or in the footnotes' (from Lexical creation)",
 "Used as written",
-"Ch 15, Step 1; Try it",
+"Ch 16, Step 1; Try it",
 "Same point. Reason: Accurate as written."
 ],
 [
 "Lexical Creation – {{النحت المعجمي}} (section as a whole)",
 "Used and edited",
-"Ch 16 'Lexical creation'",
+"Ch 17 'Lexical creation'",
 "Definition, reason (gap in the TL) and the types kept; Arabic name changed to {{التوليد المعجمي}}; {{النحت}} now explained as blending; derivation added; 'search before you create' added. Reason: First expert review: {{النحت}} is specifically blending two words; the first expert review, #23."
 ],
 [
 "Lexical creation – types (neologism, calque, transliteration, explanation, hybrid form)",
 "Used and edited",
-"Ch 16, Step 2",
+"Ch 17, Step 2",
 "All five kept, each defined and illustrated; neologism now includes an old word with a new meaning; hybrid explained. Reason: First expert review #19, #22; Final expert review."
 ],
 [
 "Lexical creation – shadow government ({{حكومة الظل}}), smartphone (calque), Thanksgiving ({{عيد الشكر}})",
 "Used as written",
-"Ch 16, Step 2",
+"Ch 17, Step 2",
 "Same examples, grouped under loan translation (calque). Reason: Accurate as written."
 ],
 [
 "Lexical creation – blog ({{مدونة}}) as neologism; cyber security as 'transliteration & partial arabicised'",
 "Used and edited",
-"Ch 16, Step 2",
+"Ch 17, Step 2",
 "Blog kept, explained as derived from {{دوّن}}; cybersecurity reclassified as hybrid form. Reason: First expert review: {{مدوّنة}} was derived, not invented."
 ],
 [
@@ -944,37 +944,37 @@ module.exports = [
 [
 "Lexical creation – 'To be lexicalized: {{التعجيم}}'",
 "Used and edited",
-"Ch 16, Step 3",
+"Ch 17, Step 3",
 "Arabic corrected to {{المَعْجَمة}}; meaning corrected (widely accepted and entered in the dictionary, not 'official'). Reason: First expert review: {{التعجيم}} is not the Arabic term for lexicalisation."
 ],
 [
 "Lexical creation – Wakf, Sukok (transliteration)",
 "Used and edited",
-"Ch 16 (sukuk); Ch 13 Step 3 and Ch 15 Try it (waqf)",
-"Sukuk kept with a definition; waqf moved out of Ch 16 because it already appears in Ch 13 and Ch 15. Reason: Final expert review: the waqf example was repeated."
+"Ch 17 (sukuk); Ch 14 Step 3 and Ch 16 Try it (waqf)",
+"Sukuk kept with a definition; waqf moved out of Ch 17 because it already appears in Ch 14 and Ch 16. Reason: Final expert review: the waqf example was repeated."
 ],
 [
 "Lexical creation – Atwah = {{عطوة}} (3-month truce in Jordan)",
 "Used and edited",
-"Ch 15, Step 2",
+"Ch 16, Step 2",
 "Moved to descriptive translation: 'a temporary truce in tribal customary law, for example in Jordan'; the '3 months' detail dropped. Reason: It is explained, not coined, so it fits descriptive translation."
 ],
 [
 "Lexical creation – Cancel culture ({{ثقافة الإلغاء}} …)",
 "Used and edited",
-"Ch 16, Step 3",
+"Ch 17, Step 3",
 "One Arabic form kept, as an example of an accepted term. Reason: First expert review queried whether the termbases record it; left as a point to check (Correction Log, section 5)."
 ],
 [
 "Lexical creation – green washing ({{التضليل البيئي}})",
 "Used and edited",
-"Ch 16, Step 2",
+"Ch 17, Step 2",
 "Kept as the example of 'explanation'; wording clarified. Reason: Final expert review."
 ],
 [
 "Lexical creation – Global warming ({{احترار أرضي}}), Green house effect ({{احتباس حراري}}) (from 'Examples')",
 "Used and edited",
-"Ch 16, Step 3",
+"Ch 17, Step 3",
 "Global warming corrected to {{الاحترار العالمي}}; greenhouse effect kept ({{الاحتباس الحراري}}). Reason: The accepted terms were used (search before you create)."
 ],
 [
@@ -986,13 +986,13 @@ module.exports = [
 [
 "Examples (miscellaneous section after Lexical creation)",
 "Used and edited",
-"Spread across Ch 1, 5, 7, 8, 9, 14, 16, 21",
+"Spread across Ch 1, 6, 8, 9, 10, 15, 17, 21",
 "This section repeated denotation/connotation, collocation, idioms and the dead-letter example (merged into their chapters) and added new items (I am all ears, product cannibalism, key vocabulary, exercise 16 answers). Reason: Repetition removed (notes paras 1, 8, 17)."
 ],
 [
 "Examples – 'I am all ears = {{كلي آذان صاغية}}'",
 "Used as written",
-"Ch 8, Step 3",
+"Ch 9, Step 3",
 "Same. Reason: Accurate as written."
 ],
 [
@@ -1010,73 +1010,73 @@ module.exports = [
 [
 "Examples – 'boys are boys = {{الولد ولد لو أنه قاضي بلد}}'",
 "Used and edited",
-"Ch 8, Step 4",
+"Ch 9, Step 4",
 "English corrected to 'Boys will be boys'; Arabic to {{الولد ولد ولو صار قاضي بلد}}, labelled a colloquial proverb. Reason: Final expert review."
 ],
 [
 "Examples – 'Business is Business = {{العمل التجاري عمل تجاري}} / {{الشغل شغل}}'",
 "Used and edited",
-"Ch 8, Step 4",
+"Ch 9, Step 4",
 "Replaced by the proverb {{تعاشروا كالإخوة وتعاملوا كالأجانب}}. Reason: First expert review: the draft's Arabic was word for word, against the proverb rule."
 ],
 [
 "Examples – Ex. 16: 'Don't put words on me → {{لا تتقول علي الأقاويل}}'",
 "Used and edited",
-"Ch 8, Step 3",
+"Ch 9, Step 3",
 "English corrected to 'Don't put words in my mouth'; Arabic shortened to {{لا تتقوّل عليّ}}. Reason: English idiom corrected (proofreading, Editorial Report, section 7.1)."
 ],
 [
 "Examples – Ex. 16: 'To hit the sac → {{أن يأوي إلى الفراش}}'",
 "Used and edited",
-"Ch 8, Step 3",
+"Ch 9, Step 3",
 "Spelling corrected to 'hit the sack'; Arabic {{أوى إلى فراشه}}. Reason: Proofreading (Editorial Report, section 7.1)."
 ],
 [
 "Examples – Ex. 16: 'To break a leg → {{أن تكون محظوظاً}}'",
 "Used and edited",
-"Ch 1, Step 1; Ch 8, Step 3",
+"Ch 1, Step 1; Ch 9, Step 3",
 "Now 'Break a leg!' → {{بالتوفيق}}!, used as the opening example of translating meaning, with the performance context. Reason: First expert review: it is a wish before a performance."
 ],
 [
 "Analysing a text (section as a whole)",
 "Used and edited",
-"Ch 17 'Text analysis'; parts in Ch 2, Ch 22, Ch 24, Ch 25",
-"Core material kept in Ch 17 (why analyse, analysis vs summary, checklist, KUNA example, good analyst); tips on titles, captions, reputation, speed and the mental draft moved to Ch 2; the post-editing quote to Ch 22; Persian/Arabian Gulf to Ch 24; the three phases linked to Ch 25; Nord (2005) and Newmark (1988, p. 11) added. Reason: Notes para. 40 asks for a text-analysis chapter; Editorial Report, section 5."
+"Ch 18 'Text analysis'; parts in Ch 2, Ch 22, Ch 24, Ch 25",
+"Core material kept in Ch 18 (why analyse, analysis vs summary, checklist, KUNA example, good analyst); tips on titles, captions, reputation, speed and the mental draft moved to Ch 2; the post-editing quote to Ch 22; Persian/Arabian Gulf to Ch 24; the three phases linked to Ch 25; Nord (2005) and Newmark (1988, p. 11) added. Reason: Notes para. 40 asks for a text-analysis chapter; Editorial Report, section 5."
 ],
 [
 "Analysing – definitions of analysis and 'Text: anything written; a word, a sentence or a paragraph'",
 "Used and edited",
-"Ch 17, Step 1 and key terms",
+"Ch 18, Step 1 and key terms",
 "Text definition corrected: any written or spoken piece of language that forms a complete message. Reason: First expert review: texts are not limited to writing, and a random word is not a text."
 ],
 [
 "Analysing – Assurance Checklist (speaker/author, terms, field, publisher, tone, style, strategies, target audience)",
 "Used and edited",
-"Ch 17, Step 3",
+"Ch 18, Step 3",
 "Kept as an eight-question checklist (genre and purpose added). Reason: It is the one checklist kept when the others were removed (Editorial Report, section 5)."
 ],
 [
 "Analysing – KUNA example (tone, field, purpose 'Australia', publisher, audience, choice of words, strategies)",
 "Used and edited",
-"Ch 17, Step 3; Ch 2 'Before you start'",
+"Ch 18, Step 3; Ch 2 'Before you start'",
 "Kept as a worked analysis; 'Purpose → Australia' rewritten as relations between Kuwait and Australia; genre and purpose added; 'KUNA has biased views' removed; the 'choice of words' examples ('Government Rents', 'Linguistic Applications') dropped. Reason: Editorial Report, section 7.1: a published handbook should not describe a named agency as biased; First expert review; Final expert review."
 ],
 [
 "Analysing – Analysis vs Summary",
 "Used and edited",
-"Ch 17, Step 2",
+"Ch 18, Step 2",
 "Same distinction, shortened. Reason: Accurate; shortened (Editorial Report, section 8.3)."
 ],
 [
 "Analysing – Characteristics of a good analyser; 'The analysis should align with your translation'; 'Mention issues in the analysis'",
 "Used and edited",
-"Ch 17, Step 4",
+"Ch 18, Step 4",
 "Merged into four points. Reason: Repetition removed."
 ],
 [
 "Analysing – Translation process (analysis → translation → commentary)",
 "Used and edited",
-"Ch 17, Step 1; Ch 25",
+"Ch 18, Step 1; Ch 25",
 "Kept as the three phases. Reason: Links the two chapters."
 ],
 [
@@ -1264,7 +1264,7 @@ module.exports = [
 ],
 [
 "Ex. 262 and related items: {{حديقة غناء}}, {{لاذ اللص بالفرار}}, sounds great, {{يعد الطقس متقلب}}, copular {{تمتلك عالمة مقومات الزوجة الصالحة}}",
-"Editorial Report, section 8.1: unused exercise items; the {{تعد}} pattern was also corrected in Ch 3 (First expert review)."
+"Editorial Report, section 8.1: unused exercise items; the {{تعد}} pattern was also corrected in Ch 4 (First expert review)."
 ],
 [
 "Death is the great leveller = {{كل نفس ذائقة الموت}} (Cultural approximation)",
@@ -1360,7 +1360,7 @@ module.exports = [
 ],
 [
 "'Drop whatever can be omitted' (titles)",
-"Not kept as a separate rule, because Ch 13 warns never to omit real information; no separate record."
+"Not kept as a separate rule, because Ch 14 warns never to omit real information; no separate record."
 ]
 ],
 [
@@ -1439,7 +1439,7 @@ module.exports = [
 "Loulwah's notes on machine translation and dictionaries (notes paras 6, 13, 56)",
 "No",
 "not received / not used",
-"Never received; Ch 20 and Ch 22 were written without them."
+"Never received; Ch 3 and Ch 22 were written without them."
 ],
 [
 "Masooma's terminology chapter (notes para. 62)",
@@ -1469,7 +1469,7 @@ module.exports = [
 "Dictionaries in general (notes para. 42; draft 'Mention the dictionaries and resources you used')",
 "Yes",
 "checked – still needs the printed source",
-"Answered by five resources in Ch 20: Al-Mawrid, Wehr, al-Muʿjam al-Wasīṭ, the Oxford Collocations Dictionary, UNTERM and Arabterm (see their entries)."
+"Answered by five resources in Ch 3: Al-Mawrid, Wehr, al-Muʿjam al-Wasīṭ, the Oxford Collocations Dictionary, UNTERM and Arabterm (see their entries)."
 ],
 [
 "Supervisor and Dr Amin (notes para. 57)",
@@ -1511,7 +1511,7 @@ module.exports = [
 "Romeo and Juliet / Qays and Layla",
 "No",
 "not received / not used",
-"Cultural references used as examples (Ch 12, 13), not cited as sources."
+"Cultural references used as examples (Ch 13, 14), not cited as sources."
 ],
 [
 "President Clinton's impeachment trial (House Managers example)",
@@ -1529,7 +1529,7 @@ module.exports = [
 "Nida & Taber (1969)",
 "Yes",
 "checked – still needs the printed source",
-"Not named in the documents. p. 12 quotation confirmed; the paraphrase in Ch 4 has no page (usually p. 4) and must be checked in the printed book."
+"Not named in the documents. p. 12 quotation confirmed; the paraphrase in Ch 5 has no page (usually p. 4) and must be checked in the printed book."
 ],
 [
 "Farghal & Shunnaq (1999)",
@@ -1774,28 +1774,28 @@ module.exports = [
 "Add missing translation strategies",
 "2, 9, 18",
 "Done",
-"Ch 13 (Steps 3–4)",
-"Added: more general word, more neutral word, paraphrase, loan word plus explanation (Baker, 2018), compensation (Dickins et al., 2016), domestication and foreignisation (Venuti, 1995). The seven procedures (Ch 12) add further techniques."
+"Ch 14 (Steps 3–4)",
+"Added: more general word, more neutral word, paraphrase, loan word plus explanation (Baker, 2018), compensation (Dickins et al., 2016), domestication and foreignisation (Venuti, 1995). The seven procedures (Ch 13) add further techniques."
 ],
 [
 "Add missing types/kinds of translation",
 "2, 9, 18",
 "Done",
-"Ch 1 Step 3; Ch 10; Ch 26",
-"Written translation, interpreting (simultaneous and consecutive), sight translation, audiovisual translation, localisation, and Jakobson's wider sense; literal, free and adaptation as methods (Ch 10); subtitling, dubbing, voice-over and audio description (Ch 26)."
+"Ch 1 Step 3; Ch 11; Ch 26",
+"Written translation, interpreting (simultaneous and consecutive), sight translation, audiovisual translation, localisation, and Jakobson's wider sense; literal, free and adaptation as methods (Ch 11); subtitling, dubbing, voice-over and audio description (Ch 26)."
 ],
 [
 "New chapter on the seven translation procedures",
 "3, 10, 19, 44",
 "Done",
-"Ch 12",
+"Ch 13",
 "Vinay and Darbelnet (1958/1995): the seven procedures, direct vs oblique, and one sentence analysed with several procedures."
 ],
 [
 "Add material to the cultural approximation chapter",
 "4, 11, 20",
 "Done",
-"Ch 14",
+"Ch 15",
 "Added climate and meaning (with Shakespeare's Sonnet 18), titles and institutions, media and business words, and what people really say. The notes do not say what 'this material' is; the additions are the editor's."
 ],
 [
@@ -1844,7 +1844,7 @@ module.exports = [
 "Add news texts and articles as authentic material",
 "25, 59",
 "Partly done",
-"Ch 2 and Ch 17 (KUNA report), Ch 18 Step 3 (translating news headlines and stories)",
+"Ch 2 and Ch 18 (KUNA report), Ch 19 Step 3 (translating news headlines and stories)",
 "News is taught with short examples and headlines, but no authentic article is included. The two news practice texts written for the handbook were removed with the practice section; published articles would need permission (Editorial Report, section 12.2). Editorial Report, section 5 marks this Not done."
 ],
 [
@@ -1858,14 +1858,14 @@ module.exports = [
 "Include examples from poetry",
 "27",
 "Done",
-"Ch 18 (al-Mutanabbi), Ch 14 (Shakespeare, Sonnet 18), Ch 1 (al-Jāḥiẓ, prose)",
-"Editorial Report, section 5 also lists Ch 11, but Ch 11 only says that poetry is rich in metaphors and has no poetry example."
+"Ch 19 (al-Mutanabbi), Ch 15 (Shakespeare, Sonnet 18), Ch 1 (al-Jāḥiẓ, prose)",
+"Editorial Report, section 5 also lists Ch 12, but Ch 12 only says that poetry is rich in metaphors and has no poetry example."
 ],
 [
 "Include the main genres, with at least one example of each",
 "28, 29",
 "Done",
-"Ch 18",
+"Ch 19",
 "Eight genres (news, legal, political, medical, technical, literary, poetry, advertising), each with an EN → AR example, under Reiss's three text types."
 ],
 [
@@ -1879,15 +1879,15 @@ module.exports = [
 "Include a number of practical checklists",
 "31",
 "Done then removed at the team's request",
-"Ch 17 Step 3 (analysis checklist remains)",
-"Four checklists were written and removed to shorten the book (Editorial Report, section 8.5). Checklist-like lists remain in Ch 17 (analysis), Ch 23 (three readings), Ch 24 (risk matrix) and Ch 22 (four safety rules)."
+"Ch 18 Step 3 (analysis checklist remains)",
+"Four checklists were written and removed to shorten the book (Editorial Report, section 8.5). Checklist-like lists remain in Ch 18 (analysis), Ch 23 (three readings), Ch 24 (risk matrix) and Ch 22 (four safety rules)."
 ],
 [
 "Discuss: Who is the client? What is the communication purpose? Who is the target audience?",
 "32–35",
 "Done",
 "Ch 2 'Before you start'",
-"The three questions form the translation brief (Nord, 1997); reused in Ch 19 and Ch 26."
+"The three questions form the translation brief (Nord, 1997); reused in Ch 20 and Ch 26."
 ],
 [
 "Chapter on terminology management and terminology guides (passed to Masooma)",
@@ -1921,7 +1921,7 @@ module.exports = [
 "Chapter on text analysis (beginning, middle or end)",
 "40",
 "Done",
-"Ch 17 (Part 6, middle)",
+"Ch 18 (Part 6, middle)",
 "Presented as the first of three phases: analysis, translation, commentary."
 ],
 [
@@ -1935,14 +1935,14 @@ module.exports = [
 "Chapter on printed and digital dictionaries ({{المعاجم المطبوعة والرقمية}})",
 "42",
 "Done",
-"Ch 20",
+"Ch 3",
 "Types of dictionary, the three-check rule, printed vs digital, and five recommended resources."
 ],
 [
 "Include Fairclough's relational model",
 "43, 45",
 "Partly done",
-"Ch 19 'Words and points of view'",
+"Ch 20 'Words and points of view'",
 "Only three practical questions based on Fairclough (1992); the model itself was removed in the beginner revision (Editorial Report, section 8.2). Editorial Report, section 5 says 'Done, at beginner level'; Editorial Report, section 12.2 asks the team whether this is enough."
 ],
 [
@@ -1970,7 +1970,7 @@ module.exports = [
 "Collect examples from books, Arabic poetry, proverbs, idioms and text types, citing the sources",
 "52",
 "Partly done",
-"Ch 8, 11, 14, 18",
+"Ch 9, 12, 15, 19",
 "Examples were added and cited. The original sources of the draft's own examples are unknown, so they are credited to the course materials (Editorial Report, section 12.1). Editorial Report, section 3.2 says Shaikha's examples were not received, but Final Report, section 4.1 says her notes were used; the two records disagree."
 ],
 [
@@ -1991,7 +1991,7 @@ module.exports = [
 "Loulwah to help with examples from dictionaries",
 "56",
 "Not done",
-"– (Ch 20 written without them)",
+"– (Ch 3 written without them)",
 "Loulwah's dictionary examples were not received."
 ],
 [
@@ -2095,13 +2095,13 @@ module.exports = [
 "2. How a Translator Benefits – multilingual terminology ensures that both content and form of the source text are preserved",
 "Not used",
 "Nowhere in the final handbook (it was in the records, ‘Terminology and the translator’)",
-"the records said translators use glossaries and term databases “to keep both the content and the form of the source text”. The phrase was deleted in the later trimming. Reason: Removed when the running text was shortened for beginners; the idea overlaps with Chapter 4 (Form and meaning)."
+"the records said translators use glossaries and term databases “to keep both the content and the form of the source text”. The phrase was deleted in the later trimming. Reason: Removed when the running text was shortened for beginners; the idea overlaps with Chapter 5 (Form and meaning)."
 ],
 [
 "2. When to Act as a Terminologist – when dictionaries or term databanks fail, coin and establish an accurate term",
 "Used and edited (merged)",
-"Chapter 21, Step 3, item 4 (“If none exists, think like a terminologist and create an accurate one (Chapter 16)”); Try it, question 3 and answer; Chapter 16, Step 3 (“Search before you create”)",
-"Merged with the identical point in the document’s ‘Skills of the Translator’ section. The trigger was widened from ‘dictionaries’ to the client’s guide, the academies’ term lists, UNTERM and Arabterm, and the model answer now says to search these first and only then create a term. Linked to Chapter 16 (lexical creation) for the methods of making a word. Reason: Corrected for consistency: the first expert review changed ‘no dictionary’ to ‘no dictionary or termbase’ because the handbook tells readers to search termbases and academies first; the final review made the Try it answer include the search step, which it had skipped."
+"Chapter 21, Step 3, item 4 (“If none exists, think like a terminologist and create an accurate one (Chapter 17)”); Try it, question 3 and answer; Chapter 17, Step 3 (“Search before you create”)",
+"Merged with the identical point in the document’s ‘Skills of the Translator’ section. The trigger was widened from ‘dictionaries’ to the client’s guide, the academies’ term lists, UNTERM and Arabterm, and the model answer now says to search these first and only then create a term. Linked to Chapter 17 (lexical creation) for the methods of making a word. Reason: Corrected for consistency: the first expert review changed ‘no dictionary’ to ‘no dictionary or termbase’ because the handbook tells readers to search termbases and academies first; the final review made the Try it answer include the search step, which it had skipped."
 ],
 [
 "3. Functions – Users’ definition: terminology as a set of practical communication units assessed by precision, suitability and standardisation",
@@ -2112,8 +2112,8 @@ module.exports = [
 [
 "3. Functions – Translator’s need for dictionaries and glossaries (translators, technical writers, linguists)",
 "Used and edited (merged)",
-"Chapter 21, Step 2 (translator bullet) and Step 4 (‘Other tools help too’); Chapter 20 (whole chapter on dictionaries)",
-"Merged with Section 2 above. Technical writers and linguists were dropped; the handbook speaks only to translators. The practical use of dictionaries is developed in Chapter 20, which was written for the handbook. Reason: Repetition of the point in Section 2; the handbook addresses beginner translators only."
+"Chapter 21, Step 2 (translator bullet) and Step 4 (‘Other tools help too’); Chapter 3 (whole chapter on dictionaries)",
+"Merged with Section 2 above. Technical writers and linguists were dropped; the handbook speaks only to translators. The practical use of dictionaries is developed in Chapter 3, which was written for the handbook. Reason: Repetition of the point in Section 2; the handbook addresses beginner translators only."
 ],
 [
 "3. Functions – Standardisation to assist translators (consensus and term unification)",
@@ -2166,7 +2166,7 @@ module.exports = [
 [
 "6. Skills of the Translator – a solid background in the technical terminology of the domain to preserve content and form",
 "Used and edited",
-"Chapter 21 as a whole (Steps 1, 3 and 5); Chapter 18, technical texts paragraph (‘Check the field every time (Chapter 21)’)",
+"Chapter 21 as a whole (Steps 1, 3 and 5); Chapter 19, technical texts paragraph (‘Check the field every time (Chapter 21)’)",
 "Not stated as a skill; instead the chapter teaches how to spot, check and record the terms of a field. ‘Preserve content and form’ was dropped. Reason: Turned from a statement into practical steps for beginners."
 ],
 [
@@ -2208,8 +2208,8 @@ module.exports = [
 [
 "7. Categories of Terms – by linguistic origin: neoclassical borrowing (cranium, internus), true borrowing (internet, Algebra), borrowing from other dialects or fields (McDonaldization, process data, application)",
 "Not used",
-"Nowhere in the final handbook (it was in the records and the records). Related but separate material: borrowing as a procedure in Chapter 12; transliteration and Arabicisation in Chapter 16, Step 2; algebra as an Arabic loan word in English in Chapter 13",
-"the records kept one example of each type (cranium; internet and algebra, with the note that algebra comes from Arabic {{الجبر}}; application from law to computing). internus, McDonaldization and process data were never used. The whole passage was deleted by the ‘before-trim’ version. The borrowing material now in Chapters 12, 13 and 16 comes from the original draft and Shaikha’s notes, not from this document. Reason: Removed in the beginner revision; not listed separately in the Editorial Report.2."
+"Nowhere in the final handbook (it was in the records and the records). Related but separate material: borrowing as a procedure in Chapter 13; transliteration and Arabicisation in Chapter 17, Step 2; algebra as an Arabic loan word in English in Chapter 14",
+"the records kept one example of each type (cranium; internet and algebra, with the note that algebra comes from Arabic {{الجبر}}; application from law to computing). internus, McDonaldization and process data were never used. The whole passage was deleted by the ‘before-trim’ version. The borrowing material now in Chapters 13, 14 and 17 comes from the original draft and Shaikha’s notes, not from this document. Reason: Removed in the beginner revision; not listed separately in the Editorial Report.2."
 ],
 [
 "8. Rules for Names of Terms (nine rules: relates to the concept; lexically systematic; conforms to word-formation rules; not redundant; no unnecessary information; no morphological variants; no homonyms; not ambiguous; independent of context)",
@@ -2221,7 +2221,7 @@ module.exports = [
 "9. Arabic Academies – regional academies as language-planning bodies that coin, examine and standardise specialised Arabic terms",
 "Used and edited",
 "Chapter 21, Step 2, paragraph after the bullets",
-"Now: “For Arabic, the Arabic language academies ({{مجامع اللغة العربية}}), for example in Damascus, Cairo, Baghdad and Amman, create and approve terms (Translation Team, n.d.).” The document’s singular {{مجمع اللغة العربية}} became the plural {{مجامع}}. ‘Language-planning bodies’ was dropped. The document names the Egyptian, Iraqi and Jordanian academies; the handbook gives their cities and adds Damascus. A sentence on the Coordination Bureau of Arabization in Rabat ({{مكتب تنسيق التعريب}}) was added. The academies are also named as a place to search in Step 3 (‘the academies’ term lists’), in Chapter 16, Step 3, and in the summary. Reason: Simplified for beginners. Damascus (the oldest academy, 1919) and the Rabat bureau were added by the first expert review because the list left them out. Note: the citation (Translation Team, n.d.) now covers Damascus, which the team document does not mention."
+"Now: “For Arabic, the Arabic language academies ({{مجامع اللغة العربية}}), for example in Damascus, Cairo, Baghdad and Amman, create and approve terms (Translation Team, n.d.).” The document’s singular {{مجمع اللغة العربية}} became the plural {{مجامع}}. ‘Language-planning bodies’ was dropped. The document names the Egyptian, Iraqi and Jordanian academies; the handbook gives their cities and adds Damascus. A sentence on the Coordination Bureau of Arabization in Rabat ({{مكتب تنسيق التعريب}}) was added. The academies are also named as a place to search in Step 3 (‘the academies’ term lists’), in Chapter 17, Step 3, and in the summary. Reason: Simplified for beginners. Damascus (the oldest academy, 1919) and the Rabat bureau were added by the first expert review because the list left them out. Note: the citation (Translation Team, n.d.) now covers Damascus, which the team document does not mention."
 ],
 [
 "9. Arabic Academies – Egyptian Academy method (committees; Arabic equivalent and definition; circulation to members; council; annual conference and journal; one-year probation for objections)",
@@ -2262,8 +2262,8 @@ module.exports = [
 [
 "11. Technical Dictionaries – contains the standardised terms of a subject; primary product of terminography; multilingual technical dictionaries with a comprehensive volume of terms",
 "Used and edited",
-"Chapter 21, Step 4 (‘Specialised dictionary (Chapter 20): the terms of one field’); Chapter 20, Words to remember (‘Specialised dictionary’) and Step 3",
-"Reduced to one line. ‘Technical dictionary’ was renamed ‘specialised dictionary’; ‘standardised/approved’ was dropped; terminography (still defined in the records as ‘the practical work of recording terms’) and the multilingual/comprehensive point were dropped. Reason: Corrected for consistency: Chapter 20 and the risk matrix say ‘specialised dictionary’, and dictionaries record terms but do not necessarily hold approved ones. Terminography removed as theory in the beginner revision."
+"Chapter 21, Step 4 (‘Specialised dictionary (Chapter 3): the terms of one field’); Chapter 3, Words to remember (‘Specialised dictionary’) and Step 3",
+"Reduced to one line. ‘Technical dictionary’ was renamed ‘specialised dictionary’; ‘standardised/approved’ was dropped; terminography (still defined in the records as ‘the practical work of recording terms’) and the multilingual/comprehensive point were dropped. Reason: Corrected for consistency: Chapter 3 and the risk matrix say ‘specialised dictionary’, and dictionaries record terms but do not necessarily hold approved ones. Terminography removed as theory in the beginner revision."
 ],
 [
 "12. Termbase – What is a termbase? (database of terminology and related information, usually multilingual)",
@@ -2310,7 +2310,7 @@ module.exports = [
 [
 "13. Standardization Bodies – Types of standards: de jure (official, published by standardisation bodies) and de facto (market share and public adoption: smartphone, WhatsApp)",
 "Not used",
-"Nowhere in the final handbook (it was in the records and the records with the example smartphone). ‘smartphone’ now appears only in Chapter 16 as an example of a calque ({{الهاتف الذكي}}), unrelated to standards",
+"Nowhere in the final handbook (it was in the records and the records with the example smartphone). ‘smartphone’ now appears only in Chapter 17 as an example of a calque ({{الهاتف الذكي}}), unrelated to standards",
 "The earlier versions kept both types with ‘smartphone’ and dropped ‘WhatsApp’ (a brand name). Reason: Removed in the beginner revision with the standardisation-bodies section."
 ]
 ],
@@ -2329,19 +2329,19 @@ module.exports = [
 "ul",
 [
 "Chapter 21 ‘Words to remember’: six key terms with Arabic equivalents (Term {{المصطلح}}; Terminology {{علم المصطلح}} ({{المصطلحية}}); Terminologist {{المصطلحي}} ({{خبير المصطلحات}}); Term list {{قائمة المصطلحات}}; Termbase {{قاعدة بيانات المصطلحات}} ({{بنك المصطلحات}}); Terminology guide {{دليل المصطلحات}}). The document gives no Arabic terms except {{مجمع اللغة العربية}}.",
-"Chapter 21 intro linking to Chapter 20, and the step structure (Steps 1–5), Try it (three questions with answers) and Remember summary.",
+"Chapter 21 intro linking to Chapter 3, and the step structure (Steps 1–5), Try it (three questions with answers) and Remember summary.",
 "Chapter 21, Step 1: the opening point that in a contract or a medical leaflet one wrong term can change the meaning.",
 "Citation of Cabré (1999) for the definition of terminology (the document cites no sources).",
 "Chapter 21, Step 3, item 1: medical examples allergic = {{أرَجيّ}} (everyday Arabic {{تحسّسي}}), allergen = {{مادة مُحسِّسة}}, contact eczema = {{إكزيما التماس}} (from Shaikha’s notes; the Editorial Report.1; the Editorial Report lists ‘Chapter 21: medical examples of specialised terms’).",
 "Chapter 21, Step 2: the Damascus academy and the Coordination Bureau of Arabization in Rabat ({{مكتب تنسيق التعريب}}). The Rabat sentence has no citation, and the preceding citation (Translation Team, n.d.) covers Damascus, which is not in the team document.",
-"Chapter 21, Step 3: UNTERM and Arabterm, and the client’s guide, as sources to check, in that order (client’s guide first: the expert review); items 4 (create only if none exists, Chapter 16) and 5 (record the term in a term list and share it with the team).",
+"Chapter 21, Step 3: UNTERM and Arabterm, and the client’s guide, as sources to check, in that order (client’s guide first: the expert review); items 4 (create only if none exists, Chapter 17) and 5 (record the term in a term list and share it with the team).",
 "Chapter 21, Step 4: a sample term list (governing law = {{القانون الواجب التطبيق}}, also {{القانون المطبَّق}}, with {{القانون الحاكم}} described as a common calque; provided that = {{شريطةَ أن}}; Article = {{مادّة}} vs clause = {{بند}}; CBC = {{تعداد الدم الكامل}} / {{صورة الدم الكاملة}}). Only CBC comes from the document; governing law was moved from the original draft (the records), and the note on {{القانون الحاكم}} was softened from ‘not’ in the first expert review.",
 "Chapter 21, Step 4: the terminology guide (the client’s approved terms and writing rules; always ask for one and follow it), requested in the professor’s notes (items 36 and 62; the Editorial Report).",
 "Chapter 21, Step 5: the ‘one term for one idea’ rule with the {{مادّة}} / {{بند}} example (a new word suggests a new meaning).",
 "Chapter 21, Step 2: the contrast ‘a translator translates whole texts; a terminologist studies the terms of a field’ replaces the document’s ‘two languages vs one language’ contrast.",
-"Chapter 16, Step 3 (‘Search before you create’): the academies, UNTERM and Arabterm as places to find accepted terms, with examples global warming = {{الاحترار العالمي}}, greenhouse effect = {{الاحتباس الحراري}}, cancel culture = {{ثقافة الإلغاء}}, and the idea of lexicalisation ({{المَعْجَمة}}). Chapter 16 is based on the original draft, not on this document; a review query notes that cancel culture is a media coinage that should be checked in those sources.",
-"Chapter 20 (whole chapter, written for the handbook): the three-check rule, printed vs digital dictionaries, and named dictionaries (Al-Mawrid, Wehr, al-Muʿjam al-Wasīṭ, Oxford Collocations Dictionary, UNTERM, Arabterm), which expand the document’s short ‘Technical Dictionaries’ section.",
-"Chapter 18, technical texts: depression = {{الاكتئاب}} / {{الكساد}} / {{منخفض جوي}} as an example of one word being a different term in each field, with a cross-reference to Chapter 21.",
+"Chapter 17, Step 3 (‘Search before you create’): the academies, UNTERM and Arabterm as places to find accepted terms, with examples global warming = {{الاحترار العالمي}}, greenhouse effect = {{الاحتباس الحراري}}, cancel culture = {{ثقافة الإلغاء}}, and the idea of lexicalisation ({{المَعْجَمة}}). Chapter 17 is based on the original draft, not on this document; a review query notes that cancel culture is a media coinage that should be checked in those sources.",
+"Chapter 3 (whole chapter, written for the handbook): the three-check rule, printed vs digital dictionaries, and named dictionaries (Al-Mawrid, Wehr, al-Muʿjam al-Wasīṭ, Oxford Collocations Dictionary, UNTERM, Arabterm), which expand the document’s short ‘Technical Dictionaries’ section.",
+"Chapter 19, technical texts: depression = {{الاكتئاب}} / {{الكساد}} / {{منخفض جوي}} as an example of one word being a different term in each field, with a cross-reference to Chapter 21.",
 "Chapter 22, Step 1 and key terms: termbases, translation memory and CAT tools (from Shaikha’s notes; the Editorial Report.1), linked to Chapter 21."
 ]
 ],
@@ -2456,7 +2456,7 @@ module.exports = [
 "UNTERM (United Nations, n.d.) – not mentioned in the document; added by the editor",
 "Yes",
 "checked twice (confirmed)",
-"Recommended in Chapters 16, 20 and 21 as a tool; ‘Checked / Checked / Confirmed’; no change in the reference check."
+"Recommended in Chapters 17, 3 and 21 as a tool; ‘Checked / Checked / Confirmed’; no change in the reference check."
 ],
 [
 "Arabterm (ALECSO & GIZ, n.d.) – not mentioned in the document; added by the editor",
@@ -2477,13 +2477,13 @@ module.exports = [
 "Added from the reviewer’s knowledge; the sentence carries no citation and no reference entry."
 ],
 [
-"Wehr (1994), A dictionary of modern written Arabic (Chapter 20) – not mentioned in the document, which names no dictionary",
+"Wehr (1994), A dictionary of modern written Arabic (Chapter 3) – not mentioned in the document, which names no dictionary",
 "Yes",
 "checked twice (confirmed)",
-"Added in Chapter 20; ‘Checked / Checked / Confirmed’ in the final report’s double check."
+"Added in Chapter 3; ‘Checked / Checked / Confirmed’ in the final report’s double check."
 ],
 [
-"Baalbaki, Al-Mawrid; Academy of the Arabic Language in Cairo, al-Muʿjam al-Wasīṭ; Oxford collocations dictionary (2009) (Chapter 20) – not mentioned in the document",
+"Baalbaki, Al-Mawrid; Academy of the Arabic Language in Cairo, al-Muʿjam al-Wasīṭ; Oxford collocations dictionary (2009) (Chapter 3) – not mentioned in the document",
 "Yes",
 "checked – still needs a printed source",
 "Final review: Al-Mawrid and al-Wasīṭ need the edition and year used (n.d. at present), and the Oxford dictionary should name its editor, McIntosh; the al-Wasīṭ in-text author was corrected to ‘in Cairo’."
@@ -2718,7 +2718,7 @@ module.exports = [
 "pp. 5–6: Why is AVT challenging? cultural differences, linguistic differences (accurate and concise), technical constraints (space and time), creative demands",
 "Used and edited",
 "Chapter 26, Step 4 (four bullets: Culture, Language, Technology, Creativity)",
-"All four kept in the same order logic, shortened to one line each, with cross-references added to Chapters 14 to 16 (culture) and Chapter 3 (English and Arabic differences). The two worked 'EX' sentences became part of the bullets ('may have no equivalent'; 'accurate and brief'). Reason: Simplified, and linked to earlier chapters."
+"All four kept in the same order logic, shortened to one line each, with cross-references added to Chapters 15 to 17 (culture) and Chapter 4 (English and Arabic differences). The two worked 'EX' sentences became part of the bullets ('may have no equivalent'; 'accurate and brief'). Reason: Simplified, and linked to earlier chapters."
 ],
 [
 "p. 6: Challenges of translating audiovisual content from English to Arabic (linguistic, cultural, technical differences)",
@@ -2855,8 +2855,8 @@ module.exports = [
 [
 "p. 10: Linguistic variants: connotative (emotional and cultural) vs denotative (literal) meaning",
 "Not used",
-"Not in Part 9; the same concepts are taught in Chapter 5 (Types of meaning)",
-"Not repeated in the subtitling chapter. Chapter 5 already has 'Denotation' ({{المعنى المعجمي}}) and 'Connotation' ({{المعنى الإيحائي}}) as key terms. Reason: Already covered earlier in the handbook, so it was not repeated."
+"Not in Part 9; the same concepts are taught in Chapter 6 (Types of meaning)",
+"Not repeated in the subtitling chapter. Chapter 6 already has 'Denotation' ({{المعنى المعجمي}}) and 'Connotation' ({{المعنى الإيحائي}}) as key terms. Reason: Already covered earlier in the handbook, so it was not repeated."
 ],
 [
 "p. 10: Marked speech (non-standard features: taboo words, swear words, emotionally charged utterances)",
@@ -2874,7 +2874,7 @@ module.exports = [
 "p. 10: Subtitling strategies: culture-bound terms are extralinguistic references to items tied to a country's culture",
 "Used and edited",
 "Chapter 27, 'Words to remember' (Culture-bound term, {{مصطلح ذو خصوصية ثقافية}}) and Step 4",
-"Kept as a key term, with examples (a food, a holiday) and a cross-reference: 'Also called a culture-specific item (Chapter 14).' The word 'extralinguistic' was not used. Reason: Simplified and linked to Chapter 14."
+"Kept as a key term, with examples (a food, a holiday) and a cross-reference: 'Also called a culture-specific item (Chapter 15).' The word 'extralinguistic' was not used. Reason: Simplified and linked to Chapter 15."
 ],
 [
 "p. 10: Where cultural references come from: geographical, ethnographic (traditional food, holidays), socio-political (government)",
@@ -2886,7 +2886,7 @@ module.exports = [
 "p. 11: Strategies of Díaz Cintas/Remael (spelt 'Diaz-Cintas/Rameal'): loan, calque, explicitation ('explicatation'), substitution, transposition, lexical recreation, compensation, omission, addition (nine)",
 "Used and edited",
 "Chapter 27, Step 4 (one numbered list of eight strategies)",
-"Merged with Pedersen's list into one list of eight. Kept: loan, calque, explicitation, substitution, compensation, omission. Dropped as separate items: transposition (its meaning, using a similar concept from the target culture, is now what 'Substitution: use something familiar to the audience' means), lexical recreation (taught in Chapter 16) and addition (taught in Chapter 13). The notes' definition of substitution ('similar to explicitation but with space-time constraints') was not used. The names were corrected to Díaz Cintas and Remael, and 'explicatation' to explicitation. Reason: The two overlapping lists were merged into one list of eight (report 8.2); spelling corrected (report 7.2)."
+"Merged with Pedersen's list into one list of eight. Kept: loan, calque, explicitation, substitution, compensation, omission. Dropped as separate items: transposition (its meaning, using a similar concept from the target culture, is now what 'Substitution: use something familiar to the audience' means), lexical recreation (taught in Chapter 17) and addition (taught in Chapter 14). The notes' definition of substitution ('similar to explicitation but with space-time constraints') was not used. The names were corrected to Díaz Cintas and Remael, and 'explicatation' to explicitation. Reason: The two overlapping lists were merged into one list of eight (report 8.2); spelling corrected (report 7.2)."
 ],
 [
 "p. 11: Strategies of Pedersen: retention, specification, direct translation, generalisation, substitution, omission, official equivalent (seven)",
@@ -2937,7 +2937,7 @@ module.exports = [
 "A real dubbing example: The Simpsons dubbed into Arabic as {{آل شمشون}}, with Homer's beer changed to a soft drink (Chapter 26, Step 2), cited to (Translation Team, n.d.). It is not in either AVT notes document.",
 "A Skopos example: a cartoon for children versus a documentary for adults (Chapter 26, Step 3).",
 "Chapter 26, Step 5 'take your first steps': watch the whole video, then read the script; ask for the brief (subtitles or dubbing, which viewers, which Arabic); practise with free software (Subtitle Edit, Aegisub); watch Arabic-subtitled films and notice what was shortened.",
-"Cross-references to earlier chapters: Chapter 3 (English–Arabic differences), Chapters 14 to 16 (cultural references), Chapter 14 (culture-specific item), Chapters 12 and 13 (procedures and strategies); and in Chapter 1 and 'Start here' (the records), pointers to Part 9.",
+"Cross-references to earlier chapters: Chapter 4 (English–Arabic differences), Chapters 15 to 17 (cultural references), Chapter 15 (culture-specific item), Chapters 13 and 14 (procedures and strategies); and in Chapter 1 and 'Start here' (the records), pointers to Part 9.",
 "Subtitle timing: display time of about one to six or seven seconds, and the term 'spotting' for marking in and out times (Chapter 27, Step 1; Díaz Cintas & Remael, 2021).",
 "The corrected line-length standard: about 37 to 39 characters per line, up to 42 on streaming platforms, and 'always follow the client’s guidelines' (Chapter 27, Step 1).",
 "SDH (subtitles for the deaf and hard of hearing), which also describe sounds, and subtitles for language learners, as examples of intralingual subtitles; 'interlingual: what translators usually make' (Chapter 27, Step 1). SDH also added to the Abbreviations list.",
@@ -3082,73 +3082,73 @@ module.exports = [
 [
 "Three-step process: analysis of the source text, translation, post-translation activity",
 "used as written",
-"Ch 17, Step 1; Ch 25",
+"Ch 18, Step 1; Ch 25",
 "Matches the three phases already in the handbook (analysis, translation and commentary)."
 ],
 [
 "Model based on Fairclough’s relational model (Fairclough, 2003)",
 "used and edited",
-"Ch 17, Step 3; References",
+"Ch 18, Step 3; References",
 "Fairclough (2003) added to the References and cited with the course materials."
 ],
 [
 "Two components: linguistic level and external level",
 "used and edited",
-"Ch 17, Step 3",
+"Ch 18, Step 3",
 "Written as “look at two levels”."
 ],
 [
 "1.1.1 Lexical aspects",
 "used and edited",
-"Ch 17, Step 3",
+"Ch 18, Step 3",
 "Given as “Words”, with the full list."
 ],
 [
 "1.1.2 Syntactical aspects",
 "used and edited",
-"Ch 17, Step 3",
+"Ch 18, Step 3",
 "Given as “Grammar”; “cohesion” explained as how sentences are linked."
 ],
 [
 "1.1.3 Semantic level",
 "used and edited",
-"Ch 17, Step 3",
-"Given as “Meaning”; speaker’s, sentence and figurative meaning left out to keep the list short; linked to Chapters 5 to 8."
+"Ch 18, Step 3",
+"Given as “Meaning”; speaker’s, sentence and figurative meaning left out to keep the list short; linked to Chapters 6 to 9."
 ],
 [
 "1.1.4 Morphological level",
 "used and edited",
-"Ch 17, Step 3",
+"Ch 18, Step 3",
 "Given as “Word forms”. Reason for cuts: infixation, blending and clippings are too technical for beginners."
 ],
 [
 "1.1.5 Phonological level",
 "used and edited",
-"Ch 17, Step 3",
+"Ch 18, Step 3",
 "Given as “Sound”, with where it matters most (poems, slogans, adverts)."
 ],
 [
 "1.2.1 Textual level",
 "used and edited",
-"Ch 17, Step 3",
-"Given as “The text”; texture and coherence left out; linked to Chapter 18."
+"Ch 18, Step 3",
+"Given as “The text”; texture and coherence left out; linked to Chapter 19."
 ],
 [
 "1.2.2 Intertextual level",
 "used and edited",
-"Ch 17, Step 3",
+"Ch 18, Step 3",
 "Given as “Other texts” (quotations and allusions). Frame-modification, re-modelling and Al-ta’reed not used: too advanced."
 ],
 [
 "1.2.3 Political/ideological level",
 "used and edited",
-"Ch 17, Step 3",
-"Given as “Point of view”, linked to Chapter 19."
+"Ch 18, Step 3",
+"Given as “Point of view”, linked to Chapter 20."
 ],
 [
 "2. The external level",
 "used and edited",
-"Ch 17, Step 3",
+"Ch 18, Step 3",
 "Given as three questions: background event, author, target culture and audience."
 ],
 [
@@ -3160,7 +3160,7 @@ module.exports = [
 [
 "Translation quality assessment",
 "used and edited",
-"Ch 17, Step 5",
+"Ch 18, Step 5",
 "One sentence added: the model can also be used to judge a translation (Chapter 23)."
 ],
 [
@@ -3217,13 +3217,13 @@ module.exports = [
 [
 "From the Principles of Translation notes: English–Arabic communicative translation strategy",
 "added",
-"Ch 10, Step 4",
+"Ch 11, Step 4",
 "Written from Newmark (1988, p. 47; page to be confirmed). To be compared with the notes."
 ],
 [
 "From the Principles of Translation notes: explicitation and implicitation",
 "added",
-"Ch 13, Step 3",
+"Ch 14, Step 3",
 "Written from Vinay & Darbelnet (1958/1995, p. 342; page to be confirmed). Arabic terms {{التصريح}} and {{الإضمار}} to be confirmed."
 ],
 [

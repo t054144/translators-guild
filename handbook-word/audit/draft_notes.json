@@ -4,7 +4,7 @@
    "section": "Contents (draft table of contents, 25 headings)",
    "status": "Used and edited",
    "where": "Contents page; whole book (9 parts, 27 chapters)",
-   "details": "The draft's 25 headings were regrouped into 9 parts and 27 chapters ordered from easy to hard. Draft headings kept as chapters: Arabic vs English (Ch 3), Equivalence (Ch 9), Form vs meaning (Ch 4), Types of meaning and Sentence vs speaker meaning (merged into Ch 5), Collocation (Ch 7), Context and Homonymy vs polysemy (merged into Ch 6), Idioms (Ch 8), Literal and Free translation (merged into Ch 10), Metaphoric translation (Ch 11), the two 'Translation strategies' headings (merged into Ch 13, part of the second moved to Ch 16), Cultural approximation (Ch 14), Descriptive translation (Ch 15), Lexical creation (Ch 16), Analysing a text (Ch 17), Commentary (Ch 25), Terminology (Ch 21), AI and MT (Ch 22). New chapters were added for the notes' requests (Ch 2, 12, 18, 19, 20, 23, 24) and for the audiovisual notes (Ch 26, 27).",
+   "details": "The draft's 25 headings were regrouped into 9 parts and 27 chapters ordered from easy to hard. Draft headings kept as chapters: Arabic vs English (Ch 4), Equivalence (Ch 10), Form vs meaning (Ch 5), Types of meaning and Sentence vs speaker meaning (merged into Ch 6), Collocation (Ch 8), Context and Homonymy vs polysemy (merged into Ch 7), Idioms (Ch 9), Literal and Free translation (merged into Ch 11), Metaphoric translation (Ch 12), the two 'Translation strategies' headings (merged into Ch 14, part of the second moved to Ch 17), Cultural approximation (Ch 15), Descriptive translation (Ch 16), Lexical creation (Ch 17), Analysing a text (Ch 18), Commentary (Ch 25), Terminology (Ch 21), AI and MT (Ch 22). New chapters were added for the notes' requests (Ch 2, 13, 19, 20, 3, 23, 24) and for the audiovisual notes (Ch 26, 27).",
    "reason": "The notes ask for a final structure and table of contents (para. 58) and for repeated material to be merged (paras 1, 8, 17); Report s. 6.1 gives the reason for each part's place."
   },
   {
@@ -17,7 +17,7 @@
   {
    "section": "Definitions and abbreviations (section as a whole)",
    "status": "Used and edited",
-   "where": "Abbreviations list (back matter); key-term boxes of Ch 1, 4, 8, 10",
+   "where": "Abbreviations list (back matter); key-term boxes of Ch 1, 5, 9, 11",
    "details": "The section was split up: the abbreviations moved to the back of the book, and each definition moved to the chapter where the idea is taught, as a 'Words to remember' entry.",
    "reason": "Report s. 8.5 and 8.6: the abbreviations page moved to the back; the notes ask for definitions in every chapter (paras 5, 12, 21)."
   },
@@ -45,28 +45,28 @@
   {
    "section": "Definitions – empty labels 'Interpretation', 'Form', 'Meaning', 'Intralingual', 'Interlingual'",
    "status": "Used and edited",
-   "where": "Ch 1 (key term 'Interpreting'; Step 3), Ch 4 (key terms 'Form', 'Meaning'), Ch 27 Step 1 (intralingual / interlingual subtitles)",
+   "where": "Ch 1 (key term 'Interpreting'; Step 3), Ch 5 (key terms 'Form', 'Meaning'), Ch 27 Step 1 (intralingual / interlingual subtitles)",
    "details": "The draft gave the labels with no definitions. Definitions were written: interpreting (spoken language, simultaneous or consecutive); form and meaning; the intralingual/interlingual distinction appears in Ch 1 (Jakobson, 1959, wider sense of translation) and in Ch 27 for subtitle types.",
    "reason": "The notes require every chapter to define its key concepts (paras 5, 12, 21)."
   },
   {
    "section": "Definitions – idiom definition ('more than one word… total meaning not the sum…, e.g. It's a piece of cake')",
    "status": "Used and edited",
-   "where": "Ch 8, Step 1 and key term 'Idiom'",
+   "where": "Ch 9, Step 1 and key term 'Idiom'",
    "details": "Same idea and example kept; merged with the two other copies of the definition in the Idioms section; 'frozen' form and ways to spot an idiom added.",
    "reason": "Report s. 5, row 1: repeated topics now appear once."
   },
   {
    "section": "Definitions – 'Literal Translation (Modified Literal Translation, ترجمة حرفية معدلة)'",
    "status": "Used and edited",
-   "where": "Ch 10, key term 'Literal translation'",
+   "where": "Ch 11, key term 'Literal translation'",
    "details": "Kept as the key-term definition, with the Arabic corrected to الترجمة الحرفية المعدّلة; the duplicate under 'Types of Translation' merged.",
    "reason": "Repetition removed (notes paras 1, 8, 17)."
   },
   {
    "section": "Arabic vs English (section as a whole)",
    "status": "Used and edited",
-   "where": "Ch 3 'English and Arabic: key differences' (Steps 1–5); some items in Ch 13 and Ch 23",
+   "where": "Ch 4 'English and Arabic: key differences' (Steps 1–5); some items in Ch 14 and Ch 23",
    "details": "Kept as its own chapter and expanded (gender and number of 'you', numbers 3–10, the dual, be/do/have, linking words, Arabic punctuation). Several draft rules were corrected by the expert reviews.",
    "reason": "Report s. 9 and 9.1: added differences are common beginner problems; corrections in Report s. 7.1 and the Correction Log."
   },
@@ -80,98 +80,98 @@
   {
    "section": "Arabic vs English – 'we start with the verb' / English SVO, Arabic VSO",
    "status": "Used and edited",
-   "where": "Ch 3, Step 1; summary; Ch 23 Step 2",
+   "where": "Ch 4, Step 1; summary; Ch 23 Step 2",
    "details": "Rule softened: English usually SVO; formal Arabic often starts with the verb, but a subject-first (nominal) sentence is also correct. The term 'verbal sentence' was added.",
    "reason": "First review r1 #23 (high): 'Arabic usually starts with the verb' is a false generalisation – nominal sentences are grammatical and common in MSA."
   },
   {
    "section": "Arabic vs English – table example 'Sam ate the cake' (☒ سام اكل التفاحة / ☑ اكل سام التفاحة)",
    "status": "Used and edited",
-   "where": "Ch 3, Step 1",
+   "where": "Ch 4, Step 1",
    "details": "Arabic corrected to match the English ('cake', not 'apple': أكلَ سامٌ الكعكةَ); the subject-first version is no longer marked ✗ but labelled 'correct, but less usual'. A second example (the government announced new measures) was added.",
    "reason": "First review r1 #24 (high): marking a grammatical nominal sentence ✗ teaches that correct Arabic is wrong; the draft's Arabic also said 'apple' for 'cake'."
   },
   {
    "section": "Arabic vs English – 'He is in bed → نائم (not في السرير)'",
    "status": "Used and edited",
-   "where": "Ch 3, Step 4; Try it 3",
+   "where": "Ch 4, Step 4; Try it 3",
    "details": "Now إنه في فراشه or, depending on context, إنه نائم, rather than إنه في السرير.",
    "reason": "First review r1 #30–31: 'in bed' does not always mean asleep; في فراشه is the natural idiom."
   },
   {
    "section": "Arabic vs English – 'As an officer / As a Manager of the Company → بصفتي'",
    "status": "Used and edited",
-   "where": "Ch 3, Step 4",
+   "where": "Ch 4, Step 4",
    "details": "Same idea; Arabic corrected to بصفتي ضابطاً… (case ending) and بصفتي مديرَ الشركة…; 'I' added to the English so the first person matches; note that 'as' means a role, not كـ.",
    "reason": "First review r1 #33: بصفتي is first person but the English had no 'I'."
   },
   {
    "section": "Arabic vs English – note on nouns without a feminine (قاضي، نائب، ضابط)",
    "status": "Used and edited",
-   "where": "Ch 3, Step 3 (last bullet)",
+   "where": "Ch 4, Step 3 (last bullet)",
    "details": "Kept for قاضية and نائبة with the reason (other meanings 'fatal', 'calamity'), and updated: these titles are widely used today for women judges and MPs. ضابط dropped.",
    "reason": "Report s. 8.1: updated rather than removed so that the handbook reflects current usage."
   },
   {
    "section": "Arabic vs English – 'Shops stay open → تظل أو تبقى محلات تجارية'",
    "status": "Used and edited",
-   "where": "Ch 3, Step 4",
+   "where": "Ch 4, Step 4",
    "details": "Arabic completed and made a full sentence: تظلّ المحلات التجارية مفتوحة; the trap is explained ('stay' means 'remain', not 'live').",
    "reason": "First review r1 #34: the example did not say what the trap is."
   },
   {
    "section": "Arabic vs English – 'Eventually → في نهاية المطاف'",
    "status": "Used and edited",
-   "where": "Ch 3, Step 4",
+   "where": "Ch 4, Step 4",
    "details": "Same equivalent; explanation added ('in the end', not 'possibly').",
    "reason": "First review r1 #35: a beginner could not see the trap."
   },
   {
    "section": "Arabic vs English – 'is → تعد' and note 'تعد الترجمة تخصصاً… مثيراً للاهتمام'",
    "status": "Used and edited",
-   "where": "Ch 3, Step 2",
+   "where": "Ch 4, Step 2",
    "details": "Rule corrected: in the present tense Arabic normally leaves out 'is' (الترجمةُ مجالٌ شائق); تُعدّ is only an option in formal writing when the sentence gives an opinion. Added: do not translate a simple 'is' with يكون; use كان in the past; do and have.",
    "reason": "First review r1 #27 (high): presenting تُعدّ as the equivalent of 'is' adds meaning and encourages translationese; final review f1 #9–11 limited the يكون ban to a simple 'is'."
   },
   {
    "section": "Arabic vs English – 'to see the Roman ruins → لمشاهدة / لزيارة / لرؤية'",
    "status": "Used and edited",
-   "where": "Ch 3, Step 4",
+   "where": "Ch 4, Step 4",
    "details": "One option kept: لزيارة الآثار الرومانية (Arabic prefers 'visit').",
    "reason": "Three alternatives reduced to the most natural one, with the reason stated."
   },
   {
    "section": "Arabic vs English – Common challenges (grammar, semantics, punctuation and style, general vs technical text)",
    "status": "Used and edited",
-   "where": "Ch 3, Step 5 (last paragraph)",
+   "where": "Ch 4, Step 5 (last paragraph)",
    "details": "Kept as four groups; 'Semantics' relabelled 'word choice' (اختيار المفردات); formality now named as 'register' (key term).",
    "reason": "First review r1 #36, #38: الدلالة does not mean word choice; 'register' was a key term never used. r1 #37 questioned the grouping against Ghazala (2008); it was kept and listed as a point to check (Correction Log s. 5)."
   },
   {
    "section": "Arabic vs English – differences table: sentence length",
    "status": "Used and edited",
-   "where": "Ch 3, Step 1",
+   "where": "Ch 4, Step 1",
    "details": "Kept as a tendency: English often prefers shorter sentences; Arabic joins ideas with و, ف, ثمّ; join or split accordingly.",
    "reason": "First review r1 #25: 'English prefers short sentences' overgeneralises."
   },
   {
    "section": "Arabic vs English – differences table: language formality ('drama or dialogue is often informal')",
    "status": "Used and edited",
-   "where": "Ch 3, Step 5 (types of Arabic, register); Ch 18 literary texts; Ch 27 Step 3",
+   "where": "Ch 4, Step 5 (types of Arabic, register); Ch 19 literary texts; Ch 27 Step 3",
    "details": "Merged into the register point and into the advice on dialect (use it only if the client asks, e.g. dubbing) and on dialogue in literary texts and subtitles.",
    "reason": "First review r1 #39: subtitling is normally in MSA; dubbing is the usual case for dialect."
   },
   {
    "section": "Arabic vs English – differences table: use of synonyms",
    "status": "Used and edited",
-   "where": "Ch 3, Step 4; Ch 13 omission; Ch 23 Step 3",
+   "where": "Ch 4, Step 4; Ch 14 omission; Ch 23 Step 3",
    "details": "Kept, softened ('English does this much less often'), with the example شجاعٌ مِغوار → 'very brave' taken from the draft's strategies section.",
    "reason": "First review r1 #26: English does use synonym pairs (null and void), so 'rarely' was too strong."
   },
   {
    "section": "Arabic vs English – Types of Arabic (Classical, Standard, Dialectal)",
    "status": "Used and edited",
-   "where": "Ch 3, Step 5; key terms 'Modern Standard Arabic', 'Dialect'",
+   "where": "Ch 4, Step 5; key terms 'Modern Standard Arabic', 'Dialect'",
    "details": "Same three types; Arabic labels edited (العربية الفصحى التراثية, الفصحى المعاصرة, اللهجات العامية); advice added on which to use for written translation.",
    "reason": "Made practical for beginners; final review f1 #13 added the Arabic term for MSA."
   },
@@ -185,8 +185,8 @@
   {
    "section": "Translation, Translator and how to translate (section as a whole)",
    "status": "Used and edited",
-   "where": "Ch 1 'Translation and the translator'; Ch 2 'Tips, advice and preparation'; Ch 19",
-   "details": "Definitions, translator types and skills went to Ch 1; the process and the general tips went to Ch 2; the ideology example went to Ch 19. The communication model was removed.",
+   "where": "Ch 1 'Translation and the translator'; Ch 2 'Tips, advice and preparation'; Ch 20",
+   "details": "Definitions, translator types and skills went to Ch 1; the process and the general tips went to Ch 2; the ideology example went to Ch 20. The communication model was removed.",
    "reason": "Notes para. 30 asks for a tips section at the beginning; Report s. 8.2 (beginner revision)."
   },
   {
@@ -207,7 +207,7 @@
    "section": "Translator – translation as approximation",
    "status": "Used and edited",
    "where": "Ch 1, Step 2; key term 'Approximation'",
-   "details": "Kept; supported with Eco (2003) 'saying almost the same thing'. The draft's link to cultural meaning is developed in Ch 14.",
+   "details": "Kept; supported with Eco (2003) 'saying almost the same thing'. The draft's link to cultural meaning is developed in Ch 15.",
    "reason": "First review r1 #6: definition corrected – approximation means coming as close as possible to the source meaning."
   },
   {
@@ -241,7 +241,7 @@
   {
    "section": "Translator – translation as establishing equivalence",
    "status": "Used and edited",
-   "where": "Ch 9",
+   "where": "Ch 10",
    "details": "Merged with the Equivalence section (the draft itself says 'we have a separate chapter for equivalence').",
    "reason": "Repetition removed."
   },
@@ -255,7 +255,7 @@
   {
    "section": "Translator – client ideology example (suicide bomber; 'Islamic' vs 'UnIslamic' ideology; انتحاري / استشهادي)",
    "status": "Used and edited",
-   "where": "Ch 19, Step 1",
+   "where": "Ch 20, Step 1",
    "details": "Rewritten neutrally: 'A suicide bomber killed ten people'; انتحاري matches the English, استشهادي adds praise; follow the client's policy. The nationality of the victims and the religious labels were removed.",
    "reason": "Report s. 7.1: the draft took a religious and political position; final review f3 #21 (high): the two words are not equal choices."
   },
@@ -276,35 +276,35 @@
   {
    "section": "Equivalence (section as a whole, with its repeated lists)",
    "status": "Used and edited",
-   "where": "Ch 9 'Equivalence'",
+   "where": "Ch 10 'Equivalence'",
    "details": "The three repeated presentations of the three types (and the third copy of the dead-letter example in the 'Examples' section) merged into one chapter; credited to Farghal & Shunnaq (1999); order of use and Nida & Taber's 'closest natural equivalent' added.",
    "reason": "Report s. 5, row 1: equivalence was one of the topics repeated two or three times."
   },
   {
    "section": "Equivalence – 'The agreement remained dead letter since then' (formal / functional / ideational)",
    "status": "Used and edited",
-   "where": "Ch 9, Step 1; Try it; Ch 13 Step 1; Ch 25 example",
+   "where": "Ch 10, Step 1; Try it; Ch 14 Step 1; Ch 25 example",
    "details": "Same three versions. English corrected ('has remained a dead letter'); ideational Arabic corrected from المعاهدة to الاتفاقية to match 'agreement'; comment on each version added (formal: many Arab readers will not recognise the image).",
    "reason": "Consistency with the draft's own agreement/treaty table; final review f2 #0 softened 'will not understand'."
   },
   {
    "section": "Equivalence – table: A treaty = معاهدة; An agreement = اتفاقية",
    "status": "Used and edited",
-   "where": "Ch 9, Step 1 (note)",
+   "where": "Ch 10, Step 1 (note)",
    "details": "Kept as a one-line note: keep the difference.",
    "reason": "Short, useful distinction."
   },
   {
    "section": "Equivalence – 'You should think outside the box'",
    "status": "Used and edited",
-   "where": "Ch 9, Step 2",
+   "where": "Ch 10, Step 2",
    "details": "Formal version kept with the modal (عليك أن تفكّر خارج الصندوق); the draft's 'functional' version (فكّر بتفكير خلاق / إبداعياً) is now labelled ideational (عليك أن تفكّر بطريقة إبداعية).",
    "reason": "First review r2 #8 (high): a plain, non-idiomatic rendering is ideational by the chapter's own definitions; the modal 'should' had been dropped."
   },
   {
    "section": "Equivalence – 'Ali is second to none in writing poetry'",
    "status": "Used and edited",
-   "where": "Ch 9, Step 2; Try it; Ch 13",
+   "where": "Ch 10, Step 2; Try it; Ch 14",
    "details": "Functional لا يُشقّ له غبار kept; ideational changed from متميّز to لا يُضاهى.",
    "reason": "First review r2 #9: متميّز loses the superlative meaning."
   },
@@ -318,21 +318,21 @@
   {
    "section": "Translation Form Vs meaning",
    "status": "Used and edited",
-   "where": "Ch 4 'Form and meaning'",
+   "where": "Ch 5 'Form and meaning'",
    "details": "The rule (meaning over form; change the form, never the meaning) kept; repeated statements merged; Arabic term for form changed from البناء to الشكل; Nida & Taber (1969) principle added; new examples of changing form (heavy smoker; after his arrival).",
    "reason": "First review r1 #41–42: الشكل is the established term; r1 #44–46 corrected the explanation of the examples."
   },
   {
    "section": "Form vs meaning – 'a clearer example that form is more important than meaning'",
    "status": "Used and edited",
-   "where": "Ch 4, Step 3",
+   "where": "Ch 5, Step 3",
    "details": "The contradiction removed: the example now shows keeping the meaning and changing the form.",
    "reason": "Report s. 7.1: contradicts the draft's own rule that meaning comes first."
   },
   {
    "section": "Form vs meaning – 'Blair: Bush's puppy' (بلير: منقاد لبوش / تابع لبوش / حروف أو غنمة)",
    "status": "Used and edited",
-   "where": "Ch 4, Step 3",
+   "where": "Ch 5, Step 3",
    "details": "'Puppy' corrected to 'poodle', with the meaning explained; تابعُ بوش and المنقاد لبوش kept; the alternatives 'حروف أو غنمة' removed.",
    "reason": "Report s. 7.1: the British press used 'poodle'; the Arabic alternatives contained a typing error."
   },
@@ -346,42 +346,42 @@
   {
    "section": "Types of Meaning (denotation and connotation, with its second copy in 'Examples')",
    "status": "Used and edited",
-   "where": "Ch 5 'Types of meaning', Step 1; key terms",
+   "where": "Ch 6 'Types of meaning', Step 1; key terms",
    "details": "Two copies merged; definitions kept; Baker's (2018) terms (propositional and expressive meaning) added. Arabic labels changed from المعنى اللغوي / الحرفي and المعنى اصطلاحاً to المعنى المعجمي and المعنى الإيحائي.",
    "reason": "Repetition removed; the draft's label for connotation (المعنى اصطلاحاً, 'technical meaning') does not mean connotation."
   },
   {
    "section": "Types of meaning – 'Died = قتل' (denotation) and 'Died = استشهد' (connotation)",
    "status": "Used and edited",
-   "where": "Ch 5, Step 1",
+   "where": "Ch 6, Step 1",
    "details": "Corrected to مات (neutral) and تُوُفِّي (polite, vowelled as passive); استشهد not used.",
    "reason": "Report s. 7.1: 'died' was given with the verb for 'killed'; first review r1 #47 vowelled تُوُفِّي."
   },
   {
    "section": "Types of meaning – Die / Pass away / Kick the bucket",
    "status": "Used and edited",
-   "where": "Ch 5, Step 1",
+   "where": "Ch 6, Step 1",
    "details": "Kept; 'kick the bucket' now described as informal and humorous, not 'died in a bad way'.",
    "reason": "Report s. 7.1: the draft (in the strategies section) had given it an insulting Arabic phrase."
   },
   {
    "section": "Types of meaning – steed / horse / mule",
    "status": "Used and edited",
-   "where": "Ch 5, Step 1",
+   "where": "Ch 6, Step 1",
    "details": "Steed (جواد) and horse (حصان) kept; mule removed.",
    "reason": "Report s. 7.1: a mule is a different animal, not a negative synonym of horse."
   },
   {
    "section": "Types of meaning – Comrade (صديق / رفيق)",
    "status": "Used and edited",
-   "where": "Ch 5, Step 1",
+   "where": "Ch 6, Step 1",
    "details": "Kept as friend (صديق, general) vs comrade (رفيق, same party or cause).",
    "reason": "Made a clear pair of English words."
   },
   {
    "section": "Types of meaning – Kill vs Assassinated",
    "status": "Not used",
-   "where": "– (replaced by slim / skinny in Ch 5)",
+   "where": "– (replaced by slim / skinny in Ch 6)",
    "details": "Pair removed during the first review.",
    "reason": "First review r1 #50: the two words differ in denotation, so they do not illustrate 'same denotation, different connotation'."
   },
@@ -395,84 +395,84 @@
   {
    "section": "Sentence vs speaker meaning",
    "status": "Used and edited",
-   "where": "Ch 5, Step 2; key terms 'Sentence meaning', 'Speaker meaning'",
+   "where": "Ch 6, Step 2; key terms 'Sentence meaning', 'Speaker meaning'",
    "details": "Both Arabic examples kept (أشعرُ بالحرّ, أصبح الجوّ بارداً); an English example added; the Arabic labels ('الجملة الخبرية', 'جملة خبرية تحمل أمراً') replaced with plain English definitions; advice added to keep an indirect remark indirect when it works the same way.",
    "reason": "Merged into Types of meaning (both are layers of meaning); final review f1 #17 (high): do not turn an indirect remark into an explicit request."
   },
   {
    "section": "Collocation (with its second copy in 'Examples')",
    "status": "Used and edited",
-   "where": "Ch 7 'Collocation'",
+   "where": "Ch 8 'Collocation'",
    "details": "Two copies merged. Definition 'the company a word keeps' kept as a quotation from the course materials (Translation Team, n.d.) and linked to Firth (1957, p. 11). Extra material added: one verb with several partners (deliver), EN → AR and AR → EN lists.",
    "reason": "Repetition removed; final review f1 #22 cited the course materials properly."
   },
   {
    "section": "Collocation – pay money / attention / respect / a visit",
    "status": "Used and edited",
-   "where": "Ch 7, Step 1",
+   "where": "Ch 8, Step 1",
    "details": "All four kept. Arabic corrected: إعرني / أعرني انتباهك → ينتبه or يُعير انتباهه; pay respect → يُبدي احتراماً (the second option dropped); pay a visit → يقوم بزيارة, with the wrong يدفع زيارة shown.",
    "reason": "First review r2 #1: the imperative broke the citation form used for every other item."
   },
   {
    "section": "Collocation – Close cooperation / Close friend",
    "status": "Used as written",
-   "where": "Ch 7, Step 3",
+   "where": "Ch 8, Step 3",
    "details": "Same examples and Arabic (تعاون وثيق, صديق مقرّب).",
    "reason": "Accurate as written."
   },
   {
    "section": "Collocation – Arabic examples استل سيفه / يساورني القلق",
    "status": "Used and edited",
-   "where": "Ch 7, Step 3 (AR → EN)",
+   "where": "Ch 8, Step 3 (AR → EN)",
    "details": "English translations added ('he drew his sword', 'I am worried'), and three more AR → EN examples.",
    "reason": "First review r2 #2: 'I am growing worried' adds a nuance; 'I am worried' used."
   },
   {
    "section": "Context (definition, micro vs macro table)",
    "status": "Used and edited",
-   "where": "Ch 6 'Context', Steps 1–2; key terms",
+   "where": "Ch 7 'Context', Steps 1–2; key terms",
    "details": "Definition widened to include surrounding words; the confusing two-column table (with 'Outside/Inside context' in the wrong columns) rewritten as 'near' (micro context, co-text) and 'far' (macro context); Arabic terms السياق اللغوي and سياق الموقف given.",
    "reason": "First review r1 #51–53: 'background information' contradicts the chapter's own micro context; established Arabic terms."
   },
   {
    "section": "Context – authors as macro context (أحمد شوقي / نزار قباني / محمود درويش)",
    "status": "Used and edited",
-   "where": "Ch 6, Step 2",
+   "where": "Ch 7, Step 2",
    "details": "Nizar Qabbani and Mahmoud Darwish kept; Ahmad Shawqi dropped.",
    "reason": "Shortened; no specific record."
   },
   {
    "section": "Context – 'Diagram Translation Triangle' (text, translator, audience, author)",
    "status": "Used and edited",
-   "where": "Ch 6, Step 2 (described in words)",
+   "where": "Ch 7, Step 2 (described in words)",
    "details": "No diagram: author, text and audience at the three corners, the translator in the middle (the draft put the text at the top and the translator in the middle).",
    "reason": "Report s. 10.1: no images inside the book; first review r1 #54 clarified the triangle."
   },
   {
    "section": "Context – 'Every communicative situation has its own context' / لكل مقام مقال (from the Idioms section)",
    "status": "Used and edited",
-   "where": "Ch 6, Step 1",
+   "where": "Ch 7, Step 1",
    "details": "Moved from the idioms section to the context chapter, where it belongs.",
    "reason": "Organisation of material by topic."
   },
   {
    "section": "Homonymy vs polysemy",
    "status": "Used and edited",
-   "where": "Ch 6, Step 3; key terms",
+   "where": "Ch 7, Step 3; key terms",
    "details": "Merged into the context chapter; definitions corrected in grammar; examples عين, تطهير, احتجاز, case and bank kept, with each labelled related or unrelated; خط added.",
    "reason": "Context decides between meanings, so the two topics were joined; first review r1 #55."
   },
   {
    "section": "Homonymy vs polysemy – تطهير (تطهير الذنوب / تطهير الجرح)",
    "status": "Used and edited",
-   "where": "Ch 6, Step 3",
+   "where": "Ch 7, Step 3",
    "details": "Arabic corrected to التطهير من الذنوب.",
    "reason": "First review r1 #56: one is purified from sins."
   },
   {
    "section": "Homonymy vs polysemy – 'case: cover (of mobile)'",
    "status": "Used and edited",
-   "where": "Ch 6, Step 3",
+   "where": "Ch 7, Step 3",
    "details": "Changed to a glasses case (علبة).",
    "reason": "Final review f1 #21: a phone case is غطاء or جراب, not علبة."
   },
@@ -486,140 +486,140 @@
   {
    "section": "Idiom and idiomatic expressions (with copies in Definitions and 'Examples')",
    "status": "Used and edited",
-   "where": "Ch 8 'Idioms, proverbs and fixed expressions'",
+   "where": "Ch 9 'Idioms, proverbs and fixed expressions'",
    "details": "Three copies merged. Rule 'cannot be translated denotationally' softened to 'usually'; fixed expressions, how to spot an idiom and Baker's (2018) five ways added; the draft's proverbs gathered in Step 4.",
    "reason": "First review r2 #3–4: shared idioms can be kept; final review f1 #24–26."
   },
   {
    "section": "Idioms – raining cats and dogs; over the moon",
    "status": "Used as written",
-   "where": "Ch 8, Step 3; Ch 2 worked example; Ch 22 MT example",
+   "where": "Ch 9, Step 3; Ch 2 worked example; Ch 22 MT example",
    "details": "Same Arabic (تمطر بغزارة, في قمّة السعادة).",
    "reason": "Accurate as written."
   },
   {
    "section": "Idioms – 'To pull one's socks up: شمر عن ساعديه'",
    "status": "Used and edited",
-   "where": "Ch 8, Step 3",
+   "where": "Ch 9, Step 3",
    "details": "English changed to 'to roll up one's sleeves'; Arabic kept.",
    "reason": "Final review f1 #27: شمّر عن ساعديه means getting ready to work hard, which matches 'roll up one's sleeves', not 'pull one's socks up'."
   },
   {
    "section": "Idioms – 'A piece of cake' (idiomatic سهل vs literal قطعة من الكعك)",
    "status": "Used and edited",
-   "where": "Ch 8, Steps 1–2; Try it",
+   "where": "Ch 9, Steps 1–2; Try it",
    "details": "Kept, with context (a birthday party); Arabic corrected to قطعة من الكعكة.",
    "reason": "First review r2 #5: الكعك means biscuits."
   },
   {
    "section": "Idioms – 'Idiom: more than two words… to pay a visit, strong tea, Article 12 Governing Law, note on Article (المادة / البند)'",
    "status": "Used and edited",
-   "where": "Ch 7 (pay a visit, strong tea); Ch 21 term list (governing law, Article/clause)",
-   "details": "Reclassified: the collocations went to Ch 7 and the legal term to the term list. Governing law now القانون الواجب التطبيق, with the draft's القانون المطبَّق as an alternative and القانون الحاكم described as a common calque (not 'incorrect').",
+   "where": "Ch 8 (pay a visit, strong tea); Ch 21 term list (governing law, Article/clause)",
+   "details": "Reclassified: the collocations went to Ch 8 and the legal term to the term list. Governing law now القانون الواجب التطبيق, with the draft's القانون المطبَّق as an alternative and القانون الحاكم described as a common calque (not 'incorrect').",
    "reason": "Report s. 7.1: collocations and a legal term are not idioms; s. 7.1 note and first review r4 #7 on the Arabic."
   },
   {
    "section": "Examples & Idioms – mocktail / cocktail",
    "status": "Used and edited",
-   "where": "Ch 14, Step 3",
+   "where": "Ch 15, Step 3",
    "details": "'Mocktail' kept with an Arabic equivalent (مشروب مُنعش بلا كحول); 'cocktail' dropped.",
    "reason": "Only the item that needs translation is kept; no separate record."
   },
   {
    "section": "Examples & Idioms – 'warmed my heart = اثلج صدري'",
    "status": "Used and edited",
-   "where": "Ch 14, Step 2; Try it; Ch 24 risk matrix",
+   "where": "Ch 15, Step 2; Try it; Ch 24 risk matrix",
    "details": "Kept as a full sentence (أثلجَ الخبرُ صدري); explanation reworded (in a hot climate, relief and joy are linked with coolness).",
    "reason": "Final review f3 #1, #4."
   },
   {
    "section": "Examples & Idioms – كالمستجير من الرمضاء بالنار = Out of the frying pan into the fire",
    "status": "Used as written",
-   "where": "Ch 8, Step 4",
+   "where": "Ch 9, Step 4",
    "details": "Same proverb pair.",
    "reason": "Accurate as written."
   },
   {
    "section": "Types of Translation – Literal Translation",
    "status": "Used and edited",
-   "where": "Ch 10 'Literal and free translation', Step 1",
+   "where": "Ch 11 'Literal and free translation', Step 1",
    "details": "Merged with Free translation; the quote on successful or destructive literal translation kept; play a role (successful) and pay a visit (destructive) kept.",
    "reason": "Report s. 6.1: the main methods are taught together."
   },
   {
    "section": "Literal – 'It has been a long day' (يوماً شاقاً ✓ / يوماً طويلاً ✗)",
    "status": "Used and edited",
-   "where": "Ch 10, Step 1; Try it; Ch 18 literary example",
+   "where": "Ch 11, Step 1; Try it; Ch 19 literary example",
    "details": "Same pair; reason added (in English a long day is a tiring one).",
    "reason": "Final review f2 #1: the Arabic is grammatical, so the reason must be stated."
   },
   {
    "section": "Literal – 'What are you wearing on your biggest day?'",
    "status": "Used and edited",
-   "where": "Ch 10, Step 1",
+   "where": "Ch 11, Step 1",
    "details": "Context 'in a wedding advert' added; the literal version corrected from أهمّ to أكبر.",
    "reason": "First review r2 #13: أهمّ is already an interpretation, and the correction only works with the context."
   },
   {
    "section": "Metaphoric Translation",
    "status": "Used and edited",
-   "where": "Ch 11 'Metaphoric translation'",
+   "where": "Ch 12 'Metaphoric translation'",
    "details": "Kept as its own chapter; two copies of the definition merged; the three techniques kept in order and linked to Newmark (1988), with a fourth (turn the metaphor into a simile) added; Arabic rhetoric's view (تشبيه بليغ / استعارة) added.",
    "reason": "First review r2 #18–19."
   },
   {
    "section": "Metaphor – 'she is a moon' (metaphor) / 'she is beautiful like a moon' (simile)",
    "status": "Used and edited",
-   "where": "Ch 11, Steps 1–2",
+   "where": "Ch 12, Steps 1–2",
    "details": "Replaced by 'He is a lion' / 'He is as brave as a lion'.",
    "reason": "First review r2 #18: 'She is a moon' is not natural English, and in Arabic rhetoric هي قمر is a تشبيه بليغ."
   },
   {
    "section": "Metaphor – 'she is a snake' used for all three techniques (إنها أفعى / إنها كالثعلب / إنها خطيرة)",
    "status": "Used and edited",
-   "where": "Ch 11, Step 3",
+   "where": "Ch 12, Step 3",
    "details": "Kept only for the shared metaphor (إنها أفعى); the other two uses were replaced by 'the tip of the iceberg' and 'raised a few eyebrows'.",
    "reason": "Report s. 7.1: the draft had just said the same metaphor exists in Arabic; first review r2 #26."
   },
   {
    "section": "Metaphor – 'This is the tip of the iceberg' (غيض من فيض / أول الغيث قطرة / وما خفي أعظم)",
    "status": "Used and edited",
-   "where": "Ch 11, Step 3; Try it",
+   "where": "Ch 12, Step 3; Try it",
    "details": "هذا غيضٌ من فيض kept; أول الغيث قطرة removed; وما خفي أعظم corrected to وما خفي كان أعظم for something bad that is hidden.",
    "reason": "First review r2 #24: أول الغيث قطرة means 'big things start small'; غيض من فيض is not limited to negative situations."
   },
   {
    "section": "Metaphor – 'raises the brows → تُصدم'",
    "status": "Used and edited",
-   "where": "Ch 11, Step 3",
+   "where": "Ch 12, Step 3",
    "details": "Corrected to 'The news raised a few eyebrows' → أثار الخبر استغراب بعضهم; now the example of giving the basic meaning.",
    "reason": "First review r2 #26: the idiom means surprise with mild disapproval."
   },
   {
    "section": "Metaphor – 'My paper will see light next December'",
    "status": "Used and edited",
-   "where": "Ch 11, Step 3",
+   "where": "Ch 12, Step 3",
    "details": "English corrected to 'see the light of day'; القادم changed to المقبل.",
    "reason": "First review r2 #20 (high): 'see the light' means to understand; 'be published' is 'see the light of day'."
   },
   {
    "section": "Metaphor – 'My thoughts evaporate → تبخرت أفكاري'",
    "status": "Used and edited",
-   "where": "Ch 11, Step 3; Try it",
+   "where": "Ch 12, Step 3; Try it",
    "details": "Changed to 'My hopes evaporated' → تبخّرت آمالي.",
    "reason": "First review r2 #21: 'thoughts evaporated' is not a usual English collocation."
   },
   {
    "section": "Metaphor – Figurative language and metaphor definitions (English and Arabic)",
    "status": "Used and edited",
-   "where": "Ch 11 key terms and Step 1",
+   "where": "Ch 12 key terms and Step 1",
    "details": "English definitions kept; the Arabic definition replaced with the Arabic-rhetoric distinction.",
    "reason": "First review r2 #18."
   },
   {
    "section": "Metaphor – 'In poetry language is very expressive and impressive'",
    "status": "Used and edited",
-   "where": "Ch 11, Step 1",
+   "where": "Ch 12, Step 1",
    "details": "Now 'Poetry is especially rich in metaphors'.",
    "reason": "Shortened."
   },
@@ -633,42 +633,42 @@
   {
    "section": "Free Translation",
    "status": "Used and edited",
-   "where": "Ch 10, Steps 2–3; key terms 'Free translation', 'Adaptation (method)'",
+   "where": "Ch 11, Steps 2–3; key terms 'Free translation', 'Adaptation (method)'",
    "details": "Kept: free translation for all kinds of texts; 'loose translation' as another name; specialists who see adapted translation as a new text (now the key term 'adaptation'). All four examples kept; a warning added that the last three add ideas; Jerome and the Abbasid translators added.",
    "reason": "First review r2 #11–12; Report s. 12.2 asks the team to confirm this presentation."
   },
   {
    "section": "Free – example 2 (equal opportunity → بعيداً عن المحسوبية والواسطة والمحاباة) and example 3 (heavy rainfall → موسم زراعي مبشر)",
    "status": "Used and edited",
-   "where": "Ch 10, Step 2",
+   "where": "Ch 11, Step 2",
    "details": "Arabic made more natural: يجب تعيين الموظفين الجدد…; ينتظرنا هذا العام موسمٌ زراعيٌّ مبشّر بالخير.",
    "reason": "First review r2 #14–15 and final review f2 #2: noun-first order and سيكون لدينا / يجب أن يتمّ are English-style structures."
   },
   {
    "section": "Free – examples 1 (Going out can be risky – Covid) and 4 (parents not happy – عقوق الوالدين)",
    "status": "Used and edited",
-   "where": "Ch 10, Step 2",
+   "where": "Ch 11, Step 2",
    "details": "Kept, but described in English rather than given in Arabic.",
    "reason": "Seg. 2 writer note: kept as they were; the religious-moral Arabic sentence was not reproduced."
   },
   {
    "section": "Translation strategies (first section: literal, functional, cultural substitution, addition, omission, explanatory)",
    "status": "Used and edited",
-   "where": "Ch 13 'Translation strategies' (Steps 1–2); Ch 12 (adaptation)",
+   "where": "Ch 14 'Translation strategies' (Steps 1–2); Ch 13 (adaptation)",
    "details": "All six strategies kept and defined; missing strategies added (more general word, more neutral word, paraphrase, loan word with explanation, compensation, domestication and foreignisation).",
    "reason": "Notes paras 2, 9, 18 ask for missing strategies; Report s. 5."
   },
   {
    "section": "Strategies – Literal: 'Key word = ☒ كلمات مفتاحية / ☑ كلمات دالة'",
    "status": "Used and edited",
-   "where": "Ch 13, Step 1",
+   "where": "Ch 14, Step 1",
    "details": "Kept, but now as 'check the field': either can be right depending on the field; 'Most of the time, literal translation fails' dropped.",
    "reason": "First review r2 #36 (high): كلمة مفتاحية is itself a literal translation, so it cannot show that literal translation fails."
   },
   {
    "section": "Strategies – 'Kick the bucket = يموت كالحقير'",
    "status": "Used and edited",
-   "where": "Ch 5, Step 1",
+   "where": "Ch 6, Step 1",
    "details": "The Arabic removed; the idiom described as informal and humorous.",
    "reason": "Report s. 7.1: the English is not insulting."
   },
@@ -682,63 +682,63 @@
   {
    "section": "Strategies – Functional: 'spill the beans = يفشي السر', 'mark my words = فل تتذكر وعدي\\ كلامي'",
    "status": "Used and edited",
-   "where": "Ch 8, Step 3; Ch 13, Step 1",
+   "where": "Ch 9, Step 3; Ch 14, Step 1",
    "details": "Both kept but re-labelled as giving the plain meaning (ideational); functional examples now 'a dead letter' and 'second to none'. 'Mark my words' corrected to تذكّر كلامي.",
-   "reason": "Report s. 7.1 (promise and typing error); first review r2 #37 and final review f2 #12: plain renderings are ideational by Ch 9's definitions."
+   "reason": "Report s. 7.1 (promise and typing error); first review r2 #37 and final review f2 #12: plain renderings are ideational by Ch 10's definitions."
   },
   {
    "section": "Strategies – Cultural substitution: 'Romeo and Juliet = قيس وليلى'",
    "status": "Used as written",
-   "where": "Ch 12 (adaptation) and Ch 13, Step 1",
+   "where": "Ch 13 (adaptation) and Ch 14, Step 1",
    "details": "Same example, cross-referenced between the two chapters; a measures example added.",
    "reason": "First review r2 #38: say it is the same technique as adaptation."
   },
   {
    "section": "Strategies – Addition: 'Arabic is a language of elaboration (اسهاب)'",
    "status": "Used and edited",
-   "where": "Ch 13, Step 2",
+   "where": "Ch 14, Step 2",
    "details": "Reworded: Arabic style often favours fuller expression (الإطناب), and Arab readers may need information; example 'the Fed' added.",
    "reason": "First review r2 #39: 'language of elaboration' (إسهاب, verbosity) is sweeping and mildly pejorative."
   },
   {
    "section": "Strategies – Omission (A → E, politeness, synonyms; شجاع ومغوار = brave or quite brave)",
    "status": "Used and edited",
-   "where": "Ch 13, Step 2; Ch 3 Step 4; Ch 23",
+   "where": "Ch 14, Step 2; Ch 4 Step 4; Ch 23",
    "details": "Kept; Arabic corrected to شجاعٌ مِغوار (no و); English 'very brave'; 'when we want to be polite' reworded as avoiding words that would offend; 'never omit real information' added.",
    "reason": "First review r2 #41."
   },
   {
    "section": "Strategies – Explanatory translation ('last option'; الحرمان، العدة، الزكاة، الصدقة)",
    "status": "Used and edited",
-   "where": "Ch 13, Step 2; Ch 15",
+   "where": "Ch 14, Step 2; Ch 16",
    "details": "'The last option' softened to 'use it only when nothing shorter works'; الزكاة and العِدّة kept; الصدقة and الحرمان dropped. The duplicate in Descriptive translation merged.",
-   "reason": "Final review f2 #14 and #17 (high): 'last option' contradicted Ch 9 and Ch 11; first review r2 #43: الصدقة has a ready equivalent (charity)."
+   "reason": "Final review f2 #14 and #17 (high): 'last option' contradicted Ch 10 and Ch 12; first review r2 #43: الصدقة has a ready equivalent (charity)."
   },
   {
    "section": "Translation strategies (second section: Arabicisation, terms, coining, exercises 24–27)",
    "status": "Used and edited",
-   "where": "Ch 16 (Arabicisation, coining), Ch 21 (terms), Ch 7 and Ch 20 (fast colour); most exercise items not used",
+   "where": "Ch 17 (Arabicisation, coining), Ch 21 (terms), Ch 8 and Ch 3 (fast colour); most exercise items not used",
    "details": "The theory lines were distributed by topic; most exercise items were left out.",
    "reason": "Report s. 8.1: unused exercise items could form an extra exercise set in a future edition."
   },
   {
    "section": "Strategies 2 – 'Arabicization is a form of naturalization'; Ex. 27 transliterated form (loan word): Radio → الراديو",
    "status": "Used and edited",
-   "where": "Ch 16, Step 2 (transliteration)",
+   "where": "Ch 17, Step 2 (transliteration)",
    "details": "Kept as 'Arabicisation (التعريب)' with 'radio → الراديو' plus strategy and technology.",
    "reason": "First review r3 #21: the standard term التعريب was missing."
   },
   {
    "section": "Strategies 2 – 'Terms = مصطلحات, convey complex meaning (concept)'; 'every branch has its own terms'; 'terms categorise the text'",
    "status": "Used and edited",
-   "where": "Ch 21, Step 1 and key term 'Term'; Ch 15 key term 'Concept'; Ch 18 Step 4",
+   "where": "Ch 21, Step 1 and key term 'Term'; Ch 16 key term 'Concept'; Ch 19 Step 4",
    "details": "Merged into the terminology chapter; 'concept' no longer defined as 'complex meaning'.",
    "reason": "First review r3 #11: a concept need not be complex."
   },
   {
    "section": "Strategies 2 – 'Translator sometimes works as coiner'",
    "status": "Used and edited",
-   "where": "Ch 16, Step 1; Ch 21 Step 3 ('think like a terminologist')",
+   "where": "Ch 17, Step 1; Ch 21 Step 3 ('think like a terminologist')",
    "details": "Kept in plain words.",
    "reason": "Organisation by topic."
   },
@@ -752,49 +752,49 @@
   {
    "section": "Strategies 2 – Exercise 25: fast colour (لون ثابت), fast friend (صديق وفي / صديق العمر)",
    "status": "Used and edited",
-   "where": "Ch 7, Step 3; Ch 20, Step 1",
+   "where": "Ch 8, Step 3; Ch 3, Step 1",
    "details": "Fast colour used twice (collocation and the dictionary three-check example); fast friend kept as صديق وفيّ.",
    "reason": "Useful collocation examples."
   },
   {
    "section": "Strategies 2 – breach / break the law (خرق / مخالفة / كسر القانون) and Ex. 16 'Break the rules'",
    "status": "Used and edited",
-   "where": "Ch 7, Step 3; Ch 23, Step 2",
+   "where": "Ch 8, Step 3; Ch 23, Step 2",
    "details": "Reduced to one point: 'break the law' → يخالف القانون, more natural than يكسر القانون.",
    "reason": "Same collocation point repeated; merged."
   },
   {
    "section": "Strategies 2 – 'In Arabic start with the Verb → جملة فعلية'",
    "status": "Used and edited",
-   "where": "Ch 3, Step 1",
+   "where": "Ch 4, Step 1",
    "details": "Merged with the word-order rule (and softened).",
    "reason": "Repetition; first review r1 #23."
   },
   {
    "section": "Cultural Approximation (section as a whole, with exercises 28–29)",
    "status": "Used and edited",
-   "where": "Ch 14 'Cultural approximation'",
+   "where": "Ch 15 'Cultural approximation'",
    "details": "Definition and most examples kept; organised into four steps (feeling not picture; climate; titles and institutions, media and business; what people really say); Shakespeare example added.",
    "reason": "Notes paras 4, 11, 20 ask for material to be added to this chapter; Report s. 5."
   },
   {
    "section": "Cultural – 'I have got the test in the bag: الامتحان في جيبي'",
    "status": "Used and edited",
-   "where": "Ch 14, Step 1",
+   "where": "Ch 15, Step 1",
    "details": "Kept, labelled informal.",
    "reason": "First review r3 #3."
   },
   {
    "section": "Cultural – 'As busy as a bee: زي أم العروس'",
    "status": "Used and edited",
-   "where": "Ch 14, Step 1",
+   "where": "Ch 15, Step 1",
    "details": "Arabic replaced by نشيطٌ كالنحلة.",
    "reason": "First review r3 #5 (high): زي أم العروس describes someone who fusses without achieving much – the opposite meaning."
   },
   {
    "section": "Cultural – 'Like mother, like daughter: اقلب الجرة على فمها تطلع البنت لأمها'",
    "status": "Used and edited",
-   "where": "Ch 14, Step 1",
+   "where": "Ch 15, Step 1",
    "details": "Kept, labelled colloquial, with a formal option (البنتُ تُشبه أمَّها).",
    "reason": "First review r3 #4; final review f3 #0: a beginner needs a form usable in formal writing."
   },
@@ -808,21 +808,21 @@
   {
    "section": "Cultural – 'Jet lag: إعياء الطيران'",
    "status": "Used and edited",
-   "where": "Ch 13, Step 3 (paraphrase)",
+   "where": "Ch 14, Step 3 (paraphrase)",
    "details": "Moved to the strategies chapter; Arabic changed to الإرهاق الناتج عن فارق التوقيت.",
    "reason": "Report s. 7.1 note and first review r2 #44: the time-difference idea was lost; the team may prefer the draft's form (Report s. 12.2)."
   },
   {
    "section": "Cultural – 'Ali and Ahmed are cut from the same cloth = اثنين من نفس الطينة'",
    "status": "Used and edited",
-   "where": "Ch 14, Step 1; Try it",
+   "where": "Ch 15, Step 1; Try it",
    "details": "Arabic corrected to عليّ وأحمد من طينةٍ واحدة.",
    "reason": "The draft's Arabic had a grammar error (اثنين) and a calqued structure."
   },
   {
    "section": "Cultural – UK/US offices (Home Office, Chancellor of the Exchequer, Secretary of the Treasury, Secretary of State) and Ex. 28 'The British Home Office'",
    "status": "Used and edited",
-   "where": "Ch 14, Step 3; Try it",
+   "where": "Ch 15, Step 3; Try it",
    "details": "Merged; Home Office corrected from 'minister' (وزير الداخلية) to 'ministry' (وزارة الداخلية البريطانية); Secretary of the Treasury corrected to وزير الخزانة الأمريكي; nationality added to each.",
    "reason": "Translate the job, not the words; 'Office' is a ministry."
   },
@@ -836,49 +836,49 @@
   {
    "section": "Cultural – 'Scapegoating = كبش الفداء / حطها برقبتي / حطها بوجعي'",
    "status": "Used and edited",
-   "where": "Ch 14, Step 1",
+   "where": "Ch 15, Step 1",
    "details": "Kept as 'a scapegoat' → كبش فداء (indefinite); the colloquial phrases dropped.",
    "reason": "First review r3 #6."
   },
   {
    "section": "Cultural – sheriff (مأمور الشرطة أو عمدة الشرطة)",
    "status": "Used and edited",
-   "where": "Ch 14, Step 3",
+   "where": "Ch 15, Step 3",
    "details": "Corrected to رئيس شرطة المقاطعة.",
    "reason": "First review r3 #8: مأمور الشرطة is an Egyptian police rank."
   },
   {
    "section": "Cultural – watchdog press vs lapdog press",
    "status": "Used and edited",
-   "where": "Ch 14, Step 3",
+   "where": "Ch 15, Step 3",
    "details": "Arabic neutralised: الصحافة الرقابية / الصحافة الموالية (draft: opposing / supporting the government).",
    "reason": "Neutral wording (Report s. 4, 'Stay neutral')."
   },
   {
    "section": "Cultural – 'sleep like a log' (four Arabic options)",
    "status": "Used and edited",
-   "where": "Ch 14, Step 1",
+   "where": "Ch 15, Step 1",
    "details": "One option kept: نام كالقتيل.",
    "reason": "Shortened."
   },
   {
    "section": "Cultural – Ex. 29: God willing = إن شاء الله; We are well = الحمد لله",
    "status": "Used and edited",
-   "where": "Ch 14, Step 4",
+   "where": "Ch 15, Step 4",
    "details": "Kept; the second made fuller (الحمد لله، بخير).",
    "reason": "Accurate; lightly edited."
   },
   {
    "section": "Cultural – Ex. 29: condolences 'تعيش انت، شعبان مات'",
    "status": "Used and edited",
-   "where": "Ch 14, Step 4",
+   "where": "Ch 15, Step 4",
    "details": "Replaced by عظّم الله أجركم (formal), with البقية في حياتك labelled Egyptian Arabic.",
    "reason": "Report s. 7.1: unsuitable register for a general handbook; colloquial forms are labelled."
   },
   {
    "section": "Cultural – Ex. 29: welcome 'أهلاً أهلاً زارنا النبي'",
    "status": "Used and edited",
-   "where": "Ch 14, Step 4",
+   "where": "Ch 15, Step 4",
    "details": "Replaced by أهلاً وسهلاً، شرّفتمونا.",
    "reason": "Report s. 7.1: refers to the Prophet in a casual way."
   },
@@ -892,42 +892,42 @@
   {
    "section": "Cultural – product cannibalism (from 'Examples')",
    "status": "Used and edited",
-   "where": "Ch 14, Step 3",
+   "where": "Ch 15, Step 3",
    "details": "Term corrected to 'product cannibalisation'; Arabic made a verbal noun (مزاحمةُ منتجٍ جديد لمنتجٍ آخر للشركة نفسها); the literal-meaning note dropped.",
    "reason": "First review r3 #9."
   },
   {
    "section": "Descriptive Translation (with its repeats in Lexical creation)",
    "status": "Used and edited",
-   "where": "Ch 15 'Descriptive translation'",
+   "where": "Ch 16 'Descriptive translation'",
    "details": "Definition kept; the two copies (here and under Lexical creation) merged; the method set out as steps (transliterate, describe, only the first time); 'give the description alone when readers do not need the source word' added.",
    "reason": "Repetition removed; first review r3 #12."
   },
   {
    "section": "Descriptive – زكاة ('compulsory charity… when income conditions are met'; 'Islamic taxation system… annually')",
    "status": "Used and edited",
-   "where": "Ch 15, Step 2",
+   "where": "Ch 16, Step 2",
    "details": "Gloss corrected: obligatory annual alms on savings and wealth above a minimum, given to those in need.",
    "reason": "First review r3 #13 (high): zakat is levied on wealth held above the nisab, not on income."
   },
   {
    "section": "Descriptive – تيمم ('making ablutions with earth… when water is scarce or missing')",
    "status": "Used and edited",
-   "where": "Ch 15, Step 2",
+   "where": "Ch 16, Step 2",
    "details": "Corrected: dry ritual purification, wiping face and hands with clean earth when water is missing or cannot be used.",
    "reason": "First review r3 #14 (high): tayammum is wiping, not washing, and also applies when water cannot be used."
   },
   {
    "section": "Descriptive – الحوقلة، البسملة، التأريخ، القهقهة",
    "status": "Used and edited",
-   "where": "Ch 15, Step 2",
+   "where": "Ch 16, Step 2",
    "details": "البسملة and الحوقلة kept with descriptions (the hawqala wording corrected); التأريخ and القهقهة dropped.",
    "reason": "First review r3 #15; the other two were given without a meaning in the draft."
   },
   {
    "section": "Descriptive – 'sectioning / Ali has been sectioned' (and repeat in Lexical creation)",
    "status": "Used and edited",
-   "where": "Ch 15, Step 2",
+   "where": "Ch 16, Step 2",
    "details": "Kept once; Arabic corrected to أُودِع عليٌّ مستشفى للأمراض النفسية بموجب القانون; draft spelling errors removed.",
    "reason": "Final review f3 #6: 'sectioned' means compulsorily detained, so أُودِع is needed."
   },
@@ -941,35 +941,35 @@
   {
    "section": "Descriptive – 'written in brackets after the SL word or in the footnotes' (from Lexical creation)",
    "status": "Used as written",
-   "where": "Ch 15, Step 1; Try it",
+   "where": "Ch 16, Step 1; Try it",
    "details": "Same point.",
    "reason": "Accurate as written."
   },
   {
    "section": "Lexical Creation – النحت المعجمي (section as a whole)",
    "status": "Used and edited",
-   "where": "Ch 16 'Lexical creation'",
+   "where": "Ch 17 'Lexical creation'",
    "details": "Definition, reason (gap in the TL) and the types kept; Arabic name changed to التوليد المعجمي; النحت now explained as blending; derivation added; 'search before you create' added.",
    "reason": "First review r3 #16 (high): النحت is specifically blending two words; r3 #19, #23."
   },
   {
    "section": "Lexical creation – types (neologism, calque, transliteration, explanation, hybrid form)",
    "status": "Used and edited",
-   "where": "Ch 16, Step 2",
+   "where": "Ch 17, Step 2",
    "details": "All five kept, each defined and illustrated; neologism now includes an old word with a new meaning; hybrid explained.",
    "reason": "First review r3 #17, #19, #22; final review f3 #10."
   },
   {
    "section": "Lexical creation – shadow government (حكومة الظل), smartphone (calque), Thanksgiving (عيد الشكر)",
    "status": "Used as written",
-   "where": "Ch 16, Step 2",
+   "where": "Ch 17, Step 2",
    "details": "Same examples, grouped under loan translation (calque).",
    "reason": "Accurate as written."
   },
   {
    "section": "Lexical creation – blog (مدونة) as neologism; cyber security as 'transliteration & partial arabicised'",
    "status": "Used and edited",
-   "where": "Ch 16, Step 2",
+   "where": "Ch 17, Step 2",
    "details": "Blog kept, explained as derived from دوّن; cybersecurity reclassified as hybrid form.",
    "reason": "First review r3 #19 (high): مدوّنة was derived, not invented."
   },
@@ -997,42 +997,42 @@
   {
    "section": "Lexical creation – 'To be lexicalized: التعجيم'",
    "status": "Used and edited",
-   "where": "Ch 16, Step 3",
+   "where": "Ch 17, Step 3",
    "details": "Arabic corrected to المَعْجَمة; meaning corrected (widely accepted and entered in the dictionary, not 'official').",
    "reason": "First review r3 #24 (high): التعجيم is not the Arabic term for lexicalisation."
   },
   {
    "section": "Lexical creation – Wakf, Sukok (transliteration)",
    "status": "Used and edited",
-   "where": "Ch 16 (sukuk); Ch 13 Step 3 and Ch 15 Try it (waqf)",
-   "details": "Sukuk kept with a definition; waqf moved out of Ch 16 because it already appears in Ch 13 and Ch 15.",
+   "where": "Ch 17 (sukuk); Ch 14 Step 3 and Ch 16 Try it (waqf)",
+   "details": "Sukuk kept with a definition; waqf moved out of Ch 17 because it already appears in Ch 14 and Ch 16.",
    "reason": "Final review f3 #8: the waqf example was repeated."
   },
   {
    "section": "Lexical creation – Atwah = عطوة (3-month truce in Jordan)",
    "status": "Used and edited",
-   "where": "Ch 15, Step 2",
+   "where": "Ch 16, Step 2",
    "details": "Moved to descriptive translation: 'a temporary truce in tribal customary law, for example in Jordan'; the '3 months' detail dropped.",
    "reason": "It is explained, not coined, so it fits descriptive translation."
   },
   {
    "section": "Lexical creation – Cancel culture (ثقافة الإلغاء …)",
    "status": "Used and edited",
-   "where": "Ch 16, Step 3",
+   "where": "Ch 17, Step 3",
    "details": "One Arabic form kept, as an example of an accepted term.",
    "reason": "First review r3 #25 queried whether the termbases record it; left as a point to check (Correction Log s. 5)."
   },
   {
    "section": "Lexical creation – green washing (التضليل البيئي)",
    "status": "Used and edited",
-   "where": "Ch 16, Step 2",
+   "where": "Ch 17, Step 2",
    "details": "Kept as the example of 'explanation'; wording clarified.",
    "reason": "Final review f3 #10."
   },
   {
    "section": "Lexical creation – Global warming (احترار أرضي), Green house effect (احتباس حراري) (from 'Examples')",
    "status": "Used and edited",
-   "where": "Ch 16, Step 3",
+   "where": "Ch 17, Step 3",
    "details": "Global warming corrected to الاحترار العالمي; greenhouse effect kept (الاحتباس الحراري).",
    "reason": "The accepted terms were used (search before you create)."
   },
@@ -1046,14 +1046,14 @@
   {
    "section": "Examples (miscellaneous section after Lexical creation)",
    "status": "Used and edited",
-   "where": "Spread across Ch 1, 5, 7, 8, 9, 14, 16, 21",
+   "where": "Spread across Ch 1, 6, 8, 9, 10, 15, 17, 21",
    "details": "This section repeated denotation/connotation, collocation, idioms and the dead-letter example (merged into their chapters) and added new items (I am all ears, product cannibalism, key vocabulary, exercise 16 answers).",
    "reason": "Repetition removed (notes paras 1, 8, 17)."
   },
   {
    "section": "Examples – 'I am all ears = كلي آذان صاغية'",
    "status": "Used as written",
-   "where": "Ch 8, Step 3",
+   "where": "Ch 9, Step 3",
    "details": "Same.",
    "reason": "Accurate as written."
   },
@@ -1074,84 +1074,84 @@
   {
    "section": "Examples – 'boys are boys = الولد ولد لو أنه قاضي بلد'",
    "status": "Used and edited",
-   "where": "Ch 8, Step 4",
+   "where": "Ch 9, Step 4",
    "details": "English corrected to 'Boys will be boys'; Arabic to الولد ولد ولو صار قاضي بلد, labelled a colloquial proverb.",
    "reason": "Final review f1 #28."
   },
   {
    "section": "Examples – 'Business is Business = العمل التجاري عمل تجاري / الشغل شغل'",
    "status": "Used and edited",
-   "where": "Ch 8, Step 4",
+   "where": "Ch 9, Step 4",
    "details": "Replaced by the proverb تعاشروا كالإخوة وتعاملوا كالأجانب.",
    "reason": "First review r2 #6: the draft's Arabic was word for word, against the proverb rule."
   },
   {
    "section": "Examples – Ex. 16: 'Don't put words on me → لا تتقول علي الأقاويل'",
    "status": "Used and edited",
-   "where": "Ch 8, Step 3",
+   "where": "Ch 9, Step 3",
    "details": "English corrected to 'Don't put words in my mouth'; Arabic shortened to لا تتقوّل عليّ.",
    "reason": "English idiom corrected (proofreading, Report s. 7.1)."
   },
   {
    "section": "Examples – Ex. 16: 'To hit the sac → أن يأوي إلى الفراش'",
    "status": "Used and edited",
-   "where": "Ch 8, Step 3",
+   "where": "Ch 9, Step 3",
    "details": "Spelling corrected to 'hit the sack'; Arabic أوى إلى فراشه.",
    "reason": "Proofreading (Report s. 7.1)."
   },
   {
    "section": "Examples – Ex. 16: 'To break a leg → أن تكون محظوظاً'",
    "status": "Used and edited",
-   "where": "Ch 1, Step 1; Ch 8, Step 3",
+   "where": "Ch 1, Step 1; Ch 9, Step 3",
    "details": "Now 'Break a leg!' → بالتوفيق!, used as the opening example of translating meaning, with the performance context.",
    "reason": "First review r1 #7: it is a wish before a performance."
   },
   {
    "section": "Analysing a text (section as a whole)",
    "status": "Used and edited",
-   "where": "Ch 17 'Text analysis'; parts in Ch 2, Ch 22, Ch 24, Ch 25",
-   "details": "Core material kept in Ch 17 (why analyse, analysis vs summary, checklist, KUNA example, good analyst); tips on titles, captions, reputation, speed and the mental draft moved to Ch 2; the post-editing quote to Ch 22; Persian/Arabian Gulf to Ch 24; the three phases linked to Ch 25; Nord (2005) and Newmark (1988, p. 11) added.",
+   "where": "Ch 18 'Text analysis'; parts in Ch 2, Ch 22, Ch 24, Ch 25",
+   "details": "Core material kept in Ch 18 (why analyse, analysis vs summary, checklist, KUNA example, good analyst); tips on titles, captions, reputation, speed and the mental draft moved to Ch 2; the post-editing quote to Ch 22; Persian/Arabian Gulf to Ch 24; the three phases linked to Ch 25; Nord (2005) and Newmark (1988, p. 11) added.",
    "reason": "Notes para. 40 asks for a text-analysis chapter; Report s. 5."
   },
   {
    "section": "Analysing – definitions of analysis and 'Text: anything written; a word, a sentence or a paragraph'",
    "status": "Used and edited",
-   "where": "Ch 17, Step 1 and key terms",
+   "where": "Ch 18, Step 1 and key terms",
    "details": "Text definition corrected: any written or spoken piece of language that forms a complete message.",
    "reason": "First review r3 #26 (high): texts are not limited to writing, and a random word is not a text."
   },
   {
    "section": "Analysing – Assurance Checklist (speaker/author, terms, field, publisher, tone, style, strategies, target audience)",
    "status": "Used and edited",
-   "where": "Ch 17, Step 3",
+   "where": "Ch 18, Step 3",
    "details": "Kept as an eight-question checklist (genre and purpose added).",
    "reason": "It is the one checklist kept when the others were removed (Report s. 5)."
   },
   {
    "section": "Analysing – KUNA example (tone, field, purpose 'Australia', publisher, audience, choice of words, strategies)",
    "status": "Used and edited",
-   "where": "Ch 17, Step 3; Ch 2 'Before you start'",
+   "where": "Ch 18, Step 3; Ch 2 'Before you start'",
    "details": "Kept as a worked analysis; 'Purpose → Australia' rewritten as relations between Kuwait and Australia; genre and purpose added; 'KUNA has biased views' removed; the 'choice of words' examples ('Government Rents', 'Linguistic Applications') dropped.",
    "reason": "Report s. 7.1: a published handbook should not describe a named agency as biased; first review r3 #31; final review f3 #16."
   },
   {
    "section": "Analysing – Analysis vs Summary",
    "status": "Used and edited",
-   "where": "Ch 17, Step 2",
+   "where": "Ch 18, Step 2",
    "details": "Same distinction, shortened.",
    "reason": "Accurate; shortened (Report s. 8.3)."
   },
   {
    "section": "Analysing – Characteristics of a good analyser; 'The analysis should align with your translation'; 'Mention issues in the analysis'",
    "status": "Used and edited",
-   "where": "Ch 17, Step 4",
+   "where": "Ch 18, Step 4",
    "details": "Merged into four points.",
    "reason": "Repetition removed."
   },
   {
    "section": "Analysing – Translation process (analysis → translation → commentary)",
    "status": "Used and edited",
-   "where": "Ch 17, Step 1; Ch 25",
+   "where": "Ch 18, Step 1; Ch 25",
    "details": "Kept as the three phases.",
    "reason": "Links the two chapters."
   },
@@ -1333,7 +1333,7 @@
   },
   {
    "item": "Ex. 262 and related items: حديقة غناء, لاذ اللص بالفرار, sounds great, يعد الطقس متقلب, copular تمتلك عالمة مقومات الزوجة الصالحة",
-   "reason": "Report s. 8.1: unused exercise items; the تعد pattern was also corrected in Ch 3 (first review r1 #27)."
+   "reason": "Report s. 8.1: unused exercise items; the تعد pattern was also corrected in Ch 4 (first review r1 #27)."
   },
   {
    "item": "Death is the great leveller = كل نفس ذائقة الموت (Cultural approximation)",
@@ -1429,7 +1429,7 @@
   },
   {
    "item": "'Drop whatever can be omitted' (titles)",
-   "reason": "Not kept as a separate rule, because Ch 13 warns never to omit real information; no separate record."
+   "reason": "Not kept as a separate rule, because Ch 14 warns never to omit real information; no separate record."
   }
  ],
  "notes_requests": [
@@ -1444,28 +1444,28 @@
    "request": "Add missing translation strategies",
    "paragraphs": "2, 9, 18",
    "status": "Done",
-   "where": "Ch 13 (Steps 3–4)",
-   "comment": "Added: more general word, more neutral word, paraphrase, loan word plus explanation (Baker, 2018), compensation (Dickins et al., 2016), domestication and foreignisation (Venuti, 1995). The seven procedures (Ch 12) add further techniques."
+   "where": "Ch 14 (Steps 3–4)",
+   "comment": "Added: more general word, more neutral word, paraphrase, loan word plus explanation (Baker, 2018), compensation (Dickins et al., 2016), domestication and foreignisation (Venuti, 1995). The seven procedures (Ch 13) add further techniques."
   },
   {
    "request": "Add missing types/kinds of translation",
    "paragraphs": "2, 9, 18",
    "status": "Done",
-   "where": "Ch 1 Step 3; Ch 10; Ch 26",
-   "comment": "Written translation, interpreting (simultaneous and consecutive), sight translation, audiovisual translation, localisation, and Jakobson's wider sense; literal, free and adaptation as methods (Ch 10); subtitling, dubbing, voice-over and audio description (Ch 26)."
+   "where": "Ch 1 Step 3; Ch 11; Ch 26",
+   "comment": "Written translation, interpreting (simultaneous and consecutive), sight translation, audiovisual translation, localisation, and Jakobson's wider sense; literal, free and adaptation as methods (Ch 11); subtitling, dubbing, voice-over and audio description (Ch 26)."
   },
   {
    "request": "New chapter on the seven translation procedures",
    "paragraphs": "3, 10, 19, 44",
    "status": "Done",
-   "where": "Ch 12",
+   "where": "Ch 13",
    "comment": "Vinay and Darbelnet (1958/1995): the seven procedures, direct vs oblique, and one sentence analysed with several procedures."
   },
   {
    "request": "Add material to the cultural approximation chapter",
    "paragraphs": "4, 11, 20",
    "status": "Done",
-   "where": "Ch 14",
+   "where": "Ch 15",
    "comment": "Added climate and meaning (with Shakespeare's Sonnet 18), titles and institutions, media and business words, and what people really say. The notes do not say what 'this material' is; the additions are the editor's."
   },
   {
@@ -1514,7 +1514,7 @@
    "request": "Add news texts and articles as authentic material",
    "paragraphs": "25, 59",
    "status": "Partly done",
-   "where": "Ch 2 and Ch 17 (KUNA report), Ch 18 Step 3 (translating news headlines and stories)",
+   "where": "Ch 2 and Ch 18 (KUNA report), Ch 19 Step 3 (translating news headlines and stories)",
    "comment": "News is taught with short examples and headlines, but no authentic article is included. The two news practice texts written for the handbook were removed with the practice section; published articles would need permission (Report s. 12.2). Report s. 5 marks this Not done."
   },
   {
@@ -1528,14 +1528,14 @@
    "request": "Include examples from poetry",
    "paragraphs": "27",
    "status": "Done",
-   "where": "Ch 18 (al-Mutanabbi), Ch 14 (Shakespeare, Sonnet 18), Ch 1 (al-Jāḥiẓ, prose)",
-   "comment": "Report s. 5 also lists Ch 11, but Ch 11 only says that poetry is rich in metaphors and has no poetry example."
+   "where": "Ch 19 (al-Mutanabbi), Ch 15 (Shakespeare, Sonnet 18), Ch 1 (al-Jāḥiẓ, prose)",
+   "comment": "Report s. 5 also lists Ch 12, but Ch 12 only says that poetry is rich in metaphors and has no poetry example."
   },
   {
    "request": "Include the main genres, with at least one example of each",
    "paragraphs": "28, 29",
    "status": "Done",
-   "where": "Ch 18",
+   "where": "Ch 19",
    "comment": "Eight genres (news, legal, political, medical, technical, literary, poetry, advertising), each with an EN → AR example, under Reiss's three text types."
   },
   {
@@ -1549,15 +1549,15 @@
    "request": "Include a number of practical checklists",
    "paragraphs": "31",
    "status": "Done then removed at the team's request",
-   "where": "Ch 17 Step 3 (analysis checklist remains)",
-   "comment": "Four checklists were written and removed to shorten the book (Report s. 8.5). Checklist-like lists remain in Ch 17 (analysis), Ch 23 (three readings), Ch 24 (risk matrix) and Ch 22 (four safety rules)."
+   "where": "Ch 18 Step 3 (analysis checklist remains)",
+   "comment": "Four checklists were written and removed to shorten the book (Report s. 8.5). Checklist-like lists remain in Ch 18 (analysis), Ch 23 (three readings), Ch 24 (risk matrix) and Ch 22 (four safety rules)."
   },
   {
    "request": "Discuss: Who is the client? What is the communication purpose? Who is the target audience?",
    "paragraphs": "32–35",
    "status": "Done",
    "where": "Ch 2 'Before you start'",
-   "comment": "The three questions form the translation brief (Nord, 1997); reused in Ch 19 and Ch 26."
+   "comment": "The three questions form the translation brief (Nord, 1997); reused in Ch 20 and Ch 26."
   },
   {
    "request": "Chapter on terminology management and terminology guides (passed to Masooma)",
@@ -1591,7 +1591,7 @@
    "request": "Chapter on text analysis (beginning, middle or end)",
    "paragraphs": "40",
    "status": "Done",
-   "where": "Ch 17 (Part 6, middle)",
+   "where": "Ch 18 (Part 6, middle)",
    "comment": "Presented as the first of three phases: analysis, translation, commentary."
   },
   {
@@ -1605,14 +1605,14 @@
    "request": "Chapter on printed and digital dictionaries (المعاجم المطبوعة والرقمية)",
    "paragraphs": "42",
    "status": "Done",
-   "where": "Ch 20",
+   "where": "Ch 3",
    "comment": "Types of dictionary, the three-check rule, printed vs digital, and five recommended resources."
   },
   {
    "request": "Include Fairclough's relational model",
    "paragraphs": "43, 45",
    "status": "Partly done",
-   "where": "Ch 19 'Words and points of view'",
+   "where": "Ch 20 'Words and points of view'",
    "comment": "Only three practical questions based on Fairclough (1992); the model itself was removed in the beginner revision (Report s. 8.2). Report s. 5 says 'Done, at beginner level'; Report s. 12.2 asks the team whether this is enough."
   },
   {
@@ -1640,7 +1640,7 @@
    "request": "Collect examples from books, Arabic poetry, proverbs, idioms and text types, citing the sources",
    "paragraphs": "52",
    "status": "Partly done",
-   "where": "Ch 8, 11, 14, 18",
+   "where": "Ch 9, 12, 15, 19",
    "comment": "Examples were added and cited. The original sources of the draft's own examples are unknown, so they are credited to the course materials (Report s. 12.1). Report s. 3.2 says Shaikha's examples were not received, but Final report s. 4.1 says her notes were used; the two records disagree."
   },
   {
@@ -1661,7 +1661,7 @@
    "request": "Loulwah to help with examples from dictionaries",
    "paragraphs": "56",
    "status": "Not done",
-   "where": "– (Ch 20 written without them)",
+   "where": "– (Ch 3 written without them)",
    "comment": "Loulwah's dictionary examples were not received."
   },
   {
@@ -1759,7 +1759,7 @@
    "source": "Loulwah's notes on machine translation and dictionaries (notes paras 6, 13, 56)",
    "in_references": false,
    "status": "not received / not used",
-   "note": "Never received; Ch 20 and Ch 22 were written without them."
+   "note": "Never received; Ch 3 and Ch 22 were written without them."
   },
   {
    "source": "Masooma's terminology chapter (notes para. 62)",
@@ -1789,7 +1789,7 @@
    "source": "Dictionaries in general (notes para. 42; draft 'Mention the dictionaries and resources you used')",
    "in_references": true,
    "status": "checked – still needs the printed source",
-   "note": "Answered by five resources in Ch 20: Al-Mawrid, Wehr, al-Muʿjam al-Wasīṭ, the Oxford Collocations Dictionary, UNTERM and Arabterm (see their entries)."
+   "note": "Answered by five resources in Ch 3: Al-Mawrid, Wehr, al-Muʿjam al-Wasīṭ, the Oxford Collocations Dictionary, UNTERM and Arabterm (see their entries)."
   },
   {
    "source": "Supervisor and Dr Amin (notes para. 57)",
@@ -1831,7 +1831,7 @@
    "source": "Romeo and Juliet / Qays and Layla",
    "in_references": false,
    "status": "not received / not used",
-   "note": "Cultural references used as examples (Ch 12, 13), not cited as sources."
+   "note": "Cultural references used as examples (Ch 13, 14), not cited as sources."
   },
   {
    "source": "President Clinton's impeachment trial (House Managers example)",
@@ -1849,7 +1849,7 @@
    "source": "Nida & Taber (1969)",
    "in_references": true,
    "status": "checked – still needs the printed source",
-   "note": "Not named in the documents. p. 12 quotation confirmed; the paraphrase in Ch 4 has no page (usually p. 4) and must be checked in the printed book."
+   "note": "Not named in the documents. p. 12 quotation confirmed; the paraphrase in Ch 5 has no page (usually p. 4) and must be checked in the printed book."
   },
   {
    "source": "Farghal & Shunnaq (1999)",

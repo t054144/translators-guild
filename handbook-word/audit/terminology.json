@@ -47,13 +47,13 @@
       "status": "Not used",
       "where": "Nowhere in the final handbook (it was in c2b_v3.js, ‘Terminology and the translator’)",
       "details": "c2b_v3.js said translators use glossaries and term databases “to keep both the content and the form of the source text”. The phrase was deleted in the later trimming.",
-      "reason": "Removed when the running text was shortened for beginners (report_content.js Sections 8.2–8.3); the idea overlaps with Chapter 4 (Form and meaning)."
+      "reason": "Removed when the running text was shortened for beginners (report_content.js Sections 8.2–8.3); the idea overlaps with Chapter 5 (Form and meaning)."
     },
     {
       "section": "2. When to Act as a Terminologist – when dictionaries or term databanks fail, coin and establish an accurate term",
       "status": "Used and edited (merged)",
-      "where": "Chapter 21, Step 3, item 4 (“If none exists, think like a terminologist and create an accurate one (Chapter 16)”); Try it, question 3 and answer; Chapter 16, Step 3 (“Search before you create”)",
-      "details": "Merged with the identical point in the document’s ‘Skills of the Translator’ section. The trigger was widened from ‘dictionaries’ to the client’s guide, the academies’ term lists, UNTERM and Arabterm, and the model answer now says to search these first and only then create a term. Linked to Chapter 16 (lexical creation) for the methods of making a word.",
+      "where": "Chapter 21, Step 3, item 4 (“If none exists, think like a terminologist and create an accurate one (Chapter 17)”); Try it, question 3 and answer; Chapter 17, Step 3 (“Search before you create”)",
+      "details": "Merged with the identical point in the document’s ‘Skills of the Translator’ section. The trigger was widened from ‘dictionaries’ to the client’s guide, the academies’ term lists, UNTERM and Arabterm, and the model answer now says to search these first and only then create a term. Linked to Chapter 17 (lexical creation) for the methods of making a word.",
       "reason": "Corrected for consistency: the first expert review changed ‘no dictionary’ to ‘no dictionary or termbase’ because the handbook tells readers to search termbases and academies first (r4.json item 3); the final review made the Try it answer include the search step, which it had skipped (f4.json item 6)."
     },
     {
@@ -66,8 +66,8 @@
     {
       "section": "3. Functions – Translator’s need for dictionaries and glossaries (translators, technical writers, linguists)",
       "status": "Used and edited (merged)",
-      "where": "Chapter 21, Step 2 (translator bullet) and Step 4 (‘Other tools help too’); Chapter 20 (whole chapter on dictionaries)",
-      "details": "Merged with Section 2 above. Technical writers and linguists were dropped; the handbook speaks only to translators. The practical use of dictionaries is developed in Chapter 20, which was written for the handbook.",
+      "where": "Chapter 21, Step 2 (translator bullet) and Step 4 (‘Other tools help too’); Chapter 3 (whole chapter on dictionaries)",
+      "details": "Merged with Section 2 above. Technical writers and linguists were dropped; the handbook speaks only to translators. The practical use of dictionaries is developed in Chapter 3, which was written for the handbook.",
       "reason": "Repetition of the point in Section 2; the handbook addresses beginner translators only."
     },
     {
@@ -129,7 +129,7 @@
     {
       "section": "6. Skills of the Translator – a solid background in the technical terminology of the domain to preserve content and form",
       "status": "Used and edited",
-      "where": "Chapter 21 as a whole (Steps 1, 3 and 5); Chapter 18, technical texts paragraph (‘Check the field every time (Chapter 21)’)",
+      "where": "Chapter 21 as a whole (Steps 1, 3 and 5); Chapter 19, technical texts paragraph (‘Check the field every time (Chapter 21)’)",
       "details": "Not stated as a skill; instead the chapter teaches how to spot, check and record the terms of a field. ‘Preserve content and form’ was dropped.",
       "reason": "Turned from a statement into practical steps for beginners."
     },
@@ -178,8 +178,8 @@
     {
       "section": "7. Categories of Terms – by linguistic origin: neoclassical borrowing (cranium, internus), true borrowing (internet, Algebra), borrowing from other dialects or fields (McDonaldization, process data, application)",
       "status": "Not used",
-      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js). Related but separate material: borrowing as a procedure in Chapter 12; transliteration and Arabicisation in Chapter 16, Step 2; algebra as an Arabic loan word in English in Chapter 13",
-      "details": "c2b_v3.js kept one example of each type (cranium; internet and algebra, with the note that algebra comes from Arabic الجبر; application from law to computing). internus, McDonaldization and process data were never used. The whole passage was deleted by the ‘before-trim’ version. The borrowing material now in Chapters 12, 13 and 16 comes from the original draft and Shaikha’s notes, not from this document (final_report_content.js Section 4.1 credits algebra to Shaikha’s notes).",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js). Related but separate material: borrowing as a procedure in Chapter 13; transliteration and Arabicisation in Chapter 17, Step 2; algebra as an Arabic loan word in English in Chapter 14",
+      "details": "c2b_v3.js kept one example of each type (cranium; internet and algebra, with the note that algebra comes from Arabic الجبر; application from law to computing). internus, McDonaldization and process data were never used. The whole passage was deleted by the ‘before-trim’ version. The borrowing material now in Chapters 13, 14 and 17 comes from the original draft and Shaikha’s notes, not from this document (final_report_content.js Section 4.1 credits algebra to Shaikha’s notes).",
       "reason": "Removed in the beginner revision; not listed separately in report_content.js Section 8.2."
     },
     {
@@ -193,7 +193,7 @@
       "section": "9. Arabic Academies – regional academies as language-planning bodies that coin, examine and standardise specialised Arabic terms",
       "status": "Used and edited",
       "where": "Chapter 21, Step 2, paragraph after the bullets",
-      "details": "Now: “For Arabic, the Arabic language academies (مجامع اللغة العربية), for example in Damascus, Cairo, Baghdad and Amman, create and approve terms (Translation Team, n.d.).” The document’s singular مجمع اللغة العربية became the plural مجامع. ‘Language-planning bodies’ was dropped. The document names the Egyptian, Iraqi and Jordanian academies; the handbook gives their cities and adds Damascus. A sentence on the Coordination Bureau of Arabization in Rabat (مكتب تنسيق التعريب) was added. The academies are also named as a place to search in Step 3 (‘the academies’ term lists’), in Chapter 16, Step 3, and in the summary.",
+      "details": "Now: “For Arabic, the Arabic language academies (مجامع اللغة العربية), for example in Damascus, Cairo, Baghdad and Amman, create and approve terms (Translation Team, n.d.).” The document’s singular مجمع اللغة العربية became the plural مجامع. ‘Language-planning bodies’ was dropped. The document names the Egyptian, Iraqi and Jordanian academies; the handbook gives their cities and adds Damascus. A sentence on the Coordination Bureau of Arabization in Rabat (مكتب تنسيق التعريب) was added. The academies are also named as a place to search in Step 3 (‘the academies’ term lists’), in Chapter 17, Step 3, and in the summary.",
       "reason": "Simplified for beginners. Damascus (the oldest academy, 1919) and the Rabat bureau were added by the first expert review because the list left them out (r4.json item 6). Note: the citation (Translation Team, n.d.) now covers Damascus, which the team document does not mention."
     },
     {
@@ -241,9 +241,9 @@
     {
       "section": "11. Technical Dictionaries – contains the standardised terms of a subject; primary product of terminography; multilingual technical dictionaries with a comprehensive volume of terms",
       "status": "Used and edited",
-      "where": "Chapter 21, Step 4 (‘Specialised dictionary (Chapter 20): the terms of one field’); Chapter 20, Words to remember (‘Specialised dictionary’) and Step 3",
+      "where": "Chapter 21, Step 4 (‘Specialised dictionary (Chapter 3): the terms of one field’); Chapter 3, Words to remember (‘Specialised dictionary’) and Step 3",
       "details": "Reduced to one line. ‘Technical dictionary’ was renamed ‘specialised dictionary’; ‘standardised/approved’ was dropped; terminography (still defined in c2b_v3.js as ‘the practical work of recording terms’) and the multilingual/comprehensive point were dropped.",
-      "reason": "Corrected for consistency: Chapter 20 and the risk matrix say ‘specialised dictionary’, and dictionaries record terms but do not necessarily hold approved ones (r4.json item 8). Terminography removed as theory in the beginner revision."
+      "reason": "Corrected for consistency: Chapter 3 and the risk matrix say ‘specialised dictionary’, and dictionaries record terms but do not necessarily hold approved ones (r4.json item 8). Terminography removed as theory in the beginner revision."
     },
     {
       "section": "12. Termbase – What is a termbase? (database of terminology and related information, usually multilingual)",
@@ -297,26 +297,26 @@
     {
       "section": "13. Standardization Bodies – Types of standards: de jure (official, published by standardisation bodies) and de facto (market share and public adoption: smartphone, WhatsApp)",
       "status": "Not used",
-      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js with the example smartphone). ‘smartphone’ now appears only in Chapter 16 as an example of a calque (الهاتف الذكي), unrelated to standards",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js with the example smartphone). ‘smartphone’ now appears only in Chapter 17 as an example of a calque (الهاتف الذكي), unrelated to standards",
       "details": "The earlier versions kept both types with ‘smartphone’ and dropped ‘WhatsApp’ (a brand name).",
       "reason": "Removed in the beginner revision with the standardisation-bodies section (report_content.js Section 8.2)."
     }
   ],
   "added_not_in_document": [
     "Chapter 21 ‘Words to remember’: six key terms with Arabic equivalents (Term المصطلح; Terminology علم المصطلح (المصطلحية); Terminologist المصطلحي (خبير المصطلحات); Term list قائمة المصطلحات; Termbase قاعدة بيانات المصطلحات (بنك المصطلحات); Terminology guide دليل المصطلحات). The document gives no Arabic terms except مجمع اللغة العربية.",
-    "Chapter 21 intro linking to Chapter 20, and the step structure (Steps 1–5), Try it (three questions with answers) and Remember summary.",
+    "Chapter 21 intro linking to Chapter 3, and the step structure (Steps 1–5), Try it (three questions with answers) and Remember summary.",
     "Chapter 21, Step 1: the opening point that in a contract or a medical leaflet one wrong term can change the meaning.",
     "Citation of Cabré (1999) for the definition of terminology (the document cites no sources).",
     "Chapter 21, Step 3, item 1: medical examples allergic = أرَجيّ (everyday Arabic تحسّسي), allergen = مادة مُحسِّسة, contact eczema = إكزيما التماس (from Shaikha’s notes; final_report_content.js Section 4.1; report_content.js Section 9 lists ‘Chapter 21: medical examples of specialised terms’).",
     "Chapter 21, Step 2: the Damascus academy and the Coordination Bureau of Arabization in Rabat (مكتب تنسيق التعريب) (first expert review, r4.json item 6). The Rabat sentence has no citation, and the preceding citation (Translation Team, n.d.) covers Damascus, which is not in the team document.",
-    "Chapter 21, Step 3: UNTERM and Arabterm, and the client’s guide, as sources to check, in that order (client’s guide first: f4.json item 2); items 4 (create only if none exists, Chapter 16) and 5 (record the term in a term list and share it with the team).",
+    "Chapter 21, Step 3: UNTERM and Arabterm, and the client’s guide, as sources to check, in that order (client’s guide first: f4.json item 2); items 4 (create only if none exists, Chapter 17) and 5 (record the term in a term list and share it with the team).",
     "Chapter 21, Step 4: a sample term list (governing law = القانون الواجب التطبيق, also القانون المطبَّق, with القانون الحاكم described as a common calque; provided that = شريطةَ أن; Article = مادّة vs clause = بند; CBC = تعداد الدم الكامل / صورة الدم الكاملة). Only CBC comes from the document; governing law was moved from the original draft (fb_content_v1.js), and the note on القانون الحاكم was softened from ‘not’ in the first expert review (r4.json item 7).",
     "Chapter 21, Step 4: the terminology guide (the client’s approved terms and writing rules; always ask for one and follow it), requested in the professor’s notes (items 36 and 62; report_content.js Section 5).",
     "Chapter 21, Step 5: the ‘one term for one idea’ rule with the مادّة / بند example (a new word suggests a new meaning).",
     "Chapter 21, Step 2: the contrast ‘a translator translates whole texts; a terminologist studies the terms of a field’ replaces the document’s ‘two languages vs one language’ contrast.",
-    "Chapter 16, Step 3 (‘Search before you create’): the academies, UNTERM and Arabterm as places to find accepted terms, with examples global warming = الاحترار العالمي, greenhouse effect = الاحتباس الحراري, cancel culture = ثقافة الإلغاء, and the idea of lexicalisation (المَعْجَمة). Chapter 16 is based on the original draft, not on this document; a review query notes that cancel culture is a media coinage that should be checked in those sources (changelog_content.js).",
-    "Chapter 20 (whole chapter, written for the handbook): the three-check rule, printed vs digital dictionaries, and named dictionaries (Al-Mawrid, Wehr, al-Muʿjam al-Wasīṭ, Oxford Collocations Dictionary, UNTERM, Arabterm), which expand the document’s short ‘Technical Dictionaries’ section.",
-    "Chapter 18, technical texts: depression = الاكتئاب / الكساد / منخفض جوي as an example of one word being a different term in each field, with a cross-reference to Chapter 21.",
+    "Chapter 17, Step 3 (‘Search before you create’): the academies, UNTERM and Arabterm as places to find accepted terms, with examples global warming = الاحترار العالمي, greenhouse effect = الاحتباس الحراري, cancel culture = ثقافة الإلغاء, and the idea of lexicalisation (المَعْجَمة). Chapter 17 is based on the original draft, not on this document; a review query notes that cancel culture is a media coinage that should be checked in those sources (changelog_content.js).",
+    "Chapter 3 (whole chapter, written for the handbook): the three-check rule, printed vs digital dictionaries, and named dictionaries (Al-Mawrid, Wehr, al-Muʿjam al-Wasīṭ, Oxford Collocations Dictionary, UNTERM, Arabterm), which expand the document’s short ‘Technical Dictionaries’ section.",
+    "Chapter 19, technical texts: depression = الاكتئاب / الكساد / منخفض جوي as an example of one word being a different term in each field, with a cross-reference to Chapter 21.",
     "Chapter 22, Step 1 and key terms: termbases, translation memory and CAT tools (from Shaikha’s notes; final_report_content.js Section 4.1), linked to Chapter 21."
   ],
   "references": [
@@ -358,7 +358,7 @@
     },
     {
       "source": "Arabic language academies in general (مجمع اللغة العربية)",
-      "in_references": "yes, indirectly: the statement is cited as Translation Team (n.d.); the Academy of the Arabic Language in Cairo is in the References only as publisher of al-Muʿjam al-Wasīṭ (Chapter 20)",
+      "in_references": "yes, indirectly: the statement is cited as Translation Team (n.d.); the Academy of the Arabic Language in Cairo is in the References only as publisher of al-Muʿjam al-Wasīṭ (Chapter 3)",
       "status": "checked – still needs a printed source",
       "note": "Chapter 21, Step 2 cites the course materials (Translation Team, n.d.), an unpublished manuscript marked ‘Needs more work’ in the final report (final_report_content.js Section 5); the city list (with Damascus added by the reviewer) is not in the team document."
     },
@@ -414,7 +414,7 @@
       "source": "UNTERM (United Nations, n.d.) – not mentioned in the document; added by the editor",
       "in_references": "yes",
       "status": "checked twice (confirmed)",
-      "note": "Recommended in Chapters 16, 20 and 21 as a tool; ‘Checked / Checked / Confirmed’ (final_report_content.js Section 5); no change in review2/refs.json."
+      "note": "Recommended in Chapters 17, 3 and 21 as a tool; ‘Checked / Checked / Confirmed’ (final_report_content.js Section 5); no change in review2/refs.json."
     },
     {
       "source": "Arabterm (ALECSO & GIZ, n.d.) – not mentioned in the document; added by the editor",
@@ -435,13 +435,13 @@
       "note": "Added from the reviewer’s knowledge (r4.json item 6); the sentence carries no citation and no reference entry."
     },
     {
-      "source": "Wehr (1994), A dictionary of modern written Arabic (Chapter 20) – not mentioned in the document, which names no dictionary",
+      "source": "Wehr (1994), A dictionary of modern written Arabic (Chapter 3) – not mentioned in the document, which names no dictionary",
       "in_references": "yes",
       "status": "checked twice (confirmed)",
-      "note": "Added in Chapter 20; ‘Checked / Checked / Confirmed’ in the final report’s double check."
+      "note": "Added in Chapter 3; ‘Checked / Checked / Confirmed’ in the final report’s double check."
     },
     {
-      "source": "Baalbaki, Al-Mawrid; Academy of the Arabic Language in Cairo, al-Muʿjam al-Wasīṭ; Oxford collocations dictionary (2009) (Chapter 20) – not mentioned in the document",
+      "source": "Baalbaki, Al-Mawrid; Academy of the Arabic Language in Cairo, al-Muʿjam al-Wasīṭ; Oxford collocations dictionary (2009) (Chapter 3) – not mentioned in the document",
       "in_references": "yes",
       "status": "checked – still needs a printed source",
       "note": "Final review: Al-Mawrid and al-Wasīṭ need the edition and year used (n.d. at present), and the Oxford dictionary should name its editor, McIntosh (review2/refs.json items 0, 12, 13, 15); the al-Wasīṭ in-text author was corrected to ‘in Cairo’."

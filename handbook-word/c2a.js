@@ -1,4 +1,4 @@
-// Handbook content, part A: front matter and Parts 1 to 4 (Chapters 1 to 13).
+// Handbook content, part A: front matter and Parts 1 to 4 (Chapters 1 to 14).
 // Inline marks: **bold**, _italic_, {{Arabic}}. Blocks are rendered by build2.js.
 module.exports = [
 
@@ -22,9 +22,11 @@ module.exports = [
 ['p', '**Shaikhah Alkhaledi**, _editor and project coordinator_: planned and edited the handbook, contributed her study notes, designed the covers and the layout, and designed and developed the team’s website.'],
 ['p', '**Loulwah Bin Saeed**, _audiovisual translation_: provided the notes for Chapters 26 and 27.'],
 ['p', '**Masooma Almesri**, _terminology_: selected, with Samiuallah Mohammad, the material for Chapter 21.'],
-['p', '**Samiuallah Mohammad**, _first draft and planning_: compiled the first draft, set out the plan, and provided the text analysis model (Chapter 17).'],
+['p', '**Samiuallah Mohammad**, _first draft and planning_: compiled the first draft, set out the plan, and provided the text analysis model (Chapter 18).'],
 
 ['front', 'Start here'],
+['p', 'Translation is everywhere. The medicine leaflet in your home, the subtitles of your favourite series, the menu of a video game and the news you read today have all passed through a translator’s hands. Most of the time nobody notices, because a good translation reads as if it had been written in your own language. This book shows you how that invisible work is done, and how you can do it yourself.'],
+['p', 'It is also very old work. In Baghdad, more than a thousand years ago, the House of Wisdom ({{بيت الحكمة}}) brought together translators who put Greek, Persian and Indian works of science and philosophy into Arabic. Centuries later, many of them were translated from Arabic into Latin and helped to shape learning in Europe. You are about to join this long line of translators.'],
 ['p', 'This book is for you if you have never studied translation. You do not need any background: only good English, good Arabic and curiosity. We will start from zero and go one step at a time.'],
 ['h', 'What does a translator actually do?'],
 ['p', 'Imagine you are walking in a park with a friend who reads only Arabic. You see a sign that says _Keep off the grass._ Your friend asks what it means.'],
@@ -38,30 +40,26 @@ module.exports = [
   '**Write.** Say the same thing in the other language, in a natural way.',
   '**Check.** Read your translation again and correct it.',
 ]],
-['p', 'The chapters of this book teach you how to do each step better.'],
-['h', 'Your journey through this book'],
+['h', 'Your journey through this book (read the parts in order)'],
 ['ol', [
-  '**First steps** (Part 1): what translation is, how to prepare, and how English and Arabic differ.',
+  '**First steps** (Part 1): what translation is, how to prepare, how to use a dictionary, and how English and Arabic differ.',
   '**Understanding meaning** (Parts 2 and 3): how words carry meaning, and how they work together.',
   '**Solving problems** (Parts 4 and 5): the methods translators use when a word or an idea does not travel easily.',
   '**Whole texts** (Part 6): how to read and translate a complete text, such as a news report.',
-  '**Tools and checking** (Parts 7 and 8): dictionaries, technology, and how to check and explain your work.',
+  '**Tools and checking** (Parts 7 and 8): specialised terms, technology, and how to check and explain your work.',
   '**Films and videos** (Part 9): subtitles and dubbing, the most advanced topic.',
+  '**Your journey continues**: how to keep growing after this book.',
 ]],
-['p', 'Read the parts in order: each one uses what you learned before it.'],
 ['h', 'How each chapter guides you'],
 ['ul', [
   '**Where we are** tells you what you already know and what comes next.',
   'The chapter explains each idea with examples in English and Arabic.',
   '**Try it** gives you a few questions, with the answers straight after.',
   '**Remember** sums up the chapter, and **Words to remember** gives the new terms with their Arabic equivalents. All the terms are also in the glossary at the end.',
+  '**Next** tells you where the path goes, and **Did you know?** shares a true story about translation.',
+  '**EN → AR** means from English into Arabic, and **AR → EN** the reverse; **✓** marks a good translation and **✗** a poor one; a note in brackets, such as (Newmark, 1988), shows the source of an idea, listed in full in the References.',
 ]],
-['h', 'Signs used in this book'],
-['ul', [
-  '**EN → AR**: from English into Arabic. **AR → EN**: from Arabic into English.',
-  '**✓** marks a good translation and **✗** a poor one.',
-  'The short notes in brackets, such as (Newmark, 1988), show where an idea comes from. The full sources are in the References.',
-]],
+
 
 // ================= PART 1 =================
 ['part', 'Part 1: Getting started'],
@@ -111,6 +109,7 @@ module.exports = [
 ['h', 'Step 5: who chooses the text?'],
 ['p', 'Sometimes someone asks you to translate a text: a client, an agency or an employer. You are then a **commissioned translator**, and you follow their instructions (Chapter 2). Sometimes you choose the text yourself, such as a poem you love. You are then a **self-initiated translator**, and you make your own choices.'],
 ['p', 'Freelance translators (who work for many clients) and in-house translators (who work for one employer) both do commissioned work, and any translator can also translate a text on their own initiative.'],
+['fact', 'More than 2,000 years ago, a decree was carved on a stone in Egypt in three scripts: hieroglyphs, a later Egyptian script and Ancient Greek. The stone was found at Rashid (Rosetta) in 1799. Because scholars could read the Greek, they used it to decode the hieroglyphs in the 1820s. A translation opened the door to a lost language.'],
 ['try', ['What is the difference between translation and interpreting?', 'A publisher asks you to translate a novel. Are you a commissioned or a self-initiated translator?', 'Why is translation called “approximation”?'],
         ['Translation deals with written texts; interpreting deals with speech.', 'Commissioned: the publisher chose the text and asked you to translate it.', 'Because no two languages match perfectly, so the translator can only come as close as possible to the original meaning.']],
 ['summary', ['Translation carries **meaning**, not words, from one language to another.', 'A good translator needs two languages **and** two cultures.', 'Commissioned translators follow the client’s instructions; self-initiated translators choose their own texts.']],
@@ -138,7 +137,7 @@ module.exports = [
   '**Read the whole text** once, just to understand it.',
   '**Read it again with a pen.** Mark difficult words, idioms, names and numbers.',
   '**Find out about the topic** if you do not know it well.',
-  '**List the key terms** and check them in a dictionary (Chapters 20 and 21).',
+  '**List the key terms** and check them in a dictionary (Chapters 3 and 21).',
   '**Picture the translation**: imagine how it should sound. This is your **mental draft**.',
 ]],
 ['h', 'While you translate'],
@@ -158,17 +157,48 @@ module.exports = [
 ['ex', '_It’s raining cats and dogs, so the match has been cancelled._'],
 ['ol', [
   '**Plan.** A school is informing Arabic-speaking parents about the match, so the Arabic should be clear and simple.',
-  '**Understand.** _Raining cats and dogs_ is an idiom meaning “raining heavily”. It has nothing to do with animals (Chapter 8).',
+  '**Understand.** _Raining cats and dogs_ is an idiom meaning “raining heavily”. It has nothing to do with animals (Chapter 9).',
   '**Write.** A word-by-word version, {{إنها تمطر قططاً وكلاباً، لذلك تمّ إلغاء المباراة.}}, makes no sense. A translation of the meaning works: {{أُلغيت المباراة بسبب الأمطار الغزيرة.}}',
   '**Check.** Read the Arabic without the English: the meaning is complete and the sentence sounds natural.',
   '**Explain**, if you are asked why: “The idiom was translated by its meaning, because a word-for-word version would make no sense to Arabic-speaking readers” (Chapter 25).',
 ]],
 ['p', 'You have just translated your first sentence the way professionals do. The rest of the book helps you do each step better.'],
+['fact', 'The _Universal Declaration of Human Rights_ has been translated into more than 500 languages, which makes it one of the most translated documents in the world.'],
 ['try', ['A hospital asks you to translate a medicine leaflet for its patients. Who is the target audience, and what style should you use?', 'What is the purpose of an advert?', 'Why should you read the whole text before you start translating?'],
         ['Patients from the general public, so use a clear, simple style with exact words.', 'To persuade.', 'To understand it, find the difficult parts in advance, and form a mental draft.']],
 ['summary', ['Ask three questions first: **client, purpose, audience**.', 'Read the whole text at least twice before you translate.', 'Be faithful, write naturally, and always revise.']],
 
-['ch', 'Chapter 3: English and Arabic: key differences'],
+['ch', 'Chapter 3: Printed and digital dictionaries'],
+['intro', 'In Chapter 2 you checked key terms in a dictionary. This chapter shows you which dictionaries to use, and how to choose the right meaning.'],
+['terms', [
+  ['Bilingual dictionary', 'معجم ثنائي اللغة', 'A dictionary that gives equivalents in another language.'],
+  ['Monolingual dictionary', 'معجم أحادي اللغة', 'A dictionary that explains words in the same language.'],
+  ['Specialised dictionary', 'معجم متخصص', 'A dictionary for one field, such as law or medicine.'],
+  ['Collocations dictionary', 'معجم المتلازمات اللفظية', 'A dictionary of the natural word partners of a language.'],
+]],
+['h', 'Step 1: a dictionary gives options, not answers'],
+['p', 'A famous saying goes: “Dictionaries are like watches; the worst is better than none, and the best cannot be expected to go quite true” (Johnson, 1784/1897, p. 309). So do not simply take the first meaning. Use the three-check rule:'],
+['ol', ['Find the options in a **bilingual dictionary**.', 'Confirm the meaning in a **monolingual dictionary**.', 'See how the word is really used in a text written in the target language.']],
+['p', 'For example, for _a fast colour_ a bilingual dictionary gives {{سريع}} and {{ثابت}}. An Arabic dictionary confirms that {{ثابت}} can mean “not fading”, and clothing labels use {{لون ثابت}}. So the answer is {{لون ثابت}}.'],
+['h', 'Step 2: printed or digital?'],
+['ul', [
+  '**Printed dictionaries**: edited by experts, with full entries and examples, but slower to use, and they may lack new words.',
+  '**Digital dictionaries**: fast and often updated, but quality varies. Check the publisher: a digital version of a known printed dictionary is safer than an unknown website.',
+]],
+['h', 'Step 3: dictionaries to start with'],
+['ul', [
+  '_Al-Mawrid_ (Baalbaki, n.d.): English–Arabic, for general words.',
+  '_A Dictionary of Modern Written Arabic_ (Wehr, 1994): Arabic–English, with words listed by root.',
+  '_Al-Muʿjam al-Wasīṭ_ ({{المعجم الوسيط}}) (Academy of the Arabic Language in Cairo, n.d.): a monolingual Arabic dictionary from the Academy in Cairo.',
+  '_Oxford Collocations Dictionary for Students of English_ (2009): natural English word partners.',
+  'UNTERM (United Nations, n.d.) and Arabterm (ALECSO & GIZ, n.d.): official and technical terms. For one field, such as law or medicine, add a **specialised dictionary**.',
+]],
+['fact', 'One of the earliest Arabic dictionaries, {{كتاب العين}}, was compiled in Basra in the eighth century. It does not follow the alphabet: it orders the letters by where they are pronounced, from the throat to the lips. It begins with the letter {{ع}}, which gives the book its name.'],
+['try', ['Which dictionary do you use to confirm a meaning?', 'What should you check before trusting a digital dictionary?'],
+        ['A monolingual dictionary.', 'Who publishes it.']],
+['summary', ['Check a bilingual dictionary, then a monolingual one, then a real text.', 'Use printed and digital dictionaries together; check digital sources.']],
+
+['ch', 'Chapter 4: English and Arabic: key differences'],
 ['intro', 'You know how to prepare a translation. But English and Arabic work differently, and most beginners’ mistakes come from these differences. This chapter shows you the main ones, so you can avoid them (Farghal & Shunnaq, 1999/2011; Ghazala, 2008).'],
 ['terms', [
   ['Word order', 'ترتيب الكلمات', 'The order of the subject, verb and object in a sentence.'],
@@ -220,6 +250,7 @@ module.exports = [
 ]],
 ['p', 'Use Arabic punctuation in Arabic texts: the Arabic comma {{،}}, semicolon {{؛}} and question mark {{؟}}.'],
 ['p', 'Most translation problems between English and Arabic fall into four groups: **grammar** ({{النحو}}), **word choice** ({{اختيار المفردات}}), **punctuation and style**, and **general or technical texts**. Style includes how formal the language is: its **register**.'],
+['fact', 'The digits 0 to 9 used in English are called _Arabic numerals_, because Europe learned them from Arabic books; they first developed in India. Much of the Arab world writes the same digits in another form: {{٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩}}.'],
 ['try', ['Rewrite as a verbal sentence: {{الطلاب حضروا المحاضرة.}}', 'Translate: {{الطالب في المكتبة.}}', 'Translate: _He is in bed._'],
         ['{{حضر الطلابُ المحاضرة.}} (When the verb comes first, it stays singular: {{حضر}}, not {{حضروا}}.)', '_The student is in the library._', '{{إنه في فراشه.}} or, if the context shows he is asleep, {{إنه نائم.}}']],
 ['summary', ['**EN → AR**: prefer a verbal sentence, do not translate a simple _is_ with {{يكون}}, join short sentences, use Arabic punctuation.', '**AR → EN**: start with the subject, split long sentences, turn a pair of synonyms into one expression, add “is”.', 'Use Modern Standard Arabic unless the client asks for a dialect.']],
@@ -227,8 +258,8 @@ module.exports = [
 // ================= PART 2 =================
 ['part', 'Part 2: Understanding meaning'],
 
-['ch', 'Chapter 4: Form and meaning'],
-['intro', 'In Chapter 3 you often changed a sentence’s structure. This chapter gives you the rule that makes such changes safe, so you can change the form without losing the meaning.'],
+['ch', 'Chapter 5: Form and meaning'],
+['intro', 'In Chapter 4 you often changed a sentence’s structure. This chapter gives you the rule that makes such changes safe, so you can change the form without losing the meaning.'],
 ['terms', [
   ['Form', 'الشكل', 'The structure of language: a word, phrase, clause, sentence or text.'],
   ['Meaning', 'المعنى', 'The idea that a form expresses.'],
@@ -240,7 +271,7 @@ module.exports = [
 ['p', 'Copying the English form often gives clumsy Arabic, so change it. For example, a noun can become a verb:'],
 ['ul', [
   '_He is a heavy smoker._ → {{يدخّن بشراهة}} (the noun _smoker_ becomes the verb {{يدخّن}}, and the adjective _heavy_ becomes {{بشراهة}})',
-  '_after his arrival_ → {{بعد أن وصل}} (the noun _arrival_ becomes a verb; see Chapter 12)',
+  '_after his arrival_ → {{بعد أن وصل}} (the noun _arrival_ becomes a verb; see Chapter 13)',
 ]],
 ['h', 'Step 3: when the image does not travel'],
 ['p', 'Sometimes the problem is a picture. The British press called Tony Blair _Bush’s poodle_: someone who obediently follows George Bush. A poodle has no such meaning in Arabic, so the translator keeps the meaning and changes the form: {{بلير، تابعُ بوش}} or {{بلير، المنقاد لبوش}}.'],
@@ -248,7 +279,7 @@ module.exports = [
         ['{{يركض بسرعة.}}', '{{وصل متأخراً.}}']],
 ['summary', ['Meaning comes before form.', 'You may change the structure, but never the meaning.']],
 
-['ch', 'Chapter 5: Types of meaning'],
+['ch', 'Chapter 6: Types of meaning'],
 ['intro', 'Meaning comes before form, but meaning has layers. This chapter shows you three of them, so you can choose words with the right feeling and translate what a speaker really means.'],
 ['terms', [
   ['Denotation', 'المعنى المعجمي', 'The basic, dictionary meaning of a word.'],
@@ -279,8 +310,8 @@ module.exports = [
         ['{{تُوُفِّي}}, because it is respectful.', 'A polite request to open a window or turn on the air conditioning.']],
 ['summary', ['Check the **connotation** of a word, not only its dictionary meaning.', 'Make sure your reader understands what the speaker means, not only what the sentence says.']],
 
-['ch', 'Chapter 6: Context'],
-['intro', 'Chapter 5 showed that meaning has layers. Many words also have several meanings. This chapter shows you how to use the words around it, and the wider situation, to choose the right meaning.'],
+['ch', 'Chapter 7: Context'],
+['intro', 'Chapter 6 showed that meaning has layers. Many words also have several meanings. This chapter shows you how to use the words around it, and the wider situation, to choose the right meaning.'],
 ['terms', [
   ['Context', 'السياق', 'Everything around a word or text that helps us understand it: the surrounding words and the wider situation.'],
   ['Micro context (co-text)', 'السياق اللغوي (الداخلي)', 'The words and sentences immediately around a word.'],
@@ -306,6 +337,7 @@ module.exports = [
   '{{تطهير}}: cleaning a wound ({{تطهير الجرح}}) or purifying from sins ({{التطهير من الذنوب}}). The meanings are related.',
   '{{احتجاز}}: holding water ({{احتجاز المياه}}) or holding hostages ({{احتجاز الرهائن}}).',
 ]],
+['fact', 'The English verb _run_ has hundreds of senses in the _Oxford English Dictionary_: you can run a race, a company, a risk or a temperature. Only the context tells you which one a sentence means.'],
 ['try', ['Translate _case_ in: _The doctor examined the case._', 'Translate {{عين}} in: {{شربنا من عين ماء باردة.}}'],
         ['{{حالة}}.', '_We drank from a cold water spring._']],
 ['summary', ['Context decides which meaning is correct.', 'Look at the words around a word (micro context) and at the whole situation (macro context).']],
@@ -313,7 +345,7 @@ module.exports = [
 // ================= PART 3 =================
 ['part', 'Part 3: Words that go together'],
 
-['ch', 'Chapter 7: Collocation'],
+['ch', 'Chapter 8: Collocation'],
 ['intro', 'Some words appear together so often that they become partners. This chapter shows you how to recognise these partners and translate them naturally.'],
 ['terms', [
   ['Collocation', 'التلازم اللفظي', 'Words that naturally go together; the company a word keeps.'],
@@ -353,7 +385,7 @@ module.exports = [
         ['{{مطر غزير}} (not {{مطر ثقيل}}).', '{{يلقي محاضرة}} (like _deliver a speech_).', '_He held a press conference._']],
 ['summary', ['Learn words **with their partners**.', 'Translate a collocation with the natural partner in the other language.']],
 
-['ch', 'Chapter 8: Idioms, proverbs and fixed expressions'],
+['ch', 'Chapter 9: Idioms, proverbs and fixed expressions'],
 ['intro', 'Some word partners go further than collocations: they are fixed, and together they mean something new. This chapter shows you how to recognise and translate them.'],
 ['terms', [
   ['Idiom', 'التعبير الاصطلاحي', 'A fixed expression whose meaning is not the sum of the meanings of its words.'],
@@ -414,8 +446,8 @@ module.exports = [
 // ================= PART 4 =================
 ['part', 'Part 4: Methods and techniques'],
 
-['ch', 'Chapter 9: Equivalence'],
-['intro', 'Chapter 8 showed that idioms often lack an exact Arabic match. Here are three ways to translate them, and which to try first.'],
+['ch', 'Chapter 10: Equivalence'],
+['intro', 'Chapter 9 showed that idioms often lack an exact Arabic match. Here are three ways to translate them, and which to try first.'],
 ['terms', [
   ['Equivalence', 'التكافؤ', 'A match between a source-language expression and a target-language expression.'],
   ['Formal equivalence', 'التكافؤ الشكلي', 'Keeping the form of the original: passive for passive, verb for verb.'],
@@ -442,8 +474,8 @@ module.exports = [
         ['Ideational: only the basic idea is kept.', '{{بقيت الاتفاقية حبراً على ورق.}}']],
 ['summary', ['There are three types of equivalence: formal, functional and ideational.', 'Choose the one that gives the closest natural meaning for your reader.']],
 
-['ch', 'Chapter 10: Literal and free translation'],
-['intro', 'Now you will make the choice from Chapter 9 for a whole text: follow the words, or the message. You will learn when each works.'],
+['ch', 'Chapter 11: Literal and free translation'],
+['intro', 'Now you will make the choice from Chapter 10 for a whole text: follow the words, or the message. You will learn when each works.'],
 ['terms', [
   ['Literal translation', 'الترجمة الحرفية', 'Keeping the original words, changing only what grammar requires; also called modified literal translation ({{الترجمة الحرفية المعدّلة}}).'],
   ['Free translation', 'الترجمة الحرّة', 'Keeping the message but not the form; also called loose translation.'],
@@ -462,7 +494,7 @@ module.exports = [
 ['p', 'Or you can keep the message and change the form. This is **free translation**, used for all kinds of texts, not only literary works. Compare:'],
 ['ul', [
   '_Appointing new employees should be done on the basis of equal opportunity._ → {{يجب تعيين الموظفين الجدد بعيداً عن المحسوبية والواسطة والمحاباة}}. A free translation that keeps the message.',
-  '_Going out can be risky these days._ → a translator who knows the context (for example, the Covid-19 pandemic) might write a sentence about the virus spreading.',
+  '_Going out can be risky these days._ → a translator who knows the context (for example, a time when a disease is spreading) might write a sentence about the risk of infection.',
   '_We have had heavy rainfall this winter._ → {{ينتظرنا هذا العام موسمٌ زراعيٌّ مبشّر بالخير}}.',
   '_His parents are not quite happy about what he said to them._ → a sentence about respecting one’s parents.',
 ]],
@@ -479,8 +511,8 @@ module.exports = [
         ['Yes: Arabic uses the same expression.', '{{لقد كان يوماً شاقّاً.}}']],
 ['summary', ['Literal translation works only when the target language has the same expression.', 'Free translation may change the form, but it should not add new ideas.', 'Communicative translation keeps the full meaning and says it naturally.']],
 
-['ch', 'Chapter 11: Metaphoric translation'],
-['intro', 'Literal translation (Chapter 10) often fails with images. Here you will learn to spot and translate metaphors and similes.'],
+['ch', 'Chapter 12: Metaphoric translation'],
+['intro', 'Literal translation (Chapter 11) often fails with images. Here you will learn to spot and translate metaphors and similes.'],
 ['terms', [
   ['Figurative language', 'اللغة المجازية', 'Language used in a non-literal way to create an image or effect.'],
   ['Metaphor', 'الاستعارة', 'A comparison without “as” or “like”; using a word in a non-basic meaning.'],
@@ -502,16 +534,16 @@ module.exports = [
         ['{{تبخّرت آمالي.}}', '{{وما خفي كان أعظم.}} or {{هذا غيضٌ من فيض.}}']],
 ['summary', ['Keep a shared image; replace an unshared one; turn it into a simile; give the plain meaning as a last choice.']],
 
-['ch', 'Chapter 12: The seven translation procedures'],
-['intro', 'Chapters 9 to 11 dealt with whole texts and expressions. Now you will learn seven precise techniques for smaller units, and spot them in a translation.'],
+['ch', 'Chapter 13: The seven translation procedures'],
+['intro', 'Chapters 10 to 12 dealt with whole texts and expressions. Now you will learn seven precise techniques for smaller units, and spot them in a translation.'],
 ['terms', [
   ['Translation procedure', 'إجراء الترجمة', 'A technique for translating a word, phrase or sentence.'],
   ['Borrowing', 'الاقتراض', 'Taking a word from the source language as it is.'],
-  ['Calque', 'النسخ', 'Translating each part of an expression literally; also called loan translation (Chapter 16).'],
+  ['Calque', 'النسخ', 'Translating each part of an expression literally; also called loan translation (Chapter 17).'],
   ['Transposition', 'الإبدال', 'Changing the word class, for example a noun into a verb.'],
   ['Modulation', 'التطويع', 'Expressing the same idea from another point of view.'],
-  ['Equivalence (procedure)', 'التكافؤ', 'Describing the same situation with a completely different expression, often an idiom or a proverb; narrower than equivalence in general (Chapter 9).'],
-  ['Adaptation (procedure)', 'التكييف', 'Replacing a cultural situation with a familiar one; smaller in scale than adaptation as a method (Chapter 10).'],
+  ['Equivalence (procedure)', 'التكافؤ', 'Describing the same situation with a completely different expression, often an idiom or a proverb; narrower than equivalence in general (Chapter 10).'],
+  ['Adaptation (procedure)', 'التكييف', 'Replacing a cultural situation with a familiar one; smaller in scale than adaptation as a method (Chapter 11).'],
 ]],
 ['h', 'Step 1: methods and procedures'],
 ['p', 'Literal and free translation are **methods**. Smaller units need **translation procedures**: “while translation methods relate to whole texts, translation procedures are used for sentences and the smaller units of language” (Newmark, 1988, p. 81).'],
@@ -531,13 +563,13 @@ module.exports = [
 ['h', 'Step 4: one sentence, several procedures'],
 ['ex', '_After his arrival in Kuwait, the minister held a press conference at the Sheraton and said the reforms were not impossible._'],
 ['ar', 'بعد أن وصل الوزير إلى الكويت، عقد مؤتمراً صحفياً في فندق شيراتون، وقال إنّ الإصلاحات ممكنة.'],
-['ul', ['_after his arrival_ → {{بعد أن وصل}}: transposition', '_press conference_ → {{مؤتمر صحفي}}: calque', '_Sheraton_ → {{فندق شيراتون}}: borrowing, plus the added word {{فندق}} (addition, Chapter 13)', '_not impossible_ → {{ممكنة}}: modulation']],
+['ul', ['_after his arrival_ → {{بعد أن وصل}}: transposition', '_press conference_ → {{مؤتمر صحفي}}: calque', '_Sheraton_ → {{فندق شيراتون}}: borrowing, plus the added word {{فندق}} (addition, Chapter 14)', '_not impossible_ → {{ممكنة}}: modulation']],
 ['try', ['Which procedure? _email_ → {{إيميل}}', 'Which procedure? _honeymoon_ → {{شهر العسل}}', 'Which procedure? _It is not easy._ → {{إنه صعب}}'],
         ['Borrowing.', 'Calque.', 'Modulation.']],
 ['summary', ['Procedures 1–3 are direct; 4–7 are oblique.', 'Learn their names: you will use them in your commentary (Chapter 25).']],
 
-['ch', 'Chapter 13: Translation strategies'],
-['intro', 'Some problems need a wider plan than the procedures of Chapter 12. Here you will learn the main strategies.'],
+['ch', 'Chapter 14: Translation strategies'],
+['intro', 'Some problems need a wider plan than the procedures of Chapter 13. Here you will learn the main strategies.'],
 ['terms', [
   ['Translation strategy', 'استراتيجية الترجمة', 'A planned solution to a translation problem.'],
   ['Functional translation', 'الترجمة الوظيفية', 'Translating with a target-language expression that has the same function.'],
@@ -555,14 +587,14 @@ module.exports = [
 ['p', 'A planned solution to a translation problem is called a **translation strategy** (Translation Team, n.d.; Baker, 2018). Begin with the closest ones:'],
 ['ol', [
   '**Literal and idiomatic translation**: translating literally when the result is natural, and translating an idiom with another idiom when possible. Check the field even for simple terms: _key word_ can be {{كلمة مفتاحية}} or {{كلمة دالّة}}, depending on the field.',
-  '**Functional translation**: _a dead letter_ → {{حبرٌ على ورق}}; _second to none_ → {{لا يُشقّ له غبار}} When there is no matching expression, give the plain meaning, as in ideational equivalence (Chapter 9): _spill the beans_ → {{أفشى السرّ}}; _mark my words_ → {{تذكّر كلامي}}.',
-  '**Cultural substitution** (adaptation, Chapter 12): _They are like Romeo and Juliet._ → {{هما كقيسٍ وليلى}}. Measures can also follow the reader’s culture: _5 miles_ → {{نحو 8 كيلومترات}}.',
+  '**Functional translation**: _a dead letter_ → {{حبرٌ على ورق}}; _second to none_ → {{لا يُشقّ له غبار}} When there is no matching expression, give the plain meaning, as in ideational equivalence (Chapter 10): _spill the beans_ → {{أفشى السرّ}}; _mark my words_ → {{تذكّر كلامي}}.',
+  '**Cultural substitution** (adaptation, Chapter 13): _They are like Romeo and Juliet._ → {{هما كقيسٍ وليلى}}. Measures can also follow the reader’s culture: _5 miles_ → {{نحو 8 كيلومترات}}.',
 ]],
 ['h', 'Step 2: add, remove or explain'],
 ['ol', [
   '**Addition**: common from English into Arabic, because Arabic style often favours fuller expression ({{الإطناب}}), and Arab readers may need information that English readers already have. _the Fed_ → {{مجلس الاحتياطي الفيدرالي الأمريكي}}.',
   '**Omission**: common from Arabic into English, where repeated synonyms sound unnatural. {{شجاعٌ مِغوار}} → _very brave_. It is also used to avoid words that would offend the reader. Never omit real information.',
-  '**Explanatory translation**: use it only when nothing shorter works, because it makes the text longer. It suits cultural and religious terms such as {{الزكاة}} and {{العِدّة}}, and for dense technical terms (Chapter 15).',
+  '**Explanatory translation**: use it only when nothing shorter works, because it makes the text longer. It suits cultural and religious terms such as {{الزكاة}} and {{العِدّة}}, and for dense technical terms (Chapter 16).',
 ]],
 ['h', 'Step 3: say it, or leave it implied'],
 ['p', '**Explicitation** is “the process of introducing information into the target language which is present only implicitly in the source language” (Vinay & Darbelnet, 1958/1995, p. 342). **Implicitation** is the opposite: information stated in the source text is left implied, because the context makes it clear (Vinay & Darbelnet, 1958/1995).'],
@@ -571,7 +603,7 @@ module.exports = [
   '**Explicitation, by choice**: _He took the Tube._ → {{ركب قطار الأنفاق في لندن}}, for readers who do not know the London Underground.',
   '**Implicitation**: _Kuwait’s National Assembly_ → {{مجلس الأمة}}, in a Kuwaiti newspaper whose readers already know which assembly it is.',
 ]],
-['p', 'Make explicit only what the reader needs, and never add new ideas (Chapter 10).'],
+['p', 'Make explicit only what the reader needs, and never add new ideas (Chapter 11).'],
 ['h', 'Step 4: no exact word'],
 ['p', 'Translators also use these strategies; the first four come from Baker (2018):'],
 ['ol', [

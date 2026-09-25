@@ -1,8 +1,8 @@
-// Handbook content, part B: Parts 5 to 9 (Chapters 14 to 27).
+// Handbook content, part B: Parts 5 to 9 (Chapters 15 to 27).
 module.exports = [// ================= PART 5 =================
 ['part', 'Part 5: Culture and new words'],
 
-['ch', 'Chapter 14: Cultural approximation'],
+['ch', 'Chapter 15: Cultural approximation'],
 ['intro', 'A translation is never a perfect copy (Chapter 1), and culture makes this harder still. This chapter shows you how to bring cultural meaning close to your reader.'],
 ['terms', [
   ['Cultural approximation', 'التقريب الثقافي', 'Bringing the source text’s cultural meaning as close as possible to the target reader.'],
@@ -49,10 +49,10 @@ module.exports = [// ================= PART 5 =================
         ['{{من طينةٍ واحدة}}.', '{{وزير الخارجية الأمريكي}}.', 'In a hot climate, relief is linked with coolness, not warmth.']],
 ['summary', ['Translate the effect, not the image.', 'Use what a target-language speaker would say in the same situation.']],
 
-['ch', 'Chapter 15: Descriptive translation'],
-['intro', 'In Chapter 14, the other language had a similar expression ready. Sometimes it has no word and no similar custom. This chapter shows you how to explain such a word.'],
+['ch', 'Chapter 16: Descriptive translation'],
+['intro', 'In Chapter 15, the other language had a similar expression ready. Sometimes it has no word and no similar custom. This chapter shows you how to explain such a word.'],
 ['terms', [
-  ['Descriptive translation', 'الترجمة الوصفية', 'Paraphrasing a source expression by describing its meaning. Also called explanatory translation ({{الترجمة الشرحية}}, Chapter 13).'],
+  ['Descriptive translation', 'الترجمة الوصفية', 'Paraphrasing a source expression by describing its meaning. Also called explanatory translation ({{الترجمة الشرحية}}, Chapter 14).'],
   ['Transliteration', 'النقل الصوتي', 'Writing the sounds of a word in the letters of another language.'],
   ['Concept', 'المفهوم', 'An idea that a word or term stands for.'],
 ]],
@@ -79,8 +79,8 @@ module.exports = [// ================= PART 5 =================
         ['_waqf_ (a charitable endowment in Islam).', 'In brackets after the word, or in a footnote.']],
 ['summary', ['Transliterate first, then describe.', 'Describe only the first time a word appears.', 'Use it as the last option.']],
 
-['ch', 'Chapter 16: Lexical creation'],
-['intro', 'When a word is needed again and again, a long explanation (Chapter 15) is not practical, and the language needs a new word. This chapter shows you how translators make one, and why you should search first.'],
+['ch', 'Chapter 17: Lexical creation'],
+['intro', 'When a word is needed again and again, a long explanation (Chapter 16) is not practical, and the language needs a new word. This chapter shows you how translators make one, and why you should search first.'],
 ['terms', [
   ['Lexical creation', 'التوليد المعجمي', 'Coining new target-language words for items with no direct equivalent.'],
   ['Neologism', 'اللفظ المستحدث', 'A new word, or an existing word given a new meaning.'],
@@ -101,6 +101,7 @@ module.exports = [// ================= PART 5 =================
 ['h', 'Step 3: search before you create'],
 ['p', 'First search for an accepted term. The Arabic language academies, UNTERM (United Nations, n.d.) and Arabterm (ALECSO & GIZ, n.d.) record many new terms. For example: _global warming_ → {{الاحترار العالمي}}; _greenhouse effect_ → {{الاحتباس الحراري}}; _cancel culture_ → {{ثقافة الإلغاء}}.'],
 ['p', 'An accepted term is always better than a new invention. When a new word becomes widely accepted and enters the dictionary, it is **lexicalised** ({{المَعْجَمة}}).'],
+['fact', 'Words travel too. The Arabic {{قهوة}} passed into Turkish as _kahve_, into Italian as _caffè_ and into English as _coffee_. English also took _sugar_, _cotton_ and _zero_ from Arabic, through other European languages.'],
 ['try', ['Which method? _smartphone_ → {{الهاتف الذكي}}', 'What should you do before creating a new word?'],
         ['Loan translation (calque).', 'Search for an accepted term in the academies, UNTERM or Arabterm.']],
 ['summary', ['Create a new word only when no accepted term exists.', 'The five methods: neologism, calque, transliteration, explanation and hybrid form.']],
@@ -108,7 +109,7 @@ module.exports = [// ================= PART 5 =================
 // ================= PART 6 =================
 ['part', 'Part 6: Working with whole texts'],
 
-['ch', 'Chapter 17: Text analysis'],
+['ch', 'Chapter 18: Text analysis'],
 ['intro', 'So far you have worked with words and sentences. Now you move to whole texts. This chapter gives you a checklist for studying any text before you translate it.'],
 ['terms', [
   ['Text', 'النص', 'Any piece of language, written or spoken, that forms a complete message: from a one-word sign to a whole book.'],
@@ -135,15 +136,15 @@ module.exports = [// ================= PART 5 =================
 ['ul', [
   '**Words**: vocabulary, terms, figurative language, official titles, cultural expressions and references.',
   '**Grammar**: sentence structure, tenses, pronouns (first, second or third person) and how sentences are linked.',
-  '**Meaning**: denotative, connotative, collocational, idiomatic and pragmatic meaning (Chapters 5 to 8).',
+  '**Meaning**: denotative, connotative, collocational, idiomatic and pragmatic meaning (Chapters 6 to 9).',
   '**Word forms**: prefixes and suffixes, compounds, acronyms and abbreviations.',
   '**Sound**: rhyme, rhythm and musicality, especially in poems, slogans and adverts.',
 ]],
 ['p', 'Then look at the text as a whole, at the **macro level**:'],
 ['ul', [
-  '**The text**: its type, structure, genre, tone, level of formality and length, and any pictures or links (Chapter 18).',
+  '**The text**: its type, structure, genre, tone, level of formality and length, and any pictures or links (Chapter 19).',
   '**Other texts**: quotations from, or allusions to, other texts that readers are expected to recognise.',
-  '**Point of view**: how the language supports a political or ideological position (Chapter 19).',
+  '**Point of view**: how the language supports a political or ideological position (Chapter 20).',
 ]],
 ['p', 'The **external level** is the context in which the text was written. Ask: what event or background led to the text? Who is the author, and what does that tell you? How will the target culture and audience affect the translation?'],
 ['h', 'Step 4: use the checklist'],
@@ -167,8 +168,8 @@ module.exports = [// ================= PART 5 =================
         ['A summary gives the facts; an analysis describes the features, background, purpose and style.', 'Analysis, translation and commentary.']],
 ['summary', ['Analyse **before** you translate.', 'Your translation must match your analysis.']],
 
-['ch', 'Chapter 18: Text types and genres'],
-['intro', 'In Chapter 17 you learned to name a text’s genre. This chapter shows you why the genre matters, with an example of each main genre.'],
+['ch', 'Chapter 19: Text types and genres'],
+['intro', 'In Chapter 18 you learned to name a text’s genre. This chapter shows you why the genre matters, with an example of each main genre.'],
 ['terms', [
   ['Text type', 'نمط النص', 'A group of texts that share one main function: to inform, to express or to persuade.'],
   ['Genre', 'الجنس النصّي', 'A kind of text with its own rules, such as a news report or a recipe.'],
@@ -205,8 +206,8 @@ module.exports = [// ================= PART 5 =================
         ['Operative: it tries to persuade.', 'Because a mistake, such as a wrong dose, can harm the reader.']],
 ['summary', ['Identify the genre before you translate.', 'Follow the rules of the same genre in the target language.', 'News headlines have their own grammar; translate them into natural Arabic headlines.']],
 
-['ch', 'Chapter 19: Words and points of view'],
-['intro', 'After genre (Chapter 18), look for the writer’s point of view, often hidden in single words. Three simple questions will help you find it.'],
+['ch', 'Chapter 20: Words and points of view'],
+['intro', 'After genre (Chapter 19), look for the writer’s point of view, often hidden in single words. Three simple questions will help you find it.'],
 ['terms', [
   ['Ideology', 'الأيديولوجيا', 'A set of beliefs that shapes how people describe events.'],
   ['Loaded word', 'كلمة مشحونة', 'A word that carries a judgement, positive or negative.'],
@@ -232,37 +233,8 @@ module.exports = [// ================= PART 5 =================
 // ================= PART 7 =================
 ['part', 'Part 7: Tools and resources'],
 
-['ch', 'Chapter 20: Printed and digital dictionaries'],
-['intro', 'In Chapter 2 you checked key terms in a dictionary. This chapter shows you which dictionaries to use, and how to choose the right meaning.'],
-['terms', [
-  ['Bilingual dictionary', 'معجم ثنائي اللغة', 'A dictionary that gives equivalents in another language.'],
-  ['Monolingual dictionary', 'معجم أحادي اللغة', 'A dictionary that explains words in the same language.'],
-  ['Specialised dictionary', 'معجم متخصص', 'A dictionary for one field, such as law or medicine.'],
-  ['Collocations dictionary', 'معجم المتلازمات اللفظية', 'A dictionary of the natural word partners of a language.'],
-]],
-['h', 'Step 1: a dictionary gives options, not answers'],
-['p', 'A famous saying goes: “Dictionaries are like watches; the worst is better than none, and the best cannot be expected to go quite true” (Johnson, 1784/1897, p. 309). So do not simply take the first meaning. Use the three-check rule:'],
-['ol', ['Find the options in a **bilingual dictionary**.', 'Confirm the meaning in a **monolingual dictionary**.', 'See how the word is really used in a text written in the target language.']],
-['p', 'For example, for _a fast colour_ a bilingual dictionary gives {{سريع}} and {{ثابت}}. An Arabic dictionary confirms that {{ثابت}} can mean “not fading”, and clothing labels use {{لون ثابت}}. So the answer is {{لون ثابت}}.'],
-['h', 'Step 2: printed or digital?'],
-['ul', [
-  '**Printed dictionaries**: edited by experts, with full entries and examples, but slower to use, and they may lack new words.',
-  '**Digital dictionaries**: fast and often updated, but quality varies. Check the publisher: a digital version of a known printed dictionary is safer than an unknown website.',
-]],
-['h', 'Step 3: dictionaries to start with'],
-['ul', [
-  '_Al-Mawrid_ (Baalbaki, n.d.): English–Arabic, for general words.',
-  '_A Dictionary of Modern Written Arabic_ (Wehr, 1994): Arabic–English, with words listed by root.',
-  '_Al-Muʿjam al-Wasīṭ_ ({{المعجم الوسيط}}) (Academy of the Arabic Language in Cairo, n.d.): a monolingual Arabic dictionary from the Academy in Cairo.',
-  '_Oxford Collocations Dictionary for Students of English_ (2009): natural English word partners.',
-  'UNTERM (United Nations, n.d.) and Arabterm (ALECSO & GIZ, n.d.): official and technical terms. For one field, such as law or medicine, add a **specialised dictionary**.',
-]],
-['try', ['Which dictionary do you use to confirm a meaning?', 'What should you check before trusting a digital dictionary?'],
-        ['A monolingual dictionary.', 'Who publishes it.']],
-['summary', ['Check a bilingual dictionary, then a monolingual one, then a real text.', 'Use printed and digital dictionaries together; check digital sources.']],
-
 ['ch', 'Chapter 21: Terminology and terminology management'],
-['intro', 'In Chapter 20 you learned to use dictionaries. This chapter looks at the special words of each field. By the end, you will be able to find, record and use them consistently.'],
+['intro', 'In Chapter 3 you learned to use dictionaries. This chapter looks at the special words of each field. By the end, you will be able to find, record and use them consistently.'],
 ['terms', [
   ['Term', 'المصطلح', 'A word or expression that names a concept in a special field.'],
   ['Terminology', 'علم المصطلح (المصطلحية)', 'The study, collection and management of specialised terms; also the set of terms used in one field.'],
@@ -293,7 +265,7 @@ module.exports = [// ================= PART 5 =================
   '**Understand** its exact meaning in its field. In a medical text, _allergic_ is {{أرَجيّ}} (everyday Arabic often says {{تحسّسي}}), an _allergen_ is {{مادة مُحسِّسة}}, and _contact eczema_ is {{إكزيما التماس}}. If the field is new to you, read a short introduction first, such as an encyclopedia entry. If the meaning is still unclear, ask the client or a specialist.',
   '**Look at its origin**: its parts often explain it, but the context decides: a _blackboard_ can be green.',
   '**Find the equivalent**: check the client’s guide first, then the academies’ term lists, UNTERM and Arabterm. Then confirm it in a text written in Arabic by specialists, not in a translation.',
-  '**If none exists**, think like a terminologist and create an accurate one (Chapter 16). A good term is clear and short, has one meaning, and follows the language’s normal rules for making words. It does not say the same thing twice, as {{التطرّف الراديكالي}} does.',
+  '**If none exists**, think like a terminologist and create an accurate one (Chapter 17). A good term is clear and short, has one meaning, and follows the language’s normal rules for making words. It does not say the same thing twice, as {{التطرّف الراديكالي}} does.',
   '**Record** it in your term list, and **share** the list with your team.',
 ]],
 ['h', 'Step 4: record your terms'],
@@ -306,7 +278,7 @@ module.exports = [// ================= PART 5 =================
  [28, 28, 14, 30]],
 ['p', 'Other tools help too:'],
 ['ul', [
-  '**Specialised dictionary** (Chapter 20): the terms of one field.',
+  '**Specialised dictionary** (Chapter 3): the terms of one field.',
   '**Termbase**: each entry holds the term in each language, with its definition, field, source and date. A team can share and update it.',
   '**Terminology guide**: the client’s approved terms and writing rules. Always ask for one, and follow it.',
 ]],
@@ -315,6 +287,7 @@ module.exports = [// ================= PART 5 =================
 ['p', 'Suppose _Article_ is {{مادّة}} in the first paragraph. Later you switch to {{بند}} “for variety”. Your reader now thinks you mean something new, because a new word suggests a new meaning.'],
 ['p', 'When terms are not managed, one concept gets several names. Readers get confused, and earlier translations are harder to reuse. So use the same term throughout, and do not change an accepted term without a good reason.'],
 ['p', 'Some concepts have two accepted names: _aerial_ (British) and _antenna_ (American) are both {{هوائي}}, and Arabic uses both {{حاسوب}} and {{كمبيوتر}}. Choose one, as the client’s guide says, and note the other in your term list.'],
+['fact', 'The Arabic Language Academy in Damascus, founded in 1919, was the first of the modern Arabic language academies.'],
 ['try', ['What is the difference between a translator and a terminologist?', 'Is _LASER_ an initialism or an acronym?', 'What should you do when no dictionary gives you the term?'],
         ['A translator translates whole texts; a terminologist collects, records and sometimes standardises the terms of a field.', 'An acronym: the letters are read as a word.', 'Search the client’s guide, UNTERM and Arabterm; if there is still no term, think like a terminologist: create an accurate equivalent and record it.']],
 ['summary', ['Keep a term list for every project, and ask for the client’s guide.', 'Search the academies, UNTERM and Arabterm before you create a term.', 'Use one term for one idea.']],
@@ -361,6 +334,7 @@ module.exports = [// ================= PART 5 =================
 ['p', 'In localisation (Chapter 1), translation is only one part. Also adapt dates, numbers, currencies and units, images and colours, and the direction of the page: an Arabic website reads from right to left.'],
 ['h', 'Step 6: follow four safety rules'],
 ['ol', ['You are responsible for every word.', 'Never put a client’s private text into a public AI tool.', 'Check terms, names, numbers, idioms and every “not”.', 'Tell the client if you used a machine or AI.']],
+['fact', 'In 1954, in a public demonstration in New York, a computer translated more than sixty Russian sentences into English. Its makers expected machine translation to be solved within a few years. Decades later, machines translate millions of words every day, and human translators are still needed to check them.'],
 ['try', ['Should you paste a client’s confidential contract into a free AI tool?', 'What is post-editing?'],
         ['No, never.', 'A human correcting and improving machine translation.']],
 ['summary', ['Machine translation is a first draft, not a final translation.', 'Always post-edit, and protect your client’s privacy.']],
@@ -419,15 +393,16 @@ module.exports = [// ================= PART 5 =================
   ['Numbers and dates', 'A wrong dose; Hijri or Gregorian date', 'High', 'Check every figure twice'],
   ['Legal verbs', '_shall_ → {{سوف}} ✗', 'High in contracts', 'Use the Arabic present tense for obligations'],
   ['Sensitive names', '_Persian Gulf_ / _Arabian Gulf_', 'Medium to high', 'Follow the client’s policy; explain in the commentary'],
-  ['Ideological words', '{{انتحاري}} / {{استشهادي}}', 'Medium to high', 'Follow the client’s policy (Chapter 19)'],
-  ['Cultural images', '_warmed my heart_ → {{أدفأ قلبي}} ✗', 'Medium', 'Use cultural approximation (Chapter 14)'],
-  ['Words with several meanings', '{{علم}}: {{عَلَم}} (flag), {{عِلْم}} (knowledge) or {{عَلِمَ}} (knew)?', 'Medium', 'Read the context (Chapter 6)'],
+  ['Ideological words', '{{انتحاري}} / {{استشهادي}}', 'Medium to high', 'Follow the client’s policy (Chapter 20)'],
+  ['Cultural images', '_warmed my heart_ → {{أدفأ قلبي}} ✗', 'Medium', 'Use cultural approximation (Chapter 15)'],
+  ['Words with several meanings', '{{علم}}: {{عَلَم}} (flag), {{عِلْم}} (knowledge) or {{عَلِمَ}} (knew)?', 'Medium', 'Read the context (Chapter 7)'],
   ['Style and register', 'A dialect word in a formal report', 'Low to medium', 'Re-read with the brief in mind'],
-  ['Idioms', 'An idiom translated word by word', 'Medium', 'Check whether it is an idiom (Chapter 8)']],
+  ['Idioms', 'An idiom translated word by word', 'Medium', 'Check whether it is an idiom (Chapter 9)']],
  [18, 32, 18, 32]],
 ['h', 'Step 3: use the matrix before you deliver'],
 ['ol', ['Check your translation against each row.', 'Give most time to the high-risk areas.', 'For high-risk texts, such as legal and medical ones, ask a second person to check.']],
 ['p', 'Example: _This Agreement shall be governed by the laws of the State of Kuwait._ → {{تخضع هذه الاتفاقية لقوانين دولة الكويت.}} (not {{سوف تخضع}}).'],
+['fact', 'In 1999, a spacecraft worth more than 100 million dollars, the _Mars Climate Orbiter_, was lost. One team gave its figures in imperial units, and another read them as metric units. A small mismatch between two systems caused a huge loss: always check numbers and units.'],
 ['try', ['What is the main risk in _Take one tablet twice daily_?', 'What should you do with a high-risk text?'],
         ['The dose: the numbers must be exactly right.', 'Check it with extra care, and ask a second person to review it.']],
 ['summary', ['Check numbers, names, negatives, terms and legal verbs every time.', 'The higher the risk, the more careful the check.']],
@@ -442,9 +417,9 @@ module.exports = [// ================= PART 5 =================
 ['p', 'In a maths exam, you show your working, not just the answer. A **translation commentary** does the same for a translation: it shows your thinking. It sharpens your reasoning and helps you judge translations, your own and other people’s (Dickins et al., 2016).'],
 ['h', 'Step 2: plan the two parts'],
 ['ol', ['**Reflecting on your analysis**: which problems did it identify?', '**Reflecting on your translation**: how did you solve each problem?']],
-['p', 'Keep your analysis (Chapter 17) open while you write, and refer to it: the commentary shows how the problems you found there were solved.'],
+['p', 'Keep your analysis (Chapter 18) open while you write, and refer to it: the commentary shows how the problems you found there were solved.'],
 ['h', 'Step 3: answer five questions for each problem'],
-['ol', ['**The problem**: what was difficult?', '**The solution**: what did you write?', '**The procedure or strategy**: which technique did you use (Chapters 9 to 16)?', '**The resource**: which dictionary or source did you check?', '**The justification**: why is your choice right for the reader?']],
+['ol', ['**The problem**: what was difficult?', '**The solution**: what did you write?', '**The procedure or strategy**: which technique did you use (Chapters 10 to 17)?', '**The resource**: which dictionary or source did you check?', '**The justification**: why is your choice right for the reader?']],
 ['h', 'Step 4: write it clearly'],
 ['ul', [
   'Write in the **third person**: “The translator faced…”, “The translator changed some parts to make them more comprehensible…”.',
@@ -491,8 +466,8 @@ module.exports = [// ================= PART 5 =================
 ['p', 'A cartoon for children and a documentary for adults need very different choices. So before you translate a video, ask what it is for and who will watch it. This idea is called **Skopos theory** (Reiss & Vermeer, 1984).'],
 ['h', 'Step 4: prepare for the challenges'],
 ['ul', [
-  '**Culture**: a reference may have no equivalent (Chapters 14 to 16).',
-  '**Language**: English and Arabic are built differently, yet you must be accurate and brief (Chapter 3).',
+  '**Culture**: a reference may have no equivalent (Chapters 15 to 17).',
+  '**Language**: English and Arabic are built differently, yet you must be accurate and brief (Chapter 4).',
   '**Technology**: subtitles have strict limits of space and time.',
   '**Creativity**: jokes, wordplay, songs and slang need creative solutions.',
 ]],
@@ -503,6 +478,7 @@ module.exports = [// ================= PART 5 =================
   'Practise with free subtitling software, such as Subtitle Edit or Aegisub.',
   'Watch films with Arabic subtitles and notice what the subtitler shortened.',
 ]],
+['fact', 'Before films had sound, the dialogue appeared on printed cards between the scenes, called _intertitles_. To show a silent film abroad, distributors simply replaced the cards with translated ones.'],
 ['try', ['What are the three elements of an audiovisual text?', 'Which type of AVT describes the action on screen for blind viewers?', 'What does Skopos theory put first?'],
         ['Images, sound and written words.', 'Audio description.', 'The purpose of the translation.']],
 ['summary', ['AVT combines images, sound and words, and depends on technology.', 'Main types: subtitling, dubbing, voice-over and audio description.', 'The purpose and the viewers decide how you translate.']],
@@ -512,7 +488,7 @@ module.exports = [// ================= PART 5 =================
 ['terms', [
   ['Subtitling', 'السترجة / الترجمة المرئية', 'Showing a written version of the dialogue, usually at the bottom of the screen, together with important on-screen text and song lyrics.'],
   ['Dialogue list', 'قائمة الحوار', 'A written script of everything said in a film, given to the translator.'],
-  ['Culture-bound term', 'مصطلح ذو خصوصية ثقافية', 'A reference to something from one culture, such as a food or a holiday. Also called a culture-specific item (Chapter 14).'],
+  ['Culture-bound term', 'مصطلح ذو خصوصية ثقافية', 'A reference to something from one culture, such as a food or a holiday. Also called a culture-specific item (Chapter 15).'],
   ['Taboo language', 'اللغة المحظورة', 'Words that a society or religion forbids or restricts, such as swear words.'],
   ['Censorship', 'الرقابة', 'Removing or changing content that is considered unacceptable.'],
 ]],
@@ -558,12 +534,30 @@ module.exports = [// ================= PART 5 =================
   '**Compensation**: make up for a lost effect somewhere else.',
   '**Omission**: leave it out when it is unimportant and there is no space.',
 ]],
-['p', 'You met most of these in Chapters 12 and 13. In subtitling, you must also respect limits of space and time.'],
+['p', 'You met most of these in Chapters 13 and 14. In subtitling, you must also respect limits of space and time.'],
 ['h', 'Step 5: handle strong and taboo language'],
 ['p', 'Films use swearing and other forbidden words for realism, character or humour. This is called **taboo language**. Subtitlers often soften it, for several reasons: swear words look stronger in writing than in speech; audiences have different norms; and broadcasters or authorities may require it (**censorship**), or subtitlers may choose it themselves (self-censorship). Follow the client’s guidelines, and keep the emotion of the scene where you can.'],
 ['try', ['What is the difference between open and closed subtitles?', 'Which strategy uses an accepted translation?', 'Why do viewers notice mistakes in subtitles easily?'],
         ['Open subtitles are burned into the picture; closed subtitles can be turned on and off.', 'The official equivalent.', 'Because they hear the original and read the translation at the same time, and many understand some of the original.']],
 ['summary', ['A subtitle normally has no more than two short lines, stays on screen long enough to be read, and works with images and sound.', 'Choose a strategy for each cultural reference, within the limits of space and time.', 'Follow the client’s guidelines on strong language.']],
+
+// ================= CLOSING =================
+['part', 'Your journey continues', 'closing'],
+['p', 'You started this book with a sign in a park. You can now plan a translation, understand a text, write it naturally in the other language, and check it. Here is how to keep growing.'],
+['h', 'Build a daily habit'],
+['ul', [
+  'Read something in English and something in Arabic every day. Good translators are good readers first.',
+  'Keep a translation notebook. Write down the collocations, idioms and terms you meet, with their equivalents (Chapters 8, 9 and 21).',
+  'Translate a short text often, even one paragraph. Revise it the next day with fresh eyes (Chapter 23).',
+]],
+['h', 'Learn from real translations'],
+['ul', [
+  'Compare texts published in both languages. The United Nations, for example, publishes its documents in six official languages, including Arabic and English. Put the two versions side by side and ask why each choice was made. Then show your own work to others: every correction teaches you something.',
+]],
+['h', 'Choose where to go next'],
+['p', 'Translation opens many doors. You can specialise in legal, medical, technical, literary or news translation, in subtitling and dubbing (Part 9), in the localisation of apps and games, or in interpreting, which is translating speech. The Further reading list suggests where to start.'],
+['p', 'The Guild Translation Team works on real translation projects, and new members are welcome. Scan the QR code on the back cover to visit the team’s website.'],
+['ex', '_Every translation is a bridge between two peoples. Build yours with care, and enjoy the crossing._'],
 
 ['part', 'Abbreviations'],
 ['ul', [
