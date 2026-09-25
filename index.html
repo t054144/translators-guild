@@ -802,10 +802,6 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .lh-move-k { display: block; font-size: .7rem; letter-spacing: .12em;
   text-transform: uppercase; color: var(--mag-ink); font-weight: 600; margin-bottom: .15rem; }
 .alpha .a-txt { display: flex; align-items: baseline; gap: .45rem; }
-.ksl-cite { margin: 0; font-size: .74rem; font-weight: 300; line-height: 1.6;
-  color: var(--ink-faint); max-width: var(--measure);
-  padding-inline-start: .7rem; border-inline-start: 2px solid rgba(214,191,234,.28); }
-.ksl-cite i { font-style: italic; }
 .ksl-credit { margin: 0; font-size: .78rem; font-weight: 300; line-height: 1.55;
   color: var(--ink-soft); max-width: var(--measure); }
 .ksl-credit b, .ss-note b { color: var(--lilac); font-weight: 600; }
@@ -4682,38 +4678,33 @@ const KSL_LESSONS = [
       { t: "card", h: "Local on purpose", html:
         "The Ministry of Education documents " +
         "<span class='ar-inline' dir='rtl' lang='ar'>لغة الإشارة الوصفية الكويتية</span> and a dictionary " +
-        "built from <b>more than 2,000 signs</b> collected from Kuwaiti Deaf signers, and gives the reason " +
-        "plainly: sign vocabulary is shaped by the culture and environment it grows in." +
-        "<p>Published figures differ &mdash; <i>more than 2,000</i> and <i>more than 2,200</i>. Anyone " +
-        "giving an exact number is quoting one source without saying which.</p>" },
+        "of <b>more than 2,000 signs</b> collected from Kuwaiti Deaf signers. The reason it gives is the " +
+        "one that matters here: sign vocabulary is shaped by the culture and the place it grows in." },
       { t: "card", h: "KSL is not the unified Arab sign language", html:
-        "A unified Arab Sign Language &mdash; ArSL &mdash; has been promoted across the region for decades, " +
-        "largely by hearing institutions. Almubayei's 2024 field study asked Kuwaiti Deaf signers, " +
-        "interpreters and teachers which would better serve the community. The answer was " +
-        "<b>KSL, or KSL and ArSL together &mdash; not ArSL alone</b>." +
-        "<p>Material labelled <i>Arabic sign language</i> is very often ArSL, which is a different thing. " +
-        "Never put an ArSL sign on a Kuwaiti page.</p>" }
+        "A unified Arab Sign Language &mdash; <b>ArSL</b> &mdash; has been promoted across the region for " +
+        "decades. Asked which would better serve them, Kuwaiti Deaf signers, interpreters and teachers " +
+        "answered <b>KSL, or KSL and ArSL together &mdash; not ArSL alone</b> (Almubayei, 2024)." +
+        "<p>So material labelled <i>Arabic sign language</i> is very often ArSL, which is a different " +
+        "language. Never put an ArSL sign on a Kuwaiti page.</p>" }
     ]
   },
   {
-    key: "who", en: "Who uses it", ar: "مَن يستخدمها",
-    line: "The community the language belongs to.",
+    key: "who", en: "Working with a Deaf client", ar: "التعامل مع المتعامل الأصمّ",
+    line: "What to get right before you open your mouth.",
     panels: [
+      { t: "card", h: "Ask which language. Never assume it.", html:
+        "<b>Not every deaf or hard-of-hearing person in Kuwait uses KSL.</b> People differ in how much " +
+        "they hear, when it began, whether their family signs, and how they were schooled." +
+        "<p>This is the assumption that does real damage in a professional setting: an interpreter booked " +
+        "for the wrong language is worse than none, because everyone in the room believes communication " +
+        "is happening. You ask, and you use the one you are told.</p>" },
       { t: "card", h: "deaf, Deaf, and hard of hearing", html:
         "Small <b>d</b> <i>deaf</i> describes hearing &mdash; a fact about ears. Capital <b>D</b> " +
         "<i>Deaf</i> describes belonging &mdash; someone who uses a sign language and identifies with the " +
         "community that does. <i>Hard of hearing</i> describes partial hearing." +
-        "<p>They do not map onto each other. A deaf person may not be Deaf. This is the difference between " +
-        "describing a body and describing an identity, and picking the wrong one in a translation says " +
-        "something you did not mean to say.</p>" },
-      { t: "card", h: "Do not assume the language", html:
-        "<b>Not every deaf or hard-of-hearing person in Kuwait uses KSL.</b> People differ in how much " +
-        "they hear, when it began, whether their family signs, how they were schooled, and whether they " +
-        "identify with the Deaf community at all." +
-        "<p>In a professional setting this is the assumption that does damage: an interpreter booked for " +
-        "the wrong language is worse than none, because everyone believes communication is happening. " +
-        "You ask which language, and you use the one you are told.</p>" },
-      { t: "list", h: "Small things, all of them noticed", items: [
+        "<p>They do not map onto each other, and a deaf person may not be Deaf. Picking the wrong one in a " +
+        "translation says something you did not mean to say.</p>" },
+      { t: "list", h: "In the room", items: [
         "Speak to the person, not to the interpreter. Look at the person.",
         "Do not hold someone's hands while they are signing. You are interrupting a sentence.",
         "Get attention with a wave, a tap on the shoulder, or the lights.",
@@ -4731,23 +4722,24 @@ const KSL_LESSONS = [
              say: "Letters as handshapes, a word spelled out one letter at a time. What you produce is <b>Arabic, in the air</b>." },
         b: { lab: "A lexical sign", ar: "الإشارة المعجمية",
              say: "A concept as an established sign. One sign, one word, belonging to the sign language itself. What you produce is <b>KSL</b>." } },
-      { t: "list", h: "What fingerspelling is actually for", items: [
-        "Names of people, places and institutions.",
+      { t: "list", h: "Spell only for these", intro:
+        "Conversation runs on lexical signs and contains very little spelling. Reach for the alphabet when " +
+        "you have:", items: [
+        "A name &mdash; of a person, a place, an institution.",
         "A word with no established sign, or none yet.",
         "A technical or foreign term, the first time it comes up.",
-        "Emphasis, or clearing up an ambiguity."
+        "Emphasis, or an ambiguity to clear up."
       ] },
-      { t: "card", h: "The mistake this page exists to prevent", html:
-        "Believing that signing <i>is</i> Arabic spelled with the hands. Ordinary conversation runs on " +
-        "lexical signs and contains very little spelling. Take Arabic and spell every word and you produce " +
-        "something no Deaf person can follow at speed &mdash; and whatever it is, it is not KSL." +
-        "<p>It is the same error the rest of this site spends its time on: matching the <b>form</b> of the " +
-        "source and calling it a translation. Word-for-word in the hands is still word-for-word.</p>" }
+      { t: "card", h: "Why this matters to a translator", html:
+        "Spell every word and you produce something no Deaf person can follow at speed &mdash; and whatever " +
+        "it is, it is not KSL. It is the same error the rest of this site spends its time on: matching the " +
+        "<b>form</b> of the source and calling it a translation. Word-for-word in the hands is still " +
+        "word-for-word." }
     ]
   },
   {
-    key: "watch", en: "How to watch a sign", ar: "كيف تشاهد الإشارة",
-    line: "Six things to look for, and a way of watching that makes them stick.",
+    key: "watch", en: "How to learn a sign", ar: "كيف تتعلّم الإشارة",
+    line: "Six things to look for, and a way of practising that makes them stick.",
     panels: [
       { t: "params", h: "Six things to watch, every time", intro:
         "A sign is <b>assembled</b>, and changing one part gives a different word &mdash; the way changing " +
@@ -4758,52 +4750,6 @@ const KSL_LESSONS = [
         "part that carries the grammar." +
         "<p>Then look away and do it. If you cannot reproduce it without the video running, you have " +
         "recognised it, not learned it.</p>" }
-    ]
-  },
-  {
-    key: "kuwait", en: "Inside Kuwait's universities", ar: "داخل مؤسسات التعليم العالي",
-    line: "What the Kuwaiti study found — including one finding that is yours.",
-    panels: [
-      { t: "lede", html:
-        "Everything before this is about the language. This is about what happens to the people who use it " +
-        "once they reach higher education in Kuwait &mdash; and it is the part a translation student has " +
-        "most reason to read, because the interpreter is in the room." },
-      { t: "card", h: "What was measured", html:
-        "Alajmi and Alajmi surveyed <b>188 people</b> across Kuwaiti higher education: <b>152 faculty " +
-        "members, 23 deaf and hard-of-hearing students, and 13 sign language interpreters</b>. They sorted " +
-        "what came back into problems with faculty, problems with sign-language communication, and " +
-        "administrative, academic, emotional and social ones." },
-      { t: "card", h: "The finding worth sitting with", html:
-        "<b>Faculty reported fewer administrative and social problems than the students and interpreters " +
-        "did.</b> The group with the most power over how a student's term goes saw the least of the " +
-        "barrier." +
-        "<p>That is not a contradiction in the data. It is the ordinary shape of a barrier: it is close to " +
-        "invisible from the side that never has to cross it.</p>" },
-      { t: "card", h: "And the finding that is yours", html:
-        "<b>The interpreters reported more academic difficulty than any other group.</b> Not social, not " +
-        "administrative &mdash; academic." +
-        "<p>Register is the hard part: a specialised lecture, at speed, into a language whose technical " +
-        "vocabulary is still being built, with no chance to stop and look something up. That is this " +
-        "site's subject exactly, in a harder medium than any of the chambers above.</p>" },
-      { t: "card", h: "What thirteen is, and what it is not", html:
-        "Thirteen interpreters took part across the whole study. That is <b>the number who answered, not a " +
-        "count of the profession</b> &mdash; the researchers were not taking a census, and nothing here " +
-        "says how many interpreters Kuwait has." +
-        "<p>Read it as the size of the sample and no more. If you want the real figure, it has to come from " +
-        "the Ministry, not from arithmetic done on a survey.</p>" },
-      { t: "card", h: "Two more results, stated as they were", html:
-        "Male participants reported <b>fewer</b> challenges than female ones. And there was <b>no " +
-        "significant difference between institutions</b> &mdash; whatever this is, it is not one " +
-        "university's local problem." },
-      { t: "cite", html:
-        "Alajmi, H. B., &amp; Alajmi, K. H. (2025). Problems faced by deaf and hearing-impaired students " +
-        "within higher education institutions in the State of Kuwait from the perspective of academic " +
-        "staff members, sign language interpreters, and students themselves. " +
-        "<i>Journal of the Gulf and Arabian Peninsula Studies</i>, 51(196). Academic Publication Council, " +
-        "Kuwait University. doi:10.34120/jgaps.v51i196.3179" +
-        "<br>Figures above are taken from the study's own abstract; the full text was not reachable from " +
-        "here, so nothing is quoted beyond it." },
-      { t: "links", h: "The same craft, elsewhere on this site", ids: ["modes", "booth"] }
     ]
   }
 ];
@@ -7810,21 +7756,22 @@ function runKsl() {
     stage.appendChild(el("p", "ksl-credit", KSL_CREDIT));
 
     /* The reading, behind one door rather than spread down the page. */
-    const more = el("button", "ghost ksl-more", "About the language \u2192");
+    const more = el("button", "ghost ksl-more", "The lessons \u2192");
     more.addEventListener("click", () => { pushTrail("Kuwaiti Sign Language", () => home()); lessons(); });
     stage.appendChild(more);
 
     stage.appendChild(backFoot());
   }
 
-  /* ── the four lessons, on their own screen ── */
+  /* ── the lessons, on their own screen ── */
   function lessons() {
     stage.innerHTML = "";
     setCount(KSL_LESSONS.length + " lessons");
     setDots(0, 0, 0);
 
     stage.appendChild(el("p", "lede",
-      "What the language is, who uses it, and what to look for when you watch someone sign."));
+      "What the language is, what to get right in the room, what the alphabet is actually for, " +
+      "and how to learn a sign so that it stays learned."));
 
     const list = el("div", "m-list");
     KSL_LESSONS.forEach((L, i) => {
@@ -7836,7 +7783,7 @@ function runKsl() {
           '<span class="m-arname" dir="rtl" lang="ar">' + L.ar + '</span>' +
           '<span class="m-line">' + L.line + '</span>' +
         '</span>';
-      b.addEventListener("click", () => { pushTrail("About the language", () => lessons()); lesson(i); });
+      b.addEventListener("click", () => { pushTrail("The lessons", () => lessons()); lesson(i); });
       list.appendChild(b);
     });
     stage.appendChild(list);
@@ -7844,9 +7791,8 @@ function runKsl() {
     const v = el("div", "verdict");
     v.appendChild(el("span", "vh", "Vocabulary is not here yet"));
     v.appendChild(el("p", "vb",
-      "The alphabet spells; it does not speak. Words and sentences need a Kuwaiti Deaf signer or a " +
-      "qualified KSL interpreter to film them, and until that happens this section will not invent " +
-      "them. <b>That is the one thing still missing, and it is the only thing that matters.</b>"));
+      "The alphabet spells; it does not speak. Words and sentences have to be filmed with a Kuwaiti Deaf " +
+      "signer or a qualified KSL interpreter, and until that happens this section will not invent them."));
     stage.appendChild(v);
 
     stage.appendChild(footNav({ backLabel: "The alphabet", back: () => { home(); scrollTop(); } }));
@@ -7880,15 +7826,9 @@ function runKsl() {
       stage.appendChild(m);
     }
 
-    stage.appendChild(el("p", "ksl-credit", KSL_CREDIT));
-
-    const use = el("div", "verdict");
-    use.appendChild(el("span", "vh", "Where you would actually use it"));
-    use.appendChild(el("p", "vb",
-      "Spelling a name, or a word KSL has no established sign for. In ordinary conversation you will see " +
-      "very little spelling &mdash; if you are spelling every word, you are producing Arabic in the air, " +
-      "not KSL."));
-    stage.appendChild(use);
+    /* The credit and the note on what spelling is for are on the alphabet
+       page. Repeating them under all forty hands put a paragraph the
+       learner had already read between them and the next letter. */
 
     stage.appendChild(footNav({
       back: i > 0 ? () => { letter(i - 1); scrollTop(); } : null,
@@ -7973,14 +7913,6 @@ function runKsl() {
       });
       v.appendChild(g);
       return v;
-    }
-
-    /* A sourced claim has to be able to show its source without the
-       reference shouting as loudly as the finding. */
-    if (p.t === "cite") {
-      const c = el("p", "ksl-cite");
-      c.innerHTML = p.html;
-      return c;
     }
 
     if (p.t === "links") {
