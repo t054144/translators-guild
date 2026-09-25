@@ -774,6 +774,12 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   box-shadow: none; }
 .alpha .a-hand { width: 100%; aspect-ratio: 1; display: block; }
 .alpha .a-hand img { width: 100%; height: 100%; object-fit: contain; display: block; }
+/* The source poses every hand on a blue roundel. That comes off with the
+   cut-out; this puts the hand back on a ground of our own so it is not
+   floating, in our lilac rather than their blue. */
+.alpha .a-hand, .lh-fig {
+  background: radial-gradient(circle at 50% 47%,
+    rgba(214,191,234,.20) 0 36%, rgba(214,191,234,.07) 56%, transparent 71%); }
 .alpha .a-txt { display: flex; align-items: baseline; gap: .45rem; }
 .ksl-credit { margin: 0; font-size: .78rem; font-weight: 300; line-height: 1.55;
   color: var(--ink-soft); max-width: var(--measure); }
@@ -4592,8 +4598,13 @@ const KSL_EXTRA = [
 ];
 function kslAll() { return KSL_ALPHA.concat(KSL_EXTRA); }
 
-const KSL_CREDIT = "Drawn for this site from the Arabic finger alphabet published by " +
-  "<b>@ksl_dictionary</b>, credited while their permission is sought.";
+/* These are their photographs, not drawings of them: cut out of the
+   alphabet @ksl_dictionary publishes and re-set on this site's own
+   ground. Say so plainly — a hand nobody can source is a hand nobody
+   should learn from. */
+const KSL_CREDIT = "Every handshape here is photographed by <b>@ksl_dictionary</b>, lifted from " +
+  "the Arabic finger alphabet they publish and set on our own ground. Credited while their " +
+  "permission is sought.";
 
 /* What a sign is assembled from — a checklist for watching a video. */
 const KSL_PARAMS = [
@@ -7656,12 +7667,16 @@ function allMinorCourses() {
 /* Built as an element rather than written into an HTML string: the
    preload scanner reads the page source ahead of the parser and will
    try to fetch a src it finds spelled out there. */
-function handFig(L) {
+function handFig(L, eager) {
   const im = document.createElement("img");
   im.src = L.img;
   im.alt = "The handshape for " + L.n;
   im.width = 560; im.height = 560;
   im.decoding = "async";
+  /* Thirty-nine photographs is a lot to ask of a phone at once. The few
+     above the fold load straight away; the rest wait until they are
+     scrolled to. */
+  if (!eager) im.loading = "lazy";
   return im;
 }
 
@@ -7694,7 +7709,7 @@ function runKsl() {
           '<span class="a-l" dir="rtl" lang="ar">' + L.l + '</span>' +
           '<span class="a-n" dir="rtl" lang="ar">' + L.n + '</span>' +
         '</span>';
-      b.querySelector(".a-hand").appendChild(handFig(L));
+      b.querySelector(".a-hand").appendChild(handFig(L, i < 6));
       b.addEventListener("click", () => { pushTrail("Kuwaiti Sign Language", () => home()); letter(i); });
       grid.appendChild(b);
     });
@@ -7762,7 +7777,7 @@ function runKsl() {
         '<span class="lh-n" dir="rtl" lang="ar">' + L.n + '</span>' +
         '<span class="lh-t">' + L.t + '</span>' +
       '</span>';
-    hero.querySelector(".lh-fig").appendChild(handFig(L));
+    hero.querySelector(".lh-fig").appendChild(handFig(L, true));
     stage.appendChild(hero);
 
     stage.appendChild(el("p", "ksl-credit", KSL_CREDIT));
