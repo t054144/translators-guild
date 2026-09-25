@@ -1,0 +1,456 @@
+{
+  "sections": [
+    {
+      "section": "1. Definition & Background – Definition (“the systematic discipline concerned with studying, compiling, and managing specialized terms by analyzing concepts to yield clear names”)",
+      "status": "Used and edited",
+      "where": "Chapter 21, Words to remember (‘Terminology’, ‘Term’) and Step 1 (last two paragraphs)",
+      "details": "Reduced to “The study, collection and management of specialised terms” (key term) and “The study of how terms are collected, named and managed is called terminology (Cabré, 1999)” (Step 1). ‘Systematic’ and ‘by analysing concepts’ were in the first full version (c2b_v3.js) and were dropped in the beginner revision. A second sense was added: “also the set of terms used in one field”, and the second Arabic name المصطلحية was added to علم المصطلح (first expert review, r4.json item 0). A separate key term ‘Term’ (“a word or expression that names a concept in a special field”) keeps the document’s link between terms and concepts.",
+      "reason": "Simplified for beginners; the extra sense and Arabic name were added because the handbook uses ‘terminology’ for the set of terms of a field and المصطلحية is the other standard Arabic name (r4.json 0). The definition is now credited to Cabré (1999), a published source, instead of to the team document."
+    },
+    {
+      "section": "1. Definition & Background – Historical Background: 18th–19th-century scientific naming (chemistry, botany, zoology) leading to 20th-century technical applications",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js, section ‘What is terminology?’)",
+      "details": "Written up in the first full version (“Naming practices go back to the scientists of the eighteenth and nineteenth centuries in chemistry, botany and zoology”), then deleted.",
+      "reason": "Removed in the beginner revision: the history of terminology (editorial report, report_content.js Section 8.2)."
+    },
+    {
+      "section": "1. Definition & Background – Historical Background: modern field in the 1930s through Eugen Wüster (Vienna School), ‘the founder of modern terminology’",
+      "status": "Not used (corrected first, then removed)",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js, Step 1)",
+      "details": "Fact corrected before removal: the earlier versions said Wüster “is regarded as” the founder and that his 1931 doctoral thesis on the international standardisation of technical language began the field; the feedback report (fb_content.js, corrections table) records that the founding work was a 1931 thesis published in Berlin and that the Vienna work came later, so Wüster is ‘linked with’ the Vienna School rather than founding it in Vienna in the 1930s.",
+      "reason": "Partly inaccurate as written (report_content.js Section 7.2: ‘Historical claims about the founding of terminology … Checked and corrected, then removed in the beginner revision’); removed as history (Section 8.2)."
+    },
+    {
+      "section": "1. Definition & Background – Historical Background: four periods – Origins (1930–1960), Structuring (1960–1975), Boom (1975–1985), Expansion (1985–present)",
+      "status": "Not used (checked, then removed)",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js, credited to Cabré, 1999)",
+      "details": "The four periods were kept word for word in c2b_v3.js and attributed to Cabré (1999); the first online check confirmed them (fb_content.js Section 11: ‘Cabré’s four periods confirmed’). Dropped in c2b_v4.js.",
+      "reason": "Removed in the beginner revision: history of terminology (report_content.js Section 8.2)."
+    },
+    {
+      "section": "1. Definition & Background – Historical Background: three classical schools – Vienna (Wüster), Moscow (Lotte), Prague (influenced by Saussure)",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (Vienna, Moscow and Prague with Wüster and Lotte were in c2b_v3.js)",
+      "details": "c2b_v3.js kept the three schools with Wüster and Lotte but already left out Saussure. All of it was later deleted.",
+      "reason": "Removed in the beginner revision as theory and history (report_content.js Section 8.2). The Saussure link was never carried over; no reason is recorded."
+    },
+    {
+      "section": "2. How a Translator Benefits – translators as indirect or intermediary users of terminology; rely on terminology, glossaries and specialised dictionaries; facilitate communication between subject specialists",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 2 (first bullet: “A translator works across two languages and uses terms from glossaries, dictionaries and termbases”)",
+      "details": "Kept: translators rely on glossaries and dictionaries; ‘termbases’ added. Dropped: the label ‘indirect or intermediary users’ and ‘facilitate precise communication between subject specialists’.",
+      "reason": "Simplified for beginners; the theoretical label (users of terminology) is not needed to work with terms."
+    },
+    {
+      "section": "2. How a Translator Benefits – multilingual terminology ensures that both content and form of the source text are preserved",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js, ‘Terminology and the translator’)",
+      "details": "c2b_v3.js said translators use glossaries and term databases “to keep both the content and the form of the source text”. The phrase was deleted in the later trimming.",
+      "reason": "Removed when the running text was shortened for beginners (report_content.js Sections 8.2–8.3); the idea overlaps with Chapter 4 (Form and meaning)."
+    },
+    {
+      "section": "2. When to Act as a Terminologist – when dictionaries or term databanks fail, coin and establish an accurate term",
+      "status": "Used and edited (merged)",
+      "where": "Chapter 21, Step 3, item 4 (“If none exists, think like a terminologist and create an accurate one (Chapter 16)”); Try it, question 3 and answer; Chapter 16, Step 3 (“Search before you create”)",
+      "details": "Merged with the identical point in the document’s ‘Skills of the Translator’ section. The trigger was widened from ‘dictionaries’ to the client’s guide, the academies’ term lists, UNTERM and Arabterm, and the model answer now says to search these first and only then create a term. Linked to Chapter 16 (lexical creation) for the methods of making a word.",
+      "reason": "Corrected for consistency: the first expert review changed ‘no dictionary’ to ‘no dictionary or termbase’ because the handbook tells readers to search termbases and academies first (r4.json item 3); the final review made the Try it answer include the search step, which it had skipped (f4.json item 6)."
+    },
+    {
+      "section": "3. Functions – Users’ definition: terminology as a set of practical communication units assessed by precision, suitability and standardisation",
+      "status": "Not used",
+      "where": "Nowhere in the handbook (not even in c2b_v3.js)",
+      "details": "Never carried over into any version.",
+      "reason": "Theoretical; not needed by a beginner (general principle of the beginner revision, report_content.js Section 8.2). No specific reason is recorded."
+    },
+    {
+      "section": "3. Functions – Translator’s need for dictionaries and glossaries (translators, technical writers, linguists)",
+      "status": "Used and edited (merged)",
+      "where": "Chapter 21, Step 2 (translator bullet) and Step 4 (‘Other tools help too’); Chapter 20 (whole chapter on dictionaries)",
+      "details": "Merged with Section 2 above. Technical writers and linguists were dropped; the handbook speaks only to translators. The practical use of dictionaries is developed in Chapter 20, which was written for the handbook.",
+      "reason": "Repetition of the point in Section 2; the handbook addresses beginner translators only."
+    },
+    {
+      "section": "3. Functions – Standardisation to assist translators (consensus and term unification)",
+      "status": "Used and edited",
+      "where": "Chapter 21, Words to remember (‘Terminologist … and sometimes standardises them’) and Step 2 (academies ‘create and approve terms’; the Coordination Bureau of Arabization in Rabat ‘helps to unify them across the Arab world’)",
+      "details": "The aim of standardisation survives only as part of the terminologist’s and the academies’ work. The unification point is now carried by the Rabat bureau, which is not in the document.",
+      "reason": "Simplified; the standardisation detail went with the standardisation-bodies section (report_content.js Section 8.2). The Rabat bureau was added by the first expert review as the main body that unifies academy terms (r4.json item 6)."
+    },
+    {
+      "section": "3. Functions – Changing accepted terms: once a term has wide acceptance it should not be changed without good reasons (international guidelines)",
+      "status": "Used as written (source reference removed)",
+      "where": "Chapter 21, Step 5, second paragraph (“do not change an accepted term without a good reason”)",
+      "details": "The rule is kept almost word for word. The attribution to ‘international guidelines for term creation’ was dropped; in c2b_v3.js the related rules had been credited to ISO 704 (ISO, 2022), and that reference was removed.",
+      "reason": "Kept because it is practical advice; the ISO citation was removed with the other references that were no longer needed after the beginner revision (report_content.js Section 8.2, last bullet; fb_content.js Section 11 names ISO 704 among removed items)."
+    },
+    {
+      "section": "3. Functions – Importance of terminology management: unmanaged terminology becomes inconsistent, confuses readers, prevents re-use, costs time and resources",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 5 (“When terms are not managed, one concept gets several names. Readers get confused, and earlier translations are harder to reuse.”); summary (‘Use one term for one idea’)",
+      "details": "Kept the cause and effects, with a worked example added (Article = مادّة, then بند ‘for variety’). ‘Prevents re-use’ was softened to ‘harder to reuse’. The time and cost point (in c2b_v3.js as ‘Inconsistent terms make the work slower and more expensive’) was dropped.",
+      "reason": "Corrected: inconsistent terms reduce translation-memory matches but do not make reuse impossible (final review, f4.json item 5). The cost point was cut when the text was shortened."
+    },
+    {
+      "section": "4. Terminology & Translation – the two fields are closely related, both using language as target, content and medium",
+      "status": "Not used",
+      "where": "Nowhere in the handbook",
+      "details": "Never carried over.",
+      "reason": "Abstract statement about the two disciplines; not needed by a beginner (beginner revision, report_content.js Section 8.2)."
+    },
+    {
+      "section": "5. How Terminologists Work – Core role: terminologists work within a single language to coin new terms and establish standardised terminology",
+      "status": "Used and edited (corrected)",
+      "where": "Chapter 21, Words to remember (‘Terminologist’), Step 2 (second bullet), Try it question 1 and answer",
+      "details": "Now: “A terminologist studies the terms of a field rather than whole texts: they collect, record and sometimes standardise them, in one or more languages.” The key term reads “A specialist who collects, describes and records the terms of a field, and sometimes standardises them, in one or more languages.” The contrast with translators is kept but changed from ‘two languages vs one language’ to ‘whole texts vs the terms of a field’.",
+      "reason": "Corrected as a high-severity error in the first expert review: terminologists mainly collect, describe and record terms, and translation-oriented terminology work (UNTERM, IATE, Arabterm) is bilingual or multilingual, so ‘creates … usually in one language’ misdescribes the job (r4.json items 1, 2 and 9). The final report lists ‘the definition of a terminologist’ among the important corrections. Earlier versions (c2b_v3.js) had followed the document."
+    },
+    {
+      "section": "5. How Terminologists Work – Processing orientations: linguistic system adaptation (Vienna, Moscow, Prague); translation-oriented terminology for international organisations (UN, EU, UNESCO) and bilingual regions; language planning for minority or unstable languages",
+      "status": "Not used",
+      "where": "Nowhere in the handbook (the multilingual point survives only as ‘in one or more languages’ in the terminologist definition)",
+      "details": "The three orientations and the examples UN, EU and UNESCO were never carried over. ‘Language planning’ survives indirectly in the description of the academies in the earlier version (c2b_v3.js: ‘act as language-planning bodies’), but that phrase was also removed.",
+      "reason": "Theory not needed by a beginner (report_content.js Section 8.2)."
+    },
+    {
+      "section": "5. How Terminologists Work – Methodology: collecting, processing, presenting and managing terms according to morphological, syntactic, semantic and pragmatic rules",
+      "status": "Used and edited",
+      "where": "Chapter 21, Words to remember (‘Terminology’, ‘Terminologist’) and Step 1 (‘collected, named and managed’)",
+      "details": "The four activities are compressed into ‘collects, describes and records’ / ‘collection and management’. The four linguistic levels of rules were dropped.",
+      "reason": "Simplified for beginners."
+    },
+    {
+      "section": "6. Skills of the Translator – fluency in both languages; encyclopaedic knowledge; awareness of the subject matter; proper translation experience",
+      "status": "Used and edited (merged with the original draft)",
+      "where": "Chapter 1, Step 4 (‘What you need to become a translator’)",
+      "details": "The same four skills also appear, almost word for word, in Draft_one.docx (‘Skills of the Translator’), and the handbook presents them once, in plain words: ‘knows both languages well’, ‘is curious and learns about the topic of each text’ (encyclopaedic and subject knowledge), ‘keeps practising and checking their work’ (experience). Chapter 1 adds cultural knowledge and knowledge of expressions and idioms, and a quotation from al-Jāḥiẓ (1965).",
+      "reason": "Merged: repeated in two team documents; placed in Chapter 1, where the book introduces the translator, rather than in the terminology chapter."
+    },
+    {
+      "section": "6. Skills of the Translator – a solid background in the technical terminology of the domain to preserve content and form",
+      "status": "Used and edited",
+      "where": "Chapter 21 as a whole (Steps 1, 3 and 5); Chapter 18, technical texts paragraph (‘Check the field every time (Chapter 21)’)",
+      "details": "Not stated as a skill; instead the chapter teaches how to spot, check and record the terms of a field. ‘Preserve content and form’ was dropped.",
+      "reason": "Turned from a statement into practical steps for beginners."
+    },
+    {
+      "section": "6. Skills of the Translator – When dictionaries/databanks fail, think like a terminologist",
+      "status": "Used and edited (merged)",
+      "where": "Chapter 21, Step 3, item 4",
+      "details": "A repeat of the point in Section 2; merged into one step (see Section 2 above).",
+      "reason": "Repeated in the document; merged to avoid repetition."
+    },
+    {
+      "section": "7. Categories of Terms – by form: initialisms (CBC, CIA)",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 1 (‘Initialism: letters read one by one: CIA, CBC (complete blood count)’); Step 4 term list (CBC = تعداد الدم الكامل, also صورة الدم الكاملة)",
+      "details": "Both examples kept. The definition was changed from ‘combinations of the initials of an organization, document, or process’ to ‘letters read one by one’, which is the feature that separates it from an acronym. CBC is reused in the term list with its Arabic equivalents.",
+      "reason": "Simplified and made clearer: the handbook distinguishes initialisms and acronyms by pronunciation, so the Try it question (‘Is LASER an initialism or an acronym?’) can be answered."
+    },
+    {
+      "section": "7. Categories of Terms – by form: acronyms (LASER)",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 1 (‘Acronym: letters read as a word: LASER’); Try it question 2",
+      "details": "Example kept; the expansion ‘Light Amplification by Stimulated Emission of Radiation’ (still in c2b_v3.js) was dropped. Definition changed from ‘combining the initial segments of a phrase’ to ‘letters read as a word’.",
+      "reason": "Simplified for beginners; the expansion was cut when the text was shortened."
+    },
+    {
+      "section": "7. Categories of Terms – by form: abbreviations (vol, 3rd)",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 1 (‘Abbreviation: part of a word: vol. (volume)’)",
+      "details": "‘vol.’ kept (with a full stop added); ‘3rd for third’ dropped. ‘Act as its symbol’ dropped.",
+      "reason": "Simplified; one example is enough for a beginner."
+    },
+    {
+      "section": "7. Categories of Terms – by form: clippings (super, hyper)",
+      "status": "Used and edited (corrected)",
+      "where": "Chapter 21, Step 1 (‘Clipping: a word cut short, often keeping its first part: super (superintendent)’)",
+      "details": "‘super’ kept; ‘hyper for hyperactive’ dropped. The document’s ‘by taking the initial part of a word’ became ‘often keeping its first part’. ‘Discourse economy’ dropped.",
+      "reason": "Corrected in the first expert review: clipping can also keep the end or middle of a word (phone, flu), so ‘the first part’ is too narrow (r4.json item 5)."
+    },
+    {
+      "section": "7. Categories of Terms – by meaning: objects, processes, features, relationships (computer monitor, placement test, dead language, collocations)",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js, ‘Types of terms’)",
+      "details": "Kept in one sentence in c2b_v3.js, removed in c2b_v4.js.",
+      "reason": "Removed in the beginner revision as theory. This removal is not listed separately in report_content.js Section 8.2, which names only history, standardisation bodies and the academies’ procedures."
+    },
+    {
+      "section": "7. Categories of Terms – by linguistic origin: neoclassical borrowing (cranium, internus), true borrowing (internet, Algebra), borrowing from other dialects or fields (McDonaldization, process data, application)",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js). Related but separate material: borrowing as a procedure in Chapter 12; transliteration and Arabicisation in Chapter 16, Step 2; algebra as an Arabic loan word in English in Chapter 13",
+      "details": "c2b_v3.js kept one example of each type (cranium; internet and algebra, with the note that algebra comes from Arabic الجبر; application from law to computing). internus, McDonaldization and process data were never used. The whole passage was deleted by the ‘before-trim’ version. The borrowing material now in Chapters 12, 13 and 16 comes from the original draft and Shaikha’s notes, not from this document (final_report_content.js Section 4.1 credits algebra to Shaikha’s notes).",
+      "reason": "Removed in the beginner revision; not listed separately in report_content.js Section 8.2."
+    },
+    {
+      "section": "8. Rules for Names of Terms (nine rules: relates to the concept; lexically systematic; conforms to word-formation rules; not redundant; no unnecessary information; no morphological variants; no homonyms; not ambiguous; independent of context)",
+      "status": "Used and edited (reduced to one sentence)",
+      "where": "Chapter 21, Step 3, item 4 (‘A good term is clear and short, has one meaning, and follows the language’s normal rules for making words’)",
+      "details": "Nine rules reduced to four qualities: clear (rule 1), short (rule 5, no unnecessary information), one meaning (rules 7 and 8, no homonyms, not ambiguous) and follows normal word-formation rules (rule 3). Dropped: lexically systematic, no redundant foreign-plus-native words, no US/UK variants, independence of context. In c2b_v3.js all nine were kept as a five-item list credited to ISO 704 (International Organization for Standardization, 2022); both the list and the ISO citation were removed.",
+      "reason": "Simplified for beginners. Grammar of the sentence made parallel in the final review (f4.json item 3). The ISO 704 reference was dropped with the references no longer cited (report_content.js Section 8.2; fb_content.js Section 11). This reduction is not itemised in Section 8.2."
+    },
+    {
+      "section": "9. Arabic Academies – regional academies as language-planning bodies that coin, examine and standardise specialised Arabic terms",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 2, paragraph after the bullets",
+      "details": "Now: “For Arabic, the Arabic language academies (مجامع اللغة العربية), for example in Damascus, Cairo, Baghdad and Amman, create and approve terms (Translation Team, n.d.).” The document’s singular مجمع اللغة العربية became the plural مجامع. ‘Language-planning bodies’ was dropped. The document names the Egyptian, Iraqi and Jordanian academies; the handbook gives their cities and adds Damascus. A sentence on the Coordination Bureau of Arabization in Rabat (مكتب تنسيق التعريب) was added. The academies are also named as a place to search in Step 3 (‘the academies’ term lists’), in Chapter 16, Step 3, and in the summary.",
+      "reason": "Simplified for beginners. Damascus (the oldest academy, 1919) and the Rabat bureau were added by the first expert review because the list left them out (r4.json item 6). Note: the citation (Translation Team, n.d.) now covers Damascus, which the team document does not mention."
+    },
+    {
+      "section": "9. Arabic Academies – Egyptian Academy method (committees; Arabic equivalent and definition; circulation to members; council; annual conference and journal; one-year probation for objections)",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (summarised under ‘Cairo (Egypt)’ in c2b_v3.js)",
+      "details": "c2b_v3.js kept a one-sentence summary credited to the team’s terminology chapter (it merged ‘circulate candidate lists to members’ into ‘discuss it in the council’). Removed in c2b_v4.js.",
+      "reason": "Removed in the beginner revision: ‘the detailed procedures of the Arabic academies’ (report_content.js Section 8.2). The first online check had also found no source for the academies’ methods (fb_content.js Section 11: ‘Not checked … please confirm the source Masooma used’)."
+    },
+    {
+      "section": "9. Arabic Academies – Iraqi Academy method (specialist review, classical Arabic scientific texts, consulting scientists, preference for Arabic-sounding terms, standardisation six months after approval)",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (summarised under ‘Baghdad (Iraq)’ in c2b_v3.js)",
+      "details": "c2b_v3.js kept all points except the six-month standardisation period, which was never carried over. Removed in c2b_v4.js.",
+      "reason": "Removed in the beginner revision (report_content.js Section 8.2); unverified (fb_content.js Section 11)."
+    },
+    {
+      "section": "9. Arabic Academies – Jordanian Academy method (equivalents reflect the foreign term’s function; classical terms preferred to new coinages; widely used foreign terms kept)",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (summarised under ‘Amman (Jordan)’ in c2b_v3.js)",
+      "details": "Kept in full in c2b_v3.js, removed in c2b_v4.js. (The separate correction ‘A number of fields attributed to the Jordanian academy … could not be verified … Removed’ in report_content.js Section 7.1 concerns a claim in Draft_one.docx, ‘74 specialised fields’, not this document.)",
+      "reason": "Removed in the beginner revision (report_content.js Section 8.2); unverified (fb_content.js Section 11)."
+    },
+    {
+      "section": "10. How to Translate a Term – (1) study the term to understand its detailed meaning",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 3, item 1 (‘Understand its exact meaning in its field’)",
+      "details": "‘In its field’ added, with medical examples: allergic = أرَجيّ (everyday Arabic often says تحسّسي), allergen = مادة مُحسِّسة, contact eczema = إكزيما التماس.",
+      "reason": "Examples added from Shaikha’s notes (final_report_content.js Section 4.1); the note on تحسّسي and the spelling إكزيما were settled in the final review (f4.json items 0 and 1)."
+    },
+    {
+      "section": "10. How to Translate a Term – (2) examine its etymology",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 3, item 2 (‘Look at its origin: its parts often explain it’)",
+      "details": "The word ‘etymology’ was replaced by ‘origin’, with a reason added (‘its parts often explain it’).",
+      "reason": "Simplified for beginners."
+    },
+    {
+      "section": "10. How to Translate a Term – (3) seek an equivalent that faithfully matches the concept",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 3, item 3 (‘Find the equivalent: check the client’s guide first, then the academies’ term lists, UNTERM and Arabterm’)",
+      "details": "Changed from a general instruction into an ordered list of sources to check. Two further steps were added: create a term if none exists (item 4) and record and share it (item 5).",
+      "reason": "The client’s approved terms override general sources, so the guide comes first, and a beginner can search only the academies’ term lists, not the academies (final review, f4.json item 2)."
+    },
+    {
+      "section": "11. Technical Dictionaries – contains the standardised terms of a subject; primary product of terminography; multilingual technical dictionaries with a comprehensive volume of terms",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 4 (‘Specialised dictionary (Chapter 20): the terms of one field’); Chapter 20, Words to remember (‘Specialised dictionary’) and Step 3",
+      "details": "Reduced to one line. ‘Technical dictionary’ was renamed ‘specialised dictionary’; ‘standardised/approved’ was dropped; terminography (still defined in c2b_v3.js as ‘the practical work of recording terms’) and the multilingual/comprehensive point were dropped.",
+      "reason": "Corrected for consistency: Chapter 20 and the risk matrix say ‘specialised dictionary’, and dictionaries record terms but do not necessarily hold approved ones (r4.json item 8). Terminography removed as theory in the beginner revision."
+    },
+    {
+      "section": "12. Termbase – What is a termbase? (database of terminology and related information, usually multilingual)",
+      "status": "Used and edited",
+      "where": "Chapter 21, Words to remember (‘Termbase’, قاعدة بيانات المصطلحات (بنك المصطلحات)); Chapter 22, Step 1 and ‘CAT tool’ key term",
+      "details": "Definition kept as ‘A database of terms and information about them’; ‘usually in several languages’ (in c2b_v3.js) was dropped from the key term but the entry description says ‘the term in each language’. The Arabic alternative بنك المصطلحات was added.",
+      "reason": "Simplified; بنك المصطلحات added because it is the widespread Arabic name for large termbases such as UNTERM (r4.json item 4)."
+    },
+    {
+      "section": "12. Termbase – Organisation: entries with index field (the term) and descriptive field (definitions, context/source, subject area, author, creation/modification dates, verification status/ID)",
+      "status": "Used and edited",
+      "where": "Chapter 21, Step 4 (‘Termbase: each entry holds the term in each language, with its definition, field, source and date’)",
+      "details": "The field labels ‘index field’ and ‘descriptive field’ were dropped; of the descriptive data, definition, field (subject area), source and date are kept; context, author, modification date and verification status/ID were dropped.",
+      "reason": "Simplified for beginners."
+    },
+    {
+      "section": "12. Termbase – Benefits: updated data; simplicity of storage (networked access); economy (time and money); ability to spot mistakes and purge redundant terms",
+      "status": "Used and edited (mostly cut)",
+      "where": "Chapter 21, Step 4 (‘A team can share and update it’)",
+      "details": "Only ‘update’ (updated data) and ‘share’ (networked storage) survive. Economy and spotting mistakes were in c2b_v3.js (‘save time and money, and make it easy to find repeated or wrong entries’) and were removed in c2b_v4.js. Time-saving tools are discussed in Chapter 22 (translation memory, CAT tools).",
+      "reason": "Removed in the beginner revision; not itemised in report_content.js Section 8.2."
+    },
+    {
+      "section": "13. Standardization Bodies – operating levels (national, regional, international)",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js)",
+      "details": "Kept in c2b_v3.js, removed from c2b_v4.js onwards.",
+      "reason": "Removed in the beginner revision: the list of standardisation bodies (report_content.js Section 8.2)."
+    },
+    {
+      "section": "13. Standardization Bodies – ISO (founded 1947 in Geneva; non-governmental network of national institutes from over 150 countries; official languages English, French, Russian; all technical specifications except electrical and electronic engineering)",
+      "status": "Not used (corrected first, then removed)",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js)",
+      "details": "Before removal: ‘over 150 countries’ was left out because the number changes; ‘handles all technical specifications except electrical and electronic engineering’ was corrected because telecommunications belong to the ITU (fb_content.js corrections table); 1947, Geneva and the three official languages were confirmed (fb_content.js Section 11). The wording was also changed from ‘founded in 1947 in Geneva’ to ‘founded in 1947 and based in Geneva’ (ISO’s founding meeting was held in London; the change is visible in c2b_v3.js but not recorded as a correction). ‘Non-governmental network’ was dropped.",
+      "reason": "Partly inaccurate or likely to become outdated (report_content.js Section 7.2); then removed in the beginner revision (Section 8.2)."
+    },
+    {
+      "section": "13. Standardization Bodies – ITU (listed without description)",
+      "status": "Not used (completed, then removed)",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js)",
+      "details": "The earlier versions added the ITU’s field, telecommunications, which the document did not give.",
+      "reason": "Removed in the beginner revision (report_content.js Section 8.2)."
+    },
+    {
+      "section": "13. Standardization Bodies – IEC (exclusively handles electrical and electronic standards)",
+      "status": "Not used (corrected, then removed)",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js)",
+      "details": "The earlier versions kept IEC ‘for electrical and electronic standards’ and dropped ‘exclusively’, and split ISO/IEC/ITU responsibilities as ISO general, IEC electrical and electronic, ITU telecommunications (fb_content.js corrections table).",
+      "reason": "Removed in the beginner revision (report_content.js Section 8.2)."
+    },
+    {
+      "section": "13. Standardization Bodies – Types of standards: de jure (official, published by standardisation bodies) and de facto (market share and public adoption: smartphone, WhatsApp)",
+      "status": "Not used",
+      "where": "Nowhere in the final handbook (it was in c2b_v3.js and c2b_v4.js with the example smartphone). ‘smartphone’ now appears only in Chapter 16 as an example of a calque (الهاتف الذكي), unrelated to standards",
+      "details": "The earlier versions kept both types with ‘smartphone’ and dropped ‘WhatsApp’ (a brand name).",
+      "reason": "Removed in the beginner revision with the standardisation-bodies section (report_content.js Section 8.2)."
+    }
+  ],
+  "added_not_in_document": [
+    "Chapter 21 ‘Words to remember’: six key terms with Arabic equivalents (Term المصطلح; Terminology علم المصطلح (المصطلحية); Terminologist المصطلحي (خبير المصطلحات); Term list قائمة المصطلحات; Termbase قاعدة بيانات المصطلحات (بنك المصطلحات); Terminology guide دليل المصطلحات). The document gives no Arabic terms except مجمع اللغة العربية.",
+    "Chapter 21 intro linking to Chapter 20, and the step structure (Steps 1–5), Try it (three questions with answers) and Remember summary.",
+    "Chapter 21, Step 1: the opening point that in a contract or a medical leaflet one wrong term can change the meaning.",
+    "Citation of Cabré (1999) for the definition of terminology (the document cites no sources).",
+    "Chapter 21, Step 3, item 1: medical examples allergic = أرَجيّ (everyday Arabic تحسّسي), allergen = مادة مُحسِّسة, contact eczema = إكزيما التماس (from Shaikha’s notes; final_report_content.js Section 4.1; report_content.js Section 9 lists ‘Chapter 21: medical examples of specialised terms’).",
+    "Chapter 21, Step 2: the Damascus academy and the Coordination Bureau of Arabization in Rabat (مكتب تنسيق التعريب) (first expert review, r4.json item 6). The Rabat sentence has no citation, and the preceding citation (Translation Team, n.d.) covers Damascus, which is not in the team document.",
+    "Chapter 21, Step 3: UNTERM and Arabterm, and the client’s guide, as sources to check, in that order (client’s guide first: f4.json item 2); items 4 (create only if none exists, Chapter 16) and 5 (record the term in a term list and share it with the team).",
+    "Chapter 21, Step 4: a sample term list (governing law = القانون الواجب التطبيق, also القانون المطبَّق, with القانون الحاكم described as a common calque; provided that = شريطةَ أن; Article = مادّة vs clause = بند; CBC = تعداد الدم الكامل / صورة الدم الكاملة). Only CBC comes from the document; governing law was moved from the original draft (fb_content_v1.js), and the note on القانون الحاكم was softened from ‘not’ in the first expert review (r4.json item 7).",
+    "Chapter 21, Step 4: the terminology guide (the client’s approved terms and writing rules; always ask for one and follow it), requested in the professor’s notes (items 36 and 62; report_content.js Section 5).",
+    "Chapter 21, Step 5: the ‘one term for one idea’ rule with the مادّة / بند example (a new word suggests a new meaning).",
+    "Chapter 21, Step 2: the contrast ‘a translator translates whole texts; a terminologist studies the terms of a field’ replaces the document’s ‘two languages vs one language’ contrast.",
+    "Chapter 16, Step 3 (‘Search before you create’): the academies, UNTERM and Arabterm as places to find accepted terms, with examples global warming = الاحترار العالمي, greenhouse effect = الاحتباس الحراري, cancel culture = ثقافة الإلغاء, and the idea of lexicalisation (المَعْجَمة). Chapter 16 is based on the original draft, not on this document; a review query notes that cancel culture is a media coinage that should be checked in those sources (changelog_content.js).",
+    "Chapter 20 (whole chapter, written for the handbook): the three-check rule, printed vs digital dictionaries, and named dictionaries (Al-Mawrid, Wehr, al-Muʿjam al-Wasīṭ, Oxford Collocations Dictionary, UNTERM, Arabterm), which expand the document’s short ‘Technical Dictionaries’ section.",
+    "Chapter 18, technical texts: depression = الاكتئاب / الكساد / منخفض جوي as an example of one word being a different term in each field, with a cross-reference to Chapter 21.",
+    "Chapter 22, Step 1 and key terms: termbases, translation memory and CAT tools (from Shaikha’s notes; final_report_content.js Section 4.1), linked to Chapter 21."
+  ],
+  "references": [
+    {
+      "source": "Eugen Wüster (and the claim that he founded modern terminology in the 1930s)",
+      "in_references": "no",
+      "status": "checked and corrected",
+      "note": "First online check corrected the claim to his 1931 doctoral thesis (published in Berlin), linked with the Vienna School later (fb_content.js); then removed with the history section, so it is not in the final handbook and was not re-checked in the final review."
+    },
+    {
+      "source": "Four historical periods of terminology (Origins, Structuring, Boom, Expansion) – from Cabré (1999)",
+      "in_references": "no (the periods); Cabré (1999) itself: yes",
+      "status": "mentioned in the document but not used",
+      "note": "Confirmed in the first check as Cabré’s periods (fb_content.js Section 11), then removed in the beginner revision; Cabré (1999) remains in the References for the definition of terminology."
+    },
+    {
+      "source": "Vienna School",
+      "in_references": "no",
+      "status": "mentioned in the document but not used",
+      "note": "Kept in c2b_v3.js with Wüster; removed with the history of terminology (report_content.js Section 8.2)."
+    },
+    {
+      "source": "Moscow School (Lotte)",
+      "in_references": "no",
+      "status": "mentioned in the document but not used",
+      "note": "Kept in c2b_v3.js; never checked separately; removed in the beginner revision."
+    },
+    {
+      "source": "Prague School (influenced by Saussure)",
+      "in_references": "no",
+      "status": "mentioned in the document but not used",
+      "note": "Prague kept in c2b_v3.js without Saussure; removed in the beginner revision. Saussure was never used."
+    },
+    {
+      "source": "United Nations, EU and UNESCO (as users of translation-oriented terminology)",
+      "in_references": "no (the UN appears only as the publisher of UNTERM)",
+      "status": "mentioned in the document but not used",
+      "note": "The processing-orientations passage was never carried over. The UN reference in the handbook is United Nations (n.d.), UNTERM, which the document does not mention."
+    },
+    {
+      "source": "Arabic language academies in general (مجمع اللغة العربية)",
+      "in_references": "yes, indirectly: the statement is cited as Translation Team (n.d.); the Academy of the Arabic Language in Cairo is in the References only as publisher of al-Muʿjam al-Wasīṭ (Chapter 20)",
+      "status": "checked – still needs a printed source",
+      "note": "Chapter 21, Step 2 cites the course materials (Translation Team, n.d.), an unpublished manuscript marked ‘Needs more work’ in the final report (final_report_content.js Section 5); the city list (with Damascus added by the reviewer) is not in the team document."
+    },
+    {
+      "source": "Egyptian (Cairo) Academy – term-approval method",
+      "in_references": "no",
+      "status": "mentioned in the document but not used",
+      "note": "First check: ‘Not checked (no online source found)’, source Masooma used to be confirmed (fb_content.js Section 11); then removed as ‘detailed procedures of the Arabic academies’ (report_content.js Section 8.2)."
+    },
+    {
+      "source": "Iraqi (Baghdad) Academy – method",
+      "in_references": "no",
+      "status": "mentioned in the document but not used",
+      "note": "Same as the Egyptian method: no online source found, then removed in the beginner revision."
+    },
+    {
+      "source": "Jordanian (Amman) Academy – method",
+      "in_references": "no",
+      "status": "mentioned in the document but not used",
+      "note": "Same as above. The separate unverified ‘fields of the Jordanian academy’ claim removed in report_content.js Section 7.1 came from Draft_one, not this document."
+    },
+    {
+      "source": "‘International guidelines for term creation’ (ISO 704, Terminology work – Principles and methods)",
+      "in_references": "no",
+      "status": "mentioned in the document but not used",
+      "note": "Identified as ISO 704:2022 and cited for the rules of good terms in c2b_v3.js; confirmed in the first check (fb_content.js Section 11), then removed with the references no longer cited. The rule on not changing accepted terms is now in Step 5 without a citation."
+    },
+    {
+      "source": "ISO – International Organization for Standardization",
+      "in_references": "no",
+      "status": "checked and corrected",
+      "note": "1947, Geneva and the official languages English, French and Russian confirmed; ‘all technical specifications except electrical’ corrected (telecommunications belong to the ITU); ‘over 150 countries’ left out as likely to date; then the whole section removed (report_content.js Sections 7.2 and 8.2)."
+    },
+    {
+      "source": "ITU – International Telecommunication Union",
+      "in_references": "no",
+      "status": "checked and corrected",
+      "note": "The document named it without its field; the editor added ‘telecommunications’ and moved that area out of ISO’s scope; removed in the beginner revision."
+    },
+    {
+      "source": "IEC – International Electrotechnical Commission",
+      "in_references": "no",
+      "status": "checked and corrected",
+      "note": "Kept as ‘electrical and electronic standards’ without ‘exclusively’; removed in the beginner revision."
+    },
+    {
+      "source": "Masooma’s terminology chapter itself (Terminology_chapter.docx)",
+      "in_references": "yes, as part of Translation Team (n.d.), Translation handbook: Course materials and notes [Unpublished manuscript]",
+      "status": "checked – still needs a printed source",
+      "note": "Not listed under its own name. Earlier versions said Chapter 21 was ‘based on the Translation Team’s terminology chapter and on Cabré (1999)’; that sentence was cut, so the handbook itself no longer credits the chapter except through the Translation Team (n.d.) citation for the academies. Final report: Translation Team (n.d.) ‘Checked / Corrected / Needs more work’."
+    },
+    {
+      "source": "UNTERM (United Nations, n.d.) – not mentioned in the document; added by the editor",
+      "in_references": "yes",
+      "status": "checked twice (confirmed)",
+      "note": "Recommended in Chapters 16, 20 and 21 as a tool; ‘Checked / Checked / Confirmed’ (final_report_content.js Section 5); no change in review2/refs.json."
+    },
+    {
+      "source": "Arabterm (ALECSO & GIZ, n.d.) – not mentioned in the document; added by the editor",
+      "in_references": "yes",
+      "status": "checked and corrected",
+      "note": "First check corrected the credit to ALECSO with GIZ (report_content.js Section 11); the final review notes Arabterm calls itself a joint publication of ALECSO and the German BMZ, with GIZ running the project, so ‘GIZ or BMZ’ is still to be confirmed (review2/refs.json item 16)."
+    },
+    {
+      "source": "Cabré (1999), Terminology: Theory, methods and applications – not mentioned in the document; added by the editor",
+      "in_references": "yes",
+      "status": "checked twice (confirmed)",
+      "note": "Cited in Chapter 21, Step 1 for the definition of terminology; ‘Confirmed’ in report_content.js Section 11 and in the final report’s double check."
+    },
+    {
+      "source": "Coordination Bureau of Arabization, Rabat (مكتب تنسيق التعريب) – not mentioned in the document; added in the expert review",
+      "in_references": "no",
+      "status": "checked – still needs a printed source",
+      "note": "Added from the reviewer’s knowledge (r4.json item 6); the sentence carries no citation and no reference entry."
+    },
+    {
+      "source": "Wehr (1994), A dictionary of modern written Arabic (Chapter 20) – not mentioned in the document, which names no dictionary",
+      "in_references": "yes",
+      "status": "checked twice (confirmed)",
+      "note": "Added in Chapter 20; ‘Checked / Checked / Confirmed’ in the final report’s double check."
+    },
+    {
+      "source": "Baalbaki, Al-Mawrid; Academy of the Arabic Language in Cairo, al-Muʿjam al-Wasīṭ; Oxford collocations dictionary (2009) (Chapter 20) – not mentioned in the document",
+      "in_references": "yes",
+      "status": "checked – still needs a printed source",
+      "note": "Final review: Al-Mawrid and al-Wasīṭ need the edition and year used (n.d. at present), and the Oxford dictionary should name its editor, McIntosh (review2/refs.json items 0, 12, 13, 15); the al-Wasīṭ in-text author was corrected to ‘in Cairo’."
+    },
+    {
+      "source": "IATE (EU terminology database) – not in the document; mentioned only in a reviewer’s reason",
+      "in_references": "no",
+      "status": "not in the document and not used in the handbook",
+      "note": "Not mentioned in the document or the handbook; appears only in the reasoning of r4.json items 1–2 as an example of multilingual terminology work."
+    }
+  ]
+}

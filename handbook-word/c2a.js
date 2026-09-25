@@ -119,7 +119,7 @@ module.exports = [
   ['Mental draft', 'المسوّدة الذهنية', 'A first idea of the translation that you form while reading the text.'],
 ]],
 ['h', 'Before you start: ask three questions'],
-['p', 'A news report for experts and a leaflet for children need different words. The purpose of a translation decides how it should be translated (Nord, 1997). So before you write anything, ask:'],
+['p', 'A news report for experts and a leaflet for children need different words. The purpose of a translation decides how it should be translated (Nord, 1997). You will meet this idea again in Chapter 26. So before you write anything, ask:'],
 ['ol', [
   '**Who is the client?** ({{من هو العميل؟}}) Clients have their own style and rules.',
   '**What is the translation for?** ({{ما الغرض التواصلي؟}}) To inform, to persuade, to instruct or to entertain?',

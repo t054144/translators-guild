@@ -267,7 +267,7 @@ module.exports = [// ================= PART 5 =================
   'A **translator** works across two languages and uses terms from glossaries, dictionaries and termbases.',
   'A **terminologist** studies the terms of a field rather than whole texts: they collect, record and sometimes standardise them, in one or more languages.',
 ]],
-['p', 'For Arabic, the Arabic language academies ({{مجامع اللغة العربية}}), for example in Damascus, Cairo, Baghdad and Amman, create and approve terms (Translation Team, n.d.). The Coordination Bureau of Arabization in Rabat ({{مكتب تنسيق التعريب}}) helps to unify them across the Arab world.'],
+['p', 'For Arabic, the Arabic language academies ({{مجامع اللغة العربية}}), for example in Cairo, Baghdad and Amman, create and approve terms (Translation Team, n.d.). There is also an academy in Damascus, and the Coordination Bureau of Arabization in Rabat ({{مكتب تنسيق التعريب}}) helps to unify them across the Arab world.'],
 ['h', 'Step 3: translate a term'],
 ['ol', [
   '**Understand** its exact meaning in its field. In a medical text, _allergic_ is {{أرَجيّ}} (everyday Arabic often says {{تحسّسي}}), an _allergen_ is {{مادة مُحسِّسة}}, and _contact eczema_ is {{إكزيما التماس}}.',

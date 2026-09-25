@@ -1,0 +1,608 @@
+{
+ "sections": [
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Opening quotation: audiovisual texts shape almost everyone's life; audiences seek aesthetic and emotional experiences; viewing has become more varied (Perez-Gonzalez, 2014, p. 1)",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 1 (first paragraph)",
+   "details": "The long quotation became one paraphrased sentence: 'Films, series, games and online videos are part of almost everyone's life today (Pérez-González, 2014).' The remarks on negative impact, aesthetic experience, emotions, memories and intimacy were left out. The name was given its accents (Pérez-González) and the page number (p. 1) was dropped because it is no longer a direct quotation.",
+   "reason": "Simplified for beginners; the lighter-pages revision (report 8.3) cut running text to one to three sentences per paragraph."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "AVT as the fastest-growing strand of Translation Studies in the last fifteen years",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 1 (first paragraph)",
+   "details": "Kept as 'one of the fastest-growing areas of Translation Studies'. 'The fastest' became 'one of the fastest' and the time span 'during the last fifteen years' was removed. The typing error 'stand' (for 'strand') was not carried over.",
+   "reason": "Softened so that it is not an absolute claim, and the time span was left out because it goes out of date."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Four signs of growth: research literature, undergraduate modules, postgraduate courses and PhDs, conferences",
+   "status": "Not used",
+   "where": "Not in the handbook",
+   "details": "An early draft (c2b_v3.js) summarised these as 'more research, more university courses, more postgraduate study and more conferences'. They were cut later.",
+   "reason": "Academic background that a beginner does not need. Removed with the history of the field in the beginner revision (report 8.2) and the page-lightening cut (8.3)."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "What prompted the growth: (1) communication technology and exposure to visual semiotics; (2) the relationship between AVT and technological innovation",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 1 ('Driven by technology ...') and first bullet ('It depends heavily on technology')",
+   "details": "The two developments were merged into the phrase 'Driven by technology'. The explanation of visual semiotics and changing patterns of engagement with screen texts was left out.",
+   "reason": "Simplified; the two points say nearly the same thing at beginner level."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "The resulting need for (1) theoretical frameworks, (2) new research methods for audiovisual data, (3) better understanding of new discourse communities",
+   "status": "Not used",
+   "where": "Not in the handbook",
+   "details": "None of the three points appears in Part 9 or in any earlier draft.",
+   "reason": "Research-methods content, outside the scope of a practical beginner handbook (report 8.2: the book should not go deeply into theory)."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "What is so special about AVT: three fundamental relationships (words with pictures and soundtrack; foreign with target language/culture; spoken with written code) (gambier 2003: 172)",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 1, third bullet; the spoken-to-written point is in Chapter 27, Step 3",
+   "details": "Only the first relationship is kept as a paraphrase: 'The translator must connect the words with the pictures and sound (Gambier, 2003).' The second (foreign vs target culture) is covered in general terms by the 'Culture' bullet in Chapter 26, Step 4. The third (spoken vs written) survives as 'Speech must be cut down to short written lines' in Chapter 27, Step 3. The name was capitalised and the citation lost its page number (172) because it is now a paraphrase.",
+   "reason": "Simplified; a paraphrase in plain English replaces an academic quotation. The page was not checked against the printed article (report section 11)."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Terminological issues/progress: film translation, language transfer, screen translation (O'hagan 2007, 158), multimedia translation, audiovisual translation",
+   "status": "Not used",
+   "where": "Not in the handbook",
+   "details": "An early draft (c2b_v3.js) had a full section, 'From “film translation” to “audiovisual translation”', listing all five terms and citing O'Hagan (2007). Only the final term, audiovisual translation (AVT), survives: as a key term in Chapter 26 and in the Abbreviations list.",
+   "reason": "History of the field, removed in the beginner revision (report 8.2). O'Hagan was then no longer cited and was dropped from the references."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "AVT: translation or adaptation? (spatial and temporal limits; subtitles change mode and omit lexical items)",
+   "status": "Not used",
+   "where": "Not in the handbook as a debate; the practical point survives in Chapter 27, Steps 1–3",
+   "details": "The debate itself (whether AVT is 'translation proper') was kept in an early draft and then removed. Its practical content, that the medium imposes limits of space and time and that subtitles cut words, is taught in Chapter 27 (Step 1 limits, Step 2 'Condense', Step 3 'Speech must be cut down').",
+   "reason": "Theoretical debate; removed in the beginner revision. The practical advice is kept."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Subtitles entail a change of mode from oral to written and often omit lexical items",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 2 (item 4, 'Condense') and Step 3 (paragraph on why it is not easy)",
+   "details": "Turned from a statement into practical advice: cut repetitions and fillers such as 'well' and 'you know', with a worked English-to-Arabic example of a condensed line.",
+   "reason": "Made practical for beginners (report 9.1, Chapter 27)."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Types of AVT: Dubbing (الدبلجة): replaces the SL dialogue track with a TL track; may involve lip-synchronisation",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 2 (second bullet) and 'Words to remember' (Dubbing, الدبلجة)",
+   "details": "Kept with the same Arabic term. Rewritten as 'new dialogue in the target language, often matched to the actors’ lips'. The technical detail about the face or chest being visible in a medium shot was left out. The notes' 'SI' (a typing error for SL) was not carried over.",
+   "reason": "Simplified."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Types of AVT: Voice-over (half dubbing), Arabic gloss المعلق (مثل: المباريات): documentaries, interviews etc.; original voice reduced or turned down",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 2 (third bullet) and 'Words to remember' (Voice-over, التعليق الصوتي)",
+   "details": "Kept as 'a translation read over the original voice, as in documentaries'; the key term says the original 'can still be heard quietly'. The Arabic gloss was changed from المعلق (the commentator), with its football example, to the standard term التعليق الصوتي. The alternative name 'half dubbing' and the detail about an actor or journalist reading it 'after a few seconds' were left out.",
+   "reason": "Corrected: a sports commentator is not a form of translation, so the football example was misleading; simplified."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Types of AVT: Free commentary (adaptation with additions, clarifications, omissions and comments; synchronised with images; children's programmes, documentaries, corporate videos)",
+   "status": "Not used",
+   "where": "Not in the final handbook",
+   "details": "It was in Chapter 26 until the final ('course') revision. The review (review/r4.json) had first corrected the draft's example from 'sports' to 'documentaries and children’s programmes', following Gambier (2003). The final revision (course_edits.py) then cut the list of types down to four.",
+   "reason": "Removed to give a short list of the main types for beginners (report 9.1, Chapter 26)."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Types of AVT: In-vision signing, for the deaf and hard of hearing",
+   "status": "Not used",
+   "where": "Not in the final handbook",
+   "details": "It was in Chapter 26 until the final revision; the review had expanded it to 'a sign-language interpreter shown on screen'. It was then cut when the list of types was reduced to four. Deaf and hard-of-hearing viewers are still covered by SDH in Chapter 27, Step 1.",
+   "reason": "Removed to give a short list of the main types (report 9.1)."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Types of AVT: Audio description, for the blind and partially sighted (action, body language, facial expressions, costumes)",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 2 (fourth bullet), 'Words to remember' (الوصف الصوتي) and 'Try it' question 2",
+   "details": "Kept, as 'a spoken description of the action, for blind and partially sighted viewers'. The list of what is described (body language, facial expressions, costumes) was dropped.",
+   "reason": "Simplified."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Types of AVT: Audio-subtitling (subtitles spoken by a human or a speech synthesiser)",
+   "status": "Not used",
+   "where": "Not in the final handbook",
+   "details": "It was in Chapter 26 until the final revision (the review had changed 'for blind viewers' to 'for blind and partially sighted viewers'), then cut when the list was reduced to four types.",
+   "reason": "Removed to give a short list of the main types (report 9.1)."
+  },
+  {
+   "document": "Intro_to_AVT.pdf (typed lecture notes, 6 slides)",
+   "section": "Examples: four YouTube links",
+   "status": "Not used",
+   "where": "Not in the handbook",
+   "details": "None of the links appears in any draft of the handbook.",
+   "reason": "Links can stop working in a printed book; current examples can be shown in workshops (report 7.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 1: Why is AVT in high demand? (1) development of communication 'translation' [technology]; (2) the relationship between AVT and technological innovation; 'AVT and technology go hand in hand'",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 1 ('Driven by technology ...')",
+   "details": "Same point as in Intro_to_AVT.pdf; both points were merged into 'Driven by technology'. The slip 'communication translation' (for 'communication technology') was not carried over.",
+   "reason": "Simplified and merged with the matching point in the other set of notes."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 1: Early days vs now: researchers were interested in film makers; now they are interested in the audience",
+   "status": "Not used",
+   "where": "Not in the final handbook",
+   "details": "An early draft (c2b_v3.js) had a sentence on this change of focus; it was removed.",
+   "reason": "History of the field, removed in the beginner revision (report 8.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 1: Why is AVT special? (1) the only type that relies 100% on technology",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 1, first bullet",
+   "details": "Changed from 'relies 100% on technology' (earlier draft: 'depends completely on technology') to 'It depends heavily on technology.' The claim that it is 'the only type of translation' to do so was dropped.",
+   "reason": "Corrected in review (review/r4.json): 'completely' overstates the point, since translation decisions in AVT are still human."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "pp. 1–2: (2) more than one element: visual, audio and textual elements, signs working together to create meaning",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 1, second bullet; 'Try it' question 1 and summary",
+   "details": "Kept, with plain names: images, sound (dialogue, music, sound effects) and written words on screen. The claim that AVT is 'the only' type of translation with more than one element was dropped.",
+   "reason": "Simplified, and the absolute claim removed."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 2: (3) relationship between foreign language/culture (informal) and target language/culture (formal)",
+   "status": "Not used",
+   "where": "Not in the handbook",
+   "details": "The labels 'informal' and 'formal' were removed. The general idea of a cultural gap is covered by the 'Culture' bullet in Chapter 26, Step 4.",
+   "reason": "Unclear and not true in general (report 7.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 2: (4) the only type of translation where the medium changes (spoken → written)",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 3 ('Speech must be cut down to short written lines')",
+   "details": "Kept as a point about subtitles only. The claim that it is 'the only' type where the medium changes was dropped. The word 'medium' is not used.",
+   "reason": "Simplified; it applies to subtitling, not to all AVT (dubbing stays spoken)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 2: Terminological progress (film translation, language transfer, screen translation, multimedia translation, audiovisual translation)",
+   "status": "Not used",
+   "where": "Not in the handbook (only the term AVT is kept)",
+   "details": "Same list as in Intro_to_AVT.pdf, without the O'Hagan citation. Removed after the early draft.",
+   "reason": "History of the field, removed in the beginner revision (report 8.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 3: Types of AVT table (subtitles; dubbing; voice-over, 'documentaries', 'no voice actors'; free commentary, 'football'; in-vision signing; audio description; audio-subtitling)",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 2 (four types: subtitling, dubbing, voice-over, audio description)",
+   "details": "Seven types reduced to four. Subtitling points to Chapter 27. The football example for free commentary and the note 'no voice actors' for voice-over were not used (voice-over is in fact read by a voice artist or journalist).",
+   "reason": "Simplified to the main types for beginners in the final revision (report 9.1; course_edits.py). Free commentary, in-vision signing and audio subtitling were removed; see the Intro_to_AVT.pdf entries."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 3: Theory 1, Skopos theory ('aim-goal'), 'developed by Hans J. Vermer'; purpose defined by the client; functionality for the target audience",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 3 and 'Words to remember' (Skopos theory, نظرية الغاية); 'Try it' question 3",
+   "details": "Kept as the one theory, in practical form: ask what the video is for and who will watch it, with a new example (a cartoon for children versus a documentary for adults). The name was corrected from 'Vermer' to Vermeer. The citation is the published source, Reiss & Vermeer (1984), and the name 'developed by Hans J. Vermer' no longer appears in the text, because scholars' names were removed from the running text (report 8.5). The Greek meaning 'aim' was not kept.",
+   "reason": "Corrected (spelling, published source), and simplified: 'one idea is kept, that the purpose of a translation guides its choices' (report 8.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 4: Skopos: the most important are the client and the target audience; 'aligns with dynamic equivalence' (deliver the same emotions to the audience)",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 3 (purpose and viewers); the client's role is in Chapter 2",
+   "details": "The point about the audience is kept ('who will watch it'). The link to dynamic equivalence was removed; an early draft had cited Nida (1964) for it. The client appears in Chapter 26, Step 5 ('Ask for the brief') and in Chapter 2.",
+   "reason": "The link with dynamic equivalence is theory that beginners do not need, and it was removed with the other theory (report 8.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 4: Theory 2, Descriptive Translation Studies (DTS): definition and key aspects (analysis of existing translations, e.g. humour subtitled from English to Arabic; cultural and contextual considerations; norms and variations; comparative analysis; quality assessment)",
+   "status": "Not used",
+   "where": "Not in the handbook",
+   "details": "An early draft (c2b_v3.js, c2b_v4.js) had a paragraph attributing DTS to Toury (1995). It was removed.",
+   "reason": "One of 'three of its four theories' removed in the beginner revision (report 8.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "pp. 4–5: Theory 3, Reception studies: definition and key aspects (audience, perception and interpretation, effect on viewer experience, cultural reception, viewer preferences, social and sociocultural context/surveys, feedback loop, accessibility and inclusivity)",
+   "status": "Not used",
+   "where": "Not in the handbook",
+   "details": "An early draft had one sentence on reception studies; it was removed.",
+   "reason": "One of the three theories removed in the beginner revision (report 8.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 5: Theory 4, Polysystem theory ('multi-system theory') 'by Evan Zohar': key aspects (cultural and linguistic systems, translation as a cultural act, dynamic interaction, influence of source and target systems, conflict and tension, norms and expectations, cultural transfer, reception norms)",
+   "status": "Not used",
+   "where": "Not in the handbook",
+   "details": "An early draft cited it as Even-Zohar (1990), correcting the notes' 'Evan Zohar'. It was removed, and Even-Zohar is not in the references.",
+   "reason": "One of the three theories removed in the beginner revision (report 8.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "pp. 5–6: Why is AVT challenging? cultural differences, linguistic differences (accurate and concise), technical constraints (space and time), creative demands",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 4 (four bullets: Culture, Language, Technology, Creativity)",
+   "details": "All four kept in the same order logic, shortened to one line each, with cross-references added to Chapters 14 to 16 (culture) and Chapter 3 (English and Arabic differences). The two worked 'EX' sentences became part of the bullets ('may have no equivalent'; 'accurate and brief').",
+   "reason": "Simplified, and linked to earlier chapters."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 6: Challenges of translating audiovisual content from English to Arabic (linguistic, cultural, technical differences)",
+   "status": "Used and edited",
+   "where": "Merged into Chapter 26, Step 4",
+   "details": "This list repeats the previous one, so it was merged with it. The Language bullet names English and Arabic ('English and Arabic are built differently').",
+   "reason": "Merged to avoid repeating the same list."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 6: Other challenges: humour (jokes, wordplay, irony, sarcasm), songs, religious texts, political speeches, slang",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 4, 'Creativity' bullet",
+   "details": "Kept in part: 'jokes, wordplay, songs and slang need creative solutions'. Irony, sarcasm, religious texts and political speeches were dropped (they were still in the early draft).",
+   "reason": "Shortened when the pages were made lighter (report 8.3)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 7: AVT in the Arab world: typed summary box (screens replacing paper, infotainment, poor subtitling of Arab films, dubbing and accessibility, tourism websites, research flaws, academia–industry links, teaching and conferences) and notes on challenges to localising AVT (lack of definition and institutional reluctance; policy and vision deficit; linguistic and cultural context; technological shift), missed opportunities (film recognition, online presence, accessibility, tourism, regional contrasts) and research and education deficit",
+   "status": "Not used",
+   "where": "Not in the final handbook; its place is taken by Chapter 26, Step 5 'take your first steps'",
+   "details": "It was a full section ('AVT in the Arab world', citing Translation Team, n.d.) in the early drafts, then a three-bullet list (challenges, missed opportunities, solutions) until the final revision, which replaced it with four practical first steps (course_edits.py). One idea survives indirectly: live subtitling appears among the kinds of subtitles (Chapter 27, Step 1).",
+   "reason": "Removed in the beginner revision in favour of practical first steps (report 9.1: 'in place of the section on audiovisual translation in the Arab world'). The summary box also has no named source."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 7: Introduction to dubbing: 'oldest mode of AVT'",
+   "status": "Not used",
+   "where": "Not in the final handbook",
+   "details": "Kept in early drafts ('one of the oldest modes of AVT'), then cut.",
+   "reason": "Historical detail, removed when the text was shortened (report 8.3)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 7: Dubbing 'mainly used in Europe, America and Asia'",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 2 (paragraph after the list)",
+   "details": "Rewritten: 'Dubbing is used for cartoons, games and commercials, and in the Arab world for many children’s programmes and series.'",
+   "reason": "Corrected: the regional claim was incomplete for an Arab readership (report 7.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 7: Dubbing definition (replacing the original source-language dialogue track with a track recorded in the target language)",
+   "status": "Used and edited",
+   "where": "Chapter 26, 'Words to remember' (Dubbing) and Step 2",
+   "details": "Kept as 'Replacing the original dialogue with recorded dialogue in the target language'. Merged with the Intro_to_AVT.pdf definition.",
+   "reason": "Simplified and merged."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 7: Dubbing used for cartoons, video games and commercials",
+   "status": "Used as written",
+   "where": "Chapter 26, Step 2 (paragraph after the list)",
+   "details": "Kept: 'cartoons, games and commercials'.",
+   "reason": ""
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "pp. 7–8: Types of dubbing (revoicing): dubbing, partial dubbing, voice-over, free commentary, interpreting, audio description, audio-subtitling, fandubbing",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 2 (dubbing, voice-over and audio description only)",
+   "details": "Only dubbing, voice-over and audio description are kept, merged into the single list of main AVT types. Partial dubbing (in the early draft), free commentary, audio subtitling and fandubbing (with fansubbing, in drafts until the final revision) were removed. Interpreting is not in Part 9; it is described as a separate type of translation in Chapter 1.",
+   "reason": "Merged with the list of AVT types and cut to the main types for beginners (report 9.1)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 8: Dubbing challenges: language and lip-syncing, cultural adaptation and context, quality control and consistency",
+   "status": "Used and edited",
+   "where": "Chapter 26, Step 2 (paragraph after the list)",
+   "details": "All three kept in one sentence: 'matching lip movements, adapting cultural content and staying consistent across a series'. A new real example was added: the Arabic dub of The Simpsons (آل شمشون), in which Homer's beer became a soft drink, cited to (Translation Team, n.d.).",
+   "reason": "Simplified; the example was added to make cultural adaptation concrete (report 9.1)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 8: Introduction to subtitling: definition (written text on the lower part of the screen, rendering the spoken dialogue, image and soundtrack)",
+   "status": "Used and edited",
+   "where": "Chapter 27, 'Words to remember' (Subtitling, السترجة / الترجمة المرئية)",
+   "details": "Rewritten: 'Showing a written version of the dialogue, usually at the bottom of the screen, together with important on-screen text and song lyrics.' 'Written translation' became 'written version' and 'usually' was added so that intralingual subtitles are included.",
+   "reason": "Corrected in review (review/r4.json): the earlier definition left out intralingual subtitles and the on-screen text and songs that subtitles also render (Díaz Cintas & Remael)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 8: 'Subtitles have 32 to 41 characters per line; two lines may [be used]'",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 1 (first paragraph) and summary",
+   "details": "Corrected to: one or two lines; about 37 to 39 characters per line traditionally, up to 42 on streaming platforms (Díaz Cintas & Remael, 2021); always follow the client’s guidelines. Time limits were added: display time of about one to six or seven seconds, and spotting (marking the in and out times).",
+   "reason": "Corrected: 32 to 41 differs from the published standard (report 7.2 and 11). Time limits added in review (review/r4.json) because the chapter gave only the space limit; the definition of spotting was corrected in the second review (review2/f4.json)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 8: Classification by linguistic parameters: intralingual (same language), interlingual (SL–TL), bilingual (two languages in one video)",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 1 (list of kinds)",
+   "details": "Intralingual and interlingual kept. Intralingual now names SDH (subtitles for the deaf and hard of hearing), which also describe sounds, and subtitles for language learners; interlingual is 'what translators usually make'. Bilingual subtitles were removed in the final revision. The notes' confusing gloss 'subtitles = 3 languages' was not used.",
+   "reason": "SDH added in review (review/r4.json) because the standard term was missing; bilingual removed to keep only what beginners need (course_edits.py)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 8: Classification by preparation time: pre-prepared (offline) and live (online)",
+   "status": "Used as written",
+   "where": "Chapter 27, Step 1 (list of kinds)",
+   "details": "Kept with the same terms, plus the example 'as in live news'.",
+   "reason": ""
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 8: Classification by technical parameters: open (burned in) and closed (can be removed)",
+   "status": "Used as written",
+   "where": "Chapter 27, Step 1 (list of kinds) and 'Try it' question 1",
+   "details": "Kept: 'open (burned into the picture) or closed (can be turned on and off)'.",
+   "reason": ""
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 8: Other types of subtitles: surtitles (live performance), intertitles (title cards in silent films), fansubs",
+   "status": "Not used",
+   "where": "Not in the final handbook",
+   "details": "They were in Chapter 27 until the final revision; the review had corrected surtitles to 'shown above the stage in theatres and opera houses'. The line was then deleted (course_edits.py).",
+   "reason": "Removed as not needed by beginners, to make room for the practical subtitling method (report 9.1)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 9: The semiotics of subtitling: visual (verbal and non-verbal signs) and acoustic (verbal: dialogue; non-verbal: sound effects) presentation",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 3, fourth bullet ('Work with the images, dialogue, music and sound effects')",
+   "details": "The four-channel model (visual verbal, visual non-verbal, acoustic verbal, acoustic non-verbal), which an early draft explained, is reduced to one practical rule. The words 'semiotics' and 'signs' are not used.",
+   "reason": "Theory simplified into practice (report 8.2 and 9.1)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 9: Anchoring (the verbal mode clarifies the visual information) and redundancy (both modes give the same meaning)",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 3, fourth bullet",
+   "details": "The terms are not used. Redundancy became 'If the picture already shows something, the subtitle can be shorter.' Anchoring was first rendered as 'If the picture is unclear, the subtitle can explain it', then corrected to 'If the words refer to something on screen, make sure the subtitle still matches it.'",
+   "reason": "Simplified. The anchoring sentence was corrected in the second review (review2/f4.json): subtitles do not normally explain unclear pictures; they must stay consistent with what is shown."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 9: Semiotic cohesion (gaps in subtitled dialogue; low coherence without narrative context and images)",
+   "status": "Not used",
+   "where": "Not in the final handbook",
+   "details": "Explained in an early draft; later removed. The practical idea that the images help the subtitle survives indirectly in Chapter 27, Step 3.",
+   "reason": "Theoretical term not needed by beginners; removed when the text was shortened."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 9: Subtitling vulnerability",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 3 (paragraph 'It is not easy ...') and 'Try it' question 3",
+   "details": "The term 'vulnerability' is not used. The idea is explained: viewers who know some of the source language hear the original and read the translation, so they notice mistakes.",
+   "reason": "Simplified; the term needs explanation, so the explanation was given instead."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 9: Change of medium (speech to writing): scripted vs spontaneous speech (daily conversation, television news)",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 3 ('Speech must be cut down to short written lines')",
+   "details": "The change from speech to writing is kept; the distinction between scripted and spontaneous speech was removed after the early draft.",
+   "reason": "Simplified."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 9: Dialogue list: a written script of everything spoken in a film, used by producers to help with translation",
+   "status": "Used and edited",
+   "where": "Chapter 27, 'Words to remember' and Step 2, item 1; Chapter 26, Step 5, item 1",
+   "details": "Kept as a key term: 'A written script of everything said in a film, given to the translator.' Added to the practical steps: watch the video 'with the dialogue list if you have one'.",
+   "reason": "Kept nearly as written, and made practical."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 9: Linguistic variation: the way characters speak tells us about their personality and background",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 3 (paragraph 'It is not easy ...')",
+   "details": "Kept: 'how characters speak shows who they are'. Advice was added on how to keep it: 'Even in MSA, try to keep some of this through your choice of words.'",
+   "reason": "The advice was made consistent with the rule to write in MSA (review2/f4.json)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 10: Linguistic variants: connotative (emotional and cultural) vs denotative (literal) meaning",
+   "status": "Not used",
+   "where": "Not in Part 9; the same concepts are taught in Chapter 5 (Types of meaning)",
+   "details": "Not repeated in the subtitling chapter. Chapter 5 already has 'Denotation' (المعنى المعجمي) and 'Connotation' (المعنى الإيحائي) as key terms.",
+   "reason": "Already covered earlier in the handbook, so it was not repeated."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 10: Marked speech (non-standard features: taboo words, swear words, emotionally charged utterances)",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 5 (taboo language)",
+   "details": "The term 'marked speech' was dropped (it was in the early draft). Its content, swear words and emotionally charged language, is handled under taboo language.",
+   "reason": "Merged with the taboo-language section to avoid two overlapping terms."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 10: Sociolect, slang and idiolect (definitions)",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 3 (paragraph 'It is not easy ...')",
+   "details": "All three kept with short glosses in brackets: sociolect (social group), slang, idiolect (personal habits). The note's definition of slang ('a kind of jargon') was not used; the notes' spelling 'Idolect' was corrected to idiolect.",
+   "reason": "Simplified; spelling corrected."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 10: Subtitling strategies: culture-bound terms are extralinguistic references to items tied to a country's culture",
+   "status": "Used and edited",
+   "where": "Chapter 27, 'Words to remember' (Culture-bound term, مصطلح ذو خصوصية ثقافية) and Step 4",
+   "details": "Kept as a key term, with examples (a food, a holiday) and a cross-reference: 'Also called a culture-specific item (Chapter 14).' The word 'extralinguistic' was not used.",
+   "reason": "Simplified and linked to Chapter 14."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 10: Where cultural references come from: geographical, ethnographic (traditional food, holidays), socio-political (government)",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 4 (first paragraph)",
+   "details": "All three kept with short examples: geographical (places), ethnographic (food, holidays, daily life), socio-political (government, institutions), cited to Díaz Cintas & Remael (2007).",
+   "reason": "Kept nearly as written, with a published source added. The second review (review2/f4.json) queried whether this classification is in the 2007 edition as cited; still open."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 11: Strategies of Díaz Cintas/Remael (spelt 'Diaz-Cintas/Rameal'): loan, calque, explicitation ('explicatation'), substitution, transposition, lexical recreation, compensation, omission, addition (nine)",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 4 (one numbered list of eight strategies)",
+   "details": "Merged with Pedersen's list into one list of eight. Kept: loan, calque, explicitation, substitution, compensation, omission. Dropped as separate items: transposition (its meaning, using a similar concept from the target culture, is now what 'Substitution: use something familiar to the audience' means), lexical recreation (taught in Chapter 16) and addition (taught in Chapter 13). The notes' definition of substitution ('similar to explicitation but with space-time constraints') was not used. The names were corrected to Díaz Cintas and Remael, and 'explicatation' to explicitation.",
+   "reason": "The two overlapping lists were merged into one list of eight (report 8.2); spelling corrected (report 7.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 11: Strategies of Pedersen: retention, specification, direct translation, generalisation, substitution, omission, official equivalent (seven)",
+   "status": "Used and edited",
+   "where": "Chapter 27, Step 4 (merged list of eight) and 'Try it' question 2",
+   "details": "Merged with the Díaz Cintas and Remael list. Pedersen's names appear in brackets beside the matching item: Loan (retention), Calque (direct translation), Explicitation (specification). Generalisation and official equivalent were added as separate items; substitution and omission were combined with the matching items. The citation is Pedersen (2011). The earlier drafts gave the two lists separately.",
+   "reason": "The two overlapping lists were merged into one list of eight (report 8.2)."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 12: Emotionally charged language: taboo language defined (a social or religious custom prohibiting or restricting a practice or association)",
+   "status": "Used and edited",
+   "where": "Chapter 27, 'Words to remember' (Taboo language, اللغة المحظورة) and Step 5",
+   "details": "Kept as 'Words that a society or religion forbids or restricts, such as swear words.' The heading became 'handle strong and taboo language'.",
+   "reason": "Simplified."
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 12: Taboo language serves realism (expressing emotions), characterisation, delivering humour",
+   "status": "Used as written",
+   "where": "Chapter 27, Step 5",
+   "details": "Kept: 'Films use swearing and other forbidden words for realism, character or humour.'",
+   "reason": ""
+  },
+  {
+   "document": "AVT_2.pdf (scanned handwritten-style study notes, 12 pages)",
+   "section": "p. 12: Censorship: institutional censorship and self-censorship",
+   "status": "Used and edited",
+   "where": "Chapter 27, 'Words to remember' (Censorship, الرقابة) and Step 5",
+   "details": "Both kinds kept (broadcasters or authorities may require it; subtitlers may choose it themselves). Two further reasons for softening were added (swear words look stronger in writing than in speech; audiences have different norms), and advice to follow the client's guidelines and keep the emotion of the scene.",
+   "reason": "Made neutral in review (review/r4.json): blaming softening only on censorship was one-sided and ignored audience norms and the written-medium effect (Díaz Cintas & Remael, 2007)."
+  }
+ ],
+ "added_not_in_notes": [
+  "Chapter 26 and 27 openings ('Where we are' introductions), 'Try it' questions with answers, and 'Remember' summaries; none are in the notes.",
+  "Arabic equivalents for key terms not given in the notes: الترجمة السمعية البصرية (AVT), التعليق الصوتي (voice-over, replacing the notes' المعلق), الوصف الصوتي (audio description), نظرية الغاية (Skopos theory), السترجة / الترجمة المرئية (subtitling), قائمة الحوار (dialogue list), مصطلح ذو خصوصية ثقافية (culture-bound term), اللغة المحظورة (taboo language), الرقابة (censorship). Only الدبلجة (dubbing) comes from the notes.",
+  "Dubbing in the Arab world: used for many children's programmes and series (Chapter 26, Step 2), replacing the notes' 'Europe, America and Asia'.",
+  "A real dubbing example: The Simpsons dubbed into Arabic as آل شمشون, with Homer's beer changed to a soft drink (Chapter 26, Step 2), cited to (Translation Team, n.d.). It is not in either AVT notes document.",
+  "A Skopos example: a cartoon for children versus a documentary for adults (Chapter 26, Step 3).",
+  "Chapter 26, Step 5 'take your first steps': watch the whole video, then read the script; ask for the brief (subtitles or dubbing, which viewers, which Arabic); practise with free software (Subtitle Edit, Aegisub); watch Arabic-subtitled films and notice what was shortened.",
+  "Cross-references to earlier chapters: Chapter 3 (English–Arabic differences), Chapters 14 to 16 (cultural references), Chapter 14 (culture-specific item), Chapters 12 and 13 (procedures and strategies); and in Chapter 1 and 'Start here' (c2a.js), pointers to Part 9.",
+  "Subtitle timing: display time of about one to six or seven seconds, and the term 'spotting' for marking in and out times (Chapter 27, Step 1; Díaz Cintas & Remael, 2021).",
+  "The corrected line-length standard: about 37 to 39 characters per line, up to 42 on streaming platforms, and 'always follow the client’s guidelines' (Chapter 27, Step 1).",
+  "SDH (subtitles for the deaf and hard of hearing), which also describe sounds, and subtitles for language learners, as examples of intralingual subtitles; 'interlingual: what translators usually make' (Chapter 27, Step 1). SDH also added to the Abbreviations list.",
+  "Subtitling definition extended to on-screen text and song lyrics (Chapter 27 key term).",
+  "A five-step subtitling method: watch, spot, translate, condense, check (Chapter 27, Step 2).",
+  "A worked condensing example: 'Well, you know, I really don’t think we should go out tonight, because it’s going to rain.' → لا أظنّ أن علينا الخروج الليلة، فالمطر قادم. (Chapter 27, Step 2).",
+  "Rules for Arabic subtitles: write in MSA even for dialect speakers unless the client asks otherwise; break lines at meaning boundaries (noun with adjective, preposition with noun, pairs such as مدير المدرسة); use Arabic punctuation (Chapter 27, Step 3).",
+  "Advice to keep sociolect, slang and idiolect 'even in MSA ... through your choice of words' (Chapter 27, Step 3).",
+  "Conditions on two strategies: official equivalent 'if there is one'; omission 'when it is unimportant and there is no space' (Chapter 27, Step 4).",
+  "Two further reasons for softening taboo language: swear words look stronger in writing than in speech, and audiences have different norms; plus 'keep the emotion of the scene where you can' (Chapter 27, Step 5).",
+  "A definition of censorship: 'Removing or changing content that is considered unacceptable' (Chapter 27 key term).",
+  "Full APA references for the works behind the notes (Díaz Cintas & Remael 2007 and 2021, Gambier 2003 with DOI, Pedersen 2011, Pérez-González 2014, Reiss & Vermeer 1984), and Díaz Cintas & Remael (2021) in Further reading. The notes give only names, and years for Pérez-González and Gambier.",
+  "The abbreviations AVT, SDH and MSA in the Abbreviations list, and the Part 9 key terms in the Glossary (built automatically from the key-term lists)."
+ ],
+ "references": [
+  {
+   "source": "Pérez-González, L. (2014). Audiovisual translation: Theories, methods and issues. Routledge. (Notes: 'Perez-Gonzalez, 2014, p. 1', Intro_to_AVT.pdf)",
+   "in_references": "yes",
+   "status": "checked twice (confirmed)",
+   "note": "Confirmed in both checks, and publication details completed. The accents were added to the name. Cited in Chapter 26, Step 1 as a paraphrase, so without the page number (p. 1)."
+  },
+  {
+   "source": "Gambier, Y. (2003). Introduction: Screen transadaptation: Perception and reception. The Translator, 9(2), 171–189. (Notes: 'gambier 2003: 172', Intro_to_AVT.pdf)",
+   "in_references": "yes",
+   "status": "checked – still needs a printed source",
+   "note": "Confirmed only through secondary sources; the page was not checked (editorial report section 11), and it is on the list to check against the printed article (report 12.1). DOI added in the second review. Cited in Chapter 26, Step 1 without a page number. The review also used Gambier to correct the draft's free-commentary example."
+  },
+  {
+   "source": "O'Hagan (2007, p. 158) (Notes: 'O'hagan 2007, 158', Intro_to_AVT.pdf, on the term 'screen translation')",
+   "in_references": "no",
+   "status": "mentioned in the notes but not used",
+   "note": "Cited in an early draft for 'screen translation'. The terminology section was removed as history in the beginner revision, so the citation and the reference went with it (report 8.2, 'ten references that were no longer cited')."
+  },
+  {
+   "source": "Reiss, K., & Vermeer, H. J. (1984). Grundlegung einer allgemeinen Translationstheorie. Niemeyer. (Notes: 'Developed by Hans J. Vermer', AVT_2.pdf p. 3)",
+   "in_references": "yes",
+   "status": "checked twice (confirmed)",
+   "note": "The notes' spelling 'Vermer' was corrected to Vermeer (report 7.2). The notes give no work or year, so the standard published source for Skopos theory was supplied. It was confirmed in both checks, with publication details completed. Cited in Chapter 26, Step 3."
+  },
+  {
+   "source": "Díaz Cintas, J., & Remael, A. (2007). Audiovisual translation: Subtitling. St. Jerome. (Notes: 'Diaz-Cintas/Rameal', AVT_2.pdf p. 11, no year)",
+   "in_references": "yes",
+   "status": "checked – still needs a printed source",
+   "note": "The names were corrected from 'Diaz-Cintas/Rameal' (report 7.2). The bibliographic details were confirmed in both checks. However, the second review queried whether the classification of cultural references and the strategy list are really in the 2007 edition, and the final report (6.2) asks the team to decide whether to cite 2021 instead. Cited in Chapter 27, Step 4, and in review reasons for Step 5."
+  },
+  {
+   "source": "Díaz Cintas, J., & Remael, A. (2021). Subtitling: Concepts and practices. Routledge. (Not named in the notes; added as the source for the line-length figures)",
+   "in_references": "yes",
+   "status": "checked twice (confirmed)",
+   "note": "Added for the corrected subtitle-length standard and for spotting (Chapter 27, Step 1). Confirmed in both checks, and recommended in Further reading."
+  },
+  {
+   "source": "Subtitle line length attributed to Díaz Cintas & Remael (2021): notes '32 to 41 characters per line' (AVT_2.pdf p. 8)",
+   "in_references": "yes (as Díaz Cintas & Remael, 2021)",
+   "status": "checked and corrected",
+   "note": "The notes' figure differs from the published standard. It was corrected to about 37 to 39 characters, up to 42 on streaming platforms, with at most two lines (editorial report 7.2 and 11)."
+  },
+  {
+   "source": "Pedersen, J. (2011). Subtitling norms for television. John Benjamins. (Notes: 'Pedersen', AVT_2.pdf p. 11, no year)",
+   "in_references": "yes",
+   "status": "checked twice (confirmed)",
+   "note": "The notes give no work or year; the 2011 book on extralinguistic cultural references was supplied, and it was confirmed in both checks with publication details completed. Its strategy names appear in brackets in the merged list in Chapter 27, Step 4."
+  },
+  {
+   "source": "Even-Zohar (Polysystem theory) (Notes: 'By Evan Zohar', AVT_2.pdf p. 5)",
+   "in_references": "no",
+   "status": "mentioned in the notes but not used",
+   "note": "An early draft corrected the name and cited Even-Zohar (1990). Polysystem theory was one of the three theories removed in the beginner revision (report 8.2), so the reference was dropped."
+  },
+  {
+   "source": "Toury (Descriptive Translation Studies) (Not named in the notes: AVT_2.pdf p. 4 gives DTS without an author)",
+   "in_references": "no",
+   "status": "mentioned in the notes but not used",
+   "note": "Strictly, the notes mention only DTS, not Toury. An early draft attributed DTS to Toury (1995); the reference was removed with the theory in the beginner revision."
+  },
+  {
+   "source": "Nida (dynamic equivalence) (Notes: 'Aligns with the dynamic equivalence', AVT_2.pdf p. 4, no author named)",
+   "in_references": "no (Nida, 1964); Nida & Taber (1969) is in the references for other chapters",
+   "status": "mentioned in the notes but not used",
+   "note": "An early draft linked Skopos to Nida (1964); the link and that citation were removed. The concept is not used in Part 9."
+  },
+  {
+   "source": "Translation Team (n.d.). Translation handbook: Course materials and notes [Unpublished manuscript]. Guild Professional Club. (The AVT notes are part of these course materials)",
+   "in_references": "yes",
+   "status": "checked – still needs a printed source",
+   "note": "Final report: 'Needs more work: unpublished course materials; confirm the wording of quoted definitions'. In Part 9 it is cited only for The Simpsons dubbing example (Chapter 26, Step 2). The Correction Log says the example 'appears' in the course materials, but it is not in either AVT notes document. The second review (review2/f4.json) had asked for a printed or press source."
+  },
+  {
+   "source": "Unnamed source of the 'AVT in the Arab world' typed summary box (AVT_2.pdf p. 7)",
+   "in_references": "no",
+   "status": "mentioned in the notes but not used",
+   "note": "The box looks like a summary of a published article, but no author or title is given. The section was cited to Translation Team (n.d.) in drafts and then removed in the final revision."
+  },
+  {
+   "source": "Four YouTube video links (Intro_to_AVT.pdf, 'Examples')",
+   "in_references": "no",
+   "status": "mentioned in the notes but not used",
+   "note": "Removed because links can stop working in a printed book; examples can be shown in workshops (report 7.2)."
+  }
+ ]
+}
