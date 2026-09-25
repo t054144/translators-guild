@@ -773,8 +773,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   border-radius: var(--r-lg); background: rgba(255,255,255,.045); border: var(--hair);
   box-shadow: none; }
 .alpha .a-hand { width: 100%; aspect-ratio: 1; display: block; }
-.alpha .a-hand img { width: 100%; height: 100%; object-fit: contain; display: block;
-  filter: drop-shadow(0 6px 14px rgba(0,0,0,.4)); }
+.alpha .a-hand img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .alpha .a-txt { display: flex; align-items: baseline; gap: .45rem; }
 .ksl-credit { margin: 0; font-size: .78rem; font-weight: 300; line-height: 1.55;
   color: var(--ink-soft); max-width: var(--measure); }
@@ -789,8 +788,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   padding: 1.2rem 1.35rem; border-radius: var(--r-lg); background: var(--grad-soft);
   border: var(--hair-lit); }
 .lh-fig { width: min(50vw, 236px); aspect-ratio: 1; display: block; }
-.lh-fig img { width: 100%; height: 100%; object-fit: contain; display: block;
-  filter: drop-shadow(0 10px 24px rgba(0,0,0,.45)); }
+.lh-fig img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .lh-txt { display: grid; gap: .1rem; justify-items: end; text-align: right; }
 .lh-l { font-family: var(--f-ar); font-size: clamp(3rem, 14vw, 4.2rem); line-height: 1; color: var(--white); }
 .lh-n { font-family: var(--f-ar); font-size: 1.25rem; color: var(--lilac); }
@@ -1825,7 +1823,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 49 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 50 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -4532,14 +4530,20 @@ const KU_MINOR = {
 /* ═══════════ REGISTRY ═══════════ */
 
 /* ── الهجاء الإصبعي · THE MANUAL ALPHABET ──────────────────────────
-   Twenty-eight letters, each a photograph of the hand making it.
+   Thirty-nine shapes: the twenty-eight letters, then the hamza forms,
+   alif maqsura, lam-alif and the article.
 
-   Cut from the Kuwaiti manual alphabet chart published by
-   @ksl_dictionary: the page, the disc it sat on and the chart's own
-   lettering all removed, the edge decontaminated so no background
-   colour bleeds into the rim, and every hand scaled to the same weight
-   inside its frame. The hand in each one is theirs, and the credit says
-   so. */
+   Cut from the أبجدية الأصابع العربية chart published by @ksl_dictionary,
+   then re-lit: each hand's own light and shade is mapped onto the site's
+   violet ramp, so the modelling that tells one finger from the next
+   survives while none of the chart's colour does.
+
+   Vector tracing was tried first and abandoned. The reference is only
+   about fifty-five pixels across per hand, and a hard-edged trace of
+   something that small loses the creases between the fingers entirely —
+   the letters stopped being distinguishable. A machine-invented
+   handshape was never an option: getting a finger count wrong teaches
+   the wrong letter. */
 const KSL_ALPHA = [
   { l: "ا", n: "أَلِف", t: "ʾalif", img: "ksl/alif.webp" },
   { l: "ب", n: "باء", t: "bāʾ", img: "ksl/ba.webp" },
@@ -4571,8 +4575,25 @@ const KSL_ALPHA = [
   { l: "ي", n: "ياء", t: "yāʾ", img: "ksl/ya.webp" },
 ];
 
-const KSL_CREDIT = "Handshapes from the Kuwaiti manual alphabet published by <b>@ksl_dictionary</b>, " +
-  "credited here while their permission is sought. They come down the day they ask.";
+/* Not letters of the alphabet, but part of the same fingerspelling set
+   and on the same chart. */
+const KSL_EXTRA = [
+  { l: "ة", n: "تاء مربوطة", t: "tāʾ marbūṭa", img: "ksl/tamarbuta.webp" },
+  { l: "أ", n: "ألف بهمزة فوقها", t: "ʾalif + hamza above", img: "ksl/alifhamza.webp" },
+  { l: "إ", n: "ألف بهمزة تحتها", t: "ʾalif + hamza below", img: "ksl/alifhamzabelow.webp" },
+  { l: "آ", n: "ألف ممدودة", t: "ʾalif madda", img: "ksl/alifmadda.webp" },
+  { l: "ؤ", n: "واو بهمزة", t: "wāw + hamza", img: "ksl/wawhamza.webp" },
+  { l: "ئ", n: "ياء بهمزة", t: "yāʾ + hamza", img: "ksl/yahamza.webp" },
+  { l: "ئـ", n: "ياء بهمزة — متّصلة", t: "yāʾ + hamza, joined", img: "ksl/yahamza2.webp" },
+  { l: "ء", n: "همزة", t: "hamza", img: "ksl/hamza.webp" },
+  { l: "ى", n: "ألف مقصورة", t: "ʾalif maqṣūra", img: "ksl/alifmaqsura.webp" },
+  { l: "لا", n: "لام ألف", t: "lām-ʾalif", img: "ksl/lamalif.webp" },
+  { l: "ال", n: "أداة التعريف", t: "al-, the article", img: "ksl/al.webp" },
+];
+function kslAll() { return KSL_ALPHA.concat(KSL_EXTRA); }
+
+const KSL_CREDIT = "Drawn for this site from the Arabic finger alphabet published by " +
+  "<b>@ksl_dictionary</b>, credited while their permission is sought.";
 
 /* What a sign is assembled from — a checklist for watching a video. */
 const KSL_PARAMS = [
@@ -7633,16 +7654,14 @@ function allMinorCourses() {
 
 
 /* Built as an element rather than written into an HTML string: the
-   browser's preload scanner reads the page source ahead of the parser
-   and will try to fetch a src it finds spelled out there. */
+   preload scanner reads the page source ahead of the parser and will
+   try to fetch a src it finds spelled out there. */
 function handFig(L) {
   const im = document.createElement("img");
   im.src = L.img;
   im.alt = "The handshape for " + L.n;
-  im.width = 680; im.height = 680;
+  im.width = 560; im.height = 560;
   im.decoding = "async";
-  /* no lazy loading in the grid: the hands are the page, and a tile that
-     is still blank when it is scrolled past is the whole complaint */
   return im;
 }
 
@@ -7658,7 +7677,7 @@ function runKsl() {
      opens this to see signs, so signs are what is here. */
   function home() {
     stage.innerHTML = "";
-    setCount("الهجاء الإصبعي · 28");
+    setCount("الهجاء الإصبعي · 39");
     setDots(0, 0, 0);
 
     stage.appendChild(el("p", "lede",
@@ -7667,7 +7686,7 @@ function runKsl() {
       "<b>Tap any letter to see the hand large.</b>"));
 
     const grid = el("div", "alpha-grid");
-    KSL_ALPHA.forEach((L, i) => {
+    kslAll().forEach((L, i) => {
       const b = el("button", "alpha");
       b.innerHTML =
         '<span class="a-hand"></span>' +
@@ -7728,7 +7747,7 @@ function runKsl() {
 
   /* ── one letter ── */
   function letter(i) {
-    const ALL = KSL_ALPHA;
+    const ALL = kslAll();
     const L = ALL[i];
     stage.innerHTML = "";
     setCount(L.n + " · " + (i + 1) + "/" + ALL.length);
