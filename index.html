@@ -573,7 +573,6 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .hall-head { display: grid; gap: .5rem; padding: clamp(.4rem,2vw,.8rem) 0 0; }
 .hall-head h1 { font-family: var(--f-serif); font-size: clamp(1.9rem,6vw,3rem); font-weight: 600;
   color: var(--white); margin: 0; line-height: 1.06; letter-spacing: -.01em; }
-.hall-sub { margin: 0; color: var(--lilac); font-size: clamp(.98rem,2.6vw,1.1rem); }
 .hall-quote { margin: 1.1rem 0 0; padding-inline-start: 1rem; border-inline-start: 2px solid rgba(167,38,208,.5); }
 .hall-quote blockquote { margin: 0; font-family: var(--f-serif); font-style: italic;
   font-size: clamp(.95rem,2.4vw,1.05rem); color: var(--lilac); line-height: 1.5; }
@@ -1034,7 +1033,6 @@ a.ks-s-en:hover { color: var(--white); }
   letter-spacing: .1em; font-size: .64rem;
 }
 .seal-eyebrow { font-size: .6rem; }
-.hall-sub { font-size: clamp(.95rem, 2vw, 1.02rem); }
 
 /* Body text gets a measure and a line height meant for reading. */
 .lede { font-size: clamp(.92rem, 1.9vw, 1rem); line-height: 1.62; max-width: 62ch; }
@@ -1065,7 +1063,6 @@ a.ks-s-en:hover { color: var(--white); }
 
   /* type comes down a step across the board */
   .hall-head h1 { font-size: 1.72rem; line-height: 1.12; }
-  .hall-sub { font-size: .94rem; }
   .screen-head h1, #hall .strip-head h2, .sec-head h2 { font-size: 1.28rem; }
   .card-top h3 { font-size: 1.2rem; }
   .c-en { font-size: 1rem; }
@@ -1678,10 +1675,12 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   line-height: 1.4; color: var(--white); margin: 0;
   border-inline-start: 2px solid var(--magenta); padding-inline-start: 1.1rem; }
 
+/* The byline. Wide-tracked and only half a step heavier than the text
+   around it: at this size weight reads as care rather than as volume. */
 .credit {
-  margin: 2.5rem 0 0; padding-top: 1.5rem; border-top: var(--hair);
-  text-align: center; font-size: .8rem; font-weight: 400; letter-spacing: .1em;
-  color: var(--lilac-dim);
+  margin: 2.6rem 0 0; padding-top: 1.4rem; border-top: var(--hair);
+  text-align: center; font-size: .88rem; font-weight: 600; letter-spacing: .15em;
+  color: var(--lilac);
 }
 
 /* ═══════════ THE HALL MARK — logo ringed by your marks ═══════════ */
@@ -1907,7 +1906,13 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <header class="hall-head">
       <p class="seal-eyebrow">The Guild Hall</p>
       <h1 id="hall-welcome">Welcome.</h1>
-      <p class="hall-sub">Your translation journey continues.</p>
+      <!-- The quote sits with the greeting, where it is read. At the foot
+           of a long scroll almost nobody reached it. It also says what the
+           line it replaces was saying, and says it better. -->
+      <figure class="hall-quote">
+        <blockquote>Words travel worlds. Translators do the driving.</blockquote>
+        <figcaption>Anna Rusconi</figcaption>
+      </figure>
     </header>
 
     <div class="panel seal-journey" id="seal-journey"></div>
@@ -1920,12 +1925,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       <div class="strip" id="strip"></div>
     </div>
 
-    <figure class="hall-quote">
-      <blockquote>Words travel worlds. Translators do the driving.</blockquote>
-      <figcaption>Anna Rusconi</figcaption>
-    </figure>
-
-    <p class="credit">Shaikha Alkhaldi</p>
   </section>
 
   <!-- ══════════════ LEARN ══════════════ -->
@@ -2049,6 +2048,10 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       <div id="adm-reports" hidden></div>
     </div>
   </section>
+
+  <!-- Last child of the app, so it stands at the foot of whichever screen
+       is open rather than only the hall. -->
+  <p class="credit">Shaikha Alkhaldi</p>
 
 </main>
 
