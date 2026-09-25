@@ -1058,6 +1058,27 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .xfers { display: grid; gap: .9rem; }
 .pager { display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
 
+/* ---------- the one footer every screen ends with ----------
+   Back and forward side by side, because that is the pair a reader
+   thinks in; the way out of the chamber underneath them, quieter,
+   and only once. */
+.foot-nav { display: grid; gap: .8rem; margin-top: .4rem; }
+.fn-row { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; align-items: stretch; }
+.fn-row > * { min-width: 0; }
+.fn-back, .fn-next {
+  font-size: .9rem; font-weight: 600; padding: .85rem .9rem; border-radius: var(--r-pill);
+  white-space: normal; text-align: center; line-height: 1.3; min-width: 0;
+  overflow-wrap: anywhere;
+}
+.fn-back { background: rgba(255,255,255,.05); border: var(--hair-lit); color: var(--lilac);
+  box-shadow: none; }
+.fn-back:hover { background: rgba(214,191,234,.14); color: var(--white); box-shadow: none; }
+.fn-gap { display: none; }
+.fn-note { margin: 0; text-align: center; font-size: .68rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; color: var(--lilac-dim); }
+.fn-home { justify-self: center; font-size: .86rem; }
+@media (max-width: 380px) { .fn-back, .fn-next { font-size: .82rem; padding: .78rem .7rem; } }
+
 /* the Arabic introduction block */
 .ar-note { border-radius: var(--r-lg); border: var(--hair);
   background: rgba(101,15,208,.16); padding: 1.15rem 1.4rem; direction: rtl; }
@@ -1630,7 +1651,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 35 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 36 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1805,7 +1826,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       </div>
     </div>
     <div class="stage" id="stage"></div>
-    <div class="center"><button class="link" id="back-btn">← Back to the hall</button></div>
   </section>
 
   <!-- ══════════════ CONTENT ADMIN ══════════════ -->
@@ -2231,21 +2251,13 @@ function runLineage(startAt) {
       stage.appendChild(card);
       paintPortraits(card);
 
-      const nav = el("div", "pager");
-      const foot = el("div", "foot");
-      if (cur > 0) {
-        const prev = el("button", "ghost", "← " + figName(LINEAGE[cur - 1]));
-        prev.addEventListener("click", () => { cur--; render(); });
-        foot.appendChild(prev);
-      }
-      if (cur < LINEAGE.length - 1) {
-        const next = el("button", null, figName(LINEAGE[cur + 1]) + " →");
-        next.addEventListener("click", () => { cur++; render(); });
-        foot.appendChild(next);
-      }
-      nav.appendChild(foot);
-      nav.appendChild(el("p", "note", (cur + 1) + " of " + LINEAGE.length));
-      stage.appendChild(nav);
+      stage.appendChild(footNav({
+        back: cur > 0 ? (() => { cur--; render(); scrollTop(); }) : (() => { cur = null; render(); scrollTop(); }),
+        backLabel: cur > 0 ? figName(LINEAGE[cur - 1]) : "All sixteen",
+        next: cur < LINEAGE.length - 1 ? (() => { cur++; render(); scrollTop(); }) : null,
+        nextLabel: cur < LINEAGE.length - 1 ? figName(LINEAGE[cur + 1]) : "",
+        note: (cur + 1) + " of " + LINEAGE.length
+      }));
     }
 
     const grid = el("div", "figures");
@@ -2260,17 +2272,13 @@ function runLineage(startAt) {
           '<span class="f-meta">' + f.life + '</span>' +
           '<span class="f-pair">' + (figRole(f) || f.pair) + '</span>' +
         '</span>';
-      b.addEventListener("click", () => {
-        cur = k; render();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
+      b.addEventListener("click", () => { cur = k; render(); scrollTop(); });
       grid.appendChild(b);
     });
     stage.appendChild(grid);
     paintPortraits(grid);
 
-
-    stage.appendChild(backFoot());
+    if (cur === null) stage.appendChild(footNav());
   }
   render();
 }
@@ -5928,9 +5936,7 @@ document.getElementById("reset-btn").addEventListener("click", () => {
   state.finale = false;
   save(); pushBackend(); renderHall(); renderSeal();
 });
-document.getElementById("back-btn").addEventListener("click", () => {
-  stopBooth(); renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
-});
+
 
 /* The Seal is its own screen, opened from the Hall and closed back to it. */
 document.getElementById("seal-btn-open").addEventListener("click", () => {
@@ -5987,6 +5993,9 @@ function setThemeChoice(choice) {
 const navBar = document.getElementById("bottom-nav");
 
 function navTo(where) {
+  /* Tapping a tab is a sideways move, not a step deeper: it starts a
+     fresh trail rather than burying the last one. */
+  clearTrail();
   if (where === "home")      { renderHall();  show("hall"); }
   if (where === "learn")     { renderLearn(); show("learn"); }
   if (where === "practice")  { renderPractice(); show("practice"); }
@@ -6030,7 +6039,20 @@ if (navBar) {
 const stage = document.getElementById("stage");
 let active = null;
 
-function openItem(t, arg) {
+function openItem(t, arg, keepTrail) {
+  /* Remember what to come back to: the chamber you were reading, or the
+     tab you were on. Passing keepTrail means the caller is restoring a
+     screen rather than going somewhere new. */
+  if (!keepTrail) {
+    if (curView === "trial" && active && active !== t) {
+      const from = active;
+      pushTrail(from.en, () => openItem(from, undefined, true));
+    } else if (curView && curView !== "trial") {
+      const tab = TABS[curView] || "home";
+      const label = tab === "home" ? "Hall" : tab.charAt(0).toUpperCase() + tab.slice(1);
+      pushTrail(label, () => { clearTrail(); navTo(tab); });
+    }
+  }
   active = t;
   setAct(t.section === "method" ? 2 : 3);
   document.getElementById("trial-en").textContent = t.en;
@@ -6048,13 +6070,64 @@ function setCount(txt) { document.getElementById("trial-count").textContent = tx
 function setDots(total, done, now) {
   document.getElementById("trial-dots").innerHTML = total ? dotsRow(total, done, now) : "";
 }
-function backFoot() {
-  const foot = el("div", "foot");
-  const b = el("button", null, "Back to the hall");
-  b.addEventListener("click", () => { renderHall(); show("hall"); setAct(markCount() ? 3 : 2); });
-  foot.appendChild(b);
-  return foot;
+/* ═══════════ WHERE BACK ACTUALLY GOES ═══════════
+   Back used to mean "the hall", from everywhere, which is not what the
+   word means. Every screen that goes deeper leaves a way of restoring
+   the one before it, and Back pops that. The hall is a separate,
+   quieter way out at the bottom — one of them, not two.
+   ════════════════════════════════════════════════════════════════ */
+const trail = [];
+function pushTrail(label, restore) {
+  trail.push({ label: label, restore: restore });
+  if (trail.length > 40) trail.shift();
 }
+function trailTop() { return trail.length ? trail[trail.length - 1] : null; }
+function clearTrail() { trail.length = 0; }
+function goBack() {
+  stopBooth();
+  const prev = trail.pop();
+  if (prev) { prev.restore(); return; }
+  goHall();
+}
+function goHall() { stopBooth(); clearTrail(); renderHall(); show("hall"); setAct(markCount() ? 3 : 2); paintNav("home"); }
+
+/* The one footer every chamber ends with: back to where you were,
+   forward to what comes next where there is one, and a single way home
+   underneath them. */
+function scrollTop() {
+  try { window.scrollTo({ top: 0, behavior: prefersStill() ? "auto" : "smooth" }); }
+  catch (e) { window.scrollTo(0, 0); }
+}
+function footNav(opts) {
+  opts = opts || {};
+  const wrap = el("div", "foot-nav");
+  const row = el("div", "fn-row");
+
+  const top = trailTop();
+  const backLab = opts.backLabel || (top ? top.label : "Back");
+  const back = el("button", "fn-back", "\u2190 " + backLab);
+  back.setAttribute("aria-label", "Back to " + backLab);
+  back.addEventListener("click", opts.back || goBack);
+  row.appendChild(back);
+
+  if (opts.next) {
+    const n = el("button", "fn-next", (opts.nextLabel || "Next") + " \u2192");
+    n.addEventListener("click", opts.next);
+    row.appendChild(n);
+  } else {
+    row.appendChild(el("span", "fn-gap"));
+  }
+  wrap.appendChild(row);
+
+  if (opts.note) wrap.appendChild(el("p", "fn-note", opts.note));
+
+  const home = el("button", "link fn-home", "Back to the hall");
+  home.addEventListener("click", goHall);
+  wrap.appendChild(home);
+  return wrap;
+}
+/* Kept so every chamber that already called it gains the new footer. */
+function backFoot(opts) { return footNav(opts); }
 
 /* ═══════════════════════════════════════════════════════════
    GUIDE 1 · THE SEVEN PROCEDURES
@@ -6115,27 +6188,16 @@ function runProcedures() {
       stage.appendChild(close);
     }
 
-    const pager = el("div", "pager");
-    const left = el("div", "foot");
-    if (cur > 0) {
-      const prev = el("button", "ghost", "← " + PROCEDURES[cur - 1].en);
-      prev.addEventListener("click", () => { cur--; render(); });
-      left.appendChild(prev);
-    }
-    if (cur < PROCEDURES.length - 1) {
-      const next = el("button", null, PROCEDURES[cur + 1].en + " →");
-      next.addEventListener("click", () => { cur++; render(); });
-      left.appendChild(next);
-    } else {
-      const t = ITEMS.find(x => x.id === "nameproc");
-      const go = el("button", null, "Now try naming them →");
-      go.addEventListener("click", () => openItem(t));
-      left.appendChild(go);
-    }
-    pager.appendChild(left);
-    pager.appendChild(el("p", "note", "Procedure " + (cur + 1) + " of " + PROCEDURES.length));
+    const lastOne = cur >= PROCEDURES.length - 1;
+    const tryIt = ITEMS.find(x => x.id === "nameproc");
+    const pager = footNav({
+      back: cur > 0 ? (() => { cur--; render(); scrollTop(); }) : null,
+      backLabel: cur > 0 ? PROCEDURES[cur - 1].en : "",
+      next: lastOne ? (() => openItem(tryIt)) : (() => { cur++; render(); scrollTop(); }),
+      nextLabel: lastOne ? "Now try naming them" : PROCEDURES[cur + 1].en,
+      note: "Procedure " + (cur + 1) + " of " + PROCEDURES.length
+    });
     stage.appendChild(pager);
-    stage.appendChild(backFoot());
   }
   render();
 }
@@ -6202,26 +6264,14 @@ function runTextTypes() {
     card.appendChild(xf);
     stage.appendChild(card);
 
-    const pager = el("div", "pager");
-    const left = el("div", "foot");
-    if (cur > 0) {
-      const prev = el("button", "ghost", "← " + TEXT_WORLDS[cur - 1].en);
-      prev.addEventListener("click", () => { cur--; render(); });
-      left.appendChild(prev);
-    }
-    if (cur < TEXT_WORLDS.length - 1) {
-      const next = el("button", null, TEXT_WORLDS[cur + 1].en + " →");
-      next.addEventListener("click", () => { cur++; render(); });
-      left.appendChild(next);
-    } else {
-      const go = el("button", null, "To the trials →");
-      go.addEventListener("click", () => { renderHall(); show("hall"); setAct(3); });
-      left.appendChild(go);
-    }
-    pager.appendChild(left);
-    pager.appendChild(el("p", "note", "World " + (cur + 1) + " of " + TEXT_WORLDS.length));
+    const pager = footNav({
+      back: cur > 0 ? (() => { cur--; render(); scrollTop(); }) : null,
+      backLabel: cur > 0 ? TEXT_WORLDS[cur - 1].en : "",
+      next: cur < TEXT_WORLDS.length - 1 ? (() => { cur++; render(); scrollTop(); }) : null,
+      nextLabel: cur < TEXT_WORLDS.length - 1 ? TEXT_WORLDS[cur + 1].en : "",
+      note: "World " + (cur + 1) + " of " + TEXT_WORLDS.length
+    });
     stage.appendChild(pager);
-    stage.appendChild(backFoot());
   }
   render();
 }
@@ -6396,26 +6446,13 @@ function runToolkit() {
       stage.appendChild(grid);
     }
 
-    const pager = el("div", "pager");
-    const left = el("div", "foot");
-    if (tab > 0) {
-      const prev = el("button", "ghost", "← " + TABS[tab - 1]);
-      prev.addEventListener("click", () => { tab--; render(); });
-      left.appendChild(prev);
-    }
-    if (tab < TABS.length - 1) {
-      const next = el("button", null, TABS[tab + 1] + " →");
-      next.addEventListener("click", () => { tab++; render(); });
-      left.appendChild(next);
-    } else {
-      const go = el("button", null, "To the trials →");
-      go.addEventListener("click", () => { renderHall(); show("hall"); setAct(3); });
-      left.appendChild(go);
-    }
-    pager.appendChild(left);
-    pager.appendChild(el("p", "note", TABS[tab]));
-    stage.appendChild(pager);
-    stage.appendChild(backFoot());
+    stage.appendChild(footNav({
+      back: tab > 0 ? (() => { tab--; render(); scrollTop(); }) : null,
+      backLabel: tab > 0 ? TABS[tab - 1] : "",
+      next: tab < TABS.length - 1 ? (() => { tab++; render(); scrollTop(); }) : null,
+      nextLabel: tab < TABS.length - 1 ? TABS[tab + 1] : "",
+      note: TABS[tab]
+    }));
   }
   render();
 }
@@ -6571,22 +6608,13 @@ function runErrors() {
       stage.appendChild(list);
     }
 
-    const pager = el("div", "pager");
-    const foot = el("div", "foot");
-    if (tab > 0) {
-      const prev = el("button", "ghost", "← " + TABS[tab - 1]);
-      prev.addEventListener("click", () => { tab--; render(); });
-      foot.appendChild(prev);
-    }
-    if (tab < TABS.length - 1) {
-      const next = el("button", null, TABS[tab + 1] + " →");
-      next.addEventListener("click", () => { tab++; render(); });
-      foot.appendChild(next);
-    }
-    pager.appendChild(foot);
-    pager.appendChild(el("p", "note", TABS[tab]));
-    stage.appendChild(pager);
-    stage.appendChild(backFoot());
+    stage.appendChild(footNav({
+      back: tab > 0 ? (() => { tab--; render(); scrollTop(); }) : null,
+      backLabel: tab > 0 ? TABS[tab - 1] : "",
+      next: tab < TABS.length - 1 ? (() => { tab++; render(); scrollTop(); }) : null,
+      nextLabel: tab < TABS.length - 1 ? TABS[tab + 1] : "",
+      note: TABS[tab]
+    }));
   }
   render();
 }
@@ -6651,7 +6679,10 @@ function runCommentary() {
           '<span class="wb-src"' + (p.dir === "ar-en" ? ' dir="rtl" lang="ar"' : '') + '>' +
             (p.src.length > 130 ? p.src.slice(0, 130) + "…" : p.src) + '</span>' +
           '<span class="wb-state">' + (workDone(p.id) ? "Kept" : "Not yet") + '</span>';
-        b.addEventListener("click", () => { open = p; editor(); });
+        b.addEventListener("click", () => {
+          pushTrail("All passages", () => { open = null; list(); });
+          open = p; editor(); scrollTop();
+        });
         grid.appendChild(b);
       });
       stage.appendChild(grid);
@@ -6666,10 +6697,6 @@ function runCommentary() {
     let shown = workDone(p.id);          /* the model shows only once something is kept */
     stage.innerHTML = "";
     setDots(WORKBENCH.length, workCount(), WORKBENCH.indexOf(p));
-
-    const back = el("button", "link", "← All passages");
-    back.addEventListener("click", () => { open = null; list(); });
-    stage.appendChild(back);
 
     const card = el("div", "prompt");
     card.appendChild(el("p", "ask",
@@ -6734,7 +6761,13 @@ function runCommentary() {
         "The handbook's version appears once you have kept your own. That order is the point."));
     }
 
-    stage.appendChild(backFoot());
+    const at = WORKBENCH.indexOf(p);
+    const after = WORKBENCH[at + 1];
+    stage.appendChild(footNav({
+      next: after ? (() => { open = after; editor(); scrollTop(); }) : null,
+      nextLabel: after ? "Level " + after.lvl + " · " + after.ch : "",
+      note: "Passage " + (at + 1) + " of " + WORKBENCH.length
+    }));
   }
 
   list();
@@ -7093,7 +7126,10 @@ function runMinor() {
             '<span class="m-en">' + c.en + '</span>' +
             '<span class="m-arname" dir="rtl" lang="ar">' + c.ar + '</span>' +
           '</span>';
-        b.addEventListener("click", () => { open = Object.assign({ group: g }, c); course(); });
+        b.addEventListener("click", () => {
+        pushTrail("All ten courses", () => { open = null; list(); });
+        open = Object.assign({ group: g }, c); course();
+      });
         grid.appendChild(b);
       });
       stage.appendChild(grid);
@@ -7109,10 +7145,6 @@ function runMinor() {
     const i = all.findIndex(x => x.code === c.code);
     setCount(c.code + " · " + c.group.en);
     setDots(all.length, i, i);
-
-    const back = el("button", "link", "← All ten courses");
-    back.addEventListener("click", () => { open = null; list(); });
-    stage.appendChild(back);
 
     /* The name, then the one sentence you could quote, then the facts as
        facts. Three things a student wants before any prose at all. */
@@ -7182,22 +7214,11 @@ function runMinor() {
       'chambers above are the nearest thing the Guild has to this course.</p>';
     stage.appendChild(slot);
 
-    const pager = el("div", "pager");
-    const foot = el("div", "foot");
-    if (i > 0) {
-      const prev = el("button", "ghost", "← " + all[i - 1].code + " " + all[i - 1].en);
-      prev.addEventListener("click", () => { open = all[i - 1]; course(); });
-      foot.appendChild(prev);
-    }
-    if (i < all.length - 1) {
-      const next = el("button", null, all[i + 1].code + " " + all[i + 1].en + " →");
-      next.addEventListener("click", () => { open = all[i + 1]; course(); });
-      foot.appendChild(next);
-    }
-    pager.appendChild(foot);
-    pager.appendChild(el("p", "note", c.group.en + " · " + c.group.rule));
-    stage.appendChild(pager);
-    stage.appendChild(backFoot());
+    stage.appendChild(footNav({
+      next: i < all.length - 1 ? (() => { open = all[i + 1]; course(); }) : null,
+      nextLabel: i < all.length - 1 ? all[i + 1].code + " " + all[i + 1].en : "",
+      note: c.group.en + " · " + c.group.rule
+    }));
   }
 
   list();
@@ -7616,7 +7637,10 @@ function chooseGenre() {
         '<span class="g-hint">' + g.hint + '</span>' +
       '</span>' +
       '<span class="g-n">' + n + ' items</span>';
-    b.addEventListener("click", () => { state.genre = g.id; save(); boothRound(g); });
+    b.addEventListener("click", () => {
+      pushTrail("All settings", () => chooseGenre());
+      state.genre = g.id; save(); boothRound(g);
+    });
     grid.appendChild(b);
   });
   stage.appendChild(grid);
@@ -7695,10 +7719,6 @@ function boothRound(genre) {
   stage.innerHTML = "";
   setCount(genre.en + " · " + (into === "ar" ? "EN → AR" : "AR → EN"));
   setDots(queue.length, 0, 0);
-
-  const back = el("button", "link", "← Another setting");
-  back.addEventListener("click", () => { stopBooth(); chooseGenre(); });
-  stage.appendChild(back);
 
   const card = el("div", "prompt");
   const step = el("p", "ask", "");
@@ -8042,23 +8062,13 @@ function runPhraseology() {
     v.appendChild(el("p", "vb", set.note));
     stage.appendChild(v);
 
-    const pager = el("div", "pager");
-    const left = el("div", "foot");
-    if (cur > 0) {
-      const prev = el("button", "ghost", "← " + PHRASE_SETS[cur - 1].en);
-      prev.addEventListener("click", () => { cur--; render(); });
-      left.appendChild(prev);
-    }
-    if (cur < PHRASE_SETS.length - 1) {
-      const next = el("button", null, PHRASE_SETS[cur + 1].en + " →");
-      next.addEventListener("click", () => { cur++; render(); });
-      left.appendChild(next);
-    }
-    const back = el("button", "ghost", "Back to the hall");
-    back.addEventListener("click", () => { renderHall(); show("hall"); });
-    left.appendChild(back);
-    pager.appendChild(left);
-    pager.appendChild(el("p", "note", "A chamber · free to wander · nothing here is scored"));
+    const pager = footNav({
+      back: cur > 0 ? (() => { cur--; render(); scrollTop(); }) : null,
+      backLabel: cur > 0 ? PHRASE_SETS[cur - 1].en : "",
+      next: cur < PHRASE_SETS.length - 1 ? (() => { cur++; render(); scrollTop(); }) : null,
+      nextLabel: cur < PHRASE_SETS.length - 1 ? PHRASE_SETS[cur + 1].en : "",
+      note: "A chamber · free to wander · nothing here is scored"
+    });
     stage.appendChild(pager);
   }
   render();
@@ -8117,11 +8127,7 @@ function runRegister() {
 
     /* A Chamber is not scored: there is nothing to finish and nothing to
        win, so it offers no button that pretends otherwise. */
-    const foot = el("div", "foot");
-    foot.appendChild(el("p", "note", "A chamber · free to wander · nothing here is scored"));
-    const back = el("button", "ghost", "Back to the hall");
-    back.addEventListener("click", () => { renderHall(); show("hall"); });
-    foot.appendChild(back);
+    const foot = footNav({ note: "A chamber · free to wander · nothing here is scored" });
     stage.appendChild(foot);
   }
   render();
