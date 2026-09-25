@@ -1679,10 +1679,11 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
    around it: at this size weight reads as care rather than as volume. */
 .credit {
   margin: 2.6rem 0 0; padding-top: 1.4rem; border-top: var(--hair);
-  text-align: center; font-size: .84rem; font-weight: 500; letter-spacing: .05em;
-  color: var(--lilac); text-wrap: balance;
+  text-align: center; font-size: .86rem; font-weight: 500; letter-spacing: .07em;
+  color: var(--lilac);
 }
-.credit b { font-weight: 700; letter-spacing: .09em; color: var(--lilac); white-space: nowrap; }
+.credit[hidden] { display: none; }
+.credit b { font-weight: 700; letter-spacing: .1em; color: var(--lilac); white-space: nowrap; }
 
 /* ═══════════ THE HALL MARK — logo ringed by your marks ═══════════ */
 .hall-mark { position: relative; width: 104px; height: 104px; flex: none; }
@@ -2052,7 +2053,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 
   <!-- Last child of the app, so it stands at the foot of whichever screen
        is open rather than only the hall. -->
-  <p class="credit">© 2026 <b>Shaikha Al-Khaldi</b>. All Rights Reserved.</p>
+  <p class="credit" id="credit" hidden></p>
 
 </main>
 
@@ -6159,6 +6160,7 @@ function show(name) {
 
   /* the bar belongs to the Guild, not to the gate */
   if (typeof showNav === "function") showNav(name !== "gate");
+  paintCredit(name);
   if (typeof paintNav === "function") paintNav(TABS[name] || "");
 }
 
@@ -7236,6 +7238,25 @@ function paintNav(active) {
 }
 
 /* The bar belongs to the signed-in Guild, never to the gate. */
+/* The byline belongs on the screens that are about the site and the
+   person behind it — the front door, the hall, and the profile — and not
+   on a sign-language letter or a course unit, where the content is the
+   subject and a name at the foot is only in the way. Seen on three
+   screens it reads as a signature; seen on fifteen it reads as a
+   watermark. */
+const CREDIT_ON = {
+  gate: '\u00a9 2026 <b>Shaikha Al-Khaldi</b>',
+  hall: '<b>Shaikha Al-Khaldi</b>',
+  seal: '\u00a9 2026 <b>Shaikha Al-Khaldi</b>'
+};
+function paintCredit(view) {
+  const c = document.getElementById("credit");
+  if (!c) return;
+  const html = CREDIT_ON[view];
+  c.hidden = !html;
+  c.innerHTML = html || "";
+}
+
 function showNav(on) {
   if (!navBar) return;
   navBar.hidden = !on;
