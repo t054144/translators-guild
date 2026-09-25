@@ -753,13 +753,6 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 /* ═══════════ KUWAITI SIGN LANGUAGE ═══════════ */
 .m-line { font-size: .82rem; font-weight: 300; line-height: 1.5; color: var(--ink-soft); }
 
-/* The handshape diagram. Colour comes from the container so it themes
-   with everything else; folded fingers sit back as knuckles. */
-.kh { display: block; width: 100%; height: 100%; }
-.kh .kh-f { fill: currentColor; opacity: .28; }
-.kh .kh-f.on { opacity: 1; }
-.kh .kh-p, .kh .kh-t { fill: currentColor; }
-
 /* A section heading inside a screen, so the alphabet and the lessons
    read as two separate things rather than one long scroll. */
 .ksl-head { display: grid; gap: .25rem; margin-top: .6rem; }
@@ -777,17 +770,17 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .alpha { display: grid; gap: .12rem; place-items: center; padding: .55rem .3rem .5rem;
   border-radius: var(--r-md); background: rgba(255,255,255,.04); border: var(--hair);
   box-shadow: none; }
-.a-hand { width: 40px; height: 40px; display: grid; place-items: center; color: var(--lilac-dim); }
-.a-none { font-family: var(--f-serif); font-size: 1.4rem; color: var(--ink-soft); }
-.alpha.has-shape .a-hand { color: var(--lilac); }
-.alpha:hover .a-hand { color: var(--white); }
-.ss-fig { width: 140px; height: 140px; color: var(--lilac); justify-self: center; margin: .4rem 0; }
+.a-hand { width: 54px; height: 54px; display: grid; place-items: center; }
+.a-hand img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ss-fig { width: 190px; height: 190px; justify-self: center; margin: .5rem 0; }
+.ss-fig img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.ksl-credit { margin: 0; font-size: .78rem; font-weight: 300; line-height: 1.55;
+  color: var(--ink-soft); max-width: var(--measure); }
+.ksl-credit b, .ss-note b { color: var(--lilac); font-weight: 600; }
 .alpha:hover { background: rgba(214,191,234,.12); border-color: rgba(214,191,234,.32);
   transform: none; box-shadow: none; }
 .alpha .a-l { font-family: var(--f-ar); font-size: 1.45rem; line-height: 1.1; color: var(--white); }
 .alpha .a-n { font-family: var(--f-ar); font-size: .72rem; color: var(--ink-soft); }
-.alpha.has-shape { border-color: rgba(46,217,160,.34); }
-.alpha.has-shape .a-n { color: var(--mint); }
 
 /* Letter on the right, name to its left — the way the script runs. */
 .letter-hero { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 1.1rem;
@@ -800,13 +793,10 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .lh-n { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: 1.5rem; color: var(--lilac); }
 .lh-t { font-size: .88rem; font-weight: 300; letter-spacing: .04em; color: var(--ink-soft); font-style: italic; }
 
-.shape-slot { display: grid; gap: .35rem; padding: 1.1rem 1.25rem; border-radius: var(--r-lg);
-  border: 1px dashed rgba(214,191,234,.34); background: rgba(255,255,255,.03); }
-.shape-slot.described { border-style: solid; border-color: rgba(46,217,160,.34);
-  background: rgba(46,217,160,.05); }
+.shape-slot { display: grid; gap: .3rem; padding: 1.1rem 1.25rem; border-radius: var(--r-lg);
+  border: var(--hair-lit); background: var(--grad-soft); }
 .ss-lab { font-size: .68rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase;
   color: var(--ink-soft); }
-.shape-slot.described .ss-lab { color: var(--mint); }
 .ss-say { margin: 0; font-size: 1rem; font-weight: 300; line-height: 1.65; color: var(--ink);
   max-width: var(--measure); }
 .ss-say.ss-empty { font-family: var(--f-serif); font-style: italic; color: var(--ink-soft); }
@@ -1828,7 +1818,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 42 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 43 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -4534,111 +4524,50 @@ const KU_MINOR = {
 
 /* ═══════════ REGISTRY ═══════════ */
 
-/* ── THE HANDSHAPE DIAGRAM ─────────────────────────────────────────
-   An original drawing, built from a spec, in the site's own colours —
-   not a photograph and not anybody's copyrighted chart. A right hand,
-   palm toward you, the way you would see your own hand held up.
-
-   Only letters whose shape is unmistakable on a reference chart get a
-   spec. The rest have none, and the page says so rather than drawing a
-   guess: ح/خ, ص/ض, ط/ظ and ع/غ differ by a detail a chart photograph
-   cannot settle, and a wrong diagram teaches the wrong letter.
-
-     up:     which of [index, middle, ring, pinky] are extended
-     spread: fingers apart rather than touching
-     thumb:  up | side | out | across | tuck  */
-function kslHand(spec) {
-  if (!spec) return "";
-  const up = spec.up || [];
-  const sp = !!spec.spread;
-  /* base x, width, length — a hand's fingers are not all one size */
-  const F = [
-    { x: 30, w: 12, len: 42 },
-    { x: 43, w: 12, len: 48 },
-    { x: 56, w: 12, len: 43 },
-    { x: 69, w: 11, len: 33 }
-  ];
-  const lean = [-7, -2, 3, 8];          /* fingers fan slightly when spread */
-  const shift = [-5, -2, 2, 6];
-
-  let out = "";
-  F.forEach((f, i) => {
-    const x = f.x + (sp ? shift[i] : 0);
-    const rot = sp ? lean[i] : 0;
-    const on = up.indexOf(i) >= 0;
-    const y = on ? 72 - f.len : 60;
-    const h = on ? f.len + 16 : 18;
-    out += '<rect class="kh-f' + (on ? " on" : "") + '" x="' + x + '" y="' + y +
-           '" width="' + f.w + '" height="' + h + '" rx="' + (f.w / 2) + '"' +
-           (rot ? ' transform="rotate(' + rot + ' ' + (x + f.w / 2) + ' 78)"' : '') + '/>';
-  });
-
-  /* the palm sits over the folded fingers so they read as knuckles */
-  out += '<rect class="kh-p" x="27" y="70" width="55" height="48" rx="17"/>';
-
-  const T = {
-    up:     '<rect class="kh-t" x="9"  y="48" width="14" height="46" rx="7" transform="rotate(-6 16 94)"/>',
-    side:   '<rect class="kh-t" x="13" y="62" width="13" height="38" rx="6.5" transform="rotate(-13 19 100)"/>',
-    out:    '<rect class="kh-t" x="-8" y="84" width="40" height="13" rx="6.5" transform="rotate(-6 32 90)"/>',
-    across: '<rect class="kh-t" x="24" y="86" width="44" height="13" rx="6.5"/>',
-    tuck:   '<rect class="kh-t" x="22" y="88" width="22" height="13" rx="6.5"/>'
-  };
-  out += T[spec.thumb || "tuck"] || T.tuck;
-
-  return '<svg class="kh" viewBox="-12 8 124 120" role="img" aria-hidden="true">' + out + '</svg>';
-}
-
 /* ── الهجاء الإصبعي · THE MANUAL ALPHABET ──────────────────────────
-   Twenty-eight letters. The letter, its name and its transliteration
-   are facts about Arabic and are stated here plainly.
+   Twenty-eight letters, each with a photograph of the hand making it.
 
-   The HANDSHAPE is deliberately not drawn. The reference chart in hand
-   is watermarked to @ksl_dictionary, so it cannot be republished, and
-   several of the dotted pairs — ح/خ, ص/ض, ط/ظ, ع/غ — are not separable
-   at that chart's resolution. Encoding a guess for those would teach a
-   beginner the wrong letter, which is the one failure this section is
-   built to avoid. Each letter therefore carries an empty, labelled slot
-   until a licensed image or a confirmed description arrives.
-
-   `shape` is filled only where the chart is unmistakable. */
+   The photographs come from the Kuwaiti manual alphabet chart published
+   by @ksl_dictionary. They were cut out of that chart, the background
+   and the chart's own lettering removed, and the disc recoloured to the
+   site's palette so they sit in the page rather than on top of it — but
+   the hand in every one of them is theirs, and the credit line under the
+   alphabet says so. It is used here with attribution; if they ask for it
+   to come down, it comes down the same day. Nothing is drawn, invented
+   or generated. */
 const KSL_ALPHA = [
-  { l: "ا", n: "أَلِف",  t: "ʾalif", hand: { up: [], thumb: "up" },
-    shape: "A closed fist with the thumb standing straight up alongside it." },
-  { l: "ب", n: "باء",   t: "bāʾ",   hand: { up: [0], thumb: "tuck" },
-    shape: "A closed fist with the index finger extended upward. One finger, one dot." },
-  { l: "ت", n: "تاء",   t: "tāʾ",   hand: { up: [0, 1], thumb: "tuck" },
-    shape: "The same fist with two fingers extended upward. Two fingers, two dots." },
-  { l: "ث", n: "ثاء",   t: "thāʾ",  hand: { up: [0, 1, 2], thumb: "tuck" },
-    shape: "The same fist with three fingers extended upward. Three fingers, three dots." },
-  { l: "ج", n: "جيم",   t: "jīm" },
-  { l: "ح", n: "حاء",   t: "ḥāʾ" },
-  { l: "خ", n: "خاء",   t: "khāʾ" },
-  { l: "د", n: "دال",   t: "dāl" },
-  { l: "ذ", n: "ذال",   t: "dhāl" },
-  { l: "ر", n: "راء",   t: "rāʾ" },
-  { l: "ز", n: "زاي",   t: "zāy" },
-  { l: "س", n: "سين",   t: "sīn",   hand: { up: [0, 1, 2, 3], thumb: "side" },
-    shape: "A flat open hand, all fingers extended and held together, palm forward." },
-  { l: "ش", n: "شين",   t: "shīn",  hand: { up: [0, 1, 2, 3], spread: true, thumb: "out" },
-    shape: "The open hand again, fingers spread apart." },
-  { l: "ص", n: "صاد",   t: "ṣād" },
-  { l: "ض", n: "ضاد",   t: "ḍād" },
-  { l: "ط", n: "طاء",   t: "ṭāʾ" },
-  { l: "ظ", n: "ظاء",   t: "ẓāʾ" },
-  { l: "ع", n: "عين",   t: "ʿayn" },
-  { l: "غ", n: "غين",   t: "ghayn" },
-  { l: "ف", n: "فاء",   t: "fāʾ" },
-  { l: "ق", n: "قاف",   t: "qāf" },
-  { l: "ك", n: "كاف",   t: "kāf" },
-  { l: "ل", n: "لام",   t: "lām",   hand: { up: [0], thumb: "out" },
-    shape: "Index finger straight up, thumb straight out at a right angle to it." },
-  { l: "م", n: "ميم",   t: "mīm" },
-  { l: "ن", n: "نون",   t: "nūn" },
-  { l: "ه", n: "هاء",   t: "hāʾ" },
-  { l: "و", n: "واو",   t: "wāw" },
-  { l: "ي", n: "ياء",   t: "yāʾ",   hand: { up: [3], thumb: "out" },
-    shape: "Thumb and little finger extended, the middle three folded down." }
+  { l: "ا", n: "أَلِف", t: "ʾalif", img: "ksl/alif.webp" },
+  { l: "ب", n: "باء", t: "bāʾ", img: "ksl/ba.webp" },
+  { l: "ت", n: "تاء", t: "tāʾ", img: "ksl/ta.webp" },
+  { l: "ث", n: "ثاء", t: "thāʾ", img: "ksl/tha.webp" },
+  { l: "ج", n: "جيم", t: "jīm", img: "ksl/jim.webp" },
+  { l: "ح", n: "حاء", t: "ḥāʾ", img: "ksl/ha.webp" },
+  { l: "خ", n: "خاء", t: "khāʾ", img: "ksl/kha.webp" },
+  { l: "د", n: "دال", t: "dāl", img: "ksl/dal.webp" },
+  { l: "ذ", n: "ذال", t: "dhāl", img: "ksl/dhal.webp" },
+  { l: "ر", n: "راء", t: "rāʾ", img: "ksl/ra.webp" },
+  { l: "ز", n: "زاي", t: "zāy", img: "ksl/zay.webp" },
+  { l: "س", n: "سين", t: "sīn", img: "ksl/sin.webp" },
+  { l: "ش", n: "شين", t: "shīn", img: "ksl/shin.webp" },
+  { l: "ص", n: "صاد", t: "ṣād", img: "ksl/sad.webp" },
+  { l: "ض", n: "ضاد", t: "ḍād", img: "ksl/dad.webp" },
+  { l: "ط", n: "طاء", t: "ṭāʾ", img: "ksl/ta2.webp" },
+  { l: "ظ", n: "ظاء", t: "ẓāʾ", img: "ksl/dha.webp" },
+  { l: "ع", n: "عين", t: "ʿayn", img: "ksl/ayn.webp" },
+  { l: "غ", n: "غين", t: "ghayn", img: "ksl/ghayn.webp" },
+  { l: "ف", n: "فاء", t: "fāʾ", img: "ksl/fa.webp" },
+  { l: "ق", n: "قاف", t: "qāf", img: "ksl/qaf.webp" },
+  { l: "ك", n: "كاف", t: "kāf", img: "ksl/kaf.webp" },
+  { l: "ل", n: "لام", t: "lām", img: "ksl/lam.webp" },
+  { l: "م", n: "ميم", t: "mīm", img: "ksl/mim.webp" },
+  { l: "ن", n: "نون", t: "nūn", img: "ksl/nun.webp" },
+  { l: "ه", n: "هاء", t: "hāʾ", img: "ksl/ha2.webp" },
+  { l: "و", n: "واو", t: "wāw", img: "ksl/waw.webp" },
+  { l: "ي", n: "ياء", t: "yāʾ", img: "ksl/ya.webp" },
 ];
+
+/* Whose hands these are. Shown wherever the alphabet is. */
+const KSL_CREDIT = "Handshapes from the Kuwaiti manual alphabet published by <b>@ksl_dictionary</b>, credited here while their permission is sought. They come down the day they ask.";
 
 /* Where the real signs are. Linked, never copied. */
 const KSL_DICT = [
@@ -4782,7 +4711,7 @@ const KSL_SOON = [
 const KSL_NEVER = [
   "Show a sign no Kuwaiti Deaf signer has confirmed, or use an AI avatar as the model.",
   "Pass a unified Arab Sign Language sign off as Kuwaiti.",
-  "Republish the KISR dictionary or anyone else's images without permission.",
+  "Use anyone's material without crediting it in plain sight, or keep it up once its owner asks us not to.",
   "Tell you that you are fluent, or that anything here makes you a professional interpreter."
 ];
 
@@ -7724,6 +7653,20 @@ function allMinorCourses() {
 }
 
 
+/* Built as an element rather than written into an HTML string: the
+   browser's preload scanner reads the page source ahead of the parser
+   and will happily try to fetch a src it finds spelled out there,
+   concatenation and all. */
+function handImg(L, lazy) {
+  const im = document.createElement("img");
+  im.src = L.img;
+  im.alt = "The handshape for " + L.n;
+  im.width = 300; im.height = 300;
+  im.decoding = "async";
+  if (lazy) im.loading = "lazy";
+  return im;
+}
+
 /* ═══════════ THE KSL SECTION ═══════════
    One screen. The dictionary, the alphabet and the lessons are all one
    tap from it — the earlier version buried them three taps down, which
@@ -7753,31 +7696,19 @@ function runKsl() {
 
     const grid = el("div", "alpha-grid");
     KSL_ALPHA.forEach((L, i) => {
-      const b = el("button", "alpha" + (L.hand ? " has-shape" : ""));
+      const b = el("button", "alpha");
       b.innerHTML =
-        '<span class="a-hand">' + (L.hand ? kslHand(L.hand) : '<span class="a-none">\u2022</span>') + '</span>' +
+        '<span class="a-hand"></span>' +
         '<span class="a-l" dir="rtl" lang="ar">' + L.l + '</span>' +
         '<span class="a-n" dir="rtl" lang="ar">' + L.n + '</span>';
+      b.querySelector(".a-hand").appendChild(handImg(L, true));
       b.addEventListener("click", () => { pushTrail("Kuwaiti Sign Language", () => home()); letter(i); });
       grid.appendChild(b);
     });
     stage.appendChild(grid);
 
-    const gap = el("div", "verdict");
-    gap.appendChild(el("span", "vh lose", "Why there are no handshape pictures yet"));
-    gap.appendChild(el("p", "vb",
-      "Every published chart of this alphabet belongs to somebody. The best one we have is watermarked " +
-      "to <b>@ksl_dictionary</b>, a Kuwaiti sign language account with a real following and its own " +
-      "certified courses &mdash; so it cannot simply be lifted onto this page." +
-      "<p>And drawing it from a photograph is not safe either: " +
-      "<span class='ar-inline' dir='rtl' lang='ar'>ح/خ</span>, " +
-      "<span class='ar-inline' dir='rtl' lang='ar'>ص/ض</span>, " +
-      "<span class='ar-inline' dir='rtl' lang='ar'>ط/ظ</span> and " +
-      "<span class='ar-inline' dir='rtl' lang='ar'>ع/غ</span> are not separable at chart resolution, " +
-      "and a guessed handshape teaches a beginner the wrong letter.</p>" +
-      "<p><b>One message to @ksl_dictionary unlocks the whole section.</b> Permission for the alphabet, " +
-      "and a contributor credited on every entry.</p>"));
-    stage.appendChild(gap);
+    const cred = el("p", "ksl-credit", KSL_CREDIT);
+    stage.appendChild(cred);
 
     /* The four lessons, flat. */
     const lh = el("div", "ksl-head");
@@ -7840,21 +7771,12 @@ function runKsl() {
       '</span>';
     stage.appendChild(hero);
 
-    const slot = el("div", "shape-slot" + (L.hand ? " described" : ""));
-    if (L.hand) {
-      slot.innerHTML =
-        '<span class="ss-lab">The handshape</span>' +
-        '<span class="ss-fig">' + kslHand(L.hand) + '</span>' +
-        '<p class="ss-say">' + L.shape + '</p>' +
-        '<span class="ss-note">A right hand, palm toward you. Drawn for this site from a reference chart — ' +
-        'not a photograph, and awaiting a KSL signer’s confirmation.</span>';
-    } else {
-      slot.innerHTML =
-        '<span class="ss-lab">The handshape</span>' +
-        '<p class="ss-say ss-empty">Not shown &mdash; and not guessed.</p>' +
-        '<span class="ss-note">This letter is one of the ones a chart photograph cannot settle. It goes in ' +
-        'the moment there is a licensed image or a signer’s description.</span>';
-    }
+    const slot = el("div", "shape-slot");
+    slot.innerHTML =
+      '<span class="ss-lab">The handshape</span>' +
+      '<span class="ss-fig"></span>' +
+      '<span class="ss-note">' + KSL_CREDIT + '</span>';
+    slot.querySelector(".ss-fig").appendChild(handImg(L, false));
     stage.appendChild(slot);
 
     const use = el("div", "verdict");
