@@ -6,7 +6,7 @@ module.exports = [
 ],
 [
 "p",
-"This log records every correction made to the Translation Handbook during the expert review carried out before publication. The review was prompted by an error found on the first page of Chapter 1. The whole book was then reviewed, in both languages, for errors of concept and fact, Arabic language and terminology, examples, consistency, repetition, English, neutrality and citations."
+"This log records every correction made to the Translation Handbook during the expert review carried out before publication. The review was prompted by an error found on the first page of Chapter 1. The whole book was then reviewed, in both languages, for errors of concept and fact, Arabic language and terminology, examples, consistency, repetition, English, neutrality and citations. The practice section, answer key and checklists were later removed to shorten the handbook, so the corrections listed for them (Level 1, Answer key, Checklists) no longer apply."
 ],
 [
 "h1",

@@ -17,7 +17,7 @@ GRAD = 'linear-gradient(165deg, #8F04BC 0%, #6E05C9 50%, #5507DA 100%)'
 Q = '“Words travel worlds.<br>Translators do the driving.”'
 WHO = 'Anna Rusconi, translator'
 BLURB = 'A step-by-step guide for complete beginners who want to translate between English and Arabic.'
-LIS = '<ul><li>27 short chapters, from first steps to subtitling</li><li>Examples in both languages, with exercises and answers</li><li>Practice texts, checklists and a glossary</li></ul>'
+LIS = '<ul><li>27 short chapters, from first steps to subtitling</li><li>Examples in both languages, with exercises and answers</li><li>A glossary of key terms, with their Arabic equivalents</li></ul>'
 EN = 'Translation<br>Handbook'; AR = 'دليل الترجمة'
 C = {}
 

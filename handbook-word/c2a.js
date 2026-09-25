@@ -15,8 +15,8 @@ module.exports = [
 ]],
 ['p', '_The Translation Team_'],
 
-['front', 'Acknowledgements'],
-['p', 'The Translation Team thanks every team member who collected material, examples and practice texts for this handbook.'],
+['h', 'Acknowledgements'],
+['p', 'The Translation Team thanks every team member who collected material and examples for this handbook.'],
 
 ['front', 'How to use this handbook'],
 ['h', 'From easy to hard'],
@@ -32,7 +32,7 @@ module.exports = [
   '**Part 8: Checking and explaining.** Revision, risk assessment and commentary.',
   '**Part 9: Audiovisual translation.** Types and challenges of AVT, and subtitling.',
 ]],
-['p', 'At the end you will find practice texts with answers, checklists, a glossary and the references.'],
+['p', 'At the end you will find a glossary of all key terms and the references.'],
 ['h', 'How each chapter works'],
 ['ol', [
   '**Introduction**: what the chapter covers.',
@@ -50,7 +50,7 @@ module.exports = [
 ['h', 'Sources'],
 ['p', 'Published sources are cited in the text, for example (Newmark, 1988), and listed in full in the References. Other examples come from the team’s course materials (Translation Team, n.d.) or were written for this handbook.'],
 
-['front', 'Abbreviations'],
+['h', 'Abbreviations'],
 ['ul', [
   '**AI**: artificial intelligence ({{الذكاء الاصطناعي}})',
   '**AR → EN**: from Arabic into English',
@@ -81,11 +81,11 @@ module.exports = [
 ]],
 ['h', 'What is translation?'],
 ['p', 'Imagine a friend who only speaks Arabic asks what an English sign says. You would not read out the words one by one; you would say what the sign **means**, in good Arabic. That is translation.'],
-['p', 'The team’s course materials define translation as “an activity or process of transferring textual meaning from one language to another” (Translation Team, n.d.). Peter Newmark calls it “rendering the meaning of a text into another language in the way that the author intended the text” (Newmark, 1988, p. 5).'],
+['p', 'The team’s course materials define translation as “an activity or process of transferring textual meaning from one language to another” (Translation Team, n.d.). Another definition is “rendering the meaning of a text into another language in the way that the author intended the text” (Newmark, 1988, p. 5).'],
 ['p', 'So a translator carries **meaning**, not words. English speakers say _Break a leg!_ to wish someone good luck, especially before a performance:'],
 ['ex', 'Word by word: {{اكسر ساقاً!}}  ✗    By meaning: {{بالتوفيق!}}  ✓'],
 ['h', 'Translation is approximation'],
-['p', 'No two languages match perfectly, so a translation is never an exact copy. It is an **approximation**, especially of cultural meaning (Chapter 14). Umberto Eco titled his book on translation _Dire quasi la stessa cosa_, “saying almost the same thing” (Eco, 2003).'],
+['p', 'No two languages match perfectly, so a translation is never an exact copy. It is an **approximation**, especially of cultural meaning (Chapter 14). Translation has been described as “saying almost the same thing” (Eco, 2003).'],
 ['h', 'Translation is communication'],
 ['p', 'You receive the message in one language and pass it on in the other. If your reader does not understand it, the translation has not worked.'],
 ['h', 'Types of translation'],
@@ -105,7 +105,7 @@ module.exports = [
   'has a rich **linguistic repertoire** ({{الحصيلة اللغوية}}), including idioms and fixed expressions;',
   'gains experience through practice and revision.',
 ]],
-['p', 'More than a thousand years ago, the Abbasid writer al-Jāḥiẓ said the same: a translator must know both languages equally well (al-Jāḥiẓ, 1965):'],
+['p', 'The same idea appears in Arabic writing more than a thousand years ago: a translator must know both languages equally well (al-Jāḥiẓ, 1965):'],
 ['ar', 'ولا بدَّ للتَّرجُمانِ من أن يكونَ بيانُه في نفسِ الترجمةِ في وزنِ علمِه في نفسِ المعرفة، وينبغي أن يكونَ أعلمَ الناسِ باللغةِ المنقولةِ والمنقولِ إليها، حتى يكونَ فيهما سواءً وغايةً.'],
 ['h', 'Two kinds of translator'],
 ['p', 'The difference is who chooses the text. A **commissioned translator** translates a text that someone else has asked for, such as a client, an agency or an employer, and follows the client’s brief and requirements (Chapter 2). A **self-initiated translator** chooses the text, such as a poem they love, and makes their own choices.'],
@@ -124,7 +124,7 @@ module.exports = [
   ['Mental draft', 'المسوّدة الذهنية', 'A first idea of the translation that you form while reading the text.'],
 ]],
 ['h', 'Ask three questions'],
-['p', 'A news report for experts and a leaflet for children need different words. Christiane Nord explains that the purpose of a translation decides how it should be translated (Nord, 1997). This idea is called **skopos theory** (Chapter 26). So before you start, ask:'],
+['p', 'A news report for experts and a leaflet for children need different words. The purpose of a translation decides how it should be translated (Nord, 1997). This idea is called **skopos theory** (Chapter 26). So before you start, ask:'],
 ['ol', [
   '**Who is the client?** ({{من هو العميل؟}}) Clients have their own style and rules.',
   '**What is the communicative purpose?** ({{ما الغرض التواصلي؟}}) To inform, to persuade, to instruct or to entertain?',
@@ -169,7 +169,7 @@ module.exports = [
 ['summary', ['Ask three questions first: **client, purpose, audience**.', 'Read the whole text at least twice before you translate.', 'Be faithful, write naturally, and always revise.']],
 
 ['ch', 'Chapter 3: English and Arabic: key differences'],
-['intro', 'The main differences between English and Arabic, based on the course materials, Farghal and Shunnaq (1999) and Ghazala (2008).'],
+['intro', 'The main differences between English and Arabic (Farghal & Shunnaq, 1999; Ghazala, 2008).'],
 ['terms', [
   ['Word order', 'ترتيب الكلمات', 'The order of the subject, verb and object in a sentence.'],
   ['Verbal sentence', 'الجملة الفعلية', 'A sentence that starts with a verb.'],
@@ -190,7 +190,7 @@ module.exports = [
 ['p', 'In the present tense, English needs _is_ and _are_; Arabic normally leaves them out: _Translation is a fascinating field_ → {{الترجمةُ مجالٌ شائق}}. In formal writing, {{تُعدّ}} (“is considered”) is also possible when the sentence gives an opinion: {{تُعدّ الترجمة مجالاً شائقاً}}. Into English, add the verb: {{الطالب في المكتبة}} → _The student is in the library._'],
 ['h', 'Gender and numbers'],
 ['ul', [
-  'English _you_ can be {{أنتَ}} (one man), {{أنتِ}} (one woman), {{أنتما}} (two people), {{أنتم}} (men or a mixed group) or {{أنتنّ}} (women). Arabic must show gender and number; English need not. As Roman Jakobson observed, “languages differ essentially in what they must convey and not in what they may convey” (Jakobson, 1959, p. 236).',
+  'English _you_ can be {{أنتَ}} (one man), {{أنتِ}} (one woman), {{أنتما}} (two people), {{أنتم}} (men or a mixed group) or {{أنتنّ}} (women). Arabic must show gender and number; English need not. In other words, “languages differ essentially in what they must convey and not in what they may convey” (Jakobson, 1959, p. 236).',
   'With the numbers 3 to 10, the number takes the opposite gender to the singular noun: {{ثلاثةُ طلاب}} but {{ثلاثُ طالبات}}.',
   'Some feminine job titles have another meaning ({{نائبة}} can mean “calamity”; {{قاضية}} can mean “fatal”), so some writers avoid them. Today, however, {{قاضية}} and {{نائبة}} are widely used for women judges and members of parliament.',
 ]],
@@ -228,7 +228,7 @@ module.exports = [
 ]],
 ['h', 'The golden rule'],
 ['p', 'Behind every form there is a meaning. In translation we favour meaning over form ({{المعنى أهمّ من الشكل}}): you may change the form, but never the meaning.'],
-['p', 'Nida and Taber (1969) make the same point: anything said in one language can be said in another, unless the form itself is part of the message, as in a poem’s rhyme.'],
+['p', 'Anything said in one language can be said in another, unless the form itself is part of the message, as in a poem’s rhyme (Nida & Taber, 1969).'],
 ['h', 'Changing the form'],
 ['p', 'Forms differ between languages, so you may change them. For example, a noun can become a verb:'],
 ['ul', [
@@ -303,7 +303,7 @@ module.exports = [
   ['Collocation', 'التلازم اللفظي', 'Words that naturally go together; the company a word keeps.'],
 ]],
 ['h', 'The company a word keeps'],
-['p', 'The course materials define collocation as “the company a word keeps”. The idea comes from the linguist J. R. Firth: “You shall know a word by the company it keeps” (Firth, 1957, p. 11). Each language has its own partners, so a collocation often cannot be translated word by word (Baker, 2018).'],
+['p', 'The course materials define collocation as “the company a word keeps”. The idea comes from linguistics: “You shall know a word by the company it keeps” (Firth, 1957, p. 11). Each language has its own partners, so a collocation often cannot be translated word by word (Baker, 2018).'],
 ['p', 'The basic meaning of _pay_ is to give money, but its partners change its meaning:'],
 ['ul', [
   '_pay money_ → {{يدفع المال}} (the basic meaning)',
@@ -370,7 +370,7 @@ module.exports = [
 ['part', 'Part 4: Methods and techniques'],
 
 ['ch', 'Chapter 9: Equivalence'],
-['intro', 'The three types of equivalence described by Farghal and Shunnaq (1999): formal, functional and ideational.'],
+['intro', 'The three types of equivalence: formal, functional and ideational (Farghal & Shunnaq, 1999).'],
 ['terms', [
   ['Equivalence', 'التكافؤ', 'A match between a source-language expression and a target-language expression.'],
   ['Formal equivalence', 'التكافؤ الشكلي', 'Keeping the form of the original: passive for passive, verb for verb.'],
@@ -391,7 +391,7 @@ module.exports = [
   '_Ali is second to none in writing poetry._ Functional: {{عليٌّ لا يُشقّ له غبار في كتابة الشعر}}. Ideational: {{عليٌّ لا يُضاهى في كتابة الشعر}}.',
 ]],
 ['p', 'Try formal equivalence first. If it does not work, look for a functional equivalent. If there is none, give the idea.'],
-['p', 'Nida and Taber sum up the goal: “the closest natural equivalent of the source-language message, first in terms of meaning and secondly in terms of style” (Nida & Taber, 1969, p. 12).'],
+['p', 'The goal is “the closest natural equivalent of the source-language message, first in terms of meaning and secondly in terms of style” (Nida & Taber, 1969, p. 12).'],
 ['try', ['Which type? _Ali is second to none in writing poetry._ → {{عليٌّ لا يُضاهى في كتابة الشعر}}', 'Give a functional equivalent: _The agreement remained a dead letter._'],
         ['Ideational: only the basic idea is kept.', '{{بقيت الاتفاقية حبراً على ورق.}}']],
 ['summary', ['There are three types of equivalence: formal, functional and ideational.', 'Choose the one that gives the closest natural meaning for your reader.']],
@@ -421,7 +421,7 @@ module.exports = [
 ]],
 ['p', 'The last three are very free: they add an interpretation or a new idea. Translation this free comes close to **adaptation**.'],
 ['h', 'Words or meaning?'],
-['p', 'St Jerome, who translated the Bible into Latin, wrote that, except for Holy Scripture, he translated “not word for word but sense for sense” (Jerome, 395/2012). So did the great Abbasid translator Ḥunayn ibn Isḥāq (Baker & Hanna, 2009). As a beginner, translate the meaning, but do not add ideas.'],
+['p', 'The principle of translating “not word for word but sense for sense” is very old (Jerome, 395/2012), and the great Abbasid translators followed it too (Baker & Hanna, 2009). As a beginner, translate the meaning, but do not add ideas.'],
 ['try', ['Is this literal translation successful? _to play a role_ → {{يلعب دوراً}}', 'Correct: _It has been a long day._ → {{لقد كان يوماً طويلاً}}'],
         ['Yes: Arabic uses the same expression.', '{{لقد كان يوماً شاقّاً.}}']],
 ['summary', ['Literal translation works only when the target language has the same expression.', 'Free translation may change the form, but it should not add new ideas.']],
@@ -436,7 +436,7 @@ module.exports = [
 ['h', 'Metaphor and simile'],
 ['p', 'Metaphor: _He is a lion._ Simile: _He is as brave as a lion._ Poetry is especially rich in metaphors. Note that Arabic rhetoric draws the line differently: {{هو أسد}} is a concise simile ({{تشبيه بليغ}}), because both sides of the comparison are named. A {{استعارة}} names only the image, as in {{رأيتُ أسداً يخطب}}.'],
 ['h', 'Four steps for translating a metaphor'],
-['p', 'Follow these steps in order. They are based on four of the seven procedures that Newmark describes for translating metaphors (Newmark, 1988):'],
+['p', 'Follow these steps in order. They are based on four of the seven standard procedures for translating metaphors (Newmark, 1988):'],
 ['ol', [
   '**If the metaphor is shared** by both languages, translate it literally. _She is a snake._ → {{إنها أفعى}}. _My hopes evaporated._ → {{تبخّرت آمالي}}. _My paper will see the light of day next December._ → {{سترى ورقتي البحثية النور في ديسمبر المقبل}}.',
   '**If it is not shared**, replace it with a target-language image with the same meaning. _This is the tip of the iceberg._ → {{هذا غيضٌ من فيض}}, or, when something bad is hidden, {{وما خفي كان أعظم}}.',
@@ -448,7 +448,7 @@ module.exports = [
 ['summary', ['Keep a shared image; replace an unshared one; turn it into a simile; give the plain meaning as a last choice.']],
 
 ['ch', 'Chapter 12: The seven translation procedures'],
-['intro', 'Seven precise techniques, called translation procedures, described by Vinay and Darbelnet (1958/1995).'],
+['intro', 'Seven precise techniques, called translation procedures (Vinay & Darbelnet, 1958/1995).'],
 ['terms', [
   ['Translation procedure', 'إجراء الترجمة', 'A technique for translating a word, phrase or sentence.'],
   ['Borrowing', 'الاقتراض', 'Taking a word from the source language as it is.'],
@@ -459,7 +459,7 @@ module.exports = [
   ['Adaptation (procedure)', 'التكييف', 'Replacing a cultural situation with a familiar one.'],
 ]],
 ['h', 'The seven procedures'],
-['p', 'Newmark explains the difference between methods and procedures: “while translation methods relate to whole texts, translation procedures are used for sentences and the smaller units of language” (Newmark, 1988, p. 81).'],
+['p', 'The difference between methods and procedures is this: “while translation methods relate to whole texts, translation procedures are used for sentences and the smaller units of language” (Newmark, 1988, p. 81).'],
 ['p', 'The first three are **direct** procedures: they stay close to the original. The last four are **oblique**: they move further away. Use a direct procedure when it gives an accurate, natural result; otherwise, choose an oblique one. Borrowing is used mainly to fill a gap or to keep local colour.'],
 ['ol', [
   '**Borrowing** ({{الاقتراض}}): _computer_ → {{كمبيوتر}}',
@@ -480,7 +480,7 @@ module.exports = [
 ['summary', ['Procedures 1–3 are direct; 4–7 are oblique.', 'Learn their names: you will use them in your commentary (Chapter 25).']],
 
 ['ch', 'Chapter 13: Translation strategies'],
-['intro', 'Strategies: wider plans for solving translation problems, from the course materials and from Baker (2018).'],
+['intro', 'Strategies: wider plans for solving translation problems (Translation Team, n.d.; Baker, 2018).'],
 ['terms', [
   ['Translation strategy', 'استراتيجية الترجمة', 'A planned solution to a translation problem.'],
   ['Functional translation', 'الترجمة الوظيفية', 'Translating with a target-language expression that has the same function.'],

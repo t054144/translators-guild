@@ -168,7 +168,6 @@ const R = [
   'Reiss, K. (2000). _Translation criticism: The potentials and limitations. Categories and criteria for translation quality assessment_ (E. F. Rhodes, Trans.). St. Jerome. (Original work published 1971)',
   'Shakespeare, W. (1609). Sonnet 18. In _Shakespeare’s sonnets_. Thomas Thorpe.',
   'Translation Team. (n.d.). _Translation handbook: Course materials and notes_ [Unpublished manuscript]. Guild, Translation Team, Professional Club.',
-  'United Nations. (1948). _Universal Declaration of Human Rights_. https://www.un.org/en/about-us/universal-declaration-of-human-rights',
   'United Nations. (n.d.). _UNTERM: The United Nations terminology database_. https://unterm.un.org',
   'Venuti, L. (1995). _The translator’s invisibility: A history of translation_. Routledge.',
   'Vinay, J.-P., & Darbelnet, J. (1995). _Comparative stylistics of French and English: A methodology for translation_ (J. C. Sager & M.-J. Hamel, Trans.). John Benjamins. (Original work published 1958)',
@@ -218,6 +217,9 @@ const doc = new Document({
   styles: {
     default: { document: { run: { font: LATIN, size: 22, color: INK } } },
     paragraphStyles: [
+      // contents entries: compact, so that the list fits on one page
+      { id: 'TOC1', name: 'toc 1', basedOn: 'Normal', next: 'Normal', run: { size: 20 }, paragraph: { spacing: { before: 60, after: 0, line: 250 } } },
+      { id: 'TOC2', name: 'toc 2', basedOn: 'Normal', next: 'Normal', run: { size: 20 }, paragraph: { spacing: { before: 0, after: 0, line: 250 }, indent: { left: 280 } } },
       { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 40, bold: true, color: ACCENT }, paragraph: { spacing: { before: 600, after: 200 }, outlineLevel: 0 } },
       { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 30, bold: true, color: ACCENT }, paragraph: { spacing: { before: 240, after: 200 }, outlineLevel: 1, keepNext: true } },
       { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 23, bold: true, color: INK }, paragraph: { spacing: { before: 380, after: 140 }, outlineLevel: 2, keepNext: true } },
