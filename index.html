@@ -656,6 +656,11 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .commission .kind.exhibit { border-color: rgba(46,217,160,.4); color: var(--mint); }
 .commission .kind.guide { border-color: rgba(255,196,107,.45); color: var(--amber); }
 .commission .kind.workshop { border-color: rgba(167,38,208,.55); color: var(--workshop-ink); }
+.commission .soon {
+  font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+  padding: .22rem .6rem; border-radius: var(--r-pill);
+  border: 1px dashed rgba(214,191,234,.34); color: var(--ink-soft); white-space: nowrap;
+}
 .commission .seal-pip {
   width: 20px; height: 20px; border-radius: 7px; flex: none;
   background: rgba(214,191,234,.13); border: 1px solid rgba(214,191,234,.24);
@@ -729,7 +734,16 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .verdict p.vb { font-size: .98rem; font-weight: 300; line-height: 1.7; color: var(--ink); margin: 0; max-width: var(--measure); }
 .verdict p.vb b { color: var(--white); font-weight: 500; }
 .verdict p.vb i { color: var(--white); }
+.verdict p.vmore { font-size: .82rem; font-weight: 300; line-height: 1.6; color: var(--ink-soft);
+  margin: 0; padding-top: .6rem; border-top: var(--hair); max-width: var(--measure); }
+.verdict p.vmore b { color: var(--lilac); font-weight: 600; }
 .foot { display: flex; gap: .85rem; align-items: center; flex-wrap: wrap; }
+
+.quit-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+  flex-wrap: wrap; padding-top: .3rem; }
+.quit-row .link { font-size: .78rem; }
+.quit-note { font-size: .7rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--ink-soft); }
 
 /* ═══════════ THE GUIDES ═══════════ */
 .lede { font-size: clamp(1.05rem,2.6vw,1.22rem); font-weight: 300; line-height: 1.72;
@@ -869,7 +883,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 /* Tracked capitals are a label, not an ornament: smaller, and tracked less
    far. They were reading louder than the titles they sat under. */
 .seal-eyebrow, .c-subject, .trial-subject, .j-tile span, .rank-box .r-n,
-.rec-state, .b-lab, .num-badge, .kind {
+.rec-state, .b-lab, .num-badge, .kind, .soon {
   letter-spacing: .1em; font-size: .64rem;
 }
 .seal-eyebrow { font-size: .6rem; }
@@ -1689,7 +1703,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 37 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 38 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -2775,7 +2789,7 @@ const PROVERBS = [
       { t: "Like one seeking shelter from hot sand in fire.", tag: "literal — no such English proverb" },
       { t: "Better the devil you know.", tag: "real proverb, opposite advice" }
     ],
-    why: "Both say the escape was worse than the danger. <b>Better the devil you know</b> advises staying put, which is the opposite counsel &mdash; a distractor worth recognising. (Chapter 8)" },
+    why: "Both say the escape was worse than the danger. <b>Better the devil you know</b> advises staying put, which is the opposite counsel &mdash; a distractor worth recognising.", ch: "Chapter 8" },
 
   { src: "رجع بخُفَّي حُنين.",
     opts: [
@@ -2783,7 +2797,7 @@ const PROVERBS = [
       { t: "He came back empty-handed.", tag: "the working equivalent", ok: true },
       { t: "He returned a broken man.", tag: "overstates it — this is loss, not ruin" }
     ],
-    why: "The Arabic carries a whole folk tale in four words. English has no proverb for it, so the handbook gives the <b>meaning in plain words</b> &mdash; which is the rule when no equivalent exists. (Chapter 8)" },
+    why: "The Arabic carries a whole folk tale in four words. English has no proverb for it, so the handbook gives the <b>meaning in plain words</b> &mdash; which is the rule when no equivalent exists.", ch: "Chapter 8" },
 
   { src: "عُصفورٌ في اليد خيرٌ من عشرةٍ على الشَّجرة.",
     opts: [
@@ -2791,7 +2805,7 @@ const PROVERBS = [
       { t: "A bird in the hand is worth two in the bush.", tag: "the working equivalent", ok: true },
       { t: "Don't count your chickens before they hatch.", tag: "close — but about hoping too early" }
     ],
-    why: "Notice the numbers change: Arabic counts <b>ten on the tree</b>, English <b>two in the bush</b>. You take the target language's proverb whole, arithmetic and all &mdash; you do not correct it. (Chapter 8)" },
+    why: "Notice the numbers change: Arabic counts <b>ten on the tree</b>, English <b>two in the bush</b>. You take the target language's proverb whole, arithmetic and all &mdash; you do not correct it.", ch: "Chapter 8" },
 
   { src: "Boys will be boys.",
     srcEn: true,
@@ -2800,7 +2814,7 @@ const PROVERBS = [
       { t: "الوَلَد وَلَد ولو صار قاضي بلد.", tag: "the working equivalent", ok: true },
       { t: "هكذا هم الشباب.", tag: "correct meaning, but the proverb is gone" }
     ],
-    why: "English into Arabic this time. The Arabic proverb says the same thing and rhymes while doing it &mdash; <b>وَلَد / بلد</b>. When the target language has the proverb made, use it. (Chapter 8)" },
+    why: "English into Arabic this time. The Arabic proverb says the same thing and rhymes while doing it &mdash; <b>وَلَد / بلد</b>. When the target language has the proverb made, use it.", ch: "Chapter 8" },
 
   { src: "Business is business.",
     srcEn: true,
@@ -2809,7 +2823,7 @@ const PROVERBS = [
       { t: "التِّجارة تِجارة.", tag: "plausible, but not the fixed expression" },
       { t: "لا مجال للعواطف في العمل.", tag: "explains it — and loses the bluntness" }
     ],
-    why: "Some proverbs cross almost untouched. The third option is a correct <b>explanation</b>, and explanation is the last resort, not the first. (Chapter 8, Chapter 13)" },
+    why: "Some proverbs cross almost untouched. The third option is a correct <b>explanation</b>, and explanation is the last resort, not the first.", ch: "Chapters 8 and 13" },
 
   { src: "على قَدِّ لِحافك مُدَّ رِجليك.",
     opts: [
@@ -2817,8 +2831,83 @@ const PROVERBS = [
       { t: "Extend your legs as far as your blanket.", tag: "literal" },
       { t: "Don't bite off more than you can chew.", tag: "close — but about ambition, not means" }
     ],
-    why: "Both are about living inside your means, and both reach for cloth to say it &mdash; a rare gift. Take it when the target language offers one." }
+    why: "Both are about living inside your means, and both reach for cloth to say it &mdash; a rare gift. Take it when the target language offers one.", ch: "Chapter 8" },
+
+  /* ── Five more, all from the handbook's own list of English idioms in
+     Chapter 8. Nothing here is invented: the Arabic in the middle option
+     is the equivalent the book gives. The first option is the sentence
+     word for word, which is what the chapter warns against, and the
+     third is the plain meaning — correct, and the last resort the
+     chapter puts after looking for an equivalent. ── */
+
+  { src: "to spill the beans", srcEn: true,
+    opts: [
+      { t: "أراق الفاصولياء", tag: "word for word — and it says nothing" },
+      { t: "أفشى السرّ", tag: "the equivalent the handbook gives", ok: true },
+      { t: "كشف المعلومات السرّية", tag: "the meaning, with the idiom gone" }
+    ],
+    why: "An idiom's meaning is not the sum of its words, so the beans cannot come with it &mdash; <b>أراق الفاصولياء</b> is a sentence about pulses. Arabic has an expression that does the same job, <b>أفشى السرّ</b>, so that is what goes in. The third option is not wrong; it is the fallback. The order the chapter sets is: look for an equivalent first, and give the plain meaning only when there is none.", ch: "Chapter 8" },
+
+  { src: "over the moon", srcEn: true,
+    opts: [
+      { t: "فوق القمر", tag: "word for word — a location, not a feeling" },
+      { t: "في قمّة السعادة", tag: "the equivalent the handbook gives", ok: true },
+      { t: "سعيد جداً", tag: "true, and flatter than the original" }
+    ],
+    why: "English puts joy above the moon; Arabic puts it at a summit &mdash; <b>قمّة</b>. Neither image is the meaning; both carry it. <b>فوق القمر</b> keeps the picture and drops the sense, which is the classic idiom failure. <b>سعيد جداً</b> keeps the sense and drops the intensity: it is what you write when no equivalent exists, and here one does.", ch: "Chapter 8" },
+
+  { src: "Break a leg!", srcEn: true,
+    opts: [
+      { t: "اكسر ساقاً!", tag: "word for word — and it now means the opposite" },
+      { t: "بالتوفيق!", tag: "the equivalent the handbook gives", ok: true },
+      { t: "أتمنّى لك أداءً جيداً", tag: "correct, and not something anyone says before a stage" }
+    ],
+    why: "The most dangerous kind of idiom: rendered literally it does not merely fail, it <b>reverses</b>. <b>اكسر ساقاً</b> is a curse in Arabic; the English is a blessing. Always check what the literal version does to the reader before you decide it is harmless. <b>بالتوفيق</b> is what an Arabic speaker actually says at that moment, which is the test.", ch: "Chapter 8" },
+
+  { src: "I'm all ears.", srcEn: true,
+    opts: [
+      { t: "أنا كلّي آذان", tag: "word for word — half an expression" },
+      { t: "كلّي آذانٌ صاغية", tag: "the equivalent the handbook gives", ok: true },
+      { t: "أنا أستمع إليك باهتمام", tag: "the meaning, in plain words" }
+    ],
+    why: "A near miss is still a miss. Arabic has almost the same image &mdash; a person who is all ears &mdash; but the expression is fixed as <b>كلّي آذانٌ صاغية</b>, and <b>صاغية</b> is the part that makes it an expression rather than a description of a body. An idiom is fixed: you take the whole of it or you do not have it.", ch: "Chapter 8" },
+
+  { src: "to pull one's socks up", srcEn: true,
+    opts: [
+      { t: "رفع جواربه", tag: "word for word — an act of dressing" },
+      { t: "شمّر عن ساعديه", tag: "the equivalent the handbook gives", ok: true },
+      { t: "بذل جهداً أكبر", tag: "the meaning, with the picture gone" }
+    ],
+    why: "The best outcome there is: an idiom for an idiom. English pulls up its socks, Arabic rolls up its sleeves &mdash; <b>شمّر عن ساعديه</b> &mdash; and both mean <i>make a proper effort now</i>. The clothing changes and the figure survives, which is what you are hunting for every time. Settle for <b>بذل جهداً أكبر</b> only when no such match exists.", ch: "Chapter 8" }
 ];
+
+/* ═══════════ أمثال كويتية · KUWAITI PROVERBS ═══════════
+   Deliberately empty, and it stays empty until the proverbs arrive.
+
+   A proverb is not something that can be worked out from the language.
+   It is either the sentence people actually say or it is nothing, and a
+   plausible-looking Kuwaiti proverb that no Kuwaiti has ever said would
+   be worse than an empty page — it would be a lie told in the one
+   register this site exists to protect. The Translation Handbook carries
+   no Kuwaiti material anywhere in it, so there is nothing here to seed
+   this from either. Shaikha is supplying them.
+
+   Each entry takes exactly the shape the PROVERBS pool above takes, so
+   nothing but the array has to change when they land:
+
+     { src: "المثل بالكويتي.",
+       lit: '"the word-for-word, if it helps"',       // optional
+       opts: [
+         { t: "the English that does the same work", tag: "the working equivalent", ok: true },
+         { t: "the word-for-word version",           tag: "literal — says nothing in English" },
+         { t: "a real English proverb that misses",  tag: "close — but about something else" }
+       ],
+       why: "why the right one is right and the others are not, in full, here",
+       ch: "Chapter 8" }                              // optional pointer
+
+   When the pool has entries the trial runs itself; until then the page
+   below says plainly that it is waiting, rather than pretending. */
+const KUWAITI = [];
 
 
 const COURTESY = [
@@ -3592,7 +3681,7 @@ const COLLOC = [
       { t: "يَنتبِه", tag: "the natural partner", ok: true },
       { t: "يشتري الانتباه", tag: "worse: a second guess at the wrong verb" }
     ],
-    why: "The basic sense of <b>pay</b> is to give money, and its partners change it completely: <i>pay a visit</i> is <b>يقوم بزيارة</b>, not يدفع زيارة. Learn the word with its company. (Chapter 7)" },
+    why: "The basic sense of <b>pay</b> is to give money, and its partners change it completely: <i>pay a visit</i> is <b>يقوم بزيارة</b>, not يدفع زيارة. Learn the word with its company.", ch: "Chapter 7" },
 
   { src: "heavy rain", srcEn: true,
     opts: [
@@ -3600,7 +3689,7 @@ const COLLOC = [
       { t: "مطر غزير", tag: "the natural partner", ok: true },
       { t: "مطر قوي", tag: "plausible, still not what Arabic says" }
     ],
-    why: "English weighs its rain; Arabic makes it <b>abundant</b>. Neither language is being logical &mdash; each simply has a partner already chosen. (Chapter 7)" },
+    why: "English weighs its rain; Arabic makes it <b>abundant</b>. Neither language is being logical &mdash; each simply has a partner already chosen.", ch: "Chapter 7" },
 
   { src: "strong tea", srcEn: true,
     opts: [
@@ -3608,7 +3697,7 @@ const COLLOC = [
       { t: "شاي قوي", tag: "the English adjective, carried over" },
       { t: "شاي مركّز", tag: "correct meaning, wrong register for a kitchen" }
     ],
-    why: "Now it runs the other way: English calls tea <b>strong</b>, Arabic calls it <b>heavy</b> &mdash; the very adjective it refused for rain. There is no rule to derive, only the company each word keeps. (Chapter 7)" },
+    why: "Now it runs the other way: English calls tea <b>strong</b>, Arabic calls it <b>heavy</b> &mdash; the very adjective it refused for rain. There is no rule to derive, only the company each word keeps.", ch: "Chapter 7" },
 
   { src: "break the law", srcEn: true,
     opts: [
@@ -3616,7 +3705,7 @@ const COLLOC = [
       { t: "يخالف القانون", tag: "the natural partner", ok: true },
       { t: "يهدم القانون", tag: "a different claim: destroying it, not breaking it" }
     ],
-    why: "English breaks a law as it breaks a plate. Arabic <b>contravenes</b> it. The first option would be understood and would still mark the text as translated. (Chapter 7)" },
+    why: "English breaks a law as it breaks a plate. Arabic <b>contravenes</b> it. The first option would be understood and would still mark the text as translated.", ch: "Chapter 7" },
 
   { src: "عقد اجتماعاً",
     opts: [
@@ -3624,7 +3713,7 @@ const COLLOC = [
       { t: "He held a meeting.", tag: "the natural partner", ok: true },
       { t: "He made a meeting.", tag: "the wrong English partner" }
     ],
-    why: "<b>عقد</b> ties knots and holds meetings. English <i>holds</i> them and does not <i>make</i> them. Both languages chose a partner; neither chose the same one. (Chapter 7)" },
+    why: "<b>عقد</b> ties knots and holds meetings. English <i>holds</i> them and does not <i>make</i> them. Both languages chose a partner; neither chose the same one.", ch: "Chapter 7" },
 
   { src: "قدّم استقالته",
     opts: [
@@ -3632,7 +3721,7 @@ const COLLOC = [
       { t: "He resigned.", tag: "what an English speaker says", ok: true },
       { t: "He presented his resignation.", tag: "word for word — stiff" }
     ],
-    why: "Arabic needs two words where English has one. <i>Submitted his resignation</i> is not wrong and belongs in a formal report; in ordinary prose English simply says <b>he resigned</b>. (Chapter 7)" }
+    why: "Arabic needs two words where English has one. <i>Submitted his resignation</i> is not wrong and belongs in a formal report; in ordinary prose English simply says <b>he resigned</b>.", ch: "Chapter 7" }
 ];
 
 /* ═══════════ CONTEXT · Chapter 6 ═══════════
@@ -3645,7 +3734,7 @@ const CONTEXT_Q = [
       { t: "فحص الطبيب الحالة.", tag: "context decides", ok: true },
       { t: "فحص الطبيب العلبة.", tag: "the container sense" }
     ],
-    why: "<b>case</b> is three unrelated words wearing one spelling: <b>حالة</b>, <b>قضية</b>, <b>علبة</b>. One word in the sentence &mdash; <i>doctor</i> &mdash; settles it. That is micro context doing its work. (Chapter 6)" },
+    why: "<b>case</b> is three unrelated words wearing one spelling: <b>حالة</b>, <b>قضية</b>, <b>علبة</b>. One word in the sentence &mdash; <i>doctor</i> &mdash; settles it. That is micro context doing its work.", ch: "Chapter 6" },
 
   { src: "شربنا من عين ماء باردة.",
     opts: [
@@ -3653,7 +3742,7 @@ const CONTEXT_Q = [
       { t: "We drank from a cold water spring.", tag: "context decides", ok: true },
       { t: "We drank from a cold spy.", tag: "the third sense — and a reminder to read" }
     ],
-    why: "<b>عين</b> is an eye, a spring, and a spy. <i>ماء</i> standing beside it decides which. A translator who reaches for the first dictionary sense produces the first option. (Chapter 6)" },
+    why: "<b>عين</b> is an eye, a spring, and a spy. <i>ماء</i> standing beside it decides which. A translator who reaches for the first dictionary sense produces the first option.", ch: "Chapter 6" },
 
   { src: "He sat on the bank and watched the water.", srcEn: true,
     opts: [
@@ -3661,7 +3750,7 @@ const CONTEXT_Q = [
       { t: "جلس على ضفّة النهر وراقب الماء.", tag: "context decides", ok: true },
       { t: "جلس على البنك وراقب الماء.", tag: "the borrowed word — same error, newer clothes" }
     ],
-    why: "Two unrelated meanings under one spelling: <b>homonymy</b> (المشترك اللفظي). <i>Water</i> settles it. Note that borrowing the English word does not escape the problem &mdash; it only hides it. (Chapter 6)" },
+    why: "Two unrelated meanings under one spelling: <b>homonymy</b> (المشترك اللفظي). <i>Water</i> settles it. Note that borrowing the English word does not escape the problem &mdash; it only hides it.", ch: "Chapter 6" },
 
   { src: "تطهير الجرح",
     opts: [
@@ -3669,7 +3758,7 @@ const CONTEXT_Q = [
       { t: "cleaning the wound", tag: "context decides", ok: true },
       { t: "cleansing the wound of impurity", tag: "reads the religious sense into a clinic" }
     ],
-    why: "Here the senses are <b>related</b>, not unrelated &mdash; cleaning and purifying share a root idea. That is <b>polysemy</b> (تعدّد المعنى), and it is more dangerous than homonymy, because the wrong reading still almost makes sense. (Chapter 6)" },
+    why: "Here the senses are <b>related</b>, not unrelated &mdash; cleaning and purifying share a root idea. That is <b>polysemy</b> (تعدّد المعنى), and it is more dangerous than homonymy, because the wrong reading still almost makes sense.", ch: "Chapter 6" },
 
   { src: "احتجاز الرهائن",
     opts: [
@@ -3677,7 +3766,7 @@ const CONTEXT_Q = [
       { t: "detaining the hostages", tag: "close, but detention is lawful custody" },
       { t: "storing the hostages", tag: "the water sense, applied to people" }
     ],
-    why: "The same verb holds back water (<b>احتجاز المياه</b>) and holds people. The object decides, and the English verb changes with it. (Chapter 6)" },
+    why: "The same verb holds back water (<b>احتجاز المياه</b>) and holds people. The object decides, and the English verb changes with it.", ch: "Chapter 6" },
 
   { src: "a report on the situation in the region, written in 1975",
     srcEn: true,
@@ -3686,7 +3775,7 @@ const CONTEXT_Q = [
       { t: "Find out what was happening in 1975 before choosing terms.", tag: "the whole situation, not just the words", ok: true },
       { t: "Update the terms to today's usage so the reader understands.", tag: "rewrites history" }
     ],
-    why: "This one is not about a word at all. <b>Macro context</b> (السياق الخارجي) is the author, the audience, the time and the place. Names of parties, borders and offices all moved between 1975 and now, and a translator who does not know which year they are in will pick the wrong ones. (Chapter 6)" }
+    why: "This one is not about a word at all. <b>Macro context</b> (السياق الخارجي) is the author, the audience, the time and the place. Names of parties, borders and offices all moved between 1975 and now, and a translator who does not know which year they are in will pick the wrong ones.", ch: "Chapter 6" }
 ];
 
 /* ═══════════ REVISION · Chapter 23 ═══════════
@@ -3699,7 +3788,7 @@ const REVISE = [
       { t: "المدير قام بتوقيع العقد.", tag: "same padding, now with the subject first too" },
       { t: "تمّ توقيع العقد من قِبَل المدير.", tag: "swaps one borrowed structure for another" }
     ],
-    why: "<b>قام بـ</b> before a verb that can simply be used is the commonest padding in translated Arabic. The handbook lists it among the mistakes to look for on the second reading. (Chapter 23)" },
+    why: "<b>قام بـ</b> before a verb that can simply be used is the commonest padding in translated Arabic. The handbook lists it among the mistakes to look for on the second reading.", ch: "Chapter 23" },
 
   { src: "الحكومة أعلنت عن إجراءات جديدة.",
     opts: [
@@ -3707,7 +3796,7 @@ const REVISE = [
       { t: "أعلنت الحكومة عن إجراءات جديدة.", tag: "the verbal sentence Arabic prefers", ok: true },
       { t: "تمّ إعلان إجراءات جديدة.", tag: "correct Arabic, but the government has vanished" }
     ],
-    why: "English puts the subject first and Arabic news prose does not. Starting with <b>الحكومة</b> is not ungrammatical &mdash; it is the shape of the English showing through. (Chapter 3, Chapter 23)" },
+    why: "English puts the subject first and Arabic news prose does not. Starting with <b>الحكومة</b> is not ungrammatical &mdash; it is the shape of the English showing through.", ch: "Chapters 3 and 23" },
 
   { src: "تمّ افتتاح المعرض من قِبَل الوزير.",
     opts: [
@@ -3715,7 +3804,7 @@ const REVISE = [
       { t: "المعرض تمّ افتتاحه من قِبَل الوزير.", tag: "the same passive, reordered" },
       { t: "قام الوزير بافتتاح المعرض.", tag: "trades the passive for the padding" }
     ],
-    why: "<b>من قِبَل</b> is the English passive wearing Arabic clothes. Arabic has an active sentence ready and an actor to put in it. (Chapter 23)" },
+    why: "<b>من قِبَل</b> is the English passive wearing Arabic clothes. Arabic has an active sentence ready and an actor to put in it.", ch: "Chapter 23" },
 
   { src: "He is a brave and daring officer.", srcEn: true,
     opts: [
@@ -3723,7 +3812,7 @@ const REVISE = [
       { t: "a very brave officer", tag: "one word for the pair", ok: true },
       { t: "a brave and daring officer", tag: "keeps a doubling English does not use" }
     ],
-    why: "Arabic pairs near-synonyms for weight and it reads as eloquence. English repeats them and it reads as padding. <b>Omission</b> (الحذف) is the strategy, and it is commonest in this direction. (Chapter 13, Chapter 23)" },
+    why: "Arabic pairs near-synonyms for weight and it reads as eloquence. English repeats them and it reads as padding. <b>Omission</b> (الحذف) is the strategy, and it is commonest in this direction.", ch: "Chapters 13 and 23" },
 
   { src: "The life is beautiful in this city.", srcEn: true,
     opts: [
@@ -3731,7 +3820,7 @@ const REVISE = [
       { t: "Life is beautiful in this city.", tag: "English drops it", ok: true },
       { t: "A life is beautiful in this city.", tag: "a different error" }
     ],
-    why: "<b>الحياة</b> carries its article; English <i>life</i> in the general sense takes none. A small word, and one of the surest signs of a translated text. (Chapter 23)" },
+    why: "<b>الحياة</b> carries its article; English <i>life</i> in the general sense takes none. A small word, and one of the surest signs of a translated text.", ch: "Chapter 23" },
 
   { src: "He married from her last year.", srcEn: true,
     opts: [
@@ -3739,7 +3828,7 @@ const REVISE = [
       { t: "He married her last year.", tag: "English takes no preposition here", ok: true },
       { t: "He got married from her last year.", tag: "keeps the borrowed preposition" }
     ],
-    why: "<b>تزوّج من</b> has a preposition and English <i>marry</i> does not. Prepositions almost never map between the two languages; they have to be learned verb by verb. (Chapter 23)" }
+    why: "<b>تزوّج من</b> has a preposition and English <i>marry</i> does not. Prepositions almost never map between the two languages; they have to be learned verb by verb.", ch: "Chapter 23" }
 ];
 
 /* ═══════════ THE GLOSSARY · Translation Handbook ═══════════
@@ -4320,6 +4409,10 @@ const KU_MINOR = {
 
 /* ═══════════ REGISTRY ═══════════ */
 const ITEMS = [
+  { id: "minor", ar: "مساند التَّرجمة · جامعة الكويت", en: "Kuwait University · Translation Minor", kind: "guide", section: "method",
+    subject: "مساند التَّرجمة · جامعة الكويت",
+    blurb: "The ten courses of the minor, each with the title the programme gives it in both languages — what the subject is, where it is used, what it asks of you, and what the Guild already holds that belongs to it.",
+    run: runMinor },
   { id: "lineage", ar: "", en: "Translators in History", kind: "guide", section: "method",
     subject: "The tradition, from the fourth century to our own",
     blurb: "Sixteen translators, from the fourth century to our own, whose work changed what the world could read &mdash; eight from the Arabic tradition, eight from the Western one.",
@@ -4338,10 +4431,6 @@ const ITEMS = [
     subject: "Text typology · Chapter 18",
     blurb: "Ten worlds a translation can land in — journalistic, political and diplomatic, legal, technical, medical, literary, transcreation, localization, audiovisual, academic — and why they are not all the same kind of category.",
     run: runTextTypes },
-  { id: "minor", ar: "مساند التَّرجمة · جامعة الكويت", en: "Kuwait University · Translation Minor", kind: "guide", section: "method",
-    subject: "مساند التَّرجمة · جامعة الكويت",
-    blurb: "The ten courses of the minor, each with the title the programme gives it in both languages — what the subject is, where it is used, what it asks of you, and what the Guild already holds that belongs to it.",
-    run: runMinor },
   { id: "modes", ar: "أنماط التَّرجمة الشَّفهية", en: "The Modes of Interpreting", kind: "guide", section: "method",
     subject: "الترجمة الشفهية · Chapter 1",
     blurb: "Simultaneous, consecutive, sight, whispered, relay and remote — what each one is, where it is used, what it demands, and where it goes wrong. The field is الشفهية; الفورية is one mode inside it.",
@@ -4371,6 +4460,13 @@ const ITEMS = [
     subject: "التعبير الاصطلاحي · Chapter 8",
     blurb: "Match the Arabic proverb to the English proverb that means the same thing — not the one that says the same words.",
     run: () => runChoice(PROVERBS, "Which English proverb does the same work?") },
+  /* published:false keeps it out of the Mark total until it has its
+     proverbs — the ring must never ask for a mark that cannot be earned. */
+  { id: "kuwaiti", ar: "أمثالٌ كويتية", en: "Kuwaiti Proverbs", kind: "trial", section: "trials",
+    subject: "الأمثال الكويتية",
+    published: false,
+    blurb: "The proverbs that are ours, not the ones every Arabic speaker shares — and what to do with them when the text has to go into English. Being collected from the people who say them; nothing here is invented.",
+    run: runKuwaiti },
   { id: "courtesy", ar: "خِزانة المُجامَلات", en: "Speech Acts", kind: "trial", section: "trials",
     subject: "الأفعال الكلامية · Chapter 5",
     blurb: "Gulf politeness formulas with no English words but exact English functions. One of them has no equivalent at all.",
@@ -4451,7 +4547,7 @@ function grant(id) {
    ═══════════════════════════════════════════════════════════════════ */
 const CONTENT_VERSION = 2;
 
-function recordAttempt(id, score, total, passed) {
+function recordAttempt(id, score, total, passed, stopped) {
   if (!Array.isArray(state.history)) state.history = [];
   const item = ITEMS.find(t => t.id === id);
   state.history.push({
@@ -4459,6 +4555,9 @@ function recordAttempt(id, score, total, passed) {
     score: score,
     total: total,
     passed: !!passed,
+    /* a run that was stopped part-way is kept in the record, because it
+       happened, but it is not a performance and never becomes a best */
+    stopped: !!stopped,
     at: new Date().toISOString(),
     direction: (item && item.direction) || "",
     content_version: (item && item.content_version) || CONTENT_VERSION
@@ -4471,15 +4570,15 @@ function recordAttempt(id, score, total, passed) {
 /* The best a Trial has ever been done, for the Seal. */
 function bestAttempt(id) {
   return (state.history || [])
-    .filter(a => a.id === id)
+    .filter(a => a.id === id && !a.stopped)
     .reduce((b, a) => (!b || a.score / Math.max(a.total, 1) > b.score / Math.max(b.total, 1) ? a : b), null);
 }
 function attemptCount(id) { return (state.history || []).filter(a => a.id === id).length; }
 
 /* One call for every Trial ending: record it, then award the Mark if it
    was passed. Marks are never awarded anywhere else. */
-function settleTrial(id, score, total, passed) {
-  recordAttempt(id, score, total, passed);
+function settleTrial(id, score, total, passed, stopped) {
+  recordAttempt(id, score, total, passed, stopped);
   return passed ? grant(id) : false;
 }
 
@@ -5926,12 +6025,16 @@ function fillLedger(sectionId, section) {
     /* Only a Trial can earn a Mark, so only a Trial carries the pip. A
        Chamber, a guide and the workshop are unscored on purpose; showing
        them a star that can never fill says the opposite. */
-    const pip = t.kind !== "trial" ? "" :
+    /* A trial still being built carries no pip either: it is not in the
+       total, so a star beside it would be promising a mark that is not
+       on offer yet. It says what it is instead. */
+    const pip = (t.kind !== "trial" || t.published === false) ? "" :
       '<span class="seal-pip' + (state.marks[t.id] ? " earned" : "") + '">✦</span>';
+    const soon = t.published === false ? '<span class="soon">soon</span>' : '';
     b.innerHTML =
       '<span class="c-top">' +
         '<span class="cnum">' + String(i + 1).padStart(2, "0") + '</span>' +
-        '<span class="c-meta"><span class="kind ' + t.kind + '">' + t.kind + '</span>' + pip + '</span>' +
+        '<span class="c-meta"><span class="kind ' + t.kind + '">' + t.kind + '</span>' + soon + pip + '</span>' +
       '</span>' +
       '<span class="ctitles">' +
         '<span class="c-en">' + t.en + '</span>' +
@@ -6841,6 +6944,7 @@ function runChoice(items, ask) {
       wrap.appendChild(b);
     });
     stage.appendChild(wrap);
+    stage.appendChild(quitTrial(log, i, items.length));
   }
 
   function answer(k, wrap, q) {
@@ -6859,6 +6963,10 @@ function runChoice(items, ask) {
     const v = el("div", "verdict");
     v.appendChild(el("span", "vh " + (hit ? "win" : "lose"), hit ? "✦ Well rendered" : "✧ Not the natural one"));
     v.appendChild(el("p", "vb", q.why));
+    /* The reasoning stands on its own above; the chapter is where to go
+       for more, not where the explanation lives. Somebody working from
+       the site alone should never need the book to understand this. */
+    v.appendChild(chapterLine(q.ch));
     stage.appendChild(v);
 
     const foot = el("div", "foot");
@@ -6866,34 +6974,139 @@ function runChoice(items, ask) {
     next.addEventListener("click", () => { i++; if (i < items.length) question(); else finish(log, items.length); });
     foot.appendChild(next);
     stage.appendChild(foot);
+    /* the row was already on the question screen; move it below the verdict
+       rather than leaving two of them on the page */
+    const stale = stage.querySelector(".quit-row");
+    if (stale) stale.remove();
+    stage.appendChild(quitTrial(log, i + 1, items.length));
     next.focus();
   }
   question();
 }
 
-/* ═══════════ SCORECARD ═══════════ */
-function finish(log, total) {
-  const hits = log.filter(r => r.hit).length;
-  const need = Math.ceil(total * 0.6);
-  const pass = hits >= need;
-  const fresh = settleTrial(active.id, hits, total, pass);
+/* The pointer that sits under every explanation. A question may name its
+   own chapter when that differs from the trial's; otherwise the subject
+   line at the top of the trial already names one, and there is no reason
+   to write the same chapter into every entry by hand. The explanation
+   above it is always complete on its own — this is where to go for more,
+   never where the reasoning lives. */
+function chapterOf(s) {
+  const m = /Chapters?\s+\d+(?:\s*(?:and|,|–|-|and )\s*\d+)*/.exec(s || "");
+  return m ? m[0] : "";
+}
+function chapterLine(own) {
+  const ch = own || chapterOf(active && active.subject);
+  if (!ch) return document.createDocumentFragment();
+  return el("p", "vmore", "Want it in more depth? <b>" + ch + "</b> of the Translation Handbook.");
+}
+
+/* Nobody should be trapped in a trial. Stopping part-way keeps what was
+   answered — the attempt is recorded for what it was — and says plainly
+   that the mark needs the whole thing. */
+function quitTrial(log, done, total) {
+  const wrap = el("div", "quit-row");
+  const b = el("button", "link", done ? "End this trial" : "Leave this trial");
+  /* nothing answered yet means there is nothing to record: leaving is
+     simply going back to where they came from */
+  b.addEventListener("click", () => { if (done) finish(log, total, true); else goBack(); });
+  wrap.appendChild(b);
+  wrap.appendChild(el("span", "quit-note", done + " of " + total + " answered"));
+  return wrap;
+}
+
+/* ═══════════ أمثال كويتية · THE KUWAITI ROOM ═══════════
+   One line of code decides which of the two pages a member sees: the
+   trial the moment there are proverbs in it, and until then an honest
+   page that says what it is waiting for. Nothing is invented to fill
+   the gap. */
+function runKuwaiti() {
+  if (KUWAITI.length) {
+    runChoice(KUWAITI, "Which English rendering does the same work?");
+    return;
+  }
 
   stage.innerHTML = "";
-  setCount("Complete");
-  setDots(total, total, -1);
+  setCount("Being gathered");
+  setDots(0, 0, 0);
+
+  stage.appendChild(el("p", "lede",
+    "The proverbs already in the Guild are the ones the whole Arabic-speaking world shares: " +
+    "<span class='ar-inline' dir='rtl' lang='ar'>عصفور في اليد</span> and " +
+    "<span class='ar-inline' dir='rtl' lang='ar'>رجع بخفّي حنين</span> are understood from Rabat to Muscat. " +
+    "This room is for the ones that are <b>ours</b> &mdash; what is said in Kuwaiti, in a Kuwaiti house, " +
+    "about the weather and the sea and the neighbours &mdash; and what on earth you are supposed to do " +
+    "with it when the text has to go into English."));
+
+  const why = el("div", "verdict");
+  why.appendChild(el("span", "vh", "Why this page is empty"));
+  why.appendChild(el("p", "vb",
+    "Because a proverb cannot be worked out. It is either the sentence people actually say or it is " +
+    "nothing at all &mdash; and a plausible-sounding Kuwaiti proverb that no Kuwaiti has ever said " +
+    "would be worse than an empty page. <b>Nothing here will be written by guesswork.</b> " +
+    "These are being collected from people who say them, and the room opens when they arrive."));
+  stage.appendChild(why);
+
+  const shape = el("div", "verdict");
+  shape.appendChild(el("span", "vh", "What each one will hold"));
+  shape.appendChild(el("ul", "how",
+    '<li><span><b>The proverb</b> as it is said &mdash; the Kuwaiti, not the classical tidying-up of it.</span></li>' +
+    '<li><span><b>The word for word</b>, so you can see exactly what an English reader would get ' +
+      'if you handed it over untouched.</span></li>' +
+    '<li><span><b>Three renderings</b>, one of which does the work the proverb does. Sometimes that is ' +
+      'an English proverb; sometimes English has nothing and the honest answer is the plain meaning; ' +
+      'sometimes the answer is to leave it out and carry the sense in the sentence around it.</span></li>' +
+    '<li><span><b>The reasoning</b>, in full, on the page &mdash; what the image is doing, who says it ' +
+      'and when, and what is lost either way.</span></li>'));
+  stage.appendChild(shape);
+
+  const meanwhile = el("div", "verdict");
+  meanwhile.appendChild(el("span", "vh", "Until then"));
+  meanwhile.appendChild(el("p", "vb",
+    "The <b>Idioms and Proverbs</b> trial teaches the same move on the proverbs the handbook gives, " +
+    "and the <b>Register</b> chamber already runs from Kuwaiti street speech up to classical Arabic. " +
+    "Both are the ground this room is built on."));
+  const links = el("div", "m-links");
+  [["proverb", "Idioms and Proverbs"], ["register", "The Register dial"]].forEach(([id, lab]) => {
+    const t = ITEMS.find(x => x.id === id);
+    if (!t) return;
+    const b = el("button", "ghost", lab + " →");
+    b.addEventListener("click", () => openItem(t));
+    links.appendChild(b);
+  });
+  meanwhile.appendChild(links);
+  stage.appendChild(meanwhile);
+
+  stage.appendChild(backFoot());
+}
+
+/* ═══════════ SCORECARD ═══════════ */
+function finish(log, total, stoppedEarly) {
+  const hits = log.filter(r => r.hit).length;
+  const need = Math.ceil(total * 0.6);
+  /* Leaving part-way is allowed and is not a failure — but a Mark is for
+     the whole trial, so it is not awarded on a partial run. */
+  const pass = !stoppedEarly && hits >= need;
+  const fresh = settleTrial(active.id, hits, total, pass, stoppedEarly);
+
+  stage.innerHTML = "";
+  setCount(stoppedEarly ? "Stopped" : "Complete");
+  setDots(total, log.length, -1);
 
   const card = el("div", "score");
-  card.appendChild(el("p", "tracked mag", "The tally"));
-  card.appendChild(el("p", "tally", hits + '<small> / ' + total + '</small>'));
+  card.appendChild(el("p", "tracked mag", stoppedEarly ? "Where you stopped" : "The tally"));
+  card.appendChild(el("p", "tally", hits + '<small> / ' + (stoppedEarly ? log.length : total) + '</small>'));
 
   let say;
-  if (hits === total) say = "Not one literal answer. That is the whole craft.";
+  if (stoppedEarly) say = "Kept, and no harm done. A Mark is for the whole trial, so come back to it when you have the time.";
+  else if (hits === total) say = "Not one literal answer. That is the whole craft.";
   else if (pass) say = "The meaning got through. Polish the rest.";
   else say = "The words got through; the meaning did not.";
   card.appendChild(el("p", "say", say));
 
   if (pass) card.appendChild(el("p", "earned", fresh ? "✦ Guild mark earned" : "✦ Mark already held"));
-  else card.appendChild(el("p", "note", need + " of " + total + " earns the mark. Run it again."));
+  else card.appendChild(el("p", "note", stoppedEarly
+    ? "You answered " + log.length + " of " + total + ". " + need + " of " + total + " earns the mark."
+    : need + " of " + total + " earns the mark. Run it again."));
 
   const rev = el("div", "review");
   log.forEach(r => rev.appendChild(el("div", "rev-row " + (r.hit ? "hit" : "miss"),
@@ -6984,6 +7197,7 @@ function runSubtitle() {
     go.addEventListener("click", () => grade(q, ta.value));
     foot.appendChild(go);
     stage.appendChild(foot);
+    stage.appendChild(quitTrial(log, i, SUBTITLE.length));
     ta.focus();
   }
 
@@ -7008,6 +7222,7 @@ function runSubtitle() {
     v.appendChild(el("p", "vb", q.why));
     if (!fits && val.length) v.appendChild(el("p", "vb",
       "<b>It ran " + (val.length - q.limit) + " characters over.</b> On screen the tail is simply cut."));
+    v.appendChild(chapterLine(q.ch));
     stage.appendChild(v);
 
     const foot = el("div", "foot");
@@ -7015,6 +7230,7 @@ function runSubtitle() {
     next.addEventListener("click", () => { i++; if (i < SUBTITLE.length) question(); else finish(log, SUBTITLE.length); });
     foot.appendChild(next);
     stage.appendChild(foot);
+    stage.appendChild(quitTrial(log, i + 1, SUBTITLE.length));
     next.focus();
   }
   question();
@@ -7789,6 +8005,16 @@ function boothRound(genre) {
   const feed = el("p", "note", "The clock starts the moment you type. Enter to send, Tab to pass.");
   stage.appendChild(feed);
 
+  /* A round is against a clock, which is exactly why there has to be a
+     way out of it that is not the clock. */
+  const quit = el("div", "quit-row");
+  const quitBtn = el("button", "link", "End this round");
+  quitBtn.addEventListener("click", () => { if (log.length) end(true); else { stopBooth(); goBack(); } });
+  quit.appendChild(quitBtn);
+  const quitNote = el("span", "quit-note", "0 of " + queue.length + " answered");
+  quit.appendChild(quitNote);
+  stage.appendChild(quit);
+
   function paint() {
     const q = queue[idx];
     const long = q.level.key === "sentences" || q.level.key === "turns";
@@ -7803,6 +8029,8 @@ function boothRound(genre) {
     void phrase.offsetWidth;
     setDots(queue.length, idx, idx);
     inp.value = "";
+    quitBtn.textContent = log.length ? "End this round" : "Leave this round";
+    quitNote.textContent = log.length + " of " + queue.length + " answered";
   }
   function begin() {
     if (started) return;
@@ -7877,22 +8105,29 @@ function boothRound(genre) {
     }
   });
 
-  function end() {
+  function end(stoppedEarly) {
     stopBooth();
-    const pass = hits >= NEED;
-    const fresh = settleTrial("booth", hits, Math.max(hits, NEED), pass);
+    /* A round stopped by hand is kept and never earns the mark: the mark
+       is for holding out, and the clock is the thing being held out
+       against. Running out of time is finishing; leaving is not. */
+    const pass = !stoppedEarly && hits >= NEED;
+    const fresh = settleTrial("booth", hits, Math.max(hits, NEED), pass, stoppedEarly);
 
     stage.innerHTML = "";
-    setCount("Time");
+    setCount(stoppedEarly ? "Stopped" : "Time");
     const sc = el("div", "score");
     sc.appendChild(el("p", "tracked mag",
       genre.en + " · " + (into === "ar" ? "English into Arabic" : "Arabic into English")));
     sc.appendChild(el("p", "tally", hits + '<small> of ' + queue.length + '</small>'));
-    sc.appendChild(el("p", "say", pass
-      ? "You kept up, and not only on the single words. That is the whole job of the booth."
-      : "The booth waits for nobody. " + NEED + " through earns the mark."));
+    sc.appendChild(el("p", "say", stoppedEarly
+      ? "Stopped, and everything you rendered is below. The mark is for holding out against the clock, so take the round again when you have the time for it."
+      : pass
+        ? "You kept up, and not only on the single words. That is the whole job of the booth."
+        : "The booth waits for nobody. " + NEED + " through earns the mark."));
     if (pass) sc.appendChild(el("p", "earned", fresh ? "✦ Guild mark earned" : "✦ Mark already held"));
-    else sc.appendChild(el("p", "note", hits + " through · " + NEED + " needed."));
+    else sc.appendChild(el("p", "note", stoppedEarly
+      ? hits + " through · " + log.length + " of " + queue.length + " attempted"
+      : hits + " through · " + NEED + " needed."));
 
     if (log.length) {
       const rev = el("div", "review");
