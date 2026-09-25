@@ -236,8 +236,8 @@ const doc = new Document({
     default: { document: { run: { font: LATIN, size: 22, color: INK } } },
     paragraphStyles: [
       // contents entries: compact, so that the list fits on one page
-      { id: 'TOC1', name: 'toc 1', basedOn: 'Normal', next: 'Normal', run: { size: 20 }, paragraph: { spacing: { before: 60, after: 0, line: 250 } } },
-      { id: 'TOC2', name: 'toc 2', basedOn: 'Normal', next: 'Normal', run: { size: 20 }, paragraph: { spacing: { before: 0, after: 0, line: 250 }, indent: { left: 280 } } },
+      { id: 'TOC1', name: 'toc 1', basedOn: 'Normal', next: 'Normal', run: { size: 20 }, paragraph: { spacing: { before: 36, after: 0, line: 240 } } },
+      { id: 'TOC2', name: 'toc 2', basedOn: 'Normal', next: 'Normal', run: { size: 20 }, paragraph: { spacing: { before: 0, after: 0, line: 240 }, indent: { left: 280 } } },
       { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 40, bold: true, color: ACCENT }, paragraph: { spacing: { before: 600, after: 200 }, outlineLevel: 0 } },
       { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 30, bold: true, color: ACCENT }, paragraph: { spacing: { before: 240, after: 200 }, outlineLevel: 1, keepNext: true } },
       { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 23, bold: true, color: INK }, paragraph: { spacing: { before: 380, after: 140 }, outlineLevel: 2, keepNext: true } },

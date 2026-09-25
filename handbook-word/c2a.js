@@ -18,6 +18,12 @@ module.exports = [
 ['h', 'Acknowledgements'],
 ['p', 'The Translation Team thanks every team member who collected material and examples for this handbook.'],
 
+['h', 'Contributors'],
+['p', '**Shaikhah Alkhaledi**, _editor and project coordinator_: planned and edited the handbook, contributed her study notes, designed the covers and the layout, and designed and developed the team’s website.'],
+['p', '**Loulwah Saeed**, _audiovisual translation_: provided the notes for Chapters 26 and 27.'],
+['p', '**Masooma Almesri**, _terminology_: selected, with Samiuallah Mohammad, the material for Chapter 21.'],
+['p', '**Samiuallah Mohammad**, _first draft and planning_: compiled the first draft, set out the plan, and provided the text analysis model (Chapter 17).'],
+
 ['front', 'Start here'],
 ['p', 'This book is for you if you have never studied translation. You do not need any background: only good English, good Arabic and curiosity. We will start from zero and go one step at a time.'],
 ['h', 'What does a translator actually do?'],

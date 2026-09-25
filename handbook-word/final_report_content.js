@@ -28,7 +28,7 @@ module.exports = [
   'A new opening, **Start here**, explains to a complete beginner what a translator does, the four steps of every translation and the journey through the book.',
   'Every chapter was rewritten as a step-by-step guide. Each idea is explained with an example before its technical name is given.',
   'The key terms moved from the start to the end of each chapter (**Words to remember**).',
-  'The abbreviations moved to the back of the book; the acknowledgements now close the preface.',
+  'The abbreviations moved to the back of the book; the acknowledgements and a new **Contributors** list now close the preface.',
 ]],
 ['h2', '3.2 Content removed'],
 ['ul', [
@@ -175,7 +175,7 @@ module.exports = [
 ['h2', '5.6 Requests in the Teams chat'],
 ['p', 'The messages in the team’s Teams chat were compared with the handbook.'],
 ['ul', [
-  '**Terminology chapter**: the chat says that the material was selected from the terminology part by Samiuallah and Masooma. The handbook does not name individual contributors; the acknowledgement thanks every team member (see Section 7).',
+  '**Terminology chapter**: the chat says that the material was selected from the terminology part by Samiuallah and Masooma. Both are now named on the Contributors page (see Section 7).',
   '**Audiovisual translation notes** (AVT 2 and Intro to AVT): the chat asks Loulwah to prepare the audiovisual chapter “from her notes specifically”, which suggests these are Loulwah’s notes. They were used for Chapters 26 and 27 (Section 5.4). The chat also asks for a background and an introduction to audiovisual translation, suitable for beginners: **done** (Chapter 26, Steps 1 and 2).',
   '**Principles of Translation notes** (a PDF of 59.5 MB): **not received**. The chat asks for four sections from it:',
 ]],
@@ -276,7 +276,7 @@ module.exports = [
 ]],
 ['h2', '7.3 Decisions and details'],
 ['redul', [
-  'Credit the team members’ contributions: the Teams chat shows that Samiuallah and Masooma selected the terminology material, and that the audiovisual notes appear to be Loulwah’s. The handbook currently thanks all team members without names.',
+  'Confirm the names and roles on the new Contributors page (page iv): Shaikhah Alkhaledi, Loulwah Saeed, Masooma Almesri and Samiuallah Mohammad. The full account is in the Contributions Report.',
   'Decide whether to add to the glossary the terms explained only in the text (for example sight translation, spotting, SDH and the inverted pyramid).',
   'Confirm the club’s official name: it appears in three slightly different forms (title page, copyright line and reference entry).',
   'Confirm the copyright line and that the statement on AI assistance meets the university’s and the publisher’s rules.',
