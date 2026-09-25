@@ -602,6 +602,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 }
 .commission .kind.exhibit { border-color: rgba(46,217,160,.4); color: var(--mint); }
 .commission .kind.guide { border-color: rgba(255,196,107,.45); color: var(--amber); }
+.commission .kind.workshop { border-color: rgba(167,38,208,.55); color: #d79bf0; }
 .commission .seal-pip {
   width: 20px; height: 20px; border-radius: 7px; flex: none;
   background: rgba(214,191,234,.13); border: 1px solid rgba(214,191,234,.24);
@@ -1038,6 +1039,56 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .how li b { color: var(--white); font-weight: 500; }
 .how li i { color: var(--white); font-style: italic; }
 
+/* ---------- the glossary ---------- */
+.gl-search { margin: .2rem 0 .1rem; }
+.gl-search input {
+  font-family: var(--f-sans); font-size: 1rem; color: var(--white);
+  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md);
+  padding: .8rem 1.05rem; width: 100%; -webkit-appearance: none; appearance: none;
+  transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease);
+}
+.gl-search input::placeholder { color: rgba(154,134,180,.75); }
+.gl-search input:focus { outline: none; border-color: rgba(167,38,208,.75); box-shadow: 0 0 0 4px rgba(167,38,208,.16); }
+.gl-list { display: grid; gap: .55rem; }
+.gl-row {
+  position: relative; border-radius: var(--r-lg); border: var(--hair);
+  background: rgba(255,255,255,.035); padding: .85rem 3rem .85rem 1rem;
+  display: grid; gap: .3rem; min-width: 0;
+}
+.gl-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .7rem; min-width: 0; }
+.gl-en { font-family: var(--f-serif); font-size: 1.04rem; font-weight: 600; color: var(--white); line-height: 1.25; }
+.gl-ar { font-family: var(--f-ar); font-size: 1rem; color: var(--lilac); direction: rtl; }
+.gl-def { margin: 0; font-size: .89rem; font-weight: 300; line-height: 1.55; color: rgba(214,191,234,.82); }
+.gl-ch { font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac-dim); }
+.gl-star {
+  position: absolute; top: .7rem; inset-inline-end: .7rem;
+  width: 34px; height: 34px; padding: 0; border-radius: 11px;
+  background: rgba(255,255,255,.05); border: var(--hair); box-shadow: none;
+  color: rgba(214,191,234,.4); font-size: .95rem; line-height: 1;
+}
+.gl-star:hover { background: rgba(214,191,234,.13); color: var(--white); transform: none; box-shadow: none; }
+.gl-star.on { color: var(--amber); border-color: rgba(255,196,107,.45); background: rgba(255,196,107,.12); }
+
+/* ---------- common errors ---------- */
+.err-list { display: grid; gap: .7rem; }
+
+/* ---------- the workbench ---------- */
+.wb-head { margin: .4rem 0 -.2rem; }
+.wb-head h3 { margin: 0; font-family: var(--f-serif); font-size: 1.12rem; font-weight: 600; color: var(--white); }
+.wb-list { display: grid; gap: .55rem; }
+.wb-row {
+  display: grid; gap: .3rem; text-align: start; width: 100%; min-width: 0;
+  padding: .9rem 1rem; border-radius: var(--r-lg); border: var(--hair);
+  background: rgba(255,255,255,.035); box-shadow: none;
+}
+.wb-row:hover { background: rgba(214,191,234,.1); transform: none; box-shadow: none; }
+.wb-row.kept { border-color: rgba(46,217,160,.4); }
+.wb-meta { font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac-dim); }
+.wb-src { font-size: .98rem; font-weight: 400; line-height: 1.5; color: var(--white); min-width: 0; overflow-wrap: anywhere; }
+.wb-src[dir="rtl"] { font-family: var(--f-ar-text); text-align: right; }
+.wb-state { font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac-dim); }
+.wb-row.kept .wb-state { color: var(--mint); }
+
 /* typing trials */
 .typing { display: grid; gap: .7rem; }
 .typing textarea { resize: none; line-height: 1.5; }
@@ -1398,7 +1449,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 22 &middot; 24 Sep</p>
+        <p class="build-mark">Guild build 23 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -1480,7 +1531,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   <section id="learn" class="view" hidden>
     <header class="screen-head">
       <h1>Theory &amp; Method</h1>
-      <p class="note">Guides &middot; not assessed &middot; read these first, the trials assume them</p>
+      <p class="note">Nothing here is marked &middot; the field, its terms and its errors &mdash; and a workshop where you translate for your own portfolio</p>
     </header>
     <div id="block-method"><div class="ledger" id="sec-method"></div></div>
   </section>
@@ -3151,6 +3202,290 @@ const REVISE = [
     why: "<b>تزوّج من</b> has a preposition and English <i>marry</i> does not. Prepositions almost never map between the two languages; they have to be learned verb by verb. (Chapter 23)" }
 ];
 
+/* ═══════════ THE GLOSSARY · Translation Handbook ═══════════
+   All 103 key terms the handbook defines, alphabetical, each with its
+   Arabic equivalent, the handbook's own definition and the chapter that
+   explains it. Transcribed from the glossary, not written here. */
+const GLOSSARY = [
+  { en: "Adaptation (method)", ar: "التكييف", def: "A very free rewriting; some specialists see it as a new text, not a translation.", ch: "10" },
+  { en: "Adaptation (procedure)", ar: "التكييف", def: "Replacing a cultural situation with a familiar one.", ch: "12" },
+  { en: "Addition", ar: "الإضافة", def: "Adding words or information that the reader needs.", ch: "13" },
+  { en: "Approximation", ar: "التقريب", def: "Rendering the meaning of the source text as closely as possible in the target language, knowing that an exact match is impossible.", ch: "1" },
+  { en: "Audio description", ar: "الوصف الصوتي", def: "A spoken description of what happens on screen, for blind and partially sighted viewers.", ch: "26" },
+  { en: "Audiovisual translation (AVT)", ar: "الترجمة السمعية البصرية", def: "Translating texts that combine words, images and sound, such as films and video games.", ch: "26" },
+  { en: "Bilingual dictionary", ar: "معجم ثنائي اللغة", def: "A dictionary that gives equivalents in another language.", ch: "20" },
+  { en: "Borrowing", ar: "الاقتراض", def: "Taking a word from the source language as it is.", ch: "12" },
+  { en: "Calque", ar: "النسخ", def: "Translating each part of an expression literally; also called loan translation (Chapter 16).", ch: "12" },
+  { en: "Censorship", ar: "الرقابة", def: "Removing or changing content that is considered unacceptable.", ch: "27" },
+  { en: "Client", ar: "العميل", def: "The person or organisation that asks for a translation.", ch: "2" },
+  { en: "Collocation", ar: "التلازم اللفظي", def: "Words that naturally go together; the company a word keeps.", ch: "7" },
+  { en: "Collocations dictionary", ar: "معجم المتلازمات", def: "A dictionary of the natural word partners of a language.", ch: "20" },
+  { en: "Commissioned translator", ar: "مترجم بتكليف", def: "A translator who translates a text at someone else’s request.", ch: "1" },
+  { en: "Communicative purpose", ar: "الغرض التواصلي", def: "What the translation is for: to inform, persuade, instruct or entertain.", ch: "2" },
+  { en: "Compensation", ar: "التعويض", def: "Making up for an effect lost in one place by creating a similar effect elsewhere.", ch: "13" },
+  { en: "Concept", ar: "المفهوم", def: "An idea that a word or term stands for.", ch: "15" },
+  { en: "Connotation", ar: "المعنى الإيحائي", def: "The extra feeling or association a word carries.", ch: "5" },
+  { en: "Context", ar: "السياق", def: "Everything around a word or text that helps us understand it: the surrounding words and the wider situation.", ch: "6" },
+  { en: "Cultural approximation", ar: "التقريب الثقافي", def: "Bringing the source text’s cultural meaning as close as possible to the target reader.", ch: "14" },
+  { en: "Cultural substitution", ar: "الاستبدال الثقافي", def: "Replacing a cultural reference with one that is familiar to the target reader.", ch: "13" },
+  { en: "Culture-bound term", ar: "مصطلح ذو خصوصية ثقافية", def: "A reference to something from one culture, such as a food or a holiday. Also called a culture-specific item (Chapter 14).", ch: "27" },
+  { en: "Culture-specific item", ar: "عنصر ذو خصوصية ثقافية", def: "A word, custom or reference that belongs to one culture.", ch: "14" },
+  { en: "Denotation", ar: "المعنى المعجمي", def: "The basic, dictionary meaning of a word.", ch: "5" },
+  { en: "Descriptive translation", ar: "الترجمة الوصفية", def: "Paraphrasing a source expression by describing its meaning. Also called explanatory translation (الترجمة الشرحية, Chapter 13).", ch: "15" },
+  { en: "Dialect", ar: "اللهجة العامية", def: "The everyday spoken Arabic of a country or region.", ch: "3" },
+  { en: "Dialogue list", ar: "قائمة الحوار", def: "A written script of everything said in a film, given to the translator.", ch: "27" },
+  { en: "Domestication", ar: "التوطين", def: "Making a translation feel local to the target reader.", ch: "13" },
+  { en: "Draft", ar: "المسوّدة", def: "The first version of a translation.", ch: "23" },
+  { en: "Dubbing", ar: "الدبلجة", def: "Replacing the original dialogue with recorded dialogue in the target language.", ch: "26" },
+  { en: "Equivalence", ar: "التكافؤ", def: "A match between a source-language expression and a target-language expression.", ch: "9" },
+  { en: "Equivalence (procedure)", ar: "التكافؤ", def: "Describing the same situation with a completely different expression, often an idiom or a proverb.", ch: "12" },
+  { en: "Explanatory translation", ar: "الترجمة الشرحية", def: "Explaining a word or expression that has no equivalent.", ch: "13" },
+  { en: "Field", ar: "المجال", def: "The subject area of a text, such as politics, health or law.", ch: "17" },
+  { en: "Figurative language", ar: "اللغة المجازية", def: "Language used in a non-literal way to create an image or effect.", ch: "11" },
+  { en: "Foreignisation", ar: "التغريب", def: "Keeping the foreign flavour of the source text.", ch: "13" },
+  { en: "Form", ar: "الشكل", def: "The structure of language: a word, phrase, clause, sentence or text.", ch: "4" },
+  { en: "Formal equivalence", ar: "التكافؤ الشكلي", def: "Keeping the form of the original: passive for passive, verb for verb.", ch: "9" },
+  { en: "Free translation", ar: "الترجمة الحرّة", def: "Keeping the message but not the form; also called loose translation.", ch: "10" },
+  { en: "Functional equivalence", ar: "التكافؤ الوظيفي", def: "Using a target-language expression that serves the same function, whatever its form.", ch: "9" },
+  { en: "Functional translation", ar: "الترجمة الوظيفية", def: "Translating with a target-language expression that has the same function.", ch: "13" },
+  { en: "Genre", ar: "الجنس النصّي", def: "A kind of text with its own rules, such as a news report, a contract or a poem.", ch: "17" },
+  { en: "Hallucination", ar: "الهلوسة", def: "Invented or false content produced by an AI tool, such as facts that are not in the source text.", ch: "22" },
+  { en: "Homonymy", ar: "المشترك اللفظي", def: "One word with several meanings that are not related.", ch: "6" },
+  { en: "Ideational equivalence", ar: "التكافؤ الفكري", def: "Giving only the basic idea, in plain words.", ch: "9" },
+  { en: "Ideology", ar: "الأيديولوجيا", def: "A set of beliefs that shapes how people describe events.", ch: "19" },
+  { en: "Idiom", ar: "التعبير الاصطلاحي", def: "A fixed expression whose meaning is not the sum of the meanings of its words.", ch: "8" },
+  { en: "Interpreting", ar: "الترجمة الشفهية", def: "Transferring spoken language into another language.", ch: "1" },
+  { en: "Justification", ar: "التبرير", def: "The reason why a translation choice is right.", ch: "25" },
+  { en: "Lexical creation", ar: "التوليد المعجمي", def: "Coining new target-language words for items with no direct equivalent.", ch: "16" },
+  { en: "Literal translation", ar: "الترجمة الحرفية", def: "Keeping the original words, changing only what grammar requires; also called modified literal translation (الترجمة الحرفية المعدّلة).", ch: "10" },
+  { en: "Loaded word", ar: "كلمة مشحونة", def: "A word that carries a judgement, positive or negative.", ch: "19" },
+  { en: "Loan translation (calque)", ar: "النسخ", def: "Translating the parts of a compound word one by one.", ch: "16" },
+  { en: "Machine translation (MT)", ar: "الترجمة الآلية", def: "Translation done by software, such as online translation tools or AI chat tools.", ch: "22" },
+  { en: "Macro context", ar: "سياق الموقف (الخارجي)", def: "The wider situation: the author, audience, time, place and circumstances of a text.", ch: "6" },
+  { en: "Meaning", ar: "المعنى", def: "The idea that a form expresses.", ch: "4" },
+  { en: "Mental draft", ar: "المسوّدة الذهنية", def: "A first idea of the translation that you form while reading the text.", ch: "2" },
+  { en: "Metaphor", ar: "الاستعارة", def: "A comparison without “as” or “like”; using a word in a non-basic meaning.", ch: "11" },
+  { en: "Micro context (co-text)", ar: "السياق اللغوي (الداخلي)", def: "The words and sentences immediately around a word.", ch: "6" },
+  { en: "Modern Standard Arabic (MSA)", ar: "الفصحى المعاصرة", def: "The Arabic of newspapers, laws and education.", ch: "3" },
+  { en: "Modulation", ar: "التطويع", def: "Expressing the same idea from another point of view.", ch: "12" },
+  { en: "Monolingual dictionary", ar: "معجم أحادي اللغة", def: "A dictionary that explains words in the same language.", ch: "20" },
+  { en: "Neologism", ar: "اللفظ المستحدث", def: "A new word, or an existing word given a new meaning.", ch: "16" },
+  { en: "Omission", ar: "الحذف", def: "Leaving out words that are unnecessary in the target language.", ch: "13" },
+  { en: "Polysemy", ar: "تعدّد المعنى", def: "One word with several meanings that are related.", ch: "6" },
+  { en: "Post-editing", ar: "التحرير اللاحق", def: "A human correcting and improving machine translation output, lightly or fully.", ch: "22" },
+  { en: "Proverb", ar: "المثل", def: "A traditional saying that gives advice or states a truth.", ch: "8" },
+  { en: "Register", ar: "المستوى اللغوي", def: "How formal or informal the language is.", ch: "3" },
+  { en: "Revision", ar: "المراجعة", def: "Checking a translation against the source and correcting it.", ch: "23" },
+  { en: "Risk", ar: "الخطر", def: "The chance that a choice causes a problem, and how serious it would be.", ch: "24" },
+  { en: "Risk management", ar: "إدارة المخاطر", def: "Spending more effort where a mistake could cause more harm.", ch: "24" },
+  { en: "Risk matrix", ar: "مصفوفة تقييم المخاطر", def: "A table of possible risks, how serious they are, and what to do.", ch: "24" },
+  { en: "Self-initiated translator", ar: "مترجم بمبادرة ذاتية", def: "A translator who chooses a text to translate on their own initiative.", ch: "1" },
+  { en: "Sentence meaning", ar: "معنى الجملة", def: "What the words of a sentence say.", ch: "5" },
+  { en: "Simile", ar: "التشبيه", def: "A comparison that uses “as” or “like”.", ch: "11" },
+  { en: "Skopos theory", ar: "نظرية الغاية", def: "The idea that the purpose of a translation decides how it is translated.", ch: "26" },
+  { en: "Source text (ST)", ar: "النص المصدر", def: "The original text that you translate.", ch: "1" },
+  { en: "Speaker meaning", ar: "مقصد المتكلم", def: "What the speaker really means by saying it.", ch: "5" },
+  { en: "Specialised dictionary", ar: "معجم متخصص", def: "A dictionary for one field, such as law or medicine.", ch: "20" },
+  { en: "Subtitling", ar: "السترجة / الترجمة المرئية", def: "Showing a written version of the dialogue, usually at the bottom of the screen, together with important on-screen text and song lyrics.", ch: "27" },
+  { en: "Taboo language", ar: "اللغة المحظورة", def: "Words that a society or religion forbids or restricts, such as swear words.", ch: "27" },
+  { en: "Target audience", ar: "الجمهور المستهدف", def: "The people who will read the translation.", ch: "2" },
+  { en: "Target text (TT)", ar: "النص الهدف", def: "Your translation.", ch: "1" },
+  { en: "Term", ar: "المصطلح", def: "A word or expression that names a concept in a special field.", ch: "21" },
+  { en: "Term list", ar: "قائمة المصطلحات", def: "A list of the approved terms for a project, with their translations.", ch: "21" },
+  { en: "Termbase", ar: "قاعدة بيانات المصطلحات (بنك المصطلحات)", def: "A database of terms and information about them.", ch: "21" },
+  { en: "Terminologist", ar: "المصطلحي (خبير المصطلحات)", def: "A specialist who collects, describes and records the terms of a field, and sometimes standardises them, in one or more languages.", ch: "21" },
+  { en: "Terminology", ar: "علم المصطلح (المصطلحية)", def: "The study, collection and management of specialised terms; also the set of terms used in one field.", ch: "21" },
+  { en: "Terminology guide", ar: "دليل المصطلحات", def: "A document that tells translators which terms to use for a client.", ch: "21" },
+  { en: "Text", ar: "النص", def: "Any piece of language, written or spoken, that forms a complete message: from a one-word sign to a whole book.", ch: "17" },
+  { en: "Text analysis", ar: "تحليل النص", def: "Breaking down and studying a text before translating it.", ch: "17" },
+  { en: "Text type", ar: "نمط النص", def: "A group of texts that share one main function: to inform, to express or to persuade.", ch: "18" },
+  { en: "Tone", ar: "النبرة", def: "The writer’s attitude: neutral, critical, friendly, straightforward.", ch: "17" },
+  { en: "Translation", ar: "الترجمة", def: "Transferring meaning from one language into another. In a narrow sense, written translation (الترجمة التحريرية), as opposed to interpreting.", ch: "1" },
+  { en: "Translation brief", ar: "موجز الترجمة", def: "The client’s instructions for a translation: who it is for, what it is for and any other requirements.", ch: "2" },
+  { en: "Translation commentary", ar: "التعليق على الترجمة", def: "A text that explains the problems in a translation and justifies the solutions.", ch: "25" },
+  { en: "Translation procedure", ar: "إجراء الترجمة", def: "A technique for translating a word, phrase or sentence.", ch: "12" },
+  { en: "Translation strategy", ar: "استراتيجية الترجمة", def: "A planned solution to a translation problem.", ch: "13" },
+  { en: "Transliteration", ar: "النقل الصوتي", def: "Writing the sounds of a word in the letters of another language.", ch: "15" },
+  { en: "Transposition", ar: "الإبدال", def: "Changing the word class, for example a noun into a verb.", ch: "12" },
+  { en: "Verbal sentence", ar: "الجملة الفعلية", def: "A sentence that starts with a verb.", ch: "3" },
+  { en: "Voice-over", ar: "التعليق الصوتي", def: "Recording a translation over the original voice, which can still be heard quietly.", ch: "26" },
+  { en: "Word order", ar: "ترتيب الكلمات", def: "The order of the subject, verb and object in a sentence.", ch: "3" }
+];
+
+/* ═══════════ COMMON ERRORS · Chapter 23 ═══════════
+   The handbook's own reference list of what goes wrong in a draft, in
+   both directions, with the correction it gives. Not a scored trial:
+   a list you come back to while revising. */
+const REVISION_READINGS = [
+  { n: "1", lab: "With the original",
+    what: "Is anything <b>missing</b>, <b>added</b> or <b>changed</b>? This reading is about fidelity, and it is the only one where you may look at both texts at once." },
+  { n: "2", lab: "Without the original",
+    what: "Does it sound natural? <b>If a sentence sounds translated, rewrite it.</b> Cover the source; you cannot hear your own English or Arabic while the other language is in front of you." },
+  { n: "3", lab: "The details",
+    what: "Numbers, names, spelling, punctuation, titles and captions. The errors that embarrass a translator most are almost never errors of meaning." }
+];
+
+const ERRORS = [
+  /* EN → AR */
+  { dir: "en-ar", t: "Starting every sentence with the subject",
+    wrong: "الحكومة أعلنت…", right: "أعلنت الحكومة…",
+    why: "Grammatical, and it still sounds translated. Arabic news prose normally opens with the verb." },
+  { dir: "en-ar", t: "Overusing قام بـ",
+    wrong: "قام الوزير بزيارة الكويت", right: "زار الوزير الكويت",
+    why: "The light verb is carrying nothing. Arabic already has the verb you need." },
+  { dir: "en-ar", t: "Copying the English passive",
+    wrong: "تمّ افتتاح المعرض من قِبَل الوزير", right: "افتتح الوزير المعرض",
+    why: "English reaches for the passive far more readily than Arabic. If the doer is named, name them." },
+  { dir: "en-ar", t: "Numbers three to ten",
+    wrong: "ثلاث طلاب", right: "ثلاثة طلاب",
+    why: "With 3 to 10 the number takes the <b>opposite</b> gender to the counted noun." },
+  { dir: "en-ar", t: "Hamza and taa marbuta",
+    wrong: "انشاء &middot; مدرسه &middot; الى", right: "إنشاء &middot; مدرسة &middot; إلى",
+    why: "Orthography, not style &mdash; and the first thing a reader notices." },
+  { dir: "en-ar", t: "Word-for-word collocations",
+    wrong: "كسر القانون", right: "خالف القانون",
+    why: "English <i>breaks</i> a law; Arabic does not break it. Learn the partner, not the word." },
+  { dir: "en-ar", t: "English punctuation",
+    wrong: "نعم, سأحضر. هل ستحضر أنت?", right: "نعم، سأحضر. هل ستحضر أنت؟",
+    why: "Arabic has its own comma and its own question mark. Using the English ones is a spelling error." },
+
+  /* AR → EN */
+  { dir: "ar-en", t: "Long sentences joined with “and”",
+    wrong: "…and… and… and…", right: "Split them with full stops.",
+    why: "Arabic coordinates where English subordinates or stops. One Arabic sentence is often three English ones." },
+  { dir: "ar-en", t: "Repeated synonyms",
+    wrong: "brave and daring", right: "very brave",
+    why: "Arabic doubles for emphasis; English reads the double as two separate claims. Omission is the fix." },
+  { dir: "ar-en", t: "An extra “the”",
+    wrong: "The life is beautiful.", right: "Life is beautiful.",
+    why: "No article before a general idea in English, however firmly الـ sits there in the Arabic." },
+  { dir: "ar-en", t: "A missing “is”",
+    wrong: "He in the office.", right: "He is in the office.",
+    why: "The Arabic nominal sentence has no copula. English always needs one." },
+  { dir: "ar-en", t: "Arabic prepositions",
+    wrong: "He married from her.", right: "He married her.",
+    why: "تزوّج من has a preposition and <i>marry</i> does not. Prepositions have to be learned verb by verb." },
+  { dir: "ar-en", t: "Missing capitals in a title before a name",
+    wrong: "minister of health Ahmad Ali", right: "Minister of Health Ahmad Ali",
+    why: "A title immediately before a name is capitalised in English. Arabic marks none of this." }
+];
+
+/* ═══════════ THE WORKBENCH · the handbook's practice ═══════════
+   Every passage below is the handbook's own practice material, at the
+   three levels it sets, with the suggested version and the note it
+   gives. Nothing is scored: you write your rendering, you keep it, and
+   only then do you see what the handbook proposed. A piece you have
+   written and kept is a portfolio piece. */
+const WORKBENCH = [
+  /* Level 1 A — EN → AR */
+  { id: "w1a1", lvl: 1, dir: "en-ar", ch: "Chapter 7",
+    src: "She paid a visit to her grandmother.",
+    model: "زارت جدّتها.",
+    note: "<i>Pay a visit</i> is a collocation meaning <i>visit</i>. Translate the partnership, not the two words." },
+  { id: "w1a2", lvl: 1, dir: "en-ar", ch: "Chapter 9",
+    src: "The agreement has remained a dead letter.",
+    model: "ظلّت الاتفاقية حبراً على ورق.",
+    note: "A functional equivalent: a different image doing the same work." },
+  { id: "w1a3", lvl: 1, dir: "en-ar", ch: "Chapter 4",
+    src: "He is a heavy smoker.",
+    model: "يدخّن بشراهة.",
+    note: "The form changes &mdash; noun phrase to verb &mdash; and the meaning stays. That is transposition." },
+  { id: "w1a4", lvl: 1, dir: "en-ar", ch: "Chapter 8",
+    src: "It’s raining cats and dogs.",
+    model: "تمطر بغزارة.",
+    note: "Do not translate an idiom word by word unless the other language happens to have the same idiom." },
+  { id: "w1a5", lvl: 1, dir: "en-ar", ch: "Chapter 14",
+    src: "The Home Office issued a statement.",
+    model: "أصدرت وزارة الداخلية البريطانية بياناً.",
+    note: "The Home Office is the UK interior ministry. An institution needs its function, not its name." },
+
+  /* Level 1 B — AR → EN */
+  { id: "w1b1", lvl: 1, dir: "ar-en", ch: "Chapter 8",
+    src: "رجع بخُفَّي حُنين.",
+    model: "He came back empty-handed.",
+    note: "The meaning of the proverb, in natural English. The two slippers of Hunayn do not travel." },
+  { id: "w1b2", lvl: 1, dir: "ar-en", ch: "Chapter 14",
+    src: "أثلجَ الخبرُ صدري.",
+    model: "The news warmed my heart.",
+    note: "Arabic takes relief as <i>cold</i>; English takes it as <i>warmth</i>. The image inverts and the feeling survives." },
+  { id: "w1b3", lvl: 1, dir: "ar-en", ch: "Chapter 13",
+    src: "هو شجاعٌ مِغوار.",
+    model: "He is very brave.",
+    note: "Omission: English does not want two synonyms where Arabic doubles for emphasis." },
+  { id: "w1b4", lvl: 1, dir: "ar-en", ch: "Chapter 7",
+    src: "يساورني القلق بشأن النتائج.",
+    model: "I am worried about the results.",
+    note: "A natural English collocation. The literal <i>worry visits me</i> is not one." },
+  { id: "w1b5", lvl: 1, dir: "ar-en", ch: "Chapters 3 and 7",
+    src: "قدّم الوزير استقالته أمس.",
+    model: "The minister resigned yesterday.",
+    note: "Start with the subject in English, and قدّم استقالته simply means <i>resigned</i>." },
+
+  /* Level 2 — short texts */
+  { id: "w2a", lvl: 2, dir: "en-ar", ch: "Legal and human rights",
+    src: "All human beings are born free and equal in dignity and rights. They are endowed with reason and conscience and should act towards one another in a spirit of brotherhood.",
+    cite: "Universal Declaration of Human Rights, Article 1 (United Nations, 1948).",
+    model: "يُولد جميعُ الناس أحراراً ومتساوين في الكرامة والحقوق، وقد وُهبوا العقلَ والضمير، وعليهم أن يعامل بعضُهم بعضاً بروح الإخاء.",
+    note: "Start with the verb and join the two sentences with و. Then compare your version with the official United Nations Arabic text &mdash; this is one of the few passages in the world with an official equivalent." },
+  { id: "w2b", lvl: 2, dir: "ar-en", ch: "Classical poetry",
+    src: "الخيلُ والليلُ والبيداءُ تعرفني ... والسيفُ والرمحُ والقرطاسُ والقلمُ",
+    cite: "al-Mutanabbi. Try to keep the rhythm of the list.",
+    model: "The horses, the night and the desert know me, as do the sword, the spear, the paper and the pen.",
+    note: "Keep the list of seven nouns; <i>steeds</i> and <i>parchment</i> would sound more classical. This is the line al-Jahiz would have said cannot cross." },
+  { id: "w2c", lvl: 2, dir: "en-ar", ch: "English poetry",
+    src: "Shall I compare thee to a summer’s day? Thou art more lovely and more temperate.",
+    cite: "Sonnet 18 (Shakespeare, 1609).",
+    model: "أأشبّهكِ بيومٍ من أيام الربيع؟ أنتِ أبهى منه وأكثرُ اعتدالاً.",
+    note: "Spring gives Arab readers the pleasant feeling that summer gives English readers &mdash; cultural approximation. Arabic must also choose a gender for <i>thee</i>: Sonnet 18 belongs to the sonnets usually read as addressed to a young man, so أأشبّهكَ is equally defensible. Whichever you choose, explain it in the commentary." },
+
+  /* Level 3 — full texts */
+  { id: "w3a", lvl: 3, dir: "en-ar", ch: "News",
+    src: "Health officials have urged residents to stay indoors between 11 a.m. and 4 p.m. as temperatures are expected to top 50°C this week. “Heatstroke is not something to take lightly,” a Ministry of Health spokesperson said, advising people to drink plenty of water and to check on elderly neighbours. Meanwhile, shopping malls are expected to be packed as families seek relief from the heat.",
+    cite: "Practice text written for the handbook.",
+    guide: true,
+    model: "top 50°C → تتجاوز 50 درجة مئوية &middot; not something to take lightly → أمرٌ خطير (modulation) &middot; check on → الاطمئنان على &middot; packed → مكتظّة",
+    note: "This is news: keep a neutral tone and start sentences with verbs." },
+  { id: "w3b", lvl: 3, dir: "ar-en", ch: "Cultural news",
+    src: "احتفلت الجمعية الثقافية مساءَ أمس بتكريم نخبةٍ من المترجمين الشباب، وذلك في أمسيةٍ حضرها لفيفٌ من الأدباء والأكاديميين. وأكّد رئيس الجمعية في كلمته أنّ الترجمة جسرٌ يصل الشعوب بعضها ببعض، مشيراً إلى أنّ العناية بالمترجمين الشباب واجبٌ لا ترف. واختُتمت الأمسية بقراءاتٍ شعريةٍ مترجمة، وسط أجواءٍ سادها الودّ والتقدير.",
+    cite: "Practice text written for the handbook.",
+    guide: true,
+    model: "A possible opening: <i>Last night, the Cultural Society honoured a group of outstanding young translators at an event attended by writers and academics.</i>",
+    note: "Split the long Arabic sentence, keep the image of translation as a bridge, and render الودّ والتقدير as a warm, appreciative atmosphere." }
+];
+
+/* The four-step method the handbook sets for a Level 3 text, and the
+   shape of a commentary (Checklist 4 · Chapter 25). */
+const COMMENTARY_STEPS = [
+  "Analyse the text with the analysis checklist (Chapter 17).",
+  "Translate it.",
+  "Revise it with the risk matrix and the checklists (Chapters 23 and 24).",
+  "Write a commentary of about 150 words (Chapter 25)."
+];
+const COMMENTARY_SHAPE = [
+  "Part one reflects on the analysis; part two on the translation.",
+  "For each problem: <b>problem</b>, <b>solution</b>, <b>procedure or strategy</b>, <b>resource</b>, <b>justification</b>.",
+  "Quote examples from the source and from the translation.",
+  "Write in the third person.",
+  "Name the dictionaries and resources used."
+];
+
+/* ═══════════ WHAT EACH TRIAL TESTS ═══════════
+   So the Seal can sort a member's own record by the kind of error
+   rather than by the name of a trial. The categories are the
+   handbook's own divisions, not invented here. */
+const FACETS = {
+  nameproc:  "Procedure",
+  human:     "Equivalence",
+  proverb:   "Idiom and proverb",
+  courtesy:  "Pragmatic",
+  cultural:  "Cultural",
+  subtitle:  "Audiovisual",
+  booth:     "Interpreting",
+  colloc:    "Collocational",
+  context:   "Lexical and contextual",
+  revise:    "Revision and mechanics"
+};
+
 /* ═══════════ REGISTRY ═══════════ */
 const ITEMS = [
   { id: "lineage", ar: "", en: "Translators in History", kind: "guide", section: "method",
@@ -3171,6 +3506,18 @@ const ITEMS = [
     subject: "Text typology · Chapter 18",
     blurb: "Ten worlds a translation can land in — journalistic, political and diplomatic, legal, technical, medical, literary, transcreation, localization, audiovisual, academic — and why they are not all the same kind of category.",
     run: runTextTypes },
+  { id: "glossary", ar: "مَسرَد المُصطلَحات", en: "Glossary of the Field", kind: "guide", section: "method",
+    subject: "103 terms · Chapters 1–27",
+    blurb: "Every key term the handbook defines, searchable in Arabic or English, each with the chapter that explains it. Keep the ones you want and they stay on your Seal.",
+    run: runGlossary },
+  { id: "errors", ar: "المُراجَعة والأخطاء الشّائعة", en: "Revision and Common Errors", kind: "guide", section: "method",
+    subject: "المراجعة · Chapter 23",
+    blurb: "The three readings a draft needs, then the handbook's reference list of what actually goes wrong in each direction — the sentence that is correct and still sounds translated.",
+    run: runErrors },
+  { id: "commentary", ar: "التَّرجمة والتَّعليق عليها", en: "Translation and Commentary", kind: "workshop", section: "method",
+    subject: "التعليق على الترجمة · Chapter 25",
+    blurb: "Fifteen passages at three levels. Write your own rendering, keep it, and only then see the handbook's version — every piece you keep is part of your portfolio.",
+    run: runCommentary },
 
   { id: "nameproc", ar: "ما هذا الإجراء؟", en: "Translation Procedures", kind: "trial", section: "trials",
     subject: "إجراء الترجمة · Chapter 12",
@@ -3564,7 +3911,7 @@ async function sbHeaders() {
 }
 
 async function sbRead() {
-  const r = await fetch(SUPABASE.url + "/rest/v1/members?select=marks,marks_earned,rank,seen_rank,finale_seen",
+  const r = await fetch(SUPABASE.url + "/rest/v1/members?select=marks,marks_earned,rank,seen_rank,finale_seen,terms,work",
                         { headers: await sbHeaders() });
   if (!r.ok) throw new Error("read " + r.status);
   const rows = await r.json();
@@ -3582,7 +3929,11 @@ async function sbWrite(member) {
       marks_earned: markCount(),
       rank: currentRank().en,
       seen_rank: state.seenRank || null,
-      finale_seen: !!state.finale
+      finale_seen: !!state.finale,
+      /* kept terms and portfolio pieces belong to the member, not to one
+         browser, so they ride on the same owned row as the marks */
+      terms: savedTerms(),
+      work: workBook()
     })
   });
   if (!r.ok) throw new Error("write " + r.status);
@@ -3597,13 +3948,35 @@ function absorb(row) {
   }
   if (typeof row.seen_rank === "string" && row.seen_rank && !state.seenRank) state.seenRank = row.seen_rank;
   if (row.finale_seen) state.finale = true;
+
+  /* Kept terms union the same way marks do: keeping a term on one device
+     never un-keeps it on another. */
+  if (row.terms && typeof row.terms === "object") {
+    const mine = savedTerms();
+    Object.keys(row.terms).forEach(k => { if (row.terms[k]) mine[k] = true; });
+  }
+  /* A portfolio piece is a document, not a flag, so the two copies cannot
+     simply be unioned: the one written later wins, per passage. A piece
+     written on a second device therefore arrives without overwriting an
+     edit made here afterwards. */
+  if (row.work && typeof row.work === "object") {
+    const mine = workBook();
+    Object.keys(row.work).forEach(k => {
+      const theirs = row.work[k];
+      if (!theirs || typeof theirs !== "object" || !theirs.text) return;
+      const ours = mine[k];
+      if (!ours || !ours.text) { mine[k] = theirs; return; }
+      if (String(theirs.at || "") > String(ours.at || "")) mine[k] = theirs;
+    });
+  }
   save();
   return markCount() !== before;
 }
 
 function fromGuildDoc(d) {
   d = d || {};
-  return { marks: d.marks, seen_rank: d.seenRank, finale_seen: d.finale };
+  return { marks: d.marks, seen_rank: d.seenRank, finale_seen: d.finale,
+           terms: d.terms, work: d.work };
 }
 
 /* The account's own record of who this member is. Row-level security means
@@ -3667,6 +4040,7 @@ async function pushBackend() {
       await dbDoc.set({
         member: member, marks: state.marks, marksEarned: markCount(),
         rank: currentRank().en, seenRank: state.seenRank || "",
+        terms: savedTerms(), work: workBook(),
         finale: !!state.finale, updatedAt: new Date().toISOString()
       });
     } catch (e) {}
@@ -4590,28 +4964,91 @@ function renderSeal() {
       ' of ' + trials.length + ' passed</span></div>' +
     '<ul class="record">' + rows + '</ul>';
 
-  /* ── what is not being recorded yet ──
-     Named honestly so the Seal never implies it is tracking something it
-     is not. Each of these arrives with the part of the platform that
-     produces it. */
-  const pending = [
-    ["Translation history", "Free-text translation trials are being built; once they exist, every rendering you submit is kept here with its feedback."],
-    ["Interpreting history", "The Booth records a score today. Full consecutive and simultaneous work is still to come."],
-    ["Glossary", "Saving terms, collocations and idioms with their context."],
-    ["Mistakes and strengths", "Errors sorted by kind — lexical, collocational, register, cultural, pragmatic — so practice can be aimed at what you actually get wrong."],
-    ["Portfolio", "Source, target, revisions and final version, kept as a body of work."]
-  ];
-  document.getElementById("seal-later").innerHTML =
-    '<div class="j-head"><h2>Not yet recording</h2>' +
-      '<span class="j-next">Named, not guessed</span></div>' +
-    '<p class="note" style="margin:0 0 .9rem">These are part of the Guild’s plan. ' +
-      'Until each one is built, the Seal says so rather than showing a number it does not have.</p>' +
-    '<ul class="record soon">' + pending.map(p =>
-      '<li class="rec-row"><span class="rec-pip" aria-hidden="true">·</span>' +
-        '<span class="rec-body"><span class="rec-name">' + p[0] + '</span>' +
-        '<span class="rec-detail">' + p[1] + '</span></span>' +
-        '<span class="rec-state">Coming</span></li>').join("") +
-    '</ul>';
+  /* ── the portfolio and the error profile ──
+     A translator's portfolio is the body of work they can show: the
+     passages they have actually rendered, kept so a client, a tutor or
+     an examiner can read them. Everything below is built from what this
+     member has really done — nothing here is a placeholder. */
+  const later = document.getElementById("seal-later");
+  const kept = WORKBENCH.filter(p => workDone(p.id));
+  const day = iso => new Date(iso).toLocaleDateString(undefined,
+    { year: "numeric", month: "short", day: "numeric" });
+
+  const folioRows = kept.length
+    ? kept.map(p => {
+        const w = workBook()[p.id];
+        return '<li class="rec-row held">' +
+                 '<span class="rec-pip" aria-hidden="true">✦</span>' +
+                 '<span class="rec-body">' +
+                   '<span class="rec-name">Level ' + p.lvl + ' · ' + p.ch + '</span>' +
+                   '<span class="rec-detail">' +
+                     (p.dir === "en-ar" ? "English → Arabic" : "Arabic → English") +
+                     ' · ' + day(w.at) +
+                     (w.commentary && w.commentary.trim() ? " · with commentary" : " · no commentary yet") +
+                   '</span>' +
+                 '</span>' +
+                 '<span class="rec-state">Kept</span></li>';
+      }).join("")
+    : '<li class="rec-row"><span class="rec-pip" aria-hidden="true">·</span>' +
+        '<span class="rec-body"><span class="rec-name">Nothing kept yet</span>' +
+        '<span class="rec-detail">Translation and Commentary, in Method and Theory, holds fifteen passages. ' +
+        'Whatever you render there is kept here as your own work.</span></span>' +
+        '<span class="rec-state">Empty</span></li>';
+
+  /* Where the work actually goes wrong, by kind rather than by the name
+     of a trial, weakest first — which is the only ordering that tells
+     you what to practise next. */
+  const facets = Object.keys(FACETS)
+    .map(id => ({ id: id, name: FACETS[id], best: bestAttempt(id), tries: attemptCount(id) }))
+    .filter(f => f.best && f.best.total > 0)
+    .map(f => Object.assign(f, { rate: f.best.score / f.best.total }))
+    .sort((a, b) => a.rate - b.rate);
+
+  const facetRows = facets.length
+    ? facets.map(f =>
+        '<li class="rec-row' + (f.rate >= 0.8 ? " held" : "") + '">' +
+          '<span class="rec-pip" aria-hidden="true">' + (f.rate >= 0.8 ? "✦" : "✧") + '</span>' +
+          '<span class="rec-body">' +
+            '<span class="rec-name">' + f.name + '</span>' +
+            '<span class="rec-detail">Best ' + f.best.score + ' of ' + f.best.total + ' · ' +
+              f.tries + ' attempt' + (f.tries === 1 ? "" : "s") + '</span>' +
+          '</span>' +
+          '<span class="rec-state">' + Math.round(f.rate * 100) + '%</span></li>').join("")
+    : '<li class="rec-row"><span class="rec-pip" aria-hidden="true">·</span>' +
+        '<span class="rec-body"><span class="rec-name">No attempts yet</span>' +
+        '<span class="rec-detail">Sit a trial and this sorts your record by the kind of error — ' +
+        'collocational, cultural, pragmatic, and the rest — weakest first.</span></span>' +
+        '<span class="rec-state">Empty</span></li>';
+
+  const terms = Object.keys(savedTerms()).filter(k => savedTerms()[k]);
+
+  later.innerHTML =
+    '<div class="j-head"><h2>Your portfolio</h2>' +
+      '<span class="j-next">' + kept.length + ' of ' + WORKBENCH.length + ' kept</span></div>' +
+    '<p class="note" style="margin:0 0 .9rem">The passages you have rendered in your own words, ' +
+      'with the commentary you wrote on them. This is the body of work you would show someone.</p>' +
+    '<ul class="record">' + folioRows + '</ul>' +
+
+    '<div class="j-head" style="margin-top:1.4rem"><h2>Where you go wrong</h2>' +
+      '<span class="j-next">Weakest first</span></div>' +
+    '<p class="note" style="margin:0 0 .9rem">Your own record, sorted by the kind of error rather than ' +
+      'by the name of a trial, so practice can be aimed at what you actually get wrong.</p>' +
+    '<ul class="record">' + facetRows + '</ul>' +
+
+    '<div class="j-head" style="margin-top:1.4rem"><h2>Terms you keep</h2>' +
+      '<span class="j-next">' + terms.length + ' of ' + GLOSSARY.length + '</span></div>' +
+    (terms.length
+      ? '<div class="chips-row">' + terms.map(t => '<span class="chip-tag">' + t + '</span>').join("") + '</div>'
+      : '<p class="note" style="margin:0">Nothing kept yet. In the Glossary, the star beside a term keeps it here.</p>');
+
+  /* Both empty states point somewhere, so the Seal is never a dead end. */
+  const goWork = el("button", "ghost", "Open Translation and Commentary →");
+  goWork.style.marginTop = "1.1rem";
+  goWork.addEventListener("click", () => {
+    const it = ITEMS.find(t => t.id === "commentary");
+    if (it) openItem(it);
+  });
+  later.appendChild(goWork);
 }
 
 /* Home: who you are, what to do next, and the Lineage. Nothing that
@@ -4646,7 +5083,10 @@ function fillLedger(sectionId, section) {
   ITEMS.filter(t => t.section === section).forEach((t, i) => {
     const b = el("button", "commission");
     b.style.animationDelay = (i * 45) + "ms";
-    const pip = t.kind === "guide" ? "" :
+    /* Only a Trial can earn a Mark, so only a Trial carries the pip. A
+       Chamber, a guide and the workshop are unscored on purpose; showing
+       them a star that can never fill says the opposite. */
+    const pip = t.kind !== "trial" ? "" :
       '<span class="seal-pip' + (state.marks[t.id] ? " earned" : "") + '">✦</span>';
     b.innerHTML =
       '<span class="c-top">' +
@@ -5184,6 +5624,323 @@ function runToolkit() {
     stage.appendChild(backFoot());
   }
   render();
+}
+
+/* ═══════════ THE GLOSSARY ═══════════
+   Every key term the handbook defines, searchable in either language,
+   with the chapter that explains it. A term can be kept, and what a
+   member keeps is theirs: it shows on the Seal and it travels with the
+   rest of their record. Nothing here is scored. */
+function savedTerms() { return state.terms && typeof state.terms === "object" ? state.terms : (state.terms = {}); }
+function termSaved(en) { return !!savedTerms()[en]; }
+function savedTermCount() { return Object.keys(savedTerms()).filter(k => savedTerms()[k]).length; }
+function toggleTerm(en) {
+  const t = savedTerms();
+  if (t[en]) delete t[en]; else t[en] = true;
+  save(); pushBackend();
+  return !!t[en];
+}
+
+function runGlossary() {
+  let q = "";
+  let mine = false;
+  setCount("A reference · not a test");
+
+  function matches(g) {
+    if (mine && !termSaved(g.en)) return false;
+    if (!q) return true;
+    const hay = (g.en + " " + g.ar + " " + g.def + " chapter " + g.ch).toLowerCase();
+    return hay.indexOf(q.toLowerCase()) >= 0;
+  }
+
+  function render(keepFocus) {
+    stage.innerHTML = "";
+    setDots(0, 0, 0);
+
+    stage.appendChild(el("p", "lede",
+      "Every key term the Translation Handbook defines, in alphabetical order, each with its " +
+      "Arabic equivalent and the chapter that explains it. The definitions are the handbook's own. " +
+      "Search in <b>either language</b> &mdash; type <i>collocation</i> or <i>التلازم</i> &mdash; and " +
+      "keep the ones you want to come back to."));
+
+    const search = el("div", "gl-search");
+    const input = document.createElement("input");
+    input.type = "search";
+    input.value = q;
+    input.placeholder = "Search the glossary";
+    input.setAttribute("aria-label", "Search the glossary");
+    input.addEventListener("input", () => { q = input.value; render(true); });
+    search.appendChild(input);
+    stage.appendChild(search);
+
+    const chips = el("div", "chips");
+    [["All terms", false], ["Kept" + (savedTermCount() ? " · " + savedTermCount() : ""), true]].forEach(pair => {
+      const b = el("button", "chip" + (mine === pair[1] ? " on" : ""), pair[0]);
+      b.addEventListener("click", () => { mine = pair[1]; render(); });
+      chips.appendChild(b);
+    });
+    stage.appendChild(chips);
+
+    const hits = GLOSSARY.filter(matches);
+    stage.appendChild(el("p", "note",
+      hits.length ? hits.length + " of " + GLOSSARY.length + " terms" :
+      (mine ? "Nothing kept yet. Tap the star beside a term to keep it." : "No term matches that.")));
+
+    const list = el("div", "gl-list");
+    hits.forEach(g => {
+      const row = el("div", "gl-row");
+      row.innerHTML =
+        '<div class="gl-head">' +
+          '<span class="gl-en">' + g.en + '</span>' +
+          '<span class="gl-ar" dir="rtl" lang="ar">' + g.ar + '</span>' +
+        '</div>' +
+        '<p class="gl-def">' + g.def + '</p>' +
+        '<span class="gl-ch">Chapter ' + g.ch + '</span>';
+      const star = el("button", "gl-star" + (termSaved(g.en) ? " on" : ""), "★");
+      star.setAttribute("aria-label", (termSaved(g.en) ? "Stop keeping " : "Keep ") + g.en);
+      star.setAttribute("aria-pressed", termSaved(g.en) ? "true" : "false");
+      star.addEventListener("click", () => {
+        const now = toggleTerm(g.en);
+        star.classList.toggle("on", now);
+        star.setAttribute("aria-pressed", now ? "true" : "false");
+        if (mine && !now) render();
+      });
+      row.appendChild(star);
+      list.appendChild(row);
+    });
+    stage.appendChild(list);
+    stage.appendChild(backFoot());
+    if (keepFocus) { const i = stage.querySelector(".gl-search input"); if (i) { i.focus(); i.setSelectionRange(i.value.length, i.value.length); } }
+  }
+  render();
+}
+
+/* ═══════════ REVISION AND COMMON ERRORS ═══════════
+   Chapter 23, as a reference rather than a test. Three readings first,
+   because the method matters more than the list, then the list itself
+   in both directions. */
+function runErrors() {
+  let tab = 0;
+  const TABS = ["The three readings", "English into Arabic", "Arabic into English"];
+  setCount("A reference · three readings, then the list");
+
+  function render() {
+    stage.innerHTML = "";
+    setDots(TABS.length, tab, tab);
+
+    stage.appendChild(el("p", "lede",
+      "Every translator makes mistakes in a draft, experts included; <b>revision is where you find them</b>. " +
+      "Checking your own draft is self-revision (Mossop, 2014). What follows is the handbook's own " +
+      "reference list of what actually goes wrong, in each direction &mdash; keep it beside you while you revise, " +
+      "not while you translate."));
+
+    const chips = el("div", "chips");
+    TABS.forEach((label, k) => {
+      const b = el("button", "chip" + (k === tab ? " on" : ""), label);
+      b.addEventListener("click", () => { tab = k; render(); });
+      chips.appendChild(b);
+    });
+    stage.appendChild(chips);
+
+    if (tab === 0) {
+      REVISION_READINGS.forEach(r => {
+        const card = el("div", "card tech");
+        card.appendChild(el("div", "card-top",
+          '<span class="num-badge">Reading ' + r.n + '</span><h3>' + r.lab + '</h3>'));
+        card.appendChild(el("p", "lede", r.what));
+        stage.appendChild(card);
+      });
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", "The order is not optional"));
+      v.appendChild(el("p", "vb",
+        "Fidelity, then fluency, then detail. Read for naturalness with the source still in front of you and you " +
+        "will not hear the translation &mdash; the original keeps telling you what the sentence means, so you " +
+        "cannot tell whether your own sentence says it."));
+      stage.appendChild(v);
+    } else {
+      const want = tab === 1 ? "en-ar" : "ar-en";
+      stage.appendChild(el("p", "note", tab === 1 ?
+        "Translating <b>into Arabic</b>. Most of these are not errors of meaning &mdash; the sentence is understood and still sounds translated." :
+        "Translating <b>into English</b>. Arabic habits that English does not share, and the article and copula that Arabic does not have."));
+      const list = el("div", "err-list");
+      const d = want === "en-ar" ? ' dir="rtl" lang="ar"' : '';
+      ERRORS.filter(e => e.dir === want).forEach(e => {
+        list.appendChild(el("div", "ex",
+          '<span class="ex-lab">Common error &mdash; <b>' + e.t + '</b></span>' +
+          '<div class="ex-row lit"><span class="ex-k">Not this</span><p' + d + '>' + e.wrong + '</p></div>' +
+          '<div class="ex-row out"><span class="ex-k">This</span><p' + d + '>' + e.right + '</p></div>' +
+          '<p class="ex-note">' + e.why + '</p>'));
+      });
+      stage.appendChild(list);
+    }
+
+    const pager = el("div", "pager");
+    const foot = el("div", "foot");
+    if (tab > 0) {
+      const prev = el("button", "ghost", "← " + TABS[tab - 1]);
+      prev.addEventListener("click", () => { tab--; render(); });
+      foot.appendChild(prev);
+    }
+    if (tab < TABS.length - 1) {
+      const next = el("button", null, TABS[tab + 1] + " →");
+      next.addEventListener("click", () => { tab++; render(); });
+      foot.appendChild(next);
+    }
+    pager.appendChild(foot);
+    pager.appendChild(el("p", "note", TABS[tab]));
+    stage.appendChild(pager);
+    stage.appendChild(backFoot());
+  }
+  render();
+}
+
+/* ═══════════ THE WORKBENCH · translation and commentary ═══════════
+   The handbook's practice passages, at the three levels it sets. You
+   write your own rendering, you keep it, and only then does the
+   handbook's suggested version appear — showing it first would turn
+   the exercise into a reading. Nothing here is scored: a piece you
+   have written and kept is a portfolio piece, and it is listed on the
+   Seal as one. */
+function workBook() { return state.work && typeof state.work === "object" ? state.work : (state.work = {}); }
+function workDone(id) { const w = workBook()[id]; return !!(w && w.text && w.text.trim()); }
+function workCount() { return WORKBENCH.filter(p => workDone(p.id)).length; }
+function saveWork(id, text, commentary) {
+  const w = workBook();
+  const had = w[id];
+  w[id] = {
+    text: String(text || ""),
+    commentary: String(commentary == null ? (had && had.commentary) || "" : commentary),
+    at: new Date().toISOString(),
+    first: (had && had.first) || new Date().toISOString()
+  };
+  save(); pushBackend();
+}
+const LEVEL_NAME = { 1: "Sentences", 2: "Short texts", 3: "Full texts" };
+
+function runCommentary() {
+  let open = null;                      /* the passage being worked, or null for the list */
+  setCount("A workshop · nothing here is marked");
+
+  function list() {
+    stage.innerHTML = "";
+    setDots(WORKBENCH.length, workCount(), -1);
+
+    stage.appendChild(el("p", "lede",
+      "The handbook's own practice passages, at the three levels it sets. Write your rendering, keep it, " +
+      "and <b>then</b> the suggested version appears with the handbook's note &mdash; seeing it first would " +
+      "turn the exercise into a reading. Nothing here is marked. A passage you have rendered and kept is a " +
+      "piece of your portfolio, and the Seal counts it as one."));
+
+    const done = workCount();
+    stage.appendChild(el("p", "note", done ?
+      "<b>" + done + "</b> of " + WORKBENCH.length + " kept. Every version you save is still editable." :
+      "Nothing kept yet. Start anywhere &mdash; Level 1 is a single sentence."));
+
+    [1, 2, 3].forEach(lvl => {
+      const items = WORKBENCH.filter(p => p.lvl === lvl);
+      const head = el("div", "wb-head");
+      head.innerHTML = '<h3>Level ' + lvl + ' &middot; ' + LEVEL_NAME[lvl] + '</h3>';
+      stage.appendChild(head);
+      if (lvl === 3) {
+        stage.appendChild(el("ul", "how",
+          COMMENTARY_STEPS.map(s => '<li><span>' + s + '</span></li>').join("")));
+      }
+      const grid = el("div", "wb-list");
+      items.forEach(p => {
+        const b = el("button", "wb-row" + (workDone(p.id) ? " kept" : ""));
+        b.innerHTML =
+          '<span class="wb-meta">' + p.ch + ' &middot; ' +
+            (p.dir === "en-ar" ? "English → Arabic" : "Arabic → English") + '</span>' +
+          '<span class="wb-src"' + (p.dir === "ar-en" ? ' dir="rtl" lang="ar"' : '') + '>' +
+            (p.src.length > 130 ? p.src.slice(0, 130) + "…" : p.src) + '</span>' +
+          '<span class="wb-state">' + (workDone(p.id) ? "Kept" : "Not yet") + '</span>';
+        b.addEventListener("click", () => { open = p; editor(); });
+        grid.appendChild(b);
+      });
+      stage.appendChild(grid);
+    });
+
+    stage.appendChild(backFoot());
+  }
+
+  function editor() {
+    const p = open;
+    const held = workBook()[p.id] || null;
+    let shown = workDone(p.id);          /* the model shows only once something is kept */
+    stage.innerHTML = "";
+    setDots(WORKBENCH.length, workCount(), WORKBENCH.indexOf(p));
+
+    const back = el("button", "link", "← All passages");
+    back.addEventListener("click", () => { open = null; list(); });
+    stage.appendChild(back);
+
+    const card = el("div", "prompt");
+    card.appendChild(el("p", "ask",
+      "Level " + p.lvl + " · " + p.ch + " · " + (p.dir === "en-ar" ? "English → Arabic" : "Arabic → English")));
+    card.appendChild(el("p", p.dir === "ar-en" ? "src" : "src-en", p.src));
+    if (p.cite) card.appendChild(el("p", "lit", p.cite));
+    stage.appendChild(card);
+
+    const typing = el("div", "typing");
+    const lab = el("p", "note", "<b>Your rendering.</b> Write it as you would hand it in.");
+    typing.appendChild(lab);
+    const ta = document.createElement("textarea");
+    ta.rows = p.lvl === 1 ? 3 : 7;
+    ta.value = held ? held.text : "";
+    ta.placeholder = p.dir === "en-ar" ? "ترجمتك هنا" : "your translation here";
+    ta.setAttribute("aria-label", "Your translation");
+    if (p.dir === "en-ar") { ta.dir = "rtl"; ta.lang = "ar"; }
+    typing.appendChild(ta);
+
+    const cm = document.createElement("textarea");
+    cm.rows = 4;
+    cm.value = held ? (held.commentary || "") : "";
+    cm.placeholder = "problem · solution · procedure or strategy · resource · justification";
+    cm.setAttribute("aria-label", "Your commentary");
+    typing.appendChild(el("p", "note", "<b>Your commentary</b> (Chapter 25). Optional at Level 1, expected at Level 3."));
+    typing.appendChild(cm);
+    stage.appendChild(typing);
+
+    const foot = el("div", "foot");
+    const keep = el("button", null, held ? "Save this version" : "Keep this rendering");
+    const msg = el("p", "note", "");
+    keep.addEventListener("click", () => {
+      if (!ta.value.trim()) { msg.innerHTML = "Write something first &mdash; an empty rendering is not a piece of work."; return; }
+      saveWork(p.id, ta.value, cm.value);
+      shown = true;
+      editor();
+    });
+    foot.appendChild(keep);
+    stage.appendChild(foot);
+    stage.appendChild(msg);
+
+    if (shown) {
+      const rev = el("div", "card");
+      rev.appendChild(el("div", "card-top",
+        '<h3>' + (p.guide ? "The handbook's guidance" : "The handbook's version") + '</h3>'));
+      rev.appendChild(el("div", "block demand",
+        '<span class="b-lab">' + (p.guide ? "Points to get right" : "Suggested") + '</span>' +
+        '<p' + (!p.guide && p.dir === "en-ar" ? ' dir="rtl" lang="ar"' : '') + '>' + p.model + '</p>'));
+      rev.appendChild(el("div", "block", '<span class="b-lab">Why</span><p>' + p.note + '</p>'));
+      rev.appendChild(el("p", "note",
+        "These are suggested answers. <b>Any version that is accurate, natural and right for the reader is " +
+        "acceptable</b> &mdash; the handbook says so itself. If yours differs and you can justify it in the " +
+        "commentary, that is the exercise working."));
+      stage.appendChild(rev);
+
+      const shape = el("div", "verdict");
+      shape.appendChild(el("span", "vh", "What a commentary has to contain"));
+      shape.appendChild(el("ul", "how", COMMENTARY_SHAPE.map(s => '<li><span>' + s + '</span></li>').join("")));
+      stage.appendChild(shape);
+    } else {
+      stage.appendChild(el("p", "note",
+        "The handbook's version appears once you have kept your own. That order is the point."));
+    }
+
+    stage.appendChild(backFoot());
+  }
+
+  list();
 }
 
 /* ═══════════ MULTIPLE-CHOICE ENGINE ═══════════ */
