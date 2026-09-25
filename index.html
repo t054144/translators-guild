@@ -767,31 +767,28 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
    a glance and the name under it. */
 /* The letters run the way Arabic runs: alif in the top right. */
 .alpha-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .5rem; direction: rtl; }
-.alpha { display: grid; gap: .12rem; place-items: center; padding: .55rem .3rem .5rem;
+.alpha { display: grid; gap: .1rem; place-items: center; padding: .85rem .3rem .7rem;
   border-radius: var(--r-md); background: rgba(255,255,255,.04); border: var(--hair);
   box-shadow: none; }
-.a-hand { width: 54px; height: 54px; display: grid; place-items: center; }
-.a-hand img { width: 100%; height: 100%; object-fit: contain; display: block; }
-.ss-fig { width: 190px; height: 190px; justify-self: center; margin: .5rem 0; }
-.ss-fig img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .ksl-credit { margin: 0; font-size: .78rem; font-weight: 300; line-height: 1.55;
   color: var(--ink-soft); max-width: var(--measure); }
 .ksl-credit b, .ss-note b { color: var(--lilac); font-weight: 600; }
 .alpha:hover { background: rgba(214,191,234,.12); border-color: rgba(214,191,234,.32);
   transform: none; box-shadow: none; }
-.alpha .a-l { font-family: var(--f-ar); font-size: 1.45rem; line-height: 1.1; color: var(--white); }
-.alpha .a-n { font-family: var(--f-ar); font-size: .72rem; color: var(--ink-soft); }
+.alpha .a-l { font-family: var(--f-ar); font-size: 2.1rem; line-height: 1.05; color: var(--white); }
+.alpha .a-n { font-family: var(--f-ar); font-size: .78rem; color: var(--ink-soft); }
 
-/* Letter on the right, name to its left — the way the script runs. */
-.letter-hero { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 1.1rem;
-  padding: 1.1rem 1.25rem; border-radius: var(--r-lg); background: var(--grad-soft);
-  border: var(--hair-lit); direction: rtl; }
-.lh-txt { direction: rtl; justify-items: start; }
-.lh-t { direction: ltr; }
-.lh-l { font-family: var(--f-ar); font-size: 4rem; line-height: 1; color: var(--white); }
-.lh-txt { display: grid; gap: .16rem; }
-.lh-n { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: 1.5rem; color: var(--lilac); }
-.lh-t { font-size: .88rem; font-weight: 300; letter-spacing: .04em; color: var(--ink-soft); font-style: italic; }
+/* The hand at a size worth studying, the letter beside it. */
+.letter-hero { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem;
+  padding: 1.2rem 1.35rem; border-radius: var(--r-lg); background: var(--grad-soft);
+  border: var(--hair-lit); }
+.lh-fig { width: min(46vw, 210px); aspect-ratio: 1; display: block; }
+.lh-fig img { width: 100%; height: 100%; object-fit: contain; display: block;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,.42)); }
+.lh-txt { display: grid; gap: .1rem; justify-items: end; text-align: right; }
+.lh-l { font-family: var(--f-ar); font-size: clamp(3rem, 14vw, 4.2rem); line-height: 1; color: var(--white); }
+.lh-n { font-family: var(--f-ar); font-size: 1.25rem; color: var(--lilac); }
+.lh-t { font-size: .85rem; font-weight: 300; letter-spacing: .04em; color: var(--ink-soft); font-style: italic; }
 
 .shape-slot { display: grid; gap: .3rem; padding: 1.1rem 1.25rem; border-radius: var(--r-lg);
   border: var(--hair-lit); background: var(--grad-soft); }
@@ -1818,7 +1815,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 43 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 44 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -7696,12 +7693,12 @@ function runKsl() {
 
     const grid = el("div", "alpha-grid");
     KSL_ALPHA.forEach((L, i) => {
+      /* The letter leads. The hand is one tap away at a size worth
+         looking at, rather than twenty-eight thumbnails at once. */
       const b = el("button", "alpha");
       b.innerHTML =
-        '<span class="a-hand"></span>' +
         '<span class="a-l" dir="rtl" lang="ar">' + L.l + '</span>' +
         '<span class="a-n" dir="rtl" lang="ar">' + L.n + '</span>';
-      b.querySelector(".a-hand").appendChild(handImg(L, true));
       b.addEventListener("click", () => { pushTrail("Kuwaiti Sign Language", () => home()); letter(i); });
       grid.appendChild(b);
     });
@@ -7764,20 +7761,16 @@ function runKsl() {
 
     const hero = el("div", "letter-hero");
     hero.innerHTML =
-      '<span class="lh-l" dir="rtl" lang="ar">' + L.l + '</span>' +
+      '<span class="lh-fig"></span>' +
       '<span class="lh-txt">' +
+        '<span class="lh-l" dir="rtl" lang="ar">' + L.l + '</span>' +
         '<span class="lh-n" dir="rtl" lang="ar">' + L.n + '</span>' +
         '<span class="lh-t">' + L.t + '</span>' +
       '</span>';
+    hero.querySelector(".lh-fig").appendChild(handImg(L, false));
     stage.appendChild(hero);
 
-    const slot = el("div", "shape-slot");
-    slot.innerHTML =
-      '<span class="ss-lab">The handshape</span>' +
-      '<span class="ss-fig"></span>' +
-      '<span class="ss-note">' + KSL_CREDIT + '</span>';
-    slot.querySelector(".ss-fig").appendChild(handImg(L, false));
-    stage.appendChild(slot);
+    stage.appendChild(el("p", "ksl-credit", KSL_CREDIT));
 
     const use = el("div", "verdict");
     use.appendChild(el("span", "vh", "Where you would actually use it"));
