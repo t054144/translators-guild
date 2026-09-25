@@ -48,6 +48,21 @@
   --void: #110620; --void-2: #1a0a2f; --void-3: #251040;
   --violet: #650fd0; --magenta: #a726d0; --lilac: #d6bfea; --lilac-dim: #9a86b4; --white: #fff;
   --mint: #2ed9a0; --coral: #ff5c7a; --amber: #ffc46b;
+  --coral-soft: #ffb3c1; --mint-soft: #8fe8c9; --workshop-ink: #d79bf0;
+  /* a recessed surface, and the sheet a modal lies under */
+  --well: rgba(17,6,32,.55); --well-lit: rgba(37,16,64,.6); --scrim: rgba(17,6,32,.86);
+  /* text that sits on the violet gradient, which does not change with the
+     theme — so neither may this. */
+  --on-grad: #fff;
+
+  /* Reading ink, in four steps. Body text is set from these and never from
+     a literal colour, because a lilac written for a dark background goes
+     almost invisible on paper — which is exactly what it did. The light
+     theme redefines the four and every paragraph on the site follows. */
+  --ink:       rgba(214,191,234,.92);
+  --ink-soft:  rgba(214,191,234,.78);
+  --ink-faint: rgba(214,191,234,.55);
+  --ink-ghost: rgba(214,191,234,.38);
 
   --grad: linear-gradient(180deg, #a726d0 0%, #8218c7 48%, #650fd0 100%);
   --grad-soft: linear-gradient(180deg, rgba(167,38,208,.16), rgba(101,15,208,.16));
@@ -108,7 +123,7 @@ body {
 .tracked.mag { background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .ar { direction: rtl; unicode-bidi: isolate; font-family: var(--f-ar); }
 .art { direction: rtl; unicode-bidi: isolate; font-family: var(--f-ar-text); line-height: 1.95; }
-.soft { color: rgba(214,191,234,.72); }
+.soft { color: var(--ink-soft); }
 .note { font-size: .82rem; color: var(--lilac-dim); line-height: 1.65; margin: 0; }
 .note b, .note strong { color: var(--lilac); font-weight: 500; }
 
@@ -149,19 +164,19 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .field label { font-size: .7rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--lilac-dim); }
 .field input, .typing textarea, .typing input {
   font-family: var(--f-sans); font-size: 1.05rem; color: var(--white);
-  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md);
+  background: var(--well); border: var(--hair-lit); border-radius: var(--r-md);
   padding: .95rem 1.15rem; width: 100%;
   transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease), background 240ms var(--ease);
 }
-.field input::placeholder, .typing textarea::placeholder, .typing input::placeholder { color: rgba(154,134,180,.75); }
+.field input::placeholder, .typing textarea::placeholder, .typing input::placeholder { color: var(--ink-soft); }
 .field input:focus, .typing textarea:focus, .typing input:focus {
   outline: none; border-color: rgba(167,38,208,.75);
-  box-shadow: 0 0 0 4px rgba(167,38,208,.16); background: rgba(37,16,64,.6);
+  box-shadow: 0 0 0 4px rgba(167,38,208,.16); background: var(--well-lit);
 }
 .msg { font-size: .85rem; border-radius: var(--r-md); padding: .7rem 1rem; margin: 0;
-  border: 1px solid rgba(255,92,122,.35); background: rgba(255,92,122,.1); color: #ffb3c1;
+  border: 1px solid rgba(255,92,122,.35); background: rgba(255,92,122,.1); color: var(--coral-soft);
   animation: pop 340ms var(--ease) both; }
-.msg.good { border-color: rgba(46,217,160,.4); background: rgba(46,217,160,.1); color: #8fe8c9; }
+.msg.good { border-color: rgba(46,217,160,.4); background: rgba(46,217,160,.1); color: var(--mint-soft); }
 @keyframes pop { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: none; } }
 
 /* ═══════════ THE CAMERA ═══════════
@@ -218,13 +233,13 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .act {
   display: flex; align-items: center; gap: .5rem;
   font-size: .68rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
-  color: rgba(205,179,230,.4); white-space: nowrap;
+  color: var(--ink-ghost); white-space: nowrap;
   transition: color 420ms var(--ease);
 }
 .act .a-n { font-family: var(--f-serif); font-size: .82rem; letter-spacing: .06em; text-transform: none; }
 .act .a-bar { width: clamp(14px,4vw,44px); height: 2px; border-radius: 2px; background: rgba(205,179,230,.16); overflow: hidden; }
 .act .a-bar > i { display: block; height: 100%; width: 0; background: var(--grad-h); transition: width 700ms var(--ease); }
-.act.done { color: rgba(205,179,230,.62); }
+.act.done { color: var(--ink-faint); }
 .act.done .a-bar > i { width: 100%; }
 .act.now { color: var(--white); }
 .act.now .a-bar > i { width: 60%; box-shadow: 0 0 12px rgba(167,38,208,.9); }
@@ -244,7 +259,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .fin-ar { font-family: var(--f-ar-text); direction: rtl; font-size: clamp(1.7rem,6.5vw,3rem);
   color: var(--white); line-height: 1.75; margin: 0; }
 .fin-machine { font-family: var(--f-sans); font-weight: 300; font-size: clamp(1rem,3.4vw,1.35rem);
-  color: rgba(205,179,230,.5); text-decoration: line-through; text-decoration-color: rgba(255,92,122,.8); margin: 0; }
+  color: var(--ink-faint); text-decoration: line-through; text-decoration-color: var(--coral); margin: 0; }
 .fin-ask { font-family: var(--f-serif); font-size: clamp(1.3rem,4.4vw,2.1rem); color: var(--white); margin: 0; }
 .fin-form { width: 100%; max-width: 30rem; display: grid; gap: .8rem; }
 .fin-verdict { display: grid; gap: 1.1rem; justify-items: center; animation: camForward 700ms var(--ease) both; }
@@ -254,7 +269,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   background: linear-gradient(180deg,#ffffff,#cdb3e6 58%,#a726d0);
   -webkit-background-clip: text; background-clip: text; color: transparent; }
 .fin-said { font-size: clamp(1rem,3.4vw,1.25rem); font-weight: 300; line-height: 1.7;
-  color: rgba(205,179,230,.92); margin: 0; max-width: 44ch; }
+  color: var(--ink); margin: 0; max-width: 44ch; }
 .fin-said b { color: var(--white); font-weight: 500; }
 .swap-out { animation: swapOut 300ms ease forwards; }
 @keyframes swapOut { to { opacity: 0; transform: translateX(-26px) scale(.985); filter: blur(4px); } }
@@ -267,7 +282,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 
 #unlock {
   position: fixed; inset: 0; z-index: 50; display: grid; place-items: center;
-  background: rgba(17,6,32,.86); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  background: var(--scrim); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
   animation: viewIn 320ms ease both;
 }
 #unlock .u-inner { display: grid; gap: 1.35rem; justify-items: center; }
@@ -305,7 +320,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 }
 .wm-sub { font-size: .78rem; font-weight: 400; letter-spacing: .42em; text-transform: uppercase;
   color: var(--lilac); margin: .5rem 0 0; padding-left: .42em; text-align: center; }
-.wm-sub-ar { font-family: var(--f-ar); direction: rtl; color: rgba(214,191,234,.8);
+.wm-sub-ar { font-family: var(--f-ar); direction: rtl; color: var(--ink-soft);
   font-size: 1.05rem; margin: .3rem 0 0; text-align: center; }
 
 @media (prefers-reduced-motion: reduce) {
@@ -331,7 +346,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .step-head .sh-en { font-family: var(--f-serif); font-size: 1.15rem; font-weight: 600; color: var(--white); }
 .row { display: flex; gap: .85rem; align-items: center; flex-wrap: wrap; }
 
-.challenge { border-radius: var(--r-lg); border: var(--hair-lit); background: rgba(17,6,32,.55);
+.challenge { border-radius: var(--r-lg); border: var(--hair-lit); background: var(--well);
   padding: clamp(1.25rem,4vw,2rem); display: grid; gap: .9rem; justify-items: center;
   text-align: center; position: relative; overflow: hidden; }
 .challenge::after { content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -340,10 +355,10 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .challenge .phrase { font-family: var(--f-ar-text); direction: rtl; font-size: clamp(2rem,8vw,3.25rem);
   color: var(--white); line-height: 1.7; margin: 0; animation: swapIn 520ms var(--ease) both; }
 .challenge .gloss { font-size: .84rem; color: var(--lilac-dim); margin: 0; }
-.challenge .gloss span { color: rgba(255,92,122,.9); }
+.challenge .gloss span { color: var(--coral); }
 
 .auth-tabs { display: flex; gap: .3rem; padding: .3rem; border-radius: var(--r-pill);
-  border: var(--hair); background: rgba(17,6,32,.5); }
+  border: var(--hair); background: var(--well); }
 .auth-tab { flex: 1 1 0; padding: .6rem .9rem; border: 0; border-radius: var(--r-pill);
   background: transparent; color: var(--lilac-dim); cursor: pointer; box-shadow: none;
   font-family: var(--f-sans); font-size: .82rem; font-weight: 600; letter-spacing: .06em;
@@ -374,7 +389,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .pw-word { font-size: .68rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--lilac-dim); }
 
 .field-error { margin: 0; font-size: .76rem; line-height: 1.5; color: var(--coral); }
-.field input[aria-invalid="true"] { border-color: rgba(255,92,122,.6); }
+.field input[aria-invalid="true"] { border-color: var(--coral); }
 
 /* ── the six digits ──
    Six boxes rather than one field: the shape of the input tells you what
@@ -387,11 +402,11 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   letter-spacing: 0; caret-color: var(--magenta);
 }
 .field input.code-box.filled { border-color: rgba(167,38,208,.55); background: rgba(167,38,208,.10); }
-.code-row.bad input.code-box { border-color: rgba(255,92,122,.6); }
+.code-row.bad input.code-box { border-color: var(--coral); }
 
 /* the build marker: legible if you look for it, invisible if you do not */
 .build-mark { margin: .2rem 0 0; text-align: center; font-size: .62rem;
-  letter-spacing: .14em; text-transform: uppercase; color: rgba(154,134,180,.5); }
+  letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); }
 @media (max-width: 400px) { .code-row { gap: .3rem; } .field input.code-box { padding: .75rem .1rem; } }
 .field input[aria-invalid="true"]:focus { box-shadow: 0 0 0 4px rgba(255,92,122,.16); }
 
@@ -439,7 +454,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .admin-body { padding: clamp(1.1rem,4vw,1.6rem); display: grid; gap: 1.1rem; margin-top: 1.1rem; }
 .adm-bar { display: flex; gap: .6rem; align-items: center; flex-wrap: wrap; }
 .adm-bar select { font-family: var(--f-sans); font-size: .85rem; color: var(--white);
-  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md); padding: .6rem .8rem; }
+  background: var(--well); border: var(--hair-lit); border-radius: var(--r-md); padding: .6rem .8rem; }
 .adm-bar .count { margin-inline-start: auto; font-size: .78rem; color: var(--lilac-dim); }
 .adm-list { display: grid; gap: .55rem; }
 .adm-row { display: grid; gap: .3rem; text-align: start; padding: .85rem 1rem; border: var(--hair);
@@ -450,20 +465,20 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .adm-row .meta { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--lilac-dim); }
 .chip { display: inline-block; padding: .15rem .5rem; border-radius: var(--r-pill); font-size: .6rem;
   font-weight: 700; letter-spacing: .12em; text-transform: uppercase; border: 1px solid transparent; }
-.chip.verified { color: #8fe8c9; border-color: rgba(46,217,160,.4); background: rgba(46,217,160,.12); }
+.chip.verified { color: var(--mint-soft); border-color: rgba(46,217,160,.4); background: rgba(46,217,160,.12); }
 .chip.needs_review { color: var(--amber); border-color: rgba(255,196,107,.4); background: rgba(255,196,107,.12); }
-.chip.under_revision { color: var(--lilac); border-color: rgba(214,191,234,.3); background: rgba(214,191,234,.1); }
-.chip.community_reported { color: #ffb3c1; border-color: rgba(255,92,122,.4); background: rgba(255,92,122,.12); }
-.chip.archived { color: var(--lilac-dim); border-color: rgba(214,191,234,.2); background: rgba(214,191,234,.06); }
+.chip.under_revision { color: var(--lilac); border-color: var(--ink-ghost); background: rgba(214,191,234,.1); }
+.chip.community_reported { color: var(--coral-soft); border-color: var(--coral); background: rgba(255,92,122,.12); }
+.chip.archived { color: var(--lilac-dim); border-color: var(--ink-ghost); background: rgba(214,191,234,.06); }
 .adm-form { display: grid; gap: .9rem; }
 .adm-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); gap: .8rem; }
 .adm-form textarea { font-family: var(--f-sans); font-size: 1rem; color: var(--white); line-height: 1.6;
-  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md); padding: .9rem 1.1rem;
+  background: var(--well); border: var(--hair-lit); border-radius: var(--r-md); padding: .9rem 1.1rem;
   width: 100%; min-height: 5.5rem; resize: vertical; }
 .adm-form textarea:focus, .adm-bar select:focus, .adm-form select:focus { outline: none;
   border-color: rgba(167,38,208,.75); box-shadow: 0 0 0 4px rgba(167,38,208,.16); }
 .adm-form select { font-family: var(--f-sans); font-size: .95rem; color: var(--white); width: 100%;
-  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md); padding: .8rem .9rem; }
+  background: var(--well); border: var(--hair-lit); border-radius: var(--r-md); padding: .8rem .9rem; }
 .adm-form .field label { margin-bottom: .1rem; }
 .adm-actions { display: flex; gap: .7rem; flex-wrap: wrap; }
 .adm-empty { margin: 0; font-size: .88rem; color: var(--lilac-dim); line-height: 1.7; }
@@ -483,7 +498,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
     display: grid; grid-template-columns: repeat(5, 1fr);
     position: fixed; inset-inline: 0; bottom: 0; z-index: 60;
     padding: .3rem .25rem calc(.3rem + env(safe-area-inset-bottom));
-    background: rgba(17,6,32,.86);
+    background: var(--scrim);
     -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
     border-top: 1px solid rgba(214,191,234,.16);
   }
@@ -535,7 +550,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   background: rgba(255,255,255,.025); }
 .rec-row.held { border-color: rgba(167,38,208,.45); background: rgba(167,38,208,.08); }
 .rec-pip { font-size: .95rem; color: var(--lilac-dim); line-height: 1; }
-.rec-row.held .rec-pip { color: #fff; }
+.rec-row.held .rec-pip { color: var(--magenta); }
 .rec-body { display: grid; gap: .15rem; min-width: 0; }
 .rec-name { font-weight: 600; color: var(--white); font-size: .95rem; }
 .rec-detail { font-size: .78rem; color: var(--lilac-dim); line-height: 1.45; }
@@ -587,14 +602,14 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .c-meta { display: flex; align-items: center; gap: .55rem; flex: none; }
 .commission .cnum {
   font-family: var(--f-serif); font-size: 1.5rem; font-weight: 500; line-height: 1;
-  color: rgba(214,191,234,.42); font-variant-numeric: tabular-nums;
+  color: var(--ink-ghost); font-variant-numeric: tabular-nums;
   transition: color 300ms var(--ease);
 }
 .commission:hover .cnum { color: var(--white); }
 .commission .ctitles { display: grid; gap: .3rem; min-width: 0; }
 .commission .c-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .92rem; color: var(--lilac); }
 .commission .c-en { font-family: var(--f-serif); font-size: 1.22rem; font-weight: 600; color: var(--white); line-height: 1.2; }
-.commission .c-blurb { font-size: .86rem; font-weight: 300; line-height: 1.6; color: rgba(214,191,234,.7); }
+.commission .c-blurb { font-size: .86rem; font-weight: 300; line-height: 1.6; color: var(--ink-soft); }
 .commission .kind {
   font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
   padding: .22rem .6rem; border-radius: var(--r-pill);
@@ -602,14 +617,14 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 }
 .commission .kind.exhibit { border-color: rgba(46,217,160,.4); color: var(--mint); }
 .commission .kind.guide { border-color: rgba(255,196,107,.45); color: var(--amber); }
-.commission .kind.workshop { border-color: rgba(167,38,208,.55); color: #d79bf0; }
+.commission .kind.workshop { border-color: rgba(167,38,208,.55); color: var(--workshop-ink); }
 .commission .seal-pip {
   width: 20px; height: 20px; border-radius: 7px; flex: none;
   background: rgba(214,191,234,.13); border: 1px solid rgba(214,191,234,.24);
   display: grid; place-items: center; font-size: .62rem; color: transparent;
 }
 .commission .seal-pip.earned {
-  background: var(--grad); border-color: transparent; color: var(--white);
+  background: var(--grad); border-color: transparent; color: var(--on-grad);
   box-shadow: 0 0 16px -2px rgba(167,38,208,.9);
 }
 
@@ -638,7 +653,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .prompt .src-en { font-family: var(--f-serif); font-style: italic; font-size: clamp(1.3rem,4.5vw,2rem);
   color: var(--white); line-height: 1.4; margin: 0; max-width: 34ch; }
 .prompt .lit { font-size: .85rem; color: var(--lilac-dim); margin: 0; }
-.prompt .lit b { color: rgba(255,92,122,.9); font-weight: 500; }
+.prompt .lit b { color: var(--coral); font-weight: 500; }
 
 .options { display: grid; gap: .7rem; }
 .opt { display: grid; grid-template-columns: 2rem 1fr; gap: .9rem; align-items: baseline;
@@ -651,14 +666,14 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   background: rgba(167,38,208,.11); box-shadow: 0 14px 34px -20px rgba(167,38,208,.9); }
 .opt:disabled { cursor: default; }
 .opt:focus-visible { outline: 2px solid var(--white); outline-offset: 2px; }
-.opt .key { font-family: var(--f-serif); font-size: 1.05rem; font-weight: 600; color: rgba(214,191,234,.5); }
+.opt .key { font-family: var(--f-serif); font-size: 1.05rem; font-weight: 600; color: var(--ink-faint); }
 .opt .txt { min-width: 0; }
 .opt .txt.is-ar { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.2em; }
 .opt .tag { display: block; margin-top: .45rem; font-size: .66rem; font-weight: 600;
   letter-spacing: .18em; text-transform: uppercase; color: var(--lilac-dim); animation: pop 320ms var(--ease) both; }
 .opt.right { border-color: rgba(46,217,160,.7); background: rgba(46,217,160,.12); }
 .opt.right .key, .opt.right .tag { color: var(--mint); }
-.opt.miss { border-color: rgba(255,92,122,.7); background: rgba(255,92,122,.1); }
+.opt.miss { border-color: var(--coral); background: rgba(255,92,122,.1); }
 .opt.miss .key, .opt.miss .tag { color: var(--coral); }
 
 .verdict { border-radius: var(--r-lg); border: var(--hair); background: var(--grad-soft);
@@ -666,14 +681,14 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .verdict .vh { font-size: .72rem; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; color: var(--lilac); }
 .verdict .vh.win { color: var(--mint); }
 .verdict .vh.lose { color: var(--coral); }
-.verdict p.vb { font-size: .98rem; font-weight: 300; line-height: 1.7; color: rgba(214,191,234,.9); margin: 0; max-width: var(--measure); }
+.verdict p.vb { font-size: .98rem; font-weight: 300; line-height: 1.7; color: var(--ink); margin: 0; max-width: var(--measure); }
 .verdict p.vb b { color: var(--white); font-weight: 500; }
 .verdict p.vb i { color: var(--white); }
 .foot { display: flex; gap: .85rem; align-items: center; flex-wrap: wrap; }
 
 /* ═══════════ THE GUIDES ═══════════ */
 .lede { font-size: clamp(1.05rem,2.6vw,1.22rem); font-weight: 300; line-height: 1.72;
-  color: rgba(214,191,234,.92); margin: 0; max-width: var(--measure); }
+  color: var(--ink); margin: 0; max-width: var(--measure); }
 .lede b { color: var(--white); font-weight: 500; }
 .lede .art { font-size: 1.1em; }
 
@@ -707,8 +722,22 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
    simply has to earn its contrast against paper instead of against night. */
 :root[data-theme="light"] {
   --void: #f6f2fb; --void-2: #ede5f7; --void-3: #e2d5f2;
-  --lilac: #4a3363; --lilac-dim: #6f5c88; --white: #1a0f2b;
+  --lilac: #402b58; --lilac-dim: #61507a; --white: #1a0f2b;
   --magenta: #8218c7; --violet: #650fd0;
+
+  /* The four reading steps, restated for paper. Each one is dark enough to
+     hold its contrast against white rather than against night. */
+  --ink:       #2b1c40;
+  --ink-soft:  #48345f;
+  --ink-faint: #64527e;
+  --ink-ghost: #705e8b;
+
+  /* The accents have to earn their contrast too: a bright mint, coral or
+     amber that reads well on a dark panel disappears on a pale one. */
+  --mint: #0a6b4c; --coral: #b81c3a; --amber: #7d5100;
+  --coral-soft: #a8182f; --mint-soft: #0b6e4f; --workshop-ink: #7a1bb0;
+  --well: rgba(101,15,208,.055); --well-lit: #fff; --scrim: rgba(246,242,251,.92);
+
   --grad-soft: linear-gradient(180deg, rgba(167,38,208,.10), rgba(101,15,208,.10));
   --hair: 1px solid rgba(74,51,99,.20);
   --hair-lit: 1px solid rgba(74,51,99,.34);
@@ -731,9 +760,15 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 :root[data-theme="light"] .j-tile {
   background: rgba(255,255,255,.72);
 }
+/* Anything you type into is white on paper, never a tinted well — a field
+   has to read as a field. */
 :root[data-theme="light"] .field input,
 :root[data-theme="light"] .typing textarea,
-:root[data-theme="light"] .typing input { background: #fff; color: var(--white); }
+:root[data-theme="light"] .typing input,
+:root[data-theme="light"] .gl-search input,
+:root[data-theme="light"] .adm-form textarea,
+:root[data-theme="light"] .adm-form select,
+:root[data-theme="light"] .adm-bar select { background: #fff; color: var(--white); }
 :root[data-theme="light"] #bottom-nav { background: rgba(246,242,251,.92); }
 /* the spine is painted with a literal night colour, so it has to be told */
 :root[data-theme="light"] #spine {
@@ -744,7 +779,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 :root[data-theme="light"] .station:not(.reached) .s-en,
 :root[data-theme="light"] .station .s-n,
 :root[data-theme="light"] .ct-next { color: #5b4a75; }
-:root[data-theme="light"] .station:not(.reached) .dot { color: #8d7aa8; }
+:root[data-theme="light"] .station:not(.reached) .dot { color: #6d5b88; }
 :root[data-theme="light"] .note,
 :root[data-theme="light"] .c-subject,
 :root[data-theme="light"] .trial-subject { color: #5b4a75; }
@@ -759,7 +794,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   color: var(--lilac-dim);
   transition: color .2s var(--ease), border-color .2s var(--ease);
 }
-.theme-btn:hover { color: var(--white); border-color: rgba(214,191,234,.4); }
+.theme-btn:hover { color: var(--white); border-color: var(--ink-ghost); }
 .theme-btn:focus-visible { outline: 2px solid var(--magenta); outline-offset: 2px; }
 .theme-btn svg { width: 17px; height: 17px; fill: none; stroke: currentColor;
   stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
@@ -925,7 +960,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .chips-row { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0 0; }
 .chip-tag { font-size: .7rem; letter-spacing: .06em; padding: .28rem .7rem; border-radius: 999px;
   border: var(--hair-lit); color: var(--lilac); white-space: nowrap; }
-.chip-tag.solid { background: var(--grad); border-color: transparent; color: #fff; }
+.chip-tag.solid { background: var(--grad); border-color: transparent; color: var(--on-grad); }
 .profile-card .rank-box { justify-items: center; text-align: center; gap: .3rem; }
 @media (max-width: 560px) {
   .profile-card { grid-template-columns: auto 1fr; }
@@ -970,7 +1005,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .pair .p-a.is-ar, .pair .p-b.is-ar { font-family: var(--f-ar); font-size: 1.08rem; }
 .pair .p-arrow { color: var(--magenta); align-self: center; font-size: .9rem; }
 .pair .p-w { grid-column: 1 / -1; font-size: .82rem; font-weight: 300;
-  color: rgba(214,191,234,.85); line-height: 1.5; border-top: var(--hair); padding-top: .45rem; }
+  color: var(--ink); line-height: 1.5; border-top: var(--hair); padding-top: .45rem; }
 .pair .p-w b { color: var(--white); font-weight: 500; }
 @media (max-width: 620px) {
   .pair { grid-template-columns: minmax(0,1fr); }
@@ -988,9 +1023,9 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .block.demand .b-lab { color: var(--mint); }
 .block.trap .b-lab { color: var(--coral); }
 .block ul { margin: 0; padding-inline-start: 1.1rem; display: grid; gap: .35rem; }
-.block li { font-size: .92rem; font-weight: 300; color: rgba(214,191,234,.9); }
+.block li { font-size: .92rem; font-weight: 300; color: var(--ink); }
 .block li b { color: var(--white); font-weight: 500; }
-.block p { margin: 0; font-size: .92rem; font-weight: 300; color: rgba(214,191,234,.9); }
+.block p { margin: 0; font-size: .92rem; font-weight: 300; color: var(--ink); }
 .block p b { color: var(--white); font-weight: 500; }
 
 /* the transfer component: source → literal → natural */
@@ -1003,12 +1038,12 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .x-row p.is-ar { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.3rem; line-height: 1.9; }
 .x-row.bad { background: rgba(255,92,122,.07); }
 .x-row.bad .x-lab { color: var(--coral); }
-.x-row.bad p { color: rgba(255,179,193,.92); }
+.x-row.bad p { color: var(--coral-soft); }
 .x-row.good { background: rgba(46,217,160,.08); }
 .x-row.good .x-lab { color: var(--mint); }
 .x-row.why { background: rgba(167,38,208,.07); }
 .x-row.why .x-lab { color: var(--lilac); }
-.x-row.why p { font-size: .9rem; color: rgba(214,191,234,.88); }
+.x-row.why p { font-size: .9rem; color: var(--ink); }
 @media (max-width: 620px) {
   .x-row { grid-template-columns: 1fr; gap: .3rem; }
 }
@@ -1022,7 +1057,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .ar-note .an-lab { display: block; font-family: var(--f-ar); font-size: .82rem; font-weight: 600;
   color: var(--magenta); margin-bottom: .55rem; }
 .ar-note p { margin: 0; font-family: var(--f-ar-text); font-size: 1.18rem; line-height: 2.15;
-  color: rgba(214,191,234,.96); }
+  color: var(--ink); }
 
 /* how to translate it */
 .how { border-radius: var(--r-lg); border: 1px solid rgba(167,38,208,.38);
@@ -1032,22 +1067,47 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .how .h-ar2 { font-family: var(--f-ar); direction: rtl; font-size: .88rem; color: var(--lilac); }
 .how ol { margin: 0; padding: 0; list-style: none; display: grid; gap: .7rem; counter-reset: step; }
 .how li { counter-increment: step; display: grid; grid-template-columns: 1.7rem 1fr; gap: .85rem;
-  align-items: baseline; font-size: .96rem; font-weight: 300; color: rgba(214,191,234,.92); line-height: 1.6; }
+  align-items: baseline; font-size: .96rem; font-weight: 300; color: var(--ink); line-height: 1.6; }
 .how li::before { content: counter(step); font-family: var(--f-serif); font-weight: 700;
   font-size: 1rem; color: var(--magenta); }
 .how li > span { min-width: 0; }
 .how li b { color: var(--white); font-weight: 500; }
 .how li i { color: var(--white); font-style: italic; }
 
+/* ---------- choosing a setting for the booth ---------- */
+.genre-grid { display: grid; gap: .6rem; }
+.genre {
+  display: grid; grid-template-columns: auto 1fr; align-items: start; gap: .9rem;
+  width: 100%; text-align: start; padding: .95rem 1rem;
+  border-radius: var(--r-lg); border: var(--hair-lit);
+  background: rgba(255,255,255,.04); box-shadow: none; min-width: 0;
+}
+.genre:hover { background: rgba(214,191,234,.1); transform: none; box-shadow: none;
+  border-color: rgba(167,38,208,.6); }
+.genre.last { border-color: rgba(167,38,208,.5); }
+.g-icon { width: 38px; height: 38px; border-radius: 12px; flex: none;
+  display: grid; place-items: center; background: var(--grad-soft); border: var(--hair); }
+.g-icon svg { width: 20px; height: 20px; fill: none; stroke: var(--magenta);
+  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.g-txt { display: grid; gap: .18rem; min-width: 0; }
+.g-en { font-family: var(--f-serif); font-size: 1.06rem; font-weight: 600; color: var(--white); line-height: 1.25; }
+/* The Arabic reads right to left but sits at the left edge, under the
+   English name, the way every other bilingual title on the site does. */
+.g-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .88rem; color: var(--lilac); }
+.g-hint { font-size: .82rem; font-weight: 300; line-height: 1.55; color: var(--ink-soft); }
+.g-n { grid-column: 2; font-size: .6rem; font-weight: 600; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--lilac-dim); }
+.genre.last .g-n::after { content: " · last used"; }
+
 /* ---------- the glossary ---------- */
 .gl-search { margin: .2rem 0 .1rem; }
 .gl-search input {
   font-family: var(--f-sans); font-size: 1rem; color: var(--white);
-  background: rgba(17,6,32,.6); border: var(--hair-lit); border-radius: var(--r-md);
+  background: var(--well); border: var(--hair-lit); border-radius: var(--r-md);
   padding: .8rem 1.05rem; width: 100%; -webkit-appearance: none; appearance: none;
   transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease);
 }
-.gl-search input::placeholder { color: rgba(154,134,180,.75); }
+.gl-search input::placeholder { color: var(--ink-soft); }
 .gl-search input:focus { outline: none; border-color: rgba(167,38,208,.75); box-shadow: 0 0 0 4px rgba(167,38,208,.16); }
 .gl-list { display: grid; gap: .55rem; }
 .gl-row {
@@ -1058,13 +1118,13 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .gl-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: .1rem .7rem; min-width: 0; }
 .gl-en { font-family: var(--f-serif); font-size: 1.04rem; font-weight: 600; color: var(--white); line-height: 1.25; }
 .gl-ar { font-family: var(--f-ar); font-size: 1rem; color: var(--lilac); direction: rtl; }
-.gl-def { margin: 0; font-size: .89rem; font-weight: 300; line-height: 1.55; color: rgba(214,191,234,.82); }
+.gl-def { margin: 0; font-size: .89rem; font-weight: 300; line-height: 1.55; color: var(--ink-soft); }
 .gl-ch { font-size: .6rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase; color: var(--lilac-dim); }
 .gl-star {
   position: absolute; top: .7rem; inset-inline-end: .7rem;
   width: 34px; height: 34px; padding: 0; border-radius: 11px;
   background: rgba(255,255,255,.05); border: var(--hair); box-shadow: none;
-  color: rgba(214,191,234,.4); font-size: .95rem; line-height: 1;
+  color: var(--ink-ghost); font-size: .95rem; line-height: 1;
 }
 .gl-star:hover { background: rgba(214,191,234,.13); color: var(--white); transform: none; box-shadow: none; }
 .gl-star.on { color: var(--amber); border-color: rgba(255,196,107,.45); background: rgba(255,196,107,.12); }
@@ -1119,7 +1179,7 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   .pair { grid-template-columns: 1fr; }
   .pair .hairline { height: 1px; background: linear-gradient(to right, transparent, rgba(214,191,234,.4), transparent); }
 }
-.dial-panel .reg-note { font-size: .86rem; color: rgba(214,191,234,.75); text-align: center; margin: 0; }
+.dial-panel .reg-note { font-size: .86rem; color: var(--ink-soft); text-align: center; margin: 0; }
 input[type="range"] { width: 100%; accent-color: var(--magenta); background: transparent; }
 input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-offset: 5px; }
 .stops { display: grid; grid-template-columns: repeat(4,1fr); font-size: .66rem; font-weight: 600;
@@ -1168,7 +1228,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 .rev-row.hit .g { color: var(--mint); }
 .rev-row.miss .g { color: var(--coral); }
 .rev-row .q { display: grid; gap: .2rem; min-width: 0; }
-.rev-row .q-src { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.15rem; color: rgba(214,191,234,.9); }
+.rev-row .q-src { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.15rem; color: var(--ink); }
 .rev-row .q-src.is-en { font-family: var(--f-serif); font-style: italic; direction: ltr; text-align: left; font-size: 1rem; }
 .rev-row .q-ans { font-size: .8rem; color: var(--lilac-dim); }
 .rev-row .q-ans b { color: var(--white); font-weight: 500; }
@@ -1227,7 +1287,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   color: var(--lilac-dim); text-align: center; max-width: 9rem; line-height: 1.4; }
 
 /* ═══════════ ONE WORKED EXAMPLE PER TRANSLATOR ═══════════ */
-.ex { border-radius: var(--r-lg); border: var(--hair-lit); background: rgba(17,6,32,.5);
+.ex { border-radius: var(--r-lg); border: var(--hair-lit); background: var(--well);
   padding: clamp(1.1rem,3.2vw,1.6rem); display: grid; gap: .95rem; }
 .ex .ex-lab { font-size: .66rem; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
   color: var(--magenta); }
@@ -1235,20 +1295,20 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 .ex-row { display: grid; gap: .22rem; }
 .ex-row .ex-k { font-size: .62rem; font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
   color: var(--lilac-dim); }
-.ex-row p { margin: 0; font-size: .97rem; font-weight: 300; line-height: 1.6; color: rgba(214,191,234,.92); }
+.ex-row p { margin: 0; font-size: .97rem; font-weight: 300; line-height: 1.6; color: var(--ink); }
 .ex-row p b { color: var(--white); font-weight: 600; }
 .ex-row p[dir="rtl"] { font-family: var(--f-ar-text); direction: rtl; text-align: right;
   font-size: 1.3rem; line-height: 1.95; }
 .ex-row.src p { color: var(--white); font-weight: 400; font-size: 1.04rem; }
 .ex-row.lit, .ex-row.out { padding-inline-start: .85rem; border-inline-start: 2px solid; }
-.ex-row.lit { border-color: rgba(255,92,122,.55); }
+.ex-row.lit { border-color: var(--coral); }
 .ex-row.lit .ex-k { color: var(--coral); }
-.ex-row.lit p { color: rgba(255,179,193,.86); }
+.ex-row.lit p { color: var(--coral-soft); }
 .ex-row.out { border-color: var(--mint); }
 .ex-row.out .ex-k { color: var(--mint); }
 .ex-row.out p { color: var(--white); font-weight: 400; }
 .ex-note { margin: 0; padding-top: .8rem; border-top: var(--hair);
-  font-size: .9rem; font-weight: 300; line-height: 1.65; color: rgba(205,179,230,.84); }
+  font-size: .9rem; font-weight: 300; line-height: 1.65; color: var(--ink-soft); }
 .ex-note b { color: var(--white); font-weight: 600; }
 
 .figures { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: .85rem; }
@@ -1296,7 +1356,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 .climb-top .ct-l { display: grid; gap: .1rem; }
 .climb-top h2 { font-family: var(--f-serif); font-size: 1.3rem; font-weight: 600; color: var(--white); margin: 0; }
 .climb-top .ct-ar2 { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .95rem; color: var(--lilac); }
-.climb-top .ct-next { font-size: .92rem; color: rgba(214,191,234,.82); text-align: right; max-width: 30ch; }
+.climb-top .ct-next { font-size: .92rem; color: var(--ink-soft); text-align: right; max-width: 30ch; }
 .climb-top .ct-next b { color: var(--white); font-weight: 600; }
 .climb-top .ct-next .done { color: var(--mint); font-weight: 600; }
 
@@ -1311,10 +1371,10 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 .station .dot { width: 28px; height: 28px; border-radius: 50%; background: var(--void-2);
   border: 2px solid rgba(214,191,234,.28); display: grid; place-items: center;
   font-size: .7rem; color: transparent; transition: all 420ms var(--ease); }
-.station.reached .dot { background: var(--grad); border-color: transparent; color: var(--white);
+.station.reached .dot { background: var(--grad); border-color: transparent; color: var(--on-grad);
   box-shadow: 0 0 18px -2px rgba(167,38,208,.95); }
 .station.current .dot { transform: scale(1.28); border-color: var(--white); }
-.station .s-en { font-family: var(--f-serif); font-size: .95rem; font-weight: 600; color: rgba(214,191,234,.6); margin-top: .25rem; }
+.station .s-en { font-family: var(--f-serif); font-size: .95rem; font-weight: 600; color: var(--ink-faint); margin-top: .25rem; }
 .station.reached .s-en { color: var(--white); }
 .station .s-n { font-size: .66rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--lilac-dim); }
 @media (max-width: 620px) {
@@ -1449,7 +1509,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 24 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 25 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -2746,23 +2806,132 @@ const SUBTITLE = [
     why: "Two clauses, two short sentences. When the Arabic is already tight, resist the urge to expand it." }
 ];
 
-const BOOTH = [
-  { ar: "صباح الخير", ok: ["good morning","morning"] },
-  { ar: "تفضّل", ok: ["here you go","go ahead","after you","please","help yourself","here"] },
-  { ar: "ما شاء اللّه", ok: ["wow","amazing","beautiful","incredible","god bless","bless"] },
-  { ar: "إن شاء اللّه", ok: ["hopefully","god willing","fingers crossed","well see","we'll see","if all goes well"] },
-  { ar: "يعطيك العافية", ok: ["thanks","thank you","well done","nice work","good work","appreciate"] },
-  { ar: "اللّه أعلم", ok: ["who knows","no idea","god knows","your guess","hard to say"] },
-  { ar: "على راسي", ok: ["gladly","of course","absolutely","you got it","sure","done","consider it done"] },
-  { ar: "ولا يهمّك", ok: ["dont worry","don't worry","no worries","no problem","its fine","it's fine","all good"] },
-  { ar: "من عيوني", ok: ["with pleasure","gladly","anything for you","of course","my pleasure"] },
-  { ar: "الحمد للّه", ok: ["thank god","all good","cant complain","can't complain","fine","good","not bad"] },
-  { ar: "بسيطة", ok: ["no big deal","its fine","it's fine","easy","no problem","dont worry","don't worry"] },
-  { ar: "خلاص", ok: ["enough","thats it","that's it","done","stop","forget it","finished","ok"] },
-  { ar: "أبشِر", ok: ["you got it","consider it done","done","right away","will do","on it","sure"] },
-  { ar: "عيب", ok: ["shame on you","thats rude","that's rude","not okay","not ok","shameful","behave"] },
-  { ar: "الحقّ عليك", ok: ["thats your fault","that's your fault","your fault","own fault","you asked for it"] },
-  { ar: "حياتي", ok: ["sweetheart","darling","my dear","honey","love","dear"] }
+/* ═══════════ THE BOOTH · by genre ═══════════
+   An interpreter does not work in general; they work in a setting, and
+   the setting decides the vocabulary. These are the six an Arabic-English
+   interpreter actually sits in, each with the terms that recur in it.
+
+   Every equivalent here is the established one for its field — the name
+   an institution goes by, the term a court or a hospital uses — not a
+   rendering invented for this site. Where a phrase has more than one
+   accepted English form, all of them are accepted.
+
+   Community and liaison is where the courtesy formulas belong: they are
+   real interpreting problems in a clinic or an office, and nowhere else.
+   ══════════════════════════════════════════════════════════════════ */
+const BOOTH_GENRES = [
+  {
+    id: "diplomatic", en: "Diplomatic and political", ar: "سياسي ودبلوماسي",
+    hint: "Titles, institutions and the careful verbs of a communiqué.",
+    icon: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15 0 18M12 3c-2.5 2.6-2.5 15 0 18"/>',
+    items: [
+      { ar: "مجلس الأمن", ok: ["the security council", "security council"] },
+      { ar: "الأمين العام", ok: ["the secretary general", "secretary-general", "secretary general"] },
+      { ar: "وقف إطلاق النار", ok: ["ceasefire", "a ceasefire", "cease-fire", "truce"] },
+      { ar: "مذكّرة تفاهم", ok: ["memorandum of understanding", "mou", "a memorandum of understanding"] },
+      { ar: "المجتمع الدولي", ok: ["the international community", "international community"] },
+      { ar: "صاحب السموّ", ok: ["his highness", "highness"] },
+      { ar: "سعادة السفير", ok: ["his excellency the ambassador", "the ambassador", "his excellency"] },
+      { ar: "الجلسة الافتتاحية", ok: ["the opening session", "opening session", "the inaugural session"] },
+      { ar: "على هامش الاجتماعات", ok: ["on the sidelines of the meetings", "on the sidelines", "on the margins"] },
+      { ar: "السيادة الوطنية", ok: ["national sovereignty", "sovereignty"] },
+      { ar: "العلاقات الثنائية", ok: ["bilateral relations", "bilateral ties"] },
+      { ar: "التدخّل في الشؤون الداخلية", ok: ["interference in internal affairs", "interference in domestic affairs", "interference in the internal affairs"] }
+    ]
+  },
+  {
+    id: "legal", en: "Legal and court", ar: "قانوني وقضائي",
+    hint: "Court Arabic, where an approximate word is a professional failure.",
+    icon: '<path d="M12 4v16M7 20h10M5 8h14M7 8l-2.5 5a3 3 0 0 0 5 0L7 8zM17 8l-2.5 5a3 3 0 0 0 5 0L17 8z"/>',
+    items: [
+      { ar: "النيابة العامة", ok: ["the public prosecution", "public prosecution", "the prosecution", "the public prosecutor"] },
+      { ar: "المدّعى عليه", ok: ["the defendant", "defendant", "the accused"] },
+      { ar: "الشاهد", ok: ["the witness", "witness"] },
+      { ar: "الإفادة", ok: ["the statement", "statement", "testimony", "the testimony"] },
+      { ar: "حكم غيابي", ok: ["a judgment in absentia", "judgment in absentia", "judgement in absentia", "in absentia"] },
+      { ar: "البراءة", ok: ["acquittal", "an acquittal", "not guilty"] },
+      { ar: "الاستئناف", ok: ["appeal", "an appeal", "the appeal"] },
+      { ar: "محكمة الاستئناف", ok: ["the court of appeal", "court of appeal", "the appeal court", "appellate court"] },
+      { ar: "توكيل رسمي", ok: ["a power of attorney", "power of attorney"] },
+      { ar: "أداء اليمين", ok: ["taking the oath", "the oath", "to swear an oath", "swearing in"] },
+      { ar: "الحبس الاحتياطي", ok: ["pre trial detention", "pretrial detention", "remand in custody", "remand"] },
+      { ar: "عقد إيجار", ok: ["a lease", "lease", "a tenancy agreement", "rental contract"] }
+    ]
+  },
+  {
+    id: "media", en: "Journalistic and media", ar: "إعلامي وصحفي",
+    hint: "The register of a bulletin: attribution, hedging and speed.",
+    icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h6M7 13h6M7 16h4M16 9h2M16 13h2"/>',
+    items: [
+      { ar: "مؤتمر صحفي", ok: ["a press conference", "press conference", "news conference"] },
+      { ar: "بيان صحفي", ok: ["a press release", "press release", "a statement"] },
+      { ar: "مصدر مسؤول", ok: ["an official source", "official source", "a senior source"] },
+      { ar: "وكالة الأنباء", ok: ["the news agency", "news agency", "the press agency"] },
+      { ar: "أفادت مصادر", ok: ["sources said", "sources reported", "according to sources", "sources say"] },
+      { ar: "نفت الوزارة", ok: ["the ministry denied", "the ministry has denied", "denied"] },
+      { ar: "عاجل", ok: ["breaking", "breaking news", "urgent"] },
+      { ar: "تغطية حيّة", ok: ["live coverage", "live"] },
+      { ar: "افتتاحية", ok: ["an editorial", "editorial", "a leader"] },
+      { ar: "تصريحات للصحفيين", ok: ["remarks to reporters", "comments to journalists", "speaking to reporters", "statements to the press"] },
+      { ar: "حصيلة الضحايا", ok: ["the death toll", "death toll", "the casualty toll", "the toll"] }
+    ]
+  },
+  {
+    id: "medical", en: "Medical", ar: "طبّي",
+    hint: "A clinic, where a guessed word can change what a patient agrees to.",
+    icon: '<path d="M4 12h3l2-5 3 10 2.5-6 1.5 3h4"/><rect x="2.5" y="4.5" width="19" height="15" rx="3"/>',
+    items: [
+      { ar: "ضغط الدم", ok: ["blood pressure"] },
+      { ar: "التاريخ المرضي", ok: ["medical history", "the medical history", "patient history"] },
+      { ar: "الأعراض", ok: ["the symptoms", "symptoms"] },
+      { ar: "التشخيص", ok: ["the diagnosis", "diagnosis"] },
+      { ar: "قسم الطوارئ", ok: ["the emergency department", "emergency department", "a and e", "the er", "casualty"] },
+      { ar: "عيادة خارجية", ok: ["outpatient clinic", "an outpatient clinic", "outpatients"] },
+      { ar: "موافقة مستنيرة", ok: ["informed consent", "consent"] },
+      { ar: "الجرعة", ok: ["the dose", "dose", "the dosage", "dosage"] },
+      { ar: "حساسية من الدواء", ok: ["a drug allergy", "drug allergy", "allergic to the medicine", "an allergy to the drug"] },
+      { ar: "تحاليل الدم", ok: ["blood tests", "blood test", "blood work"] },
+      { ar: "الصيام قبل التحليل", ok: ["fasting before the test", "fast before the test", "nil by mouth before the test"] },
+      { ar: "الأعراض الجانبية", ok: ["side effects", "the side effects", "adverse effects"] }
+    ]
+  },
+  {
+    id: "conference", en: "Conference and academic", ar: "مؤتمرات وأكاديمي",
+    hint: "The furniture of a programme and a paper, which recurs everywhere.",
+    icon: '<path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M7 10.5V15c0 1.5 2.5 3 5 3s5-1.5 5-3v-4.5M21 8v5"/>',
+    items: [
+      { ar: "جدول الأعمال", ok: ["the agenda", "agenda"] },
+      { ar: "ورقة بحثية", ok: ["a research paper", "research paper", "a paper"] },
+      { ar: "الملخّص", ok: ["the abstract", "abstract", "the summary"] },
+      { ar: "المنهجية", ok: ["the methodology", "methodology", "the method"] },
+      { ar: "الجلسة النقاشية", ok: ["the panel", "the panel session", "panel discussion", "the discussion session"] },
+      { ar: "المتحدّث الرئيسي", ok: ["the keynote speaker", "keynote speaker", "the keynote"] },
+      { ar: "فترة الأسئلة", ok: ["the question and answer session", "q and a", "questions", "the q&a"] },
+      { ar: "محضر الاجتماع", ok: ["the minutes", "minutes of the meeting", "the minutes of the meeting"] },
+      { ar: "عيّنة الدراسة", ok: ["the study sample", "the sample", "sample"] },
+      { ar: "النتائج والتوصيات", ok: ["findings and recommendations", "the findings and recommendations", "results and recommendations"] },
+      { ar: "مراجعة الأقران", ok: ["peer review", "peer reviewed", "peer-review"] }
+    ]
+  },
+  {
+    id: "community", en: "Community and liaison", ar: "مجتمعي ومُرافِق",
+    hint: "A clinic desk, a school, an office. Formulas with no English words and exact English functions.",
+    icon: '<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9.5" r="2.4"/><path d="M3.5 19c.6-3.2 2.8-5 5.5-5s4.9 1.8 5.5 5M15.5 19c.4-2 1.5-3.3 3-3.5"/>',
+    items: [
+      { ar: "صباح الخير", ok: ["good morning", "morning"] },
+      { ar: "تفضّل", ok: ["here you go", "go ahead", "after you", "please", "help yourself", "here"] },
+      { ar: "إن شاء اللّه", ok: ["hopefully", "god willing", "fingers crossed", "well see", "we'll see", "if all goes well"] },
+      { ar: "يعطيك العافية", ok: ["thanks", "thank you", "well done", "nice work", "good work", "appreciate"] },
+      { ar: "الحمد للّه", ok: ["thank god", "all good", "cant complain", "can't complain", "fine", "good", "not bad"] },
+      { ar: "ولا يهمّك", ok: ["dont worry", "don't worry", "no worries", "no problem", "its fine", "it's fine", "all good"] },
+      { ar: "ما شاء اللّه", ok: ["wonderful", "lovely", "amazing", "beautiful", "how lovely", "god bless", "bless"] },
+      { ar: "اللّه أعلم", ok: ["who knows", "no idea", "god knows", "your guess", "hard to say"] },
+      { ar: "بسيطة", ok: ["no big deal", "its fine", "it's fine", "easy", "no problem", "dont worry", "don't worry"] },
+      { ar: "خلاص", ok: ["enough", "thats it", "that's it", "done", "stop", "forget it", "finished", "ok"] },
+      { ar: "أبشِر", ok: ["you got it", "consider it done", "done", "right away", "will do", "on it", "sure"] },
+      { ar: "مع السلامة", ok: ["goodbye", "bye", "take care", "see you"] }
+    ]
+  }
 ];
 
 const REGISTER = [
@@ -3546,7 +3715,7 @@ const ITEMS = [
     run: runSubtitle },
   { id: "booth", ar: "المَقصورة", en: "Interpreting", kind: "trial", section: "trials",
     subject: "الترجمة الشفهية · Chapter 1",
-    blurb: "Sixty seconds. Phrases arrive faster than you can think. Type the equivalent and move.",
+    blurb: "Choose your setting — diplomatic, legal, media, medical, conference or community — then sixty seconds of that field's language, arriving faster than you can think.",
     run: runBooth },
   { id: "colloc", ar: "التَّلازُم اللَّفظيّ", en: "Collocation", kind: "trial", section: "trials",
     subject: "التلازم اللفظي · Chapter 7",
@@ -6153,19 +6322,76 @@ function runSubtitle() {
   question();
 }
 
-/* ═══════════ THE BOOTH ═══════════ */
+/* ═══════════ THE BOOTH ═══════════
+   An interpreter is booked for a setting, not for a language, so the
+   Booth asks which setting before it starts the clock. The genre decides
+   the vocabulary, and the mark is the same whichever one you sit in. */
 let boothTimer = null;
 function stopBooth() { if (boothTimer) { clearInterval(boothTimer); boothTimer = null; } }
 
+function boothGenre(id) { return BOOTH_GENRES.find(g => g.id === id) || BOOTH_GENRES[0]; }
+function lastGenre() {
+  const id = state.genre;
+  return BOOTH_GENRES.some(g => g.id === id) ? id : null;
+}
+
 function runBooth() {
+  stopBooth();
+  chooseGenre();
+}
+
+function chooseGenre() {
+  stopBooth();
+  stage.innerHTML = "";
+  setCount("Six settings · sixty seconds");
+  setDots(0, 0, 0);
+
+  stage.appendChild(el("p", "lede",
+    "Nobody interprets in general. You are booked for a <b>setting</b>, and the setting decides the " +
+    "vocabulary: a word that serves in a clinic will not serve in a courtroom, and the terms that " +
+    "recur in a communiqué never come up at a hospital desk. Choose where you are sitting, and the " +
+    "booth gives you sixty seconds of that language."));
+
+  const last = lastGenre();
+  const grid = el("div", "genre-grid");
+  BOOTH_GENRES.forEach(g => {
+    const b = el("button", "genre" + (last === g.id ? " last" : ""));
+    b.innerHTML =
+      '<span class="g-icon" aria-hidden="true"><svg viewBox="0 0 24 24">' + g.icon + '</svg></span>' +
+      '<span class="g-txt">' +
+        '<span class="g-en">' + g.en + '</span>' +
+        '<span class="g-ar" dir="rtl" lang="ar">' + g.ar + '</span>' +
+        '<span class="g-hint">' + g.hint + '</span>' +
+      '</span>' +
+      '<span class="g-n">' + g.items.length + ' terms</span>';
+    b.addEventListener("click", () => {
+      state.genre = g.id; save();
+      boothRound(g);
+    });
+    grid.appendChild(b);
+  });
+  stage.appendChild(grid);
+
+  stage.appendChild(el("p", "note",
+    "The mark is the same in every setting &mdash; six through in sixty seconds. " +
+    "Which one you sit in is a question of what you want to practise."));
+  stage.appendChild(backFoot());
+}
+
+function boothRound(genre) {
   stopBooth();
   const DUR = 60, NEED = 6;
   let left = DUR, idx = 0, hits = 0, started = false;
-  const queue = BOOTH.slice().sort(() => Math.random() - 0.5);
+  const queue = genre.items.slice().sort(() => Math.random() - 0.5);
   const log = [];
 
   stage.innerHTML = "";
-  setCount("60 seconds");
+  setCount(genre.en + " · 60 seconds");
+  setDots(0, 0, 0);
+
+  const back = el("button", "link", "← Another setting");
+  back.addEventListener("click", () => { stopBooth(); chooseGenre(); });
+  stage.appendChild(back);
 
   const card = el("div", "prompt");
   card.appendChild(el("p", "ask", "Type the natural English · Enter to send · Tab to pass"));
@@ -6235,7 +6461,7 @@ function runBooth() {
     stage.innerHTML = "";
     setCount("Time");
     const sc = el("div", "score");
-    sc.appendChild(el("p", "tracked mag", "Sixty seconds in the booth"));
+    sc.appendChild(el("p", "tracked mag", "Sixty seconds · " + genre.en));
     sc.appendChild(el("p", "tally", hits + '<small> through</small>'));
     sc.appendChild(el("p", "say", pass
       ? "You kept up. That is the whole job of the booth."
@@ -6253,11 +6479,13 @@ function runBooth() {
     }
 
     const foot = el("div", "foot");
-    const again = el("button", "ghost", "Back in the booth");
-    again.addEventListener("click", () => openItem(active));
-    const back = el("button", null, "Back to the hall");
-    back.addEventListener("click", () => { renderHall(); show("hall"); });
-    foot.appendChild(again); foot.appendChild(back);
+    const again = el("button", "ghost", "Again, same setting");
+    again.addEventListener("click", () => boothRound(genre));
+    const other = el("button", "ghost", "Another setting");
+    other.addEventListener("click", () => chooseGenre());
+    const home = el("button", null, "Back to the hall");
+    home.addEventListener("click", () => { renderHall(); show("hall"); });
+    foot.appendChild(again); foot.appendChild(other); foot.appendChild(home);
     sc.appendChild(foot);
     stage.appendChild(sc);
   }
