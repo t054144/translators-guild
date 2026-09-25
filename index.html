@@ -1116,6 +1116,41 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .m-en { font-family: var(--f-serif); font-size: 1.02rem; font-weight: 600; color: var(--white); line-height: 1.25; }
 .m-arname { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .9rem; color: var(--lilac); }
 
+/* ---------- a course page ---------- */
+.c-hero { display: grid; gap: .35rem; padding: 0 0 .2rem; }
+.c-badge { font-family: var(--f-serif); font-size: .72rem; font-weight: 700; letter-spacing: .22em;
+  color: var(--magenta); }
+.c-title { margin: 0; font-family: var(--f-serif); font-size: clamp(1.5rem,5.6vw,2rem);
+  font-weight: 600; color: var(--white); line-height: 1.15; }
+.c-ar { margin: 0; font-family: var(--f-ar); direction: rtl; text-align: left;
+  font-size: 1.05rem; color: var(--lilac); }
+.c-line { margin: .55rem 0 0; font-family: var(--f-serif); font-style: italic;
+  font-size: clamp(1.08rem,3.8vw,1.3rem); line-height: 1.5; color: var(--white);
+  padding-inline-start: .9rem; border-inline-start: 3px solid var(--magenta); max-width: 34ch; }
+
+.c-facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: .5rem; }
+.c-fact { display: grid; gap: .12rem; text-align: center; padding: .65rem .4rem;
+  border-radius: var(--r-md); border: var(--hair); background: rgba(255,255,255,.035);
+  font-size: .58rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--lilac-dim); line-height: 1.3; }
+.c-fact b { font-family: var(--f-serif); font-size: 1.02rem; font-weight: 700; letter-spacing: 0;
+  text-transform: none; color: var(--white); }
+
+.c-body { display: grid; gap: .45rem; }
+.c-h { margin: 0; font-size: .66rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--lilac-dim); }
+.c-body > p { margin: 0; font-size: 1rem; font-weight: 300; line-height: 1.75;
+  color: var(--ink); max-width: var(--measure); }
+.c-body > p p { margin: .8rem 0 0; }
+.c-body b { color: var(--white); font-weight: 500; }
+
+.c-asks { border-radius: var(--r-lg); border: var(--hair-lit); background: var(--grad-soft);
+  padding: .9rem 1.1rem; display: grid; gap: .3rem; }
+.c-asks-lab { font-size: .62rem; font-weight: 700; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--magenta); }
+.c-asks p { margin: 0; font-family: var(--f-serif); font-size: 1.02rem; font-style: italic;
+  line-height: 1.6; color: var(--white); }
+
 .m-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: .3rem; }
 /* A long chamber name must wrap rather than push the panel wider than
    the phone it is being read on. */
@@ -1595,7 +1630,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 34 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 35 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -2140,7 +2175,7 @@ function exampleBlock(x) {
            '</div>';
   }
   return el("div", "ex",
-    '<span class="ex-lab">The work, in one example &mdash; <b>' + x.lab + '</b></span>' +
+    '<span class="ex-lab">' + (x.pre || "The work, in one example") + ' &mdash; <b>' + x.lab + '</b></span>' +
     row("src", x.srcLab, x.src, x.srcDir) +
     row("lit", x.litLab, x.lit, x.litDir) +
     row("out", x.outLab, x.out, x.outDir) +
@@ -4041,10 +4076,11 @@ const INTERP_UNSETTLED = {
    structure — four compulsory, two from each elective group, twenty-four
    credits, 142 as the entry prerequisite — is the programme's own.
 
-   Each course carries what the subject is, where it is actually used,
-   what it asks of a student, and where the Guild already has something
-   that belongs to it. The practice material for each one is still to
-   come; the course pages are built to receive it.
+   Each course is built the way the rest of the Guild teaches: a
+   definition you could quote, the facts as facts, the subject in prose,
+   and then one piece of the actual work, because a subject described is
+   weaker than a subject shown. The practice material arrives into the
+   slot at the end of each page.
    ══════════════════════════════════════════════════════════════════ */
 const KU_MINOR = {
   en: "Translation Minor", ar: "مساند الترجمة",
@@ -4055,33 +4091,70 @@ const KU_MINOR = {
     {
       id: "core", en: "Compulsory", ar: "المقررات الإجبارية",
       rule: "Take all four", ruleAr: "أربعة مقررات، ١٢ وحدة دراسية",
+      status: "Compulsory",
       courses: [
         {
-          code: "180", en: "Principles of Translation", ar: "مبادئ الترجمة",
-          what: "The foundation course, and the prerequisite for everything else in the minor. It sets out what translation actually is: the difference between <b>form</b> and <b>meaning</b>, the literal and the free, the procedures a translator has to choose between, and the brief that decides which one the job needs.",
-          where: "Under every other course on this list. Nothing above it can be done without it &mdash; a text cannot be analysed, a term cannot be settled and a subtitle cannot be cut by someone who is still translating word for word.",
-          asks: "That you stop translating <i>words</i> and start translating <i>messages</i> &mdash; and that you can name what you did afterwards, which is the whole basis of a commentary.",
+          code: "180", en: "Principles of Translation", ar: "مبادئ الترجمة", pre: "142",
+          line: "What translation is, before you are any good at it.",
+          body: "The foundation course, and the prerequisite for everything else in the minor. It separates <b>form</b> from <b>meaning</b> &mdash; the shape a language happens to use, and the thing being said &mdash; and shows that keeping one usually costs you the other." +
+                "<p>From there come the choices a translator actually makes: literal or free, and which of the procedures the sentence in front of you needs. The course's real subject is that these are <i>decisions</i>, made by a person, for reasons that can be stated.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "One sentence, two ways of being faithful",
+            srcLab: "English", src: "He is a heavy smoker.", srcDir: "ltr",
+            litLab: "The form kept", lit: "هو مُدخِّن ثقيل &mdash; every word matched, and not a sentence an Arabic speaker would produce",
+            outLab: "The meaning kept", out: "يُدخِّن بشراهة", outDir: "rtl",
+            note: "A noun phrase became a verb. Nothing was added and nothing was lost; the <b>form</b> changed because the <b>meaning</b> required it. That move has a name &mdash; transposition &mdash; and being able to name it is what separates this course from guessing."
+          },
+          settings: ["Every course above it", "Any first commission", "The basis of a commentary"],
+          asks: "That you stop translating words and start translating messages — and that you can say afterwards what you did, and why.",
           meets: ["procedures", "toolkit"]
         },
         {
-          code: "182", en: "Introduction to Terminology", ar: "مقدمة في علم المصطلحات",
-          what: "Terminology as a discipline in its own right, not as vocabulary learning. The distinction between a <b>concept</b> and the <b>term</b> that names it, how a field's vocabulary is built and standardised, and how a termbase or a glossary is compiled and kept.",
-          where: "Anywhere a wrong word has consequences: ministries, courts, hospitals, standards bodies, the UN. It is also a job of its own &mdash; institutions employ terminologists, not only translators.",
+          code: "182", en: "Introduction to Terminology", ar: "مقدمة في علم المصطلحات", pre: "142",
+          line: "A discipline about concepts, which happens to produce words.",
+          body: "Not vocabulary learning. Terminology starts from the <b>concept</b> &mdash; a thing a field needs to refer to precisely &mdash; and asks which <b>term</b> is allowed to stand for it, who decided, and where that decision is written down." +
+                "<p>Then the practical half: how a termbase or a glossary is built, kept current, and shared, so that the next translator inherits the decision instead of making it again differently.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "Two words that are not versions of each other",
+            srcLab: "English", src: "informed consent", srcDir: "ltr",
+            litLab: "The near-enough word", lit: "موافقة &mdash; consent, which is what a patient gives to anything at all",
+            outLab: "The term", out: "موافقة مستنيرة", outDir: "rtl",
+            note: "<b>موافقة</b> is not a shorter way of saying it. In law they are different things: one is agreement, the other is agreement after the risks have been explained and understood. Terminology is the discipline that fixes which string of letters may carry which concept &mdash; and then records it, with its source, so nobody has to guess twice."
+          },
+          settings: ["Ministries and courts", "Hospitals", "Standards bodies", "The UN", "Any termbase"],
           asks: "Precision, and a record. A term without a source is a guess, however confident it sounds.",
           meets: ["glossary"]
         },
         {
-          code: "280", en: "Translation I", ar: "ترجمة ١",
-          what: "The first practical course: general texts, in both directions, translated and then defended. Where the principles of 180 stop being a framework to recite and become decisions you have to make under your own name.",
-          where: "It is the everyday work &mdash; correspondence, journalism, general prose &mdash; and it is the ground every specialism is built on.",
+          code: "280", en: "Translation I", ar: "ترجمة ١", pre: "142",
+          line: "The first course where the work has your name on it.",
+          body: "General texts, in both directions, translated and then defended out loud. Where the framework from 180 stops being something to recite and becomes a series of decisions you have to make and stand behind." +
+                "<p>Most of the difficulty is not vocabulary. It is that words arrive in company, and a dictionary that hands them over one at a time will mislead you roughly once a paragraph.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "Every word right, the sentence wrong",
+            srcLab: "English", src: "She paid a visit to her grandmother.", srcDir: "ltr",
+            litLab: "Word by word", lit: "دفعت زيارة لجدّتها &mdash; <i>pay</i> is <i>يدفع</i>, and the result is not Arabic",
+            outLab: "The partnership translated", out: "زارت جدّتها.", outDir: "rtl",
+            note: "<b>Pay a visit</b> is one unit meaning <i>visit</i>; the verb is not doing its own job. Collocation is the commonest cause of a rendering that is defensible word by word and wrong as a sentence, and it is most of what this course fixes."
+          },
+          settings: ["Correspondence", "Journalism", "General prose", "The ground every specialism stands on"],
           asks: "Volume, and the habit of revision. The gap between a first draft and a finished rendering is the course.",
-          meets: ["commentary", "nameproc"]
+          meets: ["commentary", "colloc"]
         },
         {
-          code: "281", en: "Translation II", ar: "ترجمة ٢",
-          what: "Longer texts and harder genres, with revision treated as part of the work rather than as something done if time allows. The step from translating a passage to handling a whole document.",
-          where: "Any commission that arrives as a file rather than a paragraph: a report, an article, a contract, a chapter.",
-          asks: "Consistency across length &mdash; the same term rendered the same way on page nine as on page one &mdash; and the discipline of the three readings.",
+          code: "281", en: "Translation II", ar: "ترجمة ٢", pre: "142",
+          line: "The step from a passage to a whole document.",
+          body: "Longer texts, harder genres, and revision treated as part of the work rather than as something done if time allows. A file behaves differently from a paragraph: it has to hold together across pages that will be read hours apart." +
+                "<p>Which makes consistency the new skill. Not elegance &mdash; sameness, in the places where sameness is what carries the meaning.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "Three good renderings, one bad document",
+            srcLab: "Arabic, recurring through a report", src: "الجهة المختصّة", srcDir: "rtl",
+            litLab: "Rendered freshly each time", lit: "<i>the competent authority</i> on page 1 &middot; <i>the relevant body</i> on page 7 &middot; <i>the concerned party</i> on page 14",
+            outLab: "Chosen once, used throughout", out: "the competent authority &mdash; all fourteen times", outDir: "ltr",
+            note: "Each of the three is defensible on its own line. Across a document they read as three different bodies, and in a contract that can be argued in court. This is why 281 puts revision inside the work rather than after it."
+          },
+          settings: ["Reports", "Articles", "Contracts", "Book chapters"],
+          asks: "Consistency across length, and the discipline of reading the draft three times for three different things.",
           meets: ["errors", "commentary"]
         }
       ]
@@ -4089,26 +4162,54 @@ const KU_MINOR = {
     {
       id: "e1", en: "Elective group one", ar: "المجموعة الاختيارية الأولى",
       rule: "Choose two · prerequisite 180", ruleAr: "يختار الطالب مقررين، المتطلب السابق ١٨٠",
+      status: "Elective",
       courses: [
         {
-          code: "283", en: "Text Analysis and Translation", ar: "تحليل النص والترجمة",
-          what: "Reading a text properly <b>before</b> translating a word of it: its field, its tone, its genre, who wrote it, who it was written for, and what it is trying to do. The analysis is the decision; the translating carries it out.",
-          where: "Every commission worth taking seriously, and especially the ones that look simple. A press release and a court judgment can share a sentence and need opposite treatment.",
-          asks: "Patience at the start. Most bad translations are not failures of vocabulary; they are failures to have read.",
+          code: "283", en: "Text Analysis and Translation", ar: "تحليل النص والترجمة", pre: "180",
+          line: "The reading that decides the translation.",
+          body: "Taking a text apart before translating a word of it: its field, its tone, its genre, who wrote it, who it was written for, and what it is trying to make happen." +
+                "<p>The analysis <i>is</i> the decision. The translating carries it out. Most bad translations are not failures of vocabulary &mdash; they are failures to have read.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "Three words, two texts, two renderings",
+            srcLab: "Arabic", src: "يُمنع التدخين", srcDir: "rtl",
+            litLab: "On a sign in a hospital corridor", lit: "<b>No smoking.</b> Two words, read at walking pace, obeyed or not within a second.",
+            outLab: "In a company's written policy", out: "<b>Smoking is prohibited on these premises.</b> A sentence that has to survive being quoted back at someone.", outDir: "ltr",
+            note: "Nothing in the Arabic tells you which one. <b>Field, audience and purpose do</b> &mdash; and they are not in the sentence, they are in the brief. That is the whole argument for analysing first."
+          },
+          settings: ["Every commission", "Especially the ones that look simple"],
+          asks: "Patience at the start, and the willingness to ask a client a question before beginning.",
           meets: ["texttypes", "context"]
         },
         {
-          code: "284", en: "Translation and Culture", ar: "الترجمة والثقافة",
-          what: "What happens when the difficulty is not linguistic. Culture-specific items, proverbs and idioms, politeness and religion, and the choice between bringing the text to the reader and taking the reader to the text.",
-          where: "Literature, subtitling, advertising, diplomacy, and any text where a reference means something at home and nothing abroad.",
-          asks: "A decision you can defend. Neither smoothing nor preserving is automatically right, and the reader is entitled to know which one you chose.",
+          code: "284", en: "Translation and Culture", ar: "الترجمة والثقافة", pre: "180",
+          line: "What to do when the difficulty is not linguistic.",
+          body: "Culture-specific items, proverbs, politeness, religion, institutions &mdash; the places where both languages are perfectly clear and the reader still will not understand." +
+                "<p>And the choice underneath all of them: bring the text to the reader, or take the reader to the text. Neither is automatically right, and the reader is entitled to know which one you chose.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "An institution is not its name",
+            srcLab: "English", src: "The Home Office issued a statement.", srcDir: "ltr",
+            litLab: "The name carried over", lit: "أصدر مكتب البيت بياناً &mdash; a government department has become a house",
+            outLab: "The function rendered", out: "أصدرت وزارة الداخلية البريطانية بياناً.", outDir: "rtl",
+            note: "Two things happened. The institution was translated by <b>what it does</b>, not by what it is called &mdash; and <b>البريطانية</b> was added, because an Arabic reader has no reason to know whose Home Office this is. The addition is not decoration; without it the sentence is not true for its new reader."
+          },
+          settings: ["Literature", "Subtitling", "Advertising", "Diplomacy", "News"],
+          asks: "A decision you can defend — and the honesty to notice when you smoothed something away.",
           meets: ["cultural", "proverb", "lineage"]
         },
         {
-          code: "285", en: "Translation for Special Purposes", ar: "الترجمة لأغراض خاصة",
-          what: "Language for specific purposes: legal, medical, technical, commercial. Each field has its own terminology, its own register, its own conventions of form, and its own consequences when a rendering is wrong.",
-          where: "Most paid translation work is this. It is also where the risk lives &mdash; a mistranslated dose or clause is not a stylistic matter.",
-          asks: "That you know the subject well enough to know when you do not know it, and that you say so rather than guess.",
+          code: "285", en: "Translation for Special Purposes", ar: "الترجمة لأغراض خاصة", pre: "180",
+          line: "Where a wrong word stops being a style problem.",
+          body: "Language for specific purposes: legal, medical, technical, commercial. Each field has its own terminology, its own register, its own conventions of layout, and its own idea of what an error costs." +
+                "<p>Most paid translation work is this. It is also where <b>risk</b> lives, and where risk assessment stops being an academic exercise.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "Two renderings, one of them dangerous",
+            srcLab: "Arabic, on a prescription", src: "قرص واحد كل ٨ ساعات", srcDir: "rtl",
+            litLab: "The natural English", lit: "<b>one tablet three times a day</b> &mdash; which is how people speak, and is a different instruction",
+            outLab: "The instruction, unchanged", out: "one tablet every 8 hours", outDir: "ltr",
+            note: "<i>Three times a day</i> means waking hours; <b>every eight hours</b> means a clock, including the middle of the night. In a leaflet the difference is a matter of tone. On a prescription it changes how much of the drug is in a patient at three in the morning. That gap is what the course means by <b>risk</b>."
+          },
+          settings: ["Law", "Medicine", "Engineering", "Finance", "Certified translation"],
+          asks: "That you know the subject well enough to know when you do not — and say so rather than guess.",
           meets: ["register", "booth"]
         }
       ]
@@ -4116,26 +4217,54 @@ const KU_MINOR = {
     {
       id: "e2", en: "Elective group two", ar: "المجموعة الاختيارية الثانية",
       rule: "Choose two · prerequisite 180", ruleAr: "يختار الطالب مقررين، المتطلب السابق ١٨٠",
+      status: "Elective",
       courses: [
         {
-          code: "386", en: "Literary Translation", ar: "الترجمة الأدبية",
-          what: "Prose and poetry, where what is being carried across is not only information but voice, rhythm, register and effect. The course where the question of what <i>cannot</i> cross is asked most seriously.",
-          where: "Publishing, and the literary translation projects that decide which literatures the world gets to read at all.",
-          asks: "That you write well in the target language. A literary translator who is not a writer produces information about a book.",
+          code: "386", en: "Literary Translation", ar: "الترجمة الأدبية", pre: "180",
+          line: "Where what crosses is not only the information.",
+          body: "Prose and poetry, in which voice, rhythm, register and effect are not decoration on the meaning &mdash; they are part of it. The course where the question of what <i>cannot</i> cross is asked most seriously, and answered least comfortably." +
+                "<p>It is also the course that asks most of your writing. A literary translator who is not a writer produces information about a book.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "Not what the words mean — what they are doing",
+            srcLab: "Arabic", src: "وكان يا ما كان في قديم الزمان", srcDir: "rtl",
+            litLab: "The words", lit: "<i>And there was, oh what there was, in ancient time</i> &mdash; accurate, and it tells an English child nothing",
+            outLab: "The work the words do", out: "Once upon a time", outDir: "ltr",
+            note: "The two formulas share no vocabulary at all. What they share is the <b>function</b>: both tell a listener that a story is beginning and that its literal truth is not the point. Literary translation is mostly decisions of this shape."
+          },
+          settings: ["Publishing", "Poetry", "Theatre", "Literary prizes and translation projects"],
+          asks: "That you write well in the target language, and that you know when to lose something on purpose.",
           meets: ["lineage", "commentary"]
         },
         {
-          code: "387", en: "Introduction to Audiovisual Translation", ar: "مقدمة في الترجمة السمعية البصرية",
-          what: "Translation for screen: subtitling, dubbing, voice-over, and audio description for viewers who cannot see. Its defining feature is <b>constraint</b> &mdash; characters per line, seconds on screen, lip movement, and a viewer who can hear the original while reading you.",
-          where: "Streaming, broadcast, film festivals, corporate video, and accessibility work, which is a legal requirement in a growing number of places.",
-          asks: "Ruthless compression without loss of sense, and the acceptance that your work will be checked in real time by an audience that half-understands the source.",
+          code: "387", en: "Introduction to Audiovisual Translation", ar: "مقدمة في الترجمة السمعية البصرية", pre: "180",
+          line: "Translation with a stopwatch and a ruler.",
+          body: "Translation for screen: subtitling, dubbing, voice-over, and audio description for viewers who cannot see. Its defining feature is <b>constraint</b> &mdash; characters per line, seconds on screen, lip movement." +
+                "<p>And a reader who can hear the original while reading you, which no other kind of translation has to survive.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "Thirty-five characters too many",
+            srcLab: "Arabic, spoken", src: "يا أخي، أنا قلت لك من أوّل الشهر ولا سمعتني.", srcDir: "rtl",
+            litLab: "Everything rendered", lit: "<i>My brother, I told you from the beginning of the month and you did not listen to me.</i> &mdash; 78 characters, on screen for 1.8 seconds",
+            outLab: "What fits", out: "I told you weeks ago. You didn't listen.", outDir: "ltr",
+            note: "<b>يا أخي</b> is exasperation, not family, and it survives as a full stop and a word order rather than as words. Nothing was cut that was carrying meaning; what was cut was carrying syllables. This is the skill the course is built on."
+          },
+          settings: ["Streaming", "Broadcast", "Film festivals", "Corporate video", "Accessibility"],
+          asks: "Ruthless compression without loss of sense, and the nerve to be checked in real time by an audience that half-understands the source.",
           meets: ["subtitle"]
         },
         {
-          code: "388", en: "Introduction to Translation and Technology", ar: "مدخل إلى الترجمة والتكنولوجيا",
-          what: "The tools the profession actually runs on: computer-assisted translation, translation memory, terminology management, machine translation and post-editing, and now generative systems &mdash; including what they invent when they do not know.",
-          where: "Every agency and every institution. Translation memory and a termbase are not optional extras in professional work; they are how consistency and delivery dates are met.",
-          asks: "That you stay the editor. A tool that is faster than you is still not responsible for the output &mdash; you are.",
+          code: "388", en: "Introduction to Translation and Technology", ar: "مدخل إلى الترجمة والتكنولوجيا", pre: "180",
+          line: "The tools, and why you are still the one responsible.",
+          body: "What the profession actually runs on: computer-assisted translation, translation memory, terminology management, machine translation and post-editing &mdash; and now generative systems, including what they produce when they do not know." +
+                "<p>Translation memory and a termbase are not optional extras in professional work. They are how consistency and a delivery date are met at once.</p>",
+          ex: {
+            pre: "The subject, in one example", lab: "Correct, fluent, and unmistakably translated",
+            srcLab: "English", src: "The minister opened the exhibition.", srcDir: "ltr",
+            litLab: "What the machine returns", lit: "تمّ افتتاح المعرض من قِبَل الوزير &mdash; grammatical, fluent, and carrying the English passive straight over",
+            outLab: "What a post-editor writes", out: "افتتح الوزير المعرض.", outDir: "rtl",
+            note: "There is no error here you can circle. The machine produced a sentence that is <b>correct and wrong</b>, which is the characteristic failure of machine translation between these two languages. Post-editing is the skill of hearing it &mdash; and it is a skill, not a lower grade of translating."
+          },
+          settings: ["Agencies", "Institutions", "Localization", "Post-editing work"],
+          asks: "That you stay the editor. A tool faster than you is still not responsible for the output — you are.",
           meets: ["glossary", "errors"]
         }
       ]
@@ -6985,24 +7114,54 @@ function runMinor() {
     back.addEventListener("click", () => { open = null; list(); });
     stage.appendChild(back);
 
-    const top = el("div", "card");
-    top.appendChild(el("div", "card-top",
-      '<span class="num-badge">' + c.code + '</span>' +
-      '<h3>' + c.en + '</h3>' +
-      '<span class="ct-ar" dir="rtl" lang="ar">' + c.ar + '</span>'));
-    top.appendChild(el("div", "block", '<span class="b-lab">What it is</span><p>' + c.what + '</p>'));
-    top.appendChild(el("div", "block demand", '<span class="b-lab">Where it is used</span><p>' + c.where + '</p>'));
-    top.appendChild(el("div", "block", '<span class="b-lab">What it asks of you</span><p>' + c.asks + '</p>'));
-    stage.appendChild(top);
+    /* The name, then the one sentence you could quote, then the facts as
+       facts. Three things a student wants before any prose at all. */
+    const hero = el("div", "c-hero");
+    hero.innerHTML =
+      '<span class="c-badge">' + c.code + '</span>' +
+      '<h2 class="c-title">' + c.en + '</h2>' +
+      '<p class="c-ar" dir="rtl" lang="ar">' + c.ar + '</p>' +
+      '<p class="c-line">' + c.line + '</p>';
+    stage.appendChild(hero);
+
+    const facts = el("div", "c-facts");
+    facts.innerHTML =
+      '<span class="c-fact"><b>3</b>credits</span>' +
+      '<span class="c-fact"><b>' + c.pre + '</b>prerequisite</span>' +
+      '<span class="c-fact"><b>' + c.group.status + '</b>' +
+        (c.group.status === "Elective" ? "choose two" : "take all four") + '</span>';
+    stage.appendChild(facts);
+
+    /* The subject, as prose. Not a labelled box — a labelled box is a
+       form, and a form does not explain anything. */
+    const body = el("div", "c-body");
+    body.innerHTML = '<h3 class="c-h">The subject</h3><p>' + c.body + '</p>';
+    stage.appendChild(body);
+
+    /* One piece of the actual work. Every other chamber on this site
+       teaches by showing; a course page that only describes is the
+       weakest page in the building. */
+    if (c.ex) stage.appendChild(exampleBlock(c.ex));
+
+    /* Where you meet it — a list of places, so it reads as a list. */
+    const wraps = el("div", "c-body");
+    wraps.innerHTML = '<h3 class="c-h">Where you meet it</h3>' +
+      '<div class="chips-row">' +
+      c.settings.map(x => '<span class="chip-tag">' + x + '</span>').join("") + '</div>';
+    stage.appendChild(wraps);
+
+    const asks = el("div", "c-asks");
+    asks.innerHTML = '<span class="c-asks-lab">What it asks of you</span><p>' + c.asks + '</p>';
+    stage.appendChild(asks);
 
     /* Whatever the Guild already has that belongs to this course, as a
        way in rather than as a list of names. */
     const linked = (c.meets || []).map(id => ITEMS.find(t => t.id === id)).filter(Boolean);
     if (linked.length) {
       const v = el("div", "verdict");
-      v.appendChild(el("span", "vh", "Where this meets the Guild"));
+      v.appendChild(el("span", "vh", "Practise it here"));
       v.appendChild(el("p", "vb",
-        "Nothing here replaces the course. These are the parts of the site that practise the same thing, " +
+        "Nothing on this site replaces the course. These are the parts of it that drill the same thing, " +
         "and they are open now."));
       const row = el("div", "m-links");
       linked.forEach(t => {
@@ -7014,8 +7173,7 @@ function runMinor() {
       stage.appendChild(v);
     }
 
-    /* The slot the course's own material arrives into. Named honestly:
-       it is not built yet, and the page says which way to go meanwhile. */
+    /* The slot the course's own material arrives into. */
     const slot = el("div", "m-slot");
     slot.innerHTML =
       '<span class="b-lab">Practice material</span>' +
@@ -7027,12 +7185,12 @@ function runMinor() {
     const pager = el("div", "pager");
     const foot = el("div", "foot");
     if (i > 0) {
-      const prev = el("button", "ghost", "← " + all[i - 1].code);
+      const prev = el("button", "ghost", "← " + all[i - 1].code + " " + all[i - 1].en);
       prev.addEventListener("click", () => { open = all[i - 1]; course(); });
       foot.appendChild(prev);
     }
     if (i < all.length - 1) {
-      const next = el("button", null, all[i + 1].code + " →");
+      const next = el("button", null, all[i + 1].code + " " + all[i + 1].en + " →");
       next.addEventListener("click", () => { open = all[i + 1]; course(); });
       foot.appendChild(next);
     }
