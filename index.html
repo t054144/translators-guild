@@ -1509,7 +1509,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 25 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 26 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -3424,7 +3424,7 @@ const GLOSSARY = [
   { en: "Ideational equivalence", ar: "التكافؤ الفكري", def: "Giving only the basic idea, in plain words.", ch: "9" },
   { en: "Ideology", ar: "الأيديولوجيا", def: "A set of beliefs that shapes how people describe events.", ch: "19" },
   { en: "Idiom", ar: "التعبير الاصطلاحي", def: "A fixed expression whose meaning is not the sum of the meanings of its words.", ch: "8" },
-  { en: "Interpreting", ar: "الترجمة الشفهية", def: "Transferring spoken language into another language.", ch: "1" },
+  { en: "Interpreting", ar: "الترجمة الفورية", def: "Transferring spoken language into another language. Also called الترجمة الشفهية, which is the wording in the handbook's own glossary. Within it, <b>الترجمة الفورية</b> is simultaneous — rendered while the speaker is still speaking — and <b>الترجمة التتبعية</b> is consecutive, rendered after the speaker pauses.", ch: "1" },
   { en: "Justification", ar: "التبرير", def: "The reason why a translation choice is right.", ch: "25" },
   { en: "Lexical creation", ar: "التوليد المعجمي", def: "Coining new target-language words for items with no direct equivalent.", ch: "16" },
   { en: "Literal translation", ar: "الترجمة الحرفية", def: "Keeping the original words, changing only what grammar requires; also called modified literal translation (الترجمة الحرفية المعدّلة).", ch: "10" },
@@ -3714,7 +3714,7 @@ const ITEMS = [
     blurb: "A real subtitler's constraint: a hard character limit and a line that will not fit. Cut the words, keep the meaning.",
     run: runSubtitle },
   { id: "booth", ar: "المَقصورة", en: "Interpreting", kind: "trial", section: "trials",
-    subject: "الترجمة الشفهية · Chapter 1",
+    subject: "الترجمة الفورية · Chapter 1",
     blurb: "Choose your setting — diplomatic, legal, media, medical, conference or community — then sixty seconds of that field's language, arriving faster than you can think.",
     run: runBooth },
   { id: "colloc", ar: "التَّلازُم اللَّفظيّ", en: "Collocation", kind: "trial", section: "trials",
@@ -6375,6 +6375,21 @@ function chooseGenre() {
   stage.appendChild(el("p", "note",
     "The mark is the same in every setting &mdash; six through in sixty seconds. " +
     "Which one you sit in is a question of what you want to practise."));
+
+  /* The booth runs against a clock, which makes it simultaneous work.
+     Naming the modes here keeps the exercise honest about which one it
+     is training, and the two Arabic names are the ones the profession
+     uses. */
+  const modes = el("div", "verdict");
+  modes.appendChild(el("span", "vh", "Which mode this is"));
+  modes.appendChild(el("p", "vb",
+    "The booth runs against a clock, so what it trains is <b>الترجمة الفورية</b> &mdash; simultaneous " +
+    "interpreting, rendered while the speaker is still speaking. Its counterpart is " +
+    "<b>الترجمة التتبعية</b>, consecutive interpreting, where the speaker pauses and the interpreter " +
+    "works from notes and memory; and <b>الترجمة المنظورة</b>, sight translation, where a written text " +
+    "is read out in the other language. All three are interpreting. Only the first is done at this speed."));
+  stage.appendChild(modes);
+
   stage.appendChild(backFoot());
 }
 
