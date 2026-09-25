@@ -60,8 +60,9 @@ function block([kind, a, b, c]) {
 const tp = (t, size, opts = {}) => body.push(new Paragraph({ alignment: AlignmentType.CENTER, spacing: { after: 160 }, ...opts, children: runs(t, { size, bold: opts.bold }) }));
 tp(process.env.TITLE || 'Editorial Report', 44, { bold: true, spacing: { before: 3200, after: 300 } });
 tp('Translation Handbook ({{دليل الترجمة}})', 30, { spacing: { after: 120 } });
-tp('First edition', 24, { spacing: { after: 1600 } });
-tp('Prepared for the supervisor of the Translation Team', 22);
+tp(process.env.EDITION || 'First edition', 24, { spacing: { after: 1600 } });
+tp(process.env.PREPARED || 'Prepared for the supervisor of the Translation Team', 22);
+if (process.env.NOTE) tp(process.env.NOTE, 20, { spacing: { after: 160 } });
 tp('Translation Team, Guild Professional Club', 22);
 tp('September 2026', 22, { spacing: { after: 160 } });
 
