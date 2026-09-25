@@ -66,15 +66,17 @@ tp('Translation Team, Guild Professional Club', 22);
 tp('September 2026', 22, { spacing: { after: 160 } });
 
 // contents
-body.push(new Paragraph({ pageBreakBefore: true, spacing: { after: 240 }, children: [new TextRun({ text: 'Contents', font: FONT, size: 30, bold: true })] }));
-body.push(new TableOfContents('Contents', { hyperlink: true, headingStyleRange: '1-2' }));
+if (!process.env.NOTOC) {   // short reports skip the contents page
+  body.push(new Paragraph({ pageBreakBefore: true, spacing: { after: 240 }, children: [new TextRun({ text: 'Contents', font: FONT, size: 30, bold: true })] }));
+  body.push(new TableOfContents('Contents', { hyperlink: true, headingStyleRange: '1-2' }));
+}
 body.push(new Paragraph({ pageBreakBefore: true, children: [] }));
 
 // CONTENT, TITLE and OUT let the same layout build the correction log as well
 require(process.env.CONTENT || './report_content.js').forEach(block);
 
 const doc = new Document({
-  creator: 'Guild Translation Team', title: 'Editorial Report: Translation Handbook', features: { updateFields: true },
+  creator: 'Guild Translation Team', title: (process.env.TITLE || 'Editorial Report') + ': Translation Handbook', features: { updateFields: true },
   styles: {
     default: { document: { run: { font: FONT, size: 22, color: '000000' } } },
     paragraphStyles: [
