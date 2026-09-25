@@ -1103,6 +1103,11 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .dir-btn.on .d-en { color: var(--white); }
 .dir-say { margin: .1rem 0 0; font-size: .82rem; font-weight: 300; line-height: 1.6; color: var(--ink-soft); }
 
+/* The other accepted renderings, under the feedback and in the review. */
+.feed-alt, .q-alt { display: block; margin-top: .3rem; font-size: .8rem; font-weight: 300;
+  color: var(--ink-faint); line-height: 1.55; }
+.q-alt { font-size: .76rem; }
+
 /* Typing into Arabic: the field runs right to left in the Arabic face. */
 .typing input.ar-in { font-family: var(--f-ar-text); direction: rtl; text-align: right; font-size: 1.15rem; }
 .ar-say { font-family: var(--f-ar-text); direction: rtl; unicode-bidi: isolate; color: var(--white); }
@@ -1544,7 +1549,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 29 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 30 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -2873,14 +2878,14 @@ const BOOTH_GENRES = [
     hint: "Titles, institutions and the careful verbs of a communiqué.",
     icon: '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 2.5 15 0 18M12 3c-2.5 2.6-2.5 15 0 18"/>',
     terms: [
-      { ar: "مجلس الأمن", ok: ["the security council", "security council"] },
-      { ar: "الأمين العام", ok: ["the secretary general", "secretary-general", "secretary general"] },
-      { ar: "وقف إطلاق النار", ok: ["ceasefire", "a ceasefire", "cease-fire", "truce"] },
-      { ar: "مذكّرة تفاهم", ok: ["memorandum of understanding", "mou", "a memorandum of understanding"] },
-      { ar: "المجتمع الدولي", ok: ["the international community", "international community"] },
-      { ar: "صاحب السموّ", ok: ["his highness", "highness"] },
+      { ar: "مجلس الأمن", ok: ["the security council", "security council"], arAlt: ["مجلس الأمن الدولي"] },
+      { ar: "الأمين العام", ok: ["the secretary general", "secretary-general", "secretary general"], arAlt: ["أمين عام الأمم المتحدة"] },
+      { ar: "وقف إطلاق النار", ok: ["ceasefire", "a ceasefire", "cease-fire", "truce"], arAlt: ["هدنة"] },
+      { ar: "مذكّرة تفاهم", ok: ["memorandum of understanding", "mou", "a memorandum of understanding"], arAlt: ["مذكّرة التفاهم"] },
+      { ar: "المجتمع الدولي", ok: ["the international community", "international community"], arAlt: ["الأسرة الدولية"] },
+      { ar: "صاحب السموّ", ok: ["his highness", "highness"], arAlt: ["سموّ الأمير"] },
       { ar: "السيادة الوطنية", ok: ["national sovereignty", "sovereignty"] },
-      { ar: "العلاقات الثنائية", ok: ["bilateral relations", "bilateral ties"] }
+      { ar: "العلاقات الثنائية", ok: ["bilateral relations", "bilateral ties"], arAlt: ["العلاقات بين البلدين"] }
     ],
     phrases: [
       { ar: "على هامش الاجتماعات", ok: ["on the sidelines of the meetings", "on the sidelines", "on the margins of the meetings"] },
@@ -2924,14 +2929,14 @@ const BOOTH_GENRES = [
     hint: "Court Arabic, where an approximate word is a professional failure.",
     icon: '<path d="M12 4v16M7 20h10M5 8h14M7 8l-2.5 5a3 3 0 0 0 5 0L7 8zM17 8l-2.5 5a3 3 0 0 0 5 0L17 8z"/>',
     terms: [
-      { ar: "النيابة العامة", ok: ["the public prosecution", "public prosecution", "the prosecution", "the public prosecutor"] },
-      { ar: "المدّعى عليه", ok: ["the defendant", "defendant", "the accused"] },
-      { ar: "الشاهد", ok: ["the witness", "witness"] },
-      { ar: "الاستئناف", ok: ["appeal", "an appeal", "the appeal"] },
-      { ar: "البراءة", ok: ["acquittal", "an acquittal", "not guilty"] },
-      { ar: "حكم غيابي", ok: ["a judgment in absentia", "judgment in absentia", "judgement in absentia", "in absentia"] },
-      { ar: "توكيل رسمي", ok: ["a power of attorney", "power of attorney"] },
-      { ar: "الحبس الاحتياطي", ok: ["pre trial detention", "pretrial detention", "remand in custody", "remand"] }
+      { ar: "النيابة العامة", ok: ["the public prosecution", "public prosecution", "the prosecution", "the public prosecutor"], arAlt: ["النيابة", "الادعاء العام"] },
+      { ar: "المدّعى عليه", ok: ["the defendant", "defendant", "the accused"], arAlt: ["المتّهم"] },
+      { ar: "الشاهد", ok: ["the witness", "witness"], arAlt: ["شاهد"] },
+      { ar: "الاستئناف", ok: ["appeal", "an appeal", "the appeal"], arAlt: ["الطعن"] },
+      { ar: "البراءة", ok: ["acquittal", "an acquittal", "not guilty"], arAlt: ["الحكم بالبراءة"] },
+      { ar: "حكم غيابي", ok: ["a judgment in absentia", "judgment in absentia", "judgement in absentia", "in absentia"], arAlt: ["الحكم الغيابي"] },
+      { ar: "توكيل رسمي", ok: ["a power of attorney", "power of attorney"], arAlt: ["وكالة رسمية"] },
+      { ar: "الحبس الاحتياطي", ok: ["pre trial detention", "pretrial detention", "remand in custody", "remand"], arAlt: ["التوقيف الاحتياطي"] }
     ],
     phrases: [
       { ar: "أمام محكمة الاستئناف", ok: ["before the court of appeal", "before the appeal court", "in the court of appeal"] },
@@ -2939,7 +2944,7 @@ const BOOTH_GENRES = [
       { ar: "أداء اليمين القانونية", ok: ["taking the legal oath", "taking the oath", "swearing the oath"] },
       { ar: "إخلاء سبيل بكفالة", ok: ["release on bail", "released on bail", "bail"] },
       { ar: "صدر الحكم بالإجماع", ok: ["the judgment was issued unanimously", "the judgement was unanimous", "the verdict was unanimous"] },
-      { ar: "عقد إيجار", ok: ["a lease", "lease", "a tenancy agreement", "rental contract"] }
+      { ar: "عقد إيجار", ok: ["a lease", "lease", "a tenancy agreement", "rental contract"], arAlt: ["اتفاقية إيجار"] }
     ],
     sentences: [
       { ar: "أطلب من المحكمة إخلاء سبيل موكّلي بكفالة.", ok: ["I ask the court to release my client on bail."],
@@ -2976,13 +2981,13 @@ const BOOTH_GENRES = [
     icon: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M7 9h6M7 13h6M7 16h4M16 9h2M16 13h2"/>',
     terms: [
       { ar: "مؤتمر صحفي", ok: ["a press conference", "press conference", "news conference"] },
-      { ar: "بيان صحفي", ok: ["a press release", "press release", "a statement"] },
-      { ar: "مصدر مسؤول", ok: ["an official source", "official source", "a senior source"] },
-      { ar: "وكالة الأنباء", ok: ["the news agency", "news agency", "the press agency"] },
-      { ar: "عاجل", ok: ["breaking", "breaking news", "urgent"] },
-      { ar: "تغطية حيّة", ok: ["live coverage", "live"] },
-      { ar: "افتتاحية", ok: ["an editorial", "editorial", "a leader"] },
-      { ar: "حصيلة الضحايا", ok: ["the death toll", "death toll", "the casualty toll", "the toll"] }
+      { ar: "بيان صحفي", ok: ["a press release", "press release", "a statement"], arAlt: ["بيان للصحافة"] },
+      { ar: "مصدر مسؤول", ok: ["an official source", "official source", "a senior source"], arAlt: ["مصدر رسمي"] },
+      { ar: "وكالة الأنباء", ok: ["the news agency", "news agency", "the press agency"], arAlt: ["وكالة الأخبار"] },
+      { ar: "عاجل", ok: ["breaking", "breaking news", "urgent"], arAlt: ["خبر عاجل"] },
+      { ar: "تغطية حيّة", ok: ["live coverage", "live"], arAlt: ["تغطية مباشرة", "بث مباشر"] },
+      { ar: "افتتاحية", ok: ["an editorial", "editorial", "a leader"], arAlt: ["المقال الافتتاحي"] },
+      { ar: "حصيلة الضحايا", ok: ["the death toll", "death toll", "the casualty toll", "the toll"], arAlt: ["عدد الضحايا", "حصيلة القتلى"] }
     ],
     phrases: [
       { ar: "أفادت مصادر مطّلعة", ok: ["well informed sources said", "informed sources said", "sources familiar with the matter said"] },
@@ -3025,14 +3030,14 @@ const BOOTH_GENRES = [
     hint: "A clinic, where a guessed word can change what a patient agrees to.",
     icon: '<path d="M4 12h3l2-5 3 10 2.5-6 1.5 3h4"/><rect x="2.5" y="4.5" width="19" height="15" rx="3"/>',
     terms: [
-      { ar: "ضغط الدم", ok: ["blood pressure"] },
-      { ar: "التاريخ المرضي", ok: ["medical history", "the medical history", "patient history"] },
-      { ar: "الأعراض", ok: ["the symptoms", "symptoms"] },
-      { ar: "التشخيص", ok: ["the diagnosis", "diagnosis"] },
-      { ar: "قسم الطوارئ", ok: ["the emergency department", "emergency department", "a and e", "the er", "casualty"] },
-      { ar: "موافقة مستنيرة", ok: ["informed consent", "consent"] },
-      { ar: "الجرعة", ok: ["the dose", "dose", "the dosage", "dosage"] },
-      { ar: "الأعراض الجانبية", ok: ["side effects", "the side effects", "adverse effects"] }
+      { ar: "ضغط الدم", ok: ["blood pressure"], arAlt: ["الضغط"] },
+      { ar: "التاريخ المرضي", ok: ["medical history", "the medical history", "patient history"], arAlt: ["التاريخ الطبي", "السيرة المرضية"] },
+      { ar: "الأعراض", ok: ["the symptoms", "symptoms"], arAlt: ["العلامات"] },
+      { ar: "التشخيص", ok: ["the diagnosis", "diagnosis"], arAlt: ["تشخيص الحالة"] },
+      { ar: "قسم الطوارئ", ok: ["the emergency department", "emergency department", "a and e", "the er", "casualty"], arAlt: ["الطوارئ", "قسم الإسعاف"] },
+      { ar: "موافقة مستنيرة", ok: ["informed consent", "consent"], arAlt: ["الموافقة الواعية"] },
+      { ar: "الجرعة", ok: ["the dose", "dose", "the dosage", "dosage"], arAlt: ["المقدار"] },
+      { ar: "الأعراض الجانبية", ok: ["side effects", "the side effects", "adverse effects"], arAlt: ["الآثار الجانبية"] }
     ],
     phrases: [
       { ar: "على معدة فارغة", ok: ["on an empty stomach", "before food", "nil by mouth"] },
@@ -3075,14 +3080,14 @@ const BOOTH_GENRES = [
     hint: "The furniture of a programme and a paper, which recurs everywhere.",
     icon: '<path d="M3 8l9-4 9 4-9 4-9-4z"/><path d="M7 10.5V15c0 1.5 2.5 3 5 3s5-1.5 5-3v-4.5M21 8v5"/>',
     terms: [
-      { ar: "جدول الأعمال", ok: ["the agenda", "agenda"] },
-      { ar: "ورقة بحثية", ok: ["a research paper", "research paper", "a paper"] },
-      { ar: "الملخّص", ok: ["the abstract", "abstract", "the summary"] },
-      { ar: "المنهجية", ok: ["the methodology", "methodology", "the method"] },
-      { ar: "محضر الاجتماع", ok: ["the minutes", "minutes of the meeting", "the minutes of the meeting"] },
-      { ar: "مراجعة الأقران", ok: ["peer review", "peer reviewed", "peer-review"] },
-      { ar: "عيّنة الدراسة", ok: ["the study sample", "the sample", "sample"] },
-      { ar: "المتحدّث الرئيسي", ok: ["the keynote speaker", "keynote speaker", "the keynote"] }
+      { ar: "جدول الأعمال", ok: ["the agenda", "agenda"], arAlt: ["الأجندة"] },
+      { ar: "ورقة بحثية", ok: ["a research paper", "research paper", "a paper"], arAlt: ["بحث", "ورقة علمية"] },
+      { ar: "الملخّص", ok: ["the abstract", "abstract", "the summary"], arAlt: ["المستخلص"] },
+      { ar: "المنهجية", ok: ["the methodology", "methodology", "the method"], arAlt: ["المنهج"] },
+      { ar: "محضر الاجتماع", ok: ["the minutes", "minutes of the meeting", "the minutes of the meeting"], arAlt: ["المحضر"] },
+      { ar: "مراجعة الأقران", ok: ["peer review", "peer reviewed", "peer-review"], arAlt: ["تحكيم الأقران", "التحكيم العلمي"] },
+      { ar: "عيّنة الدراسة", ok: ["the study sample", "the sample", "sample"], arAlt: ["العيّنة"] },
+      { ar: "المتحدّث الرئيسي", ok: ["the keynote speaker", "keynote speaker", "the keynote"], arAlt: ["المتحدّث الرئيس"] }
     ],
     phrases: [
       { ar: "ننتقل إلى البند التالي", ok: ["we move to the next item", "moving on to the next item", "we turn to the next item"] },
@@ -6656,31 +6661,269 @@ function arTokens(s) {
     .filter(w => w.length > 1 && !AR_STOP.has(w) && !AR_STOP.has(arBare(w)));
 }
 
-/* A long item is never marked on an exact match — nobody produces one
-   under a clock, and an interpreter is not judged on wording. It carries
-   the content it must get across, and most of it through is a pass.
-   Working into Arabic, the content is taken from the Arabic itself,
-   with the article and the vowel marks forgiven. */
-function boothHit(item, input, dir) {
-  const long = !!(item.keys && item.keys.length);
-  if ((dir || "ar-en") === "en-ar") {
+/* ═══════════ HOW A RENDERING IS MARKED ═══════════
+   Two people will not produce the same sentence, and an interpreter is
+   not judged on wording. So nothing here is marked against a single
+   right answer.
+
+     A term or a phrase passes on any of its accepted forms. The first
+     one listed is the form the field uses most often; the rest are
+     renderings a working interpreter would also give. Getting an
+     accepted one through is a pass, and the usual form is named
+     afterwards so the preferred term is still learned.
+
+     A sentence or a full turn is marked on CONTENT, never on wording.
+     It carries the things it has to get across — who, what, the number,
+     the instruction — and most of them through is a pass. Say it your
+     own way and it counts.
+
+   Working into Arabic the same rule applies, on Arabic's own terms: the
+   definite article is forgiven, word order is not asked about, and the
+   vowel marks are ignored. Particles and pronouns are never required.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* Words that stand in for each other in a booth. A content word is not
+   a password: if the meaning arrives under a different word, it arrived.
+   Each entry is read both ways, so listing a pair once is enough, and
+   every one of them is a rendering a working interpreter would give. */
+const BOOTH_SYN = [
+  ["hurt", "pain", "sore", "aching", "ache"],
+  ["call", "urge", "appeal to", "ask"],
+  ["restraint", "self restraint", "calm"],
+  ["adjourn", "postpone", "put off", "defer"],
+  ["postpone", "put back", "delay", "pushed back"],
+  ["reject", "dismiss", "turn down", "refuse"],
+  ["release", "free", "let out"],
+  ["sentenc", "jail", "imprison", "gave him"],
+  ["not guilty", "acquit", "innocent", "cleared"],
+  ["lawyer", "counsel", "attorney", "solicitor"],
+  ["defendant", "accused"],
+  ["witness", "the witness"],
+  ["costs", "fees", "expenses"],
+  ["suspended", "suspension"],
+  ["silent", "silence", "say nothing", "not to answer"],
+  ["evidence", "proof"],
+  ["swear", "oath", "promise"],
+  ["truth", "the truth"],
+  ["consent", "agree", "agreement", "permission", "approval"],
+  ["operation", "surgery", "procedure", "op"],
+  ["medic", "drug", "pill", "tablet", "treatment"],
+  ["antibiotic", "antibiotics"],
+  ["results", "result", "findings come", "test results"],
+  ["risk", "danger", "side effect", "complication"],
+  ["doctor", "physician", "consultant"],
+  ["blood pressure", "bp"],
+  ["worse at night", "worse in the night", "worse at nights", "bad at night"],
+  ["not taken", "hasnt taken", "has not taken", "not had", "no medication"],
+  ["eat", "food", "have something to eat", "meal"],
+  ["urine", "water sample", "pee"],
+  ["injured", "casualties", "wounded", "hurt"],
+  ["risen", "rose", "gone up", "climbed", "increased", "up to"],
+  ["death toll", "toll", "number of dead"],
+  ["sources", "source"],
+  ["postpone", "moved to", "rescheduled"],
+  ["verify", "confirm", "check", "corroborate"],
+  ["details", "more", "further information"],
+  ["shortly", "soon", "in a moment", "in a short while", "any minute"],
+  ["press conference", "news conference", "media briefing"],
+  ["statement", "release", "comment"],
+  ["spokes", "spokesman", "spokeswoman", "spokesperson", "official said"],
+  ["closely", "close", "monitoring", "watching"],
+  ["scene", "the site", "the spot", "on the ground"],
+  ["tense", "strained", "volatile", "unstable"],
+  ["rescue", "emergency teams", "rescuers"],
+  ["resume", "restart", "begin again", "start again", "pick up again"],
+  ["talks", "negotiations", "discussions"],
+  ["settle", "resolve", "settlement", "resolution"],
+  ["dispute", "conflict", "row", "disagreement"],
+  ["support", "backs", "back", "endorse", "stands behind"],
+  ["efforts", "effort", "work"],
+  ["welcom", "greeted", "received"],
+  ["delegation", "party", "visiting group"],
+  ["dialogue", "talks", "negotiation"],
+  ["peaceful", "peace"],
+  ["develop", "growing", "progress", "improving", "advancing"],
+  ["relations", "ties", "relationship"],
+  ["satisf", "pleased", "happy", "content"],
+  ["cooperation", "collaboration", "working together"],
+  ["continue", "carry on", "keep up", "go on"],
+  ["consultation", "talks", "discussions"],
+  ["responsibilit", "duty", "obligations", "its part"],
+  ["urgent", "immediate", "emergency"],
+  ["aid", "help", "assistance", "relief"],
+  ["affected", "those hit", "victims", "people hurt"],
+  ["explain", "make clear", "set out", "go through"],
+  ["procedure", "steps", "process", "what happens"],
+  ["step by step", "one step at a time", "one by one"],
+  ["worry", "worried", "concerned", "anxious"],
+  ["help", "assist", "look after", "support"],
+  ["interpreter", "translator"],
+  ["understand", "follow", "make sense of", "get"],
+  ["letter", "the message", "the notice"],
+  ["waited", "wait", "been here", "was here for"],
+  ["come back", "return", "come again", "back"],
+  ["travel", "flying", "leaving", "going away", "trip"],
+  ["appointment", "the time", "booking"],
+  ["changed", "moved", "been changed", "now"],
+  ["report", "the paper", "document"],
+  ["bring", "take", "have with you"],
+  ["copy", "photocopy", "a picture of"],
+  ["fill", "complete", "fill out", "fill in"],
+  ["form", "application", "paperwork"],
+  ["audience", "everyone", "those present", "attendees", "you all"],
+  ["switch off", "turn off", "silence", "put away"],
+  ["phones", "mobiles", "mobile phones", "cell phones"],
+  ["remind", "ask", "a reminder"],
+  ["speakers", "presenters", "those speaking"],
+  ["enough", "sufficient", "plenty of", "adequate"],
+  ["discussion", "questions", "debate"],
+  ["published", "appear", "come out", "printed"],
+  ["special issue", "a special number", "special edition"],
+  ["journal", "the review", "the periodical"],
+  ["submit", "hand in", "send", "turn in"],
+  ["abstract", "summary", "the abstracts"],
+  ["break", "pause", "recess", "interval"],
+  ["divided", "split", "separated", "put into"],
+  ["descriptive", "descriptive analytical", "analytical"],
+  ["method", "approach", "methodology"],
+  ["sample", "the group studied", "participants"],
+  ["equivalent", "the equivalent", "match"],
+  ["cultural context", "culture", "cultural setting"],
+  ["study", "the research", "the paper"],
+  ["committee", "organisers", "organizers", "organising committee"],
+  ["thank", "thanks", "grateful"],
+  ["pleased", "delighted", "glad", "happy"],
+  ["opening", "start", "the beginning"],
+  ["keynote", "main speaker", "principal speaker"],
+  ["decision", "call", "it has been decided"],
+  ["official", "a source", "an official"],
+  ["not yet", "still not", "has not", "no decision"],
+  ["newspaper", "the paper", "the daily"],
+  ["information", "this", "these reports", "the reports"],
+  ["as soon as", "the moment", "once", "when they"],
+  ["need", "want", "require", "do you"],
+  ["right", "entitled", "you may", "you can"],
+  ["yes or no", "only yes or no", "just yes or no"],
+  ["used against", "used in evidence", "held against"],
+  ["expert", "the specialist", "expert witness"],
+  ["case", "the matter", "the proceedings", "the claim"],
+  ["client", "my client", "the person i represent"],
+  ["bail", "on bail", "surety"],
+  ["one year", "a year", "twelve months"],
+  ["three days", "3 days"],
+  ["two days", "48 hours", "a couple of days"],
+  ["two hours", "2 hours"],
+  ["five days", "5 days"],
+  ["fifteen", "15"],
+  ["twenty", "20"],
+  ["nine", "9"],
+  ["hundred", "100"],
+  ["twenty minutes", "20 minutes"],
+  ["two countries", "both countries", "the two states", "the two sides"],
+  ["two sides", "both sides", "the two parties"],
+  ["all parties", "everyone", "every party", "all sides"],
+  ["international community", "the world", "the international community"],
+  ["memorandum", "mou", "understanding"],
+  ["signed", "was signed", "concluded"],
+  ["highness", "his highness", "the amir", "the emir"],
+  ["kuwait", "the state of kuwait"],
+  ["minister", "the minister"],
+  ["ministry", "the ministry"],
+  ["court", "the court", "the bench"],
+  ["tomorrow", "the next day"],
+  ["yesterday", "last night", "the day before"],
+  ["today", "this morning", "this afternoon"],
+  ["morning", "this morning"],
+  ["later today", "later on", "later in the day"],
+  ["next week", "the coming week"],
+  ["sunday", "on sunday"],
+  ["arabic", "in arabic"],
+  ["english", "in english"],
+  ["nobody", "no one", "no-one", "nobody there", "empty"],
+  ["office", "the office"],
+  ["when", "what time", "how soon"],
+  ["where", "whereabouts", "which part", "what part"],
+  ["before", "until", "unless", "not until"],
+  ["not begin", "will not start", "wont start", "not go ahead", "not until"],
+  ["better", "improve", "feel well", "feeling fine"],
+  ["finish", "complete", "take all", "to the end"],
+  ["after", "once", "following"],
+  ["now", "right now", "straight away"],
+  ["ever", "before", "in the past", "any previous"],
+  ["taking", "take", "on any"],
+  ["coverage", "reporting", "we go live", "going live"],
+  ["live", "on air", "direct"],
+  ["papers", "the papers", "contributions"],
+  ["fields", "areas", "sectors", "domains"],
+  ["address", "speech", "remarks", "his words"],
+  ["id", "identification", "identity card", "civil id"]
+];
+const BOOTH_SYN_MAP = (function () {
+  const m = {};
+  BOOTH_SYN.forEach(group => group.forEach(w => {
+    const k = norm(w);
+    m[k] = (m[k] || []).concat(group.map(norm).filter(x => x !== k));
+  }));
+  return m;
+})();
+/* A key is satisfied by itself or by anything that stands in for it. */
+function keyMet(key, answer) {
+  const k = norm(key);
+  if (answer.indexOf(k) >= 0) return true;
+  const also = BOOTH_SYN_MAP[k];
+  return !!also && also.some(x => x && answer.indexOf(x) >= 0);
+}
+
+/* Does the answer carry this target's content? `all` for a term, where
+   every content word is expected; a proportion for anything longer. */
+function arCarries(target, answer, share) {
+  const want = arTokens(target);
+  if (!want.length) return false;
+  const got = want.filter(w => answer.indexOf(w) >= 0 || answer.indexOf(arBare(w)) >= 0).length;
+  return got >= Math.max(1, Math.ceil(want.length * share));
+}
+
+/* Every form this item accepts, preferred one first. */
+function boothForms(item, into) {
+  return into === "ar"
+    ? [item.ar].concat(item.arAlt || [])
+    : (item.ok || []);
+}
+
+/* Returns what happened, not merely whether it passed: a variant that is
+   accepted is still a pass, and the usual form is worth naming. */
+function boothMark(item, input, dir) {
+  const into = (dir || "ar-en") === "en-ar" ? "ar" : "en";
+  const long = item.level ? (item.level.key === "sentences" || item.level.key === "turns")
+                          : !!(item.keys && item.keys.length);
+  const forms = boothForms(item, into);
+
+  if (into === "ar") {
     const a = arNorm(input);
-    if (a.length < 2) return false;
-    const t = arNorm(item.ar);
-    if (!long) return a === t || a.indexOf(t) >= 0 || (t.length > 5 && t.indexOf(a) >= 0);
-    const want = arTokens(item.ar);
-    if (!want.length) return false;
-    const got = want.filter(w => a.indexOf(w) >= 0 || a.indexOf(arBare(w)) >= 0).length;
-    return got >= Math.ceil(want.length * 0.6);
+    if (a.length < 2) return { hit: false, exact: false };
+    /* A long answer is marked on content; a term has to carry all of it,
+       though the article and the word order are its own business. */
+    const share = long ? 0.6 : 1;
+    for (let i = 0; i < forms.length; i++) {
+      if (arCarries(forms[i], a, share)) return { hit: true, exact: i === 0, matched: forms[i] };
+    }
+    return { hit: false, exact: false };
   }
+
   if (long) {
     const a = norm(input);
-    if (a.length < 4) return false;
-    const got = item.keys.filter(k => a.indexOf(norm(k)) >= 0).length;
-    return got >= Math.ceil(item.keys.length * 0.7);
+    if (a.length < 4) return { hit: false, exact: false };
+    const got = (item.keys || []).filter(k => keyMet(k, a)).length;
+    const need = Math.ceil((item.keys || []).length * 0.7);
+    return { hit: !!need && got >= need, exact: false };
   }
-  return loose(input, item.ok);
+  for (let i = 0; i < forms.length; i++) {
+    if (loose(input, [forms[i]])) return { hit: true, exact: i === 0, matched: forms[i] };
+  }
+  return { hit: false, exact: false };
 }
+/* kept for the checks that call it directly */
+function boothHit(item, input, dir) { return boothMark(item, input, dir).hit; }
 
 function runBooth() { stopBooth(); chooseGenre(); }
 
@@ -6745,6 +6988,28 @@ function chooseGenre() {
   ladder.appendChild(el("ul", "how", BOOTH_LEVELS.map(L =>
     '<li><span><b>' + L.en + '</b> <i>' + L.ar + '</i> &mdash; ' + L.say + '</span></li>').join("")));
   stage.appendChild(ladder);
+
+  /* People will ask, so the booth answers before they have to. */
+  const marking = el("div", "verdict");
+  marking.appendChild(el("span", "vh", "How your rendering is marked"));
+  marking.appendChild(el("p", "vb",
+    "Two interpreters do not produce the same sentence, and an interpreter is not judged on wording. " +
+    "<b>Nothing here is marked against a single right answer.</b>"));
+  marking.appendChild(el("ul", "how",
+    '<li><span><b>A term or a phrase</b> passes on any of its accepted forms &mdash; ' +
+      '<i>النيابة العامة</i>, <i>النيابة</i> and <i>الادعاء العام</i> all go through. The first form is the ' +
+      'one you will meet most often, and it is named back to you afterwards so it is still learned.</span></li>' +
+    '<li><span><b>A sentence or a full turn</b> is marked on <b>content</b>, never on wording: who, what, ' +
+      'the number, the instruction. Most of it through is a pass. <i>أين بالضبط تشعر بالألم؟</i> passes for ' +
+      '<i>أين يؤلمك بالضبط؟</i> &mdash; different words, same question.</span></li>' +
+    '<li><span><b>Working into Arabic</b>, the definite article is forgiven, word order is not asked about, ' +
+      'and the vowel marks are ignored. Particles and pronouns are never required. A hamza never costs a mark.</span></li>' +
+    '<li><span><b>Every answer shows the model rendering</b>, and where an item accepts more than one, the ' +
+      'others are listed too. The point is to leave you knowing the term, not to have been right.</span></li>'));
+  marking.appendChild(el("p", "vb",
+    "What it will not do is accept a rendering that loses the meaning. In a clinic or a courtroom that is " +
+    "not strictness for its own sake &mdash; it is the part of the job that has consequences."));
+  stage.appendChild(marking);
 
   const modes = el("div", "verdict");
   modes.appendChild(el("span", "vh", "Which mode this is"));
@@ -6855,17 +7120,42 @@ function boothRound(genre) {
   }
   /* The answer shown back is in the language being worked into, so the
      feedback is the thing that was being asked for. */
-  function shown(q) {
+  function say(text) {
     return into === "ar"
-      ? '<span dir="rtl" lang="ar" class="ar-say">' + model(q) + '</span>'
-      : model(q);
+      ? '<span dir="rtl" lang="ar" class="ar-say">' + text + '</span>'
+      : '<b style="color:var(--white)">' + text + '</b>';
+  }
+  function shown(q) { return say(model(q)); }
+  /* The other renderings this item accepts, so a member can see that
+     there was never one right answer. */
+  function others(q) {
+    const f = boothForms(q, into).slice(1);
+    return f.length ? '<span class="feed-alt">also accepted: ' +
+      f.map(x => into === "ar" ? '<span dir="rtl" lang="ar" class="ar-say">' + x + '</span>' : x).join(" · ") +
+      '</span>' : "";
   }
   function send() {
     const q = queue[idx];
-    const hit = boothHit(q, inp.value, dir);
-    if (hit) { hits++; feed.innerHTML = '<b style="color:var(--mint)">✦ through</b> &mdash; ' + shown(q); }
-    else { feed.innerHTML = '<b style="color:var(--coral)">✧ missed</b> &mdash; one good rendering: ' + shown(q); }
-    log.push({ src: prompt(q), hit: hit, best: model(q), level: q.level.en });
+    const m = boothMark(q, inp.value, dir);
+    const long = q.level.key === "sentences" || q.level.key === "turns";
+    if (m.hit) {
+      hits++;
+      if (long) {
+        feed.innerHTML = '<b style="color:var(--mint)">✦ through</b> &mdash; the content is there. ' +
+          'One good rendering: ' + shown(q);
+      } else if (m.exact) {
+        feed.innerHTML = '<b style="color:var(--mint)">✦ through</b> &mdash; ' + shown(q);
+      } else {
+        /* Accepted, and still worth naming the form they will meet most. */
+        feed.innerHTML = '<b style="color:var(--mint)">✦ through</b> &mdash; accepted. ' +
+          'The form you will see most often is ' + shown(q) + '.';
+      }
+    } else {
+      feed.innerHTML = '<b style="color:var(--coral)">✧ missed</b> &mdash; ' +
+        (long ? "one good rendering: " : "") + shown(q) + others(q);
+    }
+    log.push({ src: prompt(q), hit: m.hit, exact: m.exact, best: model(q),
+               alts: boothForms(q, into).slice(1), level: q.level.en });
     tally.textContent = hits + " through";
     advance();
   }
@@ -6876,7 +7166,8 @@ function boothRound(genre) {
     if (e.key === "Tab") {
       e.preventDefault(); begin();
       const q = queue[idx];
-      log.push({ src: prompt(q), hit: false, best: model(q), level: q.level.en, passed: true });
+      log.push({ src: prompt(q), hit: false, best: model(q),
+                 alts: boothForms(q, into).slice(1), level: q.level.en, passed: true });
       advance();
     }
   });
@@ -6904,7 +7195,12 @@ function boothRound(genre) {
         '<span class="g">' + (r.hit ? "✦" : "✧") + '</span><span class="q">' +
         '<span class="q-lev">' + r.level + (r.passed ? " · passed" : "") + '</span>' +
         '<span class="q-src' + (into === "ar" ? " is-en" : "") + '">' + r.src + '</span>' +
-        '<span class="q-ans' + (into === "ar" ? " is-ar" : "") + '">natural: <b>' + r.best + '</b></span></span>')));
+        '<span class="q-ans' + (into === "ar" ? " is-ar" : "") + '">' +
+          (r.hit && !r.exact ? "accepted &middot; usual form: " : "natural: ") +
+          '<b>' + r.best + '</b>' +
+          (r.alts && r.alts.length
+            ? '<span class="q-alt">also accepted: ' + r.alts.join(" &middot; ") + '</span>' : "") +
+        '</span></span>')));
       sc.appendChild(rev);
     }
 
