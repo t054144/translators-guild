@@ -33,13 +33,13 @@ function ar(t, o = {}) {
 }
 
 // ---------- blocks ----------
-let inst = 0, afterPart = false, chapter = null, mainStart = null;
+let inst = 0, afterPart = false, chapter = null, mainStart = null, pendingTerms = null;
 const body = [], glossary = [];
 // generous spacing so that pages are light for beginners
 const P = (children, opts = {}) => body.push(new Paragraph({ children, spacing: { after: 200, line: 330 }, ...opts }));
 const shade = { type: ShadingType.CLEAR, color: 'auto', fill: BOX };
 const list = (items, ref, opts = {}) => { const k = ref === 'num' ? ++inst : undefined;
-  items.forEach(t => P(runs(t, opts.run), { numbering: { reference: ref, level: 0, ...(k ? { instance: k } : {}) }, spacing: { after: opts.box ? 0 : 110, line: opts.box ? 300 : 320 }, ...(opts.box ? { shading: shade } : {}) }));
+  items.forEach(t => P(runs(t, opts.run), { numbering: { reference: ref, level: 0, ...(k ? { instance: k } : {}) }, spacing: { after: opts.box ? 0 : 110, line: opts.box ? 300 : 320 }, ...(opts.box ? { shading: shade, keepNext: true, keepLines: true } : {}) }));
   body.push(new Paragraph({ spacing: { after: 40 }, children: [] })); };
 const H = (lvl, t, extra = {}) => body.push(new Paragraph({ heading: lvl, children: [new TextRun({ text: t })], ...extra }));
 const border = { style: BorderStyle.SINGLE, size: 4, color: LINE };
@@ -74,12 +74,11 @@ function block(b) {
       const m = /^Chapter (\d+)/.exec(a); chapter = m ? +m[1] : null; break;
     }
     case 'h': H(HeadingLevel.HEADING_3, a); break;
-    case 'intro': P([new TextRun({ text: 'In this chapter. ', bold: true, color: ACCENT, font: LATIN }), ...runs(a)], { spacing: { after: 280, line: 320 } }); break;
+    case 'intro': P([new TextRun({ text: 'Where we are. ', bold: true, color: ACCENT, font: LATIN }), ...runs(a)], { spacing: { after: 280, line: 320 } }); break;
     case 'terms':
-      boxTitle('Key terms');
-      a.forEach(([t, arab, def]) => { if (chapter) glossary.push([t, arab, def, chapter]);
-        P([...runs(`**${t}**`), new TextRun({ text: ' (', font: LATIN }), ar(arab), new TextRun({ text: '): ', font: LATIN }), ...runs(def)], { numbering: { reference: 'bul', level: 0 }, spacing: { after: 40, line: 300 }, shading: shade }); });
-      boxEnd(); break;
+      // explain first, name later: the chapter's terms are shown at its end, inside the "Remember" box
+      a.forEach(([t, arab, def]) => { if (chapter) glossary.push([t, arab, def, chapter]); });
+      pendingTerms = a; break;
     case 'p': P(runs(a)); break;
     case 'ex': P(runs(a), { indent: { left: 567 } }); break;
     case 'ar': body.push(new Paragraph({ bidirectional: true, indent: { left: 567 }, spacing: { after: 200, line: 320 }, children: [ar(a)] })); break;
@@ -96,7 +95,16 @@ function block(b) {
       list(c, 'num', { run: { color: GREY } });
       break;
     }
-    case 'summary': boxTitle('Remember'); list(a, 'bul', { box: true }); body.pop(); boxEnd(); break;
+    case 'summary':
+      boxTitle('Remember'); list(a, 'bul', { box: true }); body.pop();
+      if (pendingTerms) {
+        body.push(new Paragraph({ keepNext: true, shading: shade, spacing: { before: 160, after: 40, line: 290 },
+          children: [new TextRun({ text: 'WORDS TO REMEMBER', bold: true, color: ACCENT, font: LATIN, size: 17, characterSpacing: 30 })] }));
+        pendingTerms.forEach(([t, arab, def]) => P([...runs(`**${t}**`), new TextRun({ text: ' (', font: LATIN }), ar(arab), new TextRun({ text: '): ', font: LATIN }), ...runs(def)],
+          { numbering: { reference: 'bul', level: 0 }, spacing: { after: 40, line: 300 }, shading: shade, keepNext: true, keepLines: true }));
+        pendingTerms = null;
+      }
+      boxEnd(); break;
     default: throw new Error('unknown block ' + kind);
   }
 }

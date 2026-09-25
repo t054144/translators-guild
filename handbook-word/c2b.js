@@ -555,5 +555,18 @@ module.exports = [
         ['Open subtitles are burned into the picture; closed subtitles can be turned on and off.', 'The official equivalent.', 'Because they hear the original and read the translation at the same time, and many understand some of the original.']],
 ['summary', ['A subtitle normally has no more than two short lines, stays on screen long enough to be read, and works with images and sound.', 'Choose a strategy for each cultural reference, within the limits of space and time.', 'Follow the client’s guidelines on strong language.']],
 
-
+['part', 'Abbreviations'],
+['ul', [
+  '**AI**: artificial intelligence ({{الذكاء الاصطناعي}})',
+  '**AR → EN**: from Arabic into English',
+  '**AVT**: audiovisual translation ({{الترجمة السمعية البصرية}})',
+  '**EN → AR**: from English into Arabic',
+  '**MSA**: Modern Standard Arabic ({{الفصحى المعاصرة}})',
+  '**MT**: machine translation ({{الترجمة الآلية}})',
+  '**SL**: source language ({{اللغة المصدر}}); **SLC**: source language culture ({{ثقافة اللغة المصدر}})',
+  '**ST**: source text ({{النص المصدر}})',
+  '**TL**: target language ({{اللغة الهدف}}); **TLC**: target language culture ({{ثقافة اللغة الهدف}})',
+  '**TS**: Translation Studies ({{دراسات الترجمة}})',
+  '**TT**: target text ({{النص الهدف}})',
+]],
 ];
