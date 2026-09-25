@@ -4367,6 +4367,244 @@ const INTERP_UNSETTLED = {
    weaker than a subject shown. The practice material arrives into the
    slot at the end of each page.
    ══════════════════════════════════════════════════════════════════ */
+/* ═══════════ 180 · PRINCIPLES OF TRANSLATION ═══════════
+   The course's own material, in the order the course runs it. Each unit
+   is one sitting: a short lede, a few blocks, a worked example in both
+   directions, and something to do at the end. Nobody should meet more
+   than one screen of prose before being asked to translate something.
+
+   The ideas here belong to the people who had them and are named where
+   they are used — Jakobson on the three kinds of translation, Holmes on
+   the map of the field, Baker on equivalence and the strategies, Nida.
+   The wording, the Arabic-English examples and the practice are the
+   Guild's own. */
+const ENGL180 = [
+  {
+    n: 1, key: "myths", en: "What translation is not", ar: "ما ليست الترجمة",
+    line: "Ten things everybody believes, and why the course begins by clearing them away.",
+    blocks: [
+      { t: "lede", html:
+        "Almost everyone arrives with the same set of beliefs about this work, and almost all of them are " +
+        "wrong. They are worth stating plainly, because each one, left in place, produces a specific kind " +
+        "of bad translation." },
+      { t: "split", h: "The first confusion, and the one that matters most",
+        a: { lab: "Translation", ar: "الترجمة التحريرية",
+             say: "Written text into written text. You can stop, look something up, change your mind, and revise." },
+        b: { lab: "Interpreting", ar: "الترجمة الشفوية",
+             say: "Speech into speech, in real time, often while the speaker is still talking. There is no second pass." } },
+      { t: "list", h: "The rest of them", intro:
+        "Each is stated as people state it, with what is actually true underneath:", items: [
+        "<b>It is an exchange of words.</b> Languages differ in vocabulary, grammar and structure, so what moves across is the sense, not the words. Some things have no counterpart at all and must be conveyed another way.",
+        "<b>Any bilingual can do it.</b> Two languages is the entry requirement, not the qualification. The work needs training, command of both written registers, and knowledge of the subject.",
+        "<b>Machines have made it unnecessary.</b> Machine output is a draft. It does not know the subject and does not read the culture. Someone has to be able to tell when it is wrong &mdash; which takes more skill than translating, not less.",
+        "<b>The need is shrinking.</b> It is not. The market has grown, not contracted, alongside the tools.",
+        "<b>A translator covers every field.</b> Almost nobody does. Legal, medical and financial translation are separate trades with separate vocabularies.",
+        "<b>Translators work in many languages.</b> Most work in two. The depth required in each is the reason.",
+        "<b>You need not understand the material.</b> You cannot translate what you have not understood. It is the one thing with no shortcut.",
+        "<b>Culture is optional.</b> It is not separable from the language. Idiom, reference and what may be said at all are cultural facts.",
+        "<b>It can be free.</b> Free tools translate phrases. Documents that carry consequences are paid work, for the same reason the consequences exist."
+      ] },
+      { t: "card", h: "Why start here", html:
+        "Every one of these produces a recognisable fault. Believing it is word-exchange produces the " +
+        "word-for-word rendering. Believing bilingualism is enough produces fluent text that is wrong about " +
+        "the subject. Believing culture is optional produces the sentence that is accurate and unsayable." +
+        "<p>The rest of the course is, in a sense, these errors taken one at a time.</p>" }
+    ],
+    ex: { lab: "One sentence, and the belief it exposes",
+      srcLab: "English", src: "The bill was tabled.", srcDir: "ltr",
+      litLab: "Word by word", lit: "وُضِع مشروع القانون على الطاولة",
+      outLab: "What it actually says", out: "أُرجئ النظر في مشروع القانون",
+      note: "In British usage <i>to table</i> a bill is to bring it forward; in American usage it is to shelve it. " +
+        "No dictionary lookup of the individual words reaches this. You need to know which parliament you are in " +
+        "&mdash; which is the myth about understanding the material, in one sentence." },
+    practice: { h: "Do this before the next unit",
+      html: "Take any news paragraph in English and translate it into Arabic twice: once trying to keep the " +
+        "word order, once ignoring it entirely." +
+        "<p>Put them side by side. The second is almost certainly better. Write one sentence saying what the " +
+        "first one lost &mdash; that sentence is the whole subject of this course.</p>" }
+  },
+
+  {
+    n: 2, key: "studies", en: "Translation Studies", ar: "دراسات الترجمة",
+    line: "The practice is ancient. The discipline is about fifty years old.",
+    blocks: [
+      { t: "lede", html:
+        "People have translated for as long as there have been neighbours who spoke differently. Studying " +
+        "translation as a subject in its own right is recent &mdash; and for most of the twentieth century " +
+        "the academy treated it as a language-teaching exercise rather than a field." },
+      { t: "card", h: "1972, and a map", html:
+        "<b>James Holmes</b> set out a map of what a discipline of translation would actually contain, and " +
+        "that paper is usually taken as the point where the field began to be one. Before it, translation " +
+        "was studied inside comparative literature, inside contrastive linguistics, inside workshops &mdash; " +
+        "never on its own terms." +
+        "<p>It is now interdisciplinary by nature: linguistics, literature, culture, and increasingly " +
+        "computing all have a claim on it.</p>" },
+      { t: "list", h: "Jakobson's three kinds", intro:
+        "<b>Roman Jakobson</b> divided translation into three, and the division still holds:", items: [
+        "<b>Intralingual</b> &mdash; within one language. Rewording, paraphrase, summary, simplifying a contract into plain Arabic.",
+        "<b>Interlingual</b> &mdash; between two languages. What is usually meant by the word, and the subject of this course.",
+        "<b>Intersemiotic</b> &mdash; between sign systems. A novel into a film, a warning into a pictogram, speech into subtitle."
+      ] },
+      { t: "list", h: "Translation as a process, not an act", intro:
+        "The word names both the process and its product. As a process it has stages, and skipping any of " +
+        "them shows in the result:", items: [
+        "Read the source until you understand it, and find out what you do not know.",
+        "Establish its message, intent, form, type and audience.",
+        "Draft, holding that message and intent, for the audience the target text will actually have.",
+        "Conform to the norms of the target language rather than the shape of the source.",
+        "Revise and check."
+      ] }
+    ],
+    ex: { lab: "The same content, three kinds of translation",
+      srcLab: "Source", src: "No unauthorised entry.", srcDir: "ltr",
+      litLab: "Intralingual", lit: "Only staff may go past this point &mdash; same language, different words",
+      outLab: "Interlingual", out: "ممنوع الدخول لغير المصرَّح لهم", outDir: "rtl",
+      note: "And <b>intersemiotic</b>: the red circle with a bar through it that says the same thing to " +
+        "somebody who reads neither language. All three are translation under Jakobson; only the middle one " +
+        "is what the profession sells." },
+    practice: { h: "Do this before the next unit",
+      html: "Find a short legal or official sentence in Arabic &mdash; a clause from a contract, a notice on " +
+        "a government site. Do all three of Jakobson's kinds on it: reword it in plain Arabic, translate it " +
+        "into English, and describe the sign or icon that would carry it." +
+        "<p>Note which was hardest. For most people it is the first, which is the useful surprise.</p>" }
+  },
+
+  {
+    n: 3, key: "history", en: "Where the work came from", ar: "لمحة تاريخية",
+    line: "Four moments, and what each of them moved.",
+    blocks: [
+      { t: "lede", html:
+        "The history matters here for one reason: in every period, translation is what carried knowledge " +
+        "across a border it could not otherwise cross. The technique changed. That function did not." },
+      { t: "card", h: "The ancient world", html:
+        "Egypt, Greece and Rome all ran on translation &mdash; for trade, for governance, for law. The " +
+        "Rosetta Stone is the emblem: the same decree in three scripts, which is why Egyptian writing could " +
+        "be read again at all. What moved was science, philosophy and literature, and it moved because " +
+        "somebody carried it." },
+      { t: "card", h: "The Middle Ages", html:
+        "Latin was the language of scholarship, so Greek and Roman work survived in Europe largely by being " +
+        "translated into it, in monasteries, by hand." +
+        "<p>The Guild's own <b>Translators in History</b> holds the other half of this period, the one the " +
+        "standard account often leaves out: the Arabic translation movement, and the scholars who preserved " +
+        "and advanced the same inheritance.</p>" },
+      { t: "card", h: "The Renaissance", html:
+        "The classics were translated out of Latin and Greek into the languages people actually spoke. That " +
+        "single move &mdash; into the vernacular &mdash; put ancient learning in front of a wide readership " +
+        "for the first time, and the consequences were not literary but historical." },
+      { t: "card", h: "The twentieth century", html:
+        "Translation became a subject. <b>Eugene Nida</b>, working on Bible translation, brought a " +
+        "systematic account of equivalence to it; <b>Holmes</b> gave the field its map; journals, " +
+        "departments and research centres followed." +
+        "<p>That is the short answer to why this course exists and why it has a reading list.</p>" }
+    ],
+    ex: { lab: "Why the vernacular move was not a small one",
+      srcLab: "Latin", src: "Vulgus vult decipi.", srcDir: "ltr",
+      litLab: "Kept in Latin", lit: "readable by perhaps two people in a hundred",
+      outLab: "Into the spoken language", out: "الناس تحب أن تُخدَع", outDir: "rtl",
+      note: "Nothing about the sentence changed except who could read it &mdash; and that is the entire " +
+        "content of the Renaissance as far as translation is concerned. Access is not a side effect of " +
+        "translation. It is the point of it." },
+    practice: { h: "Do this before the next unit",
+      html: "Pick one translator from <b>Translators in History</b> in this site and answer, in three " +
+        "sentences: what did they move, from where to where, and what would not exist if they had not?" +
+        "<p>Keep the answer. You will be asked to write commentary like this for your own work later in the " +
+        "minor.</p>" }
+  },
+
+  {
+    n: 4, key: "wordlevel", en: "Equivalence at word level", ar: "التكافؤ على مستوى الكلمة",
+    line: "There is no such thing as one word for one word. This unit says exactly why.",
+    blocks: [
+      { t: "lede", html:
+        "<b>Mona Baker</b>'s account of equivalence starts at the smallest unit and works upward, and this " +
+        "is the bottom of it. The finding is blunt: <b>there is no one-to-one correspondence between words " +
+        "and units of meaning</b> &mdash; not even within a single language." },
+      { t: "card", h: "Words are not the smallest unit", html:
+        "<i>Rebuild</i> is one word carrying two pieces of meaning. <i>Unbreakable</i> is one word carrying " +
+        "three. The piece that cannot be cut further is the <b>morpheme</b>, not the word." +
+        "<p>So a count of words tells you nothing. English <i>happiness</i> is one word and so is Arabic " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>سعادة</span>; English <i>tennis player</i> is two words " +
+        "and Turkish <i>tenisçi</i> is one. Nothing follows from the counting.</p>" },
+      { t: "list", h: "The four kinds of lexical meaning", intro:
+        "Baker separates what a word carries into four. Most translation arguments are really disagreements " +
+        "about which of these is being preserved:", items: [
+        "<b>Propositional</b> &mdash; what it refers to in the world. This is the one that can be true or false, and when a translation is called <i>inaccurate</i>, it is usually this.",
+        "<b>Expressive</b> &mdash; the speaker's attitude. <i>Complain</i> and <i>whine</i> point at the same act; only one of them judges it. Cannot be true or false, and is lost silently.",
+        "<b>Presupposed</b> &mdash; what the word expects around it. Two kinds: <b>selectional</b> (<i>studious</i> needs a human subject) and <b>collocational</b>, which is arbitrary &mdash; in English laws are <i>broken</i>, in Arabic they are contradicted.",
+        "<b>Evoked</b> &mdash; what dialect and register the word belongs to. Register varies by <b>field</b> (what is happening), <b>tenor</b> (who is speaking to whom) and <b>mode</b> (speech, writing, screen)."
+      ] },
+      { t: "list", h: "Two problems you will meet this week", items: [
+        "<b>Frequency.</b> A perfect equivalent can still be the wrong word. Arabic <span class='ar-inline' dir='rtl' lang='ar'>شبر</span> is exactly a <i>span</i> &mdash; an obsolete English measure almost no reader knows. Correct and useless.",
+        "<b>Ambiguity.</b> Dictionary entries run to pages. <span class='ar-inline' dir='rtl' lang='ar'>خط</span> is line, path, track or font, and when the surrounding text does not settle it, nothing else will."
+      ] }
+    ],
+    ex: { lab: "Same propositional meaning, different expressive meaning",
+      srcLab: "English", src: "The minister declined to comment.", srcDir: "ltr",
+      litLab: "Expressive value shifted", lit: "رفض الوزير التعليق &mdash; <i>refused</i>, which reads as obstruction",
+      outLab: "Expressive value held", out: "امتنع الوزير عن التعليق", outDir: "rtl",
+      note: "Both are true of the same event, so the propositional meaning survives either way. " +
+        "<b>Declined</b> is neutral and <b>refused</b> is not, and in a news report that difference is the " +
+        "difference between reporting and editorialising." },
+    practice: { h: "Do this before the next unit",
+      html: "Take five words from a text you are working on and, for each, write down its propositional " +
+        "meaning and then anything expressive, presupposed or evoked riding along with it." +
+        "<p>Then translate them. You will find that two or three of the five cannot carry all four kinds " +
+        "across at once, and that you had to choose which to keep. <b>Write down which you chose.</b> That " +
+        "note is what a translation commentary is made of.</p>" }
+  },
+
+  {
+    n: 5, key: "strategies", en: "Word-level strategies", ar: "استراتيجيات مستوى الكلمة",
+    line: "Four named moves for when there is no equivalent — and when each one is the right call.",
+    blocks: [
+      { t: "lede", html:
+        "When the word is not there in the target language, you do not improvise: you choose from a small " +
+        "set of known moves, and you can say afterwards which one you used. These are Baker's, and they have " +
+        "names for the same reason the surgical instruments do." },
+      { t: "card", h: "1 · A more general word", html:
+        "Also called <b>generalization</b>, and the most common answer to a gap in propositional meaning. " +
+        "You climb one step up the semantic hierarchy and take the wider term." +
+        "<p>It works across almost any pair of languages, because the hierarchies themselves are not " +
+        "language-specific &mdash; every language has a word for the category above.</p>" },
+      { t: "card", h: "2 · Substitution", html:
+        "Replace a culture-specific item with a target-language item that does <b>not</b> mean the same thing " +
+        "but lands the same way on the reader. You are trading propositional accuracy for effect, knowingly." +
+        "<p>Most common with measurements, currency and time. Arabic tells time with thirds of an hour and " +
+        "with <span class='ar-inline' dir='rtl' lang='ar'>ليلاً</span> and " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>فجراً</span>; English does neither, and converting is " +
+        "usually right.</p>" },
+      { t: "card", h: "3 · Loan word, with or without explanation", html:
+        "Also called <b>retention</b> or transliteration: carry the source word across in the target script. " +
+        "Standard for culture-specific items, new concepts and technical terms with no settled equivalent." +
+        "<p>Gloss it the first time and then use it bare. English took <i>alcohol</i>, <i>algebra</i> and " +
+        "<i>algorithm</i> from Arabic this way centuries ago, and <i>hijab</i> recently.</p>" },
+      { t: "card", h: "4 · Paraphrase", html:
+        "Say what the word means, when no single word will do it. An umbrella for several moves &mdash; by a " +
+        "related word, by unrelated words, by a short definition." +
+        "<p>The cost is length and the loss of any expressive charge the original had. It is the safest " +
+        "strategy and rarely the most elegant one.</p>" },
+      { t: "card", h: "How to choose", html:
+        "Ask what the word is doing in <i>this</i> text. A technical term in a manual wants the loan word " +
+        "and one gloss. A cultural reference in a novel usually wants substitution or paraphrase. A passing " +
+        "mention nobody will remember wants generalization and no fuss." +
+        "<p>What you may not do is choose silently. Naming the move is what lets you defend it &mdash; and " +
+        "what the commentary in your later courses is assessed on.</p>" }
+    ],
+    ex: { lab: "One item, three defensible strategies",
+      srcLab: "Arabic", src: "دِيوانيّة", srcDir: "rtl",
+      litLab: "Generalized", lit: "a gathering &mdash; true, and it loses everything that made it worth mentioning",
+      outLab: "Loan plus gloss", out: "a <i>diwaniyya</i>, the regular evening gathering held in a Kuwaiti household", outDir: "ltr",
+      note: "Substitution would give <i>a salon</i> or <i>an open house</i>: familiar to the reader, and " +
+        "quietly wrong about who attends and why. For a Kuwaiti text in English the loan with one gloss is " +
+        "almost always right &mdash; the word is the subject, so it should survive." },
+    practice: { h: "Do this before the next unit",
+      html: "Take four culture-specific items from Kuwaiti life &mdash; food, dress, an institution, an " +
+        "occasion. Translate each one <b>four times</b>, once by each strategy." +
+        "<p>Then decide, for each, which you would actually use and in what kind of text. Sixteen renderings, " +
+        "four decisions, and a reason for each: that is the exercise, and it is also the job.</p>" }
+  }
+];
+
 const KU_MINOR = {
   en: "Translation Minor", ar: "مساند الترجمة",
   credits: "24 credits", creditsAr: "٢٤ وحدة دراسية",
@@ -4392,7 +4630,8 @@ const KU_MINOR = {
           },
           settings: ["Every course above it", "Any first commission", "The basis of a commentary"],
           asks: "That you stop translating words and start translating messages — and that you can say afterwards what you did, and why.",
-          meets: ["procedures", "toolkit"]
+          meets: ["procedures", "toolkit"],
+          units: ENGL180
         },
         {
           code: "182", en: "Introduction to Terminology", ar: "مقدمة في علم المصطلحات", pre: "142",
@@ -8055,20 +8294,119 @@ function runMinor() {
       stage.appendChild(v);
     }
 
-    /* The slot the course's own material arrives into. */
-    const slot = el("div", "m-slot");
-    slot.innerHTML =
-      '<span class="b-lab">Practice material</span>' +
-      '<p>The material written for <b>' + c.code + ' ' + c.en + '</b> is still being prepared, and it ' +
-      'will appear here rather than being scattered through the rest of the site. Until it does, the ' +
-      'chambers above are the nearest thing the Guild has to this course.</p>';
-    stage.appendChild(slot);
+    /* The course's own material, where it has any. */
+    if (c.units && c.units.length) {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", "The course, unit by unit"));
+      v.appendChild(el("p", "vb",
+        "The material in the order the course runs it. Each unit is one sitting and ends with something " +
+        "to translate &mdash; do that part, or none of this stays."));
+      stage.appendChild(v);
+
+      const list = el("div", "m-list");
+      c.units.forEach((u, k) => {
+        const b = el("button", "m-course");
+        b.innerHTML =
+          '<span class="m-code">' + u.n + '</span>' +
+          '<span class="m-txt">' +
+            '<span class="m-en">' + u.en + '</span>' +
+            '<span class="m-arname" dir="rtl" lang="ar">' + u.ar + '</span>' +
+            '<span class="m-line">' + u.line + '</span>' +
+          '</span>';
+        b.addEventListener("click", () => {
+          pushTrail(c.code + " " + c.en, () => { open = c; course(); });
+          unit(c, k);
+        });
+        list.appendChild(b);
+      });
+      stage.appendChild(list);
+    } else {
+      const slot = el("div", "m-slot");
+      slot.innerHTML =
+        '<span class="b-lab">Practice material</span>' +
+        '<p>The material written for <b>' + c.code + ' ' + c.en + '</b> is still being prepared, and it ' +
+        'will appear here rather than being scattered through the rest of the site. Until it does, the ' +
+        'chambers above are the nearest thing the Guild has to this course.</p>';
+      stage.appendChild(slot);
+    }
 
     stage.appendChild(footNav({
       next: i < all.length - 1 ? (() => { open = all[i + 1]; course(); }) : null,
       nextLabel: i < all.length - 1 ? all[i + 1].code + " " + all[i + 1].en : "",
       note: c.group.en + " · " + c.group.rule
     }));
+  }
+
+  /* ── one unit of a course ── */
+  function unit(c, k) {
+    const U = c.units, u = U[k];
+    stage.innerHTML = "";
+    setCount(c.code + " · unit " + u.n + " of " + U.length);
+    setDots(U.length, k, k);
+
+    const hero = el("div", "c-hero");
+    hero.innerHTML =
+      '<span class="c-badge">' + u.n + ' of ' + U.length + '</span>' +
+      '<h2 class="c-title">' + u.en + '</h2>' +
+      '<p class="c-ar" dir="rtl" lang="ar">' + u.ar + '</p>' +
+      '<p class="c-line">' + u.line + '</p>';
+    stage.appendChild(hero);
+
+    u.blocks.forEach(bl => stage.appendChild(unitBlock(bl)));
+
+    /* The worked example, through the block the rest of the site uses. */
+    if (u.ex) stage.appendChild(exampleBlock(
+      Object.assign({ pre: "Worked" }, u.ex)));
+
+    /* Nobody learns this by reading it. */
+    if (u.practice) {
+      const pr = el("div", "verdict u-practice");
+      pr.appendChild(el("span", "vh", u.practice.h));
+      pr.appendChild(el("p", "vb", u.practice.html));
+      stage.appendChild(pr);
+    }
+
+    stage.appendChild(footNav({
+      back: k > 0 ? () => { unit(c, k - 1); scrollTop(); } : null,
+      backLabel: k > 0 ? U[k - 1].en : null,
+      next: k < U.length - 1 ? () => { unit(c, k + 1); scrollTop(); } : null,
+      nextLabel: k < U.length - 1 ? U[k + 1].en : null,
+      note: c.code + " " + c.en
+    }));
+  }
+
+  /* ── one block inside a unit ── */
+  function unitBlock(b) {
+    if (b.t === "lede") return el("p", "lede", b.html);
+
+    if (b.t === "list") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", b.h));
+      if (b.intro) v.appendChild(el("p", "vb", b.intro));
+      v.appendChild(el("ul", "how", b.items.map(x => '<li><span>' + x + '</span></li>').join("")));
+      return v;
+    }
+
+    if (b.t === "split") {
+      const v = el("div", "verdict");
+      v.appendChild(el("span", "vh", b.h));
+      const row = el("div", "ksl-split");
+      [b.a, b.b].forEach(side => {
+        const cc = el("div", "ks-side");
+        cc.innerHTML =
+          '<span class="ks-lab">' + side.lab + '</span>' +
+          '<span class="ks-lab-ar" dir="rtl" lang="ar">' + side.ar + '</span>' +
+          '<p>' + side.say + '</p>';
+        row.appendChild(cc);
+      });
+      v.appendChild(row);
+      return v;
+    }
+
+    const v = el("div", "verdict");
+    v.appendChild(el("span", "vh", b.h));
+    v.appendChild(el("p", "vb", b.html));
+    return v;
   }
 
   list();
