@@ -10,7 +10,7 @@ module.exports = [
 ['h2', '2.1 The finished handbook'],
 ['ul', [
   'A handbook for complete beginners on translating between English and Arabic. The text is in English and every example is given in both languages.',
-  '98 pages including the covers, B5 page size (176 × 250 mm), with 9 parts and 27 chapters, followed by a list of abbreviations, a short list of further reading, a glossary of 113 terms, a list of 39 references and a page with the QR code of the team’s website.',
+  '92 pages including the covers, B5 page size (176 × 250 mm), with 9 parts and 27 chapters, followed by a list of abbreviations, a short list of further reading, a glossary of 113 terms, a list of 39 references and a page with the QR code of the team’s website.',
   'Two editions, which are identical inside and differ only in the cover design: the Midnight edition (dark indigo cover) and the Light edition (pale lavender cover). Each edition is available as an editable Word file and as a PDF.',
 ]],
 ['h2', '2.2 The main editorial decisions'],

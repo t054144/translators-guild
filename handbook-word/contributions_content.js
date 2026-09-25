@@ -5,7 +5,7 @@ module.exports = [
 ['ul', [
   'This is a working report by Shaikhah Alkhaledi, who edited the draft handbook. It explains how each team member’s material was used: what was taken, what was edited, what was left out, and why.',
   'The handbook it describes is a **draft for the team’s review**, not the final version. Every decision below can be discussed and changed.',
-  'The report follows the current draft: two editions (Midnight and Light) with the same content, 102 pages, 9 parts and 27 chapters, an opening section (**Start here**) and a closing section (**Your journey continues**).',
+  'The report follows the current draft: two editions (Midnight and Light) with the same content, 92 pages, 9 parts and 27 chapters, an opening section (**Start here**) and a closing section (**Your journey continues**).',
   'Members are listed in alphabetical order. Chapter numbers refer to the current draft.',
   'The item-by-item record of every document is in the Appendix: The Team’s Documents.',
 ]],

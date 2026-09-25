@@ -14,7 +14,7 @@ module.exports = [
 ['h1', '2. The handbook today'],
 ['ul', [
   'A guide for complete beginners in English–Arabic translation, written in English with examples in both languages.',
-  '102 pages, B5 size, in two editions with identical content: the **Midnight** edition (dark cover) and the **Light** edition (pale cover), each as an editable Word file and a PDF.',
+  '92 pages, B5 size, in two editions with identical content: the **Midnight** edition (dark cover) and the **Light** edition (pale cover), each as an editable Word file and a PDF.',
   '9 parts and 27 chapters, ordered from the basics to the most specialised topic (audiovisual translation), followed by a closing section, **Your journey continues**.',
   'Back matter: abbreviations, further reading, a glossary of 113 terms, 39 references, and a page with the QR code of the team’s website.',
   'Every chapter follows the same guided pattern: **Where we are** → numbered **steps** (problem first, then solution) → **Try it** with answers → **Remember**, **Words to remember** and **Next**. Ten chapters also have a **Did you know?** box.',
@@ -55,6 +55,7 @@ module.exports = [
   '**A stronger opening**: **Start here** now opens with where translation is found in daily life and with the House of Wisdom in Baghdad, before the four steps of every translation.',
   '**Did you know?**: ten short, well-documented facts (the Rosetta Stone; the Universal Declaration of Human Rights; {{كتاب العين}}; Arabic numerals; the verb _run_; the journey of _coffee_; the Damascus academy; the 1954 machine-translation demonstration; the _Mars Climate Orbiter_; silent-film intertitles).',
   '**Nothing that dates**: the one example tied to a recent event was replaced with a general one.',
+  '**A shorter book without cutting content**: chapters now follow on from each other, while each part still starts on a new page; the glossary is set in two columns; the margins and the space between paragraphs were reduced slightly. The book went from 102 to 92 pages with the same content.',
 ]],
 ['h2', '3.5 Design and layout'],
 ['ul', [

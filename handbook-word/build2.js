@@ -2,7 +2,7 @@
 const fs = require('fs');
 const { Document, Packer, Paragraph, TextRun, HeadingLevel, AlignmentType, LevelFormat, PageNumber, Footer,
   TableOfContents, Table, TableRow, TableCell, WidthType, ShadingType, BorderStyle, Tab, TabStopType,
-  ImageRun, Header, SimpleField, NumberFormat, HorizontalPositionRelativeFrom, VerticalPositionRelativeFrom, TextWrappingType } = require('docx');
+  ImageRun, Header, SimpleField, NumberFormat, HorizontalPositionRelativeFrom, VerticalPositionRelativeFrom, TextWrappingType, SectionType } = require('docx');
 
 const INK = '1F1A2E', ACCENT = '3D1591', GREY = '6B6680', LINE = 'CFC9DE';
 // PDF=1 builds a copy with fonts installed on the build machine, for the PDF export only.
@@ -11,7 +11,7 @@ const PDF = !!process.env.PDF;
 const COVER = process.env.COVER || 'midnight', NAME = 'Translation-Handbook-' + COVER[0].toUpperCase() + COVER.slice(1);
 const LATIN = PDF ? 'Carlito' : 'Calibri', ARABIC = PDF ? 'Noto Naskh Arabic' : 'Arial', SERIF = PDF ? 'Noto Serif' : 'Georgia', BOX = 'ECE9F7';
 const mm = x => Math.round(x * 56.7);
-const PAGE_W = mm(176), MARGIN = mm(22), CONTENT_W = PAGE_W - 2 * MARGIN;
+const PAGE_W = mm(176), MARGIN = mm(+(process.env.MARGIN || (process.env.LOOSE ? 22 : 20))), CONTENT_W = PAGE_W - 2 * MARGIN;
 
 // ---------- inline text: **bold**, _italic_, {{Arabic}} ----------
 function runs(text, base = {}) {
@@ -41,7 +41,9 @@ const TITLES = {}; let CLOSING = null;
 let inst = 0, afterPart = false, chapter = null, mainStart = null, pendingTerms = null;
 const body = [], glossary = [];
 // generous spacing so that pages are light for beginners
-const P = (children, opts = {}) => body.push(new Paragraph({ children, spacing: { after: 200, line: 330 }, ...opts }));
+const LOOSE = !!process.env.LOOSE;  // LOOSE=1: the earlier layout, each chapter on a new page
+const SHARE = !!process.env.SHARE, PA = +(process.env.PA || (LOOSE ? 200 : 170)), H3B = +(process.env.H3B || (LOOSE ? 380 : 300)), COLS = !LOOSE, FLOW = !LOOSE, LS = +(process.env.LS || 330);
+const P = (children, opts = {}) => body.push(new Paragraph({ children, spacing: { after: PA, line: LS }, ...opts }));
 const shade = { type: ShadingType.CLEAR, color: 'auto', fill: BOX };
 const list = (items, ref, opts = {}) => { const k = ref === 'num' ? ++inst : undefined;
   items.forEach(t => P(runs(t, opts.run), { numbering: { reference: ref, level: 0, ...(k ? { instance: k } : {}) }, spacing: { after: opts.box ? 0 : 110, line: opts.box ? 300 : 320 }, ...(opts.box ? { shading: shade, keepNext: true, keepLines: true } : {}) }));
@@ -71,12 +73,14 @@ function block(b) {
     case 'front': H(HeadingLevel.HEADING_1, a, { pageBreakBefore: true }); break;
     case 'part':
       if (a.startsWith('Part 1:')) mainStart = body.length;
-      H(HeadingLevel.HEADING_1, a, { pageBreakBefore: mainStart !== body.length });
+      // SHARE=1: short back-matter lists follow on the same page
+      H(HeadingLevel.HEADING_1, a, { pageBreakBefore: mainStart !== body.length && !(SHARE && a === 'Further reading') && !(process.env.PARTFLOW && /^Part \d/.test(a)), ...(SHARE && a === 'Further reading' ? { spacing: { before: 480, after: 200 } } : {}) });
       if (c && c !== 'closing') P(runs(c, { italics: true, color: GREY }), { spacing: { after: 360, line: 290 } });
       if (c === 'closing') chapter = null;
       afterPart = true; break;
     case 'ch': {
-      H(HeadingLevel.HEADING_2, a, { pageBreakBefore: !afterPart }); afterPart = false;
+      // FLOW=1: chapters follow on from each other; only parts start on a new page
+      H(HeadingLevel.HEADING_2, a, FLOW ? { pageBreakBefore: false, spacing: { before: afterPart ? 0 : 600 } } : { pageBreakBefore: !afterPart }); afterPart = false;
       const m = /^Chapter (\d+)/.exec(a); chapter = m ? +m[1] : null; break;
     }
     case 'h': H(HeadingLevel.HEADING_3, a); break;
@@ -163,10 +167,12 @@ block(['ul', [
   '**Díaz Cintas and Remael (2021)**, _Subtitling_: a practical guide to the subtitler’s work, with many examples.',
 ]]);
 block(['part', 'Glossary', 'All the key terms defined in this handbook, in alphabetical order, with the chapter where each one is explained.']);
+let glossStart = body.length, glossEnd;
 const seen = new Map();
 glossary.forEach(g => { const k = g[0].toLowerCase(); if (!seen.has(k)) seen.set(k, g); });
 [...seen.values()].sort((x, y) => x[0].localeCompare(y[0])).forEach(([t, a, d, ch]) =>
-  P([...runs(`**${t}**`), new TextRun({ text: '  ', font: LATIN }), ar(a), new TextRun({ text: '  ', font: LATIN }), ...runs(d + ' '), new TextRun({ text: `(Chapter ${ch})`, font: LATIN, color: GREY })], { spacing: { after: 90, line: 280 } }));
+  P([...runs(`**${t}**`), new TextRun({ text: '  ', font: LATIN }), ar(a), new TextRun({ text: '  ', font: LATIN }), ...runs(d + ' '), new TextRun({ text: `(Chapter ${ch})`, font: LATIN, color: GREY })].map(r => r), { spacing: { after: 90, line: COLS ? 262 : 280 } }));
+glossEnd = body.length;
 
 // ---------- references (APA 7) ----------
 const R = [
@@ -253,7 +259,7 @@ const doc = new Document({
       { id: 'TOC2', name: 'toc 2', basedOn: 'Normal', next: 'Normal', run: { size: 19 }, paragraph: { spacing: { before: 0, after: 0, line: 232 }, indent: { left: 280 } } },
       { id: 'Heading1', name: 'Heading 1', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 40, bold: true, color: ACCENT }, paragraph: { spacing: { before: 600, after: 200 }, outlineLevel: 0 } },
       { id: 'Heading2', name: 'Heading 2', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: SERIF, size: 30, bold: true, color: ACCENT }, paragraph: { spacing: { before: 240, after: 200 }, outlineLevel: 1, keepNext: true } },
-      { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 23, bold: true, color: INK }, paragraph: { spacing: { before: 380, after: 140 }, outlineLevel: 2, keepNext: true } },
+      { id: 'Heading3', name: 'Heading 3', basedOn: 'Normal', next: 'Normal', quickFormat: true, run: { font: LATIN, size: 23, bold: true, color: INK }, paragraph: { spacing: { before: H3B, after: 140 }, outlineLevel: 2, keepNext: true } },
     ],
   },
   numbering: { config: [
@@ -266,7 +272,14 @@ const doc = new Document({
     { properties: { page: { size: pageSize, margin: margins, pageNumbers: { start: 1, formatType: NumberFormat.LOWER_ROMAN } } },
       headers: { default: new Header({ children: [new Paragraph({ children: [] })] }) }, footers: { default: pageNum }, children: body.slice(0, mainStart) },
     { properties: { page: { size: pageSize, margin: margins, pageNumbers: { start: 1, formatType: NumberFormat.DECIMAL } } },
-      headers: { default: runningHead }, footers: { default: pageNum }, children: body.slice(mainStart) },
+      headers: { default: runningHead }, footers: { default: pageNum }, children: COLS ? body.slice(mainStart, glossStart) : body.slice(mainStart) },
+    // COLS=1: the glossary entries in two columns, as in most handbooks
+    ...(COLS ? [
+      { properties: { type: SectionType.CONTINUOUS, page: { size: pageSize, margin: margins }, column: { count: 2, space: 454, equalWidth: true } },
+        headers: { default: runningHead }, footers: { default: pageNum }, children: body.slice(glossStart, glossEnd) },
+      { properties: { type: SectionType.CONTINUOUS, page: { size: pageSize, margin: margins } },
+        headers: { default: runningHead }, footers: { default: pageNum }, children: body.slice(glossEnd) },
+    ] : []),
     // blank left-hand page so that the back cover falls on an even page when printed (NOBLANK=1 leaves it out)
     ...(process.env.NOBLANK ? [] : [{ properties: { page: { size: pageSize, margin: margins } },
       headers: { default: new Header({ children: [new Paragraph({ children: [] })] }) }, footers: { default: new Footer({ children: [new Paragraph({ children: [] })] }) },
