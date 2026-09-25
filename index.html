@@ -51,6 +51,7 @@
      ground. --mag-ink is the same accent, lightened to the point where
      it can be read; the brand colour stays for fills and borders. */
   --mag-ink:   #cf7ae8;
+  --hand-fill: #ece0cc; --hand-line: #6b4a3b;
   --mint: #2ed9a0; --coral: #ff5c7a; --amber: #ffc46b;
   --coral-soft: #ffb3c1; --mint-soft: #8fe8c9; --workshop-ink: #d79bf0;
   /* a recessed surface, and the sheet a modal lies under */
@@ -782,9 +783,15 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .letter-hero { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem;
   padding: 1.2rem 1.35rem; border-radius: var(--r-lg); background: var(--grad-soft);
   border: var(--hair-lit); }
-.lh-fig { width: min(46vw, 210px); aspect-ratio: 1; display: block; }
-.lh-fig img { width: 100%; height: 100%; object-fit: contain; display: block;
-  filter: drop-shadow(0 10px 22px rgba(0,0,0,.42)); }
+.lh-fig { width: min(48vw, 220px); aspect-ratio: 1; display: block; }
+.hand-fig { width: 100%; height: 100%; display: grid; place-items: center; }
+.hand-fig svg { width: 100%; height: 100%; display: block;
+  filter: drop-shadow(0 8px 20px rgba(0,0,0,.38)); }
+/* the traced drawing takes the site's colours: the hand in the page's own
+   parchment, the line work in a tone that reads on either theme */
+.kp-fill { fill: var(--hand-fill); }
+.kp-line { fill: var(--hand-line); }
+.hand-fig.is-missing::after { content: "—"; color: var(--ink-ghost); font-size: 2rem; }
 .lh-txt { display: grid; gap: .1rem; justify-items: end; text-align: right; }
 .lh-l { font-family: var(--f-ar); font-size: clamp(3rem, 14vw, 4.2rem); line-height: 1; color: var(--white); }
 .lh-n { font-family: var(--f-ar); font-size: 1.25rem; color: var(--lilac); }
@@ -895,6 +902,7 @@ a.ks-s-en:hover { color: var(--white); }
   --lilac: #402b58; --lilac-dim: #61507a; --white: #1a0f2b;
   --magenta: #8218c7; --violet: #650fd0;
   --mag-ink: #8218c7;
+  --hand-fill: #f3e9d8; --hand-line: #5b3d30;
 
   /* The four reading steps, restated for paper. Each one is dark enough to
      hold its contrast against white rather than against night. */
@@ -1815,7 +1823,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         <!-- Which build is actually running. A single HTML file gets cached
              hard on phones, and without this there is no way to tell a fixed
              site from a stale copy of it except by guessing. -->
-        <p class="build-mark">Guild build 45 &middot; 25 Sep</p>
+        <p class="build-mark">Guild build 46 &middot; 25 Sep</p>
       </div>
 
       <!-- ── THE SIX DIGITS ──
@@ -4522,49 +4530,54 @@ const KU_MINOR = {
 /* ═══════════ REGISTRY ═══════════ */
 
 /* ── الهجاء الإصبعي · THE MANUAL ALPHABET ──────────────────────────
-   Twenty-eight letters, each with a photograph of the hand making it.
+   Twenty-eight letters, plus the three extra shapes the chart carries:
+   لا, the article ال, and ة.
 
-   The photographs come from the Kuwaiti manual alphabet chart published
-   by @ksl_dictionary. They were cut out of that chart, the background
-   and the chart's own lettering removed, and the disc recoloured to the
-   site's palette so they sit in the page rather than on top of it — but
-   the hand in every one of them is theirs, and the credit line under the
-   alphabet says so. It is used here with attribution; if they ask for it
-   to come down, it comes down the same day. Nothing is drawn, invented
-   or generated. */
+   Each handshape is an original vector trace of the Kuwaiti manual
+   alphabet chart published by @ksl_dictionary and carried by Kuwait
+   Times. Tracing rather than copying means the drawing is crisp at any
+   size and takes the site's own colours — but the hand it describes is
+   theirs, and the credit under the alphabet says so. */
 const KSL_ALPHA = [
-  { l: "ا", n: "أَلِف", t: "ʾalif", img: "ksl/alif.webp" },
-  { l: "ب", n: "باء", t: "bāʾ", img: "ksl/ba.webp" },
-  { l: "ت", n: "تاء", t: "tāʾ", img: "ksl/ta.webp" },
-  { l: "ث", n: "ثاء", t: "thāʾ", img: "ksl/tha.webp" },
-  { l: "ج", n: "جيم", t: "jīm", img: "ksl/jim.webp" },
-  { l: "ح", n: "حاء", t: "ḥāʾ", img: "ksl/ha.webp" },
-  { l: "خ", n: "خاء", t: "khāʾ", img: "ksl/kha.webp" },
-  { l: "د", n: "دال", t: "dāl", img: "ksl/dal.webp" },
-  { l: "ذ", n: "ذال", t: "dhāl", img: "ksl/dhal.webp" },
-  { l: "ر", n: "راء", t: "rāʾ", img: "ksl/ra.webp" },
-  { l: "ز", n: "زاي", t: "zāy", img: "ksl/zay.webp" },
-  { l: "س", n: "سين", t: "sīn", img: "ksl/sin.webp" },
-  { l: "ش", n: "شين", t: "shīn", img: "ksl/shin.webp" },
-  { l: "ص", n: "صاد", t: "ṣād", img: "ksl/sad.webp" },
-  { l: "ض", n: "ضاد", t: "ḍād", img: "ksl/dad.webp" },
-  { l: "ط", n: "طاء", t: "ṭāʾ", img: "ksl/ta2.webp" },
-  { l: "ظ", n: "ظاء", t: "ẓāʾ", img: "ksl/dha.webp" },
-  { l: "ع", n: "عين", t: "ʿayn", img: "ksl/ayn.webp" },
-  { l: "غ", n: "غين", t: "ghayn", img: "ksl/ghayn.webp" },
-  { l: "ف", n: "فاء", t: "fāʾ", img: "ksl/fa.webp" },
-  { l: "ق", n: "قاف", t: "qāf", img: "ksl/qaf.webp" },
-  { l: "ك", n: "كاف", t: "kāf", img: "ksl/kaf.webp" },
-  { l: "ل", n: "لام", t: "lām", img: "ksl/lam.webp" },
-  { l: "م", n: "ميم", t: "mīm", img: "ksl/mim.webp" },
-  { l: "ن", n: "نون", t: "nūn", img: "ksl/nun.webp" },
-  { l: "ه", n: "هاء", t: "hāʾ", img: "ksl/ha2.webp" },
-  { l: "و", n: "واو", t: "wāw", img: "ksl/waw.webp" },
-  { l: "ي", n: "ياء", t: "yāʾ", img: "ksl/ya.webp" },
+  { l: "ا", n: "أَلِف", t: "ʾalif", svg: "ksl/alif.svg" },
+  { l: "ب", n: "باء", t: "bāʾ", svg: "ksl/ba.svg" },
+  { l: "ت", n: "تاء", t: "tāʾ", svg: "ksl/ta.svg" },
+  { l: "ث", n: "ثاء", t: "thāʾ", svg: "ksl/tha.svg" },
+  { l: "ج", n: "جيم", t: "jīm", svg: "ksl/jim.svg" },
+  { l: "ح", n: "حاء", t: "ḥāʾ", svg: "ksl/ha.svg" },
+  { l: "خ", n: "خاء", t: "khāʾ", svg: "ksl/kha.svg" },
+  { l: "د", n: "دال", t: "dāl", svg: "ksl/dal.svg" },
+  { l: "ذ", n: "ذال", t: "dhāl", svg: "ksl/dhal.svg" },
+  { l: "ر", n: "راء", t: "rāʾ", svg: "ksl/ra.svg" },
+  { l: "ز", n: "زاي", t: "zāy", svg: "ksl/zay.svg" },
+  { l: "س", n: "سين", t: "sīn", svg: "ksl/sin.svg" },
+  { l: "ش", n: "شين", t: "shīn", svg: "ksl/shin.svg" },
+  { l: "ص", n: "صاد", t: "ṣād", svg: "ksl/sad.svg" },
+  { l: "ض", n: "ضاد", t: "ḍād", svg: "ksl/dad.svg" },
+  { l: "ط", n: "طاء", t: "ṭāʾ", svg: "ksl/ta2.svg" },
+  { l: "ظ", n: "ظاء", t: "ẓāʾ", svg: "ksl/dha.svg" },
+  { l: "ع", n: "عين", t: "ʿayn", svg: "ksl/ayn.svg" },
+  { l: "غ", n: "غين", t: "ghayn", svg: "ksl/ghayn.svg" },
+  { l: "ف", n: "فاء", t: "fāʾ", svg: "ksl/fa.svg" },
+  { l: "ق", n: "قاف", t: "qāf", svg: "ksl/qaf.svg" },
+  { l: "ك", n: "كاف", t: "kāf", svg: "ksl/kaf.svg" },
+  { l: "ل", n: "لام", t: "lām", svg: "ksl/lam.svg" },
+  { l: "م", n: "ميم", t: "mīm", svg: "ksl/mim.svg" },
+  { l: "ن", n: "نون", t: "nūn", svg: "ksl/nun.svg" },
+  { l: "ه", n: "هاء", t: "hāʾ", svg: "ksl/ha2.svg" },
+  { l: "و", n: "واو", t: "wāw", svg: "ksl/waw.svg" },
+  { l: "ي", n: "ياء", t: "yāʾ", svg: "ksl/ya.svg" },
 ];
 
-/* Whose hands these are. Shown wherever the alphabet is. */
-const KSL_CREDIT = "Handshapes from the Kuwaiti manual alphabet published by <b>@ksl_dictionary</b>, credited here while their permission is sought. They come down the day they ask.";
+/* Not letters of the alphabet, but part of the same fingerspelling set. */
+const KSL_EXTRA = [
+  { l: "لا", n: "لام ألف", t: "lām-ʾalif", svg: "ksl/lamalif.svg" },
+  { l: "ال", n: "أداة التعريف", t: "al- (the article)", svg: "ksl/al.svg" },
+  { l: "ة", n: "تاء مربوطة", t: "tāʾ marbūṭa", svg: "ksl/tamarbuta.svg" },
+];
+
+const KSL_CREDIT = "Handshapes traced from the Kuwaiti manual alphabet published by <b>@ksl_dictionary</b>, " +
+  "credited here while their permission is sought. They come down the day they ask.";
 
 /* Where the real signs are. Linked, never copied. */
 const KSL_DICT = [
@@ -7650,19 +7663,22 @@ function allMinorCourses() {
 }
 
 
-/* Built as an element rather than written into an HTML string: the
-   browser's preload scanner reads the page source ahead of the parser
-   and will happily try to fetch a src it finds spelled out there,
-   concatenation and all. */
-function handImg(L, lazy) {
-  const im = document.createElement("img");
-  im.src = L.img;
-  im.alt = "The handshape for " + L.n;
-  im.width = 300; im.height = 300;
-  im.decoding = "async";
-  if (lazy) im.loading = "lazy";
-  return im;
+/* The handshapes are vector files, fetched and put into the page rather
+   than loaded as images, so the site's own colours reach inside them and
+   they stay crisp at any size. Cached after the first letter. */
+const kslArt = {};
+function handFig(L) {
+  const fig = el("div", "hand-fig");
+  fig.setAttribute("role", "img");
+  fig.setAttribute("aria-label", "The handshape for " + L.n);
+  if (kslArt[L.svg]) { fig.innerHTML = kslArt[L.svg]; return fig; }
+  fetch(L.svg)
+    .then(r => (r.ok ? r.text() : Promise.reject(r.status)))
+    .then(t => { kslArt[L.svg] = t; fig.innerHTML = t; })
+    .catch(() => { fig.classList.add("is-missing"); });
+  return fig;
 }
+function kslLetters() { return KSL_ALPHA.concat(KSL_EXTRA); }
 
 /* ═══════════ THE KSL SECTION ═══════════
    One screen. The dictionary, the alphabet and the lessons are all one
@@ -7686,15 +7702,15 @@ function runKsl() {
     ah.innerHTML =
       '<h3>The manual alphabet</h3>' +
       '<span class="kh-ar" dir="rtl" lang="ar">الهجاء الإصبعي</span>' +
-      '<p>Twenty-eight letters, each with a handshape. Used for names, for a word with no ' +
-      'established sign yet, and for a term the first time it comes up &mdash; not for ordinary ' +
-      'conversation.</p>';
+      '<p>Twenty-eight letters, each with its handshape, and the three further shapes the chart ' +
+      'carries. Used for names, for a word with no established sign yet, and for a term the first ' +
+      'time it comes up &mdash; not for ordinary conversation.</p>';
     stage.appendChild(ah);
 
     const grid = el("div", "alpha-grid");
-    KSL_ALPHA.forEach((L, i) => {
+    kslLetters().forEach((L, i) => {
       /* The letter leads. The hand is one tap away at a size worth
-         looking at, rather than twenty-eight thumbnails at once. */
+         looking at, rather than thirty-one thumbnails at once. */
       const b = el("button", "alpha");
       b.innerHTML =
         '<span class="a-l" dir="rtl" lang="ar">' + L.l + '</span>' +
@@ -7753,9 +7769,10 @@ function runKsl() {
 
   /* ── one letter ── */
   function letter(i) {
-    const L = KSL_ALPHA[i];
+    const ALL = kslLetters();
+    const L = ALL[i];
     stage.innerHTML = "";
-    setCount(L.n + " · " + (i + 1) + "/" + KSL_ALPHA.length);
+    setCount(L.n + " · " + (i + 1) + "/" + ALL.length);
     /* 28 dots do not fit a phone header — the count carries the place */
     setDots(0, 0, 0);
 
@@ -7767,7 +7784,7 @@ function runKsl() {
         '<span class="lh-n" dir="rtl" lang="ar">' + L.n + '</span>' +
         '<span class="lh-t">' + L.t + '</span>' +
       '</span>';
-    hero.querySelector(".lh-fig").appendChild(handImg(L, false));
+    hero.querySelector(".lh-fig").appendChild(handFig(L));
     stage.appendChild(hero);
 
     stage.appendChild(el("p", "ksl-credit", KSL_CREDIT));
@@ -7782,9 +7799,9 @@ function runKsl() {
 
     stage.appendChild(footNav({
       back: i > 0 ? () => { letter(i - 1); scrollTop(); } : null,
-      backLabel: i > 0 ? KSL_ALPHA[i - 1].n : null,
-      next: i < KSL_ALPHA.length - 1 ? () => { letter(i + 1); scrollTop(); } : null,
-      nextLabel: i < KSL_ALPHA.length - 1 ? KSL_ALPHA[i + 1].n : null
+      backLabel: i > 0 ? ALL[i - 1].n : null,
+      next: i < ALL.length - 1 ? () => { letter(i + 1); scrollTop(); } : null,
+      nextLabel: i < ALL.length - 1 ? ALL[i + 1].n : null
     }));
   }
 
