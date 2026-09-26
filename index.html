@@ -9375,19 +9375,17 @@ function runFind() {
       msg.innerHTML = "";
       if (listedTotal === 0) {
         msg.appendChild(el("span", null,
-          "Nobody has listed themselves yet, so there is nothing to search. " +
-          "A member appears here only after turning on \u201cShow me in Find " +
-          "Translators\u201d in their own Privacy settings \u2014 which is why " +
-          "a name you know is spelled correctly still finds nothing. "));
+          "There is nobody to show yet. Members are listed here unless they " +
+          "have turned themselves off in Privacy, so this usually means the " +
+          "Guild is still small. "));
         const go = el("button", "ghost small", "Open Privacy");
         go.addEventListener("click", () => openItem(PRIVACY_ITEM));
         msg.appendChild(go);
       } else if (q) {
         msg.appendChild(el("span", null,
-          "Nobody listed matches that. Only members who have turned on " +
-          "\u201cShow me in Find Translators\u201d can be found here" +
-          (listedTotal === 1 ? ", and so far exactly one has." : ", and so far " +
-           listedTotal + " have.")));
+          "Nobody matches that. There " + (listedTotal === 1 ? "is 1 member" :
+          "are " + listedTotal + " members") + " to search among \u2014 anyone " +
+          "who has turned themselves off in Privacy will not appear."));
       } else {
         msg.textContent = "Nobody to show.";
       }
@@ -9562,7 +9560,7 @@ function photoMenu() {
 
    Five kinds of post, one table. What a reader may see is decided by
    row-level security on posts, not by this file: the feed view runs as
-   the caller, so a post set to friends is not returned to anyone else,
+   the caller, so a post set to followers is not returned to anyone else,
    and there is no filtering here that a crafted request could skip.
    ═══════════════════════════════════════════════════════════ */
 const POST_KINDS = [
@@ -9587,8 +9585,13 @@ const POST_KINDS = [
 const GENRES = ["Literary","Technical","Legal","Medical","Journalistic","Political","General"];
 const LANGS  = ["Arabic","English","Other"];
 const FEEDBACK_ON = ["Accuracy","Naturalness","Terminology","Style","Grammar","Cultural adaptation","Overall"];
-const VISIBILITIES = [["members","Members only"],["followers","Followers"],
-                      ["friends","Friends"],["private","Only me"]];
+/* Four choices, each one a relationship a member can actually see the
+   state of. "Friends" meant a mutual follow, which nobody had asked for
+   and nobody could check. */
+const VISIBILITIES = [["members","Everyone in the Guild"],
+                      ["followers","People who follow me"],
+                      ["following","People I follow"],
+                      ["private","Only me"]];
 const FEED_FILTERS = [["all","All"],["translation","Translations"],["help","Help"],
                       ["request","Requests"],["discussion","Discussions"],["challenge","Challenges"]];
 
@@ -10235,7 +10238,9 @@ async function runPrivacy() {
   /* The one that decides whether you are in the suggestions list at
      all. It is first because it is the switch members most want. */
   toggle("Show me in Find Translators", "discoverable",
-    "Off by default. Registering does not list you; this does.");
+    "On by default, so other members can find you. Turn it off to stay " +
+    "out of the member list \u2014 your profile still opens for anyone " +
+    "given the link.");
   choice("Profile visibility", "profile_visibility",
     [["public","Public"],["members","Members only"],["private","Private"]],
     "Private means nobody but you can open your profile.");
@@ -10245,7 +10250,8 @@ async function runPrivacy() {
   toggle("Show my academic level", "show_academic_level");
   toggle("Let members follow me", "allow_follows");
   choice("Who can message me", "who_can_message",
-    [["anyone","Anyone"],["following","People I follow"],["friends","Friends only"],["nobody","Nobody"]],
+    [["anyone","Anyone"],["followers","People who follow me"],
+     ["following","People I follow"],["nobody","Nobody"]],
     "Enforced in the database, not by hiding a button: a message from " +
     "somebody this rule excludes is refused outright.");
   toggle("Show when I am online", "show_online");
@@ -11135,7 +11141,8 @@ function renderHilites() {
 
    The same grid serves every profile: her own and everybody else's. On
    another member's it is the feed view that decides what appears, so a
-   post they kept to friends is not on it unless you are one. */
+   post they kept to their followers is not on it unless you follow
+   them. */
 function profileGrid(authorId, isMe) {
   const wrap = el("div", null);
   const tabs = el("div", "grid-tabs");
@@ -11319,7 +11326,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-2330";
+const BUILD = "0927-0020";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
