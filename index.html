@@ -71,8 +71,14 @@
   --grad: linear-gradient(180deg, #a726d0 0%, #8218c7 48%, #650fd0 100%);
   --grad-soft: linear-gradient(180deg, rgba(167,38,208,.16), rgba(101,15,208,.16));
 
-  --f-serif: "Playfair Display", Georgia, "Times New Roman", serif;
-  --f-sans: "Outfit", "Segoe UI", system-ui, -apple-system, sans-serif;
+  /* Amiri and Readex Pro sit inside the Latin stacks rather than beside
+     them. Playfair and Outfit carry no Arabic at all, and a member who
+     writes their bio in Arabic should not have to find out which parts
+     of the screen were built for English. The Latin faces are served
+     with a unicode-range, so Arabic falls straight through to these. */
+  --f-serif: "Playfair Display", "Amiri", Georgia, "Times New Roman", serif;
+  --f-sans: "Outfit", "Readex Pro", "Noto Sans Arabic", "Geeza Pro",
+            "Segoe UI", system-ui, -apple-system, sans-serif;
   --f-ar: "Readex Pro", "Noto Sans Arabic", "Geeza Pro", sans-serif;
   --f-ar-text: "Amiri", "Noto Naskh Arabic", "Geeza Pro", serif;
 
@@ -1273,6 +1279,7 @@ a.ks-s-en:hover { color: var(--white); }
   max-width: var(--measure); }
 /* The line she drew in italics under the bio: a sentence a translator
    keeps, not a description of themselves. */
+.seal-motto:dir(rtl) { font-style: normal; }
 .seal-motto { margin: .12rem 0 0; font-family: var(--f-serif); font-style: italic;
   font-size: .92rem; line-height: 1.45; color: var(--lilac); max-width: var(--measure); }
 
@@ -1401,6 +1408,14 @@ a.ks-s-en:hover { color: var(--white); }
 
 .f-photo { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
 .f-row { display: grid; gap: .3rem; margin-bottom: 1.1rem; }
+/* Labels and hints are furniture, not content. Leaving them selectable
+   means a long-press anywhere near a field can pick them up, and then a
+   paste drops "Who can see this? / Attachment / Optional. Up to 10 MB"
+   into the middle of what someone was writing. */
+.f-lab, .f-hint, .pub-h, .count-row span, .grid-tab, .hilite span,
+.seal-eyebrow, .trial-subject, .chip-tag {
+  -webkit-user-select: none; user-select: none;
+}
 .f-lab { font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--mag-ink); }
 .f-hint { font-size: .78rem; color: var(--ink-soft); }
 .f-in { width: 100%; padding: .7rem .85rem; border-radius: var(--r-lg); border: var(--hair);
@@ -2270,7 +2285,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
         </button>
       </span>
       <div class="ig-id">
-        <h1 class="ig-name" id="seal-name">Member</h1>
+        <h1 class="ig-name" id="seal-name" dir="auto">Member</h1>
         <p class="chips-row">
           <span class="chip-tag" id="chip-rank">Novice</span>
           <span class="chip-tag solid">Translation Team</span>
@@ -2282,9 +2297,9 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <!-- One block, because the screen is a grid and every child of it
          costs a row gap. These lines belong together anyway. -->
     <div class="ig-bio">
-      <p class="ident-line" id="seal-ident" hidden></p>
-      <p class="seal-bio" id="seal-bio" hidden></p>
-      <p class="seal-motto" id="seal-motto" hidden></p>
+      <p class="ident-line" id="seal-ident" dir="auto" hidden></p>
+      <p class="seal-bio" id="seal-bio" dir="auto" hidden></p>
+      <p class="seal-motto" id="seal-motto" dir="auto" hidden></p>
     </div>
 
     <div class="fact-row" id="seal-facts" hidden></div>
@@ -9179,7 +9194,8 @@ function runFind() {
   stage.innerHTML = "";
 
   const search = document.createElement("input");
-  search.type = "search"; search.className = "f-in"; search.placeholder = "Search by name or @username";
+  search.type = "search"; search.className = "f-in"; search.dir = "auto";
+  search.placeholder = "Search by name or @username";
   search.autocapitalize = "none"; search.spellcheck = false;
   search.setAttribute("aria-label", "Search members");
   stage.appendChild(search);
@@ -9258,7 +9274,9 @@ async function runPublic(id) {
   paintFace(av, p.avatar_path, p.display_name);
   head.appendChild(av);
   const who = el("div", "ig-id");
-  who.appendChild(el("h1", "ig-name", esc(withTitle(p.title, p.display_name))));
+  const pubName = el("h1", "ig-name", esc(withTitle(p.title, p.display_name)));
+  pubName.dir = "auto";
+  who.appendChild(pubName);
   /* The rank badge only when they have left their progress visible; the
      view returns null for it otherwise. */
   who.appendChild(el("p", "chips-row",
@@ -9276,9 +9294,13 @@ async function runPublic(id) {
   stage.appendChild(bioBlock);
 
   const idParts = [p.field_of_study, p.academic_level, p.institution].filter(Boolean);
-  if (idParts.length) bioBlock.appendChild(el("p", "ident-line", esc(idParts.join(" \u00b7 "))));
-  if (p.bio)   bioBlock.appendChild(el("p", "seal-bio", esc(p.bio)));
-  if (p.motto) bioBlock.appendChild(el("p", "seal-motto", esc(p.motto)));
+  if (idParts.length) {
+    const idLine = el("p", "ident-line", esc(idParts.join(" \u00b7 ")));
+    idLine.dir = "auto";
+    bioBlock.appendChild(idLine);
+  }
+  if (p.bio)   { const n2 = el("p", "seal-bio", esc(p.bio));     n2.dir = "auto"; bioBlock.appendChild(n2); }
+  if (p.motto) { const n3 = el("p", "seal-motto", esc(p.motto)); n3.dir = "auto"; bioBlock.appendChild(n3); }
 
   if (langs.length) {
     const facts = el("div", "fact-row");
@@ -9479,8 +9501,10 @@ function postCard(r) {
     (r.visibility !== "members" ? '<span class="ptag dim">' + esc(r.visibility) + '</span>' : '');
   card.appendChild(tags);
 
-  if (r.title)   card.appendChild(el("h3", "post-title", esc(r.title)));
-  if (r.content) card.appendChild(el("p", "post-body", esc(r.content)));
+  /* A post written in Arabic should read as Arabic: the browser decides
+     the direction from the first strong character in it. */
+  if (r.title)   { const t = el("h3", "post-title", esc(r.title)); t.dir = "auto"; card.appendChild(t); }
+  if (r.content) { const c = el("p", "post-body", esc(r.content)); c.dir = "auto"; card.appendChild(c); }
 
   const block = (lab, text, dir) => {
     const d = el("div", "src-block");
@@ -9494,7 +9518,10 @@ function postCard(r) {
   if (r.source_text)     card.appendChild(block("Source", r.source_text, dirOf(r.source_language)));
   if (r.translated_text) card.appendChild(block(r.post_type === "help" ? "My attempt" : "My translation",
                                                 r.translated_text, dirOf(r.target_language)));
-  if (r.translation_note) card.appendChild(el("p", "post-note", esc(r.translation_note)));
+  if (r.translation_note) {
+    const nt = el("p", "post-note", esc(r.translation_note));
+    nt.dir = "auto"; card.appendChild(nt);
+  }
 
   if (r.feedback_on && r.feedback_on.length) {
     const f = el("div", "fb-row");
@@ -9632,10 +9659,15 @@ function postForm(kind) {
     if (hint) d.appendChild(el("span", "f-hint", hint));
     d.appendChild(node); stage.appendChild(d); return node;
   };
+  /* dir="auto" on everything typed into: the browser picks the direction
+     from the first strong character, so Arabic goes right to left and
+     English left to right without the member choosing anything. */
   const input = (max, ph) => { const i = document.createElement("input");
-    i.type="text"; i.className="f-in"; i.maxLength=max; if(ph) i.placeholder=ph; return i; };
+    i.type="text"; i.className="f-in"; i.maxLength=max; i.dir="auto";
+    if(ph) i.placeholder=ph; return i; };
   const area = (max, rows, ph) => { const t = document.createElement("textarea");
-    t.className="f-in f-area"; t.maxLength=max; t.rows=rows; if(ph) t.placeholder=ph; return t; };
+    t.className="f-in f-area"; t.maxLength=max; t.rows=rows; t.dir="auto";
+    if(ph) t.placeholder=ph; return t; };
   const select = (opts, cur) => { const s2 = document.createElement("select"); s2.className="f-in";
     opts.forEach(v => { const o=document.createElement("option");
       if (Array.isArray(v)) { o.value=v[0]; o.textContent=v[1]; } else { o.value=v; o.textContent=v; }
@@ -9813,8 +9845,8 @@ async function runPost(id) {
     d.innerHTML =
       '<div class="c-head"><span class="mm-name">' + esc(withTitle(w.title, w.display_name)) + '</span>' +
       '<span class="mm-meta">' + (w.username ? "@" + esc(w.username) + " · " : "") + when(c.created_at) + '</span></div>' +
-      (c.quoted ? '<blockquote class="c-quote">' + esc(c.quoted) + '</blockquote>' : '') +
-      '<p class="c-body">' + esc(c.content) + '</p>';
+      (c.quoted ? '<blockquote class="c-quote" dir="auto">' + esc(c.quoted) + '</blockquote>' : '') +
+      '<p class="c-body" dir="auto">' + esc(c.content) + '</p>';
     const re = el("button","c-reply","Reply");
     re.addEventListener("click", () => writeComment(id, c.id, () => runPost(id)));
     d.appendChild(re);
@@ -9838,10 +9870,10 @@ function writeComment(postId, parentId, done, quoteOpts) {
     wrap.appendChild(el("span","f-hint","Paste the phrase you are commenting on, if it helps."));
   }
   const q = document.createElement("input");
-  q.type="text"; q.className="f-in"; q.maxLength=400;
+  q.type="text"; q.className="f-in"; q.maxLength=400; q.dir="auto";
   q.placeholder = parentId ? "Quote (optional)" : "The phrase you mean (optional)";
   const t = document.createElement("textarea");
-  t.className="f-in f-area"; t.rows=2; t.maxLength=3000;
+  t.className="f-in f-area"; t.rows=3; t.maxLength=3000; t.dir="auto";
   t.placeholder = parentId ? "Your reply" : "What would you change, and why?";
   const b = el("button","ghost small", parentId ? "Post reply" : "Post comment");
   const m = el("span","f-hint","");
@@ -10008,7 +10040,7 @@ async function runEditProfile() {
   /* Display name */
   const r1 = row("Display name", "What other members see.");
   const name = document.createElement("input");
-  name.type = "text"; name.className = "f-in"; name.maxLength = 60;
+  name.type = "text"; name.className = "f-in"; name.maxLength = 60; name.dir = "auto";
   name.value = p.display_name || "";
   r1.appendChild(name); stage.appendChild(r1);
 
@@ -10025,7 +10057,7 @@ async function runEditProfile() {
   /* Bio */
   const r3 = row("Bio", "Up to 160 characters, in either language.");
   const bio = document.createElement("textarea");
-  bio.className = "f-in f-area"; bio.maxLength = 160; bio.rows = 3;
+  bio.className = "f-in f-area"; bio.maxLength = 160; bio.rows = 3; bio.dir = "auto";
   bio.value = p.bio || "";
   const count = el("span", "f-count", "");
   const tick = () => { count.textContent = bio.value.length + " / 160"; };
@@ -10036,7 +10068,7 @@ async function runEditProfile() {
      once and kept, rather than a decoration in the markup. */
   const r3b = row("Favourite line", "A sentence you keep. Shown under your bio, in italics.");
   const motto = document.createElement("input");
-  motto.type = "text"; motto.className = "f-in"; motto.maxLength = 140;
+  motto.type = "text"; motto.className = "f-in"; motto.maxLength = 140; motto.dir = "auto";
   motto.value = p.motto || "";
   const mcount = el("span", "f-count", "");
   const mtick = () => { mcount.textContent = motto.value.length + " / 140"; };
@@ -10065,7 +10097,7 @@ async function runEditProfile() {
   const levelSel = pick("Level or position", "academic_level", ACADEMIC_LEVELS);
   const rI = row("Institution", null);
   const inst = document.createElement("input");
-  inst.type = "text"; inst.className = "f-in"; inst.maxLength = 80;
+  inst.type = "text"; inst.className = "f-in"; inst.maxLength = 80; inst.dir = "auto";
   inst.value = p.institution || "";
   rI.appendChild(inst); stage.appendChild(rI);
 
@@ -10667,7 +10699,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1805";
+const BUILD = "0926-1905";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
