@@ -1245,60 +1245,77 @@ a.ks-s-en:hover { color: var(--white); }
 :root[data-theme="light"] .icon-btn .ic-moon { display: none; }
 :root[data-theme="light"] .icon-btn .ic-sun  { display: block; }
 
+/* The head, to her drawing: the picture on the left, and the name, the
+   two badges and the three numbers stacked beside it. Sizes follow the
+   reference's proportions rather than its pixels — it is drawn on a
+   canvas wider than a phone, so what carries over is the ratio between
+   the picture, the name and the numbers. */
 .ig-head { display: grid; grid-template-columns: auto 1fr; align-items: center;
-  gap: clamp(.9rem,4vw,1.3rem); margin: .1rem 0 0; }
-.ig-head .avatar { width: 88px; height: 88px; font-size: 1.7rem; }
-.ig-id { display: grid; gap: .45rem; justify-items: start; min-width: 0; }
-.ig-name { margin: 0; font-family: var(--f-serif); font-weight: 600; line-height: 1.15;
-  font-size: clamp(1.3rem,5.5vw,1.55rem); color: var(--white); }
+  gap: clamp(.85rem,3.5vw,1.1rem); margin: .1rem 0 0; }
+.ig-head .avatar { width: 76px; height: 76px; font-size: 1.45rem; }
+.ig-id { display: grid; gap: .4rem; justify-items: start; min-width: 0; width: 100%; }
+.ig-name { margin: 0; font-family: var(--f-serif); font-weight: 600; line-height: 1.2;
+  font-size: 1.08rem; color: var(--white); }
 .ig-id .chips-row { margin: 0; gap: .3rem; flex-wrap: wrap; }
-.ig-id .chip-tag { font-size: .66rem; padding: .24rem .6rem; }
-.ig-marks { margin: 0; padding: 0; border: 0; background: none; box-shadow: none; text-align: start;
-  font: inherit; font-size: .74rem; color: var(--ink-soft); display: flex; gap: .5rem;
-  flex-wrap: wrap; align-items: baseline; }
-.ig-marks:hover { transform: none; }
-.ig-marks .m-n { letter-spacing: .1em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
-.ig-marks .m-next { color: var(--mag-ink); }
-.ig-marks[aria-expanded="true"] .m-next::after { content: " \2715"; }
+.ig-id .chip-tag { font-size: .64rem; padding: .22rem .58rem; }
 
-.count-row { display: grid; grid-template-columns: repeat(3,1fr); margin: 0; }
-.count-row div { text-align: center; padding: .35rem .2rem; cursor: default; }
+.count-row { display: grid; grid-template-columns: repeat(3,1fr); margin: .05rem 0 0; width: 100%; }
+.count-row div { text-align: center; padding: .1rem .15rem; cursor: default; }
 .count-row div + div { border-inline-start: var(--hair); }
-.count-row b { display: block; font-family: var(--f-serif); font-size: 1.45rem; color: var(--white);
-  font-variant-numeric: tabular-nums; line-height: 1.25; }
-.count-row span { font-size: .76rem; color: var(--ink-soft); }
+.count-row b { display: block; font-family: var(--f-serif); font-size: 1.05rem; color: var(--white);
+  font-variant-numeric: tabular-nums; line-height: 1.35; }
+.count-row span { font-size: .72rem; color: var(--ink-soft); }
 .count-row.mine div:first-child { cursor: pointer; }
 
-.ig-bio { display: grid; gap: .1rem; }
-.ident-line { margin: 0; font-size: .92rem; color: var(--lilac); }
-.ident-line.is-ar { font-family: var(--f-ar); font-size: .9rem; color: var(--ink-soft);
-  text-align: left; }
-.seal-bio { margin: 0; font-size: .88rem; line-height: 1.55; color: var(--ink-soft);
+.ig-bio { display: grid; gap: .12rem; }
+.ident-line { margin: 0; font-size: .88rem; color: var(--lilac); }
+.seal-bio { margin: 0; font-size: .86rem; line-height: 1.5; color: var(--ink-soft);
   max-width: var(--measure); }
-#seal-about .pub-h { margin: 0 0 .6rem; }
+/* The line she drew in italics under the bio: a sentence a translator
+   keeps, not a description of themselves. */
+.seal-motto { margin: .12rem 0 0; font-family: var(--f-serif); font-style: italic;
+  font-size: .92rem; line-height: 1.45; color: var(--lilac); max-width: var(--measure); }
+
+/* Interests: a label and the chips, with no card around them. */
+.ig-ints { display: grid; gap: .5rem; }
+.ig-ints .pub-h { margin: 0; color: var(--ink-faint); }
+.ig-ints .chip-tag { font-size: .78rem; padding: .3rem .75rem; }
+
+.handle-btn { display: flex; align-items: center; gap: .3rem; padding: 0; border: 0;
+  background: none; box-shadow: none; }
+.handle-btn:hover { transform: none; }
+.handle-btn svg { width: 16px; height: 16px; fill: none; stroke: var(--white);
+  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.top-acts { display: flex; align-items: center; gap: .4rem; }
+.icon-btn.plain { border: 0; background: none; width: 38px; height: 38px; }
+.icon-btn.plain svg { width: 22px; height: 22px; stroke: var(--white); }
+#seal > #seal-settings { display: none; }
+.sheet #seal-settings { display: block; }
+.sheet #seal-settings .panel { padding: 0; border: 0; background: none; }
+.sheet #seal-settings .hall-foot { margin-top: .6rem; }
 
 
 /* shortcut circles, and the grid of a member's own work */
-.hilite-row { display: flex; gap: .7rem; overflow-x: auto; margin: .9rem 0 .2rem;
-  padding-bottom: .3rem; scrollbar-width: none; }
-.hilite-row::-webkit-scrollbar { display: none; }
-.hilite { flex: none; display: grid; justify-items: center; gap: .3rem; width: 5rem;
+/* Four of them, so they divide the row evenly rather than scrolling. */
+.hilite-row { display: grid; grid-template-columns: repeat(4,1fr); gap: .4rem;
+  margin: 1rem 0 .2rem; }
+.hilite { display: grid; justify-items: center; gap: .35rem; min-width: 0;
   padding: 0; border: 0; background: none; box-shadow: none; }
 .hilite:hover { transform: none; }
-.hilite i { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
+.hilite i { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
   border: var(--hair-lit); background: rgba(255,255,255,.04); }
 .hilite svg { width: 21px; height: 21px; fill: none; stroke: var(--lilac);
   stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .hilite:hover i { background: rgba(214,191,234,.14); }
-.hilite span { font-size: .68rem; line-height: 1.3; text-align: center; color: var(--ink-soft); }
+.hilite span { font-size: .7rem; line-height: 1.3; text-align: center; color: var(--ink-soft); }
 
-.grid-tabs { display: flex; border-top: var(--hair); margin: 1.2rem 0 0; }
-.grid-tab { flex: 1 1 0; padding: .7rem .3rem; margin-top: -1px; background: none; border: 0;
-  border-radius: 0; border-top: 2px solid transparent; box-shadow: none;
-  font-size: .7rem; letter-spacing: .12em;
+.grid-tabs { display: flex; border-top: var(--hair); margin: .9rem 0 0; }
+.grid-tab { flex: 1 1 0; padding: .7rem .3rem; background: none; border: 0;
+  border-radius: 0; border-bottom: 2px solid transparent; box-shadow: none;
+  font-size: .72rem; letter-spacing: .1em;
   text-transform: uppercase; color: var(--ink-faint); }
 .grid-tab:hover { transform: none; color: var(--lilac); }
-.grid-tab[aria-selected="true"] { color: var(--white); border-top-color: var(--white); }
+.grid-tab[aria-selected="true"] { color: var(--white); border-bottom-color: var(--white); }
 
 .post-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: .4rem; margin: .5rem 0 1rem; }
 .tile { aspect-ratio: 1 / 1; display: grid; align-content: space-between; gap: .3rem;
@@ -1379,7 +1396,8 @@ a.ks-s-en:hover { color: var(--white); }
 .seal-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
 .seal-actions.wide { display: grid; grid-template-columns: repeat(3,1fr); gap: .4rem; margin: .8rem 0 0; }
 .seal-actions.wide.two { grid-template-columns: repeat(2,1fr); }
-.seal-actions.wide .ghost { padding: .55rem .3rem; font-size: .76rem; letter-spacing: 0; }
+.seal-actions.wide .ghost { padding: .6rem .3rem; font-size: .8rem; letter-spacing: 0;
+  border-radius: var(--r-lg); }
 
 .f-photo { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
 .f-row { display: grid; gap: .3rem; margin-bottom: 1.1rem; }
@@ -2223,12 +2241,23 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <!-- The handle at the top, the way the reference has it, and the theme
          switch where a thumb reaches it rather than three panels down. -->
     <div class="seal-top">
-      <h1 class="seal-wordmark" id="seal-handle">Translators&rsquo; Guild</h1>
-      <button type="button" class="icon-btn" id="theme-toggle"
-              aria-label="Switch between dark and light">
-        <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
-        <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+      <!-- The handle, and the chevron she drew beside it: it opens the
+           screen where the handle is set, which is the only thing the
+           chevron could honestly do here. -->
+      <button type="button" class="handle-btn" id="seal-handle-btn">
+        <span class="seal-wordmark" id="seal-handle">Translators&rsquo; Guild</span>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 10l5 5 5-5"/></svg>
       </button>
+      <span class="top-acts">
+        <button type="button" class="icon-btn" id="theme-toggle"
+                aria-label="Switch between dark and light">
+          <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+          <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        </button>
+        <button type="button" class="icon-btn plain" id="seal-menu" aria-label="Settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </span>
     </div>
 
     <!-- Picture on the left; name, standing and marks to the right of
@@ -2246,31 +2275,20 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
           <span class="chip-tag" id="chip-rank">Novice</span>
           <span class="chip-tag solid">Translation Team</span>
         </p>
-        <!-- The one line about marks, and the way in to the whole of it:
-             the Climb, the record of trials and the reading list open
-             from here rather than sitting under the work. -->
-        <button type="button" class="ig-marks" id="seal-rank" aria-expanded="false"></button>
+        <div class="count-row mine" id="seal-counts"></div>
       </div>
-    </div>
-
-    <div class="count-row mine" id="seal-counts"></div>
-
-    <div id="seal-progress" hidden>
-      <div class="panel climb" id="climb"></div>
-      <div class="panel" id="seal-record"></div>
-      <div class="panel" id="seal-later"></div>
     </div>
 
     <!-- One block, because the screen is a grid and every child of it
          costs a row gap. These lines belong together anyway. -->
     <div class="ig-bio">
       <p class="ident-line" id="seal-ident" hidden></p>
-      <p class="ident-line is-ar" id="seal-ident-ar" dir="rtl" lang="ar" hidden></p>
       <p class="seal-bio" id="seal-bio" hidden></p>
+      <p class="seal-motto" id="seal-motto" hidden></p>
     </div>
 
     <div class="fact-row" id="seal-facts" hidden></div>
-    <div class="panel" id="seal-about" hidden></div>
+    <div class="ig-ints" id="seal-about" hidden></div>
 
     <p class="seal-actions wide">
       <button type="button" class="ghost" id="edit-profile-btn">Edit Profile</button>
@@ -2287,9 +2305,17 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div id="seal-grid"></div>
 
 
-    <!-- Kept for the three-way choice, now that the header carries the
-         quick switch between dark and light. It sits with the other
-         settings at the foot rather than between the bio and the work. -->
+    <div id="seal-progress" hidden>
+      <div class="panel climb" id="climb"></div>
+      <div class="panel" id="seal-record"></div>
+      <div class="panel" id="seal-later"></div>
+    </div>
+
+    <!-- The reference ends at the work, so the settings live behind the
+         menu button at the top. They are the same controls, moved: the
+         nodes themselves are lifted into the sheet and put back after,
+         so nothing is rebuilt and nothing loses its wiring. -->
+    <div id="seal-settings">
     <details class="panel appearance-more">
       <summary><span>Appearance</span><span class="j-next" id="appearance-now">System</span></summary>
       <div class="pick-row two" role="radiogroup" aria-label="Theme">
@@ -2309,6 +2335,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       <p class="note" id="store-note" style="flex:1 1 100%"></p>
       <button class="ghost" id="seal-back" hidden>Back</button>
       <button class="ghost" id="seal-btn-open" hidden>Profile</button>
+    </div>
     </div>
   </section>
 
@@ -8018,7 +8045,7 @@ async function sbHeaders() {
    at all and applies each privacy switch in SQL — so turning one off
    withholds the value rather than hiding it in the interface.
    ═══════════════════════════════════════════════════════════ */
-const PROFILE_COLS = "id,username,title,display_name,avatar_path,bio,field_of_study," +
+const PROFILE_COLS = "id,username,title,display_name,avatar_path,bio,motto,field_of_study," +
   "institution,academic_level,marks,rank_slug,profile_visibility,discoverable,show_progress," +
   "show_interests,show_institution,show_academic_level,allow_follows," +
   "who_can_message,show_online,read_receipts";
@@ -8048,6 +8075,7 @@ async function patchMyProfile(patch) {
     const e = new Error(/duplicate key|23505/i.test(msg) ? "That username is taken." :
                         /profiles_username_format/.test(msg) ? "Use 3-24 characters: a-z, 0-9 or _" :
                         /profiles_bio_len/.test(msg) ? "The bio is longer than 160 characters." :
+                    /profiles_motto_len/.test(msg) ? "That line is longer than 140 characters." :
                         msg);
     e.field = /username/i.test(msg) ? "username" : /bio/i.test(msg) ? "bio" : null;
     throw e;
@@ -9053,9 +9081,15 @@ async function sbGet(path) {
 
 const myId = () => (session && session.user && session.user.id) || null;
 
+/* 1,414 rather than 1414, which is how she wrote it. */
+function tally(n) {
+  const v = Number(n);
+  return isFinite(v) ? v.toLocaleString("en-US") : n;
+}
+
 async function myCounts() {
-  const rows = await sbGet("member_counts?select=followers,following,friends&id=eq." + myId());
-  return rows[0] || { followers: 0, following: 0, friends: 0 };
+  const rows = await sbGet("member_counts?select=followers,following&id=eq." + myId());
+  return rows[0] || { followers: 0, following: 0 };
 }
 
 async function findMembers(q) {
@@ -9200,7 +9234,7 @@ async function runPublic(id) {
   let p, counts, langs, ints, posts = [];
   try {
     p = (await sbGet("profiles_public?select=*&id=eq." + id))[0];
-    counts = (await sbGet("member_counts?select=followers,following,friends&id=eq." + id))[0];
+    counts = (await sbGet("member_counts?select=followers,following&id=eq." + id))[0];
     langs = await sbGet("member_languages?select=language,proficiency&user_id=eq." + id + "&order=ordinal.asc");
     ints  = await sbGet("member_interests?select=interest,category&user_id=eq." + id);
   } catch (e) { stage.innerHTML = ""; stage.appendChild(el("p","note","That profile could not be opened.")); return; }
@@ -9212,43 +9246,34 @@ async function runPublic(id) {
   const dir = (await sbGet("member_directory?select=i_follow,follows_me,allow_follows&id=eq." + id))[0] || {};
   stage.innerHTML = "";
 
-  /* The same compact head as her own profile: the picture and the three
-     numbers on one line, and everything else as lines of text under it. */
+  /* The same head as her own profile: picture on the left, and the
+     name, the badges and the three numbers beside it. */
   const head = el("div", "ig-head");
   const av = el("span", "avatar");
   paintFace(av, p.avatar_path, p.display_name);
   head.appendChild(av);
   const who = el("div", "ig-id");
   who.appendChild(el("h1", "ig-name", esc(withTitle(p.title, p.display_name))));
+  /* The rank badge only when they have left their progress visible; the
+     view returns null for it otherwise. */
   who.appendChild(el("p", "chips-row",
     (p.rank_slug ? '<span class="chip-tag">' + esc(rankName(p.rank_slug)) + '</span>' : '') +
     '<span class="chip-tag solid">Translation Team</span>'));
-  /* Marks only when they have left their progress visible; the view
-     returns null for it otherwise. */
-  if (p.marks != null) who.appendChild(el("p", "ig-marks",
-    '<span class="m-n">' + p.marks + " / " + totalMarks() + ' marks</span>'));
-  head.appendChild(who);
-  stage.appendChild(head);
-
   const c = counts || {};
-  const cell = (n, lab) => '<div><b>' + n + '</b><span>' + lab + '</span></div>';
-  stage.appendChild(el("div", "count-row",
+  const cell = (n, lab) => '<div><b>' + tally(n) + '</b><span>' + lab + '</span></div>';
+  who.appendChild(el("div", "count-row",
     cell(posts.length, "posts") + cell(c.followers || 0, "followers") +
     cell(c.following || 0, "following")));
+  head.appendChild(who);
+  stage.appendChild(head);
 
   const bioBlock = el("div", "ig-bio");
   stage.appendChild(bioBlock);
 
   const idParts = [p.field_of_study, p.academic_level, p.institution].filter(Boolean);
   if (idParts.length) bioBlock.appendChild(el("p", "ident-line", esc(idParts.join(" \u00b7 "))));
-  const fAr = FIELD_AR[p.field_of_study], lAr = LEVEL_AR[p.academic_level];
-  if (fAr || lAr) {
-    const arLine = el("p", "ident-line is-ar",
-      esc([fAr, lAr, p.institution].filter(Boolean).join(" \u00b7 ")));
-    arLine.dir = "rtl"; arLine.lang = "ar";
-    bioBlock.appendChild(arLine);
-  }
-  if (p.bio) bioBlock.appendChild(el("p", "seal-bio", esc(p.bio)));
+  if (p.bio)   bioBlock.appendChild(el("p", "seal-bio", esc(p.bio)));
+  if (p.motto) bioBlock.appendChild(el("p", "seal-motto", esc(p.motto)));
 
   if (langs.length) {
     const facts = el("div", "fact-row");
@@ -9258,12 +9283,12 @@ async function runPublic(id) {
     stage.appendChild(facts);
   }
   if (p.show_interests && ints.length) {
-    const panel = el("div", "panel");
-    panel.innerHTML = '<h3 class="pub-h">Interests</h3>';
+    const box = el("div", "ig-ints");
+    box.innerHTML = '<h3 class="pub-h">Interests</h3>';
     const chips = el("div", "chips-row");
     ints.forEach(i => chips.appendChild(el("span", "chip-tag", esc(i.interest))));
-    panel.appendChild(chips);
-    stage.appendChild(panel);
+    box.appendChild(chips);
+    stage.appendChild(box);
   }
 
   const acts = el("p", "seal-actions wide two");
@@ -10002,6 +10027,17 @@ async function runEditProfile() {
   bio.addEventListener("input", tick); tick();
   r3.appendChild(bio); r3.appendChild(count); stage.appendChild(r3);
 
+  /* The italic line under the bio. It is a real column, so it is typed
+     once and kept, rather than a decoration in the markup. */
+  const r3b = row("Favourite line", "A sentence you keep. Shown under your bio, in italics.");
+  const motto = document.createElement("input");
+  motto.type = "text"; motto.className = "f-in"; motto.maxLength = 140;
+  motto.value = p.motto || "";
+  const mcount = el("span", "f-count", "");
+  const mtick = () => { mcount.textContent = motto.value.length + " / 140"; };
+  motto.addEventListener("input", mtick); mtick();
+  r3b.appendChild(motto); r3b.appendChild(mcount); stage.appendChild(r3b);
+
   /* ── About. Every one of these is optional; a member is never made
      to disclose where they study. ── */
   stage.appendChild(el("h3", "pub-h", "About"));
@@ -10113,6 +10149,7 @@ async function runEditProfile() {
         display_name: name.value.trim(),
         username: u || null,
         bio: bio.value.trim() || null,
+        motto: motto.value.trim() || null,
         field_of_study: field.value || null,
         academic_level: levelSel.value || null,
         institution: inst.value.trim() || null
@@ -10318,7 +10355,7 @@ async function renderCounts() {
   if (!box) return;
   if (backend !== "supabase") { box.hidden = true; return; }
   box.hidden = false;
-  const cell = (n, lab) => '<div><b>' + n + '</b><span>' + lab + '</span></div>';
+  const cell = (n, lab) => '<div><b>' + tally(n) + '</b><span>' + lab + '</span></div>';
   const row = (a, b, c) => cell(a, "posts") + cell(b, "followers") + cell(c, "following");
   box.innerHTML = row("\u2013", "\u2013", "\u2013");
   try {
@@ -10336,22 +10373,14 @@ async function renderCounts() {
 function renderIdent() {
   const p = state.profile || {};
   const en = document.getElementById("seal-ident");
-  const ar = document.getElementById("seal-ident-ar");
   const bio = document.getElementById("seal-bio");
   if (!en) return;
   const parts = [p.field_of_study, p.academic_level, p.institution].filter(Boolean);
   en.textContent = parts.join(" \u00b7 ");
   en.hidden = !parts.length;
-  /* The institution goes through as the member typed it: their own
-     spelling of their own university beats a guess at it. */
-  const fAr = FIELD_AR[p.field_of_study], lAr = LEVEL_AR[p.academic_level];
-  const arParts = [fAr, lAr, p.institution].filter(Boolean);
-  ar.textContent = arParts.join(" \u00b7 ");
-  /* Without a field or a level in Arabic there is no Arabic line to
-     draw \u2014 only the institution, which would sit there looking like a
-     stray echo of the line above it. */
-  ar.hidden = !(fAr || lAr);
   if (bio) { bio.textContent = p.bio || ""; bio.hidden = !p.bio; }
+  const mot = document.getElementById("seal-motto");
+  if (mot) { mot.textContent = p.motto || ""; mot.hidden = !p.motto; }
 }
 
 /* Languages, field and institution as small cards, which is the part of
@@ -10384,6 +10413,41 @@ async function renderAbout() {
   const row = el("div", "chips-row");
   ints.forEach(i => row.appendChild(el("span", "chip-tag", esc(i.interest))));
   box.appendChild(row);
+}
+
+/* The settings the drawing has no room for, behind the menu button. The
+   controls are not rebuilt here — the nodes themselves are lifted in and
+   put back when the sheet closes, so every handler survives. */
+function settingsMenu() {
+  const host = document.getElementById("seal-settings");
+  const seal = document.getElementById("seal");
+  if (!host || !seal) return;
+  const wrap = el("div", "sheet-back");
+  const card = el("div", "sheet");
+  card.appendChild(el("h3", null, "Settings"));
+
+  const prog = el("button", "sheet-act", "Your progress");
+  prog.addEventListener("click", () => {
+    const p = document.getElementById("seal-progress");
+    close();
+    if (!p) return;
+    p.hidden = false;
+    p.scrollIntoView({ block: "start", behavior: "smooth" });
+  });
+  card.appendChild(prog);
+  card.appendChild(host);
+
+  function close() {
+    /* Back where it came from, before the sheet goes. */
+    seal.appendChild(host);
+    wrap.remove();
+  }
+  const done = el("button", "sheet-act quiet", "Close");
+  done.addEventListener("click", close);
+  card.appendChild(done);
+  wrap.addEventListener("click", e => { if (e.target === wrap) close(); });
+  wrap.appendChild(card);
+  document.body.appendChild(wrap);
 }
 
 
@@ -10573,16 +10637,15 @@ function wireProfileButtons() {
     e.dataset.wired = "1";
     e.addEventListener("click", () => openItem(EDIT_ITEM));
   }
-  const rk = document.getElementById("seal-rank");
-  if (rk && !rk.dataset.wired) {
-    rk.dataset.wired = "1";
-    rk.addEventListener("click", () => {
-      const prog = document.getElementById("seal-progress");
-      if (!prog) return;
-      prog.hidden = !prog.hidden;
-      rk.setAttribute("aria-expanded", String(!prog.hidden));
-      if (!prog.hidden) prog.scrollIntoView({ block: "nearest", behavior: "smooth" });
-    });
+  const mb = document.getElementById("seal-menu");
+  if (mb && !mb.dataset.wired) {
+    mb.dataset.wired = "1";
+    mb.addEventListener("click", settingsMenu);
+  }
+  const hb = document.getElementById("seal-handle-btn");
+  if (hb && !hb.dataset.wired) {
+    hb.dataset.wired = "1";
+    hb.addEventListener("click", () => openItem(EDIT_ITEM));
   }
   const sh = document.getElementById("share-profile-btn");
   if (sh && !sh.dataset.wired) {
@@ -10599,7 +10662,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1610";
+const BUILD = "0926-1650";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
@@ -10623,19 +10686,6 @@ function renderSeal() {
 
   const chip = document.getElementById("chip-rank");
   if (chip) chip.textContent = rank.en;
-
-  /* The count and the next rung, small, under the standing. Tapping it
-     opens the whole of it: the Climb, the record of trials and the
-     reading list, which used to be a thousand pixels of scroll. */
-  const rk = document.getElementById("seal-rank");
-  if (rk) {
-    const nx = RANKS.find(r => r.at > n);
-    const gapN = nx ? nx.at - n : 0;
-    rk.innerHTML = '<span class="m-n">' + n + " / " + tm + ' marks</span>' +
-      '<span class="m-next">' +
-        (nx ? gapN + (gapN === 1 ? " mark to " : " marks to ") + nx.en : "Every mark earned") +
-      '</span>';
-  }
   paintWho();
   renderCounts();
   renderIdent();
