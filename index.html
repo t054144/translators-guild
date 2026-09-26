@@ -1451,6 +1451,13 @@ a.ks-s-en:hover { color: var(--white); }
 .pick-chip { cursor: pointer; background: transparent; font-family: inherit; }
 .pick-chip.on { background: rgba(167,38,208,.25); color: var(--white); border-color: var(--magenta); }
 .pick-chip.add { border-style: dashed; color: var(--mag-ink); }
+/* Sits above the bottom bar, out of the way, until she taps it. */
+.new-build { position: fixed; left: .7rem; right: .7rem; bottom: 5.2rem; z-index: 60;
+  display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;
+  padding: .7rem .85rem; border-radius: var(--r-lg); border: 1px solid var(--magenta);
+  background: var(--panel, rgba(30,16,48,.98)); box-shadow: 0 10px 30px rgba(0,0,0,.45); }
+.new-build span { flex: 1 1 8rem; font-size: .85rem; color: var(--white); }
+.new-build .primary { padding: .4rem .9rem; font-size: .8rem; }
 .at-image { display: grid; gap: .4rem; margin: .5rem 0 1rem; }
 .at-image img, .at-image video { width: 100%; height: auto; border-radius: var(--r-lg); border: var(--hair);
   display: block; background: rgba(255,255,255,.03); }
@@ -10886,9 +10893,14 @@ async function renderCounts() {
   const row = (a, b, c) => cell(a, "posts") + cell(b, "followers") + cell(c, "following");
   box.innerHTML = row("\u2013", "\u2013", "\u2013");
   try {
+    /* Counted from the feed, not from the posts table. A deleted post
+       is still a row — it is marked, not destroyed, so that one removed
+       by mistake can be put back — and counting rows meant the number
+       stayed at 1 after she deleted her only post. The feed is the same
+       thing the grid below reads, so the two now agree. */
     const [c, mine] = await Promise.all([
       myCounts(),
-      sbGet("posts?select=id&author_id=eq." + myId())
+      sbGet("feed?select=id&author_id=eq." + myId())
     ]);
     box.innerHTML = row(mine.length, c.followers, c.following);
     box.querySelectorAll("div")[0].addEventListener("click", () => openItem(MINE_ITEM));
@@ -11529,11 +11541,48 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0927-0130";
+const BUILD = "0927-0210";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
 }
+
+/* A phone does not reload a page it never closed. She has had this open
+   for days, switching back to it, and every change I shipped stayed
+   invisible until she happened to open it cold \u2014 so the page asks the
+   server what the current build is when she comes back to it, and says
+   so rather than letting her think nothing had changed. */
+let lastBuildCheck = 0;
+async function checkForNewBuild() {
+  if (document.getElementById("new-build")) return;
+  const now = Date.now();
+  if (now - lastBuildCheck < 60000) return;
+  lastBuildCheck = now;
+  let live;
+  try {
+    const r = await fetch(location.pathname + "?b=" + now, { cache: "no-store" });
+    if (!r.ok) return;
+    const m = /const BUILD = "([0-9-]+)"/.exec(await r.text());
+    live = m && m[1];
+  } catch (e) { return; }
+  if (!live || live === BUILD) return;
+  const bar = el("div", "new-build",
+    '<span>A newer version of the site is ready.</span>');
+  bar.id = "new-build";
+  const go = el("button", "primary", "Refresh");
+  go.type = "button";
+  go.addEventListener("click", () => location.reload());
+  bar.appendChild(go);
+  const no = el("button", "act-btn quiet", "Later");
+  no.type = "button";
+  no.addEventListener("click", () => bar.remove());
+  bar.appendChild(no);
+  document.body.appendChild(bar);
+}
+document.addEventListener("visibilitychange", () => {
+  if (document.visibilityState === "visible") checkForNewBuild();
+});
+window.addEventListener("focus", checkForNewBuild);
 
 function renderSeal() {
   wireProfileButtons();
