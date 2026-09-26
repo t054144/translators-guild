@@ -9056,7 +9056,11 @@ const TRANSLATION_INTERESTS = ["Literary Translation","Technical Translation","L
 const INTERPRETING_INTERESTS = ["Consecutive","Simultaneous","Community","Conference","Media"];
 const PROFICIENCIES = ["native","advanced","intermediate","beginner"];
 /* A title sits before the name. It is not a level of study. */
-const TITLES = ["Dr.","Prof.","Prof. Dr.","Assoc. Prof.","Asst. Prof.","Sh.","Eng."];
+/* Academic and professional titles only. Sh. was in here for
+   Sheikh/Sheikha, which is not a thing this site has any business
+   putting in front of a translator's name, and next to a name like
+   Shaikha it read as a mangled abbreviation of the name itself. */
+const TITLES = ["Dr.","Prof.","Prof. Dr.","Assoc. Prof.","Asst. Prof.","Eng."];
 
 /* The old list had room only for students, so anyone who teaches had to
    choose Other. It now covers the people who actually use this site. */
@@ -10662,7 +10666,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1650";
+const BUILD = "0926-1725";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
