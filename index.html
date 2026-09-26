@@ -2442,6 +2442,15 @@ function runLineage(startAt) {
       "Every one of them is here with a piece of the actual translating, so you can see the decision " +
       "being made and not only hear it described."));
 
+    /* Two different histories, and a reader arriving here from the hall
+       can reasonably expect either one. Say which this is, and hand them
+       the other. */
+    stage.appendChild(el("p", "note",
+      "This is the history of the <b>practice</b> &mdash; the people who did the work. The history of " +
+      "<b>translation studies</b>, the discipline, is a different subject: Holmes's map, Jakobson's three " +
+      "kinds, and where the theories came from. That is in " +
+      "<b>180 Principles of Translation</b>, units two and three."));
+
     if (cur !== null) {
       const f = LINEAGE[cur];
       const card = el("div", "card");
@@ -8260,7 +8269,12 @@ function renderHall() {
       (figAr(f) ? '<span class="s-ar" dir="rtl" lang="ar">' + figAr(f) + '</span>' : '') +
       '<span class="s-role">' + (figRole(f) || f.pair) + '</span>' +
       '<span class="s-life">' + f.life + '</span>';
-    b.addEventListener("click", () => openItem(ITEMS[0], i));
+    /* By id, never by position. This was ITEMS[0], which meant the strip
+       opened whatever happened to be first in the ledger — and the day the
+       minor was added at the top, every portrait on the hall started
+       opening the Kuwait University course list instead of the translator
+       the reader had just tapped. */
+    b.addEventListener("click", () => openItem(ITEMS.find(t => t.id === "lineage"), i));
     strip.appendChild(b);
   });
   paintPortraits(strip);
