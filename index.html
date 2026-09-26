@@ -1190,6 +1190,61 @@ a.ks-s-en:hover { color: var(--white); }
 .sheet-act.danger { color: var(--mag-ink); }
 
 /* Edit Profile form */
+/* ── the feed ── */
+.filter-bar { display: flex; gap: .4rem; overflow-x: auto; padding: .2rem 0 .6rem; margin: .8rem 0 .2rem;
+  scrollbar-width: none; }
+.filter-bar::-webkit-scrollbar { display: none; }
+.filter { flex: none; padding: .4rem .85rem; border-radius: 999px; border: var(--hair);
+  background: transparent; color: var(--ink-soft); font-size: .8rem; box-shadow: none; white-space: nowrap; }
+.filter.on { background: rgba(167,38,208,.22); color: var(--white); border-color: var(--magenta); }
+.feed-list { display: grid; gap: .8rem; margin: .6rem 0 1rem; }
+.post { display: grid; gap: .55rem; padding: 1rem 1.05rem; border-radius: var(--r-lg);
+  border: var(--hair); background: rgba(255,255,255,.035); }
+.post-head { display: grid; grid-template-columns: auto 1fr; gap: .7rem; align-items: center; }
+.ph-txt { display: grid; gap: .05rem; min-width: 0; }
+.post-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+.ptag { font-size: .64rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  padding: .22rem .55rem; border-radius: 999px; border: 1px solid var(--magenta); color: var(--mag-ink); }
+.ptag.dim { border-color: rgba(214,191,234,.28); color: var(--ink-soft); font-weight: 500; letter-spacing: .06em; }
+.post-title { font-family: var(--f-serif); font-size: 1.05rem; margin: .15rem 0 0; color: var(--white); }
+.post-body { font-size: .92rem; line-height: 1.6; margin: 0; color: var(--ink-soft); white-space: pre-wrap; }
+.src-block { border-inline-start: 2px solid rgba(214,191,234,.3); padding-inline-start: .8rem; }
+.src-lab { display: block; font-size: .62rem; font-weight: 700; letter-spacing: .14em;
+  text-transform: uppercase; color: var(--mag-ink); margin-bottom: .2rem; }
+.src-text { margin: 0; font-size: .95rem; line-height: 1.7; color: var(--white); white-space: pre-wrap; }
+.src-text[dir="rtl"] { font-family: var(--f-ar); font-size: 1.02rem; }
+.post-note { font-size: .85rem; font-style: italic; color: var(--ink-soft); margin: 0; }
+.fb-row { display: grid; gap: .3rem; }
+.post-acts { display: flex; gap: .5rem; flex-wrap: wrap; padding-top: .3rem; }
+.act-btn { padding: .35rem .7rem; border-radius: 999px; border: var(--hair); background: transparent;
+  color: var(--ink-soft); font-size: .78rem; box-shadow: none; }
+.act-btn.on { color: var(--white); border-color: var(--magenta); background: rgba(167,38,208,.16); }
+.act-btn.quiet { border: 0; color: var(--ink-faint); }
+.attach-row, .attach-card { width: 100%; text-align: start; padding: .6rem .8rem; border-radius: var(--r-lg);
+  border: var(--hair); background: rgba(255,255,255,.04); color: inherit; font: inherit; box-shadow: none; }
+.attach-card { display: grid; gap: .15rem; margin-bottom: .5rem; }
+.at-name { font-weight: 600; color: var(--white); overflow-wrap: anywhere; }
+.at-meta { font-size: .74rem; color: var(--ink-soft); }
+.kind-list { display: grid; gap: .55rem; margin: .8rem 0; }
+.kind { display: grid; grid-template-columns: auto 1fr; gap: .85rem; align-items: center; text-align: start;
+  padding: .9rem 1rem; border-radius: var(--r-lg); border: var(--hair);
+  background: rgba(255,255,255,.035); color: inherit; font: inherit; box-shadow: none; }
+.k-ico { font-size: 1.3rem; color: var(--mag-ink); }
+.k-txt { display: grid; gap: .12rem; }
+.k-en { font-family: var(--f-serif); font-size: 1.02rem; font-weight: 600; color: var(--white); }
+.k-say { font-size: .8rem; color: var(--ink-soft); }
+.two-up { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+.c-list { display: grid; gap: .6rem; margin-bottom: 1rem; }
+.c-item { padding: .7rem .85rem; border-radius: var(--r-lg); border: var(--hair);
+  background: rgba(255,255,255,.03); }
+.c-item.reply { margin-inline-start: 1.2rem; border-inline-start: 2px solid rgba(214,191,234,.3); }
+.c-head { display: flex; gap: .5rem; align-items: baseline; flex-wrap: wrap; }
+.c-quote { margin: .4rem 0; padding-inline-start: .7rem; border-inline-start: 2px solid var(--magenta);
+  font-size: .86rem; color: var(--lilac); }
+.c-body { margin: .3rem 0 .4rem; font-size: .9rem; line-height: 1.6; white-space: pre-wrap; }
+.c-reply { padding: 0; border: 0; background: none; color: var(--mag-ink); font-size: .76rem; box-shadow: none; }
+.c-write { display: grid; gap: .45rem; margin: .8rem 0 1.2rem; }
+
 /* ── community ── */
 .avatar.sm { width: 42px; height: 42px; font-size: .9rem; }
 .m-members { display: grid; gap: .5rem; margin: 1rem 0; }
@@ -9105,6 +9160,505 @@ function photoMenu() {
   document.body.appendChild(wrap);
 }
 
+/* ═══════════════════════════════════════════════════════════
+   THE GUILD FEED
+
+   Five kinds of post, one table. What a reader may see is decided by
+   row-level security on posts, not by this file: the feed view runs as
+   the caller, so a post set to friends is not returned to anyone else,
+   and there is no filtering here that a crafted request could skip.
+   ═══════════════════════════════════════════════════════════ */
+const POST_KINDS = [
+  { id: "translation", icon: "✎", en: "My Translation",
+    say: "Share something you translated and ask for feedback." },
+  { id: "help", icon: "⚑", en: "Translation Help",
+    say: "Ask the community about a difficult passage." },
+  { id: "request", icon: "✉", en: "Translation Request",
+    say: "Ask for help with a piece of work." },
+  { id: "discussion", icon: "“", en: "Discussion",
+    say: "A question of terminology, strategy or theory." },
+  { id: "challenge", icon: "⚡", en: "Challenge",
+    say: "Post a passage for other members to translate." }
+];
+const GENRES = ["Literary","Technical","Legal","Medical","Journalistic","Political","General"];
+const LANGS  = ["Arabic","English","Other"];
+const FEEDBACK_ON = ["Accuracy","Naturalness","Terminology","Style","Grammar","Cultural adaptation","Overall"];
+const VISIBILITIES = [["members","Members only"],["followers","Followers"],
+                      ["friends","Friends"],["private","Only me"]];
+const FEED_FILTERS = [["all","All"],["translation","Translations"],["help","Help"],
+                      ["request","Requests"],["discussion","Discussions"],["challenge","Challenges"]];
+
+const FEED_COLS = "id,author_id,post_type,title,content,source_language,target_language,genre," +
+  "source_text,translated_text,translation_note,feedback_on,difficulty,deadline,visibility," +
+  "created_at,username,display_name,avatar_path,rank_slug,likes,comments,attachments,i_like,i_saved";
+
+async function loadFeed(kind, mine) {
+  let q = "feed?select=" + FEED_COLS + "&order=created_at.desc&limit=40";
+  if (kind && kind !== "all") q += "&post_type=eq." + kind;
+  if (mine) q += "&author_id=eq." + myId();
+  return sbGet(q);
+}
+
+function when(iso) {
+  const d = new Date(iso), s = (Date.now() - d) / 1000;
+  if (s < 60) return "just now";
+  if (s < 3600) return Math.floor(s / 60) + "m";
+  if (s < 86400) return Math.floor(s / 3600) + "h";
+  if (s < 604800) return Math.floor(s / 86400) + "d";
+  return d.toLocaleDateString(undefined, { day: "numeric", month: "short" });
+}
+
+const COMMUNITY_ITEM = { id: "community", en: "Guild Feed",
+                         subject: "The translation community", section: "profile", run: runFeed };
+
+function runFeed(kind) {
+  let filter = kind || "all";
+  setCount(""); stage.innerHTML = "";
+
+  const make = el("button", "primary wide", "＋  Create a post");
+  make.addEventListener("click", () => openItem(NEWPOST_ITEM));
+  stage.appendChild(make);
+
+  const bar = el("div", "filter-bar");
+  FEED_FILTERS.forEach(([id, label]) => {
+    const b = el("button", "filter" + (id === filter ? " on" : ""), label);
+    b.addEventListener("click", () => {
+      filter = id;
+      [...bar.children].forEach(c => c.classList.toggle("on", c === b));
+      draw();
+    });
+    bar.appendChild(b);
+  });
+  stage.appendChild(bar);
+
+  const list = el("div", "feed-list");
+  const msg = el("p", "f-msg", "Loading…");
+  stage.appendChild(list); stage.appendChild(msg);
+
+  let seq = 0;
+  async function draw() {
+    const mine = ++seq;
+    msg.textContent = "Loading…"; list.innerHTML = "";
+    try {
+      const rows = await loadFeed(filter);
+      if (mine !== seq) return;
+      rows.forEach(r => list.appendChild(postCard(r)));
+      msg.textContent = rows.length ? "" : "Nothing here yet. Be the first.";
+    } catch (e) {
+      if (mine === seq) msg.textContent = "The feed could not be loaded.";
+    }
+  }
+  draw();
+  stage.appendChild(footNav({ backLabel: "Profile" }));
+}
+
+/* A translation post does not look like a status update: the source and
+   the rendering are two blocks, because comparing them is the point. */
+function postCard(r) {
+  const card = el("article", "post");
+
+  const head = el("div", "post-head");
+  const av = el("span", "avatar sm");
+  if (r.avatar_path) { av.innerHTML = '<img src="' + avatarUrl(r.avatar_path) + '" alt="">'; av.classList.add("has-photo"); }
+  else av.textContent = initialsFor(r.display_name);
+  av.addEventListener("click", () => openPublic({ id: r.author_id, display_name: r.display_name, username: r.username }));
+  head.appendChild(av);
+  head.innerHTML += '<div class="ph-txt">' +
+      '<span class="mm-name">' + esc(r.display_name || "Member") + '</span>' +
+      '<span class="mm-meta">' + (r.username ? "@" + esc(r.username) + " · " : "") +
+        esc(rankName(r.rank_slug)) + " · " + when(r.created_at) + '</span>' +
+    '</div>';
+  card.appendChild(head);
+
+  const kind = POST_KINDS.find(k => k.id === r.post_type);
+  const tags = el("div", "post-tags");
+  tags.innerHTML =
+    '<span class="ptag ' + r.post_type + '">' + esc(kind ? kind.en : r.post_type) + '</span>' +
+    (r.genre ? '<span class="ptag dim">' + esc(r.genre) + '</span>' : '') +
+    (r.source_language && r.target_language
+      ? '<span class="ptag dim">' + esc(r.source_language) + ' → ' + esc(r.target_language) + '</span>' : '') +
+    (r.visibility !== "members" ? '<span class="ptag dim">' + esc(r.visibility) + '</span>' : '');
+  card.appendChild(tags);
+
+  if (r.title)   card.appendChild(el("h3", "post-title", esc(r.title)));
+  if (r.content) card.appendChild(el("p", "post-body", esc(r.content)));
+
+  const block = (lab, text, dir) => {
+    const d = el("div", "src-block");
+    d.appendChild(el("span", "src-lab", lab));
+    const pre = el("p", "src-text", esc(text));
+    if (dir) { pre.dir = dir; pre.lang = dir === "rtl" ? "ar" : "en"; }
+    d.appendChild(pre);
+    return d;
+  };
+  const dirOf = l => l === "Arabic" ? "rtl" : "ltr";
+  if (r.source_text)     card.appendChild(block("Source", r.source_text, dirOf(r.source_language)));
+  if (r.translated_text) card.appendChild(block(r.post_type === "help" ? "My attempt" : "My translation",
+                                                r.translated_text, dirOf(r.target_language)));
+  if (r.translation_note) card.appendChild(el("p", "post-note", esc(r.translation_note)));
+
+  if (r.feedback_on && r.feedback_on.length) {
+    const f = el("div", "fb-row");
+    f.appendChild(el("span", "src-lab", "Feedback wanted on"));
+    const chips = el("div", "chips-row");
+    r.feedback_on.forEach(x => chips.appendChild(el("span", "chip-tag", esc(x))));
+    f.appendChild(chips);
+    card.appendChild(f);
+  }
+
+  if (r.attachments) {
+    const a = el("button", "attach-row", "📎 " + r.attachments +
+                 (r.attachments === 1 ? " attachment" : " attachments"));
+    a.addEventListener("click", () => openPost(r));
+    card.appendChild(a);
+  }
+
+  const acts = el("div", "post-acts");
+  const like = el("button", "act-btn" + (r.i_like ? " on" : ""), "♡ " + r.likes);
+  let liked = r.i_like, nLike = r.likes;
+  like.addEventListener("click", async () => {
+    like.disabled = true;
+    try {
+      if (liked) { await sbDel("post_likes?user_id=eq." + myId() + "&post_id=eq." + r.id); nLike--; }
+      else { await sbPost("post_likes", { user_id: myId(), post_id: r.id }); nLike++; }
+      liked = !liked; like.textContent = "♡ " + nLike; like.classList.toggle("on", liked);
+    } catch (e) {} finally { like.disabled = false; }
+  });
+  acts.appendChild(like);
+
+  const cm = el("button", "act-btn", "💬 " + r.comments);
+  cm.addEventListener("click", () => openPost(r));
+  acts.appendChild(cm);
+
+  let saved = r.i_saved;
+  const sv = el("button", "act-btn" + (saved ? " on" : ""), saved ? "Saved" : "Save");
+  sv.addEventListener("click", async () => {
+    sv.disabled = true;
+    try {
+      if (saved) await sbDel("post_saves?user_id=eq." + myId() + "&post_id=eq." + r.id);
+      else await sbPost("post_saves", { user_id: myId(), post_id: r.id });
+      saved = !saved; sv.textContent = saved ? "Saved" : "Save"; sv.classList.toggle("on", saved);
+    } catch (e) {} finally { sv.disabled = false; }
+  });
+  acts.appendChild(sv);
+
+  if (r.author_id === myId()) {
+    const del = el("button", "act-btn quiet", "Delete");
+    del.addEventListener("click", async () => {
+      if (del.dataset.armed !== "1") { del.dataset.armed = "1"; del.textContent = "Tap again"; return; }
+      try { await sbDel("posts?id=eq." + r.id); card.remove(); } catch (e) {}
+    });
+    acts.appendChild(del);
+  }
+  card.appendChild(acts);
+  return card;
+}
+
+async function sbPost(path, body) {
+  const r = await fetch(SUPABASE.url + "/rest/v1/" + path,
+    { method: "POST", headers: Object.assign(await sbHeaders(), { Prefer: "return=representation" }),
+      body: JSON.stringify(body) });
+  if (!r.ok) { const t = await r.text(); throw new Error(t || ("save failed " + r.status)); }
+  const j = await r.json().catch(() => null);
+  return j && j[0];
+}
+async function sbDel(path) {
+  const r = await fetch(SUPABASE.url + "/rest/v1/" + path, { method: "DELETE", headers: await sbHeaders() });
+  if (!r.ok) throw new Error("delete failed " + r.status);
+}
+
+/* ─── Create a post. The kind is chosen first, because it decides which
+   fields are worth showing: a discussion needs no source text. ─── */
+/* A member's own published work, which is what a portfolio is. */
+const MINE_ITEM = { id: "mine", en: "My Translations",
+                    subject: "Your published work", section: "profile",
+                    run: () => runList(() => loadFeed("all", true),
+                          "You have not published anything yet.") };
+
+const SAVED_ITEM = { id: "saved", en: "Saved",
+                     subject: "Posts you kept", section: "profile",
+                     run: () => runList(async () => {
+                       const rows = await sbGet("post_saves?select=post_id&user_id=eq." + myId() +
+                                                "&order=created_at.desc&limit=60");
+                       if (!rows.length) return [];
+                       return sbGet("feed?select=" + FEED_COLS + "&id=in.(" +
+                                    rows.map(r => r.post_id).join(",") + ")&order=created_at.desc");
+                     }, "Nothing saved yet.") };
+
+async function runList(get, empty) {
+  setCount(""); stage.innerHTML = "";
+  const list = el("div", "feed-list");
+  const msg = el("p", "f-msg", "Loading\u2026");
+  stage.appendChild(list); stage.appendChild(msg);
+  try {
+    const rows = await get();
+    rows.forEach(r => list.appendChild(postCard(r)));
+    msg.textContent = rows.length ? "" : empty;
+  } catch (e) { msg.textContent = "That could not be loaded."; }
+  stage.appendChild(footNav({ backLabel: "Profile" }));
+}
+
+const NEWPOST_ITEM = { id: "newpost", en: "Create a post",
+                       subject: "What are you posting?", section: "profile", run: runNewPost };
+
+function runNewPost() {
+  setCount(""); stage.innerHTML = "";
+  stage.appendChild(el("p", "note", "What are you posting?"));
+  const list = el("div", "kind-list");
+  POST_KINDS.forEach(k => {
+    const b = el("button", "kind");
+    b.innerHTML = '<span class="k-ico" aria-hidden="true">' + k.icon + '</span>' +
+      '<span class="k-txt"><span class="k-en">' + k.en + '</span>' +
+      '<span class="k-say">' + k.say + '</span></span>';
+    b.addEventListener("click", () => postForm(k));
+    list.appendChild(b);
+  });
+  stage.appendChild(list);
+  stage.appendChild(footNav({ backLabel: "Feed" }));
+}
+
+function postForm(kind) {
+  setCount(kind.en); stage.innerHTML = "";
+  const wants = {
+    translation: { langs:1, genre:1, src:1, tgt:1, note:1, fb:1 },
+    help:        { langs:1, genre:1, src:1, tgt:1, note:1, fb:1, title:1 },
+    request:     { langs:1, genre:1, src:1, deadline:1, title:1 },
+    discussion:  { title:1 },
+    challenge:   { langs:1, genre:1, src:1, difficulty:1, title:1 }
+  }[kind.id];
+
+  const mk = (label, hint, node) => {
+    const d = el("div", "f-row");
+    d.appendChild(el("label", "f-lab", label));
+    if (hint) d.appendChild(el("span", "f-hint", hint));
+    d.appendChild(node); stage.appendChild(d); return node;
+  };
+  const input = (max, ph) => { const i = document.createElement("input");
+    i.type="text"; i.className="f-in"; i.maxLength=max; if(ph) i.placeholder=ph; return i; };
+  const area = (max, rows, ph) => { const t = document.createElement("textarea");
+    t.className="f-in f-area"; t.maxLength=max; t.rows=rows; if(ph) t.placeholder=ph; return t; };
+  const select = (opts, cur) => { const s2 = document.createElement("select"); s2.className="f-in";
+    opts.forEach(v => { const o=document.createElement("option");
+      if (Array.isArray(v)) { o.value=v[0]; o.textContent=v[1]; } else { o.value=v; o.textContent=v; }
+      if (o.value===cur) o.selected=true; s2.appendChild(o); }); return s2; };
+
+  const title = wants.title ? mk(kind.id==="discussion" ? "Your question" : "Title", null, input(160)) : null;
+  let srcL, tgtL, genre;
+  if (wants.langs) {
+    const r = el("div", "f-row two-up");
+    const a = el("div", null); a.appendChild(el("label","f-lab","From")); srcL = select(LANGS,"Arabic"); a.appendChild(srcL);
+    const b = el("div", null); b.appendChild(el("label","f-lab","Into"));  tgtL = select(LANGS,"English"); b.appendChild(tgtL);
+    r.appendChild(a); r.appendChild(b); stage.appendChild(r);
+  }
+  if (wants.genre) genre = mk("Genre", null, select(GENRES, "General"));
+  const src  = wants.src ? mk("Source text", null, area(8000, 5)) : null;
+  const tgt  = wants.tgt ? mk(kind.id==="help" ? "My attempt" : "My translation", null, area(8000, 5)) : null;
+  const body = mk(kind.id==="help" ? "The problem" : kind.id==="discussion" ? "Your thoughts" : "Context",
+                  kind.id==="help" ? "What exactly are you unsure about?" : null, area(6000, 4));
+  const note = wants.note ? mk("Translation note", "Optional.", area(1000, 2)) : null;
+  const diff = wants.difficulty ? mk("Difficulty", null, select(["Beginner","Intermediate","Advanced"],"Intermediate")) : null;
+  let dead = null;
+  if (wants.deadline) { const d=document.createElement("input"); d.type="date"; d.className="f-in";
+    dead = mk("Deadline", "Optional.", d); }
+
+  const chosen = [];
+  if (wants.fb) {
+    stage.appendChild(el("h3","pub-h","What do you want feedback on?"));
+    const box = el("div","chips-row pickable");
+    FEEDBACK_ON.forEach(f => {
+      const c = el("button","chip-tag pick-chip", f);
+      c.addEventListener("click", () => {
+        const at = chosen.indexOf(f); if (at>=0) chosen.splice(at,1); else chosen.push(f);
+        c.classList.toggle("on", chosen.indexOf(f)>=0);
+      });
+      box.appendChild(c);
+    });
+    stage.appendChild(box);
+  }
+
+  const vis = mk("Who can see this?", null, select(VISIBILITIES, "members"));
+
+  /* attachment */
+  stage.appendChild(el("h3","pub-h","Attachment"));
+  const file = document.createElement("input");
+  file.type = "file"; file.className = "f-in";
+  file.accept = ".pdf,.docx,.txt,.srt,.vtt,image/*";
+  stage.appendChild(file);
+  stage.appendChild(el("p","f-hint","Optional. Up to 10 MB. Only members who can see the post can open it."));
+
+  const msg = el("p","f-msg","");
+  stage.appendChild(msg);
+  const go = el("button","primary wide","Publish");
+  go.addEventListener("click", async () => {
+    msg.classList.remove("bad");
+    const payload = {
+      author_id: myId(), post_type: kind.id,
+      title: title && title.value.trim() || null,
+      content: body.value.trim() || null,
+      source_language: srcL ? srcL.value : null,
+      target_language: tgtL ? tgtL.value : null,
+      genre: genre ? genre.value : null,
+      source_text: src && src.value.trim() || null,
+      translated_text: tgt && tgt.value.trim() || null,
+      translation_note: note && note.value.trim() || null,
+      feedback_on: chosen,
+      difficulty: diff ? diff.value : null,
+      deadline: dead && dead.value || null,
+      visibility: vis.value
+    };
+    if (!payload.content && !payload.source_text && !payload.title) {
+      msg.textContent = "There is nothing to publish yet."; msg.classList.add("bad"); return;
+    }
+    go.disabled = true; msg.textContent = "Publishing…";
+    try {
+      const row = await sbPost("posts", payload);
+      const f = file.files && file.files[0];
+      if (f && row) {
+        msg.textContent = "Uploading the attachment…";
+        await uploadAttachment(row.id, f);
+      }
+      clearTrail(); openItem(COMMUNITY_ITEM);
+    } catch (e) {
+      go.disabled = false; msg.textContent = "It could not be published."; msg.classList.add("bad");
+    }
+  });
+  stage.appendChild(go);
+  stage.appendChild(footNav({ back: () => runNewPost(), backLabel: "Post type" }));
+}
+
+const ATTACH_MAX = 10 * 1024 * 1024;
+async function uploadAttachment(postId, f) {
+  if (f.size > ATTACH_MAX) throw new Error("That file is over 10 MB.");
+  const safe = f.name.replace(/[^\w.\- ]+/g, "_").slice(0, 80);
+  const path = myId() + "/" + postId + "-" + Date.now() + "-" + safe;
+  const t = await freshToken();
+  const r = await fetch(SUPABASE.url + "/storage/v1/object/attachments/" + encodeURI(path), {
+    method: "POST",
+    headers: { apikey: SUPABASE.key, Authorization: "Bearer " + t,
+               "Content-Type": f.type || "application/octet-stream" },
+    body: f
+  });
+  if (!r.ok) throw new Error("upload " + r.status);
+  await sbPost("post_attachments", { post_id: postId, uploader_id: myId(), file_path: path,
+                                     file_name: f.name, file_type: f.type, file_size: f.size });
+}
+
+/* The bucket is private, so a link has to be signed and is short-lived.
+   The raw storage path is never handed to the page. */
+async function signedLink(path) {
+  const t = await freshToken();
+  const r = await fetch(SUPABASE.url + "/storage/v1/object/sign/attachments/" + encodeURI(path), {
+    method: "POST",
+    headers: { apikey: SUPABASE.key, Authorization: "Bearer " + t, "Content-Type": "application/json" },
+    body: JSON.stringify({ expiresIn: 600 })
+  });
+  if (!r.ok) throw new Error("This file could not be opened.");
+  const j = await r.json();
+  return SUPABASE.url + "/storage/v1" + j.signedURL;
+}
+
+/* ─── one post, with its comments ─── */
+function openPost(r) {
+  openItem({ id: "post:" + r.id, en: (POST_KINDS.find(k=>k.id===r.post_type)||{}).en || "Post",
+             subject: r.display_name ? "by " + r.display_name : "", section: "profile",
+             run: () => runPost(r.id) });
+}
+
+async function runPost(id) {
+  setCount(""); stage.innerHTML = "";
+  stage.appendChild(el("p","note","Loading…"));
+  let r, cs, atts;
+  try {
+    r = (await sbGet("feed?select=" + FEED_COLS + "&id=eq." + id))[0];
+    cs = await sbGet("comments?select=id,author_id,parent_id,quoted,content,created_at&post_id=eq." + id + "&order=created_at.asc");
+    atts = await sbGet("post_attachments?select=id,file_path,file_name,file_type,file_size&post_id=eq." + id);
+  } catch (e) { stage.innerHTML=""; stage.appendChild(el("p","note","That post could not be opened.")); return; }
+  if (!r) { stage.innerHTML=""; stage.appendChild(el("p","note","That post is not visible to you.")); return; }
+
+  stage.innerHTML = "";
+  stage.appendChild(postCard(r));
+
+  if (atts.length) {
+    stage.appendChild(el("h3","pub-h","Attachments"));
+    atts.forEach(a => {
+      const b = el("button","attach-card");
+      b.innerHTML = '<span class="at-name">' + esc(a.file_name) + '</span>' +
+        '<span class="at-meta">' + Math.max(1, Math.round((a.file_size||0)/1024)) + ' KB · open →</span>';
+      b.addEventListener("click", async () => {
+        b.disabled = true;
+        try { const u = await signedLink(a.file_path); window.open(u, "_blank", "noopener"); }
+        catch (e) { b.querySelector(".at-meta").textContent = "Could not be opened."; }
+        finally { b.disabled = false; }
+      });
+      stage.appendChild(b);
+    });
+  }
+
+  /* who wrote each comment */
+  const ids = [...new Set(cs.map(c => c.author_id))];
+  let who = {};
+  if (ids.length) {
+    try {
+      const rows = await sbGet("profiles_public?select=id,username,display_name,avatar_path&id=in.(" + ids.join(",") + ")");
+      rows.forEach(p2 => { who[p2.id] = p2; });
+    } catch (e) {}
+  }
+
+  stage.appendChild(el("h3","pub-h", cs.length ? cs.length + (cs.length===1?" comment":" comments") : "No comments yet"));
+  const box = el("div","c-list");
+  const byParent = {};
+  cs.forEach(c => { const k = c.parent_id || 0; (byParent[k] = byParent[k] || []).push(c); });
+  const drawC = (c, depth) => {
+    const w = who[c.author_id] || {};
+    const d = el("div","c-item" + (depth ? " reply" : ""));
+    d.innerHTML =
+      '<div class="c-head"><span class="mm-name">' + esc(w.display_name || "Member") + '</span>' +
+      '<span class="mm-meta">' + (w.username ? "@" + esc(w.username) + " · " : "") + when(c.created_at) + '</span></div>' +
+      (c.quoted ? '<blockquote class="c-quote">' + esc(c.quoted) + '</blockquote>' : '') +
+      '<p class="c-body">' + esc(c.content) + '</p>';
+    const re = el("button","c-reply","Reply");
+    re.addEventListener("click", () => writeComment(id, c.id, () => runPost(id)));
+    d.appendChild(re);
+    box.appendChild(d);
+    (byParent[c.id] || []).forEach(k => drawC(k, depth + 1));
+  };
+  (byParent[0] || []).forEach(c => drawC(c, 0));
+  stage.appendChild(box);
+
+  /* a comment can quote a phrase from the post, which is what peer
+     review actually looks like */
+  const quoteOpts = [r.source_text, r.translated_text].filter(Boolean);
+  writeComment(id, null, () => runPost(id), quoteOpts);
+
+  stage.appendChild(footNav({ backLabel: "Feed" }));
+}
+
+function writeComment(postId, parentId, done, quoteOpts) {
+  const wrap = el("div","c-write");
+  if (quoteOpts && quoteOpts.length) {
+    wrap.appendChild(el("span","f-hint","Paste the phrase you are commenting on, if it helps."));
+  }
+  const q = document.createElement("input");
+  q.type="text"; q.className="f-in"; q.maxLength=400;
+  q.placeholder = parentId ? "Quote (optional)" : "The phrase you mean (optional)";
+  const t = document.createElement("textarea");
+  t.className="f-in f-area"; t.rows=2; t.maxLength=3000;
+  t.placeholder = parentId ? "Your reply" : "What would you change, and why?";
+  const b = el("button","ghost small", parentId ? "Post reply" : "Post comment");
+  const m = el("span","f-hint","");
+  b.addEventListener("click", async () => {
+    if (!t.value.trim()) { m.textContent = "Write something first."; return; }
+    b.disabled = true; m.textContent = "Posting…";
+    try {
+      await sbPost("comments", { post_id: postId, author_id: myId(),
+        parent_id: parentId, quoted: q.value.trim() || null, content: t.value.trim() });
+      done && done();
+    } catch (e) { b.disabled = false; m.textContent = "It could not be posted."; }
+  });
+  wrap.appendChild(q); wrap.appendChild(t); wrap.appendChild(b); wrap.appendChild(m);
+  stage.appendChild(wrap);
+}
+
 /* ─── Privacy settings. Each switch writes a column that the views read,
    so turning one off withholds the value from the request. ─── */
 /* Replace the child rows wholesale: the set the member left the screen
@@ -9561,9 +10115,17 @@ function renderCommunity() {
       '<div><b>\u2013</b><span>Following</span></div>' +
       '<div><b>\u2013</b><span>Followers</span></div>' +
     '</div>';
+  const acts = el("p", "seal-actions");
+  const feed = el("button", "ghost", "Guild Feed");
+  feed.addEventListener("click", () => openItem(COMMUNITY_ITEM));
   const find = el("button", "ghost", "Find Translators");
   find.addEventListener("click", () => openItem(FIND_ITEM));
-  box.appendChild(find);
+  const mine = el("button", "ghost", "My Translations");
+  mine.addEventListener("click", () => openItem(MINE_ITEM));
+  const saved = el("button", "ghost", "Saved");
+  saved.addEventListener("click", () => openItem(SAVED_ITEM));
+  [feed, find, mine, saved].forEach(b => acts.appendChild(b));
+  box.appendChild(acts);
   myCounts().then(c => {
     const n = box.querySelector("#my-counts");
     if (!n) return;
