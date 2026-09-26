@@ -8019,6 +8019,7 @@ async function connectBackend(email) {
     const row = await sbRead();
     backend = "supabase";
     loadProfile();
+    loadMyProfile().then(() => { if (!views.seal.hidden) renderSeal(); }).catch(() => {});
     admCheck();
     absorb(row);
     await sbWrite(member);
@@ -8033,7 +8034,6 @@ async function connectBackend(email) {
         if (snap.exists) absorb(fromGuildDoc(snap.data()));
         backend = "guild";
         await pushBackend();
-        try { await loadMyProfile(); } catch (e) {}
         dbUnsub = dbDoc.onSnapshot(s => {
           if (s.exists && absorb(fromGuildDoc(s.data()))) renderHall();
         }, () => { backend = "local"; paintStore(); });
@@ -8826,7 +8826,15 @@ const EDIT_ITEM = { id: "editprofile", en: "Edit Profile",
                     subject: "Your public identity", section: "profile",
                     run: runEditProfile };
 
-function runEditProfile() {
+async function runEditProfile() {
+  /* Reached directly after a reload, the profile may not be in memory
+     yet. Fetch it before drawing the form, or every field renders empty
+     and saving would blank the member's own record. */
+  if (!state.profile && backend === "supabase") {
+    stage.innerHTML = "";
+    stage.appendChild(el("p", "note", "Loading\u2026"));
+    try { await loadMyProfile(); } catch (e) {}
+  }
   const p = state.profile || {};
   setCount("");
   stage.innerHTML = "";
@@ -9078,6 +9086,9 @@ function wireProfileButtons() {
 
 function renderSeal() {
   wireProfileButtons();
+  if (!state.profile && backend === "supabase") {
+    loadMyProfile().then(p => { if (p) renderSeal(); }).catch(() => {});
+  }
   const n = markCount(), rank = currentRank(), tm = totalMarks();
 
   paintRing(document.getElementById("hall-ring"), n);
