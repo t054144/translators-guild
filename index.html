@@ -1946,7 +1946,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   <section id="learn" class="view" hidden>
     <header class="screen-head">
       <h1>Theory &amp; Method</h1>
-      <p class="note">Nothing here is marked &middot; the field, its terms and its errors &mdash; and a workshop where you translate for your own portfolio</p>
+      <p class="note">The field, its terms and its errors. Nothing here is marked.</p>
     </header>
     <div id="block-method"><div class="ledger" id="sec-method"></div></div>
   </section>
@@ -1955,13 +1955,13 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   <section id="practice" class="view" hidden>
     <header class="screen-head">
       <h1>Practice</h1>
-      <p class="note">Ten trials earn marks. The chambers earn none and never run out.</p>
+      <p class="note">Ten trials earn marks. The chambers never run out.</p>
     </header>
 
     <div id="block-trials">
       <div class="sec-head">
         <h2>The Trials</h2>
-        <span class="note">Assessed &middot; each earns a mark</span>
+        <span class="note">Each earns a mark</span>
       </div>
       <div class="ledger" id="sec-trials"></div>
     </div>
@@ -1969,7 +1969,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div id="block-chambers">
       <div class="sec-head">
         <h2>The Chambers</h2>
-        <span class="note">Open practice &middot; not assessed</span>
+        <span class="note">Unassessed, unlimited</span>
       </div>
       <div class="ledger" id="sec-chambers"></div>
     </div>
@@ -7290,45 +7290,45 @@ const KSL_LESSONS = [
 const ITEMS = [
   { id: "minor", ar: "مساند التَّرجمة · جامعة الكويت", en: "Kuwait University · Translation Minor", kind: "guide", section: "method",
     subject: "مساند التَّرجمة · جامعة الكويت",
-    blurb: "The ten courses of the minor, each with the title the programme gives it in both languages — what the subject is, where it is used, what it asks of you, and what the Guild already holds that belongs to it.",
+    blurb: "Ten courses, both languages, and what the Guild already holds for each.",
     run: runMinor },
   { id: "ksl", ar: "لغة الإشارة الكويتية", en: "Kuwaiti Sign Language", kind: "guide", section: "method",
     subject: "لغة الإشارة الكويتية · KSL",
-    blurb: "The third language the Guild works in, and the only one with no writing. What KSL is, who uses it, how a sign is assembled, and why fingerspelling is not signing — with the sources, the verification rules, and the eight-stage path stated honestly, including how far along it is.",
+    blurb: "Kuwait's Deaf language and its forty handshapes &mdash; and why fingerspelling is not signing.",
     run: runKsl },
   { id: "lineage", ar: "تاريخ التَّرجمة", en: "Translation in History", kind: "guide", section: "method",
     subject: "The practice, the discipline, and the people",
-    blurb: "Three histories that get confused with each other. The <b>practice</b>, in eight eras from the Septuagint to post-editing &mdash; Baghdad, Toledo, the vernacular Bible, the Nahḍa, the machine. The <b>discipline</b> &mdash; translation studies, which dates itself from 1972: Holmes's map, skopos, the descriptive turn, the cultural turn, invisibility. And the <b>people</b>: sixteen translators, eight from the Arabic tradition and eight from the Western one, each with a piece of the actual translating.",
+    blurb: "Eight eras of the practice, eight moments of the discipline, and sixteen translators.",
     run: runLineage },
   { id: "procedures", ar: "الإجراءات السَّبعة", en: "The Seven Procedures", kind: "guide", section: "method",
     subject: "Vinay &amp; Darbelnet · Chapter 12",
-    blurb: "The foundational framework of the field — borrowing, calque, literal, transposition, modulation, equivalence, adaptation — each worked in Arabic and English. One framework among several, and the one the others answer.",
+    blurb: "Borrowing, calque, literal, transposition, modulation, equivalence, adaptation &mdash; each worked both ways.",
     run: runProcedures },
   { id: "toolkit", ar: "عُدّة المُترجِم", en: "Method, Procedure and Strategy", kind: "guide", section: "method",
     subject: "Chapters 12–13",
-    blurb: "Method, procedure, strategy and shift are four different things. The twelve strategies of Chapter 13, each with its Arabic name and a worked example — and what to call what you actually did.",
+    blurb: "Method, procedure, strategy and shift are four different things. Twelve strategies, each worked.",
     run: runToolkit },
   /* The id stays "texttypes" so nobody's stored progress is orphaned by the
      rename; only what a learner sees has changed. */
   { id: "texttypes", ar: "عوالِم النُّصوص", en: "Text Types and Genres", kind: "guide", section: "method",
     subject: "Text typology · Chapter 18",
-    blurb: "Ten worlds a translation can land in — journalistic, political and diplomatic, legal, technical, medical, literary, transcreation, localization, audiovisual, academic — and why they are not all the same kind of category.",
+    blurb: "Ten worlds a translation can land in, and what each one will not forgive.",
     run: runTextTypes },
   { id: "modes", ar: "أنماط التَّرجمة الشَّفهية", en: "The Modes of Interpreting", kind: "guide", section: "method",
     subject: "الترجمة الشفهية · Chapter 1",
-    blurb: "Simultaneous, consecutive, sight, whispered, relay and remote — what each one is, where it is used, what it demands, and where it goes wrong. The field is الشفهية; الفورية is one mode inside it.",
+    blurb: "Simultaneous, consecutive, sight, whispered, relay, remote &mdash; and where each one goes wrong.",
     run: runModes },
   { id: "glossary", ar: "مَسرَد المُصطلَحات", en: "Glossary of the Field", kind: "guide", section: "method",
     subject: "مَسرَد المُصطلَحات · every key term, both languages",
-    blurb: "Every key term the handbook defines, searchable in Arabic or English, each with the chapter that explains it. Keep the ones you want and they stay on your Seal.",
+    blurb: "Every term the handbook defines, searchable in either language. Star the ones you want.",
     run: runGlossary },
   { id: "errors", ar: "المُراجَعة والأخطاء الشّائعة", en: "Revision and Common Errors", kind: "guide", section: "method",
     subject: "المراجعة · Chapter 23",
-    blurb: "The three readings a draft needs, then the handbook's reference list of what actually goes wrong in each direction — the sentence that is correct and still sounds translated.",
+    blurb: "The three readings a draft needs, and what actually goes wrong in each direction.",
     run: runErrors },
   { id: "commentary", ar: "التَّرجمة والتَّعليق عليها", en: "Translation and Commentary", kind: "workshop", section: "method",
     subject: "التعليق على الترجمة · Chapter 25",
-    blurb: "Fifteen passages at three levels. Write your own rendering, keep it, and only then see the handbook's version — every piece you keep is part of your portfolio.",
+    blurb: "Fifteen passages. Write your own rendering, keep it, and only then see the handbook's.",
     run: runCommentary },
 
   { id: "nameproc", ar: "ما هذا الإجراء؟", en: "Translation Procedures", kind: "trial", section: "trials",
@@ -7337,63 +7337,63 @@ const ITEMS = [
     run: () => runChoice(NAME_PROC, "Which procedure produced this?") },
   { id: "human", ar: "أيّ من الخيارات تُطابِق المعنى؟", en: "Equivalence", kind: "trial", section: "trials",
     subject: "التكافؤ · Chapter 9",
-    blurb: "One Arabic line, three English renderings. Only one carries the meaning the way an English speaker actually would.",
+    blurb: "One Arabic line, three English renderings. Only one of them sounds like English.",
     run: () => runChoice(HUMAN, "Which option matches the meaning?") },
   { id: "proverb", ar: "مَثَلٌ بِمَثَل", en: "Idioms and Proverbs", kind: "trial", section: "trials",
     subject: "التعبير الاصطلاحي · Chapter 8",
-    blurb: "Match the Arabic proverb to the English proverb that means the same thing — not the one that says the same words.",
+    blurb: "Match the Arabic proverb to the English one that means the same &mdash; not says the same.",
     run: () => runChoice(PROVERBS, "Which English proverb does the same work?") },
   /* published:false keeps it out of the Mark total until it has its
      proverbs — the ring must never ask for a mark that cannot be earned. */
   { id: "kuwaiti", ar: "أمثالٌ كويتية", en: "Kuwaiti Proverbs", kind: "trial", section: "trials",
     subject: "الأمثال الكويتية",
     published: false,
-    blurb: "The proverbs that are ours, not the ones every Arabic speaker shares — and what to do with them when the text has to go into English. Being collected from the people who say them; nothing here is invented.",
+    blurb: "Ours, not the ones every Arabic speaker shares. Collected from the people who say them.",
     run: runKuwaiti },
   { id: "courtesy", ar: "خِزانة المُجامَلات", en: "Speech Acts", kind: "trial", section: "trials",
     subject: "الأفعال الكلامية · Chapter 5",
-    blurb: "Gulf politeness formulas with no English words but exact English functions. One of them has no equivalent at all.",
+    blurb: "Gulf politeness formulas with exact English functions and no English words.",
     run: () => runChoice(COURTESY, "What would an English speaker actually say?") },
   { id: "cultural", ar: "الاِستِبدال الثَّقافيّ", en: "Cultural Substitution", kind: "trial", section: "trials",
     subject: "الإبدال الثقافي · Chapter 13",
-    blurb: "English idioms bound to their culture. Swap the object, keep the meaning — or notice when Arabic already agrees.",
+    blurb: "Swap the object, keep the meaning &mdash; or notice when Arabic already agrees.",
     run: () => runChoice(CULTURAL, "How does this cross into Arabic?") },
   { id: "subtitle", ar: "قَيد الشّاشة", en: "Subtitling", kind: "trial", section: "trials",
     subject: "السترجة · Chapter 27",
-    blurb: "A real subtitler's constraint: a hard character limit and a line that will not fit. Cut the words, keep the meaning.",
+    blurb: "A hard character limit and a line that will not fit. Cut the words, keep the meaning.",
     run: runSubtitle },
   { id: "booth", ar: "المَقصورة", en: "Interpreting", kind: "trial", section: "trials",
     subject: "الترجمة الشفهية · Chapter 1",
-    blurb: "Choose your setting — diplomatic, legal, media, medical, conference or community — then climb from single terms to a full turn of speech, against a clock. Nothing repeats.",
+    blurb: "Pick a setting, then climb from single terms to a full turn of speech, against a clock.",
     run: runBooth },
   { id: "colloc", ar: "التَّلازُم اللَّفظيّ", en: "Collocation", kind: "trial", section: "trials",
     subject: "التلازم اللفظي · Chapter 7",
     direction: "both",
-    blurb: "English pays attention and Arabic notices it; English has strong tea and Arabic has heavy tea. Six pairings where the partner is already chosen and no rule will tell you which.",
+    blurb: "English has strong tea; Arabic has heavy tea. Six pairings where the partner is fixed.",
     run: () => runChoice(COLLOC, "Which partner does the other language use?") },
   { id: "context", ar: "السِّياق", en: "Context and Ambiguity", kind: "trial", section: "trials",
     subject: "السياق · Chapter 6",
     direction: "both",
-    blurb: "A bank, a case, an عين. The same spelling holds meanings that have nothing to do with each other — and one word nearby decides which you are looking at.",
+    blurb: "A bank, a case, an &#1593;&#1610;&#1606;. One word nearby decides which you are looking at.",
     run: () => runChoice(CONTEXT_Q, "Which reading does the context give you?") },
   { id: "revise", ar: "المُراجَعة", en: "Revision", kind: "trial", section: "trials",
     subject: "المراجعة · Chapter 23",
     direction: "both",
-    blurb: "Six sentences that are grammatical and still announce themselves as translations. Find what the source language left behind.",
+    blurb: "Six sentences that are grammatical and still announce themselves as translations.",
     run: () => runChoice(REVISE, "Which version would a reviser keep?") },
 
   { id: "phraseology", ar: "اللُّغة والتَّعبير", en: "Phraseology", kind: "exhibit", section: "chambers",
     subject: "المتلازمات والتعابير · Chapters 7–8",
     direction: "both",
-    blurb: "Collocations, connectors, courtesy formulas and speech acts — the chunks a language has already assembled. Both directions, because what English splits Arabic may join.",
+    blurb: "Collocations, connectors, courtesy formulas, speech acts &mdash; the chunks already assembled.",
     run: runPhraseology },
   { id: "register", ar: "مؤشِّر المُستوى اللُّغَويّ", en: "Register", kind: "exhibit", section: "chambers",
     subject: "المستوى اللغوي · Chapter 3",
-    blurb: "One meaning, four levels — from Kuwaiti street to classical Arabic — and what each one does to the English.",
+    blurb: "One meaning, four levels, Kuwaiti street to classical &mdash; and what each does to the English.",
     run: runRegister },
   { id: "roots", ar: "حُجرة الجَذر", en: "Roots and Patterns", kind: "exhibit", section: "chambers",
     subject: "الجذر والوزن · Chapter 3",
-    blurb: "Three consonants hold a whole family of words. Open a root and watch it bloom — starting with ت ر ج م itself.",
+    blurb: "Three consonants hold a whole family of words. Starting with &#1578; &#1585; &#1580; &#1605; itself.",
     run: runRoots }
 ];
 
@@ -10487,10 +10487,8 @@ function runMinor() {
     stage.appendChild(head);
 
     stage.appendChild(el("p", "lede",
-      "The ten courses of the translation minor at Kuwait University, with the titles the programme " +
-      "gives them in both languages and the codes it numbers them by. Each one opens on what the " +
-      "subject is, where it is actually used, what it will ask of you, and what the Guild already " +
-      "holds that belongs to it."));
+      "The ten courses of the minor. Each one opens on what the subject is, what it asks of you, and " +
+      "what the Guild already holds for it."));
 
     KU_MINOR.groups.forEach(g => {
       const gh = el("div", "m-group");
@@ -11075,11 +11073,7 @@ function chooseGenre() {
   setDots(0, 0, 0);
 
   stage.appendChild(el("p", "lede",
-    "Nobody interprets in general, and nobody is hired to render one noun at a time. Choose the " +
-    "<b>direction</b> you are working in and the <b>setting</b> you are sitting in &mdash; between " +
-    "them they decide the vocabulary &mdash; and the booth climbs from single terms to a full turn " +
-    "of speech. Nothing repeats inside a round, and what you were given last time is not what you " +
-    "are given first this time."));
+    "Choose a <b>direction</b> and a <b>setting</b>. Between them they decide the vocabulary."));
 
   /* Direction first, because it governs everything below it. */
   const dirWrap = el("div", "dir-pick");
@@ -11101,9 +11095,7 @@ function chooseGenre() {
   });
   dirWrap.appendChild(dirRow);
   dirWrap.appendChild(el("p", "dir-say",
-    BOOTH_DIRS.find(d => d.id === boothDir()).say +
-    " An interpreter is booked to work into one language and stays there for the assignment; " +
-    "the booth does not mix the two inside a round."));
+    BOOTH_DIRS.find(d => d.id === boothDir()).say));
   stage.appendChild(dirWrap);
 
   const last = lastGenre();
