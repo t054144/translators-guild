@@ -1205,6 +1205,15 @@ a.ks-s-en:hover { color: var(--white); }
 .src-text { margin: 0; font-size: .95rem; line-height: 1.7; color: var(--white); white-space: pre-wrap; }
 .src-text[dir="rtl"] { font-family: var(--f-ar); font-size: 1.02rem; }
 .post-note { font-size: .85rem; font-style: italic; color: var(--ink-soft); margin: 0; }
+/* Who it came from, above the thing itself. */
+.repost-from { font-size: .76rem; color: var(--ink-faint); }
+.repost-from b { color: var(--ink-soft); font-weight: 600; }
+.repost-from .dimmed { color: var(--ink-faint); }
+/* The picture on the card, not behind a tap. */
+.post-media { margin: .2rem 0 0; }
+.post-media img, .post-media video { width: 100%; height: auto; max-height: 60vh;
+  object-fit: contain; border-radius: var(--r-lg); border: var(--hair);
+  display: block; background: rgba(0,0,0,.25); }
 .fb-row { display: grid; gap: .3rem; }
 .post-acts { display: flex; gap: .5rem; flex-wrap: wrap; padding-top: .3rem; }
 .act-btn { padding: .35rem .7rem; border-radius: 999px; border: var(--hair); background: transparent;
@@ -1349,17 +1358,32 @@ a.ks-s-en:hover { color: var(--white); }
   text-transform: uppercase; color: var(--ink-faint); }
 .grid-tab:hover { transform: none; color: var(--lilac); }
 .grid-tab[aria-selected="true"] { color: var(--white); border-bottom-color: var(--white); }
+.grid-tab svg { width: 22px; height: 22px; fill: none; stroke: currentColor;
+  stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; display: block; margin: 0 auto; }
 
-.post-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: .4rem; margin: .5rem 0 1rem; }
-.tile { aspect-ratio: 1 / 1; display: grid; align-content: space-between; gap: .3rem;
-  padding: .7rem .75rem; border: var(--hair); border-radius: var(--r-lg); background: rgba(255,255,255,.035);
+/* Three across, hair-thin gutters: a grid of pictures, the way the
+   reference has it. */
+.post-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .15rem; margin: .5rem 0 1rem; }
+.tile { position: relative; aspect-ratio: 1 / 1; display: grid; align-content: space-between; gap: .25rem;
+  padding: .5rem .55rem; border: var(--hair); border-radius: 4px; background: rgba(255,255,255,.035);
   text-align: start; overflow: hidden; box-shadow: none; }
 .tile:hover { transform: none; background: rgba(214,191,234,.1); }
-.tile-k { font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--mag-ink);
+.tile-k { font-size: .56rem; letter-spacing: .07em; text-transform: uppercase; color: var(--mag-ink);
   overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.tile-t { font-size: .8rem; line-height: 1.35; color: var(--white); overflow: hidden;
-  display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; }
-.tile-n { font-size: .66rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+.tile-t { font-size: .72rem; line-height: 1.3; color: var(--white); overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
+.tile-n { font-size: .6rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+/* A tile with a picture is the picture. The words sit on a gradient so
+   they stay legible over a bright photograph. */
+.tile img, .tile video { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; border: 0; display: block; }
+.tile-shade { position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0,0,0,.42), rgba(0,0,0,0) 38%,
+                              rgba(0,0,0,0) 58%, rgba(0,0,0,.5)); }
+.tile.has-pic { background: rgba(0,0,0,.35); }
+.tile.has-pic .tile-k, .tile.has-pic .tile-n { position: relative; color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,.7); }
+.tile-play { font-size: .7rem; }
 
 .empty-make { display: grid; justify-items: center; gap: .55rem; padding: 2.2rem 1.2rem 1.9rem;
   text-align: center; border: var(--hair); border-radius: var(--r-lg);
@@ -1428,7 +1452,7 @@ a.ks-s-en:hover { color: var(--white); }
 .pick-chip.on { background: rgba(167,38,208,.25); color: var(--white); border-color: var(--magenta); }
 .pick-chip.add { border-style: dashed; color: var(--mag-ink); }
 .at-image { display: grid; gap: .4rem; margin: .5rem 0 1rem; }
-.at-image img { width: 100%; height: auto; border-radius: var(--r-lg); border: var(--hair);
+.at-image img, .at-image video { width: 100%; height: auto; border-radius: var(--r-lg); border: var(--hair);
   display: block; background: rgba(255,255,255,.03); }
 .chip-new { display: inline-flex; gap: .3rem; align-items: center; }
 .chip-in { width: 9rem; padding: .25rem .6rem; font-size: .78rem; border-radius: 999px; }
@@ -9579,6 +9603,8 @@ const POST_KINDS = [
     say: "A paper, a thesis chapter, a finding, a reading worth sharing." },
   { id: "image", icon: "▣", en: "Image",
     say: "A picture, a page, a screenshot — with or without words." },
+  { id: "reel", icon: "▶", en: "Reel",
+    say: "A longer video: a lecture, a reading, a walk-through." },
   { id: "other", icon: "•", en: "Something else",
     say: "Anything that does not fit the rest." }
 ];
@@ -9597,7 +9623,9 @@ const FEED_FILTERS = [["all","All"],["translation","Translations"],["help","Help
 
 const FEED_COLS = "id,author_id,post_type,title,content,source_language,target_language,genre," +
   "source_text,translated_text,translation_note,feedback_on,difficulty,deadline,visibility," +
-  "created_at,username,author_title,display_name,avatar_path,rank_slug,likes,comments,attachments,i_like,i_saved";
+  "created_at,repost_of,username,author_title,display_name,avatar_path,rank_slug," +
+  "likes,comments,attachments,thumb_path,thumb_type," +
+  "orig_type,orig_text,orig_username,orig_display_name,i_like,i_saved";
 
 async function loadFeed(kind, mine) {
   let q = "feed?select=" + FEED_COLS + "&order=created_at.desc&limit=40";
@@ -9650,6 +9678,7 @@ function runFeed(kind) {
       const rows = await loadFeed(filter);
       if (mine !== seq) return;
       rows.forEach(r => list.appendChild(postCard(r)));
+      paintMedia(list);
       msg.textContent = rows.length ? "" : "Nothing here yet. Be the first.";
     } catch (e) {
       if (mine === seq) msg.textContent = "The feed could not be loaded.";
@@ -9661,7 +9690,8 @@ function runFeed(kind) {
 
 /* A translation post does not look like a status update: the source and
    the rendering are two blocks, because comparing them is the point. */
-function postCard(r) {
+function postCard(r, opts) {
+  opts = opts || {};
   const card = el("article", "post");
 
   const head = el("div", "post-head");
@@ -9676,10 +9706,21 @@ function postCard(r) {
     '</div>';
   card.appendChild(head);
 
-  const kind = POST_KINDS.find(k => k.id === r.post_type);
+  /* A repost carries somebody else's work. It says whose, above the
+     thing itself, and the kind shown is the kind of the original. */
+  if (r.repost_of) {
+    const who = r.orig_display_name || (r.orig_username ? "@" + r.orig_username : "");
+    const rf = el("div", "repost-from",
+      '↻ Reposted from <b>' + esc(who || "another member") + '</b>' +
+      (r.orig_username && r.orig_display_name ? ' <span class="dimmed">@' + esc(r.orig_username) + '</span>' : ''));
+    card.appendChild(rf);
+  }
+
+  const shownType = (r.repost_of && r.orig_type) ? r.orig_type : r.post_type;
+  const kind = POST_KINDS.find(k => k.id === shownType);
   const tags = el("div", "post-tags");
   tags.innerHTML =
-    '<span class="ptag ' + r.post_type + '">' + esc(kind ? kind.en : r.post_type) + '</span>' +
+    '<span class="ptag ' + shownType + '">' + esc(kind ? kind.en : shownType) + '</span>' +
     (r.genre ? '<span class="ptag dim">' + esc(r.genre) + '</span>' : '') +
     (r.source_language && r.target_language
       ? '<span class="ptag dim">' + esc(r.source_language) + ' → ' + esc(r.target_language) + '</span>' : '') +
@@ -9690,6 +9731,18 @@ function postCard(r) {
      the direction from the first strong character in it. */
   if (r.title)   { const t = el("h3", "post-title", esc(r.title)); t.dir = "auto"; card.appendChild(t); }
   if (r.content) { const c = el("p", "post-body", esc(r.content)); c.dir = "auto"; card.appendChild(c); }
+  if (r.repost_of && r.orig_text) {
+    const o = el("p", "post-body", esc(r.orig_text)); o.dir = "auto"; card.appendChild(o);
+  }
+
+  /* She asked for the picture to be on the card, not behind a tap. The
+     slot is filled once the links for the whole screenful are signed. */
+  if (r.thumb_path && !opts.noMedia) {
+    const m = el("div", "post-media");
+    m.dataset.mpath = r.thumb_path;
+    m.dataset.mtype = r.thumb_type || "";
+    card.appendChild(m);
+  }
 
   const block = (lab, text, dir) => {
     const d = el("div", "src-block");
@@ -9717,9 +9770,14 @@ function postCard(r) {
     card.appendChild(f);
   }
 
-  if (r.attachments) {
-    const a = el("button", "attach-row", "📎 " + r.attachments +
-                 (r.attachments === 1 ? " attachment" : " attachments"));
+  /* When the only attachment is the picture already on the card, saying
+     "1 attachment" underneath it is just noise. */
+  const shownMedia = !!(r.thumb_path && !opts.noMedia);
+  const restAtt = (r.attachments || 0) - (shownMedia ? 1 : 0);
+  if (restAtt > 0) {
+    const a = el("button", "attach-row", "📎 " + restAtt +
+                 (shownMedia ? (restAtt === 1 ? " more attachment" : " more attachments")
+                             : (restAtt === 1 ? " attachment" : " attachments")));
     a.addEventListener("click", () => openPost(r));
     card.appendChild(a);
   }
@@ -9756,6 +9814,24 @@ function postCard(r) {
     } catch (e) {} finally { sv.disabled = false; }
   });
   acts.appendChild(sv);
+
+  /* Reposting somebody else's work. A private post is nobody's to pass
+     on, and the database refuses it as well as this button does. */
+  if (r.author_id !== myId() && r.visibility !== "private") {
+    const rp = el("button", "act-btn", "↻ Repost");
+    rp.addEventListener("click", async () => {
+      rp.disabled = true; rp.textContent = "↻ Reposting…";
+      try {
+        await sbPost("posts", { author_id: myId(), post_type: "other",
+                                visibility: "members", repost_of: r.repost_of || r.id });
+        rp.textContent = "↻ Reposted";
+      } catch (e) {
+        rp.textContent = "↻ Could not repost";
+        setTimeout(() => { rp.textContent = "↻ Repost"; rp.disabled = false; }, 2500);
+      }
+    });
+    acts.appendChild(rp);
+  }
 
   if (r.author_id === myId()) {
     const del = el("button", "act-btn quiet", "Delete");
@@ -9850,6 +9926,7 @@ async function runList(get, empty) {
   try {
     const rows = await get();
     rows.forEach(r => list.appendChild(postCard(r)));
+    paintMedia(list);
     msg.textContent = rows.length ? "" : empty;
   } catch (e) { msg.textContent = "That could not be loaded."; }
   stage.appendChild(footNav({ backLabel: "Profile" }));
@@ -9884,6 +9961,7 @@ function postForm(kind) {
     challenge:   { langs:1, genre:1, src:1, difficulty:1, title:1 },
     research:    { title:1, langs:1 },
     image:       { title:1 },
+    reel:        { title:1 },
     other:       { title:1 }
   }[kind.id];
 
@@ -9922,6 +10000,7 @@ function postForm(kind) {
                 : kind.id==="discussion" ? "Your thoughts"
                 : kind.id==="research" ? "What it is about"
                 : kind.id==="image" ? "Anything you want to say about it"
+                : kind.id==="reel" ? "What is in the video"
                 : kind.id==="other" ? "What you want to say"
                 : "Context",
                   kind.id==="help" ? "What exactly are you unsure about?" : null, area(6000, 4));
@@ -9952,7 +10031,7 @@ function postForm(kind) {
   stage.appendChild(el("h3","pub-h","Attachment"));
   const file = document.createElement("input");
   file.type = "file"; file.className = "f-in";
-  file.accept = ".pdf,.docx,.txt,.srt,.vtt,image/*";
+  file.accept = ".pdf,.docx,.txt,.srt,.vtt,image/*,video/*";
   stage.appendChild(file);
   stage.appendChild(el("p","f-hint","Optional. Up to 10 MB. Only members who can see the post can open it."));
 
@@ -9996,9 +10075,18 @@ function postForm(kind) {
   stage.appendChild(footNav({ back: () => runNewPost(), backLabel: "Post type" }));
 }
 
+/* A picture is small; a video is not. Two limits rather than one, and
+   the video one is set by what the storage bucket will take rather than
+   by what would be tidy. */
 const ATTACH_MAX = 10 * 1024 * 1024;
+const VIDEO_MAX  = 50 * 1024 * 1024;
 async function uploadAttachment(postId, f) {
-  if (f.size > ATTACH_MAX) throw new Error("That file is over 10 MB.");
+  const isVid = /^video\//.test(f.type || "");
+  const cap = isVid ? VIDEO_MAX : ATTACH_MAX;
+  if (f.size > cap) {
+    throw new Error(isVid ? "That video is over 50 MB. Trim it, or upload a shorter clip."
+                          : "That file is over 10 MB.");
+  }
   const safe = f.name.replace(/[^\w.\- ]+/g, "_").slice(0, 80);
   const path = myId() + "/" + postId + "-" + Date.now() + "-" + safe;
   const t = await freshToken();
@@ -10015,6 +10103,26 @@ async function uploadAttachment(postId, f) {
 
 /* The bucket is private, so a link has to be signed and is short-lived.
    The raw storage path is never handed to the page. */
+/* One request for a screenful of tiles rather than one per tile. */
+async function signedLinks(paths) {
+  const out = {};
+  const want = [...new Set(paths.filter(Boolean))];
+  if (!want.length) return out;
+  try {
+    const t = await freshToken();
+    const r = await fetch(SUPABASE.url + "/storage/v1/object/sign/attachments", {
+      method: "POST",
+      headers: { apikey: SUPABASE.key, Authorization: "Bearer " + t, "Content-Type": "application/json" },
+      body: JSON.stringify({ expiresIn: 600, paths: want })
+    });
+    if (!r.ok) return out;
+    (await r.json()).forEach(x => {
+      if (x && x.signedURL && !x.error) out[x.path] = SUPABASE.url + "/storage/v1" + x.signedURL;
+    });
+  } catch (e) {}
+  return out;
+}
+
 async function signedLink(path) {
   const t = await freshToken();
   const r = await fetch(SUPABASE.url + "/storage/v1/object/sign/attachments/" + encodeURI(path), {
@@ -10041,12 +10149,15 @@ async function runPost(id) {
   try {
     r = (await sbGet("feed?select=" + FEED_COLS + "&id=eq." + id))[0];
     cs = await sbGet("comments?select=id,author_id,parent_id,quoted,content,created_at&post_id=eq." + id + "&order=created_at.asc");
-    atts = await sbGet("post_attachments?select=id,file_path,file_name,file_type,file_size&post_id=eq." + id);
+    /* A repost has no files of its own: what it carries is the
+       original's, so that is what the page opens. */
+    atts = await sbGet("post_attachments?select=id,file_path,file_name,file_type,file_size&post_id=eq." +
+                       (r && r.repost_of ? r.repost_of : id));
   } catch (e) { stage.innerHTML=""; stage.appendChild(el("p","note","That post could not be opened.")); return; }
   if (!r) { stage.innerHTML=""; stage.appendChild(el("p","note","That post is not visible to you.")); return; }
 
   stage.innerHTML = "";
-  stage.appendChild(postCard(r));
+  stage.appendChild(postCard(r, { noMedia: true }));
 
   if (atts.length) {
     stage.appendChild(el("h3","pub-h","Attachments"));
@@ -10056,6 +10167,20 @@ async function runPost(id) {
       const isImage = /^image\//.test(a.file_type || "");
 
       /* A picture belongs on the page, not behind a download. */
+      const isVideo = /^video\//.test(a.file_type || "");
+      if (isVideo) {
+        const fig = el("div", "at-image");
+        const cap = el("span", "at-meta", esc(a.file_name) + " \u00b7 " + size);
+        fig.appendChild(cap);
+        stage.appendChild(fig);
+        signedLink(a.file_path).then(u => {
+          const v = document.createElement("video");
+          v.src = u; v.controls = true; v.playsInline = true; v.preload = "metadata";
+          fig.insertBefore(v, cap);
+        }).catch(() => { cap.textContent = esc(a.file_name) + " \u00b7 could not be opened"; });
+        return;
+      }
+
       if (isImage) {
         const fig = el("div", "at-image");
         const cap = el("span", "at-meta", esc(a.file_name) + " \u00b7 " + size);
@@ -11153,12 +11278,18 @@ function profileGrid(authorId, isMe) {
 
   async function draw() {
     tabs.innerHTML = "";
-    [["all", "Posts"], ["translation", "Translations"]].forEach(pair => {
-      const b = el("button", "grid-tab", pair[1]);
+    /* Posts, reels, reposts — drawn as icons, the way she marked them
+       on the reference. Translations keep their own way in, from the
+       circle above. */
+    GRID_TABS.forEach(t2 => {
+      const b = el("button", "grid-tab",
+        '<svg viewBox="0 0 24 24" aria-hidden="true">' + t2.ico + '</svg>');
       b.type = "button";
       b.setAttribute("role", "tab");
-      b.setAttribute("aria-selected", String(tab === pair[0]));
-      b.addEventListener("click", () => { if (tab !== pair[0]) { tab = pair[0]; draw(); } });
+      b.setAttribute("aria-label", t2.lab);
+      b.title = t2.lab;
+      b.setAttribute("aria-selected", String(tab === t2.id));
+      b.addEventListener("click", () => { if (tab !== t2.id) { tab = t2.id; draw(); } });
       tabs.appendChild(b);
     });
 
@@ -11171,17 +11302,32 @@ function profileGrid(authorId, isMe) {
     box.innerHTML = "";
     if (!rows.length) { box.appendChild(isMe ? emptyMake(tab) : emptyThere(tab)); return; }
     const grid = el("div", "post-grid");
-    rows.forEach(r => grid.appendChild(postTile(r)));
+    const tiles = rows.map(r => { const t2 = postTile(r); grid.appendChild(t2); return t2; });
     box.appendChild(grid);
+    /* The pictures arrive together, in one signed request. */
+    paintTiles(rows, tiles);
   }
   draw();
   return wrap;
 }
 
+const GRID_TABS = [
+  { id: "all",    lab: "Posts",
+    ico: '<rect x="3.5" y="3.5" width="17" height="17" rx="2"/><path d="M9.2 3.5v17M14.8 3.5v17M3.5 9.2h17M3.5 14.8h17"/>' },
+  { id: "reel",   lab: "Reels",
+    ico: '<rect x="3.5" y="3.5" width="17" height="17" rx="4"/><path d="M10 9l5 3-5 3z"/>' },
+  { id: "repost", lab: "Reposts",
+    ico: '<path d="M4 9.5A3.5 3.5 0 0 1 7.5 6H17l-2.5-2.5M20 14.5A3.5 3.5 0 0 1 16.5 18H7l2.5 2.5"/>' }
+];
+
 async function authorFeed(id, kind) {
   let q = "feed?select=" + FEED_COLS + "&author_id=eq." + id +
           "&order=created_at.desc&limit=40";
-  if (kind && kind !== "all") q += "&post_type=eq." + kind;
+  /* Reposts are the posts that point at somebody else's; everything
+     else on the Posts tab is a post of your own. */
+  if (kind === "repost")      q += "&repost_of=not.is.null";
+  else if (kind === "all")    q += "&repost_of=is.null";
+  else if (kind)              q += "&post_type=eq." + kind + "&repost_of=is.null";
   return sbGet(q);
 }
 
@@ -11194,15 +11340,72 @@ function renderGrid() {
 }
 
 function postTile(r) {
-  const kind = POST_KINDS.find(k => k.id === r.post_type);
-  const words = r.title || r.content || r.source_text || r.translated_text || "";
-  const b = el("button", "tile",
-    '<span class="tile-k">' + esc(kind ? kind.en : r.post_type) + '</span>' +
-    '<span class="tile-t" dir="auto">' + esc(words.slice(0, 140)) + '</span>' +
-    '<span class="tile-n">\u2661 ' + r.likes + ' \u00b7 \u25CB ' + r.comments + '</span>');
+  /* A repost is labelled with what it carries, not with the empty shell
+     that carries it. */
+  const shownType = (r.repost_of && r.orig_type) ? r.orig_type : r.post_type;
+  const kind = POST_KINDS.find(k => k.id === shownType);
+  const words = r.title || r.content || r.source_text || r.translated_text ||
+                r.orig_text || "";
+  const hasPic = !!r.thumb_path;
+  const isVid = /^video\//.test(r.thumb_type || "");
+  const b = el("button", "tile" + (hasPic ? " has-pic" : ""),
+    (hasPic ? '<span class="tile-shade"></span>' : '') +
+    '<span class="tile-k">' +
+      (r.repost_of ? "\u21bb " : "") +
+      esc(kind ? kind.en : shownType) + '</span>' +
+    (hasPic ? '' : '<span class="tile-t" dir="auto">' + esc(words.slice(0, 140)) + '</span>') +
+    '<span class="tile-n">' +
+      (isVid ? '<span class="tile-play" aria-hidden="true">\u25B6</span> ' : '') +
+      '\u2661 ' + r.likes + ' \u00b7 \u25CB ' + r.comments + '</span>');
   b.type = "button";
   b.addEventListener("click", () => openPost(r));
   return b;
+}
+
+/* The same idea for feed cards: every media slot on the screen is signed
+   in one request, so a page of pictures costs one round trip, not ten. */
+async function paintMedia(root) {
+  if (!root) return;
+  const slots = Array.prototype.slice.call(root.querySelectorAll("[data-mpath]"))
+                     .filter(s => !s.dataset.done);
+  if (!slots.length) return;
+  const links = await signedLinks(slots.map(s => s.dataset.mpath));
+  slots.forEach(s => {
+    const url = links[s.dataset.mpath];
+    if (!url) return;
+    s.dataset.done = "1";
+    if (/^video\//.test(s.dataset.mtype || "")) {
+      const v = document.createElement("video");
+      v.src = url; v.controls = true; v.playsInline = true; v.preload = "metadata";
+      s.appendChild(v);
+    } else {
+      const img = document.createElement("img");
+      img.src = url; img.alt = ""; img.loading = "lazy";
+      s.appendChild(img);
+    }
+  });
+}
+
+/* A picture belongs on the tile. The links are signed in one request
+   for the whole screenful, and a video shows its first frame. */
+async function paintTiles(rows, tiles) {
+  const want = rows.map(r => r.thumb_path).filter(Boolean);
+  if (!want.length) return;
+  const links = await signedLinks(want);
+  rows.forEach((r, i) => {
+    const url = r.thumb_path && links[r.thumb_path];
+    const tile = tiles[i];
+    if (!url || !tile) return;
+    if (/^video\//.test(r.thumb_type || "")) {
+      const v = document.createElement("video");
+      v.src = url; v.muted = true; v.playsInline = true; v.preload = "metadata";
+      tile.insertBefore(v, tile.firstChild);
+    } else {
+      const img = document.createElement("img");
+      img.src = url; img.alt = ""; img.loading = "lazy";
+      tile.insertBefore(img, tile.firstChild);
+    }
+  });
 }
 
 /* An account with nothing on it should say what to do next rather than
@@ -11326,7 +11529,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0927-0020";
+const BUILD = "0927-0130";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
