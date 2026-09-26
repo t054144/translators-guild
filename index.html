@@ -7905,7 +7905,7 @@ async function sbHeaders() {
    at all and applies each privacy switch in SQL — so turning one off
    withholds the value rather than hiding it in the interface.
    ═══════════════════════════════════════════════════════════ */
-const PROFILE_COLS = "id,username,display_name,avatar_path,bio,field_of_study," +
+const PROFILE_COLS = "id,username,title,display_name,avatar_path,bio,field_of_study," +
   "institution,academic_level,marks,rank_slug,profile_visibility,show_progress," +
   "show_interests,show_institution,show_academic_level,allow_follows," +
   "who_can_message,show_online,read_receipts";
@@ -8898,8 +8898,22 @@ const TRANSLATION_INTERESTS = ["Literary Translation","Technical Translation","L
   "Audiovisual Translation","Localisation","Terminology","Interpreting","Translation Technology"];
 const INTERPRETING_INTERESTS = ["Consecutive","Simultaneous","Community","Conference","Media"];
 const PROFICIENCIES = ["native","advanced","intermediate","beginner"];
+/* A title sits before the name. It is not a level of study. */
+const TITLES = ["Dr.","Prof.","Prof. Dr.","Assoc. Prof.","Asst. Prof.","Sh.","Eng."];
+
+/* The old list had room only for students, so anyone who teaches had to
+   choose Other. It now covers the people who actually use this site. */
 const ACADEMIC_LEVELS = ["First Year","Second Year","Third Year","Fourth Year",
-  "Graduate Student","Recent Graduate","Other"];
+  "Graduate Student","Recent Graduate",
+  "Teaching Assistant","Instructor","Lecturer",
+  "Assistant Professor","Associate Professor","Professor",
+  "Researcher","Professional Translator","Professional Interpreter","Other"];
+
+/* Dr. Shaikha Al-Khaldi, or just Shaikha Al-Khaldi. */
+function withTitle(title, name) {
+  const n = name || "Member";
+  return title ? title + " " + n : n;
+}
 const FIELDS = ["Translation","Linguistics","English","Literature","Interpreting","Other"];
 
 async function sbGet(path) {
@@ -8916,7 +8930,7 @@ async function myCounts() {
 }
 
 async function findMembers(q) {
-  const cols = "id,username,display_name,avatar_path,bio,marks,rank_slug,allow_follows,main_interest,i_follow,follows_me";
+  const cols = "id,username,title,display_name,avatar_path,bio,marks,rank_slug,allow_follows,main_interest,i_follow,follows_me";
   let path = "member_directory?select=" + cols + "&order=display_name.asc&limit=40";
   if (q) {
     const t = encodeURIComponent("*" + q.replace(/[,()*]/g, "") + "*");
@@ -8968,7 +8982,7 @@ function memberRow(m, onOpen) {
 
   const txt = el("div", "mm-txt");
   txt.innerHTML =
-    '<span class="mm-name">' + esc(m.display_name || "Member") + '</span>' +
+    '<span class="mm-name">' + esc(withTitle(m.title, m.display_name)) + '</span>' +
     (m.username ? '<span class="mm-at">@' + esc(m.username) + '</span>' : '') +
     '<span class="mm-meta">' +
       (m.rank_slug ? esc(rankName(m.rank_slug)) : "") +
@@ -9059,7 +9073,7 @@ async function runPublic(id) {
   head.appendChild(av);
   const hid = el("div", "hall-id");
   hid.innerHTML =
-    '<h2 class="pub-name">' + esc(p.display_name || "Member") + '</h2>' +
+    '<h2 class="pub-name">' + esc(withTitle(p.title, p.display_name)) + '</h2>' +
     (p.username ? '<p class="handle">@' + esc(p.username) + '</p>' : '') +
     '<p class="chips-row">' +
       (p.rank_slug ? '<span class="chip-tag">' + esc(rankName(p.rank_slug)) + '</span>' : '') +
@@ -9190,7 +9204,7 @@ const FEED_FILTERS = [["all","All"],["translation","Translations"],["help","Help
 
 const FEED_COLS = "id,author_id,post_type,title,content,source_language,target_language,genre," +
   "source_text,translated_text,translation_note,feedback_on,difficulty,deadline,visibility," +
-  "created_at,username,display_name,avatar_path,rank_slug,likes,comments,attachments,i_like,i_saved";
+  "created_at,username,author_title,display_name,avatar_path,rank_slug,likes,comments,attachments,i_like,i_saved";
 
 async function loadFeed(kind, mine) {
   let q = "feed?select=" + FEED_COLS + "&order=created_at.desc&limit=40";
@@ -9264,7 +9278,7 @@ function postCard(r) {
   av.addEventListener("click", () => openPublic({ id: r.author_id, display_name: r.display_name, username: r.username }));
   head.appendChild(av);
   head.innerHTML += '<div class="ph-txt">' +
-      '<span class="mm-name">' + esc(r.display_name || "Member") + '</span>' +
+      '<span class="mm-name">' + esc(withTitle(r.author_title, r.display_name)) + '</span>' +
       '<span class="mm-meta">' + (r.username ? "@" + esc(r.username) + " · " : "") +
         esc(rankName(r.rank_slug)) + " · " + when(r.created_at) + '</span>' +
     '</div>';
@@ -9599,7 +9613,7 @@ async function runPost(id) {
   let who = {};
   if (ids.length) {
     try {
-      const rows = await sbGet("profiles_public?select=id,username,display_name,avatar_path&id=in.(" + ids.join(",") + ")");
+      const rows = await sbGet("profiles_public?select=id,username,title,display_name,avatar_path&id=in.(" + ids.join(",") + ")");
       rows.forEach(p2 => { who[p2.id] = p2; });
     } catch (e) {}
   }
@@ -9612,7 +9626,7 @@ async function runPost(id) {
     const w = who[c.author_id] || {};
     const d = el("div","c-item" + (depth ? " reply" : ""));
     d.innerHTML =
-      '<div class="c-head"><span class="mm-name">' + esc(w.display_name || "Member") + '</span>' +
+      '<div class="c-head"><span class="mm-name">' + esc(withTitle(w.title, w.display_name)) + '</span>' +
       '<span class="mm-meta">' + (w.username ? "@" + esc(w.username) + " · " : "") + when(c.created_at) + '</span></div>' +
       (c.quoted ? '<blockquote class="c-quote">' + esc(c.quoted) + '</blockquote>' : '') +
       '<p class="c-body">' + esc(c.content) + '</p>';
@@ -9789,6 +9803,19 @@ async function runEditProfile() {
   stage.appendChild(photo);
   paintAvatar(av, profileName());
 
+  /* Title */
+  const rT = row("Title", "Optional. It appears before your name.");
+  const titleSel = document.createElement("select");
+  titleSel.className = "f-in";
+  const tb = document.createElement("option"); tb.value = ""; tb.textContent = "\u2014";
+  titleSel.appendChild(tb);
+  TITLES.forEach(t2 => {
+    const o = document.createElement("option");
+    o.value = t2; o.textContent = t2; if (p.title === t2) o.selected = true;
+    titleSel.appendChild(o);
+  });
+  rT.appendChild(titleSel); stage.appendChild(rT);
+
   /* Display name */
   const r1 = row("Display name", "What other members see.");
   const name = document.createElement("input");
@@ -9835,7 +9862,7 @@ async function runEditProfile() {
     return sel;
   };
   const field = pick("Field of study", "field_of_study", FIELDS);
-  const levelSel = pick("Academic level", "academic_level", ACADEMIC_LEVELS);
+  const levelSel = pick("Level or position", "academic_level", ACADEMIC_LEVELS);
   const rI = row("Institution", null);
   const inst = document.createElement("input");
   inst.type = "text"; inst.className = "f-in"; inst.maxLength = 80;
@@ -9923,6 +9950,7 @@ async function runEditProfile() {
     save.disabled = true; msg.textContent = "Saving…";
     try {
       await patchMyProfile({
+        title: titleSel.value || null,
         display_name: name.value.trim(),
         username: u || null,
         bio: bio.value.trim() || null,
@@ -10159,13 +10187,14 @@ function renderSeal() {
   const n = markCount(), rank = currentRank(), tm = totalMarks();
 
   paintRing(document.getElementById("hall-ring"), n);
-  const who = profileName();
+  const who = withTitle(state.profile && state.profile.title, profileName());
   const nameEl = document.getElementById("seal-name");
   if (nameEl) nameEl.textContent = who;
 
   /* Initials rather than a picture: the Guild holds no photographs, and two
      letters identify an account at a glance without asking for one. */
-  paintAvatar(document.getElementById("seal-initials"), who);
+  /* initials come from the name, so a title never becomes a letter */
+  paintAvatar(document.getElementById("seal-initials"), profileName());
   const chip = document.getElementById("chip-rank");
   if (chip) chip.textContent = rank.en;
   document.getElementById("rank-en").textContent = rank.en;
