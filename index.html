@@ -1400,6 +1400,12 @@ a.ks-s-en:hover { color: var(--white); }
 .chips-row.pickable { gap: .4rem; }
 .pick-chip { cursor: pointer; background: transparent; font-family: inherit; }
 .pick-chip.on { background: rgba(167,38,208,.25); color: var(--white); border-color: var(--magenta); }
+.pick-chip.add { border-style: dashed; color: var(--mag-ink); }
+.at-image { display: grid; gap: .4rem; margin: .5rem 0 1rem; }
+.at-image img { width: 100%; height: auto; border-radius: var(--r-lg); border: var(--hair);
+  display: block; background: rgba(255,255,255,.03); }
+.chip-new { display: inline-flex; gap: .3rem; align-items: center; }
+.chip-in { width: 9rem; padding: .25rem .6rem; font-size: .78rem; border-radius: 999px; }
 .seal-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
 .seal-actions.wide { display: grid; grid-template-columns: repeat(3,1fr); gap: .4rem; margin: .8rem 0 0; }
 .seal-actions.wide.two { grid-template-columns: repeat(2,1fr); }
@@ -8060,7 +8066,7 @@ async function sbHeaders() {
    at all and applies each privacy switch in SQL — so turning one off
    withholds the value rather than hiding it in the interface.
    ═══════════════════════════════════════════════════════════ */
-const PROFILE_COLS = "id,username,title,display_name,avatar_path,bio,motto,field_of_study," +
+const PROFILE_COLS = "id,username,title,display_name,avatar_path,bio,motto,field_of_study,minor," +
   "institution,academic_level,marks,rank_slug,profile_visibility,discoverable,show_progress," +
   "show_interests,show_institution,show_academic_level,allow_follows," +
   "who_can_message,show_online,read_receipts";
@@ -9066,9 +9072,19 @@ function unlock() {
    hidden it from the request, not from the page.
    ═══════════════════════════════════════════════════════════ */
 const TRANSLATION_INTERESTS = ["Literary Translation","Technical Translation","Legal Translation",
-  "Medical Translation","Journalistic Translation","Political Translation",
-  "Audiovisual Translation","Localisation","Terminology","Interpreting","Translation Technology"];
-const INTERPRETING_INTERESTS = ["Consecutive","Simultaneous","Community","Conference","Media"];
+  "Medical Translation","Journalistic Translation","Political Translation","Diplomatic Translation",
+  "Religious Translation","Scientific Translation","Commercial Translation","Financial Translation",
+  "Academic Translation","Audiovisual Translation","Subtitling","Dubbing","Game Localisation",
+  "Localisation","Transcreation","Advertising and Marketing","Technical Writing",
+  "Terminology","Lexicography","Corpus Linguistics","Machine Translation",
+  "Post-editing","Translation Technology","CAT Tools","Translation Theory",
+  "Translation Criticism","Revision and Proofreading","Sign Language Translation",
+  "Poetry","Drama","Children\u2019s Literature","Comics and Graphic Novels",
+  "Interpreting","Teaching Translation","Research"];
+const INTERPRETING_INTERESTS = ["Consecutive","Simultaneous","Whispered (chuchotage)",
+  "Liaison and Escort","Community","Medical","Legal and Court","Conference",
+  "Diplomatic","Media","Broadcast","Remote and Video Interpreting",
+  "Sign Language Interpreting","Sight Translation"];
 const PROFICIENCIES = ["native","advanced","intermediate","beginner"];
 /* A title sits before the name. It is not a level of study. */
 /* Her list, in the order a career runs: an undergraduate, a graduate, a
@@ -9091,7 +9107,90 @@ function withTitle(title, name) {
   const n = name || "Member";
   return title ? title + " " + n : n;
 }
-const FIELDS = ["Translation","Linguistics","English","Literature","Interpreting","Other"];
+/* Majors and minors.
+   ────────────────────
+   She asked for everything Kuwait University offers, with the ones this
+   site is about at the top. The first group is those; the rest follow by
+   college. This list is written from what I know of the university and
+   is certainly not perfect — programmes are added, renamed and merged —
+   so both fields end in "Other\u2026", which opens a box to type in.
+   Nobody is turned away for studying something the list forgot, and a
+   correction is one line each. */
+const FIELD_GROUPS = [
+  ["Languages and translation", [
+    "Translation", "Interpreting", "Linguistics", "English Language and Literature",
+    "Arabic Language and Literature", "French Language and Literature",
+    "Comparative Literature", "Literature", "English", "Applied Linguistics",
+    "Teaching English as a Foreign Language"
+  ]],
+  ["Arts and humanities", [
+    "History", "Geography", "Philosophy", "Islamic Studies", "Sharia and Islamic Law",
+    "Quranic Studies", "Archaeology", "Art Education", "Music Education"
+  ]],
+  ["Social sciences", [
+    "Sociology", "Social Work", "Psychology", "Political Science",
+    "Mass Communication and Media", "Information Studies", "Library and Information Science",
+    "Anthropology"
+  ]],
+  ["Education", [
+    "Education", "Curriculum and Instruction", "Educational Psychology",
+    "Special Education", "Early Childhood Education", "Physical Education",
+    "Educational Administration"
+  ]],
+  ["Law and business", [
+    "Law", "Accounting", "Finance", "Economics", "Business Administration",
+    "Management", "Marketing", "Management Information Systems",
+    "Public Administration", "Insurance and Risk Management",
+    "Quantitative Methods and Information Systems"
+  ]],
+  ["Science and mathematics", [
+    "Mathematics", "Statistics and Operations Research", "Physics", "Chemistry",
+    "Biological Sciences", "Biochemistry", "Botany", "Zoology", "Microbiology",
+    "Earth and Environmental Sciences", "Geology", "Marine Science", "Environmental Science"
+  ]],
+  ["Computing and engineering", [
+    "Computer Science", "Computer Engineering", "Information Systems",
+    "Software Engineering", "Civil Engineering", "Mechanical Engineering",
+    "Electrical Engineering", "Chemical Engineering", "Petroleum Engineering",
+    "Industrial and Management Systems Engineering", "Architecture",
+    "Architectural Engineering"
+  ]],
+  ["Health and life sciences", [
+    "Medicine", "Dentistry", "Pharmacy", "Nursing", "Public Health",
+    "Allied Health Sciences", "Medical Laboratory Sciences", "Radiologic Sciences",
+    "Physical Therapy", "Occupational Therapy", "Nutrition and Food Sciences",
+    "Food Science", "Biotechnology"
+  ]]
+];
+const FIELDS = FIELD_GROUPS.reduce((a, g) => a.concat(g[1]), []);
+
+const MINOR_GROUPS = [
+  ["Languages and translation", [
+    "Translation", "Interpreting", "English", "Arabic", "French", "Linguistics",
+    "Literature", "Teaching English as a Foreign Language"
+  ]],
+  ["Arts and humanities", [
+    "History", "Geography", "Philosophy", "Islamic Studies", "Sharia",
+    "Art Education", "Music"
+  ]],
+  ["Social sciences", [
+    "Sociology", "Social Work", "Psychology", "Political Science",
+    "Mass Communication and Media", "Information Studies", "Anthropology"
+  ]],
+  ["Law, business and education", [
+    "Law", "Accounting", "Finance", "Economics", "Business Administration",
+    "Management", "Marketing", "Management Information Systems",
+    "Public Administration", "Education", "Special Education"
+  ]],
+  ["Science, computing and health", [
+    "Mathematics", "Statistics", "Physics", "Chemistry", "Biological Sciences",
+    "Earth and Environmental Sciences", "Environmental Science", "Marine Science",
+    "Computer Science", "Information Systems", "Public Health", "Nutrition and Food Sciences"
+  ]]
+];
+const MINORS = MINOR_GROUPS.reduce((a, g) => a.concat(g[1]), []);
+
+const OTHER_OPT = "Other\u2026";
 
 async function sbGet(path) {
   const r = await fetch(SUPABASE.url + "/rest/v1/" + path, { headers: await sbHeaders() });
@@ -9293,7 +9392,9 @@ async function runPublic(id) {
   const bioBlock = el("div", "ig-bio");
   stage.appendChild(bioBlock);
 
-  const idParts = [p.field_of_study, p.academic_level, p.institution].filter(Boolean);
+  const idParts = [p.field_of_study,
+                   p.minor ? p.minor + " (minor)" : null,
+                   p.academic_level, p.institution].filter(Boolean);
   if (idParts.length) {
     const idLine = el("p", "ident-line", esc(idParts.join(" \u00b7 ")));
     idLine.dir = "auto";
@@ -9400,7 +9501,14 @@ const POST_KINDS = [
   { id: "discussion", icon: "“", en: "Discussion",
     say: "A question of terminology, strategy or theory." },
   { id: "challenge", icon: "⚡", en: "Challenge",
-    say: "Post a passage for other members to translate." }
+    say: "Post a passage for other members to translate." },
+  /* A member is not only a translator. */
+  { id: "research", icon: "≡", en: "Research",
+    say: "A paper, a thesis chapter, a finding, a reading worth sharing." },
+  { id: "image", icon: "▣", en: "Image",
+    say: "A picture, a page, a screenshot — with or without words." },
+  { id: "other", icon: "•", en: "Something else",
+    say: "Anything that does not fit the rest." }
 ];
 const GENRES = ["Literary","Technical","Legal","Medical","Journalistic","Political","General"];
 const LANGS  = ["Arabic","English","Other"];
@@ -9570,10 +9678,12 @@ function postCard(r) {
 
   if (r.author_id === myId()) {
     const del = el("button", "act-btn quiet", "Delete");
-    del.addEventListener("click", async () => {
-      if (del.dataset.armed !== "1") { del.dataset.armed = "1"; del.textContent = "Tap again"; return; }
-      try { await sbDel("posts?id=eq." + r.id); card.remove(); } catch (e) {}
-    });
+    /* This used to be "Delete" then "Tap again", inline, next to the
+       like and the save. On a phone that reads as a retry prompt rather
+       than a confirmation, and a post can be gone in two taps with
+       nothing to bring it back. It asks properly now, and the post is
+       marked rather than destroyed. */
+    del.addEventListener("click", () => confirmDelete(r, card));
     acts.appendChild(del);
   }
   card.appendChild(acts);
@@ -9588,6 +9698,46 @@ async function sbPost(path, body) {
   const j = await r.json().catch(() => null);
   return j && j[0];
 }
+async function sbPatch(path, body) {
+  const r = await fetch(SUPABASE.url + "/rest/v1/" + path,
+    { method: "PATCH", headers: await sbHeaders(), body: JSON.stringify(body) });
+  if (!r.ok) { const t = await r.text(); throw new Error(t || ("save failed " + r.status)); }
+}
+
+/* Deleting asks first, and then only marks the post. The row stays, so a
+   post removed by mistake can be put back. */
+function confirmDelete(r, card) {
+  const what = r.title || r.content || r.source_text || "";
+  const wrap = el("div", "sheet-back");
+  const sheet = el("div", "sheet");
+  sheet.appendChild(el("h3", null, "Delete this post?"));
+  if (what) {
+    const q = el("p", "sheet-note", esc(what.slice(0, 90)) + (what.length > 90 ? "\u2026" : ""));
+    q.dir = "auto";
+    sheet.appendChild(q);
+  }
+  sheet.appendChild(el("p", "sheet-note",
+    "It comes off the feed and off your profile. Ask and it can be put back."));
+  const go = el("button", "sheet-act danger", "Delete");
+  const no = el("button", "sheet-act quiet", "Keep it");
+  const close = () => wrap.remove();
+  go.addEventListener("click", async () => {
+    go.disabled = true; go.textContent = "Deleting\u2026";
+    try {
+      await sbPatch("posts?id=eq." + r.id, { deleted_at: new Date().toISOString() });
+      close();
+      if (card) card.remove();
+    } catch (e) {
+      go.disabled = false; go.textContent = "Delete";
+      sheet.appendChild(el("p", "sheet-note bad", "That could not be deleted."));
+    }
+  });
+  no.addEventListener("click", close);
+  wrap.addEventListener("click", e => { if (e.target === wrap) close(); });
+  sheet.appendChild(go); sheet.appendChild(no);
+  wrap.appendChild(sheet); document.body.appendChild(wrap);
+}
+
 async function sbDel(path) {
   const r = await fetch(SUPABASE.url + "/rest/v1/" + path, { method: "DELETE", headers: await sbHeaders() });
   if (!r.ok) throw new Error("delete failed " + r.status);
@@ -9650,7 +9800,10 @@ function postForm(kind) {
     help:        { langs:1, genre:1, src:1, tgt:1, note:1, fb:1, title:1 },
     request:     { langs:1, genre:1, src:1, deadline:1, title:1 },
     discussion:  { title:1 },
-    challenge:   { langs:1, genre:1, src:1, difficulty:1, title:1 }
+    challenge:   { langs:1, genre:1, src:1, difficulty:1, title:1 },
+    research:    { title:1, langs:1 },
+    image:       { title:1 },
+    other:       { title:1 }
   }[kind.id];
 
   const mk = (label, hint, node) => {
@@ -9684,7 +9837,12 @@ function postForm(kind) {
   if (wants.genre) genre = mk("Genre", null, select(GENRES, "General"));
   const src  = wants.src ? mk("Source text", null, area(8000, 5)) : null;
   const tgt  = wants.tgt ? mk(kind.id==="help" ? "My attempt" : "My translation", null, area(8000, 5)) : null;
-  const body = mk(kind.id==="help" ? "The problem" : kind.id==="discussion" ? "Your thoughts" : "Context",
+  const body = mk(kind.id==="help" ? "The problem"
+                : kind.id==="discussion" ? "Your thoughts"
+                : kind.id==="research" ? "What it is about"
+                : kind.id==="image" ? "Anything you want to say about it"
+                : kind.id==="other" ? "What you want to say"
+                : "Context",
                   kind.id==="help" ? "What exactly are you unsure about?" : null, area(6000, 4));
   const note = wants.note ? mk("Translation note", "Optional.", area(1000, 2)) : null;
   const diff = wants.difficulty ? mk("Difficulty", null, select(["Beginner","Intermediate","Advanced"],"Intermediate")) : null;
@@ -9812,13 +9970,42 @@ async function runPost(id) {
   if (atts.length) {
     stage.appendChild(el("h3","pub-h","Attachments"));
     atts.forEach(a => {
+      const kb = Math.max(1, Math.round((a.file_size || 0) / 1024));
+      const size = kb > 1024 ? (kb / 1024).toFixed(1) + " MB" : kb + " KB";
+      const isImage = /^image\//.test(a.file_type || "");
+
+      /* A picture belongs on the page, not behind a download. */
+      if (isImage) {
+        const fig = el("div", "at-image");
+        const cap = el("span", "at-meta", esc(a.file_name) + " \u00b7 " + size);
+        fig.appendChild(cap);
+        stage.appendChild(fig);
+        signedLink(a.file_path).then(u => {
+          const img = document.createElement("img");
+          img.alt = a.file_name; img.loading = "lazy"; img.src = u;
+          fig.insertBefore(img, cap);
+        }).catch(() => { cap.textContent = esc(a.file_name) + " \u00b7 could not be opened"; });
+        return;
+      }
+
       const b = el("button","attach-card");
-      b.innerHTML = '<span class="at-name">' + esc(a.file_name) + '</span>' +
-        '<span class="at-meta">' + Math.max(1, Math.round((a.file_size||0)/1024)) + ' KB · open →</span>';
+      /* The kind and the size up front: a hundred-page file takes as long
+         as a hundred-page file takes, and saying so beforehand is better
+         than a button that looks broken while the phone downloads it. */
+      const ext = (a.file_name.split(".").pop() || "file").toUpperCase().slice(0, 5);
+      b.innerHTML = '<span class="at-name" dir="auto">' + esc(a.file_name) + '</span>' +
+        '<span class="at-meta">' + ext + ' \u00b7 ' + size + ' \u00b7 opens in a new tab</span>';
       b.addEventListener("click", async () => {
-        b.disabled = true;
-        try { const u = await signedLink(a.file_path); window.open(u, "_blank", "noopener"); }
-        catch (e) { b.querySelector(".at-meta").textContent = "Could not be opened."; }
+        const meta = b.querySelector(".at-meta");
+        const was = meta.textContent;
+        b.disabled = true; meta.textContent = "Preparing the link\u2026";
+        try {
+          const u = await signedLink(a.file_path);
+          meta.textContent = kb > 2048 ? "Downloading \u2014 a large file takes a moment" : was;
+          window.open(u, "_blank", "noopener");
+          setTimeout(() => { meta.textContent = was; }, 4000);
+        }
+        catch (e) { meta.textContent = "Could not be opened."; }
         finally { b.disabled = false; }
       });
       stage.appendChild(b);
@@ -10093,7 +10280,53 @@ async function runEditProfile() {
     r.appendChild(sel); stage.appendChild(r);
     return sel;
   };
-  const field = pick("Field of study", "field_of_study", FIELDS);
+
+  /* A grouped list with the translation subjects at the top and the rest
+     of the university under them, ending in Other… which opens a box.
+     Whatever is already saved is selected, and if it is not on the list
+     — because it was typed, or because the list is wrong — it arrives in
+     the box rather than being silently dropped. */
+  const groupPick = (label, hint, key, groups, flat) => {
+    const r = row(label, hint);
+    const sel = document.createElement("select");
+    sel.className = "f-in";
+    const blank = document.createElement("option");
+    blank.value = ""; blank.textContent = "\u2014"; sel.appendChild(blank);
+    groups.forEach(g => {
+      const og = document.createElement("optgroup");
+      og.label = g[0];
+      g[1].forEach(v => {
+        const o = document.createElement("option");
+        o.value = v; o.textContent = v; if (p[key] === v) o.selected = true;
+        og.appendChild(o);
+      });
+      sel.appendChild(og);
+    });
+    const other = document.createElement("option");
+    other.value = OTHER_OPT; other.textContent = OTHER_OPT;
+    sel.appendChild(other);
+    r.appendChild(sel);
+
+    const free = document.createElement("input");
+    free.type = "text"; free.className = "f-in"; free.maxLength = 80; free.dir = "auto";
+    free.placeholder = "Type it here";
+    const saved = p[key] || "";
+    const known = !saved || flat.indexOf(saved) > -1;
+    if (!known) { other.selected = true; free.value = saved; }
+    free.hidden = known;
+    r.appendChild(free);
+    stage.appendChild(r);
+
+    sel.addEventListener("change", () => {
+      free.hidden = sel.value !== OTHER_OPT;
+      if (!free.hidden) free.focus();
+    });
+    return { value: () => sel.value === OTHER_OPT ? free.value.trim() : sel.value };
+  };
+
+  const field = groupPick("Major", "Translation subjects first; the rest of the university below.",
+                          "field_of_study", FIELD_GROUPS, FIELDS);
+  const minor = groupPick("Minor", "Optional.", "minor", MINOR_GROUPS, MINORS);
   const levelSel = pick("Level or position", "academic_level", ACADEMIC_LEVELS);
   const rI = row("Institution", null);
   const inst = document.createElement("input");
@@ -10137,8 +10370,13 @@ async function runEditProfile() {
   const chipSet = (title, cat, list) => {
     stage.appendChild(el("h3", "pub-h", title));
     const box = el("div", "chips-row pickable");
-    list.forEach(name => {
-      const c = el("button", "chip-tag pick-chip", name);
+
+    /* One chip per interest, and a + at the end for the ones the list
+       does not have. A typed interest becomes a chip like any other and
+       is saved the same way; the list is a shortcut, not a fence. */
+    const addChip = (name, on) => {
+      const c = el("button", "chip-tag pick-chip", esc(name));
+      c.type = "button";
       const sync = () => c.classList.toggle("on", chosen[cat].indexOf(name) >= 0);
       c.addEventListener("click", () => {
         const at = chosen[cat].indexOf(name);
@@ -10146,9 +10384,43 @@ async function runEditProfile() {
         sync();
       });
       c.dataset.sync = "1"; c._sync = sync;
-      box.appendChild(c);
+      if (on && chosen[cat].indexOf(name) < 0) chosen[cat].push(name);
+      sync();
+      box.insertBefore(c, plus);
+      return c;
+    };
+
+    const plus = el("button", "chip-tag pick-chip add", "+ Other");
+    plus.type = "button";
+    plus.addEventListener("click", () => {
+      if (!plus.hidden && box.querySelector(".chip-new")) return;
+      const wrap = el("span", "chip-new");
+      const i = document.createElement("input");
+      i.type = "text"; i.className = "f-in chip-in"; i.maxLength = 40; i.dir = "auto";
+      i.placeholder = "Your own";
+      const ok = el("button", "chip-tag pick-chip on", "Add");
+      ok.type = "button";
+      const commit = () => {
+        const v = i.value.trim();
+        wrap.remove();
+        if (!v) return;
+        if (list.indexOf(v) < 0 && !box.querySelector('[data-name="' + v.replace(/"/g,'') + '"]')) {
+          const c = addChip(v, true);
+          c.dataset.name = v;
+        }
+      };
+      ok.addEventListener("click", commit);
+      i.addEventListener("keydown", e => { if (e.key === "Enter") { e.preventDefault(); commit(); } });
+      wrap.appendChild(i); wrap.appendChild(ok);
+      box.insertBefore(wrap, plus);
+      i.focus();
     });
+
+    /* The + has to be in the row before any chip is inserted before it. */
+    box.appendChild(plus);
+    list.forEach(name => addChip(name, false));
     stage.appendChild(box);
+    box._add = addChip;
     return box;
   };
   const tBox = chipSet("Translation interests", "translation", TRANSLATION_INTERESTS);
@@ -10162,6 +10434,13 @@ async function runEditProfile() {
     sbGet("member_interests?select=interest,category&user_id=eq." + myId())
       .then(rows => {
         rows.forEach(r3 => { if (chosen[r3.category]) chosen[r3.category].push(r3.interest); });
+        /* Anything saved that is not on the list was typed by hand once.
+           It comes back as its own chip rather than vanishing. */
+        const extras = (box, cat, list) => chosen[cat]
+          .filter(v => list.indexOf(v) < 0)
+          .forEach(v => box._add(v, true));
+        extras(tBox, "translation", TRANSLATION_INTERESTS);
+        extras(iBox, "interpreting", INTERPRETING_INTERESTS);
         [tBox, iBox].forEach(b => [...b.children].forEach(c => c._sync && c._sync()));
       }).catch(() => {});
   } else drawLangs();
@@ -10187,7 +10466,8 @@ async function runEditProfile() {
         username: u || null,
         bio: bio.value.trim() || null,
         motto: motto.value.trim() || null,
-        field_of_study: field.value || null,
+        field_of_study: field.value() || null,
+        minor: minor.value() || null,
         academic_level: levelSel.value || null,
         institution: inst.value.trim() || null
       });
@@ -10412,7 +10692,9 @@ function renderIdent() {
   const en = document.getElementById("seal-ident");
   const bio = document.getElementById("seal-bio");
   if (!en) return;
-  const parts = [p.field_of_study, p.academic_level, p.institution].filter(Boolean);
+  const parts = [p.field_of_study,
+                 p.minor ? p.minor + " (minor)" : null,
+                 p.academic_level, p.institution].filter(Boolean);
   en.textContent = parts.join(" \u00b7 ");
   en.hidden = !parts.length;
   if (bio) { bio.textContent = p.bio || ""; bio.hidden = !p.bio; }
@@ -10699,7 +10981,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1905";
+const BUILD = "0926-2015";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
