@@ -1848,6 +1848,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 }
 /* The notice. Every screen, and deliberately the quieter of the two, so
    that where both appear the signature is what the eye takes first. */
+.build { color: var(--ink-faint); font-variant-numeric: tabular-nums; }
 .credit {
   margin: 2.4rem 0 0; padding-top: 1.3rem; border-top: var(--hair);
   text-align: center; font-size: .78rem; font-weight: 500; letter-spacing: .06em;
@@ -2181,6 +2182,8 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       <button type="button" class="ghost" id="privacy-btn">Privacy</button>
     </p>
 
+    <div class="panel" id="seal-about"></div>
+
     <div class="panel" id="seal-community"></div>
 
     <div class="panel climb" id="climb"></div>
@@ -2242,7 +2245,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
   <!-- The notice stands at the foot of every screen. The hall also carries
        a signature above it, which is a different thing: one is the maker's
        mark, the other is the notice, and neither stands in for the other. -->
-  <p class="credit">© 2026 Shaikha Al-Khaldi</p>
+  <p class="credit">© 2026 Shaikha Al-Khaldi<span class="build" id="build-stamp"></span></p>
 
 </main>
 
@@ -8151,6 +8154,7 @@ async function connectBackend(email) {
       }
     } catch (e2) { /* stay local */ }
   }
+  paintBuild();
   paintStore();
   if (!views.hall.hidden) renderHall();
 }
@@ -8877,7 +8881,7 @@ function unlock() {
   document.body.appendChild(ov);
   connectBackend(state.member);
   setTimeout(() => {
-    renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
+    paintBuild(); renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
     ov.style.transition = "opacity 420ms ease"; ov.style.opacity = "0";
     setTimeout(() => ov.remove(), 440);
   }, 1250);
@@ -10131,6 +10135,50 @@ function paintSeal() {
    Everything on this screen is read back from the record of real
    attempts. Where a part of the craft is not being recorded yet, the
    Seal says so plainly instead of showing an invented number. */
+/* What the member actually filled in. Without this, Edit Profile was a
+   form that saved into silence: the bio, the languages and the interests
+   were stored and then shown to everyone except their owner. */
+async function renderAbout() {
+  const box = document.getElementById("seal-about");
+  if (!box) return;
+  const p = state.profile;
+  if (backend !== "supabase" || !p) { box.hidden = true; return; }
+
+  let langs = [], ints = [];
+  try {
+    langs = await sbGet("member_languages?select=language,proficiency&user_id=eq." + myId() + "&order=ordinal.asc");
+    ints  = await sbGet("member_interests?select=interest,category&user_id=eq." + myId());
+  } catch (e) {}
+
+  const has = p.bio || p.field_of_study || p.institution || p.academic_level ||
+              langs.length || ints.length;
+  box.hidden = false;
+  box.innerHTML = '<div class="j-head"><h2>About</h2></div>';
+
+  if (!has) {
+    box.appendChild(el("p", "note",
+      "Nothing here yet. Edit Profile adds a bio, your languages and what you work on."));
+    return;
+  }
+  if (p.bio) box.appendChild(el("p", "pub-bio", esc(p.bio)));
+
+  const rows = el("div", "pub-rows");
+  const add = (k, v) => { if (v) rows.appendChild(el("div", "pub-row",
+    '<span>' + k + '</span><span class="pub-dim">' + esc(v) + '</span>')); };
+  add("Field", p.field_of_study);
+  add("Institution", p.institution);
+  add("Level or position", p.academic_level);
+  langs.forEach(l => add(esc(l.language), l.proficiency));
+  if (rows.children.length) box.appendChild(rows);
+
+  if (ints.length) {
+    box.appendChild(el("h3", "pub-h", "Interests"));
+    const row = el("div", "chips-row");
+    ints.forEach(i => row.appendChild(el("span", "chip-tag", esc(i.interest))));
+    box.appendChild(row);
+  }
+}
+
 /* Friends, Following, Followers, and the way in to the member list. */
 function renderCommunity() {
   const box = document.getElementById("seal-community");
@@ -10179,6 +10227,15 @@ function wireProfileButtons() {
   }
 }
 
+/* Printed small under the notice. When a screen looks wrong, the first
+   question is always whether the browser is showing an old copy, and
+   this answers it without anybody having to guess. */
+const BUILD = "0926-1317";
+function paintBuild() {
+  const n = document.getElementById("build-stamp");
+  if (n) n.textContent = " \u00b7 build " + BUILD;
+}
+
 function renderSeal() {
   wireProfileButtons();
   if (!state.profile && backend === "supabase") {
@@ -10210,6 +10267,7 @@ function renderSeal() {
                             : "Every mark earned";
   }
   paintWho();
+  renderAbout();
   renderCommunity();
   renderClimb();
 
