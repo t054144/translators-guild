@@ -1293,7 +1293,33 @@ a.ks-s-en:hover { color: var(--white); }
 .handle-btn:hover { transform: none; }
 .handle-btn svg { width: 16px; height: 16px; fill: none; stroke: var(--white);
   stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-.top-acts { display: flex; align-items: center; gap: .4rem; }
+.top-acts { display: flex; align-items: center; gap: .15rem; }
+.icon-btn.badged { position: relative; }
+.icon-btn .badge { position: absolute; top: 2px; inset-inline-end: 2px; min-width: 17px; height: 17px;
+  padding: 0 4px; border-radius: 999px; background: var(--magenta); color: #fff;
+  font-size: .62rem; font-weight: 700; line-height: 17px; text-align: center;
+  font-variant-numeric: tabular-nums; }
+
+/* ── messages and notifications ── */
+.thread { display: grid; gap: .5rem; margin: .5rem 0 1rem; }
+.bubble { max-width: 80%; padding: .6rem .85rem; border-radius: var(--r-lg);
+  font-size: .9rem; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bubble.them { justify-self: start; border: var(--hair); background: rgba(255,255,255,.04);
+  border-start-start-radius: 4px; }
+.bubble.me { justify-self: end; background: rgba(167,38,208,.28); border: 1px solid var(--magenta);
+  border-start-end-radius: 4px; }
+.bubble time { display: block; margin-top: .25rem; font-size: .66rem; color: var(--ink-faint); }
+.send-row { display: grid; grid-template-columns: 1fr auto; gap: .45rem; align-items: end;
+  margin: .6rem 0 1rem; }
+.n-item { display: grid; grid-template-columns: auto 1fr; gap: .7rem; align-items: start;
+  padding: .7rem .2rem; border-bottom: var(--hair); cursor: pointer; text-align: start; }
+.n-item.unread { background: rgba(167,38,208,.08); }
+.n-txt { display: grid; gap: .15rem; min-width: 0; }
+.n-line { font-size: .9rem; color: var(--white); }
+.n-line b { font-weight: 600; }
+.n-about { font-size: .78rem; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis;
+  white-space: nowrap; }
+.n-when { font-size: .68rem; color: var(--ink-faint); }
 .icon-btn.plain { border: 0; background: none; width: 38px; height: 38px; }
 .icon-btn.plain svg { width: 22px; height: 22px; stroke: var(--white); }
 #seal > #seal-settings { display: none; }
@@ -2274,6 +2300,14 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
                 aria-label="Switch between dark and light">
           <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
           <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+        </button>
+        <button type="button" class="icon-btn plain badged" id="seal-notifs" aria-label="Notifications">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 15V10a6 6 0 1 0-12 0v5l-1.6 2.5h15.2z"/><path d="M9.8 20a2.3 2.3 0 0 0 4.4 0"/></svg>
+          <span class="badge" hidden></span>
+        </button>
+        <button type="button" class="icon-btn plain badged" id="seal-inbox" aria-label="Messages">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 6.5h17v11h-17z"/><path d="M3.9 7l8.1 6 8.1-6"/></svg>
+          <span class="badge" hidden></span>
         </button>
         <button type="button" class="icon-btn plain" id="seal-menu" aria-label="Settings">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -9422,6 +9456,15 @@ async function runPublic(id) {
   const acts = el("p", "seal-actions wide two");
   if (dir.allow_follows) acts.appendChild(followButton(
     { id: id, i_follow: dir.i_follow, follows_me: dir.follows_me }));
+  /* Offered unless they take none at all; the database refuses it if
+     their setting says no, and the thread says so plainly rather than
+     failing in silence. */
+  if (p.who_can_message !== "nobody") {
+    const dm = el("button", "ghost", "Message");
+    dm.type = "button";
+    dm.addEventListener("click", () => openThread(id, p.display_name, p.title));
+    acts.appendChild(dm);
+  }
   if (p.username) {
     const sh = el("button", "ghost", "Share Profile");
     sh.type = "button";
@@ -9649,6 +9692,9 @@ function postCard(r) {
 
   const acts = el("div", "post-acts");
   const like = el("button", "act-btn" + (r.i_like ? " on" : ""), "♡ " + r.likes);
+  /* The heart likes it; the word beside it says who did. */
+  const whoLiked = el("button", "act-btn quiet", "who");
+  whoLiked.addEventListener("click", () => showLikers(r.id));
   let liked = r.i_like, nLike = r.likes;
   like.addEventListener("click", async () => {
     like.disabled = true;
@@ -9659,6 +9705,7 @@ function postCard(r) {
     } catch (e) {} finally { like.disabled = false; }
   });
   acts.appendChild(like);
+  acts.appendChild(whoLiked);
 
   const cm = el("button", "act-btn", "💬 " + r.comments);
   cm.addEventListener("click", () => openPost(r));
@@ -10168,7 +10215,8 @@ async function runPrivacy() {
   toggle("Let members follow me", "allow_follows");
   choice("Who can message me", "who_can_message",
     [["anyone","Anyone"],["following","People I follow"],["friends","Friends only"],["nobody","Nobody"]],
-    "Messaging is not built yet; this is stored and will be honoured when it is.");
+    "Enforced in the database, not by hiding a button: a message from " +
+    "somebody this rule excludes is refused outright.");
   toggle("Show when I am online", "show_online");
   toggle("Read receipts", "read_receipts");
 
@@ -10770,6 +10818,255 @@ function settingsMenu() {
 }
 
 
+/* ═══════════ MESSAGES, NOTIFICATIONS AND WHO LIKED ═══════════
+   Who may write to whom is the recipient's rule and is enforced in the
+   database, not by hiding a button: can_message() reads their setting,
+   and the insert is refused if it says no. This screen only has to ask
+   politely and say so when the answer is no. */
+
+const INBOX_ITEM = { id: "inbox", en: "Messages", subject: "Your conversations",
+                     section: "profile", run: runInbox };
+const NOTIFS_ITEM = { id: "notifs", en: "Notifications", subject: "",
+                      section: "profile", run: runNotifications };
+
+async function runInbox() {
+  setCount(""); stage.innerHTML = "";
+  const list = el("div", "m-members");
+  const msg = el("p", "f-msg", "Loading\u2026");
+  stage.appendChild(list); stage.appendChild(msg);
+  let rows = [];
+  try { rows = await sbGet("inbox?select=*&order=last_at.desc&limit=50"); }
+  catch (e) { msg.textContent = "Your messages could not be loaded."; }
+  if (!rows.length) {
+    msg.innerHTML = "";
+    msg.appendChild(el("span", null,
+      "No conversations yet. Open a member\u2019s profile and tap Message. "));
+    const go = el("button", "ghost small", "Find Translators");
+    go.addEventListener("click", () => openItem(FIND_ITEM));
+    msg.appendChild(go);
+  } else msg.textContent = "";
+
+  rows.forEach(r => {
+    const row = el("div", "m-member");
+    const av = el("span", "avatar sm");
+    paintFace(av, r.avatar_path, r.display_name);
+    row.appendChild(av);
+    const txt = el("div", "mm-txt");
+    const mine = r.last_sender === myId();
+    txt.innerHTML =
+      '<span class="mm-name">' + esc(withTitle(r.title, r.display_name || "Member")) + '</span>' +
+      '<span class="mm-meta" dir="auto">' +
+        (r.last_body ? (mine ? "You: " : "") + esc(r.last_body.slice(0, 60)) : "No messages yet") +
+      '</span>';
+    txt.addEventListener("click", () => openThread(r.other_id, r.display_name, r.title));
+    row.appendChild(txt);
+    if (r.unread > 0) row.appendChild(el("span", "chip-tag solid", String(r.unread)));
+    list.appendChild(row);
+  });
+  stage.appendChild(footNav({ backLabel: "Profile" }));
+}
+
+function openThread(otherId, name, title) {
+  openItem({ id: "thread:" + otherId,
+             en: withTitle(title, name || "Member"), subject: "",
+             section: "profile", run: () => runThread(otherId) });
+}
+
+/* The pair is ordered, so two members can never end up with two
+   conversations about each other. */
+async function findOrOpenConversation(otherId) {
+  const a = myId() < otherId ? myId() : otherId;
+  const b = myId() < otherId ? otherId : myId();
+  const found = await sbGet("conversations?select=id&member_a=eq." + a + "&member_b=eq." + b);
+  if (found.length) return found[0].id;
+  const made = await sbPost("conversations", { member_a: a, member_b: b });
+  return made && made.id;
+}
+
+async function runThread(otherId) {
+  setCount(""); stage.innerHTML = "";
+  const thread = el("div", "thread");
+  const msg = el("p", "f-msg", "Loading\u2026");
+  stage.appendChild(thread); stage.appendChild(msg);
+
+  let cid = null;
+  try { cid = await findOrOpenConversation(otherId); }
+  catch (e) {
+    msg.textContent = "This member does not take messages, or not from you yet.";
+    stage.appendChild(footNav({ backLabel: "Messages" }));
+    return;
+  }
+
+  async function draw() {
+    let rows = [];
+    try { rows = await sbGet("messages?select=*&conversation_id=eq." + cid + "&order=created_at.asc&limit=200"); }
+    catch (e) { msg.textContent = "Those messages could not be loaded."; return; }
+    thread.innerHTML = "";
+    msg.textContent = rows.length ? "" : "Say something.";
+    rows.forEach(m => {
+      const b = el("div", "bubble " + (m.sender_id === myId() ? "me" : "them"));
+      b.dir = "auto";
+      b.appendChild(document.createTextNode(m.body));
+      b.appendChild(el("time", null, when(m.created_at)));
+      thread.appendChild(b);
+    });
+    /* Anything of theirs that is now on screen has been read. */
+    const unread = rows.filter(m => m.sender_id !== myId() && !m.read_at);
+    if (unread.length) {
+      sbPatch("messages?conversation_id=eq." + cid + "&sender_id=neq." + myId() + "&read_at=is.null",
+              { read_at: new Date().toISOString() }).then(paintBadges).catch(() => {});
+    }
+    thread.scrollIntoView({ block: "end" });
+  }
+  await draw();
+
+  const row = el("div", "send-row");
+  const box = document.createElement("textarea");
+  box.className = "f-in f-area"; box.rows = 2; box.maxLength = 4000; box.dir = "auto";
+  box.placeholder = "Write a message";
+  const send = el("button", "primary", "Send");
+  send.addEventListener("click", async () => {
+    const body = box.value.trim();
+    if (!body) return;
+    send.disabled = true;
+    try {
+      await sbPost("messages", { conversation_id: cid, sender_id: myId(), body: body });
+      box.value = ""; await draw();
+    } catch (e) {
+      msg.textContent = "That could not be sent. They may not take messages from you.";
+    } finally { send.disabled = false; }
+  });
+  row.appendChild(box); row.appendChild(send);
+  stage.appendChild(row);
+  stage.appendChild(footNav({ backLabel: "Messages" }));
+}
+
+const N_SAYS = {
+  like:    "liked your post",
+  comment: "commented on your post",
+  reply:   "replied to you",
+  follow:  "followed you",
+  message: "sent you a message"
+};
+
+async function runNotifications() {
+  setCount(""); stage.innerHTML = "";
+  const list = el("div", null);
+  const msg = el("p", "f-msg", "Loading\u2026");
+  stage.appendChild(list); stage.appendChild(msg);
+  let rows = [];
+  try { rows = await sbGet("my_notifications?select=*&order=created_at.desc&limit=60"); }
+  catch (e) { msg.textContent = "Those could not be loaded."; }
+  msg.textContent = rows.length ? "" : "Nothing yet.";
+
+  rows.forEach(n => {
+    const b = el("button", "n-item" + (n.read_at ? "" : " unread"));
+    b.type = "button";
+    const av = el("span", "avatar sm");
+    paintFace(av, n.avatar_path, n.display_name);
+    b.appendChild(av);
+    const txt = el("div", "n-txt");
+    const about = n.comment_text || n.about || "";
+    txt.innerHTML =
+      '<span class="n-line"><b>' + esc(withTitle(n.title, n.display_name || "Someone")) + '</b> ' +
+        esc(N_SAYS[n.kind] || "did something") + '</span>' +
+      (about ? '<span class="n-about" dir="auto">' + esc(about) + '</span>' : '') +
+      '<span class="n-when">' + when(n.created_at) + '</span>';
+    b.appendChild(txt);
+    b.addEventListener("click", async () => {
+      if (!n.read_at) {
+        sbPatch("notifications?id=eq." + n.id, { read_at: new Date().toISOString() })
+          .then(paintBadges).catch(() => {});
+      }
+      if (n.kind === "message") { openItem(INBOX_ITEM); return; }
+      if (n.kind === "follow") {
+        openPublic({ id: n.actor_id, display_name: n.display_name, username: n.username });
+        return;
+      }
+      if (n.post_id) {
+        try {
+          const rows2 = await sbGet("feed?select=" + FEED_COLS + "&id=eq." + n.post_id);
+          if (rows2[0]) openPost(rows2[0]);
+        } catch (e) {}
+      }
+    });
+    list.appendChild(b);
+  });
+
+  if (rows.some(n => !n.read_at)) {
+    const all = el("button", "ghost small", "Mark all as read");
+    all.addEventListener("click", async () => {
+      all.disabled = true;
+      try {
+        await sbPatch("notifications?user_id=eq." + myId() + "&read_at=is.null",
+                      { read_at: new Date().toISOString() });
+        paintBadges(); runNotifications();
+      } catch (e) { all.disabled = false; }
+    });
+    stage.appendChild(all);
+  }
+  stage.appendChild(footNav({ backLabel: "Profile" }));
+  paintBadges();
+}
+
+/* The two numbers on the top bar. Quiet when there is nothing. */
+async function paintBadges() {
+  if (backend !== "supabase" || !myId()) return;
+  const set = (id, n) => {
+    const b = document.getElementById(id);
+    if (!b) return;
+    const dot = b.querySelector(".badge");
+    if (!dot) return;
+    dot.textContent = n > 99 ? "99+" : String(n);
+    dot.hidden = !n;
+  };
+  try {
+    const [notes, box] = await Promise.all([
+      sbGet("notifications?select=id&user_id=eq." + myId() + "&read_at=is.null"),
+      sbGet("inbox?select=unread")
+    ]);
+    set("seal-notifs", notes.length);
+    set("seal-inbox", box.reduce((a, r) => a + Number(r.unread || 0), 0));
+  } catch (e) {}
+}
+
+/* Who liked a post. The list is what the reader is allowed to see: a
+   like on a post they cannot see is not theirs to count. */
+async function showLikers(postId) {
+  const wrap = el("div", "sheet-back");
+  const sheet = el("div", "sheet");
+  sheet.appendChild(el("h3", null, "Likes"));
+  const list = el("div", "m-members");
+  const note = el("p", "sheet-note", "Loading\u2026");
+  sheet.appendChild(note); sheet.appendChild(list);
+  const close = el("button", "sheet-act quiet", "Close");
+  close.addEventListener("click", () => wrap.remove());
+  sheet.appendChild(close);
+  wrap.addEventListener("click", e => { if (e.target === wrap) wrap.remove(); });
+  wrap.appendChild(sheet); document.body.appendChild(wrap);
+
+  try {
+    const rows = await sbGet("post_likers?select=*&post_id=eq." + postId + "&order=created_at.desc&limit=100");
+    note.textContent = rows.length ? (rows.length === 1 ? "1 person" : rows.length + " people") : "Nobody yet.";
+    rows.forEach(r => {
+      const row = el("div", "m-member");
+      const av = el("span", "avatar sm");
+      paintFace(av, r.avatar_path, r.display_name);
+      row.appendChild(av);
+      const txt = el("div", "mm-txt");
+      txt.innerHTML =
+        '<span class="mm-name">' + esc(withTitle(r.title, r.display_name || "Member")) + '</span>' +
+        (r.username ? '<span class="mm-at">@' + esc(r.username) + '</span>' : '');
+      txt.addEventListener("click", () => {
+        wrap.remove();
+        openPublic({ id: r.id, display_name: r.display_name, username: r.username });
+      });
+      row.appendChild(txt);
+      list.appendChild(row);
+    });
+  } catch (e) { note.textContent = "That could not be loaded."; }
+}
+
 /* The circles under the buttons. The reference keeps souvenirs there;
    a translator's profile is better served by the five places they
    actually go, so each circle is a door rather than a memory. */
@@ -10956,6 +11253,16 @@ function wireProfileButtons() {
     e.dataset.wired = "1";
     e.addEventListener("click", () => openItem(EDIT_ITEM));
   }
+  const nb = document.getElementById("seal-notifs");
+  if (nb && !nb.dataset.wired) {
+    nb.dataset.wired = "1";
+    nb.addEventListener("click", () => openItem(NOTIFS_ITEM));
+  }
+  const ib = document.getElementById("seal-inbox");
+  if (ib && !ib.dataset.wired) {
+    ib.dataset.wired = "1";
+    ib.addEventListener("click", () => openItem(INBOX_ITEM));
+  }
   const mb = document.getElementById("seal-menu");
   if (mb && !mb.dataset.wired) {
     mb.dataset.wired = "1";
@@ -10981,7 +11288,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-2015";
+const BUILD = "0926-2140";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
@@ -11011,6 +11318,7 @@ function renderSeal() {
   renderFacts();
   renderHilites();
   renderGrid();
+  paintBadges();
   renderAbout();
   renderClimb();
 
