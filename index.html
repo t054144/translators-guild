@@ -6,7 +6,7 @@
 <!-- The browser enforces this list. Scripts may come from this page and nowhere
      else, and the page may only talk to its own database, so a widget or
      tracker added later cannot run here or carry a member's session away. -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://bldqausimrsusdzfbubk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: blob: https://bldqausimrsusdzfbubk.supabase.co; connect-src 'self' https://bldqausimrsusdzfbubk.supabase.co; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>The Translators' Guild — Learn Arabic–English Translation</title>
 <!-- What a search engine and a shared link will show. It describes what the
      site actually contains now, and names its companion book, because the two
@@ -1153,6 +1153,58 @@ a.ks-s-en:hover { color: var(--white); }
 /* the profile card: who you are, at a glance */
 .profile-card { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(.9rem,3vw,1.4rem);
   align-items: center; padding: clamp(1.1rem,3vw,1.5rem); }
+/* ═══════════ PROFILE IDENTITY ═══════════
+   A photograph if the member uploaded one, their initials if not. The
+   wrapper exists only to hang the edit button off the avatar's corner. */
+.avatar-wrap { position: relative; display: inline-grid; flex: none; }
+.avatar.has-photo { padding: 0; overflow: hidden; background: var(--grad-soft); }
+.avatar img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
+.avatar.big { width: 92px; height: 92px; font-size: 1.6rem; }
+.avatar-edit {
+  position: absolute; inset-inline-end: -2px; bottom: -2px;
+  width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center;
+  padding: 0; border: 1.5px solid var(--bg-solid, #1a0f2a); background: var(--magenta);
+  box-shadow: none; cursor: pointer;
+}
+.avatar-edit svg { width: 14px; height: 14px; fill: none; stroke: #fff; stroke-width: 1.8;
+  stroke-linecap: round; stroke-linejoin: round; }
+.avatar-edit:hover { transform: none; filter: brightness(1.12); }
+.r-next { font-size: .74rem; letter-spacing: .04em; color: var(--mag-ink); }
+.handle { font-size: .86rem; letter-spacing: .02em; color: var(--lilac); }
+.seal-actions { margin: 0 0 1rem; }
+
+/* The photo menu: a sheet rather than a dialog, because it is three
+   choices on a phone. */
+.sheet-back { position: fixed; inset: 0; z-index: 90; display: grid; place-items: end center;
+  background: rgba(10,4,20,.6); backdrop-filter: blur(3px); padding: 1rem; }
+.sheet { width: min(26rem, 100%); display: grid; gap: .5rem; padding: 1.2rem;
+  border-radius: var(--r-lg); border: var(--hair); background: var(--panel, rgba(30,16,48,.98));
+  margin-bottom: calc(1rem + env(safe-area-inset-bottom)); }
+.sheet h3 { font-family: var(--f-serif); font-size: 1.1rem; margin: 0; color: var(--white); }
+.sheet-note { font-size: .8rem; color: var(--ink-soft); margin: 0 0 .3rem; }
+.sheet-note.bad { color: var(--mag-ink); }
+.sheet-act { width: 100%; padding: .8rem 1rem; border-radius: var(--r-lg); border: var(--hair);
+  background: rgba(255,255,255,.05); color: inherit; font: inherit; text-align: center; box-shadow: none; }
+.sheet-act:hover { background: rgba(214,191,234,.12); transform: none; }
+.sheet-act.quiet { border: 0; color: var(--ink-soft); }
+.sheet-act.danger { color: var(--mag-ink); }
+
+/* Edit Profile form */
+.f-photo { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
+.f-row { display: grid; gap: .3rem; margin-bottom: 1.1rem; }
+.f-lab { font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--mag-ink); }
+.f-hint { font-size: .78rem; color: var(--ink-soft); }
+.f-in { width: 100%; padding: .7rem .85rem; border-radius: var(--r-lg); border: var(--hair);
+  background: rgba(255,255,255,.05); color: var(--white); font: inherit; }
+.f-in:focus { outline: 2px solid var(--magenta); outline-offset: 1px; }
+.f-area { resize: vertical; min-height: 4.5rem; line-height: 1.5; }
+.f-at { display: grid; grid-template-columns: auto 1fr; align-items: center; gap: .45rem; }
+.f-atsign { font-family: var(--f-serif); font-size: 1.1rem; color: var(--lilac); }
+.f-count { justify-self: end; font-size: .74rem; color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+.f-msg { min-height: 1.2rem; font-size: .84rem; color: var(--ink-soft); margin: 0 0 .8rem; }
+.f-msg.bad { color: var(--mag-ink); }
+.primary.wide { width: 100%; }
+
 .avatar { width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center;
   background: var(--grad-soft); border: var(--hair-lit);
   font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; color: var(--white);
@@ -1981,10 +2033,15 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
        two halves of one. -->
   <section id="seal" class="view" hidden>
     <div class="panel profile-card">
-      <span class="avatar" id="seal-initials" aria-hidden="true"></span>
+      <span class="avatar-wrap">
+        <span class="avatar" id="seal-initials" aria-hidden="true"></span>
+        <button type="button" class="avatar-edit" id="avatar-edit" aria-label="Change profile photo">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.6-2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg>
+        </button>
+      </span>
       <div class="hall-id">
         <h1 id="seal-name">Member</h1>
-        <p class="note" id="hall-who" hidden></p>
+        <p class="note handle" id="hall-who" hidden></p>
         <p class="chips-row">
           <span class="chip-tag" id="chip-rank">Novice</span>
           <span class="chip-tag solid">Translation Team</span>
@@ -1992,6 +2049,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       </div>
       <div class="rank-box">
         <span class="r-n" id="rank-n">0 marks</span>
+        <span class="r-next" id="rank-next"></span>
         <svg class="ring" id="hall-ring" viewBox="0 0 100 100" aria-hidden="true" hidden></svg>
         <span class="r-n" hidden id="rank-en">Novice</span>
       </div>
@@ -2009,6 +2067,10 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
           <span>Light</span></button>
       </div>
     </div>
+
+    <p class="seal-actions">
+      <button type="button" class="ghost" id="edit-profile-btn">Edit Profile</button>
+    </p>
 
     <div class="panel climb" id="climb"></div>
 
@@ -7722,6 +7784,146 @@ async function sbHeaders() {
   };
 }
 
+/* ═══════════════════════════════════════════════════════════
+   THE MEMBER'S PROFILE
+
+   profiles holds the private row: the email lives there and the RLS
+   policy is select-own, so a member can read nobody's but their own.
+   Everything another member is allowed to see comes from the
+   profiles_public view instead, which does not carry an email column
+   at all and applies each privacy switch in SQL — so turning one off
+   withholds the value rather than hiding it in the interface.
+   ═══════════════════════════════════════════════════════════ */
+const PROFILE_COLS = "id,username,display_name,avatar_path,bio,field_of_study," +
+  "institution,academic_level,marks,rank_slug,profile_visibility,show_progress," +
+  "show_interests,show_institution,show_academic_level,allow_follows," +
+  "who_can_message,show_online,read_receipts";
+
+async function loadMyProfile() {
+  if (backend !== "supabase" || !session || !session.user) return null;
+  const r = await fetch(SUPABASE.url + "/rest/v1/profiles?select=" + PROFILE_COLS +
+                        "&id=eq." + session.user.id,
+                        { headers: await sbHeaders() });
+  if (!r.ok) return null;
+  const rows = await r.json();
+  state.profile = (rows && rows[0]) || null;
+  return state.profile;
+}
+
+async function patchMyProfile(patch) {
+  const r = await fetch(SUPABASE.url + "/rest/v1/profiles?id=eq." + session.user.id, {
+    method: "PATCH",
+    headers: Object.assign(await sbHeaders(), { "Prefer": "return=representation" }),
+    body: JSON.stringify(patch)
+  });
+  const body = await r.json().catch(() => null);
+  if (!r.ok) {
+    /* 23505 is the unique index on lower(username). Say which field is
+       wrong rather than showing the reader a Postgres error. */
+    const msg = (body && (body.message || body.error)) || ("save failed " + r.status);
+    const e = new Error(/duplicate key|23505/i.test(msg) ? "That username is taken." :
+                        /profiles_username_format/.test(msg) ? "Use 3-24 characters: a-z, 0-9 or _" :
+                        /profiles_bio_len/.test(msg) ? "The bio is longer than 160 characters." :
+                        msg);
+    e.field = /username/i.test(msg) ? "username" : /bio/i.test(msg) ? "bio" : null;
+    throw e;
+  }
+  if (body && body[0]) state.profile = body[0];
+  return state.profile;
+}
+
+/* The bucket is public to read, so the path is all that has to be stored.
+   Attachments will not work this way — those need a private bucket and a
+   signed URL, which is a later phase. */
+function avatarUrl(path) {
+  return path ? SUPABASE.url + "/storage/v1/object/public/avatars/" + path : "";
+}
+
+/* Two letters identify an account at a glance when there is no picture. */
+function initialsFor(name) {
+  return (name || "").split(/\s+/).filter(Boolean).slice(0, 2)
+    .map(w => w[0].toUpperCase()).join("") || "?";
+}
+
+function paintAvatar(node, name) {
+  if (!node) return;
+  const path = state.profile && state.profile.avatar_path;
+  if (path) {
+    node.innerHTML = '<img src="' + avatarUrl(path) + '?v=' + encodeURIComponent(path.split("/").pop()) +
+                     '" alt="">';
+    node.classList.add("has-photo");
+  } else {
+    node.textContent = initialsFor(name);
+    node.classList.remove("has-photo");
+  }
+}
+
+const AVATAR_TYPES = ["image/jpeg", "image/png", "image/webp"];
+const AVATAR_MAX = 2 * 1024 * 1024;
+
+/* Crop to a centred square and cap the side, so a 12-megapixel phone
+   photograph does not become a 12-megapixel avatar. */
+function squareCanvas(img, side) {
+  const s = Math.min(img.naturalWidth, img.naturalHeight);
+  const c = document.createElement("canvas");
+  c.width = c.height = side;
+  const x = (img.naturalWidth - s) / 2, y = (img.naturalHeight - s) / 2;
+  c.getContext("2d").drawImage(img, x, y, s, s, 0, 0, side, side);
+  return c;
+}
+
+function readSquare(file, side) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      try { resolve(squareCanvas(img, side)); }
+      catch (e) { reject(e); }
+      finally { URL.revokeObjectURL(url); }
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error("That file is not an image.")); };
+    img.src = url;
+  });
+}
+
+async function uploadAvatar(file) {
+  if (AVATAR_TYPES.indexOf(file.type) < 0) throw new Error("Use a JPG, PNG or WebP image.");
+  if (file.size > AVATAR_MAX) throw new Error("That image is over 2 MB. Try a smaller one.");
+  const canvas = await readSquare(file, 512);
+  const blob = await new Promise(res => canvas.toBlob(res, "image/webp", 0.9));
+  if (!blob) throw new Error("The image could not be processed.");
+  /* A new filename each time, so a changed picture is never served from
+     a cache under the old one. */
+  const path = session.user.id + "/a" + Date.now() + ".webp";
+  const t = await freshToken();
+  const r = await fetch(SUPABASE.url + "/storage/v1/object/avatars/" + path, {
+    method: "POST",
+    headers: { "apikey": SUPABASE.key, "Authorization": "Bearer " + t, "Content-Type": "image/webp" },
+    body: blob
+  });
+  if (!r.ok) throw new Error("The upload failed (" + r.status + ").");
+  const old = state.profile && state.profile.avatar_path;
+  await patchMyProfile({ avatar_path: path });
+  if (old) await removeAvatarFile(old);
+  return path;
+}
+
+async function removeAvatarFile(path) {
+  try {
+    const t = await freshToken();
+    await fetch(SUPABASE.url + "/storage/v1/object/avatars/" + path, {
+      method: "DELETE",
+      headers: { "apikey": SUPABASE.key, "Authorization": "Bearer " + t }
+    });
+  } catch (e) { /* the row is what matters; a stray file is not worth failing over */ }
+}
+
+async function removeAvatar() {
+  const old = state.profile && state.profile.avatar_path;
+  await patchMyProfile({ avatar_path: null });
+  if (old) await removeAvatarFile(old);
+}
+
 async function sbRead() {
   const r = await fetch(SUPABASE.url + "/rest/v1/members?select=marks,marks_earned,rank,seen_rank,finale_seen,terms,work",
                         { headers: await sbHeaders() });
@@ -7831,6 +8033,7 @@ async function connectBackend(email) {
         if (snap.exists) absorb(fromGuildDoc(snap.data()));
         backend = "guild";
         await pushBackend();
+        try { await loadMyProfile(); } catch (e) {}
         dbUnsub = dbDoc.onSnapshot(s => {
           if (s.exists && absorb(fromGuildDoc(s.data()))) renderHall();
         }, () => { backend = "local"; paintStore(); });
@@ -8526,13 +8729,16 @@ async function pressSeal() {
    public Member's Seal screen. */
 /* The heading carries the greeting; this line is the quieter half of the
    identity, so it does not say Welcome twice. */
+/* The line under the name is the public handle. The email address is
+   private and lives in Account, which is the whole point of having a
+   username: a member is identified to others by @handle, never by the
+   address they signed up with. */
 function paintWho() {
   const who = document.getElementById("hall-who");
   if (!who) return;
-  const u = (session && session.user) || {};
-  const addr = u.email || state.member || "";
-  who.textContent = addr;
-  who.hidden = !addr;
+  const h = state.profile && state.profile.username;
+  who.textContent = h ? "@" + h : "";
+  who.hidden = !h;
 }
 
 /* The seal is the whole threshold: signing in or joining opens the hall. */
@@ -8568,6 +8774,139 @@ function unlock() {
 
 /* ═══════════ THE HALL ═══════════ */
 /* ═══════════ THE CLIMB ═══════════ */
+/* ═══════════ THE PHOTO MENU AND EDIT PROFILE ═══════════ */
+
+function photoMenu() {
+  const has = !!(state.profile && state.profile.avatar_path);
+  const wrap = el("div", "sheet-back");
+  const card = el("div", "sheet");
+  card.appendChild(el("h3", null, "Profile photo"));
+  const note = el("p", "sheet-note", "JPG, PNG or WebP, up to 2 MB. It is cropped to a square.");
+  card.appendChild(note);
+
+  const file = document.createElement("input");
+  file.type = "file"; file.accept = AVATAR_TYPES.join(","); file.hidden = true;
+  card.appendChild(file);
+
+  const close = () => wrap.remove();
+  const say = (m, bad) => { note.textContent = m; note.classList.toggle("bad", !!bad); };
+
+  const pick = el("button", "sheet-act", "Upload a photo");
+  pick.addEventListener("click", () => file.click());
+  card.appendChild(pick);
+
+  if (has) {
+    const rm = el("button", "sheet-act danger", "Remove photo");
+    rm.addEventListener("click", async () => {
+      rm.disabled = true; say("Removing…");
+      try { await removeAvatar(); renderSeal(); close(); }
+      catch (e) { rm.disabled = false; say(e.message, true); }
+    });
+    card.appendChild(rm);
+  }
+
+  const cancel = el("button", "sheet-act quiet", "Cancel");
+  cancel.addEventListener("click", close);
+  card.appendChild(cancel);
+
+  file.addEventListener("change", async () => {
+    const f = file.files && file.files[0];
+    if (!f) return;
+    pick.disabled = true; say("Uploading…");
+    try { await uploadAvatar(f); renderSeal(); close(); }
+    catch (e) { pick.disabled = false; say(e.message, true); file.value = ""; }
+  });
+
+  wrap.appendChild(card);
+  wrap.addEventListener("click", e => { if (e.target === wrap) close(); });
+  document.body.appendChild(wrap);
+}
+
+const EDIT_ITEM = { id: "editprofile", en: "Edit Profile",
+                    subject: "Your public identity", section: "profile",
+                    run: runEditProfile };
+
+function runEditProfile() {
+  const p = state.profile || {};
+  setCount("");
+  stage.innerHTML = "";
+
+  const row = (label, hint) => {
+    const d = el("div", "f-row");
+    d.appendChild(el("label", "f-lab", label));
+    if (hint) d.appendChild(el("span", "f-hint", hint));
+    return d;
+  };
+
+  /* Photo */
+  const photo = el("div", "f-photo");
+  const av = el("span", "avatar big");
+  photo.appendChild(av);
+  const pb = el("button", "ghost", "Change photo");
+  pb.addEventListener("click", photoMenu);
+  photo.appendChild(pb);
+  stage.appendChild(photo);
+  paintAvatar(av, profileName());
+
+  /* Display name */
+  const r1 = row("Display name", "What other members see.");
+  const name = document.createElement("input");
+  name.type = "text"; name.className = "f-in"; name.maxLength = 60;
+  name.value = p.display_name || "";
+  r1.appendChild(name); stage.appendChild(r1);
+
+  /* Username */
+  const r2 = row("Username", "Your public handle. Letters, numbers and _ only.");
+  const uwrap = el("div", "f-at");
+  uwrap.appendChild(el("span", "f-atsign", "@"));
+  const user = document.createElement("input");
+  user.type = "text"; user.className = "f-in"; user.maxLength = 24;
+  user.autocapitalize = "none"; user.spellcheck = false;
+  user.value = p.username || "";
+  uwrap.appendChild(user); r2.appendChild(uwrap); stage.appendChild(r2);
+
+  /* Bio */
+  const r3 = row("Bio", "Up to 160 characters, in either language.");
+  const bio = document.createElement("textarea");
+  bio.className = "f-in f-area"; bio.maxLength = 160; bio.rows = 3;
+  bio.value = p.bio || "";
+  const count = el("span", "f-count", "");
+  const tick = () => { count.textContent = bio.value.length + " / 160"; };
+  bio.addEventListener("input", tick); tick();
+  r3.appendChild(bio); r3.appendChild(count); stage.appendChild(r3);
+
+  const msg = el("p", "f-msg", "");
+  stage.appendChild(msg);
+
+  const save = el("button", "primary wide", "Save changes");
+  save.addEventListener("click", async () => {
+    const u = user.value.trim().toLowerCase();
+    msg.textContent = ""; msg.classList.remove("bad");
+    if (u && !/^[a-z0-9_]{3,24}$/.test(u)) {
+      msg.textContent = "A username is 3 to 24 characters: a-z, 0-9 or _"; msg.classList.add("bad"); return;
+    }
+    if (!name.value.trim()) {
+      msg.textContent = "A display name cannot be empty."; msg.classList.add("bad"); return;
+    }
+    save.disabled = true; msg.textContent = "Saving…";
+    try {
+      await patchMyProfile({
+        display_name: name.value.trim(),
+        username: u || null,
+        bio: bio.value.trim() || null
+      });
+      msg.textContent = "Saved.";
+      renderSeal();
+      setTimeout(() => { clearTrail(); navTo("profile"); }, 450);
+    } catch (e) {
+      save.disabled = false; msg.textContent = e.message; msg.classList.add("bad");
+    }
+  });
+  stage.appendChild(save);
+
+  stage.appendChild(footNav({ backLabel: "Profile", note: "Your email address is private and lives in Account." }));
+}
+
 function renderClimb() {
   const n = markCount(), rank = currentRank(), last = RANKS.length - 1, tm = totalMarks();
 
@@ -8653,6 +8992,14 @@ function checkLevelUp() {
 /* The name shown is whatever the account carries, never a hard-coded one:
    first and last name together, and the address only for the few accounts
    that were created before sign-up asked for a name. */
+/* The display name a member chose comes first; the name they signed up
+   with is the fallback. */
+function profileName() {
+  const p = state.profile;
+  if (p && p.display_name && p.display_name.trim()) return p.display_name.trim();
+  return memberName() || "Member";
+}
+
 function memberName() {
   const u = (session && session.user) || {};
   const full = [(u.firstName || "").trim(), (u.lastName || "").trim()]
@@ -8719,27 +9066,42 @@ function paintSeal() {
    Everything on this screen is read back from the record of real
    attempts. Where a part of the craft is not being recorded yet, the
    Seal says so plainly instead of showing an invented number. */
+function wireProfileButtons() {
+  const a = document.getElementById("avatar-edit");
+  if (a && !a.dataset.wired) { a.dataset.wired = "1"; a.addEventListener("click", photoMenu); }
+  const e = document.getElementById("edit-profile-btn");
+  if (e && !e.dataset.wired) {
+    e.dataset.wired = "1";
+    e.addEventListener("click", () => openItem(EDIT_ITEM));
+  }
+}
+
 function renderSeal() {
+  wireProfileButtons();
   const n = markCount(), rank = currentRank(), tm = totalMarks();
 
   paintRing(document.getElementById("hall-ring"), n);
-  const who = memberName() || "Member";
+  const who = profileName();
   const nameEl = document.getElementById("seal-name");
   if (nameEl) nameEl.textContent = who;
 
   /* Initials rather than a picture: the Guild holds no photographs, and two
      letters identify an account at a glance without asking for one. */
-  const init = document.getElementById("seal-initials");
-  if (init) {
-    const letters = who.split(/\s+/).filter(Boolean).slice(0, 2)
-      .map(w => w[0].toUpperCase()).join("");
-    init.textContent = letters || "?";
-  }
+  paintAvatar(document.getElementById("seal-initials"), who);
   const chip = document.getElementById("chip-rank");
   if (chip) chip.textContent = rank.en;
   document.getElementById("rank-en").textContent = rank.en;
-  document.getElementById("rank-n").textContent =
-    n + " of " + tm + " mark" + (tm === 1 ? "" : "s");
+  /* The number, then the one thing a member actually wants from it:
+     what the next rung is and how far away. A percentage of the way to
+     the top says less than "1 mark to Proficient". */
+  document.getElementById("rank-n").textContent = n + " / " + tm + " marks";
+  const nx = RANKS.find(r => r.at > n);
+  const gapN = nx ? nx.at - n : 0;
+  const nextEl = document.getElementById("rank-next");
+  if (nextEl) {
+    nextEl.textContent = nx ? gapN + (gapN === 1 ? " mark to " : " marks to ") + nx.en
+                            : "Every mark earned";
+  }
   paintWho();
   renderClimb();
 
