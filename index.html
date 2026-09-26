@@ -9339,26 +9339,46 @@ function runFind() {
   stage.appendChild(msg);
 
   let seq = 0;
+  /* How many members are listed at all, regardless of the search box.
+     Without this the screen says "Nobody listed matches that" to
+     somebody typing a name that is perfectly correct, when the real
+     answer is that almost nobody has agreed to be listed. */
+  let listedTotal = null;
+
   async function run(q) {
     const mine = ++seq;
     msg.textContent = "Loading…"; 
     try {
       const rows = await findMembers(q);
       if (mine !== seq) return;
+      if (listedTotal === null) {
+        listedTotal = q ? (await findMembers("")).length : rows.length;
+      }
       list.innerHTML = "";
       rows.forEach(m => list.appendChild(memberRow(m, openPublic)));
-      if (rows.length) { msg.innerHTML = ""; }
-      else if (q) { msg.textContent = "Nobody listed matches that."; }
-      else {
-        /* An empty list here is a choice, not a fault, and saying so
-           stops it reading as a broken screen. */
-        msg.innerHTML = "";
+
+      if (rows.length) { msg.innerHTML = ""; return; }
+
+      /* An empty list here is a choice, not a fault, and saying so
+         stops it reading as a broken screen. */
+      msg.innerHTML = "";
+      if (listedTotal === 0) {
         msg.appendChild(el("span", null,
-          "Nobody has listed themselves yet. Members only appear here if they " +
-          "turn on \u201cShow me in Find Translators\u201d. "));
+          "Nobody has listed themselves yet, so there is nothing to search. " +
+          "A member appears here only after turning on \u201cShow me in Find " +
+          "Translators\u201d in their own Privacy settings \u2014 which is why " +
+          "a name you know is spelled correctly still finds nothing. "));
         const go = el("button", "ghost small", "Open Privacy");
         go.addEventListener("click", () => openItem(PRIVACY_ITEM));
         msg.appendChild(go);
+      } else if (q) {
+        msg.appendChild(el("span", null,
+          "Nobody listed matches that. Only members who have turned on " +
+          "\u201cShow me in Find Translators\u201d can be found here" +
+          (listedTotal === 1 ? ", and so far exactly one has." : ", and so far " +
+           listedTotal + " have.")));
+      } else {
+        msg.textContent = "Nobody to show.";
       }
     } catch (e) {
       if (mine === seq) { list.innerHTML = ""; msg.textContent = "Could not load the member list."; }
@@ -11288,7 +11308,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-2140";
+const BUILD = "0926-2255";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
