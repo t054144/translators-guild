@@ -1265,7 +1265,7 @@ a.ks-s-en:hover { color: var(--white); }
 .count-row b { display: block; font-family: var(--f-serif); font-size: 1.2rem; color: var(--white);
   font-variant-numeric: tabular-nums; }
 .count-row span { font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
-.count-row div:first-child { cursor: pointer; }
+.count-row.mine div:first-child { cursor: pointer; }
 
 .ident-line { margin: .5rem 0 0; font-size: .88rem; color: var(--lilac); }
 .ident-line.is-ar { font-family: var(--f-ar); font-size: .92rem; color: var(--ink-soft); margin-top: .1rem; }
@@ -1344,20 +1344,12 @@ a.ks-s-en:hover { color: var(--white); }
 .follow-btn.on { background: rgba(167,38,208,.18); color: var(--white); }
 .follow-btn:hover { transform: none; background: rgba(167,38,208,.28); }
 
-.pub-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
-.pub-name { font-family: var(--f-serif); font-size: 1.4rem; margin: 0; color: var(--white); }
-.pub-bio { font-size: .92rem; line-height: 1.6; color: var(--ink-soft); margin: 0 0 1rem; max-width: var(--measure); }
-.pub-acts { display: flex; gap: .6rem; margin-bottom: 1.4rem; }
 .pub-h { font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
   color: var(--mag-ink); margin: 1.5rem 0 .5rem; }
 .pub-rows { display: grid; gap: .35rem; }
 .pub-row { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem .2rem;
   border-bottom: var(--hair); font-size: .9rem; }
 .pub-dim { color: var(--ink-soft); }
-.pub-counts { display: grid; grid-template-columns: repeat(3,1fr); gap: .5rem; margin: .2rem 0 1rem; }
-.pub-counts div { text-align: center; padding: .7rem .3rem; border-radius: var(--r-lg); border: var(--hair); }
-.pub-counts b { display: block; font-family: var(--f-serif); font-size: 1.25rem; color: var(--white); }
-.pub-counts span { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
 
 /* ── switches and pickers ── */
 .sw-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
@@ -2257,7 +2249,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     </div>
 
     <!-- Posts, followers, following: the three numbers a member checks. -->
-    <div class="count-row" id="seal-counts" hidden></div>
+    <div class="count-row mine" id="seal-counts" hidden></div>
 
     <!-- Position, level and institution on one line, then the same in
          Arabic, because this is a bilingual site and the profile should
@@ -2279,7 +2271,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 
     <!-- The member's own work, as a grid, which is the part of the
          reference a translator's profile actually needs. -->
-    <div class="grid-tabs" id="seal-tabs" role="tablist" hidden></div>
     <div id="seal-grid"></div>
 
     <div class="panel" id="seal-about"></div>
@@ -8073,17 +8064,29 @@ function initialsFor(name) {
     .map(w => w[0].toUpperCase()).join("") || "?";
 }
 
-function paintAvatar(node, name) {
+/* Built as an element rather than a string of HTML. The browser reads
+   ahead through this file looking for things to fetch early, and it has
+   been caught reading an image tag out of the middle of the script and
+   asking the server for what is really a line of JavaScript. Four
+   pointless 404s, nothing broken, but the DOM does not have the
+   problem and is clearer anyway. */
+function paintFace(node, path, name) {
   if (!node) return;
-  const path = state.profile && state.profile.avatar_path;
+  node.textContent = "";
   if (path) {
-    node.innerHTML = '<img src="' + avatarUrl(path) + '?v=' + encodeURIComponent(path.split("/").pop()) +
-                     '" alt="">';
+    const img = document.createElement("img");
+    img.alt = "";
+    img.src = avatarUrl(path) + "?v=" + encodeURIComponent(path.split("/").pop());
+    node.appendChild(img);
     node.classList.add("has-photo");
   } else {
     node.textContent = initialsFor(name);
     node.classList.remove("has-photo");
   }
+}
+
+function paintAvatar(node, name) {
+  paintFace(node, state.profile && state.profile.avatar_path, name);
 }
 
 const AVATAR_TYPES = ["image/jpeg", "image/png", "image/webp"];
@@ -9097,8 +9100,7 @@ function followButton(m) {
 function memberRow(m, onOpen) {
   const row = el("div", "m-member");
   const av = el("span", "avatar sm");
-  if (m.avatar_path) { av.innerHTML = '<img src="' + avatarUrl(m.avatar_path) + '" alt="">'; av.classList.add("has-photo"); }
-  else av.textContent = initialsFor(m.display_name);
+  paintFace(av, m.avatar_path, m.display_name);
   row.appendChild(av);
 
   const txt = el("div", "mm-txt");
@@ -9178,16 +9180,19 @@ function runFind() {
 
 /* ─── another member's public profile ─── */
 function openPublic(m) {
-  openItem({ id: "public:" + m.id, en: m.display_name || "Member",
-             subject: m.username ? "@" + m.username : "", section: "profile",
+  /* The handle heads the screen and the name sits on the card, which is
+     the way round her own profile does it. */
+  openItem({ id: "public:" + m.id,
+             en: m.username ? "@" + m.username : (m.display_name || "Member"),
+             subject: "", section: "profile",
              run: () => runPublic(m.id) });
 }
 
 async function runPublic(id) {
   setCount("");
   stage.innerHTML = "";
-  stage.appendChild(el("p", "note", "Loading…"));
-  let p, counts, langs, ints;
+  stage.appendChild(el("p", "note", "Loading\u2026"));
+  let p, counts, langs, ints, posts = [];
   try {
     p = (await sbGet("profiles_public?select=*&id=eq." + id))[0];
     counts = (await sbGet("member_counts?select=followers,following,friends&id=eq." + id))[0];
@@ -9195,66 +9200,81 @@ async function runPublic(id) {
     ints  = await sbGet("member_interests?select=interest,category&user_id=eq." + id);
   } catch (e) { stage.innerHTML = ""; stage.appendChild(el("p","note","That profile could not be opened.")); return; }
   if (!p) { stage.innerHTML = ""; stage.appendChild(el("p","note","That profile is private.")); return; }
+  /* Only the posts this reader is allowed to see, which is the feed
+     view's job rather than this screen's. */
+  try { posts = await sbGet("feed?select=id&author_id=eq." + id); } catch (e) {}
 
   const dir = (await sbGet("member_directory?select=i_follow,follows_me,allow_follows&id=eq." + id))[0] || {};
   stage.innerHTML = "";
 
-  const head = el("div", "pub-head");
+  /* The same shape as her own profile, because a member looking at
+     somebody else should not land on a different kind of screen. */
+  const card = el("div", "panel profile-card");
   const av = el("span", "avatar big");
-  if (p.avatar_path) { av.innerHTML = '<img src="' + avatarUrl(p.avatar_path) + '" alt="">'; av.classList.add("has-photo"); }
-  else av.textContent = initialsFor(p.display_name);
-  head.appendChild(av);
+  paintFace(av, p.avatar_path, p.display_name);
+  card.appendChild(av);
   const hid = el("div", "hall-id");
   hid.innerHTML =
-    '<h2 class="pub-name">' + esc(withTitle(p.title, p.display_name)) + '</h2>' +
-    (p.username ? '<p class="handle">@' + esc(p.username) + '</p>' : '') +
+    '<h1>' + esc(withTitle(p.title, p.display_name)) + '</h1>' +
     '<p class="chips-row">' +
       (p.rank_slug ? '<span class="chip-tag">' + esc(rankName(p.rank_slug)) + '</span>' : '') +
       '<span class="chip-tag solid">Translation Team</span></p>';
-  head.appendChild(hid);
-  stage.appendChild(head);
-
-  if (p.bio) stage.appendChild(el("p", "pub-bio", esc(p.bio)));
-
-  if (dir.allow_follows) {
-    const acts = el("div", "pub-acts");
-    acts.appendChild(followButton({ id: id, i_follow: dir.i_follow, follows_me: dir.follows_me }));
-    stage.appendChild(acts);
+  card.appendChild(hid);
+  /* Marks only when they have left their progress visible; the view
+     returns null for it otherwise. */
+  if (p.marks != null) {
+    const rb = el("div", "rank-box");
+    rb.innerHTML = '<span class="r-n">' + p.marks + " / " + totalMarks() + ' marks</span>';
+    card.appendChild(rb);
   }
+  stage.appendChild(card);
 
-  const sect = (title, node) => {
-    stage.appendChild(el("h3", "pub-h", title));
-    stage.appendChild(node);
-  };
+  const c = counts || {};
+  const cell = (n, lab) => '<div><b>' + n + '</b><span>' + lab + '</span></div>';
+  stage.appendChild(el("div", "count-row",
+    cell(posts.length, "Posts") + cell(c.followers || 0, "Followers") +
+    cell(c.following || 0, "Following") + cell(c.friends || 0, "Friends")));
+
+  const idParts = [p.field_of_study, p.academic_level, p.institution].filter(Boolean);
+  if (idParts.length) stage.appendChild(el("p", "ident-line", esc(idParts.join(" \u00b7 "))));
+  const fAr = FIELD_AR[p.field_of_study], lAr = LEVEL_AR[p.academic_level];
+  if (fAr || lAr) {
+    const arLine = el("p", "ident-line is-ar",
+      esc([fAr, lAr, p.institution].filter(Boolean).join(" \u00b7 ")));
+    arLine.dir = "rtl"; arLine.lang = "ar";
+    stage.appendChild(arLine);
+  }
+  if (p.bio) stage.appendChild(el("p", "seal-bio", esc(p.bio)));
 
   if (langs.length) {
-    const ul = el("div", "pub-rows");
-    langs.forEach(l => ul.appendChild(el("div", "pub-row",
-      '<span>' + esc(l.language) + '</span><span class="pub-dim">' + esc(l.proficiency) + '</span>')));
-    sect("Languages", ul);
+    const facts = el("div", "fact-row");
+    facts.innerHTML = langs.map(l => '<div class="fact"><div class="fact-b">' +
+      '<span><span class="fact-k">' + esc(l.language) + '</span>' +
+      '<span class="fact-v">' + esc(l.proficiency) + '</span></span></div></div>').join("");
+    stage.appendChild(facts);
   }
+
+  const acts = el("p", "seal-actions");
+  if (dir.allow_follows) acts.appendChild(followButton(
+    { id: id, i_follow: dir.i_follow, follows_me: dir.follows_me }));
+  if (p.username) {
+    const sh = el("button", "ghost", "Share Profile");
+    sh.type = "button";
+    sh.addEventListener("click", () => shareProfile(sh, p.username));
+    acts.appendChild(sh);
+  }
+  if (acts.children.length) stage.appendChild(acts);
+
+  stage.appendChild(profileGrid(id, false));
+
   if (p.show_interests && ints.length) {
+    const panel = el("div", "panel");
+    panel.appendChild(el("h3", "pub-h", "Interests"));
     const row = el("div", "chips-row");
     ints.forEach(i => row.appendChild(el("span", "chip-tag", esc(i.interest))));
-    sect("Interests", row);
+    panel.appendChild(row);
+    stage.appendChild(panel);
   }
-  if (p.marks != null) {
-    sect("Progress", el("p", "pub-dim", p.marks + " / " + totalMarks() + " marks"));
-  }
-  if (p.field_of_study || p.institution || p.academic_level) {
-    const ul = el("div", "pub-rows");
-    if (p.field_of_study) ul.appendChild(el("div","pub-row",'<span>Field</span><span class="pub-dim">'+esc(p.field_of_study)+'</span>'));
-    if (p.institution)    ul.appendChild(el("div","pub-row",'<span>Institution</span><span class="pub-dim">'+esc(p.institution)+'</span>'));
-    if (p.academic_level) ul.appendChild(el("div","pub-row",'<span>Level</span><span class="pub-dim">'+esc(p.academic_level)+'</span>'));
-    sect("About", ul);
-  }
-  const c = counts || {};
-  const cr = el("div", "pub-counts");
-  cr.innerHTML =
-    '<div><b>' + (c.friends||0)   + '</b><span>Friends</span></div>' +
-    '<div><b>' + (c.following||0) + '</b><span>Following</span></div>' +
-    '<div><b>' + (c.followers||0) + '</b><span>Followers</span></div>';
-  sect("Community", cr);
 
   stage.appendChild(footNav({ backLabel: "Back" }));
 }
@@ -9406,8 +9426,7 @@ function postCard(r) {
 
   const head = el("div", "post-head");
   const av = el("span", "avatar sm");
-  if (r.avatar_path) { av.innerHTML = '<img src="' + avatarUrl(r.avatar_path) + '" alt="">'; av.classList.add("has-photo"); }
-  else av.textContent = initialsFor(r.display_name);
+  paintFace(av, r.avatar_path, r.display_name);
   av.addEventListener("click", () => openPublic({ id: r.author_id, display_name: r.display_name, username: r.username }));
   head.appendChild(av);
   head.innerHTML += '<div class="ph-txt">' +
@@ -10406,41 +10425,61 @@ function renderHilites() {
   });
 }
 
-/* A member's own posts as a grid. Two tabs, because the one distinction
+/* A member's posts as a grid. Two tabs, because the one distinction
    worth making on a translator's profile is between everything they
-   have posted and the translations themselves. */
-let gridTab = "all";
+   have posted and the translations themselves.
 
-async function renderGrid() {
-  const tabs = document.getElementById("seal-tabs");
-  const box  = document.getElementById("seal-grid");
-  if (!tabs || !box) return;
-  if (backend !== "supabase") { tabs.hidden = true; box.innerHTML = ""; return; }
-  tabs.hidden = false;
-  tabs.innerHTML = "";
-  [["all", "Posts"], ["translation", "Translations"]].forEach(pair => {
-    const b = el("button", "grid-tab", pair[1]);
-    b.type = "button";
-    b.setAttribute("role", "tab");
-    b.setAttribute("aria-selected", String(gridTab === pair[0]));
-    b.addEventListener("click", () => {
-      if (gridTab === pair[0]) return;
-      gridTab = pair[0]; renderGrid();
+   The same grid serves every profile: her own and everybody else's. On
+   another member's it is the feed view that decides what appears, so a
+   post they kept to friends is not on it unless you are one. */
+function profileGrid(authorId, isMe) {
+  const wrap = el("div", null);
+  const tabs = el("div", "grid-tabs");
+  tabs.setAttribute("role", "tablist");
+  const box = el("div", null);
+  wrap.appendChild(tabs); wrap.appendChild(box);
+  let tab = "all";
+
+  async function draw() {
+    tabs.innerHTML = "";
+    [["all", "Posts"], ["translation", "Translations"]].forEach(pair => {
+      const b = el("button", "grid-tab", pair[1]);
+      b.type = "button";
+      b.setAttribute("role", "tab");
+      b.setAttribute("aria-selected", String(tab === pair[0]));
+      b.addEventListener("click", () => { if (tab !== pair[0]) { tab = pair[0]; draw(); } });
+      tabs.appendChild(b);
     });
-    tabs.appendChild(b);
-  });
 
+    box.innerHTML = "";
+    const msg = el("p", "f-msg", "Loading\u2026");
+    box.appendChild(msg);
+    let rows = [];
+    try { rows = await authorFeed(authorId, tab); }
+    catch (e) { msg.textContent = "Those posts could not be loaded."; return; }
+    box.innerHTML = "";
+    if (!rows.length) { box.appendChild(isMe ? emptyMake(tab) : emptyThere(tab)); return; }
+    const grid = el("div", "post-grid");
+    rows.forEach(r => grid.appendChild(postTile(r)));
+    box.appendChild(grid);
+  }
+  draw();
+  return wrap;
+}
+
+async function authorFeed(id, kind) {
+  let q = "feed?select=" + FEED_COLS + "&author_id=eq." + id +
+          "&order=created_at.desc&limit=40";
+  if (kind && kind !== "all") q += "&post_type=eq." + kind;
+  return sbGet(q);
+}
+
+function renderGrid() {
+  const box = document.getElementById("seal-grid");
+  if (!box) return;
   box.innerHTML = "";
-  const msg = el("p", "f-msg", "Loading…");
-  box.appendChild(msg);
-  let rows = [];
-  try { rows = await loadFeed(gridTab, true); }
-  catch (e) { msg.textContent = "Your posts could not be loaded."; return; }
-  box.innerHTML = "";
-  if (!rows.length) { box.appendChild(emptyMake()); return; }
-  const grid = el("div", "post-grid");
-  rows.forEach(r => grid.appendChild(postTile(r)));
-  box.appendChild(grid);
+  if (backend !== "supabase" || !myId()) return;
+  box.appendChild(profileGrid(myId(), true));
 }
 
 function postTile(r) {
@@ -10449,7 +10488,7 @@ function postTile(r) {
   const b = el("button", "tile",
     '<span class="tile-k">' + esc(kind ? kind.en : r.post_type) + '</span>' +
     '<span class="tile-t" dir="auto">' + esc(words.slice(0, 140)) + '</span>' +
-    '<span class="tile-n">♡ ' + r.likes + ' · ○ ' + r.comments + '</span>');
+    '<span class="tile-n">\u2661 ' + r.likes + ' \u00b7 \u25CB ' + r.comments + '</span>');
   b.type = "button";
   b.addEventListener("click", () => openPost(r));
   return b;
@@ -10457,12 +10496,12 @@ function postTile(r) {
 
 /* An account with nothing on it should say what to do next rather than
    sit blank, which is the screen her reference ends on. */
-function emptyMake() {
-  const first = gridTab === "translation";
+function emptyMake(tab) {
+  const t = tab === "translation";
   const d = el("div", "empty-make",
     '<span class="empty-ring" aria-hidden="true">+</span>' +
-    '<h3>' + (first ? "No translations yet" : "Create your first post") + '</h3>' +
-    '<p>' + (first
+    '<h3>' + (t ? "No translations yet" : "Create your first post") + '</h3>' +
+    '<p>' + (t
       ? "Post something you have translated and the Guild will read it."
       : "Share a translation, ask about a passage that will not sit still, " +
         "or open a question of terminology.") + '</p>');
@@ -10473,19 +10512,28 @@ function emptyMake() {
   return d;
 }
 
+/* Somebody else's empty grid is not an invitation; it is just empty. */
+function emptyThere(tab) {
+  return el("div", "empty-make",
+    '<p>' + (tab === "translation" ? "No translations here yet."
+                                   : "Nothing posted here yet.") + '</p>');
+}
+
 /* ── sharing a profile ──
    A share button that copies a link nobody can open is worse than no
    button, so the link is a real route: #u=<username> opens that member's
    public profile, under the same privacy rules as everywhere else. */
+function profileUrl(handle) {
+  return handle ? location.origin + location.pathname + "#u=" + encodeURIComponent(handle) : "";
+}
 function myShareUrl() {
-  const h = state.profile && state.profile.username;
-  return h ? location.origin + location.pathname + "#u=" + encodeURIComponent(h) : "";
+  return profileUrl(state.profile && state.profile.username);
 }
 
-async function shareProfile(btn) {
-  const url = myShareUrl();
+async function shareProfile(btn, handle) {
+  const url = profileUrl(handle || (state.profile && state.profile.username));
   /* No handle, nothing to share: send them where they can choose one. */
-  if (!url) { openItem(EDIT_ITEM); return; }
+  if (!url) { if (!handle) openItem(EDIT_ITEM); return; }
   const was = btn.textContent;
   const say = m => { btn.textContent = m; setTimeout(() => { btn.textContent = was; }, 1800); };
   if (navigator.share) {
@@ -10547,7 +10595,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1410";
+const BUILD = "0926-1455";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
