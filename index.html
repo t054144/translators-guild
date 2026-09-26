@@ -9006,7 +9006,18 @@ async function pressSeal() {
                 "not a problem with your address. Please try again in an hour.");
         return;
       }
-      gateSay("Your account could not be created. Please try again in a few minutes.");
+      /* "Try again in a few minutes" is the wrong thing to say when the
+         failure is permanent. A broken default in the database stopped
+         every sign-up for two days, and this message sent people round
+         the same loop with different emails, different passwords and
+         different phones, because it promised that waiting would help.
+         A fault at our end should say so, and the real error goes to
+         the console so it can be diagnosed instead of guessed at. */
+      console.error("sign-up failed:", e && (e.message || e), e);
+      gateSay("Your account could not be created, and this is a fault at our end rather " +
+              "than anything wrong with your details \u2014 trying a different email or " +
+              "password will not help. Please tell whoever runs the Guild, so it can be " +
+              "put right.");
     }
     return;
   }
@@ -11308,7 +11319,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-2255";
+const BUILD = "0926-2330";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
