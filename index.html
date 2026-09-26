@@ -2555,15 +2555,7 @@ function runLineage(startAt) {
     setDots(LINEAGE.length, cur === null ? 0 : cur + 1, cur === null ? -1 : cur);
 
     stage.appendChild(el("p", "lede",
-      "Translation has no starting date. Wherever two languages met, somebody translated, and the world " +
-      "on the other side was different afterwards: medicine survived, scripture was read at home, a " +
-      "continent got its science back, a novel found more readers in translation than in the original." +
-      "<p>Three ways through it, and they are not the same subject. <b>The practice</b> &mdash; who was " +
-      "translating, for whom, and what they argued about. <b>The discipline</b> &mdash; translation " +
-      "studies, which is about fifty years old and is the study of that practice. And <b>the people</b>, " +
-      "sixteen of them, eight from the Arabic tradition and eight from the Western one, each with a piece " +
-      "of the actual translating so you can see the decision being made and not only hear it " +
-      "described.</p>"));
+                        "Three histories that get confused with each other: the practice, the discipline, and the people."));
 
     if (cur !== null) {
       const f = LINEAGE[cur];
@@ -9174,12 +9166,7 @@ function runProcedures() {
          every decision a translator makes is not true and teaches the
          learner to stop looking. */
       stage.appendChild(el("p", "lede",
-        "In 1958 Vinay and Darbelnet set out seven procedures for getting a sentence from one language into another. " +
-        "It is the <b>foundational</b> framework of the field and the vocabulary most translators still argue in — " +
-        "but it is one framework, not the whole of translation theory, and it does not account for every decision you " +
-        "will make. Later work adds to it: Molina and Hurtado Albir's techniques describe the move itself in far finer " +
-        "detail, and strategies describe how you approach the problem before you make any move at all. " +
-        "Learn these seven first, because they let you <b>name and defend a choice</b> instead of hoping it sounds right."));
+                          "Vinay and Darbelnet, 1958. Seven ways to get a sentence across &mdash; and the vocabulary to defend the one you chose."));
     }
 
     const chips = el("div", "chips");
@@ -9243,9 +9230,7 @@ function runTextTypes() {
     setDots(TEXT_WORLDS.length, cur, cur);
 
     stage.appendChild(el("p", "lede",
-      "There is no such thing as translating well in general. Every world has its own idea of what a good translation is, " +
-      "and they contradict each other — the care that makes a contract correct makes an advertisement useless. " +
-      "<b>Work out which world you are in first.</b> It decides everything after."));
+                        "Every world has its own idea of a good translation, and they contradict each other. Work out which one you are in first."));
 
     /* §22: these ten are deliberately not one clean category, and saying
        so is part of the teaching. Pretending they are a tidy list of nine
@@ -9410,10 +9395,7 @@ function runToolkit() {
     setDots(TABS.length, tab, tab);
 
     stage.appendChild(el("p", "lede",
-      "Translators argue about <b>method</b>, <b>procedure</b>, <b>strategy</b> and <b>shift</b> as though they were " +
-      "four words for the same thing. They are not, and keeping them apart is what lets you say precisely what you did " +
-      "and why — which is exactly what a translation commentary asks of you. The names and definitions here are the " +
-      "ones in the Translation Handbook, so the word you learn in Chapter 12 is the word you meet in the trials."));
+                        "Method, procedure, strategy and shift are four different things. Keeping them apart is what lets you say what you did."));
 
     const chips = el("div", "chips");
     TABS.forEach((label, k) => {
@@ -9518,10 +9500,7 @@ function runGlossary() {
     setDots(0, 0, 0);
 
     stage.appendChild(el("p", "lede",
-      "Every key term the Translation Handbook defines, in alphabetical order, each with its " +
-      "Arabic equivalent and the chapter that explains it. The definitions are the handbook's own. " +
-      "Search in <b>either language</b> &mdash; type <i>collocation</i> or <i>التلازم</i> &mdash; and " +
-      "keep the ones you want to come back to."));
+                        "Every key term the handbook defines, with its Arabic and its chapter. Search in either language; star what you keep."));
 
     const search = el("div", "gl-search");
     const input = document.createElement("input");
@@ -9592,10 +9571,7 @@ function runErrors() {
     setDots(TABS.length, tab, tab);
 
     stage.appendChild(el("p", "lede",
-      "Every translator makes mistakes in a draft, experts included; <b>revision is where you find them</b>. " +
-      "Checking your own draft is self-revision (Mossop, 2014). What follows is the handbook's own " +
-      "reference list of what actually goes wrong, in each direction &mdash; keep it beside you while you revise, " +
-      "not while you translate."));
+                        "Every draft has mistakes in it; revision is where you find them. Keep this beside you while you revise, not while you translate."));
 
     const chips = el("div", "chips");
     TABS.forEach((label, k) => {
@@ -9680,10 +9656,7 @@ function runCommentary() {
     setDots(WORKBENCH.length, workCount(), -1);
 
     stage.appendChild(el("p", "lede",
-      "The handbook's own practice passages, at the three levels it sets. Write your rendering, keep it, " +
-      "and <b>then</b> the suggested version appears with the handbook's note &mdash; seeing it first would " +
-      "turn the exercise into a reading. Nothing here is marked. A passage you have rendered and kept is a " +
-      "piece of your portfolio, and the Seal counts it as one."));
+                        "Write your rendering and keep it, and only then does the handbook's version appear. Nothing here is marked."));
 
     const done = workCount();
     stage.appendChild(el("p", "note", done ?
@@ -9918,12 +9891,7 @@ function runKuwaiti() {
   setDots(0, 0, 0);
 
   stage.appendChild(el("p", "lede",
-    "The proverbs already in the Guild are the ones the whole Arabic-speaking world shares: " +
-    "<span class='ar-inline' dir='rtl' lang='ar'>عصفور في اليد</span> and " +
-    "<span class='ar-inline' dir='rtl' lang='ar'>رجع بخفّي حنين</span> are understood from Rabat to Muscat. " +
-    "This room is for the ones that are <b>ours</b> &mdash; what is said in Kuwaiti, in a Kuwaiti house, " +
-    "about the weather and the sea and the neighbours &mdash; and what on earth you are supposed to do " +
-    "with it when the text has to go into English."));
+                      "Not the ones the whole Arabic-speaking world shares &mdash; the ones said in a Kuwaiti house, and what to do with them in English."));
 
   const why = el("div", "verdict");
   why.appendChild(el("span", "vh", "Why this page is empty"));
@@ -10137,11 +10105,7 @@ function runModes() {
     setDots(0, 0, 0);
 
     stage.appendChild(el("p", "lede",
-      "<b>الترجمة الشفهية</b> is the field &mdash; spoken translation, as against " +
-      "<b>الترجمة التحريرية</b>, written translation. What follows are its <b>modes</b>: how the " +
-      "rendering is delivered, which is a different question from <i>where</i> the interpreter is " +
-      "sitting. A courtroom is a setting; consecutive is a mode; the same interpreter may use two " +
-      "modes in one afternoon."));
+                        "A courtroom is a setting. Consecutive is a mode. These are the modes &mdash; how the rendering is delivered."));
 
     const v = el("div", "verdict");
     v.appendChild(el("span", "vh", "The distinction worth keeping"));
@@ -10262,9 +10226,8 @@ function runKsl() {
     setDots(0, 0, 0);
 
     stage.appendChild(el("p", "lede",
-      "The manual alphabet: one handshape per letter. It spells names, and words KSL has no " +
-      "established sign for yet &mdash; it is not how ordinary conversation runs. " +
-      "<b>Tap any letter to see the hand large.</b>"));
+                        "One handshape per letter. It spells names, and words KSL has no sign for yet &mdash; " +
+                        "it is not how conversation runs. Tap any letter."));
 
     const grid = el("div", "alpha-grid");
     kslAll().forEach((L, i) => {
@@ -11514,10 +11477,7 @@ function runPhraseology() {
     stage.innerHTML = "";
 
     stage.appendChild(el("p", "lede",
-      "Words are learned one at a time; languages are used in <b>chunks</b>. Collocations, connectors, courtesy " +
-      "formulas and the set phrases that carry a speech act are where a translation gives itself away long before " +
-      "any grammar does. Everything here runs in both directions, because the problem is not symmetrical: " +
-      "what English splits, Arabic may join, and the other way about."));
+                        "Languages are used in chunks, and the chunks are where a translation gives itself away. Both directions."));
 
     const chips = el("div", "chips");
     PHRASE_SETS.forEach((s, k) => {
