@@ -1934,7 +1934,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <div>
       <div class="strip-head">
         <h2>The Lineage</h2>
-        <span class="note">Translators in history &mdash; tap any one</span>
+        <span class="note">Sixteen translators &mdash; tap any one</span>
       </div>
       <div class="strip" id="strip"></div>
     </div>
@@ -2423,33 +2423,147 @@ function exampleBlock(x) {
 }
 
 /* ═══════════════════════════════════════════════════════════
-   THE LINEAGE
+   TRANSLATION IN HISTORY
+
+   One guide, three ways in, and they are deliberately not the same
+   thing. ERAS is the history of the practice. DISCIPLINE is the
+   history of translation studies, which is about fifty years old.
+   LINEAGE is the people. A reader who arrives expecting one of the
+   three should be able to see the other two and know why they are
+   separate.
+
+   startAt is a figure index, so a portrait on the hall still opens
+   its own dossier.
    ═══════════════════════════════════════════════════════════ */
 function runLineage(startAt) {
-  let cur = (typeof startAt === "number") ? startAt : null;
-  setCount("A guide \u00b7 " + LINEAGE.length + " translators");
+  let cur = (typeof startAt === "number") ? startAt : null;  /* a figure */
+  let era = null;                                            /* an era */
+  let mom = null;                                            /* a moment in the discipline */
 
-  function render() {
-    stage.innerHTML = "";
+  function count() {
+    if (era !== null) return "The practice · " + ERAS[era].when;
+    if (mom !== null) return "The discipline · " + (mom + 1) + " of " + DISCIPLINE.length;
+    return "A guide · " + ERAS.length + " eras · " + LINEAGE.length + " translators";
+  }
+
+  /* The three views share one block vocabulary, so a card written for
+     an era renders the same as one written for the discipline. */
+  function block(b) {
+    if (b.t === "lede") return el("p", "lede", b.html);
+    if (b.t === "list") {
+      const d = el("div", "card");
+      if (b.h) d.appendChild(el("span", "b-lab", b.h));
+      if (b.intro) d.appendChild(el("p", "", b.intro));
+      const ul = el("ul", "b-read");
+      b.items.forEach(i => ul.appendChild(el("li", "", i)));
+      d.appendChild(ul);
+      return d;
+    }
+    if (b.t === "split") {
+      const d = el("div", "card");
+      if (b.h) d.appendChild(el("span", "b-lab", b.h));
+      const g = el("div", "blocks");
+      [b.a, b.b].forEach(side => {
+        g.appendChild(el("div", "block",
+          '<span class="b-lab">' + side.lab +
+          (side.ar ? ' <span class="ar-inline" dir="rtl" lang="ar">' + side.ar + '</span>' : '') +
+          '</span><p>' + side.say + '</p>'));
+      });
+      d.appendChild(g);
+      return d;
+    }
+    const d = el("div", "card");
+    if (b.h) d.appendChild(el("span", "b-lab", b.h));
+    d.appendChild(el("div", "", b.html));
+    return d;
+  }
+
+  function home() { era = null; mom = null; cur = null; render(); scrollTop(); }
+
+  /* ── one era of the practice ───────────────────────────── */
+  function renderEra() {
+    const E = ERAS[era];
+    setDots(ERAS.length, era, era);
+
+    const head = el("div", "c-hero");
+    head.innerHTML =
+      '<span class="c-badge">' + E.when + '</span>' +
+      '<h2 class="c-title">' + E.en + '</h2>' +
+      '<p class="c-ar" dir="rtl" lang="ar">' + E.ar + '</p>' +
+      '<p class="c-line">' + E.line + '</p>';
+    stage.appendChild(head);
+
+    E.blocks.forEach(b => stage.appendChild(block(b)));
+
+    /* The people of this era, so the two views are one guide and not
+       two lists that happen to share a page. */
+    const people = E.figs.map(id => LINEAGE.findIndex(f => f.id === id)).filter(i => i >= 0);
+    if (people.length) {
+      stage.appendChild(el("span", "b-lab", "In this era"));
+      const grid = el("div", "m-list");
+      people.forEach(k => {
+        const f = LINEAGE[k];
+        const b = el("button", "m-course");
+        b.innerHTML =
+          '<span class="m-code">' + (k + 1) + '</span>' +
+          '<span class="m-txt">' +
+            '<span class="m-en">' + figName(f) + '</span>' +
+            (figAr(f) ? '<span class="m-arname" dir="rtl" lang="ar">' + figAr(f) + '</span>' : '') +
+            '<span class="m-line">' + f.life + ' · ' + (figRole(f) || f.pair) + '</span>' +
+          '</span>';
+        b.addEventListener("click", () => { era = null; cur = k; render(); scrollTop(); });
+        grid.appendChild(b);
+      });
+      stage.appendChild(grid);
+    }
+
+    stage.appendChild(footNav({
+      back: era > 0 ? (() => { era--; render(); scrollTop(); }) : home,
+      backLabel: era > 0 ? ERAS[era - 1].en : "All of it",
+      next: era < ERAS.length - 1 ? (() => { era++; render(); scrollTop(); }) : null,
+      nextLabel: era < ERAS.length - 1 ? ERAS[era + 1].en : "",
+      note: "The practice · " + (era + 1) + " of " + ERAS.length
+    }));
+  }
+
+  /* ── one moment in the discipline ──────────────────────── */
+  function renderMoment() {
+    const M = DISCIPLINE[mom];
+    setDots(DISCIPLINE.length, mom, mom);
+
+    const head = el("div", "c-hero");
+    head.innerHTML =
+      '<span class="c-badge">' + (mom + 1) + ' of ' + DISCIPLINE.length + '</span>' +
+      '<h2 class="c-title">' + M.en + '</h2>' +
+      '<p class="c-ar" dir="rtl" lang="ar">' + M.ar + '</p>' +
+      '<p class="c-line">' + M.line + '</p>';
+    stage.appendChild(head);
+
+    M.blocks.forEach(b => stage.appendChild(block(b)));
+
+    stage.appendChild(footNav({
+      back: mom > 0 ? (() => { mom--; render(); scrollTop(); }) : home,
+      backLabel: mom > 0 ? DISCIPLINE[mom - 1].en : "All of it",
+      next: mom < DISCIPLINE.length - 1 ? (() => { mom++; render(); scrollTop(); }) : null,
+      nextLabel: mom < DISCIPLINE.length - 1 ? DISCIPLINE[mom + 1].en : "",
+      note: "The discipline · " + (mom + 1) + " of " + DISCIPLINE.length
+    }));
+  }
+
+  /* ── the index, and a figure's dossier ─────────────────── */
+  function renderIndex() {
     setDots(LINEAGE.length, cur === null ? 0 : cur + 1, cur === null ? -1 : cur);
 
     stage.appendChild(el("p", "lede",
-      "Nobody here invented a language. They moved things between two of them, and the world on the " +
-      "other side was different afterwards: medicine survived, scripture was read at home, a continent " +
-      "got its science back, a novel found more readers in translation than in the original. " +
-      "<b>Eight from the Arabic tradition, eight from the Western one</b>, in the order they lived &mdash; " +
-      "and they hand things to each other across the centuries more than any of them knew. " +
-      "Every one of them is here with a piece of the actual translating, so you can see the decision " +
-      "being made and not only hear it described."));
-
-    /* Two different histories, and a reader arriving here from the hall
-       can reasonably expect either one. Say which this is, and hand them
-       the other. */
-    stage.appendChild(el("p", "note",
-      "This is the history of the <b>practice</b> &mdash; the people who did the work. The history of " +
-      "<b>translation studies</b>, the discipline, is a different subject: Holmes's map, Jakobson's three " +
-      "kinds, and where the theories came from. That is in " +
-      "<b>180 Principles of Translation</b>, units two and three."));
+      "Translation has no starting date. Wherever two languages met, somebody translated, and the world " +
+      "on the other side was different afterwards: medicine survived, scripture was read at home, a " +
+      "continent got its science back, a novel found more readers in translation than in the original." +
+      "<p>Three ways through it, and they are not the same subject. <b>The practice</b> &mdash; who was " +
+      "translating, for whom, and what they argued about. <b>The discipline</b> &mdash; translation " +
+      "studies, which is about fifty years old and is the study of that practice. And <b>the people</b>, " +
+      "sixteen of them, eight from the Arabic tradition and eight from the Western one, each with a piece " +
+      "of the actual translating so you can see the decision being made and not only hear it " +
+      "described.</p>"));
 
     if (cur !== null) {
       const f = LINEAGE[cur];
@@ -2462,7 +2576,7 @@ function runLineage(startAt) {
         '</span>' +
         '<span class="d-txt"><h3>' + figName(f) + '</h3>' +
           (figAr(f) ? '<span class="d-ar" dir="rtl" lang="ar">' + figAr(f) + '</span>' : '') +
-          '<span class="d-meta">' + f.life + ' \u00b7 ' + f.place + '</span>' +
+          '<span class="d-meta">' + f.life + ' · ' + f.place + '</span>' +
           '<span class="d-pair">' + (figRole(f) || f.pair) + '</span></span>';
       card.appendChild(top);
       card.appendChild(el("p", "pull", f.line));
@@ -2480,14 +2594,75 @@ function runLineage(startAt) {
       stage.appendChild(card);
       paintPortraits(card);
 
+      /* The era this one belongs to, so a dossier is never a dead end. */
+      const eIdx = ERAS.findIndex(E => E.figs.indexOf(f.id) >= 0);
+      if (eIdx >= 0) {
+        const j = el("button", "ghost", "The age they worked in: " + ERAS[eIdx].en + " →");
+        j.style.margin = "0 0 1.1rem";
+        j.addEventListener("click", () => { cur = null; era = eIdx; render(); scrollTop(); });
+        stage.appendChild(j);
+      }
+
       stage.appendChild(footNav({
-        back: cur > 0 ? (() => { cur--; render(); scrollTop(); }) : (() => { cur = null; render(); scrollTop(); }),
+        back: cur > 0 ? (() => { cur--; render(); scrollTop(); }) : home,
         backLabel: cur > 0 ? figName(LINEAGE[cur - 1]) : "All sixteen",
         next: cur < LINEAGE.length - 1 ? (() => { cur++; render(); scrollTop(); }) : null,
         nextLabel: cur < LINEAGE.length - 1 ? figName(LINEAGE[cur + 1]) : "",
         note: (cur + 1) + " of " + LINEAGE.length
       }));
     }
+
+    /* The practice, era by era. */
+    const eh = el("div", "m-group");
+    eh.innerHTML =
+      '<h3>The practice <span class="m-ar" dir="rtl" lang="ar">تاريخ الممارسة</span></h3>' +
+      '<span class="m-rule">Eight eras, in order</span>' +
+      '<span class="m-rule is-ar" dir="rtl" lang="ar">ثماني حقب، بالترتيب</span>';
+    stage.appendChild(eh);
+    const elist = el("div", "m-list");
+    ERAS.forEach((E, k) => {
+      const b = el("button", "m-course");
+      b.innerHTML =
+        '<span class="m-code">' + E.n + '</span>' +
+        '<span class="m-txt">' +
+          '<span class="m-en">' + E.en + '</span>' +
+          '<span class="m-arname" dir="rtl" lang="ar">' + E.ar + '</span>' +
+          '<span class="m-line">' + E.when + ' · ' + E.line + '</span>' +
+        '</span>';
+      b.addEventListener("click", () => { cur = null; era = k; render(); scrollTop(); });
+      elist.appendChild(b);
+    });
+    stage.appendChild(elist);
+
+    /* The discipline. */
+    const dh = el("div", "m-group");
+    dh.innerHTML =
+      '<h3>The discipline <span class="m-ar" dir="rtl" lang="ar">دراسات الترجمة</span></h3>' +
+      '<span class="m-rule">Translation studies, from 1972</span>' +
+      '<span class="m-rule is-ar" dir="rtl" lang="ar">نشأة الحقل الأكاديمي</span>';
+    stage.appendChild(dh);
+    const dlist = el("div", "m-list");
+    DISCIPLINE.forEach((M, k) => {
+      const b = el("button", "m-course");
+      b.innerHTML =
+        '<span class="m-code">' + M.n + '</span>' +
+        '<span class="m-txt">' +
+          '<span class="m-en">' + M.en + '</span>' +
+          '<span class="m-arname" dir="rtl" lang="ar">' + M.ar + '</span>' +
+          '<span class="m-line">' + M.line + '</span>' +
+        '</span>';
+      b.addEventListener("click", () => { cur = null; mom = k; render(); scrollTop(); });
+      dlist.appendChild(b);
+    });
+    stage.appendChild(dlist);
+
+    /* The people. */
+    const ph = el("div", "m-group");
+    ph.innerHTML =
+      '<h3>The people <span class="m-ar" dir="rtl" lang="ar">المترجمون</span></h3>' +
+      '<span class="m-rule">Sixteen, in the order they lived</span>' +
+      '<span class="m-rule is-ar" dir="rtl" lang="ar">ستة عشر مترجماً</span>';
+    stage.appendChild(ph);
 
     const grid = el("div", "figures");
     LINEAGE.forEach((f, k) => {
@@ -2508,6 +2683,14 @@ function runLineage(startAt) {
     paintPortraits(grid);
 
     if (cur === null) stage.appendChild(footNav());
+  }
+
+  function render() {
+    stage.innerHTML = "";
+    setCount(count());
+    if (era !== null)      renderEra();
+    else if (mom !== null) renderMoment();
+    else                   renderIndex();
   }
   render();
 }
@@ -3626,6 +3809,442 @@ const ROOTS = [
       { w: "اِستِسلام", tr: "istislām", en: "surrender" },
       { w: "سُلَّم", tr: "sullam", en: "ladder — its rungs are whole" }
     ] }
+];
+
+/* ═══════════════════════════════════════════════════════════
+   TRANSLATION IN HISTORY
+
+   Two things that are often confused and are not the same. ERAS is
+   the history of the practice: who was translating, for whom, under
+   what conditions, and what they argued about. DISCIPLINE is the
+   history of translation studies, which is about fifty years old and
+   is the study of that practice.
+
+   The sixteen figures in LINEAGE live inside these eras; each era
+   names the ones that belong to it, by id, so the two views stay in
+   step and nothing has to be kept in sync by hand.
+   ═══════════════════════════════════════════════════════════ */
+const ERAS = [
+  {
+    n: 1, en: "Scripture, and the first argument", ar: "النقل الأول والجدل حول الحرف",
+    when: "3rd century BC – 5th century AD",
+    line: "The word-for-word question is older than every theory that answers it.",
+    figs: ["jerome"],
+    blocks: [
+      { t: "lede", html:
+        "Translation has no beginning &mdash; wherever two languages met, somebody translated. What has a " +
+        "beginning is the <b>argument about how</b>, and it starts with a religious text and a practical " +
+        "problem." },
+      { t: "card", h: "The Septuagint, and the first authoritative translation", html:
+        "In third-century-BC Alexandria the Hebrew Bible was put into Greek for a Jewish community that " +
+        "no longer read Hebrew. The legend says seventy-two translators worked separately and produced " +
+        "identical texts." +
+        "<p>The legend matters more than the history. It is the first claim that a translation can carry " +
+        "the authority of its original &mdash; and every argument since about whether a translation can " +
+        "be scripture, or law, or evidence, is a continuation of it.</p>" },
+      { t: "card", h: "Cicero, 46 BC", html:
+        "Translating Greek speeches into Latin, Cicero writes that he did not render <i>verbum pro " +
+        "verbo</i> &mdash; word for word &mdash; but kept the force and the figures. Horace repeats the " +
+        "advice a few years later." +
+        "<p>That single phrase sets the terms for the next two thousand years. Everything in this guide " +
+        "is, in one way or another, an answer to it.</p>" },
+      { t: "card", h: "Jerome, and the exception he made", html:
+        "In his letter to Pammachius (c. 395) Jerome takes Cicero's side outright: <i>not word for word " +
+        "but sense for sense</i>." +
+        "<p>Then he exempts scripture, <i>where even the order of the words is a mystery</i>. Note what " +
+        "has happened: the first person to state the rule clearly also states that it does not apply to " +
+        "the most important text he will ever translate. <b>Text type decides the method</b> &mdash; the " +
+        "idea arrives at the same moment the method does.</p>" }
+    ]
+  },
+
+  {
+    n: 2, en: "Baghdad, and the translation movement", ar: "حركة الترجمة في بغداد",
+    when: "8th – 10th century",
+    line: "Two centuries of funded, professional, systematic translation — and the first method.",
+    figs: ["muqaffa", "jahiz", "hunayn", "qusta", "thabit", "ishaq"],
+    blocks: [
+      { t: "lede", html:
+        "Under the Abbasids, Greek science, medicine and philosophy were translated into Arabic on a " +
+        "scale nothing in history had attempted &mdash; often through Syriac, over roughly two hundred " +
+        "years, paid for by caliphs, viziers and private families. It is the point at which translation " +
+        "becomes a <b>funded profession with a method</b>." },
+      { t: "card", h: "Ibn al-Muqaffaʿ, and translation as rewriting", html:
+        "Earlier and from a different direction: <i>Kalīla wa-Dimna</i> came into Arabic from Middle " +
+        "Persian, itself from Sanskrit." +
+        "<p>He did not transfer it, he rebuilt it &mdash; adding, framing, shaping Arabic literary prose " +
+        "in the act. The result is a founding text of Arabic literature that is also a translation, which " +
+        "is a fact worth sitting with.</p>" },
+      { t: "card", h: "Ḥunayn ibn Isḥāq's method", html:
+        "Ḥunayn described how he worked, and it is recognisably modern scholarship: <b>collect every " +
+        "manuscript you can find, collate them, establish a sound text, and only then translate</b>." +
+        "<p>He also revised his own earlier versions when better manuscripts turned up. Textual criticism " +
+        "as a precondition of translation &mdash; in the ninth century.</p>" },
+      { t: "card", h: "Al-Jāḥiẓ's objection", html:
+        "Against all of this, al-Jāḥiẓ argued that the translator must be <b>the equal of the author in " +
+        "knowledge of the subject</b>, not merely of the language &mdash; and that poetry cannot be " +
+        "translated at all, because what makes it poetry does not survive." +
+        "<p>The first is now the uncontroversial basis of specialised translation. The second is still " +
+        "being argued about.</p>" },
+      { t: "card", h: "What it was for", html:
+        "Patronage, prestige, and use. Physicians needed Galen; astronomers needed Ptolemy; the state " +
+        "needed administration." +
+        "<p>Translation here is not a literary hobby. It is infrastructure &mdash; and the works " +
+        "translated in Baghdad are the ones Europe will later translate out of Arabic, in the next " +
+        "era.</p>" }
+    ]
+  },
+
+  {
+    n: 3, en: "Toledo, and the road back west", ar: "مدرسة طليطلة",
+    when: "11th – 13th century",
+    line: "Europe recovered its own Greek inheritance through Arabic.",
+    figs: [],
+    blocks: [
+      { t: "lede", html:
+        "In Spain and Sicily, Arabic works &mdash; including the Arabic versions of Greek texts made in " +
+        "Baghdad &mdash; were translated into Latin. <b>Gerard of Cremona</b> went to Toledo to find a " +
+        "copy of Ptolemy's <i>Almagest</i>, learned Arabic, stayed, and is credited with some seventy " +
+        "works." },
+      { t: "card", h: "How it was actually done", html:
+        "Often in pairs, and through a third language. A Jewish or Mozarab collaborator read the Arabic " +
+        "aloud in Castilian; a Latin-writing cleric wrote it down in Latin." +
+        "<p>The intermediate language was <b>spoken and left no text</b>. Relay translation, team " +
+        "translation and the interpreter's role all appear here at once &mdash; and so do their " +
+        "characteristic errors.</p>" },
+      { t: "list", h: "What crossed, and what it left in English", intro:
+        "The route is still visible in the vocabulary:", items: [
+        "<i>Almagest</i> — Ptolemy's astronomy, from <span class='ar-inline' dir='rtl' lang='ar'>المجسطي</span>, an Arabic mangling of a Greek superlative. Europe took the book back under an Arabic name.",
+        "<i>Algebra</i>, from <span class='ar-inline' dir='rtl' lang='ar'>الجبر</span>; <i>algorithm</i>, from al-Khwārizmī's own name.",
+        "<i>Alcohol</i>, <i>alkali</i>, <i>cipher</i>, <i>zenith</i>, <i>nadir</i> — the definite article <span class='ar-inline' dir='rtl' lang='ar'>ال</span> fossilised into the English word.",
+        "Ibn Sīnā's <i>Canon of Medicine</i>, which was a European medical textbook into the seventeenth century."
+      ] },
+      { t: "card", h: "The point a student should take from it", html:
+        "The transmission is not one culture generously handing knowledge to another. It is a two-way " +
+        "chain of translations, each step lossy, each step necessary." +
+        "<p>And nobody in Toledo was translating for the pleasure of it. They were translating because " +
+        "the texts were <b>better than anything available in Latin</b>.</p>" }
+    ]
+  },
+
+  {
+    n: 4, en: "The Bible in the vernacular", ar: "الكتاب بلغة الناس",
+    when: "16th century",
+    line: "Translation as a capital offence — and as the making of two national languages.",
+    figs: ["luther", "tyndale"],
+    blocks: [
+      { t: "lede", html:
+        "Putting scripture into the language people actually spoke was, for a time, a crime. Tyndale was " +
+        "strangled and burned in 1536 for having done it. Luther had a prince protecting him and " +
+        "survived." },
+      { t: "card", h: "Luther's rule", html:
+        "In the <i>Sendbrief vom Dolmetschen</i> (1530) Luther answers his critics: you do not ask the " +
+        "Latin letters how to speak German, you <b>look at the mouth of the common man in the " +
+        "marketplace</b> and ask how he says it." +
+        "<p>It is the target-language-bias argument, four centuries before anyone called it " +
+        "communicative translation.</p>" },
+      { t: "card", h: "What it actually changed", html:
+        "Far more than religion. These translations <b>fixed the shape of modern German and modern " +
+        "English</b>." +
+        "<p>Tyndale's phrasings passed almost unaltered into the King James Version and from there into " +
+        "ordinary speech: <i>the powers that be</i>, <i>the salt of the earth</i>, <i>a law unto " +
+        "themselves</i>, <i>fight the good fight</i>. Most English speakers quote a sixteenth-century " +
+        "translator every week without knowing it.</p>" },
+      { t: "card", h: "Why the authorities were right to be frightened", html:
+        "A text only the clergy can read is a text only the clergy can interpret. Translation moved the " +
+        "authority to interpret." +
+        "<p>Keep this in view for the ideology unit of <b>284</b>: the claim that translation is a neutral " +
+        "technical service has never once been true, and here it is not even pretending.</p>" }
+    ]
+  },
+
+  {
+    n: 5, en: "The age of the rules", ar: "عصر القواعد",
+    when: "17th – 18th century",
+    line: "Translators stop defending themselves anecdotally and start classifying.",
+    figs: ["dryden"],
+    blocks: [
+      { t: "lede", html:
+        "English writers begin to set out what the options actually <i>are</i>, rather than arguing case " +
+        "by case. It is the first move towards a systematic account, and it is made by practising poets " +
+        "rather than scholars." },
+      { t: "list", h: "Dryden's three, 1680", intro:
+        "In the preface to his <i>Ovid's Epistles</i>, Dryden divides translation into three:", items: [
+        "<b>Metaphrase</b> — word by word and line by line. He compares it to dancing on a rope with fettered legs.",
+        "<b>Paraphrase</b> — sense for sense, the author kept in view but the words free. He recommends this one.",
+        "<b>Imitation</b> — the translator takes liberties not only with the words but with the sense, writing what the author might have written. He mistrusts it, and does it anyway."
+      ] },
+      { t: "card", h: "Tytler's three laws, 1790", html:
+        "Alexander Fraser Tytler's <i>Essay on the Principles of Translation</i> is the first book-length " +
+        "treatment in English. His laws: a translation should give <b>a complete transcript of the idea</b> " +
+        "of the original, its <b>style and manner</b> should be of the same character, and it should have " +
+        "<b>all the ease of original composition</b>." +
+        "<p>The three pull against each other, and he knows it. Deciding which to sacrifice is still the " +
+        "job.</p>" },
+      { t: "card", h: "Why this era matters to you", html:
+        "Dryden's middle term is the ancestor of every later three-way scheme: literal, communicative and " +
+        "free; formal and dynamic; foreignising and domesticating." +
+        "<p>The categories have changed names several times. The decision underneath has not changed at " +
+        "all.</p>" }
+    ]
+  },
+
+  {
+    n: 6, en: "Two paths, and the Nahḍa", ar: "الرومانسية والنهضة",
+    when: "19th century",
+    line: "Move the reader to the author, or the author to the reader — and Cairo builds an institution.",
+    figs: ["schleiermacher", "tahtawi"],
+    blocks: [
+      { t: "lede", html:
+        "The nineteenth century produces the sharpest statement of the central choice, and, at the other " +
+        "end of the Mediterranean, the first modern state translation institution in Arabic." },
+      { t: "card", h: "Schleiermacher, 1813", html:
+        "In a lecture in Berlin he says there are <b>only two paths</b>: either the translator leaves the " +
+        "author in peace and moves the reader towards him, or leaves the reader in peace and moves the " +
+        "author towards him." +
+        "<p>Any mixture, he says, produces something unreliable. He prefers the first, because it enlarges " +
+        "the reader's own language. Venuti will rename these <b>foreignising</b> and <b>domesticating</b> " +
+        "in 1995, and credit him.</p>" },
+      { t: "card", h: "Al-Ṭahṭāwī, Paris and Cairo", html:
+        "Sent to Paris in 1826 as imam to a student mission, he learned French, read the Enlightenment, " +
+        "and wrote an account of France for Arabic readers. Back in Cairo he founded the <b>School of " +
+        "Languages</b> &mdash; " +
+        "<span class='ar-inline' dir='rtl' lang='ar'>مدرسة الألسن</span> &mdash; in 1835." +
+        "<p>Hundreds of works into Arabic: law, engineering, geography, military science. And with them " +
+        "the modern Arabic vocabulary for constitution, citizenship, public opinion and the rest &mdash; " +
+        "a case of translation <b>making</b> the terms a language would then argue in.</p>" },
+      { t: "card", h: "The same century, the opposite problem", html:
+        "Schleiermacher is arguing about how to keep the foreign foreign, for a culture confident enough " +
+        "to be enlarged by it." +
+        "<p>Al-Ṭahṭāwī is building the means to acquire what a different power already had. Both are " +
+        "translation policy; they are answering different questions, and reading them together is more " +
+        "instructive than reading either alone.</p>" }
+    ]
+  },
+
+  {
+    n: 7, en: "The machine, and the model", ar: "قرن الآلة والنموذج",
+    when: "20th century",
+    line: "Translation is declared a decoding problem, solved in five years, and abandoned in seventeen.",
+    figs: ["nida", "rabassa"],
+    blocks: [
+      { t: "lede", html:
+        "Two things happen at once: engineers try to automate translation, and linguists try to describe " +
+        "it. The first fails publicly. The second produces most of the vocabulary this course uses." },
+      { t: "list", h: "The machine, in four dates", items: [
+        "<b>1949.</b> Warren Weaver's memorandum proposes treating translation as <b>decoding</b>: a Russian text is English in a strange code.",
+        "<b>1954.</b> The Georgetown–IBM demonstration translates forty-nine selected Russian sentences and claims the problem will be solved within five years.",
+        "<b>1966.</b> The ALPAC report finds machine translation slower, less accurate and more expensive than a human. American funding collapses for two decades.",
+        "<b>1990s onward.</b> Statistical methods, then neural ones from 2016, then large language models. The failure was never arithmetic — it was that meaning is not in the code."
+      ] },
+      { t: "card", h: "Nida, and equivalence", html:
+        "Out of Bible-translation practice, Eugene Nida distinguishes <b>formal equivalence</b> &mdash; " +
+        "stay close to the form of the source &mdash; from <b>dynamic equivalence</b> &mdash; produce on " +
+        "the new reader the effect the original had on its own." +
+        "<p>The phrase <i>effect on the receptor</i> is his, and Newmark's communicative translation " +
+        "descends directly from it. So does most of <b>284</b>.</p>" },
+      { t: "card", h: "And the literary proof", html:
+        "Gregory Rabassa's English <i>One Hundred Years of Solitude</i> (1970) is the translation García " +
+        "Márquez said he preferred to his own Spanish." +
+        "<p>Rabassa's own account of how he did it: he read it as he translated it, without finishing it " +
+        "first. Worth holding against every process model on this site &mdash; including the one in " +
+        "<b>180</b>.</p>" }
+    ]
+  },
+
+  {
+    n: 8, en: "Where it stands now", ar: "الحاضر",
+    when: "1990s – today",
+    line: "The translator becomes visible, and the machine comes back.",
+    figs: ["venuti", "jayyusi"],
+    blocks: [
+      { t: "lede", html:
+        "Two arguments run at the same time and hardly talk to each other: one about the translator's " +
+        "position and power, one about what the software has made of the job." },
+      { t: "card", h: "Visibility", html:
+        "Venuti's <i>The Translator's Invisibility</i> (1995) points out that Anglo-American publishing " +
+        "prizes a translation that <b>reads as though it were not one</b> &mdash; and that this fluency " +
+        "is not neutral. It erases both the translator and the foreignness of the text." +
+        "<p>Whether you agree or not, the question it forces is a real one: who is served by a " +
+        "translation that hides its own existence?</p>" },
+      { t: "card", h: "Institutions, not single books", html:
+        "Salma Khadra Jayyusi's PROTA did not translate a book; it built the apparatus by which Arabic " +
+        "literature could exist in English at all &mdash; commissioning, editing, anthologising, finding " +
+        "publishers." +
+        "<p>A reminder that what gets translated is decided long before any translator opens the file, " +
+        "and usually by someone else.</p>" },
+      { t: "list", h: "And the work itself has changed shape", items: [
+        "<b>Post-editing.</b> A large share of commercial translation is now correcting machine output rather than producing a first draft — a different skill, and often worse paid.",
+        "<b>Audiovisual.</b> Subtitling and dubbing, with constraints (characters per line, reading speed, lip-sync) that no literary theory anticipated.",
+        "<b>Localisation.</b> Software, games and interfaces, where the text is fragments without context and the product is adapted, not translated.",
+        "<b>Community and crisis translation.</b> Volunteers, fansubbers, and translators in emergencies — unpaid, unregulated, and often the only version anyone reads."
+      ] },
+      { t: "card", h: "The ALPAC question, returning", html:
+        "In 1966 a committee asked whether the machine was actually cheaper than a person, and the answer " +
+        "was no." +
+        "<p>The question is open again, and this time the honest answer depends entirely on the text " +
+        "type, which is where <b>180</b> began and where this guide ends.</p>" }
+    ]
+  }
+];
+
+/* The discipline is younger than most of the people in the lineage
+   were when they died. Keeping it separate from ERAS is the whole
+   point: one is what translators did, the other is the study of it. */
+const DISCIPLINE = [
+  {
+    n: 1, en: "1972, and a name", ar: "الاسم والخريطة",
+    line: "The paper the field dates itself from.",
+    blocks: [
+      { t: "lede", html:
+        "<b>James Holmes</b>, <i>The Name and Nature of Translation Studies</i>, 1972. Before it, " +
+        "translation was studied inside comparative literature, inside contrastive linguistics, inside " +
+        "workshops &mdash; never on its own terms, and without an agreed name." },
+      { t: "list", h: "What the map contains", intro:
+        "Holmes divides the field in two, and then divides again:", items: [
+        "<b>Pure</b> — <b>theoretical</b> (what translation is and how it works) and <b>descriptive</b> (what translations actually are, in the world).",
+        "<b>Descriptive</b> splits three ways: <b>product-oriented</b> (this translation, compared with that one), <b>process-oriented</b> (what happens in the translator's head), <b>function-oriented</b> (what the translation did in its receiving culture).",
+        "<b>Applied</b> — training, tools and aids, criticism, and policy."
+      ] },
+      { t: "card", h: "Why a map was the useful thing to produce", html:
+        "Not because it settled anything, but because it showed people working on unrelated-looking " +
+        "problems that they were in the same field." +
+        "<p>Almost every branch on it has since grown into a subfield with its own journals. The one " +
+        "Holmes could not have drawn is the computational one.</p>" }
+    ]
+  },
+  {
+    n: 2, en: "Jakobson's three kinds", ar: "أنواع الترجمة الثلاثة",
+    line: "1959, and still the cleanest definition in the subject.",
+    blocks: [
+      { t: "list", h: "The division", intro:
+        "<b>Roman Jakobson</b> separates three things the one word covers:", items: [
+        "<b>Intralingual</b> — within a language. Paraphrase, summary, putting a contract into plain Arabic.",
+        "<b>Interlingual</b> — between two languages. <i>Translation proper</i>, in his phrase, and what the profession sells.",
+        "<b>Intersemiotic</b> — between sign systems. A novel into a film, speech into subtitle, a warning into a pictogram."
+      ] },
+      { t: "card", h: "What the third one is for", html:
+        "It is not a curiosity. Subtitling is interlingual and intersemiotic at once &mdash; speech into " +
+        "writing and one language into another, under a character limit." +
+        "<p>Kuwaiti Sign Language interpreting is the same: no writing system, a different modality, and a " +
+        "different language. Jakobson's third category is the one that has grown fastest.</p>" }
+    ]
+  },
+  {
+    n: 3, en: "The linguistic phase", ar: "المرحلة اللسانية",
+    line: "Translation described as an operation on language, with a vocabulary for its moves.",
+    blocks: [
+      { t: "list", h: "Three accounts, roughly a decade apart", items: [
+        "<b>Vinay &amp; Darbelnet, 1958.</b> Seven procedures — borrowing, calque, literal translation, transposition, modulation, equivalence, adaptation. The Guild's own guide works all seven in Arabic and English.",
+        "<b>Catford, 1965.</b> <i>Shifts</i>: the small obligatory departures from formal correspondence that the target language's grammar forces on you — level shifts and category shifts.",
+        "<b>Nida, 1964.</b> <b>Formal</b> against <b>dynamic</b> equivalence — the form of the source, or the effect on the receptor."
+      ] },
+      { t: "card", h: "What this phase got right, and what it missed", html:
+        "Right: a shared vocabulary for describing what a translator actually did to a sentence. Almost " +
+        "everything on this site that lets you say <i>here is the move I made</i> comes from here." +
+        "<p>Missed: why the translator chose that move. The texts were treated as though they had no " +
+        "commissioner, no deadline, no publisher and no politics.</p>" }
+    ]
+  },
+  {
+    n: 4, en: "Skopos: the purpose decides", ar: "نظرية الغرض",
+    line: "The brief outranks the source text.",
+    blocks: [
+      { t: "lede", html:
+        "<b>Hans Vermeer</b> (1978), then Reiss and Vermeer together (1984): a translation is an action, " +
+        "actions have purposes, and the <b>purpose of the target text</b> &mdash; the <i>skopos</i> " +
+        "&mdash; determines the method." },
+      { t: "card", h: "The consequence people find uncomfortable", html:
+        "The same source text, commissioned for two purposes, yields two translations, and <b>both are " +
+        "correct</b>. Fidelity is demoted: it becomes one possible requirement of a brief, not the " +
+        "definition of the job." +
+        "<p>If you have ever translated a document one way for a court and another way for a press " +
+        "release, you have already agreed with Vermeer.</p>" },
+      { t: "card", h: "Where it is strongest, and where it is weakest", html:
+        "Strongest on commercial and technical work, where there really is a brief and a client." +
+        "<p>Weakest on literature, where the purpose is not given in advance and the translator is " +
+        "usually the one deciding it. Critics also object that it licenses too much: a sufficiently bold " +
+        "brief can justify almost any intervention.</p>" }
+    ]
+  },
+  {
+    n: 5, en: "Describe, don't prescribe", ar: "الدراسات الوصفية",
+    line: "Polysystem theory and descriptive translation studies.",
+    blocks: [
+      { t: "card", h: "Even-Zohar, and where translations sit", html:
+        "<b>Polysystem theory</b> (1970s) treats a literature as a system of systems, with a centre and a " +
+        "periphery, and asks where translated literature sits in it." +
+        "<p>His answer: usually the periphery &mdash; but at the centre when a literature is young, or in " +
+        "crisis, or peripheral itself. At those moments translation <b>changes</b> the receiving " +
+        "literature rather than conforming to it. Read the Nahḍa against this and it stops looking like " +
+        "borrowing.</p>" },
+      { t: "card", h: "Toury, and norms", html:
+        "<b>Gideon Toury</b> turns the subject around: stop asking what translators should do, and " +
+        "describe what they <b>demonstrably did</b>, then infer the <b>norms</b> they were working under." +
+        "<p>Norms are not rules; they are what a community at a given moment treats as acceptable. This " +
+        "is why a translation from 1880 and one from 2020 can both be competent and look nothing " +
+        "alike.</p>" }
+    ]
+  },
+  {
+    n: 6, en: "The cultural turn", ar: "المنعطف الثقافي",
+    line: "1990: the unit of study stops being the sentence.",
+    blocks: [
+      { t: "lede", html:
+        "<b>Bassnett</b> and <b>Lefevere</b>'s <i>Translation, History and Culture</i> (1990) names the " +
+        "shift: translation is <b>rewriting</b>, rewriting is done under patronage and ideology, and the " +
+        "interesting questions are about power rather than equivalence." },
+      { t: "list", h: "What grew out of it", items: [
+        "<b>Postcolonial translation studies</b> — translation as an instrument of empire, and as a means of answering back. Who translates whom, and in which direction, is not an accident.",
+        "<b>Feminist translation</b> — the translator's interventions made deliberate and visible rather than hidden.",
+        "<b>Ideology and censorship</b> — what gets translated, what does not, and what is quietly altered on the way. This is <b>284</b>'s last two units, and it comes from here.",
+        "<b>Translation and conflict</b> — interpreters in war and asylum, and the position they are placed in."
+      ] },
+      { t: "card", h: "The standing objection", html:
+        "That the turn moved so far from the text that it stopped being about translation." +
+        "<p>Worth taking seriously. The defence is that the sentence-level account could not explain why " +
+        "two competent translators, given the same text, produce systematically different books &mdash; " +
+        "and it could not.</p>" }
+    ]
+  },
+  {
+    n: 7, en: "Invisibility", ar: "احتجاب المترجم",
+    line: "Venuti, 1995 — and Schleiermacher's two paths, renamed.",
+    blocks: [
+      { t: "lede", html:
+        "<b>Lawrence Venuti</b> argues that Anglo-American publishing rewards the translation that reads " +
+        "as though it were written in English &mdash; and that this <b>fluency</b> is an ideology, not a " +
+        "standard. It makes the translator disappear and the foreign text look domestic." },
+      { t: "split", h: "The two strategies",
+        a: { lab: "Domesticating", ar: "التدجين",
+             say: "Bring the text to the reader. Fluent, transparent, no friction — and the reader never learns that anything was ever strange." },
+        b: { lab: "Foreignising", ar: "التغريب",
+             say: "Take the reader to the text. Keep the resistance, let the target language be marked by the encounter — at the cost of ease, and sometimes of sales." } },
+      { t: "card", h: "What to do with it in practice", html:
+        "Venuti is not saying domestication is always wrong. He is saying it is a <b>choice that is " +
+        "usually made invisibly</b>, by an industry rather than by a translator." +
+        "<p>The usable form of the argument, and the one <b>284</b> ends on: know which you did, and be " +
+        "able to say why.</p>" }
+    ]
+  },
+  {
+    n: 8, en: "Where the research is now", ar: "اتجاهات البحث الحالية",
+    line: "Corpora, cognition, sociology — and the argument with the machine.",
+    blocks: [
+      { t: "list", h: "Four live areas", items: [
+        "<b>Corpus translation studies.</b> Mona Baker (1993 onward) uses large electronic corpora to test claims empirically — including the recurring finding that translations tend to be more explicit, more conventional and more standardised than originals.",
+        "<b>Cognitive and process research.</b> Keystroke logging, eye-tracking and think-aloud protocols, filling in Holmes's process-oriented branch with evidence rather than introspection.",
+        "<b>Sociology of translation.</b> The translator as a worker: status, rates, unions, the agency model, and who actually captures the value.",
+        "<b>Machine translation and post-editing.</b> Quality estimation, the measurable degradation of post-edited style, and what happens to a language when most of its incoming text arrives through one model."
+      ] },
+      { t: "card", h: "And the question underneath all four", html:
+        "Every one of them is a version of Holmes's original problem: this is an activity everybody uses " +
+        "and almost nobody examines." +
+        "<p>The reason to know the history is not reverence. It is that each of these debates has been " +
+        "had before in other words, and knowing which ones were settled &mdash; and which only went " +
+        "quiet &mdash; is the difference between a practitioner and a technician.</p>" }
+    ]
+  }
 ];
 
 /* ═══════════════════════════════════════════════════════════
@@ -6677,9 +7296,9 @@ const ITEMS = [
     subject: "لغة الإشارة الكويتية · KSL",
     blurb: "The third language the Guild works in, and the only one with no writing. What KSL is, who uses it, how a sign is assembled, and why fingerspelling is not signing — with the sources, the verification rules, and the eight-stage path stated honestly, including how far along it is.",
     run: runKsl },
-  { id: "lineage", ar: "", en: "Translators in History", kind: "guide", section: "method",
-    subject: "The tradition, from the fourth century to our own",
-    blurb: "Sixteen translators, from the fourth century to our own, whose work changed what the world could read &mdash; eight from the Arabic tradition, eight from the Western one.",
+  { id: "lineage", ar: "تاريخ التَّرجمة", en: "Translation in History", kind: "guide", section: "method",
+    subject: "The practice, the discipline, and the people",
+    blurb: "Three histories that get confused with each other. The <b>practice</b>, in eight eras from the Septuagint to post-editing &mdash; Baghdad, Toledo, the vernacular Bible, the Nahḍa, the machine. The <b>discipline</b> &mdash; translation studies, which dates itself from 1972: Holmes's map, skopos, the descriptive turn, the cultural turn, invisibility. And the <b>people</b>: sixteen translators, eight from the Arabic tradition and eight from the Western one, each with a piece of the actual translating.",
     run: runLineage },
   { id: "procedures", ar: "الإجراءات السَّبعة", en: "The Seven Procedures", kind: "guide", section: "method",
     subject: "Vinay &amp; Darbelnet · Chapter 12",
