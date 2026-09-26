@@ -1245,6 +1245,48 @@ a.ks-s-en:hover { color: var(--white); }
 .c-reply { padding: 0; border: 0; background: none; color: var(--mag-ink); font-size: .76rem; box-shadow: none; }
 .c-write { display: grid; gap: .45rem; margin: .8rem 0 1.2rem; }
 
+/* ── the profile, after the reference ── */
+.seal-top { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .2rem 0 .9rem; }
+.seal-wordmark { font-family: var(--f-serif); font-size: 1.15rem; font-weight: 600;
+  color: var(--white); margin: 0; letter-spacing: -.01em; }
+.icon-btn { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
+  padding: 0; border: var(--hair); background: rgba(255,255,255,.05); box-shadow: none; flex: none; }
+.icon-btn:hover { background: rgba(214,191,234,.14); transform: none; }
+.icon-btn svg { width: 19px; height: 19px; fill: none; stroke: var(--lilac);
+  stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+/* one glyph at a time: the moon when it is dark, the sun when it is light */
+.icon-btn .ic-sun { display: none; }
+:root[data-theme="light"] .icon-btn .ic-moon { display: none; }
+:root[data-theme="light"] .icon-btn .ic-sun  { display: block; }
+
+.count-row { display: grid; grid-template-columns: repeat(3,1fr); gap: .4rem; margin: .9rem 0 .2rem; }
+.count-row div { text-align: center; padding: .55rem .3rem; cursor: default; }
+.count-row b { display: block; font-family: var(--f-serif); font-size: 1.3rem; color: var(--white);
+  font-variant-numeric: tabular-nums; }
+.count-row span { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.count-row div:first-child { cursor: pointer; }
+
+.ident-line { margin: .5rem 0 0; font-size: .88rem; color: var(--lilac); }
+.ident-line.is-ar { font-family: var(--f-ar); font-size: .92rem; color: var(--ink-soft); margin-top: .1rem; }
+.seal-bio { margin: .7rem 0 0; font-size: .92rem; line-height: 1.6; color: var(--ink-soft);
+  max-width: var(--measure); }
+
+.fact-row { display: flex; gap: .5rem; overflow-x: auto; margin: 1rem 0 .2rem; padding-bottom: .2rem;
+  scrollbar-width: none; }
+.fact-row::-webkit-scrollbar { display: none; }
+.fact { flex: none; display: flex; align-items: center; gap: .55rem; padding: .6rem .85rem;
+  border-radius: var(--r-lg); border: var(--hair); background: rgba(255,255,255,.035); }
+.fact-b { display: grid; grid-auto-flow: column; gap: .9rem; }
+.fact-k { display: block; font-size: .84rem; font-weight: 600; color: var(--white); white-space: nowrap; }
+.fact-v { display: block; font-size: .72rem; color: var(--ink-soft); white-space: nowrap; }
+
+.appearance-more > summary { display: flex; align-items: baseline; justify-content: space-between;
+  gap: 1rem; cursor: pointer; font-family: var(--f-serif); font-size: 1.1rem; color: var(--white);
+  list-style: none; }
+.appearance-more > summary::-webkit-details-marker { display: none; }
+.appearance-more[open] > summary { margin-bottom: .8rem; }
+
 /* ── community ── */
 .avatar.sm { width: 42px; height: 42px; font-size: .9rem; }
 .m-members { display: grid; gap: .5rem; margin: 1rem 0; }
@@ -2141,6 +2183,17 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
        as a translator, and what have I done?". They are two screens, not
        two halves of one. -->
   <section id="seal" class="view" hidden>
+    <!-- The theme switch belongs where a thumb reaches it, not three
+         panels down a scroll. -->
+    <div class="seal-top">
+      <h1 class="seal-wordmark">Translators&rsquo; Guild</h1>
+      <button type="button" class="icon-btn" id="theme-toggle"
+              aria-label="Switch between dark and light">
+        <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
+        <svg class="ic-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M19.1 4.9l-1.7 1.7M6.6 17.4l-1.7 1.7"/></svg>
+      </button>
+    </div>
+
     <div class="panel profile-card">
       <span class="avatar-wrap">
         <span class="avatar" id="seal-initials" aria-hidden="true"></span>
@@ -2164,9 +2217,21 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       </div>
     </div>
 
-    <!-- Appearance, as a settings group rather than a switch in the header -->
-    <div class="panel">
-      <div class="j-head"><h2>Appearance</h2><span class="j-next" id="appearance-now">System</span></div>
+    <!-- Posts, followers, following: the three numbers a member checks. -->
+    <div class="count-row" id="seal-counts" hidden></div>
+
+    <!-- Position, level and institution on one line, then the same in
+         Arabic, because this is a bilingual site and the profile should
+         look like one. -->
+    <p class="ident-line" id="seal-ident" hidden></p>
+    <p class="ident-line is-ar" id="seal-ident-ar" dir="rtl" lang="ar" hidden></p>
+    <p class="seal-bio" id="seal-bio" hidden></p>
+    <div class="fact-row" id="seal-facts" hidden></div>
+
+    <!-- Kept for the three-way choice, now that the header carries the
+         quick switch between dark and light. -->
+    <details class="panel appearance-more">
+      <summary><span>Appearance</span><span class="j-next" id="appearance-now">System</span></summary>
       <div class="pick-row two" role="radiogroup" aria-label="Theme">
         <button type="button" class="pick" data-theme-pick="dark" role="radio" aria-checked="true">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
@@ -2175,7 +2240,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
           <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.2 5.2l1.7 1.7M17.1 17.1l1.7 1.7M18.8 5.2l-1.7 1.7M6.9 17.1l-1.7 1.7"/></svg>
           <span>Light</span></button>
       </div>
-    </div>
+    </details>
 
     <p class="seal-actions">
       <button type="button" class="ghost" id="edit-profile-btn">Edit Profile</button>
@@ -10138,6 +10203,91 @@ function paintSeal() {
 /* What the member actually filled in. Without this, Edit Profile was a
    form that saved into silence: the bio, the languages and the interests
    were stored and then shown to everyone except their owner. */
+/* Arabic for the identity line. The site is bilingual; a profile that
+   is only in English says something the rest of it does not. */
+const LEVEL_AR = {
+  "First Year":"السنة الأولى", "Second Year":"السنة الثانية",
+  "Third Year":"السنة الثالثة", "Fourth Year":"السنة الرابعة",
+  "Graduate Student":"طالب دراسات عليا", "Recent Graduate":"خرّيج حديث",
+  "Teaching Assistant":"معيد", "Instructor":"مدرّس", "Lecturer":"محاضر",
+  "Assistant Professor":"أستاذ مساعد", "Associate Professor":"أستاذ مشارك",
+  "Professor":"أستاذ", "Researcher":"باحث",
+  "Professional Translator":"مترجم محترف", "Professional Interpreter":"مترجم شفوي محترف",
+  "Other":"أخرى"
+};
+const FIELD_AR = {
+  "Translation":"ترجمة", "Linguistics":"لسانيات", "English":"لغة إنجليزية",
+  "Literature":"أدب", "Interpreting":"ترجمة شفوية", "Other":"أخرى"
+};
+const PROF_AR = { native:"لغة أم", advanced:"متقدّم", intermediate:"متوسّط", beginner:"مبتدئ" };
+
+/* Posts, followers, following — the three numbers, where the eye looks
+   for them, rather than three panels down. */
+async function renderCounts() {
+  const box = document.getElementById("seal-counts");
+  if (!box) return;
+  if (backend !== "supabase") { box.hidden = true; return; }
+  box.hidden = false;
+  const cell = (n, lab) => '<div><b>' + n + '</b><span>' + lab + '</span></div>';
+  box.innerHTML = cell("\u2013","Posts") + cell("\u2013","Followers") + cell("\u2013","Following");
+  try {
+    const [c, mine] = await Promise.all([
+      myCounts(),
+      sbGet("posts?select=id&author_id=eq." + myId())
+    ]);
+    box.innerHTML = cell(mine.length, "Posts") +
+                    cell(c.followers, "Followers") + cell(c.following, "Following");
+    box.querySelectorAll("div")[0].addEventListener("click", () => openItem(MINE_ITEM));
+  } catch (e) {}
+}
+
+/* The one line the reference puts under the name: what you are, where
+   you are in it, and where you study or teach. */
+function renderIdent() {
+  const p = state.profile || {};
+  const en = document.getElementById("seal-ident");
+  const ar = document.getElementById("seal-ident-ar");
+  const bio = document.getElementById("seal-bio");
+  if (!en) return;
+  const parts = [p.field_of_study, p.academic_level, p.institution].filter(Boolean);
+  en.textContent = parts.join(" \u00b7 ");
+  en.hidden = !parts.length;
+  /* The institution goes through as the member typed it: their own
+     spelling of their own university beats a guess at it. */
+  const arParts = [FIELD_AR[p.field_of_study], LEVEL_AR[p.academic_level], p.institution]
+                    .filter(Boolean);
+  ar.textContent = arParts.join(" \u00b7 ");
+  ar.hidden = !arParts.length;
+  if (bio) { bio.textContent = p.bio || ""; bio.hidden = !p.bio; }
+}
+
+/* Languages, field and institution as small cards, which is the part of
+   the reference that actually suits a translator's profile. */
+async function renderFacts() {
+  const box = document.getElementById("seal-facts");
+  if (!box) return;
+  const p = state.profile || {};
+  if (backend !== "supabase") { box.hidden = true; return; }
+  let langs = [];
+  try { langs = await sbGet("member_languages?select=language,proficiency&user_id=eq." + myId() + "&order=ordinal.asc"); }
+  catch (e) {}
+  const cards = [];
+  if (langs.length) {
+    cards.push('<div class="fact"><div class="fact-b">' +
+      langs.slice(0,2).map(l => '<span><span class="fact-k">' + esc(l.language) + '</span>' +
+        '<span class="fact-v">' + esc(l.proficiency) + '</span></span>').join("") +
+      '</div></div>');
+  }
+  if (p.field_of_study) cards.push('<div class="fact"><div class="fact-b">' +
+    '<span class="fact-k">' + esc(p.field_of_study) + '</span>' +
+    '<span class="fact-v">' + esc(p.academic_level || "") + '</span></div></div>');
+  if (p.institution) cards.push('<div class="fact"><div class="fact-b">' +
+    '<span class="fact-k">' + esc(p.institution) + '</span>' +
+    '<span class="fact-v">Institution</span></div></div>');
+  box.innerHTML = cards.join("");
+  box.hidden = !cards.length;
+}
+
 async function renderAbout() {
   const box = document.getElementById("seal-about");
   if (!box) return;
@@ -10213,6 +10363,14 @@ function renderCommunity() {
 }
 
 function wireProfileButtons() {
+  const tt = document.getElementById("theme-toggle");
+  if (tt && !tt.dataset.wired) {
+    tt.dataset.wired = "1";
+    tt.addEventListener("click", () => {
+      const dark = !document.documentElement.matches('[data-theme="light"]');
+      setThemeChoice(dark ? "light" : "dark");
+    });
+  }
   const a = document.getElementById("avatar-edit");
   if (a && !a.dataset.wired) { a.dataset.wired = "1"; a.addEventListener("click", photoMenu); }
   const e = document.getElementById("edit-profile-btn");
@@ -10230,7 +10388,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1317";
+const BUILD = "0926-1326";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
@@ -10267,6 +10425,9 @@ function renderSeal() {
                             : "Every mark earned";
   }
   paintWho();
+  renderCounts();
+  renderIdent();
+  renderFacts();
   renderAbout();
   renderCommunity();
   renderClimb();
