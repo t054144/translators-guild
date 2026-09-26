@@ -2730,7 +2730,7 @@ const PROCEDURES = [
       { s: "زادَ الطَّلَبُ زِيادةً كبيرة.", b: "The demand increased a large increase.", g: "Demand rose sharply.", w: "Arabic's absolute object (المفعول المطلق) has no English form — it becomes an adverb." }
     ] },
 
-  { n: "V", en: "Modulation", ar: "التَّحوير",
+  { n: "V", en: "Modulation", ar: "التَّطويع",
     what: "Change the point of view — say the same thing from the other side.",
     when: ["The literal is correct but reads oddly", "Negation in one language is affirmation in the other", "Cause and effect swap places"],
     trap: "Modulating when nothing required it. This procedure is for when the direct route produces awkward target text, not a licence to rewrite.",
@@ -2976,8 +2976,8 @@ const TEXT_WORLDS = [
         w: "Nothing in the brief was about Christmas. It was about a loaded table and a crowded family, and in this market that table is set at sunset in Ramadan. <b>Adapt the vehicle, deliver the cargo.</b>" }
     ] },
 
-  { key: "localization", en: "Localization", ar: "الأَقلَمة",
-    intro: "Localization is not a genre — it is a <b>process</b>, and the text is only part of what goes through it. A product is being moved into a market, and the words travel with dates, currencies, units, name fields, address forms, sort orders, images, colours, legal notices and the direction the interface runs in. The translator here works inside strings, not paragraphs, and often cannot see where a string will land.",
+  { key: "localization", en: "Localisation", ar: "الأَقلَمة",
+    intro: "Localisation is not a genre — it is a <b>process</b>, and the text is only part of what goes through it. A product is being moved into a market, and the words travel with dates, currencies, units, name fields, address forms, sort orders, images, colours, legal notices and the direction the interface runs in. The translator here works inside strings, not paragraphs, and often cannot see where a string will land.",
     introAr: "الأَقلَمة ليست نوعًا نصّيًّا بل <b>عمليّة</b>، والنصّ جزء ممّا يمرّ بها. فالمنتَج يُنقَل إلى سوق جديدة، وتسافر معه التواريخ والعملات والوحدات وحقول الأسماء وصِيَغ العناوين والصور والألوان والإشعارات القانونيّة واتّجاه الواجهة نفسها.",
     how: ["Ask for context before you translate a string: where does it appear, what is the character limit, what can replace the placeholder?",
           "Never reorder or invent placeholders. <code>{count}</code> and <code>%s</code> are code; moving them is a bug, not a style choice.",
@@ -2996,7 +2996,7 @@ const TEXT_WORLDS = [
       { s: "You have {count} new messages",
         b: "لديك {count} رسائل جديدة",
         g: "the placeholder stays exactly as it is — and Arabic needs more than one form behind it",
-        w: "Arabic counts in singular, dual, and several plural shapes, so one sentence with one placeholder cannot be right for 1, 2, 3 and 11. This is a <b>plural rule</b>, not a translation choice, and it has to be handled in the localization framework rather than patched in the string." },
+        w: "Arabic counts in singular, dual, and several plural shapes, so one sentence with one placeholder cannot be right for 1, 2, 3 and 11. This is a <b>plural rule</b>, not a translation choice, and it has to be handled in the localisation framework rather than patched in the string." },
       { s: "03/04/2026",
         b: "٤ مارس ٢٠٢٦ &mdash; or 3 April 2026",
         g: "an ambiguous date is a defect, not a string",
@@ -3358,14 +3358,14 @@ const NAME_PROC = [
     why: "Sky + scraper became سحاب + ناطحة. The pieces were translated and reassembled — a calque, and one of the successful ones." },
   { src: "after his return → بعد أن عاد", srcEn: true,
     opts: [
-      { t: "Modulation · التَّحوير", tag: "the point of view did not change" },
+      { t: "Modulation · التَّطويع", tag: "the point of view did not change" },
       { t: "Transposition · الإبدال", tag: "a noun became a verb", ok: true },
       { t: "Literal translation · الحَرفيّة", tag: "that would have given بعد عودته" }
     ],
     why: "The English noun <i>return</i> becomes an Arabic verb عاد. Same viewpoint, different part of speech — transposition, and the commonest of all AR↔EN moves." },
   { src: "It is not difficult. → إنّه سَهل.", srcEn: true,
     opts: [
-      { t: "Modulation · التَّحوير", tag: "negative became affirmative — the viewpoint flipped", ok: true },
+      { t: "Modulation · التَّطويع", tag: "negative became affirmative — the viewpoint flipped", ok: true },
       { t: "Equivalence · التَّكافُؤ", tag: "no fixed expression was swapped" },
       { t: "Borrowing · الاِقتِراض", tag: "nothing was borrowed" }
     ],
@@ -3388,7 +3388,7 @@ const NAME_PROC = [
     opts: [
       { t: "Calque · النَّسْخ", tag: "nothing was translated piece by piece" },
       { t: "Borrowing · الاِقتِراض", tag: "the word crossed over intact", ok: true },
-      { t: "Modulation · التَّحوير", tag: "no viewpoint changed" }
+      { t: "Modulation · التَّطويع", tag: "no viewpoint changed" }
     ],
     why: "English took the Arabic word whole and let it naturalise. Borrowing runs in both directions, and English is full of Arabic loans." }
 ];
@@ -4248,7 +4248,7 @@ const DISCIPLINE = [
    depictions rather than likenesses, and the card says so.
    ═══════════════════════════════════════════════════════════ */
 const LINEAGE = [
-  { id: "jerome", mono: "J", name: "Jerome", life: "c. 347 - 420", place: "Bethlehem",
+  { id: "jerome", mono: "J", name: "Jerome", life: "c. 347 – 420", place: "Bethlehem",
     wiki: "Jerome", img: "",
     pair: "Hebrew & Greek to Latin",
     line: "Not word for word, but sense for sense.",
@@ -4261,7 +4261,7 @@ const LINEAGE = [
       outLab: "What he wrote", out: "<i>cornuta esset facies sua</i> &mdash; &ldquo;his face was horned&rdquo;, where the sense is that it sent out rays of light", outDir: "ltr",
       note: "The consonants carry both <i>shone</i> and <i>horn</i>, and the vowels that would separate them are not written. His choice put horns on Moses in European art for a thousand years, Michelangelo's included. The man who wrote <i>not word for word but sense for sense</i> is also the standing proof of how far one root-choice travels." } },
 
-  { id: "muqaffa", mono: "IM", name: "Ibn al-Muqaffa", life: "c. 724 - 759", place: "Basra",
+  { id: "muqaffa", mono: "IM", name: "Ibn al-Muqaffa", life: "c. 724 – 759", place: "Basra",
     wiki: "Ibn al-Muqaffa'", img: "",
     pair: "Middle Persian to Arabic",
     line: "One translation seeded a thousand years of European storytelling.",
@@ -4274,7 +4274,7 @@ const LINEAGE = [
       outLab: "What he wrote", out: "كليلة ودمنة <i>(Kalīla wa-Dimna)</i>", outDir: "rtl",
       note: "He reshaped the names to Arabic until the book could be <i>named</i> in Arabic &mdash; and it is that title, not the Sanskrit one, that went on into Hebrew, Latin, Castilian and French. He also opened it with a chapter of his own, widely credited to him rather than the Pahlavi: the translator added material, and the addition stayed for a thousand years." } },
 
-  { id: "jahiz", mono: "AJ", name: "Al-Jahiz", life: "c. 776 - 869", place: "Basra & Baghdad",
+  { id: "jahiz", mono: "AJ", name: "Al-Jahiz", life: "c. 776 – 869", place: "Basra & Baghdad",
     wiki: "Al-Jahiz", img: "",
     pair: "wrote the first theory",
     line: "The first person to say out loud that poetry does not translate.",
@@ -4287,7 +4287,7 @@ const LINEAGE = [
       outLab: "What does not", out: "the ṭawīl metre, the rhyme, the archaic diction &mdash; every part of it that was doing the work", outDir: "ltr",
       note: "Al-Jahiz translated nothing; this is his argument worked out, not his rendering. In the <i>Book of Animals</i> he held that poetry <b>cannot</b> cross, because metre, sound-shape and rhetorical figure are not decoration on the meaning &mdash; they are part of it, so all that arrives is the report. He also insisted a translator must be equally strong in both tongues, or he will damage both." } },
 
-  { id: "hunayn", mono: "H", name: "Hunayn ibn Ishaq", life: "809 - 873", place: "Baghdad",
+  { id: "hunayn", mono: "H", name: "Hunayn ibn Ishaq", life: "809 – 873", place: "Baghdad",
     wiki: "Hunayn ibn Ishaq", img: "",
     pair: "Greek & Syriac to Arabic",
     line: "Sense before words - eleven centuries before anyone gave it that name.",
@@ -4300,7 +4300,7 @@ const LINEAGE = [
       outLab: "What he wrote", out: "خِلْط <i>(khilṭ)</i> &mdash; &ldquo;a mixture&rdquo;", outDir: "rtl",
       note: "Arabic had no word for a bodily humour. Instead of importing the Greek sound he took an ordinary Arabic word for a <i>mixture</i> and made it the technical term &mdash; <b>أخلاط</b> is still the Arabic for the four humours. Translating Galen meant building the language that could hold Galen, and a great deal of Arabic medical vocabulary is his." } },
 
-  { id: "qusta", mono: "QL", name: "Qusta ibn Luqa", life: "c. 820 - 912", place: "Baalbek, then Baghdad",
+  { id: "qusta", mono: "QL", name: "Qusta ibn Luqa", life: "c. 820 – 912", place: "Baalbek, then Baghdad",
     wiki: "", img: "",
     pair: "Greek to Arabic",
     line: "Three languages, and the sciences in all of them.",
@@ -4313,7 +4313,7 @@ const LINEAGE = [
       outLab: "What we read instead", out: "his Arabic, <i>Fī raf&lsquo; al-ashyā&rsquo; al-thaqīla</i> and the Arabic <i>Arithmetica</i>, which are now the text", outDir: "ltr",
       note: "Hero&rsquo;s <i>Mechanics</i> reaches us only through Qusta&rsquo;s Arabic, and four books of Diophantus known from no Greek manuscript survive in an Arabic version transmitted under his name. Every modern edition and every translation into a European language is made <b>from the translation</b>. It is the plainest answer to anyone who calls the work secondary: where the source is gone, the translator&rsquo;s sentences are all the evidence there is." } },
 
-  { id: "thabit", mono: "TQ", name: "Thabit ibn Qurra", life: "c. 826 - 901", place: "Harran, then Baghdad",
+  { id: "thabit", mono: "TQ", name: "Thabit ibn Qurra", life: "c. 826 – 901", place: "Harran, then Baghdad",
     wiki: "", img: "",
     pair: "Greek & Syriac to Arabic",
     line: "He corrected translations because he could do the mathematics.",
@@ -4326,7 +4326,7 @@ const LINEAGE = [
       outLab: "What the manuscripts call it", out: "the <b>Ishaq&ndash;Thabit</b> version &mdash; the standard name scholars still use for that Euclid", outDir: "ltr",
       note: "The Arabic Euclid that circulated for centuries is catalogued as Ishaq&rsquo;s translation <i>in Thabit&rsquo;s revision</i>, and he worked over the <i>Almagest</i> the same way. Revision is a stage of the job, not a favour done at the end of it; here it is a stage recorded in the title, because the person doing it could follow the proof." } },
 
-  { id: "ishaq", mono: "IH", name: "Ishaq ibn Hunayn", life: "c. 830 - 910", place: "Baghdad",
+  { id: "ishaq", mono: "IH", name: "Ishaq ibn Hunayn", life: "c. 830 – 910", place: "Baghdad",
     wiki: "", img: "",
     pair: "Greek & Syriac to Arabic",
     line: "The second generation - carrying a method, not just a post.",
@@ -4339,7 +4339,7 @@ const LINEAGE = [
       outLab: "What the Arabic settled on", out: "هَيُولَى &mdash; the Greek sound kept &middot; صُورة &mdash; an ordinary Arabic word given a technical job", outDir: "ltr",
       note: "Two terms from the same sentence of the same philosopher, handled in opposite ways, and both choices stuck: <b>هيولى</b> is still the Arabic for Aristotelian matter and <b>صورة</b> still its form. Borrow or build is decided term by term, not once for the whole book &mdash; and whatever this generation decided, later Arabic philosophy had to argue inside it." } },
 
-  { id: "luther", mono: "ML", name: "Martin Luther", life: "1483 - 1546", place: "Wittenberg",
+  { id: "luther", mono: "ML", name: "Martin Luther", life: "1483 – 1546", place: "Wittenberg",
     wiki: "", img: "",
     pair: "Greek, Hebrew & Latin to German",
     line: "He translated for people who had never been asked what German sounded like.",
@@ -4352,7 +4352,7 @@ const LINEAGE = [
       outLab: "What he wrote", out: "<i>durch den Glauben <b>allein</b></i> &mdash; &ldquo;by faith <b>alone</b>&rdquo;", outDir: "ltr",
       note: "His critics counted the words and found one too many. In the <i>Sendbrief vom Dolmetschen</i> of 1530 he answered that German puts <i>allein</i> in when a denial is followed by what replaces it &mdash; <i>nicht dies, sondern allein das</i> &mdash; and that a translator who leaves it out has written Latin in German letters. The test he set there is the famous one: go and listen to <b>the mother in the house, the children in the street, the common man in the market</b>, and translate so they know you are speaking to them. The word was also doing theological work, and he knew it: this is where a translator&rsquo;s idiom and a translator&rsquo;s conviction are hardest to tell apart." } },
 
-  { id: "tyndale", mono: "T", name: "William Tyndale", life: "c. 1494 - 1536", place: "Antwerp",
+  { id: "tyndale", mono: "T", name: "William Tyndale", life: "c. 1494 – 1536", place: "Antwerp",
     wiki: "William Tyndale", img: "",
     pair: "Greek & Hebrew to English",
     line: "He was executed for it, and then everyone quoted him.",
@@ -4365,7 +4365,7 @@ const LINEAGE = [
       outLab: "What he wrote", out: "&ldquo;congregation&rdquo; &middot; &ldquo;elder&rdquo; &middot; &ldquo;love&rdquo;", outDir: "ltr",
       note: "Not a matter of taste. Each choice removed a word that held up an institution and put a plain English one where it stood, which is a large part of why the books were burned and then so was he. Where English had nothing he made it: <b>Passover</b>, <b>scapegoat</b>, <b>atonement</b>, <b>mercy seat</b> are his coinages, and roughly four fifths of the King James New Testament is his wording untouched." } },
 
-  { id: "dryden", mono: "JD", name: "John Dryden", life: "1631 - 1700", place: "London",
+  { id: "dryden", mono: "JD", name: "John Dryden", life: "1631 – 1700", place: "London",
     wiki: "", img: "",
     pair: "Latin & Greek to English",
     line: "Three ways to carry a poem across, and a warning about two of them.",
@@ -4378,12 +4378,12 @@ const LINEAGE = [
       outLab: "Paraphrase &mdash; what he published in 1697", out: "&ldquo;Arms, and the man I sing, who, forc&rsquo;d by Fate, / And haughty <i>Juno&rsquo;s</i> unrelenting hate, / Expell&rsquo;d and exil&rsquo;d, left the <i>Trojan</i> shore.&rdquo;", outDir: "ltr",
       note: "Juno&rsquo;s anger is Virgil&rsquo;s, three lines later; Dryden pulls it forward into the opening sentence and gives it an English couplet to live in. Nothing is invented and nothing is tracked word for word &mdash; which is exactly the middle term he had named seventeen years earlier in the preface to <i>Ovid&rsquo;s Epistles</i>. There he warned against both ends: metaphrase is &ldquo;dancing on ropes with fettered legs&rdquo;, and imitation, which he allowed Cowley in the Pindaric odes, is <b>the greatest wrong to the memory of the dead</b>." } },
 
-  { id: "schleiermacher", mono: "FS", name: "Friedrich Schleiermacher", life: "1768 - 1834", place: "Berlin",
+  { id: "schleiermacher", mono: "FS", name: "Friedrich Schleiermacher", life: "1768 – 1834", place: "Berlin",
     wiki: "", img: "",
     pair: "Greek to German",
     line: "Move the reader toward the writer, or the writer toward the reader.",
     what: "A philosopher and theologian who translated Plato into German, and who in an 1813 lecture on the different methods of translating set out the choice a translator cannot avoid: leave the writer in place and move the reader toward him, or leave the reader in place and move the writer toward him.",
-    why: "Almost every later theory argues with that lecture. It is often flattened into the pair <b>foreignization and domestication</b> - terms that came later, from Venuti - and the flattening loses the point, which was not that one path is right and the other wrong, but that a translator must choose one and stay with it.",
+    why: "Almost every later theory argues with that lecture. It is often flattened into the pair <b>foreignisation and domestication</b> - terms that came later, from Venuti - and the flattening loses the point, which was not that one path is right and the other wrong, but that a translator must choose one and stay with it.",
     ex: {
       lab: "The fork he says you cannot stand in the middle of",
       srcLab: "Arabic", src: "إن شاء الله", srcDir: "rtl",
@@ -4391,7 +4391,7 @@ const LINEAGE = [
       outLab: "Move the writer toward the reader", out: "&ldquo;all being well&rdquo; &mdash; what an English speaker would have said in that spot, with the origin gone", outDir: "ltr",
       note: "Schleiermacher translated Plato, not Arabic; the pairing above is his argument applied to a phrase this site actually has to translate. His 1813 lecture puts it as two roads and no third: <i>either the translator leaves the writer in peace as much as possible and moves the reader toward him, or he leaves the reader in peace and moves the writer toward him</i>. Mixing them, he warns, leaves writer and reader who <b>never meet at all</b>. He also separated <i>Dolmetschen</i>, the interpreting of business, from <i>&Uuml;bersetzen</i>, the translation of art and scholarship &mdash; a distinction the profession still runs on." } },
 
-  { id: "tahtawi", mono: "RT", name: "Rifaa al-Tahtawi", life: "1801 - 1873", place: "Tahta, Paris, Cairo",
+  { id: "tahtawi", mono: "RT", name: "Rifaa al-Tahtawi", life: "1801 – 1873", place: "Tahta, Paris, Cairo",
     wiki: "", img: "",
     pair: "French to Arabic",
     line: "He did not translate a shelf of books. He built the school that did.",
@@ -4404,7 +4404,7 @@ const LINEAGE = [
       outLab: "How he made it carry the new sense", out: "he told his readers that what the French call <i>libert&eacute;</i> is what we mean by justice and equity, <b>العدل والإنصاف</b>, because it means every man standing equal before the law", outDir: "ltr",
       note: "This is from <i>Takhlīṣ al-Ibrīz fī Talkhīṣ Bārīz</i>, his account of Paris. Confronted with a term Arabic had no political use for, he did not coin a word and he did not transliterate: he explained the foreign concept through a value his readers already held, and let the old word grow into the new job. <b>حرية</b> in its modern political sense comes down through that generation&rsquo;s work. Later translators would call this an explanatory equivalent; he was inventing the manoeuvre because a whole vocabulary of politics, law and science had to be brought across, and he then built Madrasat al-Alsun so it would not depend on one man&rsquo;s judgement." } },
 
-  { id: "nida", mono: "EN", name: "Eugene A. Nida", life: "1914 - 2011", place: "United States",
+  { id: "nida", mono: "EN", name: "Eugene A. Nida", life: "1914 – 2011", place: "United States",
     wiki: "", img: "",
     pair: "Translation theory · Bible translation",
     line: "He tried to make translation something you could study, not only practise.",
@@ -4417,7 +4417,7 @@ const LINEAGE = [
       outLab: "Dynamic equivalence", out: "&ldquo;give one another a hearty handshake all around&rdquo; &mdash; the reading Nida&rsquo;s own project put into the Good News Bible", outDir: "ltr",
       note: "His argument is not that the second is nicer English. It is that the first reproduces the <i>form</i> and the second reproduces the <b>effect on the receptor</b> &mdash; a greeting that lands as a greeting &mdash; and that a translator must know which of the two the job calls for. Notice the cost as well: the handshake has quietly deleted a first-century practice from the text. Venuti, last in this lineage, uses this very rendering as his example of what domestication does." } },
 
-  { id: "rabassa", mono: "R", name: "Gregory Rabassa", life: "1922 - 2016", place: "New York",
+  { id: "rabassa", mono: "R", name: "Gregory Rabassa", life: "1922 – 2016", place: "New York",
     wiki: "Gregory Rabassa", img: "",
     pair: "Spanish & Portuguese to English",
     line: "The author said the translation beat the original.",
@@ -4430,7 +4430,7 @@ const LINEAGE = [
       outLab: "What he wrote", out: "&hellip; that distant afternoon when his father took him to <b>discover</b> ice.", outDir: "ltr",
       note: "<i>Conocer</i> is to know, to meet, to be acquainted with. &ldquo;Know&rdquo; is dead on the page in English and &ldquo;see&rdquo; throws the wonder away; <b>discover</b> is a child meeting the thing for the first time, which is what the Spanish actually does. García Márquez waited three years for him and then said the English was better than the Spanish." } },
 
-  { id: "jayyusi", mono: "SJ", name: "Salma Khadra Jayyusi", life: "1926 - 2023", place: "Palestine & the US",
+  { id: "jayyusi", mono: "SJ", name: "Salma Khadra Jayyusi", life: "1926 – 2023", place: "Palestine & the US",
     wiki: "Salma Khadra Jayyusi", img: "",
     pair: "Arabic to English",
     line: "She built the shelf that modern Arabic literature stands on in English.",
@@ -4448,7 +4448,7 @@ const LINEAGE = [
     pair: "Italian to English · theory",
     line: "Whose voice disappears when a translation reads smoothly?",
     what: "A translator from Italian and a theorist who argued that English-language publishing prizes translations that read as though they were never translated, leaving the translator invisible - and who set out the case in <i>The Translator's Invisibility</i> and <i>The Scandals of Translation</i>.",
-    why: "He gave the argument its current vocabulary: <b>domestication</b>, which smooths a text into the target culture, and <b>foreignization</b>, which keeps the reader aware that they are reading from elsewhere. Neither is simply the good one. They are choices with consequences - for the writer, for the reader, and for whose literature gets to sound like itself.",
+    why: "He gave the argument its current vocabulary: <b>domestication</b>, which smooths a text into the target culture, and <b>foreignisation</b>, which keeps the reader aware that they are reading from elsewhere. Neither is simply the good one. They are choices with consequences - for the writer, for the reader, and for whose literature gets to sound like itself.",
     ex: {
       lab: "The compliment that proves his point",
       srcLab: "What reviewers praise", src: "&ldquo;fluent&rdquo; &middot; &ldquo;seamless&rdquo; &middot; &ldquo;reads as though it had been written in English&rdquo;", srcDir: "ltr",
@@ -4650,7 +4650,7 @@ const GLOSSARY = [
   { en: "Dialect", ar: "اللهجة العامية", def: "The everyday spoken Arabic of a country or region.", ch: "3" },
   { en: "Dialogue list", ar: "قائمة الحوار", def: "A written script of everything said in a film, given to the translator.", ch: "27" },
   { en: "Domestication", ar: "التوطين", def: "Making a translation feel local to the target reader. Venuti's term, against foreignisation.", ch: "13" },
-  { en: "Localization", ar: "الأقلمة", def: "Adapting a product to a market — language, format, law, culture. Often called التوطين too, which is why this entry exists: that word is already Venuti's domestication.", ch: "18" },
+  { en: "Localisation", ar: "الأقلمة", def: "Adapting a product to a market — language, format, law, culture. Often called التوطين too, which is why this entry exists: that word is already Venuti's domestication.", ch: "18" },
   { en: "Draft", ar: "المسوّدة", def: "The first version of a translation.", ch: "23" },
   { en: "Dubbing", ar: "الدبلجة", def: "Replacing the original dialogue with recorded dialogue in the target language.", ch: "26" },
   { en: "Equivalence", ar: "التكافؤ", def: "A match between a source-language expression and a target-language expression.", ch: "9" },
@@ -4670,13 +4670,13 @@ const GLOSSARY = [
   { en: "Ideational equivalence", ar: "التكافؤ الفكري", def: "Giving only the basic idea, in plain words.", ch: "9" },
   { en: "Ideology", ar: "الأيديولوجيا", def: "A set of beliefs that shapes how people describe events.", ch: "19" },
   { en: "Idiom", ar: "التعبير الاصطلاحي", def: "A fixed expression whose meaning is not the sum of the meanings of its words.", ch: "8" },
-  { en: "Simultaneous interpreting", ar: "الترجمة الفورية", def: "Rendered while the speaker is still speaking, from a booth. One mode of الترجمة الشفهية, not another name for it. The lag behind the speaker is called the décalage.", ch: "1" },
+  { en: "Simultaneous interpreting", ar: "الترجمة الفورية", def: "Rendered while the speaker is still speaking, from a booth. One mode of الترجمة الشفوية, not another name for it. The lag behind the speaker is called the décalage.", ch: "1" },
   { en: "Consecutive interpreting", ar: "الترجمة التتابعية", def: "Rendered after the speaker pauses, from notes and memory. Also written التتبعية and التعاقبية. The notes carry structure, numbers, names and links &mdash; not words.", ch: "1" },
   { en: "Sight translation", ar: "الترجمة المنظورة", def: "A written text read out in the other language on the spot. Also الترجمة بالنظر. Written input, spoken output, which is why it belongs to interpreting rather than translation.", ch: "1" },
   { en: "Whispered interpreting", ar: "الترجمة الهمسية", def: "Simultaneous interpreting delivered in a low voice beside one or two listeners, with no booth and no equipment. Known in the profession by its French name, chuchotage.", ch: "1" },
   { en: "Relay interpreting", ar: "الترجمة المرحلية", def: "Interpreting through a third language, when no interpreter has both of the ones needed. The middle booth is the pivot, and every error in it is inherited by everyone downstream.", ch: "1" },
   { en: "Remote interpreting", ar: "الترجمة الفورية عن بُعد", def: "Interpreting delivered over a platform, by video or telephone, with the interpreter not in the room. A working arrangement rather than a mode, and it shortens the handover intervals.", ch: "1" },
-  { en: "Interpreting", ar: "الترجمة الشفهية", def: "Transferring spoken language into another language &mdash; the term that covers the whole activity, as against الترجمة التحريرية, written translation. Its modes are <b>الترجمة الفورية</b>, rendered while the speaker is still speaking; <b>الترجمة التتابعية</b>, rendered from notes once the speaker pauses; <b>الترجمة المنظورة</b>, a written text read out in the other language; and <b>الترجمة الهمسية</b>, whispered to one or two listeners. The spelling الشفوية is also current &mdash; both restore a different dropped letter from شفة &mdash; and you will meet it in UN usage.", ch: "1" },
+  { en: "Interpreting", ar: "الترجمة الشفوية", def: "Transferring spoken language into another language &mdash; the term that covers the whole activity, as against الترجمة التحريرية, written translation. Its modes are <b>الترجمة الفورية</b>, rendered while the speaker is still speaking; <b>الترجمة التتابعية</b>, rendered from notes once the speaker pauses; <b>الترجمة المنظورة</b>, a written text read out in the other language; and <b>الترجمة الهمسية</b>, whispered to one or two listeners. The spelling الشفوية is also current &mdash; both restore a different dropped letter from شفة &mdash; and you will meet it in UN usage.", ch: "1" },
   { en: "Justification", ar: "التبرير", def: "The reason why a translation choice is right.", ch: "25" },
   { en: "Lexical creation", ar: "التوليد المعجمي", def: "Coining new target-language words for items with no direct equivalent.", ch: "16" },
   { en: "Literal translation", ar: "الترجمة الحرفية", def: "Keeping the original words, changing only what grammar requires; also called modified literal translation (الترجمة الحرفية المعدّلة).", ch: "10" },
@@ -4909,7 +4909,7 @@ const FACETS = {
 };
 
 /* ═══════════ THE MODES OF INTERPRETING ═══════════
-   الترجمة الشفهية is the field. These are the modes within it — how the
+   الترجمة الشفوية is the field. These are the modes within it — how the
    rendering is actually delivered, which is a different question from
    where the interpreter is sitting.
 
@@ -5199,7 +5199,7 @@ const ENGL180 = [
         "set of known moves, and you can say afterwards which one you used. These are Baker's, and they have " +
         "names for the same reason the surgical instruments do." },
       { t: "card", h: "1 · A more general word", html:
-        "Also called <b>generalization</b>, and the most common answer to a gap in propositional meaning. " +
+        "Also called <b>generalisation</b>, and the most common answer to a gap in propositional meaning. " +
         "You climb one step up the semantic hierarchy and take the wider term." +
         "<p>It works across almost any pair of languages, because the hierarchies themselves are not " +
         "language-specific &mdash; every language has a word for the category above.</p>" },
@@ -5223,7 +5223,7 @@ const ENGL180 = [
       { t: "card", h: "How to choose", html:
         "Ask what the word is doing in <i>this</i> text. A technical term in a manual wants the loan word " +
         "and one gloss. A cultural reference in a novel usually wants substitution or paraphrase. A passing " +
-        "mention nobody will remember wants generalization and no fuss." +
+        "mention nobody will remember wants generalisation and no fuss." +
         "<p>What you may not do is choose silently. Naming the move is what lets you defend it &mdash; and " +
         "what the commentary in your later courses is assessed on.</p>" }
     ],
@@ -5242,7 +5242,7 @@ const ENGL180 = [
   },
 
   {
-    n: 6, key: "collocation", en: "Collocation", ar: "المتلازمات اللفظية",
+    n: 6, key: "collocation", en: "Collocation", ar: "التلازم اللفظي",
     line: "Words keep company. Which company is arbitrary, and it is not the same company in Arabic.",
     blocks: [
       { t: "lede", html:
@@ -5369,7 +5369,7 @@ const ENGL180 = [
         "<b>Voice.</b> The relation between verb and subject. Written English uses the passive heavily, and most languages have their own ways of building agentless clauses that do not map onto it."
       ] },
       { t: "card", h: "The gender problem, in one pair of sentences", html:
-        "<i>I am a student in the English department, and I specialize in Translation Studies.</i> Nothing " +
+        "<i>I am a student in the English department, and I specialise in Translation Studies.</i> Nothing " +
         "there tells you the speaker's gender &mdash; but Arabic will not let you write the sentence without " +
         "deciding." +
         "<p>Add <i>&hellip;even though I am a father of four</i> and it is settled. Add <i>&hellip;even " +
@@ -5507,7 +5507,7 @@ const ENGL180 = [
         "<p>If a field has terms of its own that outsiders use differently or not at all, translating it is " +
         "technical translation.</p>" },
       { t: "list", h: "How technical language behaves", items: [
-        "It is <b>specialized</b>, and becomes more so over time rather than less.",
+        "It is <b>specialised</b>, and becomes more so over time rather than less.",
         "It is <b>economical</b> &mdash; it says things in as few linguistic means as it can.",
         "It <b>avoids the associations of ordinary language</b> and defines its terms precisely, which is the opposite of what literary language does."
       ] },
@@ -5519,7 +5519,7 @@ const ENGL180 = [
       { t: "list", h: "Two kinds of lexical trouble", intro:
         "The problems fall neatly into two, and the second is the dangerous one:", items: [
         "<b>Terms you do not know at all</b>, because they appear only in technical contexts. Unpleasant, but visible &mdash; you know to go and look them up.",
-        "<b>Terms you do know</b>, from ordinary contexts, being used in a specialized way. You feel no difficulty, translate confidently, and are wrong. Nothing warns you."
+        "<b>Terms you do know</b>, from ordinary contexts, being used in a specialised way. You feel no difficulty, translate confidently, and are wrong. Nothing warns you."
       ] }
     ],
     ex: { lab: "Two ordinary-looking words in a medical text",
@@ -5528,7 +5528,7 @@ const ENGL180 = [
       outLab: "The terms", out: "المواد المحسِّسة أو الضارة، كما الحال في أكزيما التماس", outDir: "rtl",
       note: "<i>Allergic</i> describes the reaction; <i>allergenic</i> describes the substance that causes " +
         "it. <span class='ar-inline' dir='rtl' lang='ar'>أكزيما التماس</span> is a named condition, not a " +
-        "description. Both are the second kind of trouble: familiar words, specialized use, no warning." },
+        "description. Both are the second kind of trouble: familiar words, specialised use, no warning." },
     practice: { h: "Do this before the next unit",
       html: "Find a short technical paragraph in a field you do not work in. Before translating, list every " +
         "word you are confident about." +
@@ -5680,11 +5680,11 @@ const ENGL180 = [
   },
 
   {
-    n: 15, key: "localization", en: "Localization", ar: "الأقلمة",
+    n: 15, key: "localization", en: "Localisation", ar: "الأقلمة",
     line: "Translation is one part of it. The rest is everything else the product assumes about you.",
     blocks: [
       { t: "lede", html:
-        "<b>Localization</b> is adapting a product, service or piece of content so that it is linguistically " +
+        "<b>Localisation</b> is adapting a product, service or piece of content so that it is linguistically " +
         "<b>and culturally</b> right for a particular market &mdash; software, websites, manuals, multimedia, " +
         "games." },
       { t: "card", h: "Locale", html:
@@ -5693,13 +5693,13 @@ const ENGL180 = [
         "<p>It settles sort order, keyboard layout, and the formats for date, time, number and currency. " +
         "None of that is translation, and all of it is wrong if you ignore it.</p>" },
       { t: "card", h: "Where translation sits", html:
-        "Translation is <b>the linguistic aspect of localization</b> &mdash; a subset of the activities, not " +
+        "Translation is <b>the linguistic aspect of localisation</b> &mdash; a subset of the activities, not " +
         "the whole of it. Its goal within that process is the same as everywhere else in this course: " +
         "equivalence of meaning, idiomatic, lexical and conceptual." +
-        "<p>The rest of localization is layout that survives right-to-left, images that make sense locally, " +
+        "<p>The rest of localisation is layout that survives right-to-left, images that make sense locally, " +
         "forms that accept local addresses, and defaults that assume the right things.</p>" },
       { t: "card", h: "The test", html:
-        "A localized product should not read as a translated one. The user should not be able to tell that " +
+        "A localised product should not read as a translated one. The user should not be able to tell that " +
         "it was made somewhere else &mdash; which is a higher standard than accuracy, and a different one." +
         "<p>It is also the clearest case in the course of a translation being judged by its <b>effect on " +
         "its reader</b> rather than by its correspondence to its source.</p>" }
@@ -5707,16 +5707,16 @@ const ENGL180 = [
     ex: { lab: "The same interface, two locales",
       srcLab: "English build", src: "Payment due 03/04/2026 &middot; $1,250.00", srcDir: "ltr",
       litLab: "Translated only", lit: "الدفعة مستحقة 03/04/2026 · $1,250.00 &mdash; every word rendered, and the date is now ambiguous and the currency foreign",
-      outLab: "Localized", out: "الدفعة مستحقة في ٣ أبريل ٢٠٢٦ &middot; ١٬٢٥٠٫٠٠ د.ك", outDir: "rtl",
+      outLab: "Localised", out: "الدفعة مستحقة في ٣ أبريل ٢٠٢٦ &middot; ١٬٢٥٠٫٠٠ د.ك", outDir: "rtl",
       note: "Nothing here is a translation problem. Date order, numeral form, decimal and thousands marks " +
         "and currency are all <b>locale</b> conventions &mdash; and getting them wrong on an invoice is more " +
         "consequential than any wording choice on the screen." },
     practice: { h: "The last one",
-      html: "Take one screen of an app or website you use in English and localize it into Arabic &mdash; not " +
+      html: "Take one screen of an app or website you use in English and localise it into Arabic &mdash; not " +
         "just translate it." +
         "<p>List everything you had to change that was <b>not</b> a word: direction, alignment, date and " +
         "number formats, currency, icons, the example names in the form fields. That list is the difference " +
-        "between translation and localization, and it is the last thing this course has to teach you.</p>" }
+        "between translation and localisation, and it is the last thing this course has to teach you.</p>" }
   }
 ];
 
@@ -5746,19 +5746,19 @@ const ENGL182 = [
         "equivalent has to be found in the others.</p>" },
       { t: "list", h: "Why practitioners disagree", intro:
         "The disagreement is not academic point-scoring. Each position produces a different kind of work:", items: [
-        "Those who fear that a flood of new terms will <b>impede communication</b> see terminology as a means of standardizing.",
+        "Those who fear that a flood of new terms will <b>impede communication</b> see terminology as a means of standardising.",
         "Many linguists and lexicologists treat it as <b>technical lexicography</b> and nothing more.",
         "Some schools set out to produce <b>exhaustive word lists</b> — without defining the terms or classifying the concepts."
       ] },
       { t: "split", h: "The word has two meanings, and they are not the same size",
         a: { lab: "The terms themselves", ar: "المصطلحات",
-             say: "The technical terms and expressions used in an art, a science or a specialized subject. Still the ordinary English sense." },
+             say: "The technical terms and expressions used in an art, a science or a specialised subject. Still the ordinary English sense." },
         b: { lab: "The study of them", ar: "علم المصطلح",
              say: "The systematic research and identification of the terms specific to a subject field, and of the concepts they represent. The sense this course means." } },
       { t: "card", h: "The definition to know", html:
-        "A discipline aimed at systematically <b>identifying</b> specialized terms in the context in which " +
+        "A discipline aimed at systematically <b>identifying</b> specialised terms in the context in which " +
         "they are used, <b>analysing</b> the concepts they represent in that context, and <b>creating and " +
-        "standardizing</b> terms, if need be, to meet the user's need for means of expression." +
+        "standardising</b> terms, if need be, to meet the user's need for means of expression." +
         "<p>It is a linguistic discipline with theoretical guidelines and defined work methods. That is what " +
         "separates it from collecting vocabulary.</p>" },
       { t: "list", h: "The four work methods", intro:
@@ -5766,7 +5766,7 @@ const ENGL182 = [
         "<b>Term identification</b> — finding the terms peculiar to a field: simple, complex and phrasal.",
         "<b>Contextual analysis</b> — determining each term's meaning from the context it sits in.",
         "<b>Term creation</b> — filling a genuine gap, and only after every source has been searched.",
-        "<b>Standardization</b> — settling which term may carry the concept, and recording it."
+        "<b>Standardisation</b> — settling which term may carry the concept, and recording it."
       ] }
     ],
     ex: { lab: "The order matters: identify before you create",
@@ -5785,7 +5785,7 @@ const ENGL182 = [
   },
 
   {
-    n: 2, key: "specialized", en: "Specialized terms and the user", ar: "المصطلحات المتخصصة والمستفيد",
+    n: 2, key: "specialised", en: "Specialized terms and the user", ar: "المصطلحات المتخصصة والمستفيد",
     line: "Who the work is for, and why context decides everything.",
     blocks: [
       { t: "lede", html:
@@ -5823,7 +5823,7 @@ const ENGL182 = [
         "company with prescriptive grammar: the question is never what people <i>ought</i> to say, but what " +
         "the field actually says now." },
     practice: { h: "Do this before the next unit",
-      html: "Take one English term from a specialized field and find it in <b>three</b> different written " +
+      html: "Take one English term from a specialised field and find it in <b>three</b> different written " +
         "contexts &mdash; not three dictionaries, three real texts." +
         "<p>For each, list the semantic features the context supplies. Then compare your three lists. Where " +
         "they agree you have the concept; where they differ you have either a second sense or a sloppy " +
@@ -5984,7 +5984,7 @@ const ENGL182 = [
     blocks: [
       { t: "lede", html:
         "Research on <b>individual</b> terms or concepts is term research, and it is most of the " +
-        "terminological work done in private organizations and government agencies &mdash; answering the " +
+        "terminological work done in private organisations and government agencies &mdash; answering the " +
         "questions of everybody from the layman to the expert." },
       { t: "card", h: "Why it exists at all", html:
         "Ideally subject-field research would be done in every field. It would take time and money, both " +
@@ -6068,7 +6068,7 @@ const ENGL182 = [
         "termbase and you have recorded a description; the next terminologist will have to take it out, " +
         "and will wonder what else in the file is not a term." },
     practice: { h: "Do this before the next unit",
-      html: "Take a specialized page and mark every noun phrase of two or more words. For each, delete the " +
+      html: "Take a specialised page and mark every noun phrase of two or more words. For each, delete the " +
         "first element and write what remains." +
         "<p>Sort them into two piles: <b>different concept</b> and <b>same concept, vaguer</b>. Only the " +
         "first pile is terminology. Expect the second pile to be larger than you assumed &mdash; that " +
@@ -6125,7 +6125,7 @@ const ENGL182 = [
     blocks: [
       { t: "lede", html:
         "Terminologists work with living language, and that is precisely the problem with vocabularies, " +
-        "glossaries and specialized dictionaries: <b>once published, what they contain is fixed and hard to " +
+        "glossaries and specialised dictionaries: <b>once published, what they contain is fixed and hard to " +
         "modify</b>. A record is easy to file, change, update or replace, which is why the record &mdash; " +
         "not the publication &mdash; is where terminological data is kept." },
       { t: "card", h: "What a record is", html:
@@ -6216,7 +6216,7 @@ const ENGL182 = [
   },
 
   {
-    n: 11, key: "formation", en: "Term formation and standardization", ar: "توليد المصطلح وتوحيده",
+    n: 11, key: "formation", en: "Term formation and standardisation", ar: "توليد المصطلح وتوحيده",
     line: "Where new terms come from — and it is almost never from nowhere.",
     blocks: [
       { t: "lede", html:
@@ -6247,7 +6247,7 @@ const ENGL182 = [
       { t: "card", h: "And the rule from unit one still holds", html:
         "Coining is the <b>last</b> resort, warranted only when every available source has been researched " +
         "and the evidence shows no term exists for the concept." +
-        "<p>Standardization is the other end of the same work: settling which term carries the concept, and " +
+        "<p>Standardisation is the other end of the same work: settling which term carries the concept, and " +
         "recording that decision where the next person will find it. The four work methods close where they " +
         "started.</p>" }
     ],
@@ -7067,7 +7067,7 @@ const KU_MINOR = {
             outLab: "What a post-editor writes", out: "افتتح الوزير المعرض.", outDir: "rtl",
             note: "There is no error here you can circle. The machine produced a sentence that is <b>correct and wrong</b>, which is the characteristic failure of machine translation between these two languages. Post-editing is the skill of hearing it &mdash; and it is a skill, not a lower grade of translating."
           },
-          settings: ["Agencies", "Institutions", "Localization", "Post-editing work"],
+          settings: ["Agencies", "Institutions", "Localisation", "Post-editing work"],
           asks: "That you stay the editor. A tool faster than you is still not responsible for the output — you are.",
           meets: ["glossary", "errors"]
         }
@@ -7306,7 +7306,7 @@ const ITEMS = [
     blurb: "Ten worlds a translation can land in, and what each one will not forgive.",
     run: runTextTypes },
   { id: "modes", ar: "أنماط التَّرجمة الشَّفهية", en: "The Modes of Interpreting", kind: "guide", section: "method",
-    subject: "الترجمة الشفهية · Chapter 1",
+    subject: "الترجمة الشفوية · Chapter 1",
     blurb: "Simultaneous, consecutive, sight, whispered, relay, remote &mdash; and where each one goes wrong.",
     run: runModes },
   { id: "glossary", ar: "مَسرَد المُصطلَحات", en: "Glossary of the Field", kind: "guide", section: "method",
@@ -7346,7 +7346,7 @@ const ITEMS = [
     blurb: "Gulf politeness formulas with exact English functions and no English words.",
     run: () => runChoice(COURTESY, "What would an English speaker actually say?") },
   { id: "cultural", ar: "الاِستِبدال الثَّقافيّ", en: "Cultural Substitution", kind: "trial", section: "trials",
-    subject: "الإبدال الثقافي · Chapter 13",
+    subject: "الاستبدال الثقافي · Chapter 13",
     blurb: "Swap the object, keep the meaning &mdash; or notice when Arabic already agrees.",
     run: () => runChoice(CULTURAL, "How does this cross into Arabic?") },
   { id: "subtitle", ar: "قَيد الشّاشة", en: "Subtitling", kind: "trial", section: "trials",
@@ -7354,7 +7354,7 @@ const ITEMS = [
     blurb: "A hard character limit and a line that will not fit. Cut the words, keep the meaning.",
     run: runSubtitle },
   { id: "booth", ar: "المَقصورة", en: "Interpreting", kind: "trial", section: "trials",
-    subject: "الترجمة الشفهية · Chapter 1",
+    subject: "الترجمة الشفوية · Chapter 1",
     blurb: "Pick a setting, then climb from single terms to a full turn of speech, against a clock.",
     run: runBooth },
   { id: "colloc", ar: "التَّلازُم اللَّفظيّ", en: "Collocation", kind: "trial", section: "trials",
@@ -10073,7 +10073,7 @@ function runSubtitle() {
    two working arrangements. The last entry is the one the field has not
    settled in Arabic, and it says so. */
 function runModes() {
-  setCount("الترجمة الشفهية · six modes");
+  setCount("الترجمة الشفوية · six modes");
 
   function render() {
     stage.innerHTML = "";
@@ -11077,7 +11077,7 @@ function chooseGenre() {
   const modes = el("div", "verdict");
   modes.appendChild(el("span", "vh", "Which mode this is"));
   modes.appendChild(el("p", "vb",
-    "The field is <b>الترجمة الشفهية</b>. The booth runs against a clock, so what it trains is one mode " +
+    "The field is <b>الترجمة الشفوية</b>. The booth runs against a clock, so what it trains is one mode " +
     "of it &mdash; <b>الترجمة الفورية</b>, simultaneous, rendered while the speaker is still speaking. " +
     "Beside it stand <b>التتابعية</b> from notes, <b>المنظورة</b> from a page, <b>الهمسية</b> at " +
     "someone's shoulder, and the working arrangements <b>المرحلية</b> and <b>عن بُعد</b>."));
