@@ -7974,7 +7974,7 @@ async function sbHeaders() {
    withholds the value rather than hiding it in the interface.
    ═══════════════════════════════════════════════════════════ */
 const PROFILE_COLS = "id,username,title,display_name,avatar_path,bio,field_of_study," +
-  "institution,academic_level,marks,rank_slug,profile_visibility,show_progress," +
+  "institution,academic_level,marks,rank_slug,profile_visibility,discoverable,show_progress," +
   "show_interests,show_institution,show_academic_level,allow_follows," +
   "who_can_message,show_online,read_receipts";
 
@@ -9082,6 +9082,7 @@ function runFind() {
 
   const search = document.createElement("input");
   search.type = "search"; search.className = "f-in"; search.placeholder = "Search by name or @username";
+  search.autocapitalize = "none"; search.spellcheck = false;
   search.setAttribute("aria-label", "Search members");
   stage.appendChild(search);
 
@@ -9099,8 +9100,19 @@ function runFind() {
       if (mine !== seq) return;
       list.innerHTML = "";
       rows.forEach(m => list.appendChild(memberRow(m, openPublic)));
-      msg.textContent = rows.length ? "" :
-        (q ? "Nobody matches that." : "No other members yet.");
+      if (rows.length) { msg.innerHTML = ""; }
+      else if (q) { msg.textContent = "Nobody listed matches that."; }
+      else {
+        /* An empty list here is a choice, not a fault, and saying so
+           stops it reading as a broken screen. */
+        msg.innerHTML = "";
+        msg.appendChild(el("span", null,
+          "Nobody has listed themselves yet. Members only appear here if they " +
+          "turn on \u201cShow me in Find Translators\u201d. "));
+        const go = el("button", "ghost small", "Open Privacy");
+        go.addEventListener("click", () => openItem(PRIVACY_ITEM));
+        msg.appendChild(go);
+      }
     } catch (e) {
       if (mine === seq) { list.innerHTML = ""; msg.textContent = "Could not load the member list."; }
     }
@@ -9819,6 +9831,10 @@ async function runPrivacy() {
     row.appendChild(sel); stage.appendChild(row);
   };
 
+  /* The one that decides whether you are in the suggestions list at
+     all. It is first because it is the switch members most want. */
+  toggle("Show me in Find Translators", "discoverable",
+    "Off by default. Registering does not list you; this does.");
   choice("Profile visibility", "profile_visibility",
     [["public","Public"],["members","Members only"],["private","Private"]],
     "Private means nobody but you can open your profile.");
@@ -10388,7 +10404,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1326";
+const BUILD = "0926-1334";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
