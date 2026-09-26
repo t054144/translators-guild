@@ -1260,11 +1260,11 @@ a.ks-s-en:hover { color: var(--white); }
 :root[data-theme="light"] .icon-btn .ic-moon { display: none; }
 :root[data-theme="light"] .icon-btn .ic-sun  { display: block; }
 
-.count-row { display: grid; grid-template-columns: repeat(3,1fr); gap: .4rem; margin: .9rem 0 .2rem; }
+.count-row { display: grid; grid-template-columns: repeat(4,1fr); gap: .3rem; margin: .9rem 0 .2rem; }
 .count-row div { text-align: center; padding: .55rem .3rem; cursor: default; }
-.count-row b { display: block; font-family: var(--f-serif); font-size: 1.3rem; color: var(--white);
+.count-row b { display: block; font-family: var(--f-serif); font-size: 1.2rem; color: var(--white);
   font-variant-numeric: tabular-nums; }
-.count-row span { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+.count-row span { font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
 .count-row div:first-child { cursor: pointer; }
 
 .ident-line { margin: .5rem 0 0; font-size: .88rem; color: var(--lilac); }
@@ -1280,6 +1280,46 @@ a.ks-s-en:hover { color: var(--white); }
 .fact-b { display: grid; grid-auto-flow: column; gap: .9rem; }
 .fact-k { display: block; font-size: .84rem; font-weight: 600; color: var(--white); white-space: nowrap; }
 .fact-v { display: block; font-size: .72rem; color: var(--ink-soft); white-space: nowrap; }
+
+/* shortcut circles, and the grid of a member's own work */
+.hilite-row { display: flex; gap: .85rem; overflow-x: auto; margin: 1.1rem 0 .3rem;
+  padding-bottom: .3rem; scrollbar-width: none; }
+.hilite-row::-webkit-scrollbar { display: none; }
+.hilite { flex: none; display: grid; justify-items: center; gap: .35rem; width: 5.4rem;
+  padding: 0; border: 0; background: none; box-shadow: none; }
+.hilite:hover { transform: none; }
+.hilite i { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center;
+  border: var(--hair-lit); background: rgba(255,255,255,.04); font-style: normal;
+  font-size: 1.15rem; color: var(--lilac); }
+.hilite:hover i { background: rgba(214,191,234,.14); }
+.hilite span { font-size: .68rem; line-height: 1.3; text-align: center; color: var(--ink-soft); }
+
+.grid-tabs { display: flex; border-top: var(--hair); margin: 1.2rem 0 0; }
+.grid-tab { flex: 1 1 0; padding: .7rem .3rem; margin-top: -1px; background: none; border: 0;
+  border-radius: 0; border-top: 2px solid transparent; box-shadow: none;
+  font-size: .7rem; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--ink-faint); }
+.grid-tab:hover { transform: none; color: var(--lilac); }
+.grid-tab[aria-selected="true"] { color: var(--white); border-top-color: var(--white); }
+
+.post-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: .4rem; margin: .5rem 0 1rem; }
+.tile { aspect-ratio: 1 / 1; display: grid; align-content: space-between; gap: .3rem;
+  padding: .7rem .75rem; border: var(--hair); border-radius: var(--r-lg); background: rgba(255,255,255,.035);
+  text-align: start; overflow: hidden; box-shadow: none; }
+.tile:hover { transform: none; background: rgba(214,191,234,.1); }
+.tile-k { font-size: .62rem; letter-spacing: .08em; text-transform: uppercase; color: var(--mag-ink);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.tile-t { font-size: .8rem; line-height: 1.35; color: var(--white); overflow: hidden;
+  display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; }
+.tile-n { font-size: .66rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
+
+#seal-about .pub-h:first-child { margin-top: 0; }
+.empty-make { display: grid; justify-items: center; gap: .55rem; padding: 2.4rem 1rem 2rem;
+  text-align: center; }
+.empty-make h3 { margin: 0; font-family: var(--f-serif); font-size: 1.15rem; color: var(--white); }
+.empty-make p { margin: 0; font-size: .88rem; line-height: 1.6; color: var(--ink-soft); max-width: 22rem; }
+.empty-ring { width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center;
+  border: 1px solid var(--lilac); color: var(--lilac); font-size: 1.6rem; }
 
 .appearance-more > summary { display: flex; align-items: baseline; justify-content: space-between;
   gap: 1rem; cursor: pointer; font-family: var(--f-serif); font-size: 1.1rem; color: var(--white);
@@ -2183,10 +2223,10 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
        as a translator, and what have I done?". They are two screens, not
        two halves of one. -->
   <section id="seal" class="view" hidden>
-    <!-- The theme switch belongs where a thumb reaches it, not three
-         panels down a scroll. -->
+    <!-- The handle at the top, the way the reference has it, and the theme
+         switch where a thumb reaches it rather than three panels down. -->
     <div class="seal-top">
-      <h1 class="seal-wordmark">Translators&rsquo; Guild</h1>
+      <h1 class="seal-wordmark" id="seal-handle">Translators&rsquo; Guild</h1>
       <button type="button" class="icon-btn" id="theme-toggle"
               aria-label="Switch between dark and light">
         <svg class="ic-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>
@@ -2203,7 +2243,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       </span>
       <div class="hall-id">
         <h1 id="seal-name">Member</h1>
-        <p class="note handle" id="hall-who" hidden></p>
         <p class="chips-row">
           <span class="chip-tag" id="chip-rank">Novice</span>
           <span class="chip-tag solid">Translation Team</span>
@@ -2228,8 +2267,33 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
     <p class="seal-bio" id="seal-bio" hidden></p>
     <div class="fact-row" id="seal-facts" hidden></div>
 
+    <p class="seal-actions">
+      <button type="button" class="ghost" id="edit-profile-btn">Edit Profile</button>
+      <button type="button" class="ghost" id="share-profile-btn">Share Profile</button>
+      <button type="button" class="ghost" id="privacy-btn">Privacy</button>
+    </p>
+
+    <!-- Circles, after the reference, but every one of them opens a real
+         part of the Guild. Nothing here is decoration. -->
+    <div class="hilite-row" id="seal-hilites" hidden></div>
+
+    <!-- The member's own work, as a grid, which is the part of the
+         reference a translator's profile actually needs. -->
+    <div class="grid-tabs" id="seal-tabs" role="tablist" hidden></div>
+    <div id="seal-grid"></div>
+
+    <div class="panel" id="seal-about"></div>
+
+
+    <div class="panel climb" id="climb"></div>
+
+    <div class="panel" id="seal-record"></div>
+
+    <div class="panel" id="seal-later"></div>
+
     <!-- Kept for the three-way choice, now that the header carries the
-         quick switch between dark and light. -->
+         quick switch between dark and light. It sits with the other
+         settings at the foot rather than between the bio and the work. -->
     <details class="panel appearance-more">
       <summary><span>Appearance</span><span class="j-next" id="appearance-now">System</span></summary>
       <div class="pick-row two" role="radiogroup" aria-label="Theme">
@@ -2241,21 +2305,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
           <span>Light</span></button>
       </div>
     </details>
-
-    <p class="seal-actions">
-      <button type="button" class="ghost" id="edit-profile-btn">Edit Profile</button>
-      <button type="button" class="ghost" id="privacy-btn">Privacy</button>
-    </p>
-
-    <div class="panel" id="seal-about"></div>
-
-    <div class="panel" id="seal-community"></div>
-
-    <div class="panel climb" id="climb"></div>
-
-    <div class="panel" id="seal-record"></div>
-
-    <div class="panel" id="seal-later"></div>
 
     <div class="hall-foot">
       <button class="ghost" id="admin-btn" hidden>Content Admin</button>
@@ -8914,11 +8963,12 @@ async function pressSeal() {
    username: a member is identified to others by @handle, never by the
    address they signed up with. */
 function paintWho() {
-  const who = document.getElementById("hall-who");
-  if (!who) return;
+  const top = document.getElementById("seal-handle");
+  if (!top) return;
+  /* The handle heads the screen, once. Until there is one — or on a
+     device with no account behind it — the screen names itself. */
   const h = state.profile && state.profile.username;
-  who.textContent = h ? "@" + h : "";
-  who.hidden = !h;
+  top.textContent = h ? "@" + h : "Translators’ Guild";
 }
 
 /* The seal is the whole threshold: signing in or joining opens the hall. */
@@ -8944,7 +8994,9 @@ function unlock() {
     '<p class="u-word">The window opens.</p></div>');
   ov.id = "unlock";
   document.body.appendChild(ov);
-  connectBackend(state.member);
+  /* If they arrived on somebody's shared link, that profile is where
+     they were going; the hall was only the gate's other side. */
+  connectBackend(state.member).then(openSharedProfile).catch(() => {});
   setTimeout(() => {
     paintBuild(); renderHall(); show("hall"); setAct(markCount() ? 3 : 2);
     ov.style.transition = "opacity 420ms ease"; ov.style.opacity = "0";
@@ -10245,14 +10297,17 @@ async function renderCounts() {
   if (backend !== "supabase") { box.hidden = true; return; }
   box.hidden = false;
   const cell = (n, lab) => '<div><b>' + n + '</b><span>' + lab + '</span></div>';
-  box.innerHTML = cell("\u2013","Posts") + cell("\u2013","Followers") + cell("\u2013","Following");
+  const row = (a, b, c, d) => cell(a,"Posts") + cell(b,"Followers") +
+                              cell(c,"Following") + cell(d,"Friends");
+  box.innerHTML = row("\u2013","\u2013","\u2013","\u2013");
   try {
     const [c, mine] = await Promise.all([
       myCounts(),
       sbGet("posts?select=id&author_id=eq." + myId())
     ]);
-    box.innerHTML = cell(mine.length, "Posts") +
-                    cell(c.followers, "Followers") + cell(c.following, "Following");
+    /* Friends are mutual follows, and they used to sit in a panel of
+       their own further down saying the other two numbers over again. */
+    box.innerHTML = row(mine.length, c.followers, c.following, c.friends);
     box.querySelectorAll("div")[0].addEventListener("click", () => openItem(MINE_ITEM));
   } catch (e) {}
 }
@@ -10270,10 +10325,13 @@ function renderIdent() {
   en.hidden = !parts.length;
   /* The institution goes through as the member typed it: their own
      spelling of their own university beats a guess at it. */
-  const arParts = [FIELD_AR[p.field_of_study], LEVEL_AR[p.academic_level], p.institution]
-                    .filter(Boolean);
+  const fAr = FIELD_AR[p.field_of_study], lAr = LEVEL_AR[p.academic_level];
+  const arParts = [fAr, lAr, p.institution].filter(Boolean);
   ar.textContent = arParts.join(" \u00b7 ");
-  ar.hidden = !arParts.length;
+  /* Without a field or a level in Arabic there is no Arabic line to
+     draw \u2014 only the institution, which would sit there looking like a
+     stray echo of the line above it. */
+  ar.hidden = !(fAr || lAr);
   if (bio) { bio.textContent = p.bio || ""; bio.hidden = !p.bio; }
 }
 
@@ -10287,19 +10345,11 @@ async function renderFacts() {
   let langs = [];
   try { langs = await sbGet("member_languages?select=language,proficiency&user_id=eq." + myId() + "&order=ordinal.asc"); }
   catch (e) {}
-  const cards = [];
-  if (langs.length) {
-    cards.push('<div class="fact"><div class="fact-b">' +
-      langs.slice(0,2).map(l => '<span><span class="fact-k">' + esc(l.language) + '</span>' +
-        '<span class="fact-v">' + esc(l.proficiency) + '</span></span>').join("") +
-      '</div></div>');
-  }
-  if (p.field_of_study) cards.push('<div class="fact"><div class="fact-b">' +
-    '<span class="fact-k">' + esc(p.field_of_study) + '</span>' +
-    '<span class="fact-v">' + esc(p.academic_level || "") + '</span></div></div>');
-  if (p.institution) cards.push('<div class="fact"><div class="fact-b">' +
-    '<span class="fact-k">' + esc(p.institution) + '</span>' +
-    '<span class="fact-v">Institution</span></div></div>');
+  /* Languages only. The field, the level and the institution are the
+     line directly above this row, and saying them twice is noise. */
+  const cards = langs.map(l => '<div class="fact"><div class="fact-b">' +
+    '<span><span class="fact-k">' + esc(l.language) + '</span>' +
+    '<span class="fact-v">' + esc(l.proficiency) + '</span></span></div></div>');
   box.innerHTML = cards.join("");
   box.hidden = !cards.length;
 }
@@ -10310,32 +10360,16 @@ async function renderAbout() {
   const p = state.profile;
   if (backend !== "supabase" || !p) { box.hidden = true; return; }
 
-  let langs = [], ints = [];
-  try {
-    langs = await sbGet("member_languages?select=language,proficiency&user_id=eq." + myId() + "&order=ordinal.asc");
-    ints  = await sbGet("member_interests?select=interest,category&user_id=eq." + myId());
-  } catch (e) {}
+  let ints = [];
+  try { ints = await sbGet("member_interests?select=interest,category&user_id=eq." + myId()); }
+  catch (e) {}
 
-  const has = p.bio || p.field_of_study || p.institution || p.academic_level ||
-              langs.length || ints.length;
+  /* The bio, the field, the institution and the first two languages are
+     already on the screen above. This panel used to say all of it a
+     second time; it now carries only what the header has no room for. */
+  if (!ints.length) { box.hidden = true; return; }
   box.hidden = false;
-  box.innerHTML = '<div class="j-head"><h2>About</h2></div>';
-
-  if (!has) {
-    box.appendChild(el("p", "note",
-      "Nothing here yet. Edit Profile adds a bio, your languages and what you work on."));
-    return;
-  }
-  if (p.bio) box.appendChild(el("p", "pub-bio", esc(p.bio)));
-
-  const rows = el("div", "pub-rows");
-  const add = (k, v) => { if (v) rows.appendChild(el("div", "pub-row",
-    '<span>' + k + '</span><span class="pub-dim">' + esc(v) + '</span>')); };
-  add("Field", p.field_of_study);
-  add("Institution", p.institution);
-  add("Level or position", p.academic_level);
-  langs.forEach(l => add(esc(l.language), l.proficiency));
-  if (rows.children.length) box.appendChild(rows);
+  box.innerHTML = "";
 
   if (ints.length) {
     box.appendChild(el("h3", "pub-h", "Interests"));
@@ -10345,38 +10379,142 @@ async function renderAbout() {
   }
 }
 
-/* Friends, Following, Followers, and the way in to the member list. */
-function renderCommunity() {
-  const box = document.getElementById("seal-community");
-  if (!box) return;
-  if (backend !== "supabase") { box.hidden = true; return; }
-  box.hidden = false;
-  box.innerHTML = '<div class="j-head"><h2>Community</h2></div>' +
-    '<div class="pub-counts" id="my-counts">' +
-      '<div><b>\u2013</b><span>Friends</span></div>' +
-      '<div><b>\u2013</b><span>Following</span></div>' +
-      '<div><b>\u2013</b><span>Followers</span></div>' +
-    '</div>';
-  const acts = el("p", "seal-actions");
-  const feed = el("button", "ghost", "Guild Feed");
-  feed.addEventListener("click", () => openItem(COMMUNITY_ITEM));
-  const find = el("button", "ghost", "Find Translators");
-  find.addEventListener("click", () => openItem(FIND_ITEM));
-  const mine = el("button", "ghost", "My Translations");
-  mine.addEventListener("click", () => openItem(MINE_ITEM));
-  const saved = el("button", "ghost", "Saved");
-  saved.addEventListener("click", () => openItem(SAVED_ITEM));
-  [feed, find, mine, saved].forEach(b => acts.appendChild(b));
-  box.appendChild(acts);
-  myCounts().then(c => {
-    const n = box.querySelector("#my-counts");
-    if (!n) return;
-    n.innerHTML =
-      '<div><b>' + c.friends   + '</b><span>Friends</span></div>' +
-      '<div><b>' + c.following + '</b><span>Following</span></div>' +
-      '<div><b>' + c.followers + '</b><span>Followers</span></div>';
-  }).catch(() => {});
+
+/* The circles under the buttons. The reference keeps souvenirs there;
+   a translator's profile is better served by the five places they
+   actually go, so each circle is a door rather than a memory. */
+const HILITES = [
+  { ico: "✎", lab: "Translations", go: () => openItem(MINE_ITEM) },
+  { ico: "☰", lab: "Guild Feed",   go: () => openItem(COMMUNITY_ITEM) },
+  { ico: "♡", lab: "Saved",        go: () => openItem(SAVED_ITEM) },
+  { ico: "◎", lab: "Members",      go: () => openItem(FIND_ITEM) },
+  { ico: "✦", lab: "Courses",      go: () => navTo("learn") }
+];
+
+function renderHilites() {
+  const row = document.getElementById("seal-hilites");
+  if (!row) return;
+  if (backend !== "supabase") { row.hidden = true; return; }
+  row.hidden = false;
+  row.innerHTML = "";
+  HILITES.forEach(h => {
+    const b = el("button", "hilite",
+      '<i aria-hidden="true">' + h.ico + '</i><span>' + h.lab + '</span>');
+    b.type = "button";
+    b.addEventListener("click", h.go);
+    row.appendChild(b);
+  });
 }
+
+/* A member's own posts as a grid. Two tabs, because the one distinction
+   worth making on a translator's profile is between everything they
+   have posted and the translations themselves. */
+let gridTab = "all";
+
+async function renderGrid() {
+  const tabs = document.getElementById("seal-tabs");
+  const box  = document.getElementById("seal-grid");
+  if (!tabs || !box) return;
+  if (backend !== "supabase") { tabs.hidden = true; box.innerHTML = ""; return; }
+  tabs.hidden = false;
+  tabs.innerHTML = "";
+  [["all", "Posts"], ["translation", "Translations"]].forEach(pair => {
+    const b = el("button", "grid-tab", pair[1]);
+    b.type = "button";
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", String(gridTab === pair[0]));
+    b.addEventListener("click", () => {
+      if (gridTab === pair[0]) return;
+      gridTab = pair[0]; renderGrid();
+    });
+    tabs.appendChild(b);
+  });
+
+  box.innerHTML = "";
+  const msg = el("p", "f-msg", "Loading…");
+  box.appendChild(msg);
+  let rows = [];
+  try { rows = await loadFeed(gridTab, true); }
+  catch (e) { msg.textContent = "Your posts could not be loaded."; return; }
+  box.innerHTML = "";
+  if (!rows.length) { box.appendChild(emptyMake()); return; }
+  const grid = el("div", "post-grid");
+  rows.forEach(r => grid.appendChild(postTile(r)));
+  box.appendChild(grid);
+}
+
+function postTile(r) {
+  const kind = POST_KINDS.find(k => k.id === r.post_type);
+  const words = r.title || r.content || r.source_text || r.translated_text || "";
+  const b = el("button", "tile",
+    '<span class="tile-k">' + esc(kind ? kind.en : r.post_type) + '</span>' +
+    '<span class="tile-t" dir="auto">' + esc(words.slice(0, 140)) + '</span>' +
+    '<span class="tile-n">♡ ' + r.likes + ' · ○ ' + r.comments + '</span>');
+  b.type = "button";
+  b.addEventListener("click", () => openPost(r));
+  return b;
+}
+
+/* An account with nothing on it should say what to do next rather than
+   sit blank, which is the screen her reference ends on. */
+function emptyMake() {
+  const first = gridTab === "translation";
+  const d = el("div", "empty-make",
+    '<span class="empty-ring" aria-hidden="true">+</span>' +
+    '<h3>' + (first ? "No translations yet" : "Create your first post") + '</h3>' +
+    '<p>' + (first
+      ? "Post something you have translated and the Guild will read it."
+      : "Share a translation, ask about a passage that will not sit still, " +
+        "or open a question of terminology.") + '</p>');
+  const b = el("button", "primary", "Create");
+  b.type = "button";
+  b.addEventListener("click", () => openItem(NEWPOST_ITEM));
+  d.appendChild(b);
+  return d;
+}
+
+/* ── sharing a profile ──
+   A share button that copies a link nobody can open is worse than no
+   button, so the link is a real route: #u=<username> opens that member's
+   public profile, under the same privacy rules as everywhere else. */
+function myShareUrl() {
+  const h = state.profile && state.profile.username;
+  return h ? location.origin + location.pathname + "#u=" + encodeURIComponent(h) : "";
+}
+
+async function shareProfile(btn) {
+  const url = myShareUrl();
+  /* No handle, nothing to share: send them where they can choose one. */
+  if (!url) { openItem(EDIT_ITEM); return; }
+  const was = btn.textContent;
+  const say = m => { btn.textContent = m; setTimeout(() => { btn.textContent = was; }, 1800); };
+  if (navigator.share) {
+    try { await navigator.share({ title: "Translators’ Guild", url: url }); return; }
+    catch (e) { if (e && e.name === "AbortError") return; }
+  }
+  try { await navigator.clipboard.writeText(url); say("Link copied"); }
+  catch (e) { window.prompt("Copy this link", url); }
+}
+
+function sharedHandle() {
+  const m = /^#u=([^&]+)$/.exec(location.hash || "");
+  if (!m) return "";
+  try { return decodeURIComponent(m[1]); } catch (e) { return ""; }
+}
+
+/* Read once the backend is up: a public profile is a query, not a page
+   that can be served from the hash alone. */
+async function openSharedProfile() {
+  const h = sharedHandle();
+  if (!h || backend !== "supabase") return;
+  try { history.replaceState(null, "", location.pathname + location.search); } catch (e) {}
+  try {
+    const rows = await sbGet("profiles_public?select=id,username,display_name&username=eq." +
+                             encodeURIComponent(h));
+    if (rows[0]) openPublic(rows[0]);
+  } catch (e) {}
+}
+window.addEventListener("hashchange", openSharedProfile);
 
 function wireProfileButtons() {
   const tt = document.getElementById("theme-toggle");
@@ -10394,6 +10532,11 @@ function wireProfileButtons() {
     e.dataset.wired = "1";
     e.addEventListener("click", () => openItem(EDIT_ITEM));
   }
+  const sh = document.getElementById("share-profile-btn");
+  if (sh && !sh.dataset.wired) {
+    sh.dataset.wired = "1";
+    sh.addEventListener("click", () => shareProfile(sh));
+  }
   const pv = document.getElementById("privacy-btn");
   if (pv && !pv.dataset.wired) {
     pv.dataset.wired = "1";
@@ -10404,7 +10547,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1334";
+const BUILD = "0926-1410";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
@@ -10444,8 +10587,9 @@ function renderSeal() {
   renderCounts();
   renderIdent();
   renderFacts();
+  renderHilites();
+  renderGrid();
   renderAbout();
-  renderCommunity();
   renderClimb();
 
   /* ── the record of trials ── */
@@ -13612,10 +13756,11 @@ loadPortraits();
      here last. */
   state.member = session.user.email || state.member; save();
   paintWho();
-  connectBackend(state.member);
   renderHall();
   setAct(markCount() ? 3 : 2);
   show("hall");
+  /* A shared profile link resolves once the backend is up. */
+  connectBackend(state.member).then(openSharedProfile).catch(() => {});
 })();
 </script>
 
