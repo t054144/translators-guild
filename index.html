@@ -1280,7 +1280,10 @@ a.ks-s-en:hover { color: var(--white); }
 .count-row b { display: block; font-family: var(--f-serif); font-size: 1.05rem; color: var(--white);
   font-variant-numeric: tabular-nums; line-height: 1.35; }
 .count-row span { font-size: .72rem; color: var(--ink-soft); }
-.count-row.mine div:first-child { cursor: pointer; }
+/* All three numbers are ways in: your posts, and the two lists of
+   people. On somebody else's profile the two lists open the same way. */
+.count-row.mine div, .count-row.tappable div:not(:first-child) { cursor: pointer; }
+.count-row.mine div:active, .count-row.tappable div:active { opacity: .6; }
 
 .ig-bio { display: grid; gap: .12rem; }
 .ident-line { margin: 0; font-size: .88rem; color: var(--lilac); }
@@ -9317,7 +9320,9 @@ function followButton(m) {
   const b = el("button", "follow-btn");
   let on = !!m.i_follow;
   const paint = () => {
-    b.textContent = on ? (m.follows_me ? "Friends" : "Following") : "Follow";
+    /* "Friends" used to appear here when the follow was mutual. There
+       are no friends in the Guild — only followers and following. */
+    b.textContent = on ? "Following" : "Follow";
     b.classList.toggle("on", on);
   };
   paint();
@@ -9349,6 +9354,44 @@ function memberRow(m, onOpen) {
   row.appendChild(txt);
   if (m.allow_follows) row.appendChild(followButton(m));
   return row;
+}
+
+/* ── who follows whom ──
+   The two numbers on a profile are people, so tapping one opens them.
+   On anybody's profile, not only your own: the view behind this reads
+   through profiles_public, so a member who has set their profile to
+   private is not in the list — and the counts are worked out the same
+   way, so the number and the list cannot disagree. */
+function followListItem(subjectId, direction, whose) {
+  return { id: "follows:" + direction + ":" + subjectId,
+           en: direction === "followers" ? "Followers" : "Following",
+           subject: whose || "", section: "profile",
+           run: () => runFollowList(subjectId, direction) };
+}
+
+async function runFollowList(subjectId, direction) {
+  setCount(""); stage.innerHTML = "";
+  const list = el("div", "m-members");
+  const msg = el("p", "f-msg", "Loading…");
+  stage.appendChild(list); stage.appendChild(msg);
+  const cols = "id,username,title,display_name,avatar_path,rank_slug,allow_follows,i_follow";
+  let rows = [];
+  try {
+    rows = await sbGet("follow_list?select=" + cols + "&subject_id=eq." + subjectId +
+                       "&direction=eq." + direction +
+                       "&order=display_name.asc&limit=200");
+  } catch (e) {
+    msg.textContent = "That list could not be loaded.";
+    stage.appendChild(footNav({ backLabel: "Profile" }));
+    return;
+  }
+  const mine = subjectId === myId();
+  rows.forEach(m => list.appendChild(memberRow(m, x => openPublic(x))));
+  msg.textContent = rows.length ? "" :
+    (direction === "followers"
+      ? (mine ? "Nobody is following you yet." : "Nobody is following them yet.")
+      : (mine ? "You are not following anyone yet." : "They are not following anyone yet."));
+  stage.appendChild(footNav({ backLabel: "Profile" }));
 }
 
 function esc(t) {
@@ -9477,9 +9520,16 @@ async function runPublic(id) {
     '<span class="chip-tag solid">Translation Team</span>'));
   const c = counts || {};
   const cell = (n, lab) => '<div><b>' + tally(n) + '</b><span>' + lab + '</span></div>';
-  who.appendChild(el("div", "count-row",
+  const pubCounts = el("div", "count-row tappable",
     cell(posts.length, "posts") + cell(c.followers || 0, "followers") +
-    cell(c.following || 0, "following")));
+    cell(c.following || 0, "following"));
+  /* Their followers and their following open the same way yours do. */
+  const pubCells = pubCounts.querySelectorAll("div");
+  pubCells[1].addEventListener("click", () =>
+    openItem(followListItem(id, "followers", "People who follow " + p.display_name)));
+  pubCells[2].addEventListener("click", () =>
+    openItem(followListItem(id, "following", p.display_name + " follows")));
+  who.appendChild(pubCounts);
   head.appendChild(who);
   stage.appendChild(head);
 
@@ -10903,7 +10953,12 @@ async function renderCounts() {
       sbGet("feed?select=id&author_id=eq." + myId())
     ]);
     box.innerHTML = row(mine.length, c.followers, c.following);
-    box.querySelectorAll("div")[0].addEventListener("click", () => openItem(MINE_ITEM));
+    const cells = box.querySelectorAll("div");
+    cells[0].addEventListener("click", () => openItem(MINE_ITEM));
+    cells[1].addEventListener("click", () =>
+      openItem(followListItem(myId(), "followers", "People who follow you")));
+    cells[2].addEventListener("click", () =>
+      openItem(followListItem(myId(), "following", "People you follow")));
   } catch (e) {}
 }
 
@@ -11541,7 +11596,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0927-0210";
+const BUILD = "0927-0255";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
