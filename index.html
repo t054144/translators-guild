@@ -603,17 +603,8 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
   .rec-row { grid-template-columns: auto 1fr; }
   .rec-state { grid-column: 2; justify-self: start; }
 }
-.hall-id { display: grid; gap: .1rem; min-width: 0; }
-.hall-id .h-ar { font-family: var(--f-ar); direction: rtl; text-align: left; font-size: .95rem; color: var(--lilac); }
-.hall-id h1 { font-family: var(--f-serif); font-size: clamp(1.5rem,4vw,2rem); font-weight: 600; color: var(--white); margin: 0; line-height: 1.1; }
-.rank-box { display: grid; gap: .35rem; justify-items: end; text-align: right; }
-.rank-box .r-en { font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; margin: 0;
-  background: linear-gradient(200deg,#fff,#d6bfea 60%,#a726d0); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.rank-box .r-ar { font-family: var(--f-ar); direction: rtl; font-size: .92rem; color: var(--lilac); margin: 0; }
-.rank-box .r-n { font-size: .74rem; letter-spacing: .16em; text-transform: uppercase; color: var(--lilac-dim); font-variant-numeric: tabular-nums; }
 @media (max-width: 800px) {
   .seal-head { grid-template-columns: auto 1fr; }
-  .rank-box { grid-column: 1 / -1; justify-items: start; text-align: left; }
 }
 
 .sec-head { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
@@ -991,8 +982,6 @@ a.ks-s-en:hover { color: var(--white); }
 :root[data-theme="light"] .note,
 :root[data-theme="light"] .c-subject,
 :root[data-theme="light"] .trial-subject { color: #5b4a75; }
-:root[data-theme="light"] .rank-box .r-en {
-  background: linear-gradient(200deg,#4a1470,#8218c7 60%,#a726d0); }
 
 /* the switch itself, in the spine */
 .theme-btn {
@@ -1031,7 +1020,7 @@ a.ks-s-en:hover { color: var(--white); }
 
 /* Tracked capitals are a label, not an ornament: smaller, and tracked less
    far. They were reading louder than the titles they sat under. */
-.seal-eyebrow, .c-subject, .trial-subject, .j-tile span, .rank-box .r-n,
+.seal-eyebrow, .c-subject, .trial-subject, .j-tile span,
 .rec-state, .b-lab, .num-badge, .kind, .soon {
   letter-spacing: .1em; font-size: .64rem;
 }
@@ -1085,9 +1074,7 @@ a.ks-s-en:hover { color: var(--white); }
   .screen-head { margin-bottom: -.35rem; }
 
   /* the member card */
-  .profile-card { padding: 1rem; gap: .75rem 1rem; }
   .avatar { width: 50px; height: 50px; font-size: 1.1rem; }
-  .hall-id h1 { font-size: 1.3rem; }
   .chip-tag { font-size: .66rem; padding: .24rem .6rem; }
 
   /* the progress panel */
@@ -1151,8 +1138,6 @@ a.ks-s-en:hover { color: var(--white); }
 }
 
 /* the profile card: who you are, at a glance */
-.profile-card { display: grid; grid-template-columns: auto 1fr auto; gap: clamp(.9rem,3vw,1.4rem);
-  align-items: center; padding: clamp(1.1rem,3vw,1.5rem); }
 /* ═══════════ PROFILE IDENTITY ═══════════
    A photograph if the member uploaded one, their initials if not. The
    wrapper exists only to hang the edit button off the avatar's corner. */
@@ -1260,35 +1245,36 @@ a.ks-s-en:hover { color: var(--white); }
 :root[data-theme="light"] .icon-btn .ic-moon { display: none; }
 :root[data-theme="light"] .icon-btn .ic-sun  { display: block; }
 
-.count-row { display: grid; grid-template-columns: repeat(4,1fr); gap: .3rem; margin: .9rem 0 .2rem; }
-.count-row div { text-align: center; padding: .55rem .3rem; cursor: default; }
-.count-row b { display: block; font-family: var(--f-serif); font-size: 1.2rem; color: var(--white);
-  font-variant-numeric: tabular-nums; }
-.count-row span { font-size: .62rem; letter-spacing: .06em; text-transform: uppercase; color: var(--ink-soft); }
+.ig-head { display: grid; grid-template-columns: auto 1fr; align-items: center;
+  gap: clamp(.8rem,4vw,1.4rem); margin: .1rem 0 .7rem; }
+.ig-head .avatar { width: 74px; height: 74px; font-size: 1.5rem; }
+.count-row { display: grid; grid-template-columns: repeat(3,1fr); gap: .2rem; margin: 0; }
+.count-row div { text-align: center; padding: .2rem .1rem; cursor: default; }
+.count-row b { display: block; font-family: var(--f-serif); font-size: 1.05rem; color: var(--white);
+  font-variant-numeric: tabular-nums; line-height: 1.3; }
+.count-row span { font-size: .68rem; color: var(--ink-soft); }
 .count-row.mine div:first-child { cursor: pointer; }
 
-.ident-line { margin: .5rem 0 0; font-size: .88rem; color: var(--lilac); }
-.ident-line.is-ar { font-family: var(--f-ar); font-size: .92rem; color: var(--ink-soft); margin-top: .1rem; }
-.seal-bio { margin: .7rem 0 0; font-size: .92rem; line-height: 1.6; color: var(--ink-soft);
+.ig-bio { display: grid; gap: .1rem; }
+.ig-name { margin: 0; font-family: var(--f-serif); font-size: 1rem; font-weight: 600;
+  color: var(--white); }
+.ident-line { margin: .15rem 0 0; font-size: .82rem; color: var(--lilac); }
+.ident-line.is-ar { font-family: var(--f-ar); font-size: .86rem; color: var(--ink-soft); margin-top: .05rem; }
+.seal-bio { margin: .35rem 0 0; font-size: .86rem; line-height: 1.55; color: var(--ink-soft);
   max-width: var(--measure); }
+.ig-meta { margin: .25rem 0 0; font-size: .78rem; color: var(--ink-soft); }
+#seal-interests { margin-top: .45rem; }
+#seal-interests .chip-tag { font-size: .66rem; padding: .2rem .55rem; }
 
-.fact-row { display: flex; gap: .5rem; overflow-x: auto; margin: 1rem 0 .2rem; padding-bottom: .2rem;
-  scrollbar-width: none; }
-.fact-row::-webkit-scrollbar { display: none; }
-.fact { flex: none; display: flex; align-items: center; gap: .55rem; padding: .6rem .85rem;
-  border-radius: var(--r-lg); border: var(--hair); background: rgba(255,255,255,.035); }
-.fact-b { display: grid; grid-auto-flow: column; gap: .9rem; }
-.fact-k { display: block; font-size: .84rem; font-weight: 600; color: var(--white); white-space: nowrap; }
-.fact-v { display: block; font-size: .72rem; color: var(--ink-soft); white-space: nowrap; }
 
 /* shortcut circles, and the grid of a member's own work */
-.hilite-row { display: flex; gap: .85rem; overflow-x: auto; margin: 1.1rem 0 .3rem;
+.hilite-row { display: flex; gap: .7rem; overflow-x: auto; margin: .9rem 0 .2rem;
   padding-bottom: .3rem; scrollbar-width: none; }
 .hilite-row::-webkit-scrollbar { display: none; }
-.hilite { flex: none; display: grid; justify-items: center; gap: .35rem; width: 5.4rem;
+.hilite { flex: none; display: grid; justify-items: center; gap: .3rem; width: 5rem;
   padding: 0; border: 0; background: none; box-shadow: none; }
 .hilite:hover { transform: none; }
-.hilite i { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center;
+.hilite i { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
   border: var(--hair-lit); background: rgba(255,255,255,.04); font-style: normal;
   font-size: 1.15rem; color: var(--lilac); }
 .hilite:hover i { background: rgba(214,191,234,.14); }
@@ -1313,7 +1299,6 @@ a.ks-s-en:hover { color: var(--white); }
   display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; }
 .tile-n { font-size: .66rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 
-#seal-about .pub-h:first-child { margin-top: 0; }
 .empty-make { display: grid; justify-items: center; gap: .55rem; padding: 2.4rem 1rem 2rem;
   text-align: center; }
 .empty-make h3 { margin: 0; font-family: var(--f-serif); font-size: 1.15rem; color: var(--white); }
@@ -1371,6 +1356,9 @@ a.ks-s-en:hover { color: var(--white); }
 .pick-chip { cursor: pointer; background: transparent; font-family: inherit; }
 .pick-chip.on { background: rgba(167,38,208,.25); color: var(--white); border-color: var(--magenta); }
 .seal-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+.seal-actions.wide { display: grid; grid-template-columns: repeat(3,1fr); gap: .4rem; margin: .8rem 0 0; }
+.seal-actions.wide.two { grid-template-columns: repeat(2,1fr); }
+.seal-actions.wide .ghost { padding: .55rem .3rem; font-size: .76rem; letter-spacing: 0; }
 
 .f-photo { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
 .f-row { display: grid; gap: .3rem; margin-bottom: 1.1rem; }
@@ -1395,11 +1383,7 @@ a.ks-s-en:hover { color: var(--white); }
 .chip-tag { font-size: .7rem; letter-spacing: .06em; padding: .28rem .7rem; border-radius: 999px;
   border: var(--hair-lit); color: var(--lilac); white-space: nowrap; }
 .chip-tag.solid { background: var(--grad); border-color: transparent; color: var(--on-grad); }
-.profile-card .rank-box { justify-items: center; text-align: center; gap: .3rem; }
 @media (max-width: 560px) {
-  .profile-card { grid-template-columns: auto 1fr; }
-  .profile-card .rank-box { grid-column: 1 / -1; justify-items: start; text-align: start;
-    flex-direction: row; display: flex; align-items: center; gap: .6rem; }
 }
 
 .screen-head { display: grid; gap: .3rem; padding-top: .2rem; }
@@ -2226,40 +2210,32 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       </button>
     </div>
 
-    <div class="panel profile-card">
+    <!-- The picture and the three numbers share one line, as they do in
+         the reference. Everything that used to be a panel of its own is
+         a line of text under it. -->
+    <div class="ig-head">
       <span class="avatar-wrap">
         <span class="avatar" id="seal-initials" aria-hidden="true"></span>
         <button type="button" class="avatar-edit" id="avatar-edit" aria-label="Change profile photo">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.6-2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg>
         </button>
       </span>
-      <div class="hall-id">
-        <h1 id="seal-name">Member</h1>
-        <p class="chips-row">
-          <span class="chip-tag" id="chip-rank">Novice</span>
-          <span class="chip-tag solid">Translation Team</span>
-        </p>
-      </div>
-      <div class="rank-box">
-        <span class="r-n" id="rank-n">0 marks</span>
-        <span class="r-next" id="rank-next"></span>
-        <svg class="ring" id="hall-ring" viewBox="0 0 100 100" aria-hidden="true" hidden></svg>
-        <span class="r-n" hidden id="rank-en">Novice</span>
-      </div>
+      <div class="count-row mine" id="seal-counts"></div>
     </div>
 
-    <!-- Posts, followers, following: the three numbers a member checks. -->
-    <div class="count-row mine" id="seal-counts" hidden></div>
+    <!-- One block, because the screen is a grid and every child of it
+         costs a row gap. These lines belong together anyway. -->
+    <div class="ig-bio">
+      <p class="ig-name" id="seal-name">Member</p>
+      <p class="ident-line" id="seal-ident" hidden></p>
+      <p class="ident-line is-ar" id="seal-ident-ar" dir="rtl" lang="ar" hidden></p>
+      <p class="seal-bio" id="seal-bio" hidden></p>
+      <p class="ig-meta" id="seal-langs" hidden></p>
+      <p class="chips-row" id="seal-interests" hidden></p>
+      <p class="ig-meta" id="seal-rank" hidden></p>
+    </div>
 
-    <!-- Position, level and institution on one line, then the same in
-         Arabic, because this is a bilingual site and the profile should
-         look like one. -->
-    <p class="ident-line" id="seal-ident" hidden></p>
-    <p class="ident-line is-ar" id="seal-ident-ar" dir="rtl" lang="ar" hidden></p>
-    <p class="seal-bio" id="seal-bio" hidden></p>
-    <div class="fact-row" id="seal-facts" hidden></div>
-
-    <p class="seal-actions">
+    <p class="seal-actions wide">
       <button type="button" class="ghost" id="edit-profile-btn">Edit Profile</button>
       <button type="button" class="ghost" id="share-profile-btn">Share Profile</button>
       <button type="button" class="ghost" id="privacy-btn">Privacy</button>
@@ -2273,14 +2249,14 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
          reference a translator's profile actually needs. -->
     <div id="seal-grid"></div>
 
-    <div class="panel" id="seal-about"></div>
-
-
-    <div class="panel climb" id="climb"></div>
-
-    <div class="panel" id="seal-record"></div>
-
-    <div class="panel" id="seal-later"></div>
+    <!-- The Climb, the record of trials and the reading list are still
+         here; they are behind the Progress tab rather than a thousand
+         pixels of scroll under the work. -->
+    <div id="seal-progress" hidden>
+      <div class="panel climb" id="climb"></div>
+      <div class="panel" id="seal-record"></div>
+      <div class="panel" id="seal-later"></div>
+    </div>
 
     <!-- Kept for the three-way choice, now that the header carries the
          quick switch between dark and light. It sits with the other
@@ -9207,54 +9183,47 @@ async function runPublic(id) {
   const dir = (await sbGet("member_directory?select=i_follow,follows_me,allow_follows&id=eq." + id))[0] || {};
   stage.innerHTML = "";
 
-  /* The same shape as her own profile, because a member looking at
-     somebody else should not land on a different kind of screen. */
-  const card = el("div", "panel profile-card");
-  const av = el("span", "avatar big");
+  /* The same compact head as her own profile: the picture and the three
+     numbers on one line, and everything else as lines of text under it. */
+  const head = el("div", "ig-head");
+  const av = el("span", "avatar");
   paintFace(av, p.avatar_path, p.display_name);
-  card.appendChild(av);
-  const hid = el("div", "hall-id");
-  hid.innerHTML =
-    '<h1>' + esc(withTitle(p.title, p.display_name)) + '</h1>' +
-    '<p class="chips-row">' +
-      (p.rank_slug ? '<span class="chip-tag">' + esc(rankName(p.rank_slug)) + '</span>' : '') +
-      '<span class="chip-tag solid">Translation Team</span></p>';
-  card.appendChild(hid);
-  /* Marks only when they have left their progress visible; the view
-     returns null for it otherwise. */
-  if (p.marks != null) {
-    const rb = el("div", "rank-box");
-    rb.innerHTML = '<span class="r-n">' + p.marks + " / " + totalMarks() + ' marks</span>';
-    card.appendChild(rb);
-  }
-  stage.appendChild(card);
-
+  head.appendChild(av);
   const c = counts || {};
   const cell = (n, lab) => '<div><b>' + n + '</b><span>' + lab + '</span></div>';
-  stage.appendChild(el("div", "count-row",
-    cell(posts.length, "Posts") + cell(c.followers || 0, "Followers") +
-    cell(c.following || 0, "Following") + cell(c.friends || 0, "Friends")));
+  head.appendChild(el("div", "count-row",
+    cell(posts.length, "posts") + cell(c.followers || 0, "followers") +
+    cell(c.following || 0, "following")));
+  stage.appendChild(head);
+
+  const bioBlock = el("div", "ig-bio");
+  bioBlock.appendChild(el("p", "ig-name", esc(withTitle(p.title, p.display_name))));
+  stage.appendChild(bioBlock);
 
   const idParts = [p.field_of_study, p.academic_level, p.institution].filter(Boolean);
-  if (idParts.length) stage.appendChild(el("p", "ident-line", esc(idParts.join(" \u00b7 "))));
+  if (idParts.length) bioBlock.appendChild(el("p", "ident-line", esc(idParts.join(" \u00b7 "))));
   const fAr = FIELD_AR[p.field_of_study], lAr = LEVEL_AR[p.academic_level];
   if (fAr || lAr) {
     const arLine = el("p", "ident-line is-ar",
       esc([fAr, lAr, p.institution].filter(Boolean).join(" \u00b7 ")));
     arLine.dir = "rtl"; arLine.lang = "ar";
-    stage.appendChild(arLine);
+    bioBlock.appendChild(arLine);
   }
-  if (p.bio) stage.appendChild(el("p", "seal-bio", esc(p.bio)));
-
-  if (langs.length) {
-    const facts = el("div", "fact-row");
-    facts.innerHTML = langs.map(l => '<div class="fact"><div class="fact-b">' +
-      '<span><span class="fact-k">' + esc(l.language) + '</span>' +
-      '<span class="fact-v">' + esc(l.proficiency) + '</span></span></div></div>').join("");
-    stage.appendChild(facts);
+  if (p.bio) bioBlock.appendChild(el("p", "seal-bio", esc(p.bio)));
+  if (langs.length) bioBlock.appendChild(el("p", "ig-meta",
+    esc(langs.map(l => l.language + " \u2014 " + l.proficiency).join(" \u00b7 "))));
+  if (p.show_interests && ints.length) {
+    const chips = el("p", "chips-row");
+    chips.id = "pub-interests";
+    ints.forEach(i => chips.appendChild(el("span", "chip-tag", esc(i.interest))));
+    bioBlock.appendChild(chips);
   }
+  /* Marks only when they have left their progress visible; the view
+     returns null for it otherwise. */
+  if (p.marks != null) bioBlock.appendChild(el("p", "ig-meta",
+    esc(rankName(p.rank_slug) || "") + " \u00b7 " + p.marks + " / " + totalMarks() + " marks"));
 
-  const acts = el("p", "seal-actions");
+  const acts = el("p", "seal-actions wide two");
   if (dir.allow_follows) acts.appendChild(followButton(
     { id: id, i_follow: dir.i_follow, follows_me: dir.follows_me }));
   if (p.username) {
@@ -9266,15 +9235,6 @@ async function runPublic(id) {
   if (acts.children.length) stage.appendChild(acts);
 
   stage.appendChild(profileGrid(id, false));
-
-  if (p.show_interests && ints.length) {
-    const panel = el("div", "panel");
-    panel.appendChild(el("h3", "pub-h", "Interests"));
-    const row = el("div", "chips-row");
-    ints.forEach(i => row.appendChild(el("span", "chip-tag", esc(i.interest))));
-    panel.appendChild(row);
-    stage.appendChild(panel);
-  }
 
   stage.appendChild(footNav({ backLabel: "Back" }));
 }
@@ -10316,17 +10276,14 @@ async function renderCounts() {
   if (backend !== "supabase") { box.hidden = true; return; }
   box.hidden = false;
   const cell = (n, lab) => '<div><b>' + n + '</b><span>' + lab + '</span></div>';
-  const row = (a, b, c, d) => cell(a,"Posts") + cell(b,"Followers") +
-                              cell(c,"Following") + cell(d,"Friends");
-  box.innerHTML = row("\u2013","\u2013","\u2013","\u2013");
+  const row = (a, b, c) => cell(a, "posts") + cell(b, "followers") + cell(c, "following");
+  box.innerHTML = row("\u2013", "\u2013", "\u2013");
   try {
     const [c, mine] = await Promise.all([
       myCounts(),
       sbGet("posts?select=id&author_id=eq." + myId())
     ]);
-    /* Friends are mutual follows, and they used to sit in a panel of
-       their own further down saying the other two numbers over again. */
-    box.innerHTML = row(mine.length, c.followers, c.following, c.friends);
+    box.innerHTML = row(mine.length, c.followers, c.following);
     box.querySelectorAll("div")[0].addEventListener("click", () => openItem(MINE_ITEM));
   } catch (e) {}
 }
@@ -10356,46 +10313,30 @@ function renderIdent() {
 
 /* Languages, field and institution as small cards, which is the part of
    the reference that actually suits a translator's profile. */
+/* Languages as one line of text. They were a row of cards, which is a
+   lot of furniture for "Arabic, native". */
 async function renderFacts() {
-  const box = document.getElementById("seal-facts");
+  const box = document.getElementById("seal-langs");
   if (!box) return;
-  const p = state.profile || {};
   if (backend !== "supabase") { box.hidden = true; return; }
   let langs = [];
   try { langs = await sbGet("member_languages?select=language,proficiency&user_id=eq." + myId() + "&order=ordinal.asc"); }
   catch (e) {}
-  /* Languages only. The field, the level and the institution are the
-     line directly above this row, and saying them twice is noise. */
-  const cards = langs.map(l => '<div class="fact"><div class="fact-b">' +
-    '<span><span class="fact-k">' + esc(l.language) + '</span>' +
-    '<span class="fact-v">' + esc(l.proficiency) + '</span></span></div></div>');
-  box.innerHTML = cards.join("");
-  box.hidden = !cards.length;
+  box.textContent = langs.map(l => l.language + " \u2014 " + l.proficiency).join(" \u00b7 ");
+  box.hidden = !langs.length;
 }
 
+/* Interests as chips under the bio. They were a panel with a heading,
+   for what is usually two words. */
 async function renderAbout() {
-  const box = document.getElementById("seal-about");
+  const box = document.getElementById("seal-interests");
   if (!box) return;
-  const p = state.profile;
-  if (backend !== "supabase" || !p) { box.hidden = true; return; }
-
+  if (backend !== "supabase" || !state.profile) { box.hidden = true; return; }
   let ints = [];
   try { ints = await sbGet("member_interests?select=interest,category&user_id=eq." + myId()); }
   catch (e) {}
-
-  /* The bio, the field, the institution and the first two languages are
-     already on the screen above. This panel used to say all of it a
-     second time; it now carries only what the header has no room for. */
-  if (!ints.length) { box.hidden = true; return; }
-  box.hidden = false;
-  box.innerHTML = "";
-
-  if (ints.length) {
-    box.appendChild(el("h3", "pub-h", "Interests"));
-    const row = el("div", "chips-row");
-    ints.forEach(i => row.appendChild(el("span", "chip-tag", esc(i.interest))));
-    box.appendChild(row);
-  }
+  box.innerHTML = ints.map(i => '<span class="chip-tag">' + esc(i.interest) + '</span>').join("");
+  box.hidden = !ints.length;
 }
 
 
@@ -10442,7 +10383,11 @@ function profileGrid(authorId, isMe) {
 
   async function draw() {
     tabs.innerHTML = "";
-    [["all", "Posts"], ["translation", "Translations"]].forEach(pair => {
+    const strip = [["all", "Posts"], ["translation", "Translations"]];
+    /* Her own profile carries the Guild's side of things as a third tab
+       rather than as panels stacked under the work. */
+    if (isMe) strip.push(["progress", "Progress"]);
+    strip.forEach(pair => {
       const b = el("button", "grid-tab", pair[1]);
       b.type = "button";
       b.setAttribute("role", "tab");
@@ -10451,7 +10396,10 @@ function profileGrid(authorId, isMe) {
       tabs.appendChild(b);
     });
 
+    const prog = document.getElementById("seal-progress");
+    if (prog) prog.hidden = !(isMe && tab === "progress");
     box.innerHTML = "";
+    if (isMe && tab === "progress") return;
     const msg = el("p", "f-msg", "Loading\u2026");
     box.appendChild(msg);
     let rows = [];
@@ -10595,7 +10543,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1455";
+const BUILD = "0926-1545";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
@@ -10608,7 +10556,6 @@ function renderSeal() {
   }
   const n = markCount(), rank = currentRank(), tm = totalMarks();
 
-  paintRing(document.getElementById("hall-ring"), n);
   const who = withTitle(state.profile && state.profile.title, profileName());
   const nameEl = document.getElementById("seal-name");
   if (nameEl) nameEl.textContent = who;
@@ -10617,19 +10564,18 @@ function renderSeal() {
      letters identify an account at a glance without asking for one. */
   /* initials come from the name, so a title never becomes a letter */
   paintAvatar(document.getElementById("seal-initials"), profileName());
-  const chip = document.getElementById("chip-rank");
-  if (chip) chip.textContent = rank.en;
-  document.getElementById("rank-en").textContent = rank.en;
-  /* The number, then the one thing a member actually wants from it:
-     what the next rung is and how far away. A percentage of the way to
-     the top says less than "1 mark to Proficient". */
-  document.getElementById("rank-n").textContent = n + " / " + tm + " marks";
-  const nx = RANKS.find(r => r.at > n);
-  const gapN = nx ? nx.at - n : 0;
-  const nextEl = document.getElementById("rank-next");
-  if (nextEl) {
-    nextEl.textContent = nx ? gapN + (gapN === 1 ? " mark to " : " marks to ") + nx.en
-                            : "Every mark earned";
+
+  /* The rank, the count and the next rung on one line. It was a boxed
+     panel with a ring in it, which is a great deal of screen for three
+     facts that fit in a sentence. The ring and the full ladder are still
+     on the Climb, behind the Progress tab. */
+  const rk = document.getElementById("seal-rank");
+  if (rk) {
+    const nx = RANKS.find(r => r.at > n);
+    const gapN = nx ? nx.at - n : 0;
+    rk.textContent = rank.en + " \u00b7 " + n + " / " + tm + " marks \u00b7 " +
+      (nx ? gapN + (gapN === 1 ? " mark to " : " marks to ") + nx.en : "every mark earned");
+    rk.hidden = false;
   }
   paintWho();
   renderCounts();
