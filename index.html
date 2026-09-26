@@ -2554,8 +2554,6 @@ function runLineage(startAt) {
   function renderIndex() {
     setDots(LINEAGE.length, cur === null ? 0 : cur + 1, cur === null ? -1 : cur);
 
-    stage.appendChild(el("p", "lede",
-                        "Three histories that get confused with each other: the practice, the discipline, and the people."));
 
     if (cur !== null) {
       const f = LINEAGE[cur];
@@ -9165,8 +9163,6 @@ function runProcedures() {
       /* §34: this framework is foundational, not total. Saying it covers
          every decision a translator makes is not true and teaches the
          learner to stop looking. */
-      stage.appendChild(el("p", "lede",
-                          "Vinay and Darbelnet, 1958. Seven ways to get a sentence across &mdash; and the vocabulary to defend the one you chose."));
     }
 
     const chips = el("div", "chips");
@@ -9229,21 +9225,10 @@ function runTextTypes() {
     stage.innerHTML = "";
     setDots(TEXT_WORLDS.length, cur, cur);
 
-    stage.appendChild(el("p", "lede",
-                        "Every world has its own idea of a good translation, and they contradict each other. Work out which one you are in first."));
 
     /* §22: these ten are deliberately not one clean category, and saying
        so is part of the teaching. Pretending they are a tidy list of nine
        "text types" is the thing being corrected. */
-    stage.appendChild(el("p", "note",
-      "These ten are not all the same kind of thing, and it would be false to line them up as if they were. " +
-      "<b>Legal</b>, <b>Medical</b> and <b>Technical</b> are subject domains. <b>Journalistic</b>, " +
-      "<b>Political &amp; Diplomatic</b> and <b>Academic</b> are discourse environments with their own conventions and " +
-      "institutions. <b>Transcreation</b> and <b>Localization</b> are processes — services with a different brief and a " +
-      "different price. <b>Audiovisual Translation</b> is a set of media and modes, defined by the constraints of screen " +
-      "and sound. <b>Literary</b> cuts across all of them. Real texts sit in more than one at once: a patient consent " +
-      "form is medical and legal; a pharmaceutical advertisement is medical, legal and marketing, and the law decides " +
-      "how much of the marketing survives."));
 
     const chips = el("div", "chips");
     TEXT_WORLDS.forEach((t, k) => {
@@ -9394,8 +9379,6 @@ function runToolkit() {
     stage.innerHTML = "";
     setDots(TABS.length, tab, tab);
 
-    stage.appendChild(el("p", "lede",
-                        "Method, procedure, strategy and shift are four different things. Keeping them apart is what lets you say what you did."));
 
     const chips = el("div", "chips");
     TABS.forEach((label, k) => {
@@ -9428,9 +9411,8 @@ function runToolkit() {
 
     if (tab === 1) {
       stage.appendChild(el("p", "note",
-        "Translation Handbook, <b>Chapter 13: Translation strategies</b>. A strategy is a <b>planned solution to a " +
-        "translation problem</b> &mdash; it answers <i>what shall I do about this?</i>, where a procedure names the move " +
-        "you made. Choose one for each problem, not one for the whole text, and keep explanatory translation for last."));
+        "A <b>strategy</b> is a planned solution to a problem; a <b>procedure</b> names the move you made. " +
+        "One per problem, not one per text."));
       const grid = el("div", "ledger");
       TECHNIQUES.forEach(t => {
         const card = el("div", "card tech");
@@ -9499,8 +9481,6 @@ function runGlossary() {
     stage.innerHTML = "";
     setDots(0, 0, 0);
 
-    stage.appendChild(el("p", "lede",
-                        "Every key term the handbook defines, with its Arabic and its chapter. Search in either language; star what you keep."));
 
     const search = el("div", "gl-search");
     const input = document.createElement("input");
@@ -9570,8 +9550,6 @@ function runErrors() {
     stage.innerHTML = "";
     setDots(TABS.length, tab, tab);
 
-    stage.appendChild(el("p", "lede",
-                        "Every draft has mistakes in it; revision is where you find them. Keep this beside you while you revise, not while you translate."));
 
     const chips = el("div", "chips");
     TABS.forEach((label, k) => {
@@ -9655,8 +9633,6 @@ function runCommentary() {
     stage.innerHTML = "";
     setDots(WORKBENCH.length, workCount(), -1);
 
-    stage.appendChild(el("p", "lede",
-                        "Write your rendering and keep it, and only then does the handbook's version appear. Nothing here is marked."));
 
     const done = workCount();
     stage.appendChild(el("p", "note", done ?
@@ -9890,8 +9866,6 @@ function runKuwaiti() {
   setCount("Being gathered");
   setDots(0, 0, 0);
 
-  stage.appendChild(el("p", "lede",
-                      "Not the ones the whole Arabic-speaking world shares &mdash; the ones said in a Kuwaiti house, and what to do with them in English."));
 
   const why = el("div", "verdict");
   why.appendChild(el("span", "vh", "Why this page is empty"));
@@ -10104,8 +10078,6 @@ function runModes() {
     stage.innerHTML = "";
     setDots(0, 0, 0);
 
-    stage.appendChild(el("p", "lede",
-                        "A courtroom is a setting. Consecutive is a mode. These are the modes &mdash; how the rendering is delivered."));
 
     const v = el("div", "verdict");
     v.appendChild(el("span", "vh", "The distinction worth keeping"));
@@ -10225,9 +10197,6 @@ function runKsl() {
     setCount("الهجاء الإصبعي · " + kslAll().length);
     setDots(0, 0, 0);
 
-    stage.appendChild(el("p", "lede",
-                        "One handshape per letter. It spells names, and words KSL has no sign for yet &mdash; " +
-                        "it is not how conversation runs. Tap any letter."));
 
     const grid = el("div", "alpha-grid");
     kslAll().forEach((L, i) => {
@@ -10268,9 +10237,6 @@ function runKsl() {
     setCount(KSL_LESSONS.length + " lessons");
     setDots(0, 0, 0);
 
-    stage.appendChild(el("p", "lede",
-      "What the language is, what to get right in the room, what the alphabet is actually for, " +
-      "and how to learn a sign so that it stays learned."));
 
     const list = el("div", "m-list");
     KSL_LESSONS.forEach((L, i) => {
@@ -10449,9 +10415,6 @@ function runMinor() {
       '<p class="m-entry is-ar" dir="rtl" lang="ar">' + KU_MINOR.entryAr + '</p>';
     stage.appendChild(head);
 
-    stage.appendChild(el("p", "lede",
-      "The ten courses of the minor. Each one opens on what the subject is, what it asks of you, and " +
-      "what the Guild already holds for it."));
 
     KU_MINOR.groups.forEach(g => {
       const gh = el("div", "m-group");
@@ -11035,8 +10998,6 @@ function chooseGenre() {
   setCount("Six settings · four levels");
   setDots(0, 0, 0);
 
-  stage.appendChild(el("p", "lede",
-    "Choose a <b>direction</b> and a <b>setting</b>. Between them they decide the vocabulary."));
 
   /* Direction first, because it governs everything below it. */
   const dirWrap = el("div", "dir-pick");
@@ -11476,8 +11437,6 @@ function runPhraseology() {
   function render() {
     stage.innerHTML = "";
 
-    stage.appendChild(el("p", "lede",
-                        "Languages are used in chunks, and the chunks are where a translation gives itself away. Both directions."));
 
     const chips = el("div", "chips");
     PHRASE_SETS.forEach((s, k) => {
