@@ -1190,6 +1190,59 @@ a.ks-s-en:hover { color: var(--white); }
 .sheet-act.danger { color: var(--mag-ink); }
 
 /* Edit Profile form */
+/* ── community ── */
+.avatar.sm { width: 42px; height: 42px; font-size: .9rem; }
+.m-members { display: grid; gap: .5rem; margin: 1rem 0; }
+.m-member { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: .8rem;
+  padding: .7rem .85rem; border-radius: var(--r-lg); border: var(--hair);
+  background: rgba(255,255,255,.035); min-width: 0; }
+.mm-txt { display: grid; gap: .1rem; min-width: 0; cursor: pointer; }
+.mm-name { font-family: var(--f-serif); font-size: 1rem; font-weight: 600; color: var(--white);
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.mm-at { font-size: .78rem; color: var(--lilac); }
+.mm-meta { font-size: .74rem; color: var(--ink-soft); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.follow-btn { flex: none; padding: .45rem .9rem; border-radius: 999px; border: 1px solid var(--magenta);
+  background: transparent; color: var(--lilac); font-size: .78rem; font-weight: 600; box-shadow: none;
+  white-space: nowrap; min-width: 5.5rem; }
+.follow-btn.on { background: rgba(167,38,208,.18); color: var(--white); }
+.follow-btn:hover { transform: none; background: rgba(167,38,208,.28); }
+
+.pub-head { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; }
+.pub-name { font-family: var(--f-serif); font-size: 1.4rem; margin: 0; color: var(--white); }
+.pub-bio { font-size: .92rem; line-height: 1.6; color: var(--ink-soft); margin: 0 0 1rem; max-width: var(--measure); }
+.pub-acts { display: flex; gap: .6rem; margin-bottom: 1.4rem; }
+.pub-h { font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--mag-ink); margin: 1.5rem 0 .5rem; }
+.pub-rows { display: grid; gap: .35rem; }
+.pub-row { display: flex; justify-content: space-between; gap: 1rem; padding: .5rem .2rem;
+  border-bottom: var(--hair); font-size: .9rem; }
+.pub-dim { color: var(--ink-soft); }
+.pub-counts { display: grid; grid-template-columns: repeat(3,1fr); gap: .5rem; margin: .2rem 0 1rem; }
+.pub-counts div { text-align: center; padding: .7rem .3rem; border-radius: var(--r-lg); border: var(--hair); }
+.pub-counts b { display: block; font-family: var(--f-serif); font-size: 1.25rem; color: var(--white); }
+.pub-counts span { font-size: .68rem; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-soft); }
+
+/* ── switches and pickers ── */
+.sw-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .75rem .2rem; border-bottom: var(--hair); cursor: pointer; }
+.sw-txt { display: grid; gap: .12rem; }
+.sw-lab { font-size: .94rem; color: var(--white); }
+.sw { appearance: none; width: 44px; height: 26px; border-radius: 999px; flex: none;
+  border: var(--hair); background: rgba(255,255,255,.08); position: relative; cursor: pointer;
+  transition: background 200ms var(--ease); }
+.sw::after { content: ""; position: absolute; top: 3px; inset-inline-start: 3px; width: 18px; height: 18px;
+  border-radius: 50%; background: var(--lilac); transition: transform 200ms var(--ease); }
+.sw:checked { background: var(--magenta); }
+.sw:checked::after { transform: translateX(18px); background: #fff; }
+.lang-row { display: grid; grid-template-columns: 1fr auto auto; gap: .45rem; align-items: center; }
+.x-btn { width: 38px; height: 38px; border-radius: 50%; border: var(--hair); background: transparent;
+  color: var(--ink-soft); font-size: 1.1rem; box-shadow: none; padding: 0; }
+.ghost.small { padding: .5rem .9rem; font-size: .82rem; }
+.chips-row.pickable { gap: .4rem; }
+.pick-chip { cursor: pointer; background: transparent; font-family: inherit; }
+.pick-chip.on { background: rgba(167,38,208,.25); color: var(--white); border-color: var(--magenta); }
+.seal-actions { display: flex; gap: .6rem; flex-wrap: wrap; }
+
 .f-photo { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.4rem; }
 .f-row { display: grid; gap: .3rem; margin-bottom: 1.1rem; }
 .f-lab { font-size: .7rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--mag-ink); }
@@ -2070,7 +2123,10 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
 
     <p class="seal-actions">
       <button type="button" class="ghost" id="edit-profile-btn">Edit Profile</button>
+      <button type="button" class="ghost" id="privacy-btn">Privacy</button>
     </p>
+
+    <div class="panel" id="seal-community"></div>
 
     <div class="panel climb" id="climb"></div>
 
@@ -8774,6 +8830,233 @@ function unlock() {
 
 /* ═══════════ THE HALL ═══════════ */
 /* ═══════════ THE CLIMB ═══════════ */
+/* ═══════════════════════════════════════════════════════════
+   THE COMMUNITY
+
+   Every read about another member goes through member_directory or
+   profiles_public. Neither carries an email column, and both apply the
+   privacy switches in SQL, so a member who has hidden something has
+   hidden it from the request, not from the page.
+   ═══════════════════════════════════════════════════════════ */
+const TRANSLATION_INTERESTS = ["Literary Translation","Technical Translation","Legal Translation",
+  "Medical Translation","Journalistic Translation","Political Translation",
+  "Audiovisual Translation","Localisation","Terminology","Interpreting","Translation Technology"];
+const INTERPRETING_INTERESTS = ["Consecutive","Simultaneous","Community","Conference","Media"];
+const PROFICIENCIES = ["native","advanced","intermediate","beginner"];
+const ACADEMIC_LEVELS = ["First Year","Second Year","Third Year","Fourth Year",
+  "Graduate Student","Recent Graduate","Other"];
+const FIELDS = ["Translation","Linguistics","English","Literature","Interpreting","Other"];
+
+async function sbGet(path) {
+  const r = await fetch(SUPABASE.url + "/rest/v1/" + path, { headers: await sbHeaders() });
+  if (!r.ok) throw new Error("read " + r.status);
+  return r.json();
+}
+
+const myId = () => (session && session.user && session.user.id) || null;
+
+async function myCounts() {
+  const rows = await sbGet("member_counts?select=followers,following,friends&id=eq." + myId());
+  return rows[0] || { followers: 0, following: 0, friends: 0 };
+}
+
+async function findMembers(q) {
+  const cols = "id,username,display_name,avatar_path,bio,marks,rank_slug,allow_follows,main_interest,i_follow,follows_me";
+  let path = "member_directory?select=" + cols + "&order=display_name.asc&limit=40";
+  if (q) {
+    const t = encodeURIComponent("*" + q.replace(/[,()*]/g, "") + "*");
+    path += "&or=(display_name.ilike." + t + ",username.ilike." + t + ")";
+  }
+  return sbGet(path);
+}
+
+async function follow(id) {
+  const r = await fetch(SUPABASE.url + "/rest/v1/follows", {
+    method: "POST", headers: await sbHeaders(),
+    body: JSON.stringify({ follower_id: myId(), following_id: id })
+  });
+  if (!r.ok && r.status !== 409) throw new Error("That member is not accepting follows.");
+}
+
+async function unfollow(id) {
+  const r = await fetch(SUPABASE.url + "/rest/v1/follows?follower_id=eq." + myId() +
+                        "&following_id=eq." + id, { method: "DELETE", headers: await sbHeaders() });
+  if (!r.ok) throw new Error("Could not unfollow.");
+}
+
+/* A follow button that owns its own state, so the whole list does not
+   have to be redrawn to change one word. */
+function followButton(m) {
+  const b = el("button", "follow-btn");
+  let on = !!m.i_follow;
+  const paint = () => {
+    b.textContent = on ? (m.follows_me ? "Friends" : "Following") : "Follow";
+    b.classList.toggle("on", on);
+  };
+  paint();
+  b.addEventListener("click", async (e) => {
+    e.stopPropagation();
+    b.disabled = true;
+    try { on ? await unfollow(m.id) : await follow(m.id); on = !on; paint(); }
+    catch (err) { b.textContent = "Not allowed"; }
+    finally { b.disabled = false; }
+  });
+  return b;
+}
+
+function memberRow(m, onOpen) {
+  const row = el("div", "m-member");
+  const av = el("span", "avatar sm");
+  if (m.avatar_path) { av.innerHTML = '<img src="' + avatarUrl(m.avatar_path) + '" alt="">'; av.classList.add("has-photo"); }
+  else av.textContent = initialsFor(m.display_name);
+  row.appendChild(av);
+
+  const txt = el("div", "mm-txt");
+  txt.innerHTML =
+    '<span class="mm-name">' + esc(m.display_name || "Member") + '</span>' +
+    (m.username ? '<span class="mm-at">@' + esc(m.username) + '</span>' : '') +
+    '<span class="mm-meta">' +
+      (m.rank_slug ? esc(rankName(m.rank_slug)) : "") +
+      (m.main_interest ? ' · ' + esc(m.main_interest) : '') +
+    '</span>';
+  txt.addEventListener("click", () => onOpen && onOpen(m));
+  row.appendChild(txt);
+  if (m.allow_follows) row.appendChild(followButton(m));
+  return row;
+}
+
+function esc(t) {
+  return String(t == null ? "" : t).replace(/[&<>"]/g,
+    c => ({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;" }[c]));
+}
+function rankName(slug) {
+  const r = RANKS.find(x => (x.slug || x.en.toLowerCase()) === slug);
+  return r ? r.en : "";
+}
+
+/* ─── Find Translators ─── */
+const FIND_ITEM = { id: "find", en: "Find Translators",
+                    subject: "Members of the Guild", section: "profile", run: runFind };
+
+function runFind() {
+  setCount("");
+  stage.innerHTML = "";
+
+  const search = document.createElement("input");
+  search.type = "search"; search.className = "f-in"; search.placeholder = "Search by name or @username";
+  search.setAttribute("aria-label", "Search members");
+  stage.appendChild(search);
+
+  const list = el("div", "m-members");
+  stage.appendChild(list);
+  const msg = el("p", "f-msg", "Loading…");
+  stage.appendChild(msg);
+
+  let seq = 0;
+  async function run(q) {
+    const mine = ++seq;
+    msg.textContent = "Loading…"; 
+    try {
+      const rows = await findMembers(q);
+      if (mine !== seq) return;
+      list.innerHTML = "";
+      rows.forEach(m => list.appendChild(memberRow(m, openPublic)));
+      msg.textContent = rows.length ? "" :
+        (q ? "Nobody matches that." : "No other members yet.");
+    } catch (e) {
+      if (mine === seq) { list.innerHTML = ""; msg.textContent = "Could not load the member list."; }
+    }
+  }
+  let t;
+  search.addEventListener("input", () => { clearTimeout(t); t = setTimeout(() => run(search.value.trim()), 250); });
+  run("");
+
+  stage.appendChild(footNav({ backLabel: "Profile" }));
+}
+
+/* ─── another member's public profile ─── */
+function openPublic(m) {
+  openItem({ id: "public:" + m.id, en: m.display_name || "Member",
+             subject: m.username ? "@" + m.username : "", section: "profile",
+             run: () => runPublic(m.id) });
+}
+
+async function runPublic(id) {
+  setCount("");
+  stage.innerHTML = "";
+  stage.appendChild(el("p", "note", "Loading…"));
+  let p, counts, langs, ints;
+  try {
+    p = (await sbGet("profiles_public?select=*&id=eq." + id))[0];
+    counts = (await sbGet("member_counts?select=followers,following,friends&id=eq." + id))[0];
+    langs = await sbGet("member_languages?select=language,proficiency&user_id=eq." + id + "&order=ordinal.asc");
+    ints  = await sbGet("member_interests?select=interest,category&user_id=eq." + id);
+  } catch (e) { stage.innerHTML = ""; stage.appendChild(el("p","note","That profile could not be opened.")); return; }
+  if (!p) { stage.innerHTML = ""; stage.appendChild(el("p","note","That profile is private.")); return; }
+
+  const dir = (await sbGet("member_directory?select=i_follow,follows_me,allow_follows&id=eq." + id))[0] || {};
+  stage.innerHTML = "";
+
+  const head = el("div", "pub-head");
+  const av = el("span", "avatar big");
+  if (p.avatar_path) { av.innerHTML = '<img src="' + avatarUrl(p.avatar_path) + '" alt="">'; av.classList.add("has-photo"); }
+  else av.textContent = initialsFor(p.display_name);
+  head.appendChild(av);
+  const hid = el("div", "hall-id");
+  hid.innerHTML =
+    '<h2 class="pub-name">' + esc(p.display_name || "Member") + '</h2>' +
+    (p.username ? '<p class="handle">@' + esc(p.username) + '</p>' : '') +
+    '<p class="chips-row">' +
+      (p.rank_slug ? '<span class="chip-tag">' + esc(rankName(p.rank_slug)) + '</span>' : '') +
+      '<span class="chip-tag solid">Translation Team</span></p>';
+  head.appendChild(hid);
+  stage.appendChild(head);
+
+  if (p.bio) stage.appendChild(el("p", "pub-bio", esc(p.bio)));
+
+  if (dir.allow_follows) {
+    const acts = el("div", "pub-acts");
+    acts.appendChild(followButton({ id: id, i_follow: dir.i_follow, follows_me: dir.follows_me }));
+    stage.appendChild(acts);
+  }
+
+  const sect = (title, node) => {
+    stage.appendChild(el("h3", "pub-h", title));
+    stage.appendChild(node);
+  };
+
+  if (langs.length) {
+    const ul = el("div", "pub-rows");
+    langs.forEach(l => ul.appendChild(el("div", "pub-row",
+      '<span>' + esc(l.language) + '</span><span class="pub-dim">' + esc(l.proficiency) + '</span>')));
+    sect("Languages", ul);
+  }
+  if (p.show_interests && ints.length) {
+    const row = el("div", "chips-row");
+    ints.forEach(i => row.appendChild(el("span", "chip-tag", esc(i.interest))));
+    sect("Interests", row);
+  }
+  if (p.marks != null) {
+    sect("Progress", el("p", "pub-dim", p.marks + " / " + totalMarks() + " marks"));
+  }
+  if (p.field_of_study || p.institution || p.academic_level) {
+    const ul = el("div", "pub-rows");
+    if (p.field_of_study) ul.appendChild(el("div","pub-row",'<span>Field</span><span class="pub-dim">'+esc(p.field_of_study)+'</span>'));
+    if (p.institution)    ul.appendChild(el("div","pub-row",'<span>Institution</span><span class="pub-dim">'+esc(p.institution)+'</span>'));
+    if (p.academic_level) ul.appendChild(el("div","pub-row",'<span>Level</span><span class="pub-dim">'+esc(p.academic_level)+'</span>'));
+    sect("About", ul);
+  }
+  const c = counts || {};
+  const cr = el("div", "pub-counts");
+  cr.innerHTML =
+    '<div><b>' + (c.friends||0)   + '</b><span>Friends</span></div>' +
+    '<div><b>' + (c.following||0) + '</b><span>Following</span></div>' +
+    '<div><b>' + (c.followers||0) + '</b><span>Followers</span></div>';
+  sect("Community", cr);
+
+  stage.appendChild(footNav({ backLabel: "Back" }));
+}
+
 /* ═══════════ THE PHOTO MENU AND EDIT PROFILE ═══════════ */
 
 function photoMenu() {
@@ -8820,6 +9103,102 @@ function photoMenu() {
   wrap.appendChild(card);
   wrap.addEventListener("click", e => { if (e.target === wrap) close(); });
   document.body.appendChild(wrap);
+}
+
+/* ─── Privacy settings. Each switch writes a column that the views read,
+   so turning one off withholds the value from the request. ─── */
+/* Replace the child rows wholesale: the set the member left the screen
+   with is the set they meant, and a diff would be more code for the same
+   result on a list this short. */
+async function saveLanguages(list) {
+  if (backend !== "supabase") return;
+  const rows = list.map((l, i) => ({ user_id: myId(), language: l.language.trim(),
+                                     proficiency: l.proficiency, ordinal: i }))
+                   .filter(l => l.language);
+  await fetch(SUPABASE.url + "/rest/v1/member_languages?user_id=eq." + myId(),
+              { method: "DELETE", headers: await sbHeaders() });
+  if (!rows.length) return;
+  const r = await fetch(SUPABASE.url + "/rest/v1/member_languages",
+    { method: "POST", headers: await sbHeaders(), body: JSON.stringify(rows) });
+  if (!r.ok) throw new Error("The languages could not be saved.");
+}
+
+async function saveInterests(chosen) {
+  if (backend !== "supabase") return;
+  const rows = [];
+  Object.keys(chosen).forEach(cat =>
+    chosen[cat].forEach(i => rows.push({ user_id: myId(), interest: i, category: cat })));
+  await fetch(SUPABASE.url + "/rest/v1/member_interests?user_id=eq." + myId(),
+              { method: "DELETE", headers: await sbHeaders() });
+  if (!rows.length) return;
+  const r = await fetch(SUPABASE.url + "/rest/v1/member_interests",
+    { method: "POST", headers: await sbHeaders(), body: JSON.stringify(rows) });
+  if (!r.ok) throw new Error("The interests could not be saved.");
+}
+
+const PRIVACY_ITEM = { id: "privacy", en: "Privacy",
+                       subject: "Who can see what", section: "profile", run: runPrivacy };
+
+async function runPrivacy() {
+  if (!state.profile && backend === "supabase") {
+    stage.innerHTML = ""; stage.appendChild(el("p","note","Loading…"));
+    try { await loadMyProfile(); } catch (e) {}
+  }
+  const p = state.profile || {};
+  setCount(""); stage.innerHTML = "";
+
+  const msg = el("p", "f-msg", "");
+  const put = async (patch, undo) => {
+    msg.textContent = ""; msg.classList.remove("bad");
+    try { await patchMyProfile(patch); }
+    catch (e) { msg.textContent = e.message; msg.classList.add("bad"); undo && undo(); }
+  };
+
+  const toggle = (label, key, hint) => {
+    const row = el("label", "sw-row");
+    const t = el("span", "sw-txt");
+    t.appendChild(el("span", "sw-lab", label));
+    if (hint) t.appendChild(el("span", "f-hint", hint));
+    row.appendChild(t);
+    const cb = document.createElement("input");
+    cb.type = "checkbox"; cb.className = "sw"; cb.checked = !!p[key];
+    cb.addEventListener("change", () => put({ [key]: cb.checked }, () => { cb.checked = !cb.checked; }));
+    row.appendChild(cb);
+    stage.appendChild(row);
+  };
+
+  const choice = (label, key, opts, hint) => {
+    const row = el("div", "f-row");
+    row.appendChild(el("label", "f-lab", label));
+    if (hint) row.appendChild(el("span", "f-hint", hint));
+    const sel = document.createElement("select");
+    sel.className = "f-in";
+    opts.forEach(([v, t]) => {
+      const o = document.createElement("option");
+      o.value = v; o.textContent = t; if (p[key] === v) o.selected = true;
+      sel.appendChild(o);
+    });
+    sel.addEventListener("change", () => put({ [key]: sel.value }));
+    row.appendChild(sel); stage.appendChild(row);
+  };
+
+  choice("Profile visibility", "profile_visibility",
+    [["public","Public"],["members","Members only"],["private","Private"]],
+    "Private means nobody but you can open your profile.");
+  toggle("Show my progress", "show_progress", "Marks and rank on your public profile.");
+  toggle("Show my interests", "show_interests");
+  toggle("Show my institution", "show_institution");
+  toggle("Show my academic level", "show_academic_level");
+  toggle("Let members follow me", "allow_follows");
+  choice("Who can message me", "who_can_message",
+    [["anyone","Anyone"],["following","People I follow"],["friends","Friends only"],["nobody","Nobody"]],
+    "Messaging is not built yet; this is stored and will be honoured when it is.");
+  toggle("Show when I am online", "show_online");
+  toggle("Read receipts", "read_receipts");
+
+  stage.appendChild(msg);
+  stage.appendChild(footNav({ backLabel: "Profile",
+    note: "These are enforced by the database, not only by this screen." }));
 }
 
 const EDIT_ITEM = { id: "editprofile", en: "Edit Profile",
@@ -8883,6 +9262,97 @@ async function runEditProfile() {
   bio.addEventListener("input", tick); tick();
   r3.appendChild(bio); r3.appendChild(count); stage.appendChild(r3);
 
+  /* ── About. Every one of these is optional; a member is never made
+     to disclose where they study. ── */
+  stage.appendChild(el("h3", "pub-h", "About"));
+
+  const pick = (label, key, opts) => {
+    const r = row(label, null);
+    const sel = document.createElement("select");
+    sel.className = "f-in";
+    const blank = document.createElement("option");
+    blank.value = ""; blank.textContent = "\u2014"; sel.appendChild(blank);
+    opts.forEach(v => {
+      const o = document.createElement("option");
+      o.value = v; o.textContent = v; if (p[key] === v) o.selected = true;
+      sel.appendChild(o);
+    });
+    r.appendChild(sel); stage.appendChild(r);
+    return sel;
+  };
+  const field = pick("Field of study", "field_of_study", FIELDS);
+  const levelSel = pick("Academic level", "academic_level", ACADEMIC_LEVELS);
+  const rI = row("Institution", null);
+  const inst = document.createElement("input");
+  inst.type = "text"; inst.className = "f-in"; inst.maxLength = 80;
+  inst.value = p.institution || "";
+  rI.appendChild(inst); stage.appendChild(rI);
+
+  /* ── Languages ── */
+  stage.appendChild(el("h3", "pub-h", "Languages"));
+  const langBox = el("div", "pub-rows");
+  stage.appendChild(langBox);
+  let langs = [];
+  const drawLangs = () => {
+    langBox.innerHTML = "";
+    langs.forEach((l, i) => {
+      const r2 = el("div", "lang-row");
+      const nm = document.createElement("input");
+      nm.type = "text"; nm.className = "f-in"; nm.value = l.language; nm.placeholder = "Language";
+      nm.addEventListener("input", () => { langs[i].language = nm.value; });
+      const pf = document.createElement("select");
+      pf.className = "f-in";
+      PROFICIENCIES.forEach(v => {
+        const o = document.createElement("option");
+        o.value = v; o.textContent = v[0].toUpperCase() + v.slice(1);
+        if (l.proficiency === v) o.selected = true; pf.appendChild(o);
+      });
+      pf.addEventListener("change", () => { langs[i].proficiency = pf.value; });
+      const rm = el("button", "x-btn", "\u00d7");
+      rm.setAttribute("aria-label", "Remove " + (l.language || "language"));
+      rm.addEventListener("click", () => { langs.splice(i, 1); drawLangs(); });
+      r2.appendChild(nm); r2.appendChild(pf); r2.appendChild(rm);
+      langBox.appendChild(r2);
+    });
+    const add = el("button", "ghost small", "Add a language");
+    add.addEventListener("click", () => { langs.push({ language: "", proficiency: "intermediate" }); drawLangs(); });
+    langBox.appendChild(add);
+  };
+
+  /* ── Interests ── */
+  const chosen = { translation: [], interpreting: [] };
+  const chipSet = (title, cat, list) => {
+    stage.appendChild(el("h3", "pub-h", title));
+    const box = el("div", "chips-row pickable");
+    list.forEach(name => {
+      const c = el("button", "chip-tag pick-chip", name);
+      const sync = () => c.classList.toggle("on", chosen[cat].indexOf(name) >= 0);
+      c.addEventListener("click", () => {
+        const at = chosen[cat].indexOf(name);
+        if (at >= 0) chosen[cat].splice(at, 1); else chosen[cat].push(name);
+        sync();
+      });
+      c.dataset.sync = "1"; c._sync = sync;
+      box.appendChild(c);
+    });
+    stage.appendChild(box);
+    return box;
+  };
+  const tBox = chipSet("Translation interests", "translation", TRANSLATION_INTERESTS);
+  const iBox = chipSet("Interpreting interests", "interpreting", INTERPRETING_INTERESTS);
+
+  /* fill both from the database */
+  if (backend === "supabase") {
+    sbGet("member_languages?select=language,proficiency&user_id=eq." + myId() + "&order=ordinal.asc")
+      .then(rows => { langs = rows.map(r3 => ({ language: r3.language, proficiency: r3.proficiency })); drawLangs(); })
+      .catch(() => drawLangs());
+    sbGet("member_interests?select=interest,category&user_id=eq." + myId())
+      .then(rows => {
+        rows.forEach(r3 => { if (chosen[r3.category]) chosen[r3.category].push(r3.interest); });
+        [tBox, iBox].forEach(b => [...b.children].forEach(c => c._sync && c._sync()));
+      }).catch(() => {});
+  } else drawLangs();
+
   const msg = el("p", "f-msg", "");
   stage.appendChild(msg);
 
@@ -8901,8 +9371,13 @@ async function runEditProfile() {
       await patchMyProfile({
         display_name: name.value.trim(),
         username: u || null,
-        bio: bio.value.trim() || null
+        bio: bio.value.trim() || null,
+        field_of_study: field.value || null,
+        academic_level: levelSel.value || null,
+        institution: inst.value.trim() || null
       });
+      await saveLanguages(langs);
+      await saveInterests(chosen);
       msg.textContent = "Saved.";
       renderSeal();
       setTimeout(() => { clearTrail(); navTo("profile"); }, 450);
@@ -9074,6 +9549,31 @@ function paintSeal() {
    Everything on this screen is read back from the record of real
    attempts. Where a part of the craft is not being recorded yet, the
    Seal says so plainly instead of showing an invented number. */
+/* Friends, Following, Followers, and the way in to the member list. */
+function renderCommunity() {
+  const box = document.getElementById("seal-community");
+  if (!box) return;
+  if (backend !== "supabase") { box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = '<div class="j-head"><h2>Community</h2></div>' +
+    '<div class="pub-counts" id="my-counts">' +
+      '<div><b>\u2013</b><span>Friends</span></div>' +
+      '<div><b>\u2013</b><span>Following</span></div>' +
+      '<div><b>\u2013</b><span>Followers</span></div>' +
+    '</div>';
+  const find = el("button", "ghost", "Find Translators");
+  find.addEventListener("click", () => openItem(FIND_ITEM));
+  box.appendChild(find);
+  myCounts().then(c => {
+    const n = box.querySelector("#my-counts");
+    if (!n) return;
+    n.innerHTML =
+      '<div><b>' + c.friends   + '</b><span>Friends</span></div>' +
+      '<div><b>' + c.following + '</b><span>Following</span></div>' +
+      '<div><b>' + c.followers + '</b><span>Followers</span></div>';
+  }).catch(() => {});
+}
+
 function wireProfileButtons() {
   const a = document.getElementById("avatar-edit");
   if (a && !a.dataset.wired) { a.dataset.wired = "1"; a.addEventListener("click", photoMenu); }
@@ -9081,6 +9581,11 @@ function wireProfileButtons() {
   if (e && !e.dataset.wired) {
     e.dataset.wired = "1";
     e.addEventListener("click", () => openItem(EDIT_ITEM));
+  }
+  const pv = document.getElementById("privacy-btn");
+  if (pv && !pv.dataset.wired) {
+    pv.dataset.wired = "1";
+    pv.addEventListener("click", () => openItem(PRIVACY_ITEM));
   }
 }
 
@@ -9114,6 +9619,7 @@ function renderSeal() {
                             : "Every mark earned";
   }
   paintWho();
+  renderCommunity();
   renderClimb();
 
   /* ── the record of trials ── */
