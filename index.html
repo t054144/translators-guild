@@ -1246,25 +1246,36 @@ a.ks-s-en:hover { color: var(--white); }
 :root[data-theme="light"] .icon-btn .ic-sun  { display: block; }
 
 .ig-head { display: grid; grid-template-columns: auto 1fr; align-items: center;
-  gap: clamp(.8rem,4vw,1.4rem); margin: .1rem 0 .7rem; }
-.ig-head .avatar { width: 74px; height: 74px; font-size: 1.5rem; }
-.count-row { display: grid; grid-template-columns: repeat(3,1fr); gap: .2rem; margin: 0; }
-.count-row div { text-align: center; padding: .2rem .1rem; cursor: default; }
-.count-row b { display: block; font-family: var(--f-serif); font-size: 1.05rem; color: var(--white);
-  font-variant-numeric: tabular-nums; line-height: 1.3; }
-.count-row span { font-size: .68rem; color: var(--ink-soft); }
+  gap: clamp(.9rem,4vw,1.3rem); margin: .1rem 0 0; }
+.ig-head .avatar { width: 88px; height: 88px; font-size: 1.7rem; }
+.ig-id { display: grid; gap: .45rem; justify-items: start; min-width: 0; }
+.ig-name { margin: 0; font-family: var(--f-serif); font-weight: 600; line-height: 1.15;
+  font-size: clamp(1.3rem,5.5vw,1.55rem); color: var(--white); }
+.ig-id .chips-row { margin: 0; gap: .3rem; flex-wrap: wrap; }
+.ig-id .chip-tag { font-size: .66rem; padding: .24rem .6rem; }
+.ig-marks { margin: 0; padding: 0; border: 0; background: none; box-shadow: none; text-align: start;
+  font: inherit; font-size: .74rem; color: var(--ink-soft); display: flex; gap: .5rem;
+  flex-wrap: wrap; align-items: baseline; }
+.ig-marks:hover { transform: none; }
+.ig-marks .m-n { letter-spacing: .1em; text-transform: uppercase; font-variant-numeric: tabular-nums; }
+.ig-marks .m-next { color: var(--mag-ink); }
+.ig-marks[aria-expanded="true"] .m-next::after { content: " \2715"; }
+
+.count-row { display: grid; grid-template-columns: repeat(3,1fr); margin: 0; }
+.count-row div { text-align: center; padding: .35rem .2rem; cursor: default; }
+.count-row div + div { border-inline-start: var(--hair); }
+.count-row b { display: block; font-family: var(--f-serif); font-size: 1.45rem; color: var(--white);
+  font-variant-numeric: tabular-nums; line-height: 1.25; }
+.count-row span { font-size: .76rem; color: var(--ink-soft); }
 .count-row.mine div:first-child { cursor: pointer; }
 
 .ig-bio { display: grid; gap: .1rem; }
-.ig-name { margin: 0; font-family: var(--f-serif); font-size: 1rem; font-weight: 600;
-  color: var(--white); }
-.ident-line { margin: .15rem 0 0; font-size: .82rem; color: var(--lilac); }
-.ident-line.is-ar { font-family: var(--f-ar); font-size: .86rem; color: var(--ink-soft); margin-top: .05rem; }
-.seal-bio { margin: .35rem 0 0; font-size: .86rem; line-height: 1.55; color: var(--ink-soft);
+.ident-line { margin: 0; font-size: .92rem; color: var(--lilac); }
+.ident-line.is-ar { font-family: var(--f-ar); font-size: .9rem; color: var(--ink-soft);
+  text-align: left; }
+.seal-bio { margin: 0; font-size: .88rem; line-height: 1.55; color: var(--ink-soft);
   max-width: var(--measure); }
-.ig-meta { margin: .25rem 0 0; font-size: .78rem; color: var(--ink-soft); }
-#seal-interests { margin-top: .45rem; }
-#seal-interests .chip-tag { font-size: .66rem; padding: .2rem .55rem; }
+#seal-about .pub-h { margin: 0 0 .6rem; }
 
 
 /* shortcut circles, and the grid of a member's own work */
@@ -1274,9 +1285,10 @@ a.ks-s-en:hover { color: var(--white); }
 .hilite { flex: none; display: grid; justify-items: center; gap: .3rem; width: 5rem;
   padding: 0; border: 0; background: none; box-shadow: none; }
 .hilite:hover { transform: none; }
-.hilite i { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center;
-  border: var(--hair-lit); background: rgba(255,255,255,.04); font-style: normal;
-  font-size: 1.15rem; color: var(--lilac); }
+.hilite i { width: 54px; height: 54px; border-radius: 50%; display: grid; place-items: center;
+  border: var(--hair-lit); background: rgba(255,255,255,.04); }
+.hilite svg { width: 21px; height: 21px; fill: none; stroke: var(--lilac);
+  stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 .hilite:hover i { background: rgba(214,191,234,.14); }
 .hilite span { font-size: .68rem; line-height: 1.3; text-align: center; color: var(--ink-soft); }
 
@@ -1299,12 +1311,21 @@ a.ks-s-en:hover { color: var(--white); }
   display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; }
 .tile-n { font-size: .66rem; color: var(--ink-soft); font-variant-numeric: tabular-nums; }
 
-.empty-make { display: grid; justify-items: center; gap: .55rem; padding: 2.4rem 1rem 2rem;
-  text-align: center; }
+.empty-make { display: grid; justify-items: center; gap: .55rem; padding: 2.2rem 1.2rem 1.9rem;
+  text-align: center; border: var(--hair); border-radius: var(--r-lg);
+  background: rgba(255,255,255,.02); }
 .empty-make h3 { margin: 0; font-family: var(--f-serif); font-size: 1.15rem; color: var(--white); }
 .empty-make p { margin: 0; font-size: .88rem; line-height: 1.6; color: var(--ink-soft); max-width: 22rem; }
 .empty-ring { width: 62px; height: 62px; border-radius: 50%; display: grid; place-items: center;
   border: 1px solid var(--lilac); color: var(--lilac); font-size: 1.6rem; }
+
+.fact-row { display: flex; gap: .5rem; overflow-x: auto; margin: 0; padding-bottom: .2rem;
+  scrollbar-width: none; }
+.fact-row::-webkit-scrollbar { display: none; }
+.fact { flex: none; display: grid; gap: .1rem; padding: .6rem .9rem; border-radius: var(--r-lg);
+  border: var(--hair); background: rgba(255,255,255,.035); }
+.fact-k { font-size: .9rem; font-weight: 600; color: var(--white); white-space: nowrap; }
+.fact-v { font-size: .76rem; color: var(--ink-soft); white-space: nowrap; }
 
 .appearance-more > summary { display: flex; align-items: baseline; justify-content: space-between;
   gap: 1rem; cursor: pointer; font-family: var(--f-serif); font-size: 1.1rem; color: var(--white);
@@ -2210,9 +2231,8 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
       </button>
     </div>
 
-    <!-- The picture and the three numbers share one line, as they do in
-         the reference. Everything that used to be a panel of its own is
-         a line of text under it. -->
+    <!-- Picture on the left; name, standing and marks to the right of
+         it. Then the three numbers on their own line. -->
     <div class="ig-head">
       <span class="avatar-wrap">
         <span class="avatar" id="seal-initials" aria-hidden="true"></span>
@@ -2220,20 +2240,37 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 8h3l1.6-2h6.8L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg>
         </button>
       </span>
-      <div class="count-row mine" id="seal-counts"></div>
+      <div class="ig-id">
+        <h1 class="ig-name" id="seal-name">Member</h1>
+        <p class="chips-row">
+          <span class="chip-tag" id="chip-rank">Novice</span>
+          <span class="chip-tag solid">Translation Team</span>
+        </p>
+        <!-- The one line about marks, and the way in to the whole of it:
+             the Climb, the record of trials and the reading list open
+             from here rather than sitting under the work. -->
+        <button type="button" class="ig-marks" id="seal-rank" aria-expanded="false"></button>
+      </div>
+    </div>
+
+    <div class="count-row mine" id="seal-counts"></div>
+
+    <div id="seal-progress" hidden>
+      <div class="panel climb" id="climb"></div>
+      <div class="panel" id="seal-record"></div>
+      <div class="panel" id="seal-later"></div>
     </div>
 
     <!-- One block, because the screen is a grid and every child of it
          costs a row gap. These lines belong together anyway. -->
     <div class="ig-bio">
-      <p class="ig-name" id="seal-name">Member</p>
       <p class="ident-line" id="seal-ident" hidden></p>
       <p class="ident-line is-ar" id="seal-ident-ar" dir="rtl" lang="ar" hidden></p>
       <p class="seal-bio" id="seal-bio" hidden></p>
-      <p class="ig-meta" id="seal-langs" hidden></p>
-      <p class="chips-row" id="seal-interests" hidden></p>
-      <p class="ig-meta" id="seal-rank" hidden></p>
     </div>
+
+    <div class="fact-row" id="seal-facts" hidden></div>
+    <div class="panel" id="seal-about" hidden></div>
 
     <p class="seal-actions wide">
       <button type="button" class="ghost" id="edit-profile-btn">Edit Profile</button>
@@ -2249,14 +2286,6 @@ input[type="range"]:focus-visible { outline: 2px solid var(--white); outline-off
          reference a translator's profile actually needs. -->
     <div id="seal-grid"></div>
 
-    <!-- The Climb, the record of trials and the reading list are still
-         here; they are behind the Progress tab rather than a thousand
-         pixels of scroll under the work. -->
-    <div id="seal-progress" hidden>
-      <div class="panel climb" id="climb"></div>
-      <div class="panel" id="seal-record"></div>
-      <div class="panel" id="seal-later"></div>
-    </div>
 
     <!-- Kept for the three-way choice, now that the header carries the
          quick switch between dark and light. It sits with the other
@@ -9189,15 +9218,25 @@ async function runPublic(id) {
   const av = el("span", "avatar");
   paintFace(av, p.avatar_path, p.display_name);
   head.appendChild(av);
-  const c = counts || {};
-  const cell = (n, lab) => '<div><b>' + n + '</b><span>' + lab + '</span></div>';
-  head.appendChild(el("div", "count-row",
-    cell(posts.length, "posts") + cell(c.followers || 0, "followers") +
-    cell(c.following || 0, "following")));
+  const who = el("div", "ig-id");
+  who.appendChild(el("h1", "ig-name", esc(withTitle(p.title, p.display_name))));
+  who.appendChild(el("p", "chips-row",
+    (p.rank_slug ? '<span class="chip-tag">' + esc(rankName(p.rank_slug)) + '</span>' : '') +
+    '<span class="chip-tag solid">Translation Team</span>'));
+  /* Marks only when they have left their progress visible; the view
+     returns null for it otherwise. */
+  if (p.marks != null) who.appendChild(el("p", "ig-marks",
+    '<span class="m-n">' + p.marks + " / " + totalMarks() + ' marks</span>'));
+  head.appendChild(who);
   stage.appendChild(head);
 
+  const c = counts || {};
+  const cell = (n, lab) => '<div><b>' + n + '</b><span>' + lab + '</span></div>';
+  stage.appendChild(el("div", "count-row",
+    cell(posts.length, "posts") + cell(c.followers || 0, "followers") +
+    cell(c.following || 0, "following")));
+
   const bioBlock = el("div", "ig-bio");
-  bioBlock.appendChild(el("p", "ig-name", esc(withTitle(p.title, p.display_name))));
   stage.appendChild(bioBlock);
 
   const idParts = [p.field_of_study, p.academic_level, p.institution].filter(Boolean);
@@ -9210,18 +9249,22 @@ async function runPublic(id) {
     bioBlock.appendChild(arLine);
   }
   if (p.bio) bioBlock.appendChild(el("p", "seal-bio", esc(p.bio)));
-  if (langs.length) bioBlock.appendChild(el("p", "ig-meta",
-    esc(langs.map(l => l.language + " \u2014 " + l.proficiency).join(" \u00b7 "))));
-  if (p.show_interests && ints.length) {
-    const chips = el("p", "chips-row");
-    chips.id = "pub-interests";
-    ints.forEach(i => chips.appendChild(el("span", "chip-tag", esc(i.interest))));
-    bioBlock.appendChild(chips);
+
+  if (langs.length) {
+    const facts = el("div", "fact-row");
+    facts.innerHTML = langs.map(l => '<div class="fact">' +
+      '<span class="fact-k">' + esc(l.language) + '</span>' +
+      '<span class="fact-v">' + esc(l.proficiency) + '</span></div>').join("");
+    stage.appendChild(facts);
   }
-  /* Marks only when they have left their progress visible; the view
-     returns null for it otherwise. */
-  if (p.marks != null) bioBlock.appendChild(el("p", "ig-meta",
-    esc(rankName(p.rank_slug) || "") + " \u00b7 " + p.marks + " / " + totalMarks() + " marks"));
+  if (p.show_interests && ints.length) {
+    const panel = el("div", "panel");
+    panel.innerHTML = '<h3 class="pub-h">Interests</h3>';
+    const chips = el("div", "chips-row");
+    ints.forEach(i => chips.appendChild(el("span", "chip-tag", esc(i.interest))));
+    panel.appendChild(chips);
+    stage.appendChild(panel);
+  }
 
   const acts = el("p", "seal-actions wide two");
   if (dir.allow_follows) acts.appendChild(followButton(
@@ -10313,30 +10356,34 @@ function renderIdent() {
 
 /* Languages, field and institution as small cards, which is the part of
    the reference that actually suits a translator's profile. */
-/* Languages as one line of text. They were a row of cards, which is a
-   lot of furniture for "Arabic, native". */
+/* Languages as small cards, the way she drew them. */
 async function renderFacts() {
-  const box = document.getElementById("seal-langs");
+  const box = document.getElementById("seal-facts");
   if (!box) return;
   if (backend !== "supabase") { box.hidden = true; return; }
   let langs = [];
   try { langs = await sbGet("member_languages?select=language,proficiency&user_id=eq." + myId() + "&order=ordinal.asc"); }
   catch (e) {}
-  box.textContent = langs.map(l => l.language + " \u2014 " + l.proficiency).join(" \u00b7 ");
+  box.innerHTML = langs.map(l => '<div class="fact">' +
+    '<span class="fact-k">' + esc(l.language) + '</span>' +
+    '<span class="fact-v">' + esc(l.proficiency) + '</span></div>').join("");
   box.hidden = !langs.length;
 }
 
-/* Interests as chips under the bio. They were a panel with a heading,
-   for what is usually two words. */
+/* Interests in a panel with a heading, the way she drew them. */
 async function renderAbout() {
-  const box = document.getElementById("seal-interests");
+  const box = document.getElementById("seal-about");
   if (!box) return;
   if (backend !== "supabase" || !state.profile) { box.hidden = true; return; }
   let ints = [];
   try { ints = await sbGet("member_interests?select=interest,category&user_id=eq." + myId()); }
   catch (e) {}
-  box.innerHTML = ints.map(i => '<span class="chip-tag">' + esc(i.interest) + '</span>').join("");
-  box.hidden = !ints.length;
+  if (!ints.length) { box.hidden = true; return; }
+  box.hidden = false;
+  box.innerHTML = '<h3 class="pub-h">Interests</h3>';
+  const row = el("div", "chips-row");
+  ints.forEach(i => row.appendChild(el("span", "chip-tag", esc(i.interest))));
+  box.appendChild(row);
 }
 
 
@@ -10344,11 +10391,15 @@ async function renderAbout() {
    a translator's profile is better served by the five places they
    actually go, so each circle is a door rather than a memory. */
 const HILITES = [
-  { ico: "✎", lab: "Translations", go: () => openItem(MINE_ITEM) },
-  { ico: "☰", lab: "Guild Feed",   go: () => openItem(COMMUNITY_ITEM) },
-  { ico: "♡", lab: "Saved",        go: () => openItem(SAVED_ITEM) },
-  { ico: "◎", lab: "Members",      go: () => openItem(FIND_ITEM) },
-  { ico: "✦", lab: "Courses",      go: () => navTo("learn") }
+  { ico: '<path d="M4 20l1-4L16.5 4.5a2.1 2.1 0 0 1 3 3L8 19z"/><path d="M14.5 6.5l3 3"/>',
+    lab: "Translations", go: () => openItem(MINE_ITEM) },
+  { ico: '<path d="M4 7h16M4 12h16M4 17h10"/>',
+    lab: "Guild Feed",   go: () => openItem(COMMUNITY_ITEM) },
+  { ico: '<path d="M12 20s-7-4.4-7-9a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 4.6-7 9-7 9z"/>',
+    lab: "Saved",        go: () => openItem(SAVED_ITEM) },
+  { ico: '<circle cx="9" cy="9" r="3.2"/><path d="M3.5 19a5.5 5.5 0 0 1 11 0"/>' +
+         '<circle cx="17" cy="10" r="2.4"/><path d="M15 19a4.4 4.4 0 0 1 5.6-3.3"/>',
+    lab: "Members",      go: () => openItem(FIND_ITEM) }
 ];
 
 function renderHilites() {
@@ -10359,7 +10410,8 @@ function renderHilites() {
   row.innerHTML = "";
   HILITES.forEach(h => {
     const b = el("button", "hilite",
-      '<i aria-hidden="true">' + h.ico + '</i><span>' + h.lab + '</span>');
+      '<i aria-hidden="true"><svg viewBox="0 0 24 24">' + h.ico + '</svg></i>' +
+      '<span>' + h.lab + '</span>');
     b.type = "button";
     b.addEventListener("click", h.go);
     row.appendChild(b);
@@ -10383,11 +10435,7 @@ function profileGrid(authorId, isMe) {
 
   async function draw() {
     tabs.innerHTML = "";
-    const strip = [["all", "Posts"], ["translation", "Translations"]];
-    /* Her own profile carries the Guild's side of things as a third tab
-       rather than as panels stacked under the work. */
-    if (isMe) strip.push(["progress", "Progress"]);
-    strip.forEach(pair => {
+    [["all", "Posts"], ["translation", "Translations"]].forEach(pair => {
       const b = el("button", "grid-tab", pair[1]);
       b.type = "button";
       b.setAttribute("role", "tab");
@@ -10396,10 +10444,7 @@ function profileGrid(authorId, isMe) {
       tabs.appendChild(b);
     });
 
-    const prog = document.getElementById("seal-progress");
-    if (prog) prog.hidden = !(isMe && tab === "progress");
     box.innerHTML = "";
-    if (isMe && tab === "progress") return;
     const msg = el("p", "f-msg", "Loading\u2026");
     box.appendChild(msg);
     let rows = [];
@@ -10528,6 +10573,17 @@ function wireProfileButtons() {
     e.dataset.wired = "1";
     e.addEventListener("click", () => openItem(EDIT_ITEM));
   }
+  const rk = document.getElementById("seal-rank");
+  if (rk && !rk.dataset.wired) {
+    rk.dataset.wired = "1";
+    rk.addEventListener("click", () => {
+      const prog = document.getElementById("seal-progress");
+      if (!prog) return;
+      prog.hidden = !prog.hidden;
+      rk.setAttribute("aria-expanded", String(!prog.hidden));
+      if (!prog.hidden) prog.scrollIntoView({ block: "nearest", behavior: "smooth" });
+    });
+  }
   const sh = document.getElementById("share-profile-btn");
   if (sh && !sh.dataset.wired) {
     sh.dataset.wired = "1";
@@ -10543,7 +10599,7 @@ function wireProfileButtons() {
 /* Printed small under the notice. When a screen looks wrong, the first
    question is always whether the browser is showing an old copy, and
    this answers it without anybody having to guess. */
-const BUILD = "0926-1545";
+const BUILD = "0926-1610";
 function paintBuild() {
   const n = document.getElementById("build-stamp");
   if (n) n.textContent = " \u00b7 build " + BUILD;
@@ -10565,17 +10621,20 @@ function renderSeal() {
   /* initials come from the name, so a title never becomes a letter */
   paintAvatar(document.getElementById("seal-initials"), profileName());
 
-  /* The rank, the count and the next rung on one line. It was a boxed
-     panel with a ring in it, which is a great deal of screen for three
-     facts that fit in a sentence. The ring and the full ladder are still
-     on the Climb, behind the Progress tab. */
+  const chip = document.getElementById("chip-rank");
+  if (chip) chip.textContent = rank.en;
+
+  /* The count and the next rung, small, under the standing. Tapping it
+     opens the whole of it: the Climb, the record of trials and the
+     reading list, which used to be a thousand pixels of scroll. */
   const rk = document.getElementById("seal-rank");
   if (rk) {
     const nx = RANKS.find(r => r.at > n);
     const gapN = nx ? nx.at - n : 0;
-    rk.textContent = rank.en + " \u00b7 " + n + " / " + tm + " marks \u00b7 " +
-      (nx ? gapN + (gapN === 1 ? " mark to " : " marks to ") + nx.en : "every mark earned");
-    rk.hidden = false;
+    rk.innerHTML = '<span class="m-n">' + n + " / " + tm + ' marks</span>' +
+      '<span class="m-next">' +
+        (nx ? gapN + (gapN === 1 ? " mark to " : " marks to ") + nx.en : "Every mark earned") +
+      '</span>';
   }
   paintWho();
   renderCounts();
