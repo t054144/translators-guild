@@ -619,11 +619,11 @@ button.link:hover { color: var(--white); transform: none; box-shadow: none; }
 .sec-head { display: flex; align-items: baseline; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem; }
 .sec-head h2 { font-family: var(--f-serif); font-size: 1.35rem; font-weight: 600; color: var(--white); margin: 0; }
 .sec-head .s-ar { font-family: var(--f-ar); direction: rtl; font-size: 1rem; color: var(--lilac); }
-.ledger { display: grid; grid-template-columns: repeat(auto-fit, minmax(18.5rem, 1fr)); gap: .85rem; }
+.ledger { display: grid; grid-template-columns: repeat(auto-fit, minmax(18.5rem, 1fr)); gap: .6rem; }
 
 .commission {
-  display: grid; gap: .8rem; align-content: start;
-  text-align: left; width: 100%; padding: 1.25rem 1.35rem;
+  display: grid; gap: .55rem; align-content: start;
+  text-align: left; width: 100%; padding: .95rem 1.15rem;
   border-radius: var(--r-lg); border: var(--hair);
   background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.015));
   color: inherit; font-family: inherit; font-size: inherit; font-weight: 400; letter-spacing: normal;
@@ -2617,7 +2617,7 @@ function runLineage(startAt) {
         '<span class="m-txt">' +
           '<span class="m-en">' + E.en + '</span>' +
           '<span class="m-arname" dir="rtl" lang="ar">' + E.ar + '</span>' +
-          '<span class="m-line">' + E.when + ' · ' + E.line + '</span>' +
+          '<span class="m-line">' + E.when + '</span>' +
         '</span>';
       b.addEventListener("click", () => { cur = null; era = k; render(); scrollTop(); });
       elist.appendChild(b);
@@ -2639,7 +2639,6 @@ function runLineage(startAt) {
         '<span class="m-txt">' +
           '<span class="m-en">' + M.en + '</span>' +
           '<span class="m-arname" dir="rtl" lang="ar">' + M.ar + '</span>' +
-          '<span class="m-line">' + M.line + '</span>' +
         '</span>';
       b.addEventListener("click", () => { cur = null; mom = k; render(); scrollTop(); });
       dlist.appendChild(b);
@@ -8918,7 +8917,6 @@ function fillLedger(sectionId, section) {
       '<span class="ctitles">' +
         '<span class="c-en">' + t.en + '</span>' +
         (t.subject ? '<span class="c-subject">' + t.subject + '</span>' : '') +
-        '<span class="c-blurb">' + t.blurb + '</span>' +
       '</span>';
     b.addEventListener("click", () => openItem(t));
     box.appendChild(b);
@@ -10247,7 +10245,6 @@ function runKsl() {
         '<span class="m-txt">' +
           '<span class="m-en">' + L.en + '</span>' +
           '<span class="m-arname" dir="rtl" lang="ar">' + L.ar + '</span>' +
-          '<span class="m-line">' + L.line + '</span>' +
         '</span>';
       b.addEventListener("click", () => { pushTrail("The lessons", () => lessons()); lesson(i); });
       list.appendChild(b);
@@ -10530,7 +10527,6 @@ function runMinor() {
           '<span class="m-txt">' +
             '<span class="m-en">' + u.en + '</span>' +
             '<span class="m-arname" dir="rtl" lang="ar">' + u.ar + '</span>' +
-            '<span class="m-line">' + u.line + '</span>' +
           '</span>';
         b.addEventListener("click", () => {
           pushTrail(c.code + " " + c.en, () => { open = c; course(); });
@@ -11033,7 +11029,6 @@ function chooseGenre() {
       '<span class="g-txt">' +
         '<span class="g-en">' + g.en + '</span>' +
         '<span class="g-ar" dir="rtl" lang="ar">' + g.ar + '</span>' +
-        '<span class="g-hint">' + g.hint + '</span>' +
       '</span>' +
       '<span class="g-n">' + n + ' items</span>';
     b.addEventListener("click", () => {
